@@ -8,6 +8,16 @@
 
 **Input**: User description: "Website cho học sinh tiểu học lớp 1-2 (6-7 tuổi) với các game học tiếng Anh. Monolith Games Hub approach — Next.js app, mỗi game là một route, dữ liệu JSON tĩnh, Web Speech API cho phát âm, song ngữ Việt-Anh, flat design kiểu Duolingo, responsive, không cần đăng nhập."
 
+## Clarifications
+
+### Session 2026-08-20
+
+- Q: Ngoài Next.js (App Router) và Tailwind CSS, ngôn ngữ nào để viết code? → A: TypeScript
+- Q: Có cần tuân thủ quy định bảo vệ dữ liệu trẻ em không? → A: Không thu thập dữ liệu — zero tracking, zero cookies, zero analytics
+- Q: Hình minh họa trong các game sẽ dùng nguồn hình nào? → A: Emoji hệ thống — zero asset, hiển thị native trên mọi thiết bị
+- Q: "Phản hồi tích cực" khi trả lời đúng cụ thể bao gồm gì? → A: Visual đơn giản — emoji animation (⭐🎉) + đổi màu nền xanh/đỏ, không sound effect
+- Q: Website sẽ được deploy ở đâu? → A: Vercel (free tier) — người dùng tự deploy
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Khám phá và chọn game từ trang chủ (Priority: P1)
@@ -150,7 +160,7 @@ Học sinh vào game Câu đơn giản. Màn hình hiển thị một tình hu�
 - **FR-005**: Hệ thống PHẢI có game Chữ cái hiển thị bảng A-Z với hình minh họa, từ ví dụ, và phát âm cho mỗi chữ
 - **FR-006**: Hệ thống PHẢI có chế độ quiz trong game Chữ cái để kiểm tra nhận diện chữ cái qua âm thanh
 - **FR-007**: Hệ thống PHẢI có game Nghe hiểu phát âm từ và hiển thị 3-4 lựa chọn hình ảnh
-- **FR-008**: Hệ thống PHẢI cung cấp phản hồi rõ ràng cho đáp án đúng (tích cực, khuyến khích) và sai (hiển thị đáp án đúng, khuyến khích thử lại)
+- **FR-008**: Hệ thống PHẢI cung cấp phản hồi rõ ràng cho đáp án đúng (emoji animation ⭐🎉 + đổi nền xanh) và sai (đổi nền đỏ + hiển thị đáp án đúng, khuyến khích thử lại). Không sử dụng sound effect.
 - **FR-009**: Hệ thống PHẢI có game Đánh vần cho phép kéo thả hoặc nhấn chọn chữ cái để ghép từ
 - **FR-010**: Hệ thống PHẢI có game Số & Màu với nội dung số 1-20 và tối thiểu 8 màu cơ bản
 - **FR-011**: Hệ thống PHẢI có game Câu đơn giản cho phép sắp xếp từ thành câu hoàn chỉnh
@@ -188,9 +198,11 @@ Học sinh vào game Câu đơn giản. Màn hình hiển thị một tình hu�
 
 - Học sinh sử dụng thiết bị có kết nối internet để tải trang ban đầu
 - Sau khi tải, phần lớn game có thể hoạt động offline vì dùng dữ liệu JSON tĩnh (trừ Web Speech API cần kết nối trên một số trình duyệt)
-- Hình ảnh minh họa sẽ sử dụng hình vẽ/icon phong cách flat design, không dùng ảnh chụp thực tế
+- Hình ảnh minh họa sẽ sử dụng emoji hệ thống (🐱🍎⚽), hiển thị native trên mọi thiết bị, không cần tải thêm asset
 - Phụ huynh hoặc giáo viên sẽ giúp mở website lần đầu, sau đó trẻ tự sử dụng
 - Mỗi chủ đề từ vựng ban đầu có 10-15 từ, có thể mở rộng sau bằng cách thêm JSON data
 - Không cần lưu tiến độ hay điểm số giữa các phiên sử dụng — mỗi lần chơi là độc lập
 - Trình duyệt mục tiêu: Chrome 90+, Safari 14+, Edge 90+, Firefox 90+
 - Thiết kế UI ưu tiên mobile-first vì đa số trẻ dùng tablet/điện thoại
+- Không thu thập bất kỳ dữ liệu nào của người dùng: zero tracking, zero cookies, zero analytics, không sử dụng third-party scripts theo dõi
+- Deploy lên Vercel (free tier), người dùng tự thực hiện deploy
