@@ -1,0 +1,72 @@
+[
+  {
+    "id": "red",
+    "english": "Red",
+    "vietnamese": "Đỏ",
+    "hex": "#EF4444",
+    "tailwindClass": "bg-red-500"
+  },
+  {
+    "id": "blue",
+    "english": "Blue",
+    "vietnamese": "Xanh dương",
+    "hex": "#3B82F6",
+    "tailwindClass": "bg-blue-500"
+  },
+  {
+    "id": "green",
+    "english": "Green",
+    "vietnamese": "Xanh lá",
+    "hex": "#22C55E",
+    "tailwindClass": "bg-green-500"
+  },
+  {
+    "id": "yellow",
+    "english": "Yellow",
+    "vietnamese": "Vàng",
+    "hex": "#EAB308",
+    "tailwindClass": "bg-yellow-500"
+  },
+  {
+    "id": "orange",
+    "english": "Orange",
+    "vietnamese": "Cam",
+    "hex": "#F97316",
+    "tailwindClass": "bg-orange-500"
+  },
+  {
+    "id": "purple",
+    "english": "Purple",
+    "vietnamese": "Tím",
+    "hex": "#A855F7",
+    "tailwindClass": "bg-purple-500"
+  },
+  {
+    "id": "pink",
+    "english": "Pink",
+    "vietnamese": "Hồng",
+    "hex": "#EC4899",
+    "tailwindClass": "bg-pink-500"
+  },
+  {
+    "id": "brown",
+    "english": "Brown",
+    "vietnamese": "Nâu",
+    "hex": "#92400E",
+    "tailwindClass": "bg-amber-800"
+  },
+  {
+    "id": "black",
+    "english": "Black",
+    "vietnamese": "Đen",
+    "hex": "#000000",
+    "tailwindClass": "bg-black"
+  },
+  {
+    "id": "white",
+    "english": "White",
+    "vietnamese": "Trắng",
+    "hex": "#FFFFFF",
+    "tailwindClass": "bg-white"
+  }
+]

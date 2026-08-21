@@ -162,4 +162,21 @@ describe("Comprehensive Component Contrast Audit (WCAG 2.1)", () => {
       expect(cr).toBeGreaterThanOrEqual(7.0);
     });
   });
+
+  describe("Numbers & Colors Component (Phase 8)", () => {
+    it("Numbers & Colors header title (#047857 emerald-700) on page background (#ffffff) passes AA (>= 4.5:1)", () => {
+      const cr = getContrastRatio("#047857", "#ffffff");
+      expect(cr).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it("Number detail text (#0f172a slate-900) on Card background (#ffffff) passes AAA (>= 7:1)", () => {
+      const cr = getContrastRatio("#0f172a", "#ffffff");
+      expect(cr).toBeGreaterThanOrEqual(7.0);
+    });
+
+    it("Number count badge text (#064e3b emerald-900) on badge background (#d1fae5 emerald-100) passes AAA (>= 7:1)", () => {
+      const cr = getContrastRatio("#064e3b", "#d1fae5");
+      expect(cr).toBeGreaterThanOrEqual(7.0);
+    });
+  });
 });

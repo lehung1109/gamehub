@@ -149,9 +149,9 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 6
 
-- [ ] T032 [US6] Create numbers and colors data: `src/data/numbers.json` (1-20) and `src/data/colors.json` (10 colors with hex)
-- [ ] T033 [P] [US6] Create game component `src/components/game/TabSwitcher.tsx` (using shadcn Tabs to switch between Numbers and Colors views)
-- [ ] T034 [US6] Implement numbers and colors game page `src/app/games/numbers-colors/page.tsx` (tab switching, learn mode for numbers/colors, quiz mode)
+- [X] T032 [US6] Create numbers and colors data: `src/data/numbers.json` (1-20) and `src/data/colors.json` (10 colors with hex)
+- [X] T033 [P] [US6] Create game component `src/components/game/TabSwitcher.tsx` (using shadcn Tabs to switch between Numbers and Colors views)
+- [X] T034 [US6] Implement numbers and colors game page `src/app/games/numbers-colors/page.tsx` (tab switching, learn mode for numbers/colors, quiz mode)
 
 **Checkpoint**: Numbers & Colors game fully functional
 
