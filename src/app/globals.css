@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Kid-friendly game colors */
+  --color-game-green: #58cc02;
+  --color-game-red: #ff4b4b;
+  --color-game-blue: #1cb0f6;
+  --color-game-yellow: #ffc800;
+  --color-game-purple: #ce82ff;
+  --color-game-orange: #ff9600;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  --background: oklch(0.99 0.01 100);
+  --foreground: oklch(0.2 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 260);
+  --primary: oklch(0.72 0.22 145);          /* Game Green (#58cc02) */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.68 0.16 240);        /* Game Blue (#1cb0f6) */
+  --secondary-foreground: oklch(1 0 0);
+  --accent: oklch(0.85 0.18 85);            /* Game Yellow (#ffc800) */
+  --accent-foreground: oklch(0.2 0.02 85);
+  --destructive: oklch(0.63 0.24 25);       /* Game Red (#ff4b4b) */
+  --destructive-foreground: oklch(1 0 0);
+  --muted: oklch(0.96 0.01 240);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --border: oklch(0.9 0.02 240);
+  --input: oklch(0.9 0.02 240);
+  --ring: oklch(0.72 0.22 145);
+  --radius: 1.25rem;                        /* Bubbly rounded corners */
+}
+
+.dark {
+  --background: oklch(0.18 0.02 260);
+  --foreground: oklch(0.98 0.01 100);
+  --card: oklch(0.22 0.02 260);
+  --card-foreground: oklch(0.98 0.01 100);
+  --popover: oklch(0.22 0.02 260);
+  --popover-foreground: oklch(0.98 0.01 100);
+  --primary: oklch(0.72 0.22 145);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.68 0.16 240);
+  --secondary-foreground: oklch(1 0 0);
+  --accent: oklch(0.85 0.18 85);
+  --accent-foreground: oklch(0.2 0.02 85);
+  --destructive: oklch(0.63 0.24 25);
+  --destructive-foreground: oklch(1 0 0);
+  --muted: oklch(0.28 0.02 260);
+  --muted-foreground: oklch(0.7 0.02 240);
+  --border: oklch(0.3 0.02 260);
+  --input: oklch(0.3 0.02 260);
+  --ring: oklch(0.72 0.22 145);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

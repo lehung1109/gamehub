@@ -31,11 +31,11 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 **Purpose**: Project initialization, toolchain, and basic structure
 
-- [ ] T001 Initialize Next.js 16 project with App Router, TypeScript, and Tailwind CSS v4 in `gamehub/` (package.json, tsconfig.json, next.config.ts)
-- [ ] T002 Install dependencies: `lucide-react`, `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities`
-- [ ] T003 [P] Initialize shadcn/ui via CLI (`npx shadcn@latest init`) and configure OKLCH theming in `src/app/globals.css` with Tailwind v4 `@theme` directive
-- [ ] T004 Add required shadcn/ui components: `npx shadcn@latest add button card tabs badge dialog progress toggle toggle-group separator tooltip`
-- [ ] T005 Create base directory structure: `src/app/games/`, `src/components/custom/`, `src/components/game/`, `src/data/`, `src/hooks/`, `src/types/`
+- [X] T001 Initialize Next.js 16 project with App Router, TypeScript, and Tailwind CSS v4 in `gamehub/` (package.json, tsconfig.json, next.config.ts)
+- [X] T002 Install dependencies: `lucide-react`, `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities`
+- [X] T003 [P] Initialize shadcn/ui via CLI (`npx shadcn@latest init`) and configure OKLCH theming in `src/app/globals.css` with Tailwind v4 `@theme` directive
+- [X] T004 Add required shadcn/ui components: `npx shadcn@latest add button card tabs badge dialog progress toggle toggle-group separator tooltip`
+- [X] T005 Create base directory structure: `src/app/games/`, `src/components/custom/`, `src/components/game/`, `src/data/`, `src/hooks/`, `src/types/`
 
 ---
 
