@@ -70,9 +70,9 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 1
 
-- [ ] T018 [P] [US1] Create `src/data/games.json` with metadata for all 6 games
-- [ ] T019 [P] [US1] Create `src/components/custom/GameCard.tsx` (using shadcn Card to display game icon, title, description)
-- [ ] T020 [US1] Implement homepage `src/app/page.tsx` (load games from JSON, display in responsive grid of GameCards)
+- [X] T018 [P] [US1] Create `src/data/games.json` with metadata for all 6 games
+- [X] T019 [P] [US1] Create `src/components/custom/GameCard.tsx` (using shadcn Card to display game icon, title, description)
+- [X] T020 [US1] Implement homepage `src/app/page.tsx` (load games from JSON, display in responsive grid of GameCards)
 
 **Checkpoint**: Game hub fully functional
 

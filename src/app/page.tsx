@@ -1,69 +1,74 @@
-import Image from "next/image";
+import gamesData from "@/data/games.json";
+import { Game } from "@/types";
+import { GameCard } from "@/components/custom/GameCard";
 
-export default function Home() {
+export interface HomePageProps {
+  gamesOverride?: Game[];
+}
+
+export default function HomePage({ gamesOverride }: HomePageProps = {}) {
+  const games: Game[] = (gamesOverride ?? [...gamesData]).sort(
+    (a, b) => a.priority - b.priority
+  );
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="flex-1 flex flex-col justify-between py-2 sm:py-6">
+      <div>
+        {/* Header Hero */}
+        <header className="text-center py-4 sm:py-8 mb-6">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-black text-sm uppercase tracking-wider mb-4 animate-bounce motion-reduce:animate-none">
+            <span>🎉 Học mà chơi, chơi mà học!</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-foreground mb-4">
+            🌟 <span className="text-primary">GameHub</span> Tiếng Anh 🎮
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="text-base sm:text-xl font-medium text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
+            Cùng học từ vựng, chữ cái, số đếm và câu tiếng Anh thật vui với 6 trò chơi tương tác sinh động!
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold text-muted-foreground">
+            <span className="bg-card px-3 py-1.5 rounded-full border shadow-xs">
+              🛡️ Không cần đăng nhập
+            </span>
+            <span className="bg-card px-3 py-1.5 rounded-full border shadow-xs">
+              🔊 Phát âm tiếng Anh chuẩn
+            </span>
+            <span className="bg-card px-3 py-1.5 rounded-full border shadow-xs">
+              ⭐ Dành cho lớp 1-2
+            </span>
+          </div>
+        </header>
+
+        {/* Games Grid or Empty State */}
+        <main aria-label="Danh sách trò chơi">
+          {games.length === 0 ? (
+            <div className="text-center py-16 px-4 bg-card rounded-3xl border-2 border-dashed border-border/80 max-w-md mx-auto">
+              <span className="text-5xl mb-4 block" aria-hidden="true">
+                🎈
+              </span>
+              <h2 className="text-xl font-bold text-foreground mb-2">
+                Chưa có trò chơi nào
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Các trò chơi đang được cập nhật, bé hãy quay lại sau nhé!
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {games.map((game) => (
+                <GameCard key={game.id} game={game} />
+              ))}
+            </div>
+          )}
+        </main>
+      </div>
+
+      {/* Footer */}
+      <footer className="text-center py-8 mt-12 text-sm font-medium text-muted-foreground border-t border-border/50">
+        <p>🎈 GameHub Tiếng Anh cho bé — 100% An toàn &amp; Miễn phí</p>
+      </footer>
     </div>
   );
 }

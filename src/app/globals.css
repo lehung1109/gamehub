@@ -50,7 +50,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.02 260);
   --primary: oklch(0.72 0.22 145);          /* Game Green (#58cc02) */
-  --primary-foreground: oklch(1 0 0);
+  --primary-foreground: oklch(0.18 0.05 145);
   --secondary: oklch(0.68 0.16 240);        /* Game Blue (#1cb0f6) */
   --secondary-foreground: oklch(1 0 0);
   --accent: oklch(0.85 0.18 85);            /* Game Yellow (#ffc800) */
@@ -73,7 +73,7 @@
   --popover: oklch(0.22 0.02 260);
   --popover-foreground: oklch(0.98 0.01 100);
   --primary: oklch(0.72 0.22 145);
-  --primary-foreground: oklch(1 0 0);
+  --primary-foreground: oklch(0.18 0.05 145);
   --secondary: oklch(0.68 0.16 240);
   --secondary-foreground: oklch(1 0 0);
   --accent: oklch(0.85 0.18 85);
