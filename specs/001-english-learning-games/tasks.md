@@ -119,7 +119,7 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 4
 
-- [ ] T028 [US4] Implement listening game page `src/app/games/listening/page.tsx` (uses `src/data/words/*.json`, `QuizEngine.tsx`, speaks word, presents 3-4 image options, feedback overlay)
+- [X] T028 [US4] Implement listening game page `src/app/games/listening/page.tsx` (uses `src/data/words/*.json`, `QuizEngine.tsx`, speaks word, presents 3-4 image options, feedback overlay)
 
 **Checkpoint**: Listening Comprehension game fully functional
 

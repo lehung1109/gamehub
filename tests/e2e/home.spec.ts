@@ -23,5 +23,12 @@ test.describe("GameHub Home Navigation", () => {
     const backBtn = page.getByRole("link", { name: /Về trang chủ/i });
     await backBtn.click();
     await expect(page).toHaveURL("/");
+
+    // Check and navigate to Listening Game card
+    const listeningLink = page.getByRole("link", { name: /Nghe hiểu/i });
+    await expect(listeningLink).toBeVisible();
+    await listeningLink.click();
+    await expect(page).toHaveURL(/\/games\/listening/);
+    await expect(page.locator("h1")).toContainText("Nghe hiểu");
   });
 });

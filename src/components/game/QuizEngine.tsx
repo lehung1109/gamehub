@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { FeedbackOverlay } from "@/components/custom/FeedbackOverlay";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,7 @@ export interface QuizEngineProps<T = unknown> {
     isSelected: boolean,
     isCorrect: boolean | null
   ) => React.ReactNode;
+  getOptionAriaLabel?: (option: T, index: number) => string | undefined;
   onSpeak?: (prompt: T) => void;
   onComplete: (score: number, total: number) => void;
   onRestart?: () => void;
@@ -48,6 +49,7 @@ export function QuizEngine<T = unknown>({
   questions,
   renderPrompt,
   renderOption,
+  getOptionAriaLabel,
   onSpeak,
   onComplete,
   onRestart,
@@ -68,6 +70,7 @@ export function QuizEngine<T = unknown>({
     type: "correct",
   });
   const [isCompleted, setIsCompleted] = useState(false);
+  const isSelectingRef = React.useRef(false);
 
   const hasQuestions = questions && questions.length > 0;
   const currentQuestion = hasQuestions ? questions[currentIndex] : undefined;
@@ -90,7 +93,8 @@ export function QuizEngine<T = unknown>({
   const progressPercentage = ((currentIndex + 1) / questions.length) * 100;
 
   const handleSelectOption = (index: number) => {
-    if (selectedOption !== null || feedback.open || isCompleted) return;
+    if (selectedOption !== null || feedback.open || isCompleted || isSelectingRef.current) return;
+    isSelectingRef.current = true;
 
     setSelectedOption(index);
     const isCorrect = index === currentQuestion.correctIndex;
@@ -119,6 +123,7 @@ export function QuizEngine<T = unknown>({
     if (!feedback.open && selectedOption === null) return;
     setFeedback((prev) => ({ ...prev, open: false }));
     setSelectedOption(null);
+    isSelectingRef.current = false;
 
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex((prev) => prev + 1);
@@ -133,6 +138,7 @@ export function QuizEngine<T = unknown>({
     setSelectedOption(null);
     setScore(0);
     setIsCompleted(false);
+    isSelectingRef.current = false;
     setFeedback({ open: false, type: "correct" });
     if (onRestart) {
       onRestart();
@@ -209,15 +215,17 @@ export function QuizEngine<T = unknown>({
         {currentQuestion.options.map((option, idx) => {
           const isSelected = selectedOption === idx;
           const isCorrect = selectedOption !== null ? idx === currentQuestion.correctIndex : null;
+          const ariaLabel = getOptionAriaLabel ? getOptionAriaLabel(option, idx) : undefined;
 
           return (
             <button
               key={idx}
               type="button"
+              aria-label={ariaLabel}
               onClick={() => handleSelectOption(idx)}
               disabled={selectedOption !== null}
               className={cn(
-                "p-4 sm:p-6 rounded-3xl border-3 text-left font-bold transition-all shadow-md active:scale-95 cursor-pointer disabled:cursor-default flex items-center justify-between",
+                "group p-4 sm:p-6 rounded-3xl border-4 text-left font-bold transition-all shadow-md active:scale-95 cursor-pointer disabled:cursor-default flex items-center justify-between",
                 selectedOption === null && "border-border bg-card hover:border-primary hover:bg-primary/5 hover:scale-[1.02]",
                 isSelected && isCorrect && "border-emerald-500 bg-emerald-100 text-emerald-950 ring-4 ring-emerald-300 dark:bg-emerald-950",
                 isSelected && !isCorrect && "border-rose-500 bg-rose-100 text-rose-950 ring-4 ring-rose-300 dark:bg-rose-950",

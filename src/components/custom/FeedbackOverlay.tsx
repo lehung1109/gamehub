@@ -37,6 +37,20 @@ export function FeedbackOverlay({
     return () => clearTimeout(timer);
   }, [open, autoAdvance, autoAdvanceMs, onContinue, isCorrect]);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Enter") {
+        e.preventDefault();
+        onContinue();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open, onContinue]);
+
   if (!open) return null;
 
   const defaultTitle = isCorrect ? "🎉 Đúng rồi! (Correct!)" : "❌ Chưa chính xác! (Try again!)";
@@ -96,6 +110,7 @@ export function FeedbackOverlay({
 
         <Button
           type="button"
+          autoFocus
           onClick={onContinue}
           size="lg"
           className={cn(

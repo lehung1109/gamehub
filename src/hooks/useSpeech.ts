@@ -64,19 +64,19 @@ export function useSpeech(options: UseSpeechOptions = {}) {
       utterance.pitch = pitch;
 
       utterance.onstart = () => {
-        if (isMountedRef.current) {
+        if (isMountedRef.current && utteranceRef.current === utterance) {
           setIsSpeaking(true);
         }
       };
 
       utterance.onend = () => {
-        if (isMountedRef.current) {
+        if (isMountedRef.current && utteranceRef.current === utterance) {
           setIsSpeaking(false);
         }
       };
 
       utterance.onerror = () => {
-        if (isMountedRef.current) {
+        if (isMountedRef.current && utteranceRef.current === utterance) {
           setIsSpeaking(false);
         }
       };
