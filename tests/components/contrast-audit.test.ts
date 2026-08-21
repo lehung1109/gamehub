@@ -140,4 +140,26 @@ describe("Comprehensive Component Contrast Audit (WCAG 2.1)", () => {
       expect(cr).toBeGreaterThanOrEqual(3.0);
     });
   });
+
+  describe("Alphabet & LetterGrid Component (Phase 5)", () => {
+    it("LetterGrid correct state (white text on emerald-700 #047857) passes AA (>= 4.5:1)", () => {
+      const cr = getContrastRatio("#ffffff", "#047857");
+      expect(cr).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it("LetterGrid wrong state (white text on rose-600 #e11d48) passes AA (>= 4.5:1)", () => {
+      const cr = getContrastRatio("#ffffff", "#e11d48");
+      expect(cr).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it("Alphabet header title (#047857 emerald-700) on page background (#ffffff) passes AA (>= 4.5:1)", () => {
+      const cr = getContrastRatio("#047857", "#ffffff");
+      expect(cr).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it("Alphabet phonetic badge text (#064e3b emerald-900) on badge background (#d1fae5 emerald-100) passes AAA (>= 7:1)", () => {
+      const cr = getContrastRatio("#064e3b", "#d1fae5");
+      expect(cr).toBeGreaterThanOrEqual(7.0);
+    });
+  });
 });

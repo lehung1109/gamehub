@@ -1,0 +1,158 @@
+[
+  {
+    "letter": "A",
+    "phonetic": "/eɪ/",
+    "exampleWord": "Apple",
+    "exampleEmoji": "🍎"
+  },
+  {
+    "letter": "B",
+    "phonetic": "/biː/",
+    "exampleWord": "Ball",
+    "exampleEmoji": "⚽"
+  },
+  {
+    "letter": "C",
+    "phonetic": "/siː/",
+    "exampleWord": "Cat",
+    "exampleEmoji": "🐱"
+  },
+  {
+    "letter": "D",
+    "phonetic": "/diː/",
+    "exampleWord": "Dog",
+    "exampleEmoji": "🐶"
+  },
+  {
+    "letter": "E",
+    "phonetic": "/iː/",
+    "exampleWord": "Elephant",
+    "exampleEmoji": "🐘"
+  },
+  {
+    "letter": "F",
+    "phonetic": "/ɛf/",
+    "exampleWord": "Fish",
+    "exampleEmoji": "🐟"
+  },
+  {
+    "letter": "G",
+    "phonetic": "/dʒiː/",
+    "exampleWord": "Guitar",
+    "exampleEmoji": "🎸"
+  },
+  {
+    "letter": "H",
+    "phonetic": "/eɪtʃ/",
+    "exampleWord": "Hat",
+    "exampleEmoji": "🎩"
+  },
+  {
+    "letter": "I",
+    "phonetic": "/aɪ/",
+    "exampleWord": "Ice cream",
+    "exampleEmoji": "🍦"
+  },
+  {
+    "letter": "J",
+    "phonetic": "/dʒeɪ/",
+    "exampleWord": "Juice",
+    "exampleEmoji": "🧃"
+  },
+  {
+    "letter": "K",
+    "phonetic": "/keɪ/",
+    "exampleWord": "Kite",
+    "exampleEmoji": "🪁"
+  },
+  {
+    "letter": "L",
+    "phonetic": "/ɛl/",
+    "exampleWord": "Lion",
+    "exampleEmoji": "🦁"
+  },
+  {
+    "letter": "M",
+    "phonetic": "/ɛm/",
+    "exampleWord": "Monkey",
+    "exampleEmoji": "🐵"
+  },
+  {
+    "letter": "N",
+    "phonetic": "/ɛn/",
+    "exampleWord": "Nest",
+    "exampleEmoji": "🪺"
+  },
+  {
+    "letter": "O",
+    "phonetic": "/oʊ/",
+    "exampleWord": "Orange",
+    "exampleEmoji": "🍊"
+  },
+  {
+    "letter": "P",
+    "phonetic": "/piː/",
+    "exampleWord": "Pencil",
+    "exampleEmoji": "✏️"
+  },
+  {
+    "letter": "Q",
+    "phonetic": "/kjuː/",
+    "exampleWord": "Queen",
+    "exampleEmoji": "👑"
+  },
+  {
+    "letter": "R",
+    "phonetic": "/ɑːr/",
+    "exampleWord": "Rabbit",
+    "exampleEmoji": "🐰"
+  },
+  {
+    "letter": "S",
+    "phonetic": "/ɛs/",
+    "exampleWord": "Sun",
+    "exampleEmoji": "☀️"
+  },
+  {
+    "letter": "T",
+    "phonetic": "/tiː/",
+    "exampleWord": "Tiger",
+    "exampleEmoji": "🐯"
+  },
+  {
+    "letter": "U",
+    "phonetic": "/juː/",
+    "exampleWord": "Umbrella",
+    "exampleEmoji": "☂️"
+  },
+  {
+    "letter": "V",
+    "phonetic": "/viː/",
+    "exampleWord": "Violin",
+    "exampleEmoji": "🎻"
+  },
+  {
+    "letter": "W",
+    "phonetic": "/ˈdʌbəl.juː/",
+    "exampleWord": "Water",
+    "exampleEmoji": "💧"
+  },
+  {
+    "letter": "X",
+    "phonetic": "/ɛks/",
+    "exampleWord": "Xylophone",
+    "exampleEmoji": "🎵"
+  },
+  {
+    "letter": "Y",
+    "phonetic": "/waɪ/",
+    "exampleWord": "Yo-yo",
+    "exampleEmoji": "🪀"
+  },
+  {
+    "letter": "Z",
+    "phonetic": "/zɛd/",
+    "exampleWord": "Zebra",
+    "exampleEmoji": "🦓"
+  }
+]

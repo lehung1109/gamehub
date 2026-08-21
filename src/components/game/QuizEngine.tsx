@@ -218,7 +218,7 @@ export function QuizEngine<T = unknown>({
               disabled={selectedOption !== null}
               className={cn(
                 "p-4 sm:p-6 rounded-3xl border-3 text-left font-bold transition-all shadow-md active:scale-95 cursor-pointer disabled:cursor-default flex items-center justify-between",
-                selectedOption === null && "border-border bg-card hover:border-primary hover:bg-primary/5 hover:scale-102",
+                selectedOption === null && "border-border bg-card hover:border-primary hover:bg-primary/5 hover:scale-[1.02]",
                 isSelected && isCorrect && "border-emerald-500 bg-emerald-100 text-emerald-950 ring-4 ring-emerald-300 dark:bg-emerald-950",
                 isSelected && !isCorrect && "border-rose-500 bg-rose-100 text-rose-950 ring-4 ring-rose-300 dark:bg-rose-950",
                 selectedOption !== null && !isSelected && idx === currentQuestion.correctIndex && "border-emerald-500 bg-emerald-50 text-emerald-900",

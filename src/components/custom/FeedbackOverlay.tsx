@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -38,17 +37,29 @@ export function FeedbackOverlay({
     return () => clearTimeout(timer);
   }, [open, autoAdvance, autoAdvanceMs, onContinue, isCorrect]);
 
+  if (!open) return null;
+
   const defaultTitle = isCorrect ? "🎉 Đúng rồi! (Correct!)" : "❌ Chưa chính xác! (Try again!)";
   const defaultMessage = isCorrect
     ? "Tuyệt vời lắm bạn ơi! ⭐⭐⭐"
     : "Đừng buồn nhé, hãy thử lại lần sau!";
 
   return (
-    <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onContinue()}>
-      <DialogContent
-        showCloseButton={false}
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="feedback-dialog-title"
+      data-slot="dialog-content"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/25 animate-in fade-in-0 duration-150"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onContinue();
+        }
+      }}
+    >
+      <div
         className={cn(
-          "max-w-md p-6 text-center border-4 rounded-3xl shadow-2xl flex flex-col items-center gap-4 transition-all duration-200",
+          "max-w-md w-full p-6 text-center border-4 rounded-3xl shadow-2xl flex flex-col items-center gap-4 animate-in zoom-in-95 duration-150",
           isCorrect
             ? "border-emerald-500 bg-emerald-50 text-emerald-950 dark:bg-emerald-950/90 dark:text-emerald-50"
             : "border-rose-500 bg-rose-50 text-rose-950 dark:bg-rose-950/90 dark:text-rose-50"
@@ -58,13 +69,19 @@ export function FeedbackOverlay({
           {isCorrect ? "🌟" : "💪"}
         </div>
 
-        <DialogTitle className={cn("text-2xl sm:text-3xl font-extrabold tracking-tight", isCorrect ? "text-emerald-700 dark:text-emerald-400" : "text-rose-700 dark:text-rose-400")}>
+        <h3
+          id="feedback-dialog-title"
+          className={cn(
+            "text-2xl sm:text-3xl font-extrabold tracking-tight",
+            isCorrect ? "text-emerald-700 dark:text-emerald-400" : "text-rose-700 dark:text-rose-400"
+          )}
+        >
           {title || defaultTitle}
-        </DialogTitle>
+        </h3>
 
-        <DialogDescription className="text-base sm:text-lg font-medium text-foreground/80">
+        <p className="text-base sm:text-lg font-medium text-foreground/80">
           {message || defaultMessage}
-        </DialogDescription>
+        </p>
 
         {!isCorrect && correctAnswer && (
           <div className="w-full bg-white/80 dark:bg-black/40 rounded-2xl p-3 border-2 border-rose-200 dark:border-rose-900">
@@ -90,7 +107,7 @@ export function FeedbackOverlay({
         >
           Tiếp tục (Continue) ➡️
         </Button>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>
   );
 }

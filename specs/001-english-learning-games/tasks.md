@@ -103,9 +103,9 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 3
 
-- [ ] T025 [US3] Create letter data `src/data/letters.json` (A-Z with phonetic, example word, example emoji)
-- [ ] T026 [P] [US3] Create game component `src/components/game/LetterGrid.tsx` (using shadcn Button/Toggle Group for A-Z grid)
-- [ ] T027 [US3] Implement alphabet game page `src/app/games/alphabet/page.tsx` (Learn mode: click letter to hear and see example; Quiz mode: hear letter and select from grid)
+- [X] T025 [US3] Create letter data `src/data/letters.json` (A-Z with phonetic, example word, example emoji)
+- [X] T026 [P] [US3] Create game component `src/components/game/LetterGrid.tsx` (using shadcn Button/Toggle Group for A-Z grid)
+- [X] T027 [US3] Implement alphabet game page `src/app/games/alphabet/page.tsx` (Learn mode: click letter to hear and see example; Quiz mode: hear letter and select from grid)
 
 **Checkpoint**: Alphabet & Phonics game fully functional
 
