@@ -9,7 +9,7 @@ import type { GameConfig } from '@/types/config'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, Calendar, User, Layers, Share2 } from 'lucide-react'
+import { ArrowLeft, Calendar, Share2 } from 'lucide-react'
 
 interface PageProps {
   params: Promise<{ configId: string }>

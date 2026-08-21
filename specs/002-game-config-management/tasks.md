@@ -111,11 +111,11 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 5 ⚠️
 
-- [ ] T024 [P] [US5] E2E test verifying default behavior in all games in `tests/e2e/default-games.spec.ts`
+- [x] T024 [P] [US5] E2E test verifying default behavior in all games in `tests/e2e/default-games.spec.ts`
 
 ### Implementation for User Story 5
 
-- [ ] T025 [US5] Validate existing game logic and add guard clauses to handle undefined config in `src/app/games/*/page.tsx`
+- [x] T025 [US5] Validate existing game logic and add guard clauses to handle undefined config in `src/app/games/*/page.tsx`
 
 **Checkpoint**: Existing user experience is preserved.
 

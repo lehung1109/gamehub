@@ -116,7 +116,7 @@ export function ConfigCreateForm({ game }: Props) {
           router.push(`/admin/games/${gameId}`)
           router.refresh()
         }
-      } catch (err) {
+      } catch {
         setErrorMessage('Không thể kết nối đến máy chủ. Vui lòng thử lại sau.')
       }
     })

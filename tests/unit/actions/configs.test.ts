@@ -5,8 +5,6 @@ import type { CreateConfigInput } from '@/types/config'
 const mockGetUser = vi.fn()
 const mockInsert = vi.fn()
 const mockSelect = vi.fn()
-const mockEq = vi.fn()
-const mockOrder = vi.fn()
 const mockRevalidatePath = vi.fn()
 
 vi.mock('next/cache', () => ({

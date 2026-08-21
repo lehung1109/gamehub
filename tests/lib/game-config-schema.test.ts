@@ -73,14 +73,14 @@ describe('Game Config Schema', () => {
         autoSpeak: false,
       })
       expect(res.valid).toBe(true)
-      expect((res.data as any).wordLimit).toBe(0)
+      expect((res.data as unknown as Record<string, unknown>).wordLimit).toBe(0)
 
       const resInf = validateGameSettings('flashcard', {
         wordLimit: Infinity,
         autoSpeak: false,
       })
       expect(resInf.valid).toBe(true)
-      expect((resInf.data as any).wordLimit).toBe(0)
+      expect((resInf.data as unknown as Record<string, unknown>).wordLimit).toBe(0)
     })
 
     it('validates alphabet settings uppercase and single-letter filtering', () => {
@@ -142,7 +142,7 @@ describe('Game Config Schema', () => {
         numberRange: [NaN, 10],
       })
       expect(resNaN.valid).toBe(true)
-      expect((resNaN.data as any).numberRange).toEqual([1, 10])
+      expect((resNaN.data as unknown as Record<string, unknown>).numberRange).toEqual([1, 10])
     })
 
     it('validates sentences settings', () => {
