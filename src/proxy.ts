@@ -1,9 +1,18 @@
-// src/middleware.ts
+// src/proxy.ts
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import type { Database } from '@/types/database'
 
-export async function middleware(request: NextRequest) {
+function isValidAdminRedirect(path: string | null): boolean {
+  if (!path) return false
+  // Must start with /admin or /admin/ and not be protocol-relative (//)
+  return (
+    (path === '/admin' || path.startsWith('/admin/')) &&
+    !path.startsWith('//')
+  )
+}
+
+export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   })
@@ -40,23 +49,24 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
 
-  // 1. Protect all /admin routes
-  if (pathname.startsWith('/admin') && !user) {
+  // 1. Protect all /admin routes (preserve full path with search query, clear direct query params on /login)
+  if ((pathname === '/admin' || pathname.startsWith('/admin/')) && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
-    url.searchParams.set('redirect', pathname)
+    const fullRedirectPath = pathname + request.nextUrl.search
+    url.search = ''
+    url.searchParams.set('redirect', fullRedirectPath)
     return NextResponse.redirect(url)
   }
 
   // 2. Redirect logged-in user away from /login
   if (pathname === '/login' && user) {
-    const url = request.nextUrl.clone()
     const redirectParam = request.nextUrl.searchParams.get('redirect')
-    url.pathname =
-      redirectParam && redirectParam.startsWith('/admin')
-        ? redirectParam
-        : '/admin/dashboard'
-    url.searchParams.delete('redirect')
+    const target = isValidAdminRedirect(redirectParam)
+      ? redirectParam!
+      : '/admin/dashboard'
+
+    const url = new URL(target, request.nextUrl.origin)
     return NextResponse.redirect(url)
   }
 

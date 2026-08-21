@@ -47,7 +47,7 @@ description: "Task list template for feature implementation"
   - Generate `src/lib/supabase/schema.sql` (Tables, RLS, indexes, and Triggers for `auth.users` -> `profiles`).
   - Copy and execute manually in **Remote Supabase Dashboard SQL Editor**.
   - Verify execution before generating types in T002.
-- [x] T007 Implement middleware for auth session refresh and route protection in `src/middleware.ts`
+- [x] T007 Implement proxy for auth session refresh and route protection in `src/proxy.ts` (Next.js 16)
 - [x] T008 Configure environment variables for Supabase in `.env.local`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
@@ -64,16 +64,16 @@ description: "Task list template for feature implementation"
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T009 [P] [US1] Unit test for auth actions in `tests/unit/actions/auth.test.ts`
-- [ ] T010 [P] [US1] E2E test for admin login/logout and profile flow in `tests/e2e/admin-login.spec.ts`
+- [x] T009 [P] [US1] Unit test for auth actions in `tests/unit/actions/auth.test.ts`
+- [x] T010 [P] [US1] E2E test for admin login/logout and profile flow in `tests/e2e/admin-login.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T011 [US1] Implement server actions (`login`, `logout`, `updatePassword`) in `src/app/actions/auth.ts`
-- [ ] T012 [P] [US1] Create login page UI in `src/app/login/page.tsx`
-- [ ] T013 [P] [US1] Create protected admin layout in `src/app/admin/layout.tsx`
-- [ ] T014 [US1] Create basic admin dashboard in `src/app/admin/dashboard/page.tsx`
-- [ ] T015 [US1] Create account profile and password page in `src/app/admin/account/page.tsx`
+- [x] T011 [US1] Implement server actions (`login`, `logout`, `updatePassword`) in `src/app/actions/auth.ts`
+- [x] T012 [P] [US1] Create login page UI in `src/app/login/page.tsx`
+- [x] T013 [P] [US1] Create protected admin layout in `src/app/admin/layout.tsx`
+- [x] T014 [US1] Create basic admin dashboard in `src/app/admin/dashboard/page.tsx`
+- [x] T015 [US1] Create account profile and password page in `src/app/admin/account/page.tsx`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
