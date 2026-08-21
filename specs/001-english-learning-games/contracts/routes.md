@@ -166,17 +166,22 @@ This is a statically-exported Next.js web application. All routes are pre-render
 
 ### `GameCard`
 
+**Built on**: shadcn `Card` + `CardHeader` + `CardContent`
+
 ```typescript
 interface GameCardProps {
   game: Game;
 }
 ```
+- Extends shadcn `Card` with `rounded-3xl shadow-lg` for kid-friendly styling
 - Renders a clickable card with emoji, title (Vietnamese), and description
-- Links to `game.route`
-- Touch/click interaction
+- Links to `game.route` via Next.js `Link`
+- Touch/click interaction with `hover:scale-105 transition-transform`
 - Responsive sizing
 
 ### `BackButton`
+
+**Built on**: shadcn `Button` (variant `outline`, size `lg`)
 
 ```typescript
 interface BackButtonProps {
@@ -184,10 +189,13 @@ interface BackButtonProps {
   label?: string; // defaults to "Về trang chủ"
 }
 ```
+- Uses shadcn `Button` with `variant="outline"` and `size="lg"`
 - Fixed position, always visible (FR-017)
-- Large touch target (48px minimum)
+- Large touch target (48px minimum, `h-14` on mobile)
 
 ### `SpeakButton`
+
+**Built on**: shadcn `Button` (variant `secondary`, size `icon`)
 
 ```typescript
 interface SpeakButtonProps {
@@ -196,11 +204,14 @@ interface SpeakButtonProps {
   disabled?: boolean;
 }
 ```
+- Uses shadcn `Button` with `variant="secondary"` and `size="icon"` (🔊 emoji)
 - Triggers `useSpeech().speak(text)`
 - Cancels previous utterance before speaking (FR-016)
 - Shows unsupported message if Web Speech API unavailable (FR-018)
 
 ### `FeedbackOverlay`
+
+**Built on**: shadcn `Dialog` (modal overlay)
 
 ```typescript
 interface FeedbackOverlayProps {
@@ -210,11 +221,15 @@ interface FeedbackOverlayProps {
   autoAdvanceMs?: number; // defaults to 1500
 }
 ```
+- Uses shadcn `Dialog` as a modal overlay for feedback display
 - Correct: green background + ⭐🎉 emoji animation (FR-008)
 - Wrong: red background + show correct answer + encourage retry (FR-008)
 - No sound effects (FR-008)
+- Continue button uses shadcn `Button`
 
 ### `QuizEngine`
+
+**Built on**: shadcn `Button` + `Progress` + `Toggle Group`
 
 ```typescript
 interface QuizQuestion<T> {
@@ -230,6 +245,8 @@ interface QuizEngineProps<T> {
   onComplete: (score: number, total: number) => void;
 }
 ```
+- Uses shadcn `Progress` for question progress bar
+- Quiz options rendered as shadcn `Toggle Group` items or custom `Button` variants
 - Manages quiz state machine (presenting → waiting → feedback → next)
 - Tracks correct/wrong answers
 - Calls `onSpeak` for audio questions
@@ -237,10 +254,13 @@ interface QuizEngineProps<T> {
 
 ### `SpeechUnsupportedBanner`
 
+**Built on**: shadcn `Dialog` (alert variant)
+
 ```typescript
 interface SpeechUnsupportedBannerProps {
   show: boolean;
 }
 ```
-- Renders a dismissible banner when Web Speech API is not available (FR-018)
+- Uses shadcn `Dialog` as a dismissible alert banner
+- Renders when Web Speech API is not available (FR-018)
 - Suggests using Chrome, Edge, or Safari

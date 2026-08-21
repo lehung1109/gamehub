@@ -32,6 +32,10 @@ npm run dev
 # Core
 npx create-next-app@latest . --typescript --tailwind --app --src-dir --no-eslint
 
+# shadcn/ui — initialize and add components
+npx shadcn@latest init
+npx shadcn@latest add button card tabs badge dialog progress toggle toggle-group separator tooltip
+
 # Drag & Drop (for spelling and sentence games)
 npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 

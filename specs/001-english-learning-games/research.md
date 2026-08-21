@@ -52,6 +52,8 @@
 }
 ```
 
+> **Note**: shadcn/ui theming uses OKLCH color variables in `globals.css` alongside Tailwind v4's `@theme` directive for perceptually uniform, wide-gamut colors across the kid-friendly palette.
+
 **Alternatives Considered**:
 - Tailwind CSS v3: Superseded. Uses legacy JS config, manual content array, slower builds.
 - CSS Modules: More boilerplate, less utility-first, harder to maintain consistency.
@@ -112,7 +114,83 @@
 - Pragmatic DnD (Atlassian): Framework-agnostic, low-level, high boilerplate.
 - Custom Pointer Events: Maximum effort, high bug risk, reinventing solved problems.
 
-## 7. UI Design System
+## 7. UI Component System
+
+### Decision: shadcn/ui (latest, CLI v4) with Tailwind CSS v4
+
+- **Framework**: shadcn/ui — copy-paste component collection, not a runtime dependency
+- **CLI**: `npx shadcn@latest` (CLI v4, agent-aware with `--dry-run`, `--diff`, `--view`)
+- **Primitives**: Base UI (default) with Radix UI fallback support
+- **Color Format**: OKLCH (Lightness, Chroma, Hue) — perceptually uniform, wide gamut
+- **Styling**: `data-slot` attribute for standardized styling hooks
+- **Theming**: CSS variables in `globals.css`, compatible with Tailwind v4 `@theme inline` directive
+
+**Components to Use**:
+
+| Component | Use Case in GameHub |
+|-----------|---------------------|
+| `Button` | Navigation, speak buttons, quiz option buttons, back button |
+| `Card` | Homepage game cards, flashcard display |
+| `Tabs` | Numbers/Colors tab switching, Learn/Quiz mode switching |
+| `Badge` | Topic labels, score indicators |
+| `Dialog` | Feedback overlays (correct/wrong), speech unsupported warnings |
+| `Progress` | Progress tracking within game sessions |
+| `Toggle` | Learn/Quiz mode toggle |
+| `Toggle Group` | Multiple choice quiz options |
+| `Separator` | Visual section breaks between game areas |
+| `Tooltip` | Hints and helper text for children |
+
+**Setup**:
+```bash
+# Initialize shadcn in project
+npx shadcn@latest init
+
+# Add required components
+npx shadcn@latest add button card tabs badge dialog progress toggle toggle-group separator tooltip
+```
+
+**Theming** (kid-friendly OKLCH palette in `globals.css`):
+```css
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --primary: oklch(0.72 0.22 145);          /* Game Green (#58cc02) */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.68 0.16 240);        /* Game Blue (#1cb0f6) */
+  --secondary-foreground: oklch(1 0 0);
+  --accent: oklch(0.85 0.18 85);            /* Game Yellow (#ffc800) */
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.63 0.24 25);       /* Game Red (#ff4b4b) */
+  --destructive-foreground: oklch(1 0 0);
+  --radius: 1.25rem;                        /* Bubbly rounded corners */
+}
+```
+
+**Rationale**: shadcn/ui provides accessible, well-designed UI primitives with zero runtime dependency (components are copied into the project). It integrates natively with Tailwind CSS v4 and provides consistent styling through OKLCH CSS variables. Using shadcn components reduces custom UI code while maintaining full customization control. The `data-slot` attribute enables targeted styling. Components like `Dialog`, `Tabs`, and `Button` already handle accessibility (ARIA, keyboard navigation, focus management) via Radix/Base UI primitives.
+
+**Alternatives Considered**:
+- Custom components from scratch: More work, less consistent, no accessibility out-of-box.
+- Chakra UI / Mantine: Runtime dependencies, larger bundle, conflict with Tailwind.
+- Headless UI: Fewer components, less ecosystem support.
+- Material UI: Heavy runtime, opinionated design system, conflicts with flat Duolingo style.
+
+## 8. UI Design System
 
 ### Decision: Duolingo-style flat design with 3D tactile buttons
 
@@ -129,9 +207,15 @@
   - Card flip: CSS `rotateY` transform with perspective
   - Rewards: `animate-bounce` on ⭐🎉
 
+**Integration with shadcn/ui**: The Duolingo-style design will be applied as custom className overrides on shadcn components:
+- `Button`: Add `border-b-4 active:translate-y-1 active:border-b-0` for 3D push effect
+- `Card`: Add `rounded-3xl shadow-lg` for soft, friendly cards
+- `Tabs`/`Toggle`: Custom kid-friendly sizing with `h-14` minimum touch targets
+- All components: Override with custom OKLCH color variables for the game palette
+
 **Rationale**: Children 6-7 need large, clearly distinguishable targets with immediate visual feedback. Duolingo's design is proven effective for language learning apps. Tactile 3D buttons provide clear affordance — children understand "this is pressable."
 
-## 8. Testing Strategy
+## 9. Testing Strategy
 
 ### Decision: Vitest (unit/component) + Playwright (E2E)
 
@@ -145,7 +229,7 @@
 - Jest: Slower, requires complex ESM workarounds for Next.js App Router.
 - Cypress: Heavier resource footprint, fewer browser targets than Playwright.
 
-## 9. Responsive Design
+## 10. Responsive Design
 
 ### Decision: Mobile-first with Tailwind breakpoints
 
@@ -158,7 +242,7 @@
 
 **Rationale**: Target audience primarily uses tablets and phones. Mobile-first ensures the core experience is optimized for the most common device. Dynamic viewport units prevent layout jumps on mobile Safari/Chrome.
 
-## 10. Deployment
+## 11. Deployment
 
 ### Decision: Vercel (free tier)
 
