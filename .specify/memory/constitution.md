@@ -1,50 +1,148 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+  Sync Impact Report
+  Version change: (none) → 1.0.0 (initial ratification)
+  Added sections:
+    - Core Principles: 5 principles (Next.js App Router, TypeScript-First,
+      Component-Driven UI, Drag-and-Drop with dnd-kit, Test-First)
+    - Technology Stack: Approved stack and constraints
+    - Development Workflow: Quality gates and testing requirements
+    - Governance: Amendment procedure and versioning policy
+  Removed sections: (none — first version)
+  Follow-up TODOs: none
+-->
+
+# GameHub Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Next.js App Router
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+GameHub is a Next.js application using the App Router exclusively.
+- All routes MUST use the `app/` directory convention (no `pages/` directory)
+- Server Components MUST be the default; Client Components (`"use client"`)
+  are used only when interactivity or browser APIs are required
+- Data fetching MUST prefer server-side patterns; client-side fetching is
+  permitted only when server-side is not feasible (e.g., real-time updates)
+- Static generation (SSG) MUST be preferred over server-side rendering (SSR)
+  wherever content allows
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. TypeScript-First
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+All application code MUST be written in TypeScript with strict mode enabled.
+- `any` type MUST NOT be used; `unknown` with type narrowing is the required
+  alternative when the type is truly dynamic
+- Shared types MUST live in `src/types/` and be reused across components,
+  hooks, and utilities
+- Type assertions (`as`) MUST be avoided unless accompanied by a runtime
+  guard or an explicit justification comment
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Component-Driven UI (Tailwind CSS + shadcn/ui)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+All UI MUST be built with Tailwind CSS utility classes and shadcn/ui
+components as the design system foundation.
+- Custom CSS files MUST NOT be created; all styling MUST use Tailwind
+  utilities or CSS variables defined in the global stylesheet
+- shadcn/ui components MUST be used for standard UI elements (buttons,
+  dialogs, forms, etc.) before creating custom alternatives
+- Custom components MUST follow the shadcn/ui composition pattern: accept
+  `className` prop, use `cn()` for class merging, and expose a composable API
+- Visual design MUST follow flat design principles with child-friendly
+  aesthetics (large touch targets, high contrast, emoji-based illustrations)
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. Drag-and-Drop with dnd-kit
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All drag-and-drop interactions MUST use the dnd-kit library exclusively.
+- `@dnd-kit/core` MUST be used for base drag-and-drop functionality
+- `@dnd-kit/sortable` MUST be used for sortable list interactions
+- Custom drag-and-drop implementations (native HTML5 drag events, other
+  libraries) MUST NOT be introduced
+- Drag-and-drop components MUST be accessible: keyboard navigation and
+  screen reader announcements are required
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### V. Test-First (NON-NEGOTIABLE)
+
+Every feature and bug fix MUST have both unit tests and end-to-end tests.
+This is non-negotiable.
+- Unit tests MUST be written with Vitest and React Testing Library
+- End-to-end tests MUST be written with Playwright
+- Tests MUST be written before or alongside implementation — no feature is
+  considered complete without passing tests
+- Unit tests MUST cover: component rendering, user interactions, hook
+  behavior, utility functions, and edge cases
+- E2E tests MUST cover: complete user flows, page navigation, and critical
+  business scenarios
+- Test commands: `npm run test:run` (unit), `npm run test:e2e` (e2e)
+- All tests MUST pass before code is merged; CI failures block merges
+
+## Technology Stack
+
+Approved technologies for GameHub — additions require a constitution
+amendment.
+
+| Layer | Technology | Version Constraint |
+|-------|-----------|-------------------|
+| Framework | Next.js (App Router) | 16.x |
+| Language | TypeScript (strict) | 5.x |
+| UI Runtime | React | 19.x |
+| Styling | Tailwind CSS | 4.x |
+| Component Library | shadcn/ui | 4.x |
+| Drag-and-Drop | dnd-kit | 6.x |
+| Icons | Lucide React | latest |
+| Unit Testing | Vitest + Testing Library | latest |
+| E2E Testing | Playwright | latest |
+| Deployment | Vercel (free tier) | — |
+
+**Constraints**:
+- New dependencies MUST be justified; prefer existing stack capabilities
+- No CSS-in-JS libraries (styled-components, Emotion, etc.)
+- No state management libraries unless complexity demands it — React state
+  and context are the default
+- Zero tracking, zero cookies, zero analytics for end users (students);
+  authentication is admin-only
+
+## Development Workflow
+
+### Quality Gates
+
+Every change MUST pass these gates before being considered complete:
+
+1. **Lint**: `npm run lint` passes with zero errors
+2. **Type Check**: `npx tsc --noEmit` passes with zero errors
+3. **Unit Tests**: `npm run test:run` — all tests pass
+4. **E2E Tests**: `npm run test:e2e` — all tests pass
+5. **Build**: `npm run build` succeeds without errors
+
+### Testing Requirements
+
+- **New component** → unit test for rendering + interaction + e2e for user
+  flow
+- **New page/route** → e2e test covering navigation and primary scenario
+- **Bug fix** → regression test (unit or e2e) reproducing the bug before fix
+- **Utility/hook** → unit test covering normal and edge cases
+- Test files MUST be co-located or in the `tests/` directory following
+  existing project conventions
+
+### Code Organization
+
+- `src/app/` — Routes and page components (App Router)
+- `src/components/` — Reusable UI components
+- `src/data/` — Static JSON data files
+- `src/hooks/` — Custom React hooks
+- `src/lib/` — Utility functions and shared logic
+- `src/types/` — TypeScript type definitions
+- `tests/` — E2E test files (Playwright)
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices for the
+GameHub project.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- Amendments MUST be documented with rationale and versioned
+- Technology additions MUST be proposed as constitution amendments before
+  adoption
+- All code reviews MUST verify compliance with these principles
+- Complexity MUST be justified — start simple, apply YAGNI
+- When principles conflict, priority order is:
+  Test-First > TypeScript-First > Component-Driven UI > App Router > dnd-kit
+
+**Version**: 1.0.0 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-08-21
