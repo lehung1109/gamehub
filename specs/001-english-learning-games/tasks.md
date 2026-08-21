@@ -133,9 +133,9 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 5
 
-- [ ] T029 [P] [US5] Create drag-and-drop components `src/components/game/LetterBank.tsx` (draggable letter tiles) and `src/components/game/DropSlots.tsx` (droppable target slots) using @dnd-kit
-- [ ] T030 [US5] Create `src/components/game/DragDropBoard.tsx` (orchestrates @dnd-kit DndContext, sensors, checking logic)
-- [ ] T031 [US5] Implement spelling game page `src/app/games/spelling/page.tsx` (uses `src/data/words/*.json`, display image/emoji, scrambled letters, DragDropBoard for arrangement)
+- [X] T029 [P] [US5] Create drag-and-drop components `src/components/game/LetterBank.tsx` (draggable letter tiles) and `src/components/game/DropSlots.tsx` (droppable target slots) using @dnd-kit
+- [X] T030 [US5] Create `src/components/game/DragDropBoard.tsx` (orchestrates @dnd-kit DndContext, sensors, checking logic)
+- [X] T031 [US5] Implement spelling game page `src/app/games/spelling/page.tsx` (uses `src/data/words/*.json`, display image/emoji, scrambled letters, DragDropBoard for arrangement)
 
 **Checkpoint**: Spelling game fully functional
 
