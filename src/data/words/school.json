@@ -1,0 +1,98 @@
+[
+  {
+    "id": "school-book",
+    "english": "Book",
+    "phonetic": "/bʊk/",
+    "vietnamese": "Quyển sách",
+    "emoji": "📖",
+    "topicId": "school"
+  },
+  {
+    "id": "school-pen",
+    "english": "Pen",
+    "phonetic": "/pen/",
+    "vietnamese": "Bút mực",
+    "emoji": "🖊️",
+    "topicId": "school"
+  },
+  {
+    "id": "school-pencil",
+    "english": "Pencil",
+    "phonetic": "/ˈpen.səl/",
+    "vietnamese": "Bút chì",
+    "emoji": "✏️",
+    "topicId": "school"
+  },
+  {
+    "id": "school-ruler",
+    "english": "Ruler",
+    "phonetic": "/ˈruː.lər/",
+    "vietnamese": "Thước kẻ",
+    "emoji": "📏",
+    "topicId": "school"
+  },
+  {
+    "id": "school-eraser",
+    "english": "Eraser",
+    "phonetic": "/ɪˈreɪ.zər/",
+    "vietnamese": "Cục tẩy",
+    "emoji": "🧼",
+    "topicId": "school"
+  },
+  {
+    "id": "school-bag",
+    "english": "Bag",
+    "phonetic": "/bæɡ/",
+    "vietnamese": "Cặp sách",
+    "emoji": "🎒",
+    "topicId": "school"
+  },
+  {
+    "id": "school-desk",
+    "english": "Desk",
+    "phonetic": "/desk/",
+    "vietnamese": "Bàn học",
+    "emoji": "🪑",
+    "topicId": "school"
+  },
+  {
+    "id": "school-school",
+    "english": "School",
+    "phonetic": "/skuːl/",
+    "vietnamese": "Trường học",
+    "emoji": "🏫",
+    "topicId": "school"
+  },
+  {
+    "id": "school-teacher",
+    "english": "Teacher",
+    "phonetic": "/ˈtiː.tʃər/",
+    "vietnamese": "Giáo viên",
+    "emoji": "🧑‍🏫",
+    "topicId": "school"
+  },
+  {
+    "id": "school-student",
+    "english": "Student",
+    "phonetic": "/ˈstjuː.dənt/",
+    "vietnamese": "Học sinh",
+    "emoji": "🧑‍🎓",
+    "topicId": "school"
+  },
+  {
+    "id": "school-board",
+    "english": "Board",
+    "phonetic": "/bɔːd/",
+    "vietnamese": "Bảng viết",
+    "emoji": "📋",
+    "topicId": "school"
+  },
+  {
+    "id": "school-clock",
+    "english": "Clock",
+    "phonetic": "/klɒk/",
+    "vietnamese": "Đồng hồ",
+    "emoji": "⏰",
+    "topicId": "school"
+  }
+]

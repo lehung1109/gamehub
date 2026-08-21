@@ -1,0 +1,98 @@
+[
+  {
+    "id": "family-father",
+    "english": "Father",
+    "phonetic": "/ˈfɑː.ðər/",
+    "vietnamese": "Bố",
+    "emoji": "👨",
+    "topicId": "family"
+  },
+  {
+    "id": "family-mother",
+    "english": "Mother",
+    "phonetic": "/ˈmʌð.ər/",
+    "vietnamese": "Mẹ",
+    "emoji": "👩",
+    "topicId": "family"
+  },
+  {
+    "id": "family-brother",
+    "english": "Brother",
+    "phonetic": "/ˈbrʌð.ər/",
+    "vietnamese": "Anh/Em trai",
+    "emoji": "👦",
+    "topicId": "family"
+  },
+  {
+    "id": "family-sister",
+    "english": "Sister",
+    "phonetic": "/ˈsɪs.tər/",
+    "vietnamese": "Chị/Em gái",
+    "emoji": "👧",
+    "topicId": "family"
+  },
+  {
+    "id": "family-baby",
+    "english": "Baby",
+    "phonetic": "/ˈbeɪ.bi/",
+    "vietnamese": "Em bé",
+    "emoji": "👶",
+    "topicId": "family"
+  },
+  {
+    "id": "family-grandfather",
+    "english": "Grandfather",
+    "phonetic": "/ˈɡrænˌfɑː.ðər/",
+    "vietnamese": "Ông",
+    "emoji": "👴",
+    "topicId": "family"
+  },
+  {
+    "id": "family-grandmother",
+    "english": "Grandmother",
+    "phonetic": "/ˈɡrænˌmʌð.ər/",
+    "vietnamese": "Bà",
+    "emoji": "👵",
+    "topicId": "family"
+  },
+  {
+    "id": "family-family",
+    "english": "Family",
+    "phonetic": "/ˈfæm.əl.i/",
+    "vietnamese": "Gia đình",
+    "emoji": "👨‍👩‍👧‍👦",
+    "topicId": "family"
+  },
+  {
+    "id": "family-uncle",
+    "english": "Uncle",
+    "phonetic": "/ˈʌŋ.kəl/",
+    "vietnamese": "Chú/Bác",
+    "emoji": "👨‍🦰",
+    "topicId": "family"
+  },
+  {
+    "id": "family-aunt",
+    "english": "Aunt",
+    "phonetic": "/ɑːnt/",
+    "vietnamese": "Cô/Dì",
+    "emoji": "👩‍🦰",
+    "topicId": "family"
+  },
+  {
+    "id": "family-son",
+    "english": "Son",
+    "phonetic": "/sʌn/",
+    "vietnamese": "Con trai",
+    "emoji": "👦",
+    "topicId": "family"
+  },
+  {
+    "id": "family-daughter",
+    "english": "Daughter",
+    "phonetic": "/ˈdɔː.tər/",
+    "vietnamese": "Con gái",
+    "emoji": "👧",
+    "topicId": "family"
+  }
+]

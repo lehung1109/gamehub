@@ -1,0 +1,98 @@
+[
+  {
+    "id": "animal-cat",
+    "english": "Cat",
+    "phonetic": "/kæt/",
+    "vietnamese": "Con mèo",
+    "emoji": "🐱",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-dog",
+    "english": "Dog",
+    "phonetic": "/dɒɡ/",
+    "vietnamese": "Con chó",
+    "emoji": "🐶",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-pig",
+    "english": "Pig",
+    "phonetic": "/pɪɡ/",
+    "vietnamese": "Con heo",
+    "emoji": "🐷",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-duck",
+    "english": "Duck",
+    "phonetic": "/dʌk/",
+    "vietnamese": "Con vịt",
+    "emoji": "🦆",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-fish",
+    "english": "Fish",
+    "phonetic": "/fɪʃ/",
+    "vietnamese": "Con cá",
+    "emoji": "🐟",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-frog",
+    "english": "Frog",
+    "phonetic": "/frɒɡ/",
+    "vietnamese": "Con ếch",
+    "emoji": "🐸",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-lion",
+    "english": "Lion",
+    "phonetic": "/ˈlaɪ.ən/",
+    "vietnamese": "Con sư tử",
+    "emoji": "🦁",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-bear",
+    "english": "Bear",
+    "phonetic": "/beər/",
+    "vietnamese": "Con gấu",
+    "emoji": "🐻",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-monkey",
+    "english": "Monkey",
+    "phonetic": "/ˈmʌŋ.ki/",
+    "vietnamese": "Con khỉ",
+    "emoji": "🐵",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-rabbit",
+    "english": "Rabbit",
+    "phonetic": "/ˈræb.ɪt/",
+    "vietnamese": "Con thỏ",
+    "emoji": "🐰",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-bird",
+    "english": "Bird",
+    "phonetic": "/bɜːd/",
+    "vietnamese": "Con chim",
+    "emoji": "🐦",
+    "topicId": "animals"
+  },
+  {
+    "id": "animal-elephant",
+    "english": "Elephant",
+    "phonetic": "/ˈel.ɪ.fənt/",
+    "vietnamese": "Con voi",
+    "emoji": "🐘",
+    "topicId": "animals"
+  }
+]

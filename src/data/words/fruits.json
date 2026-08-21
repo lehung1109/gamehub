@@ -1,0 +1,98 @@
+[
+  {
+    "id": "fruit-apple",
+    "english": "Apple",
+    "phonetic": "/ˈæp.əl/",
+    "vietnamese": "Quả táo",
+    "emoji": "🍎",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-banana",
+    "english": "Banana",
+    "phonetic": "/bəˈnɑː.nə/",
+    "vietnamese": "Quả chuối",
+    "emoji": "🍌",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-orange",
+    "english": "Orange",
+    "phonetic": "/ˈɒr.ɪndʒ/",
+    "vietnamese": "Quả cam",
+    "emoji": "🍊",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-grape",
+    "english": "Grape",
+    "phonetic": "/ɡreɪp/",
+    "vietnamese": "Quả nho",
+    "emoji": "🍇",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-strawberry",
+    "english": "Strawberry",
+    "phonetic": "/ˈstrɔː.bər.i/",
+    "vietnamese": "Quả dâu tây",
+    "emoji": "🍓",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-watermelon",
+    "english": "Watermelon",
+    "phonetic": "/ˈwɔː.təˌmel.ən/",
+    "vietnamese": "Quả dưa hấu",
+    "emoji": "🍉",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-mango",
+    "english": "Mango",
+    "phonetic": "/ˈmæŋ.ɡəʊ/",
+    "vietnamese": "Quả xoài",
+    "emoji": "🥭",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-pineapple",
+    "english": "Pineapple",
+    "phonetic": "/ˈpaɪnˌæp.əl/",
+    "vietnamese": "Quả dứa",
+    "emoji": "🍍",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-peach",
+    "english": "Peach",
+    "phonetic": "/piːtʃ/",
+    "vietnamese": "Quả đào",
+    "emoji": "🍑",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-lemon",
+    "english": "Lemon",
+    "phonetic": "/ˈlem.ən/",
+    "vietnamese": "Quả chanh",
+    "emoji": "🍋",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-pear",
+    "english": "Pear",
+    "phonetic": "/peər/",
+    "vietnamese": "Quả lê",
+    "emoji": "🍐",
+    "topicId": "fruits"
+  },
+  {
+    "id": "fruit-cherry",
+    "english": "Cherry",
+    "phonetic": "/ˈtʃer.i/",
+    "vietnamese": "Quả anh đào",
+    "emoji": "🍒",
+    "topicId": "fruits"
+  }
+]

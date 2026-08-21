@@ -16,12 +16,12 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
       <div>
         {/* Header Hero */}
         <header className="text-center py-4 sm:py-8 mb-6">
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-black text-sm uppercase tracking-wider mb-4 animate-bounce motion-reduce:animate-none">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 font-black text-sm uppercase tracking-wider mb-4 animate-bounce motion-reduce:animate-none">
             <span>🎉 Học mà chơi, chơi mà học!</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-foreground mb-4">
-            🌟 <span className="text-primary">GameHub</span> Tiếng Anh 🎮
+            🌟 <span className="text-emerald-700 dark:text-emerald-400">GameHub</span> Tiếng Anh 🎮
           </h1>
 
           <p className="text-base sm:text-xl font-medium text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">

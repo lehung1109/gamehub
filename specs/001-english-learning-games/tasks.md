@@ -86,10 +86,10 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 2
 
-- [ ] T021 [US2] Create vocabulary JSON data: `src/data/topics.json` and `src/data/words/animals.json`, `fruits.json`, `family.json`, `school.json`, `body-parts.json`
-- [ ] T022 [US2] Create game component `src/components/game/FlashcardStack.tsx` (using shadcn Card, handles CSS 3D flip, prev/next navigation, integrates SpeakButton)
-- [ ] T023 [US2] Implement topic selection page `src/app/games/flashcard/page.tsx` (list available topics to start game)
-- [ ] T024 [US2] Implement flashcard game page `src/app/games/flashcard/[topicId]/page.tsx` (generateStaticParams, load words for topic, render FlashcardStack)
+- [X] T021 [US2] Create vocabulary JSON data: `src/data/topics.json` and `src/data/words/animals.json`, `fruits.json`, `family.json`, `school.json`, `body-parts.json`
+- [X] T022 [US2] Create game component `src/components/game/FlashcardStack.tsx` (using shadcn Card, handles CSS 3D flip, prev/next navigation, integrates SpeakButton)
+- [X] T023 [US2] Implement topic selection page `src/app/games/flashcard/page.tsx` (list available topics to start game)
+- [X] T024 [US2] Implement flashcard game page `src/app/games/flashcard/[topicId]/page.tsx` (generateStaticParams, load words for topic, render FlashcardStack)
 
 **Checkpoint**: Flashcard game fully functional
 

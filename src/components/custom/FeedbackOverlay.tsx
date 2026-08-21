@@ -84,8 +84,8 @@ export function FeedbackOverlay({
           className={cn(
             "w-full rounded-2xl py-6 text-xl font-bold shadow-lg transition-transform active:scale-95 cursor-pointer mt-2",
             isCorrect
-              ? "bg-emerald-600 hover:bg-emerald-700 text-white"
-              : "bg-rose-600 hover:bg-rose-700 text-white"
+              ? "bg-emerald-700 hover:bg-emerald-800 text-white"
+              : "bg-rose-700 hover:bg-rose-800 text-white"
           )}
         >
           Tiếp tục (Continue) ➡️

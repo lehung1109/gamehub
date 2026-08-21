@@ -149,7 +149,7 @@ export function QuizEngine<T = unknown>({
           {perfectScore ? "👑" : goodScore ? "🎉" : "💪"}
         </div>
         <div className="space-y-2">
-          <h2 className="text-3xl font-extrabold text-primary">
+          <h2 className="text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
             {perfectScore
               ? "Tuyệt đỉnh! (Perfect!)"
               : goodScore
@@ -157,7 +157,7 @@ export function QuizEngine<T = unknown>({
               : "Hoàn thành bài tập! (Completed!)"}
           </h2>
           <p className="text-lg text-muted-foreground font-medium">
-            Bạn đã trả lời đúng <strong className="text-primary text-xl">{score}</strong> / {questions.length} câu hỏi!
+            Bạn đã trả lời đúng <strong className="text-emerald-700 dark:text-emerald-400 font-black text-xl">{score}</strong> / {questions.length} câu hỏi!
           </p>
         </div>
 
@@ -185,7 +185,7 @@ export function QuizEngine<T = unknown>({
       <div className="space-y-2">
         <div className="flex justify-between items-center text-sm sm:text-base font-bold text-muted-foreground px-1">
           <span>{title || "Trắc nghiệm / Quiz"}</span>
-          <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-extrabold">
+          <span className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 px-3 py-1 rounded-full font-extrabold">
             Câu {currentIndex + 1} / {questions.length}
           </span>
         </div>

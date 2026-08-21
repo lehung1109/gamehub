@@ -1,0 +1,32 @@
+[
+  {
+    "id": "animals",
+    "nameEn": "Animals",
+    "nameVi": "Động vật",
+    "emoji": "🐾"
+  },
+  {
+    "id": "fruits",
+    "nameEn": "Fruits",
+    "nameVi": "Trái cây",
+    "emoji": "🍎"
+  },
+  {
+    "id": "family",
+    "nameEn": "Family",
+    "nameVi": "Gia đình",
+    "emoji": "👨‍👩‍👧‍👦"
+  },
+  {
+    "id": "school",
+    "nameEn": "School",
+    "nameVi": "Trường học",
+    "emoji": "🏫"
+  },
+  {
+    "id": "body-parts",
+    "nameEn": "Body Parts",
+    "nameVi": "Cơ thể",
+    "emoji": "🦶"
+  }
+]

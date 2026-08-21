@@ -1,0 +1,98 @@
+[
+  {
+    "id": "body-eye",
+    "english": "Eye",
+    "phonetic": "/aɪ/",
+    "vietnamese": "Mắt",
+    "emoji": "👁️",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-ear",
+    "english": "Ear",
+    "phonetic": "/ɪər/",
+    "vietnamese": "Tai",
+    "emoji": "👂",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-nose",
+    "english": "Nose",
+    "phonetic": "/nəʊz/",
+    "vietnamese": "Mũi",
+    "emoji": "👃",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-mouth",
+    "english": "Mouth",
+    "phonetic": "/maʊθ/",
+    "vietnamese": "Miệng",
+    "emoji": "👄",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-hand",
+    "english": "Hand",
+    "phonetic": "/hænd/",
+    "vietnamese": "Bàn tay",
+    "emoji": "✋",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-foot",
+    "english": "Foot",
+    "phonetic": "/fʊt/",
+    "vietnamese": "Bàn chân",
+    "emoji": "🦶",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-arm",
+    "english": "Arm",
+    "phonetic": "/ɑːm/",
+    "vietnamese": "Cánh tay",
+    "emoji": "💪",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-leg",
+    "english": "Leg",
+    "phonetic": "/leɡ/",
+    "vietnamese": "Chân",
+    "emoji": "🦵",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-head",
+    "english": "Head",
+    "phonetic": "/hed/",
+    "vietnamese": "Đầu",
+    "emoji": "🗣️",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-hair",
+    "english": "Hair",
+    "phonetic": "/heər/",
+    "vietnamese": "Tóc",
+    "emoji": "💇",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-tooth",
+    "english": "Tooth",
+    "phonetic": "/tuːθ/",
+    "vietnamese": "Răng",
+    "emoji": "🦷",
+    "topicId": "body-parts"
+  },
+  {
+    "id": "body-finger",
+    "english": "Finger",
+    "phonetic": "/ˈfɪŋ.ɡər/",
+    "vietnamese": "Ngón tay",
+    "emoji": "☝️",
+    "topicId": "body-parts"
+  }
+]

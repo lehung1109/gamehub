@@ -39,14 +39,14 @@ export function SpeakButton({
       onClick={handleSpeak}
       aria-label={ariaLabel}
       className={cn(
-        "rounded-full shadow-md transition-all active:scale-95 cursor-pointer",
-        isSpeaking && "animate-pulse ring-4 ring-primary/40 bg-primary/20",
-        size === "icon" && "w-12 h-12 text-xl",
+        "rounded-full shadow-md transition-all active:scale-95 cursor-pointer bg-emerald-50 hover:bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:hover:bg-emerald-900 dark:text-emerald-200 border-2 border-emerald-200 dark:border-emerald-800",
+        isSpeaking && "animate-pulse ring-4 ring-emerald-400/50 bg-emerald-100 dark:bg-emerald-900",
+        size === "icon" && "w-14 h-14 text-xl",
         className
       )}
     >
       {isSupported ? (
-        <Volume2 className={cn("w-6 h-6 text-primary stroke-[2.5]", isSpeaking && "text-primary scale-110")} />
+        <Volume2 className={cn("w-7 h-7 text-emerald-700 dark:text-emerald-400 stroke-[2.5]", isSpeaking && "scale-110")} />
       ) : (
         <VolumeX className="w-6 h-6 text-muted-foreground" />
       )}

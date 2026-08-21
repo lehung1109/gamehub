@@ -7,7 +7,7 @@ export default function NotFound() {
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 space-y-6">
       <div className="text-8xl animate-bounce">🔍</div>
       <div className="space-y-2">
-        <h1 className="text-4xl font-extrabold tracking-tight text-primary">
+        <h1 className="text-4xl font-extrabold tracking-tight text-emerald-700 dark:text-emerald-400">
           404 - Không tìm thấy trang
         </h1>
         <p className="text-lg text-muted-foreground">

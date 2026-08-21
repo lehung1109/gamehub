@@ -23,7 +23,7 @@ export function BackButton({
         className
       )}
     >
-      <ArrowLeft className="w-5 h-5 text-primary stroke-[3]" />
+      <ArrowLeft className="w-5 h-5 text-emerald-700 dark:text-emerald-400 stroke-[3]" />
       <span>{label}</span>
     </Link>
   );

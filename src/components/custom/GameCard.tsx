@@ -34,7 +34,7 @@ export function GameCard({ game, className }: GameCardProps) {
             </div>
             <Badge
               variant="secondary"
-              className="font-bold text-xs px-2.5 py-1 rounded-full uppercase tracking-wider bg-secondary/15 text-secondary-foreground"
+              className="font-bold text-xs px-2.5 py-1 rounded-full uppercase tracking-wider bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-200 border border-sky-200 dark:border-sky-800"
             >
               {game.titleEn}
             </Badge>
@@ -51,7 +51,7 @@ export function GameCard({ game, className }: GameCardProps) {
         </div>
 
         <CardContent className="p-0 pt-4 flex items-center justify-between">
-          <span className="inline-flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
+          <span className="inline-flex items-center text-sm font-extrabold text-emerald-700 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
             Chơi ngay <span aria-hidden="true" className="ml-1">➔</span>
           </span>
         </CardContent>
