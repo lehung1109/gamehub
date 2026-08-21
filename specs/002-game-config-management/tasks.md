@@ -129,16 +129,16 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T026 [P] [US3] Unit test for update/delete config actions in `tests/unit/actions/configs.test.ts`
-- [ ] T027 [P] [US3] Expand E2E test for edit/delete flows in `tests/e2e/config-management.spec.ts`
+- [x] T026 [P] [US3] Unit test for update/delete config actions in `tests/unit/actions/configs.test.ts`
+- [x] T027 [P] [US3] Expand E2E test for edit/delete flows in `tests/e2e/config-management.spec.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T028 [US3] Implement `updateConfig` and `deleteConfig` actions in `src/app/actions/configs.ts`
-- [ ] T029 [P] [US3] Create `ConfigList` component in `src/components/admin/ConfigList.tsx`
-- [ ] T030 [P] [US3] Create `DeleteDialog` component in `src/components/admin/DeleteDialog.tsx`
-- [ ] T031 [US3] Create edit config page in `src/app/admin/configs/[configId]/page.tsx`
-- [ ] T032 [US3] Integrate `ConfigList`, edit link, and `DeleteDialog` into `src/app/admin/games/[gameId]/page.tsx`
+- [x] T028 [US3] Implement `updateConfig` and `deleteConfig` actions in `src/app/actions/configs.ts`
+- [x] T029 [P] [US3] Create `ConfigList` component in `src/components/admin/ConfigList.tsx`
+- [x] T030 [P] [US3] Create `DeleteDialog` component in `src/components/admin/DeleteDialog.tsx`
+- [x] T031 [US3] Create edit config page in `src/app/admin/configs/[configId]/page.tsx`
+- [x] T032 [US3] Integrate `ConfigList`, edit link, and `DeleteDialog` into `src/app/admin/games/[gameId]/page.tsx`
 
 **Checkpoint**: Config management CRUD is complete.
 

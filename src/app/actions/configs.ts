@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { isValidGameId, validateGameSettings } from '@/lib/game-config-schema'
-import type { CreateConfigInput, GameConfig } from '@/types/config'
+import type { CreateConfigInput, GameConfig, UpdateConfigInput } from '@/types/config'
 
 export async function createConfig(
   input: CreateConfigInput
@@ -127,5 +127,229 @@ export async function getConfigsByGame(
   } catch (err) {
     console.error('[getConfigsByGame] Error:', err)
     return { error: 'Đã xảy ra lỗi khi tải danh sách cấu hình.' }
+  }
+}
+
+export async function getConfigById(
+  configId: string
+): Promise<{ data?: GameConfig; error?: string }> {
+  try {
+    if (!configId || typeof configId !== 'string' || !configId.trim()) {
+      return { error: 'ID cấu hình không hợp lệ' }
+    }
+    const cleanConfigId = configId.trim()
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
+    const { data, error } = await (supabase as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: string) => {
+              single: () => Promise<{ data: GameConfig | null; error: { message: string } | null }>
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .select('*')
+      .eq('id', cleanConfigId)
+      .eq('user_id', user.id)
+      .single()
+
+    if (error || !data) {
+      return { error: 'Không tìm thấy cấu hình' }
+    }
+
+    return { data }
+  } catch (err) {
+    console.error('[getConfigById] Error:', err)
+    return { error: 'Đã xảy ra lỗi khi tải cấu hình.' }
+  }
+}
+
+export async function updateConfig(
+  configId: string,
+  input: UpdateConfigInput
+): Promise<{ data?: GameConfig; error?: string }> {
+  try {
+    if (!configId || typeof configId !== 'string' || !configId.trim()) {
+      return { error: 'ID cấu hình không hợp lệ' }
+    }
+    const cleanConfigId = configId.trim()
+
+    if (!input || typeof input !== 'object') {
+      return { error: 'Dữ liệu đầu vào không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
+    // Fetch existing config to verify existence and get game_id for validation
+    const { data: existing, error: fetchError } = await (supabase as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: string) => {
+              single: () => Promise<{ data: GameConfig | null; error: { message: string } | null }>
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .select('*')
+      .eq('id', cleanConfigId)
+      .eq('user_id', user.id)
+      .single()
+
+    if (fetchError || !existing) {
+      return { error: 'Không tìm thấy cấu hình hoặc bạn không có quyền chỉnh sửa' }
+    }
+
+    if (input.name === undefined && input.settings === undefined) {
+      return { data: existing }
+    }
+
+    const updatePayload: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    }
+
+    if (input.name !== undefined) {
+      if (typeof input.name !== 'string') {
+        return { error: 'Tên cấu hình không hợp lệ' }
+      }
+      const trimmedName = input.name.trim()
+      if (!trimmedName) {
+        return { error: 'Tên cấu hình không được để trống' }
+      }
+      if (trimmedName.length > 200) {
+        return { error: 'Tên cấu hình không được vượt quá 200 ký tự' }
+      }
+      updatePayload.name = trimmedName
+    }
+
+    if (input.settings !== undefined) {
+      const validation = validateGameSettings(existing.game_id, input.settings)
+      if (!validation.valid) {
+        return { error: validation.error || 'Cài đặt không hợp lệ' }
+      }
+      updatePayload.settings = validation.data
+    }
+
+    const { data, error } = await (supabase as unknown as {
+      from: (table: string) => {
+        update: (values: Record<string, unknown>) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: string) => {
+              select: () => {
+                single: () => Promise<{ data: GameConfig | null; error: { message: string } | null }>
+              }
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .update(updatePayload)
+      .eq('id', cleanConfigId)
+      .eq('user_id', user.id)
+      .select()
+      .single()
+
+    if (error || !data) {
+      return { error: error?.message || 'Không thể cập nhật cấu hình' }
+    }
+
+    revalidatePath(`/admin/games/${existing.game_id}`)
+    revalidatePath('/admin/dashboard')
+    revalidatePath(`/admin/configs/${cleanConfigId}`)
+
+    return { data }
+  } catch (err) {
+    console.error('[updateConfig] Error:', err)
+    return { error: 'Đã xảy ra lỗi máy chủ. Vui lòng thử lại sau.' }
+  }
+}
+
+export async function deleteConfig(
+  configId: string
+): Promise<{ success?: boolean; error?: string }> {
+  try {
+    if (!configId || typeof configId !== 'string' || !configId.trim()) {
+      return { error: 'ID cấu hình không hợp lệ' }
+    }
+    const cleanConfigId = configId.trim()
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
+    // Fetch existing config first to get game_id for revalidation
+    const { data: existing, error: fetchError } = await (supabase as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: string) => {
+              single: () => Promise<{ data: { id: string; game_id: string } | null; error: { message: string } | null }>
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .select('id, game_id')
+      .eq('id', cleanConfigId)
+      .eq('user_id', user.id)
+      .single()
+
+    if (fetchError || !existing) {
+      return { error: 'Không tìm thấy cấu hình hoặc bạn không có quyền xóa' }
+    }
+
+    const { error: deleteError } = await (supabase as unknown as {
+      from: (table: string) => {
+        delete: () => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: string) => Promise<{ error: { message: string } | null }>
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .delete()
+      .eq('id', cleanConfigId)
+      .eq('user_id', user.id)
+
+    if (deleteError) {
+      return { error: deleteError.message || 'Không thể xóa cấu hình' }
+    }
+
+    revalidatePath(`/admin/games/${existing.game_id}`)
+    revalidatePath('/admin/dashboard')
+
+    return { success: true }
+  } catch (err) {
+    console.error('[deleteConfig] Error:', err)
+    return { error: 'Đã xảy ra lỗi máy chủ khi xóa cấu hình.' }
   }
 }
