@@ -45,7 +45,7 @@ Thêm hệ thống quản lý tài khoản admin và cấu hình game vào GameH
 | Principle | Status | Notes |
 |-----------|--------|-------|
 | I. Next.js App Router | ✅ PASS | All new routes under `src/app/admin/` and `src/app/play/[slug]/`. Server Components by default, Client Components only for interactive forms. |
-| II. TypeScript-First | ✅ PASS | All code in TypeScript strict. Supabase types generated. Shared types in `src/types/`. No `any`. |
+| II. TypeScript-First | ✅ PASS | All code in TypeScript strict. Supabase types in `src/types/database.ts` are generated strictly via `npm run gen:types` (never edited manually). Application & domain models in `src/types/config.ts`. No `any`. |
 | III. Component-Driven UI | ✅ PASS | Admin UI built with shadcn/ui (Dialog, Form, Button, Table, Card). Tailwind only. No custom CSS. |
 | IV. Drag-and-Drop (dnd-kit) | ✅ N/A | No drag-and-drop needed for this feature. |
 | V. Test-First | ✅ PASS | Unit tests for: auth actions, config CRUD, slug generation, components. E2E tests for: login flow, config management, share link flow. |

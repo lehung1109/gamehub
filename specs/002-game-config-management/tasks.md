@@ -29,11 +29,11 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create Supabase clients in `src/lib/supabase/client.ts` and `src/lib/supabase/server.ts`
-- [ ] T002 Generate database types in `src/types/database.ts` using `npm run gen:types`
-- [ ] T003 Define config interfaces in `src/types/config.ts` (GameSettings, Config entities)
-- [ ] T004 Create game parameter schemas in `src/lib/game-config-schema.ts`
-- [ ] T005 [P] Add required dependencies (`@supabase/supabase-js`, `@supabase/ssr`, `nanoid`)
+- [x] T001 Create Supabase clients in `src/lib/supabase/client.ts` and `src/lib/supabase/server.ts`
+- [x] T002 Generate database types in `src/types/database.ts` using `npm run gen:types`
+- [x] T003 Define config interfaces in `src/types/config.ts` (GameSettings, Config entities)
+- [x] T004 Create game parameter schemas in `src/lib/game-config-schema.ts`
+- [x] T005 [P] Add required dependencies (`@supabase/supabase-js`, `@supabase/ssr`, `nanoid`)
 
 ---
 

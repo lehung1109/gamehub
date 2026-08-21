@@ -51,6 +51,8 @@ erDiagram
 ```
 
 > **Note**: `GAMES` is a static JSON entity (`src/data/games.json`), not a database table. `game_id` in `GAME_CONFIGS` references game IDs by convention (validated at application level), not by foreign key.
+>
+> **TypeScript Integration**: Database entity types are strictly generated from Supabase via `npm run gen:types` into `src/types/database.ts`. Application-level domain interfaces (e.g. `GameSettingsMap`, `GameConfig`, `FlashcardSettings`) are maintained in `src/types/config.ts`.
 
 ## Entity Definitions
 
