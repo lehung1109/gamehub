@@ -45,18 +45,18 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 [P] Define shared TypeScript types in `src/types/index.ts` (Game, Topic, Word, Letter, GameNumber, Color, Sentence)
-- [ ] T007 [P] Implement `src/lib/utils.ts` for shadcn (`cn` function with `clsx` and `tailwind-merge`)
-- [ ] T008 [P] Implement `src/lib/shuffle.ts` utility for quiz randomization
-- [ ] T009 [P] Implement `src/lib/speech-check.ts` (browser speech API support detection)
-- [ ] T010 [P] Implement `src/hooks/useSpeech.ts` custom hook wrapping Web Speech API (`speechSynthesis.cancel()` before new utterance, rate 0.8)
-- [ ] T011 Create layout shell in `src/app/layout.tsx` (global styles, fonts, meta tags)
-- [ ] T012 Create `src/app/not-found.tsx` (custom 404 page)
-- [ ] T013 [P] Create custom component `src/components/custom/BackButton.tsx` (using shadcn Button)
-- [ ] T014 [P] Create custom component `src/components/custom/SpeakButton.tsx` (using shadcn Button and `useSpeech` hook)
-- [ ] T015 [P] Create custom component `src/components/custom/FeedbackOverlay.tsx` (using shadcn Dialog for correct/wrong feedback animations)
-- [ ] T016 [P] Create custom component `src/components/custom/SpeechUnsupportedBanner.tsx`
-- [ ] T017 Create reusable game component `src/components/game/QuizEngine.tsx` (state machine for quizzes)
+- [X] T006 [P] Define shared TypeScript types in `src/types/index.ts` (Game, Topic, Word, Letter, GameNumber, Color, Sentence)
+- [X] T007 [P] Implement `src/lib/utils.ts` for shadcn (`cn` function with `clsx` and `tailwind-merge`)
+- [X] T008 [P] Implement `src/lib/shuffle.ts` utility for quiz randomization
+- [X] T009 [P] Implement `src/lib/speech-check.ts` (browser speech API support detection)
+- [X] T010 [P] Implement `src/hooks/useSpeech.ts` custom hook wrapping Web Speech API (`speechSynthesis.cancel()` before new utterance, rate 0.8)
+- [X] T011 Create layout shell in `src/app/layout.tsx` (global styles, fonts, meta tags)
+- [X] T012 Create `src/app/not-found.tsx` (custom 404 page)
+- [X] T013 [P] Create custom component `src/components/custom/BackButton.tsx` (using shadcn Button)
+- [X] T014 [P] Create custom component `src/components/custom/SpeakButton.tsx` (using shadcn Button and `useSpeech` hook)
+- [X] T015 [P] Create custom component `src/components/custom/FeedbackOverlay.tsx` (using shadcn Dialog for correct/wrong feedback animations)
+- [X] T016 [P] Create custom component `src/components/custom/SpeechUnsupportedBanner.tsx`
+- [X] T017 Create reusable game component `src/components/game/QuizEngine.tsx` (state machine for quizzes)
 
 **Checkpoint**: Foundation ready — user story implementation can now begin
 
