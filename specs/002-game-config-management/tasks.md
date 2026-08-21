@@ -43,11 +43,11 @@ description: "Task list template for feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Setup Supabase SQL schema, RLS policies, and triggers for `profiles` and `game_configs` (via remote Supabase SQL Editor, no local supabase)
+- [x] T006 Setup Supabase SQL schema, RLS policies, and triggers for `profiles` and `game_configs` (via remote Supabase SQL Editor, no local supabase)
   - Generate `src/lib/supabase/schema.sql` (Tables, RLS, indexes, and Triggers for `auth.users` -> `profiles`).
   - Copy and execute manually in **Remote Supabase Dashboard SQL Editor**.
   - Verify execution before generating types in T002.
-- [ ] T007 Implement middleware for auth session refresh and route protection in `src/middleware.ts`
+- [x] T007 Implement middleware for auth session refresh and route protection in `src/middleware.ts`
 - [x] T008 Configure environment variables for Supabase in `.env.local`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
