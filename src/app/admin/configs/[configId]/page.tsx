@@ -1,10 +1,9 @@
 // src/app/admin/configs/[configId]/page.tsx
 import React from 'react'
 import { notFound } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
 import gamesData from '@/data/games.json'
 import type { Game } from '@/types'
-import type { GameConfig } from '@/types/config'
+import { getConfigById } from '@/app/actions/configs'
 import { ConfigEditForm } from '@/components/config/ConfigEditForm'
 
 interface PageProps {
@@ -17,31 +16,7 @@ export async function generateMetadata({ params }: PageProps) {
     return { title: 'Chỉnh sửa cấu hình | GameHub Admin' }
   }
 
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    return { title: 'Chỉnh sửa cấu hình | GameHub Admin' }
-  }
-
-  const { data: config } = await (supabase as unknown as {
-    from: (table: string) => {
-      select: (cols: string) => {
-        eq: (col: string, val: string) => {
-          eq: (col: string, val: string) => {
-            single: () => Promise<{ data: { name: string; game_id: string } | null; error: unknown }>
-          }
-        }
-      }
-    }
-  })
-    .from('game_configs')
-    .select('name, game_id')
-    .eq('id', configId)
-    .eq('user_id', user.id)
-    .single()
+  const { data: config } = await getConfigById(configId)
 
   return {
     title: config?.name
@@ -57,31 +32,7 @@ export default async function EditConfigPage({ params }: PageProps) {
     notFound()
   }
 
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    notFound()
-  }
-
-  const { data: config, error } = await (supabase as unknown as {
-    from: (table: string) => {
-      select: (cols: string) => {
-        eq: (col: string, val: string) => {
-          eq: (col: string, val: string) => {
-            single: () => Promise<{ data: GameConfig | null; error: unknown }>
-          }
-        }
-      }
-    }
-  })
-    .from('game_configs')
-    .select('*')
-    .eq('id', configId.trim())
-    .eq('user_id', user.id)
-    .single()
+  const { data: config, error } = await getConfigById(configId)
 
   if (error || !config) {
     notFound()
