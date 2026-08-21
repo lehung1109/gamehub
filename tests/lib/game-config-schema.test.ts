@@ -47,42 +47,45 @@ describe('Game Config Schema', () => {
       expect(res.error).toContain('Invalid game ID')
     })
 
-    it('rejects non-object settings', () => {
-      const res = validateGameSettings('flashcard', 'not-an-object')
-      expect(res.valid).toBe(false)
-      expect(res.error).toContain('Settings must be a valid JSON object')
+    it('rejects non-object raw settings', () => {
+      expect(validateGameSettings('flashcard', null).valid).toBe(false)
+      expect(validateGameSettings('flashcard', 'string').valid).toBe(false)
+      expect(validateGameSettings('flashcard', [1, 2]).valid).toBe(false)
     })
 
-    it('validates and sanitizes flashcard settings', () => {
+    it('validates flashcard settings with default fallbacks and sanitizes non-string topics', () => {
       const res = validateGameSettings('flashcard', {
-        topics: ['animals', 'fruits'],
-        wordLimit: 10,
-        autoSpeak: true,
+        topics: ['animals', 123, null, 'fruits'],
+        wordLimit: 'invalid',
+        autoSpeak: 1,
       })
       expect(res.valid).toBe(true)
       expect(res.data).toEqual({
         topics: ['animals', 'fruits'],
-        wordLimit: 10,
-        autoSpeak: true,
-      })
-    })
-
-    it('handles partial or malformed flashcard settings safely', () => {
-      const res = validateGameSettings('flashcard', {
-        topics: [123, 'fruits'],
-        wordLimit: -5,
-      })
-      expect(res.valid).toBe(true)
-      expect(res.data).toEqual({
-        topics: ['fruits'],
         wordLimit: 0,
+        autoSpeak: true,
+      })
+    })
+
+    it('sanitizes NaN and Infinity in limits', () => {
+      const res = validateGameSettings('flashcard', {
+        wordLimit: NaN,
         autoSpeak: false,
       })
+      expect(res.valid).toBe(true)
+      expect((res.data as any).wordLimit).toBe(0)
+
+      const resInf = validateGameSettings('flashcard', {
+        wordLimit: Infinity,
+        autoSpeak: false,
+      })
+      expect(resInf.valid).toBe(true)
+      expect((resInf.data as any).wordLimit).toBe(0)
     })
 
-    it('validates alphabet settings', () => {
+    it('validates alphabet settings uppercase and single-letter filtering', () => {
       const res = validateGameSettings('alphabet', {
-        letterRange: ['a', 'b', '1', 'C'],
+        letterRange: ['a', 'B', '1', 'hello', 'c'],
         mode: 'quiz',
         autoSpeak: true,
       })
@@ -122,7 +125,7 @@ describe('Game Config Schema', () => {
       })
     })
 
-    it('validates numbers-colors settings with range ordering and clamp', () => {
+    it('validates numbers-colors settings with range ordering, clamp, and NaN protection', () => {
       const res = validateGameSettings('numbers-colors', {
         numberRange: [15, 5],
         includeColors: false,
@@ -134,17 +137,23 @@ describe('Game Config Schema', () => {
         includeColors: false,
         mode: 'quiz',
       })
+
+      const resNaN = validateGameSettings('numbers-colors', {
+        numberRange: [NaN, 10],
+      })
+      expect(resNaN.valid).toBe(true)
+      expect((resNaN.data as any).numberRange).toEqual([1, 10])
     })
 
     it('validates sentences settings', () => {
       const res = validateGameSettings('sentences', {
-        categories: ['daily-actions'],
+        categories: ['daily-actions', 'school'],
         sentenceCount: 10,
         showVietnamese: false,
       })
       expect(res.valid).toBe(true)
       expect(res.data).toEqual({
-        categories: ['daily-actions'],
+        categories: ['daily-actions', 'school'],
         sentenceCount: 10,
         showVietnamese: false,
       })

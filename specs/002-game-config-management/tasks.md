@@ -87,17 +87,17 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T016 [P] [US2] Unit test for config creation actions in `tests/unit/actions/configs.test.ts`
-- [ ] T017 [P] [US2] E2E test for config creation in `tests/e2e/config-management.spec.ts`
+- [x] T016 [P] [US2] Unit test for config creation actions in `tests/unit/actions/configs.test.ts`
+- [x] T017 [P] [US2] E2E test for config creation in `tests/e2e/config-management.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T018 [US2] Implement `createConfig` action in `src/app/actions/configs.ts`
-- [ ] T019 [P] [US2] Create `GameCard` component in `src/components/admin/GameCard.tsx`
-- [ ] T020 [P] [US2] Create `ConfigForm` component in `src/components/admin/ConfigForm.tsx`
-- [ ] T021 [US2] Update dashboard to fetch and show games with config counts in `src/app/admin/dashboard/page.tsx`
-- [ ] T022 [US2] Create game-specific config list page in `src/app/admin/games/[gameId]/page.tsx`
-- [ ] T023 [US2] Create "new config" page with form in `src/app/admin/configs/new/page.tsx`
+- [x] T018 [US2] Implement `createConfig` and `getConfigsByGame` actions in `src/app/actions/configs.ts`
+- [x] T019 [P] [US2] Create game configuration form components in `src/components/config/`
+- [x] T020 [P] [US2] Create `ConfigCreateForm` unified component in `src/components/config/ConfigCreateForm.tsx`
+- [x] T021 [US2] Update dashboard to fetch and show games with config counts in `src/app/admin/dashboard/page.tsx`
+- [x] T022 [US2] Create game-specific config list page in `src/app/admin/games/[gameId]/page.tsx`
+- [x] T023 [US2] Create "new config" page with form in `src/app/admin/configs/new/page.tsx`
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 

@@ -68,6 +68,19 @@ export interface ValidationResult<T = AnyGameSettings> {
   data?: T
 }
 
+function sanitizeInt(
+  val: unknown,
+  fallback: number,
+  min = 0,
+  max = Number.MAX_SAFE_INTEGER
+): number {
+  if (typeof val !== 'number' || !Number.isFinite(val) || Number.isNaN(val)) {
+    return fallback
+  }
+  const intVal = Math.floor(val)
+  return Math.max(min, Math.min(max, intVal))
+}
+
 export function validateGameSettings(gameId: string, raw: unknown): ValidationResult {
   if (!isValidGameId(gameId)) {
     return { valid: false, error: `Invalid game ID: "${gameId}"` }
@@ -84,9 +97,7 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const topics = Array.isArray(obj.topics)
         ? obj.topics.filter((t): t is string => typeof t === 'string')
         : []
-      const wordLimit = typeof obj.wordLimit === 'number' && obj.wordLimit >= 0
-        ? Math.floor(obj.wordLimit)
-        : 0
+      const wordLimit = sanitizeInt(obj.wordLimit, 0, 0, 100)
       const autoSpeak = Boolean(obj.autoSpeak)
 
       const validated: FlashcardSettings = { topics, wordLimit, autoSpeak }
@@ -110,9 +121,7 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const topics = Array.isArray(obj.topics)
         ? obj.topics.filter((t): t is string => typeof t === 'string')
         : []
-      const questionCount = typeof obj.questionCount === 'number' && obj.questionCount >= 0
-        ? Math.floor(obj.questionCount)
-        : 0
+      const questionCount = sanitizeInt(obj.questionCount, 0, 0, 100)
       const showHint = obj.showHint !== undefined ? Boolean(obj.showHint) : true
 
       const validated: ListeningSettings = { topics, questionCount, showHint }
@@ -123,9 +132,7 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const topics = Array.isArray(obj.topics)
         ? obj.topics.filter((t): t is string => typeof t === 'string')
         : []
-      const wordLimit = typeof obj.wordLimit === 'number' && obj.wordLimit >= 0
-        ? Math.floor(obj.wordLimit)
-        : 0
+      const wordLimit = sanitizeInt(obj.wordLimit, 0, 0, 100)
       const showEmoji = obj.showEmoji !== undefined ? Boolean(obj.showEmoji) : true
 
       const validated: SpellingSettings = { topics, wordLimit, showEmoji }
@@ -134,14 +141,9 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
 
     case 'numbers-colors': {
       let numberRange: [number, number] = [1, 20]
-      if (
-        Array.isArray(obj.numberRange) &&
-        obj.numberRange.length === 2 &&
-        typeof obj.numberRange[0] === 'number' &&
-        typeof obj.numberRange[1] === 'number'
-      ) {
-        const min = Math.max(1, Math.min(20, Math.floor(obj.numberRange[0])))
-        const max = Math.max(1, Math.min(20, Math.floor(obj.numberRange[1])))
+      if (Array.isArray(obj.numberRange) && obj.numberRange.length === 2) {
+        const min = sanitizeInt(obj.numberRange[0], 1, 1, 20)
+        const max = sanitizeInt(obj.numberRange[1], 20, 1, 20)
         numberRange = min <= max ? [min, max] : [max, min]
       }
       const includeColors = obj.includeColors !== undefined ? Boolean(obj.includeColors) : true
@@ -155,9 +157,7 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const categories = Array.isArray(obj.categories)
         ? obj.categories.filter((c): c is string => typeof c === 'string')
         : []
-      const sentenceCount = typeof obj.sentenceCount === 'number' && obj.sentenceCount >= 0
-        ? Math.floor(obj.sentenceCount)
-        : 0
+      const sentenceCount = sanitizeInt(obj.sentenceCount, 0, 0, 100)
       const showVietnamese = obj.showVietnamese !== undefined ? Boolean(obj.showVietnamese) : true
 
       const validated: SentencesSettings = { categories, sentenceCount, showVietnamese }
