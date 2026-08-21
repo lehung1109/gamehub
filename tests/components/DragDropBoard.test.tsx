@@ -142,4 +142,23 @@ describe("DragDropBoard Component", () => {
 
     expect(handleComplete).toHaveBeenCalledWith(true, "APPLE");
   });
+
+  it("calls onItemPlaced when an item is tapped and placed into a slot", () => {
+    const handleItemPlaced = vi.fn();
+    render(
+      <DragDropBoard
+        targetItems={sampleTarget}
+        bankItems={sampleBank}
+        onItemPlaced={handleItemPlaced}
+      />
+    );
+
+    const tileD = screen.getByRole("button", { name: /Chữ cái D/i });
+    fireEvent.click(tileD);
+
+    expect(handleItemPlaced).toHaveBeenCalledTimes(1);
+    expect(handleItemPlaced).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "dog-D-0", label: "D" })
+    );
+  });
 });

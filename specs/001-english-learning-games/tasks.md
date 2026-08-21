@@ -165,8 +165,8 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 ### Implementation for User Story 7
 
-- [ ] T035 [US7] Create sentences data `src/data/sentences.json` (simple sentences with scrambled words and emoji)
-- [ ] T036 [US7] Implement sentences game page `src/app/games/sentences/page.tsx` (re-use `DragDropBoard.tsx` and @dnd-kit sortable for word reordering instead of letters, speak full sentence on correct)
+- [X] T035 [US7] Create sentences data `src/data/sentences.json` (simple sentences with scrambled words and emoji)
+- [X] T036 [US7] Implement sentences game page `src/app/games/sentences/page.tsx` (re-use `DragDropBoard.tsx` and @dnd-kit sortable for word reordering instead of letters, speak full sentence on correct)
 
 **Checkpoint**: Simple Sentences game fully functional
 
@@ -176,11 +176,11 @@ description: "Task list for English Learning Games for Kids feature implementati
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T037 [P] Implement Next.js static export config in `next.config.ts` (`output: 'export'`)
-- [ ] T038 [P] Enhance UI with Duolingo-style flat design styling (chunky 3D buttons, vivid colors) in `src/app/globals.css` and shadcn component overrides
-- [ ] T039 [P] Ensure mobile-first responsive design works on 360px+ screens for all game pages
-- [ ] T040 [P] Add CSS animations for feedback (`animate-celebrate`, `animate-pop`, `animate-shake`, `animate-wiggle`)
-- [ ] T041 [P] Review and apply zero-tracking policy (ensure no external analytics or scripts are loaded)
+- [X] T037 [P] Implement Next.js static export config in `next.config.ts` (`output: 'export'`)
+- [X] T038 [P] Enhance UI with Duolingo-style flat design styling (chunky 3D buttons, vivid colors) in `src/app/globals.css` and shadcn component overrides
+- [X] T039 [P] Ensure mobile-first responsive design works on 360px+ screens for all game pages
+- [X] T040 [P] Add CSS animations for feedback (`animate-celebrate`, `animate-pop`, `animate-shake`, `animate-wiggle`)
+- [X] T041 [P] Review and apply zero-tracking policy (ensure no external analytics or scripts are loaded)
 
 ---
 

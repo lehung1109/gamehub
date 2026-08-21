@@ -179,4 +179,21 @@ describe("Comprehensive Component Contrast Audit (WCAG 2.1)", () => {
       expect(cr).toBeGreaterThanOrEqual(7.0);
     });
   });
+
+  describe("Sentences Game Component (Phase 9)", () => {
+    it("Sentences header title (#4338ca indigo-700) on page background (#ffffff) passes AA (>= 4.5:1)", () => {
+      const cr = getContrastRatio("#4338ca", "#ffffff");
+      expect(cr).toBeGreaterThanOrEqual(4.5);
+    });
+
+    it("Sentence Vietnamese translation text (#0f172a slate-900) on Card background (#ffffff) passes AAA (>= 7:1)", () => {
+      const cr = getContrastRatio("#0f172a", "#ffffff");
+      expect(cr).toBeGreaterThanOrEqual(7.0);
+    });
+
+    it("Sentence speak button text (#312e81 indigo-900) on indigo-100 button background (#e0e7ff) passes AAA (>= 7:1)", () => {
+      const cr = getContrastRatio("#312e81", "#e0e7ff");
+      expect(cr).toBeGreaterThanOrEqual(7.0);
+    });
+  });
 });

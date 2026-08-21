@@ -17,16 +17,18 @@ export interface LetterBankProps {
   disabled?: boolean;
   className?: string;
   ariaLabel?: string;
+  itemTypeLabel?: string;
 }
 
 interface DraggableTileProps {
   item: DraggableItem;
   isPlaced: boolean;
   disabled: boolean;
+  itemTypeLabel: string;
   onClick?: () => void;
 }
 
-function DraggableTile({ item, isPlaced, disabled, onClick }: DraggableTileProps) {
+function DraggableTile({ item, isPlaced, disabled, itemTypeLabel, onClick }: DraggableTileProps) {
   const isInactive = isPlaced || disabled;
 
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
@@ -46,12 +48,12 @@ function DraggableTile({ item, isPlaced, disabled, onClick }: DraggableTileProps
           onClick?.();
         }
       }}
-      aria-label={`Chữ cái ${item.label}`}
+      aria-label={`${itemTypeLabel.charAt(0).toUpperCase() + itemTypeLabel.slice(1)} ${item.label}`}
       aria-disabled={isInactive ? "true" : "false"}
       disabled={isInactive}
       className={cn(
         "relative flex items-center justify-center font-black rounded-2xl select-none transition-all duration-150 touch-none",
-        "w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-xl sm:text-2xl md:text-3xl",
+        "min-w-12 h-12 sm:min-w-14 sm:h-14 md:min-w-16 md:h-16 px-2.5 sm:px-4 text-xl sm:text-2xl md:text-3xl",
         "border-2 sm:border-3 border-b-4 sm:border-b-6 active:border-b-2 active:translate-y-1",
         isInactive
           ? "opacity-20 bg-muted/40 text-muted-foreground border-muted cursor-not-allowed pointer-events-none"
@@ -59,7 +61,7 @@ function DraggableTile({ item, isPlaced, disabled, onClick }: DraggableTileProps
         isDragging && "opacity-30 scale-95"
       )}
     >
-      <span>{item.label}</span>
+      <span className="whitespace-nowrap">{item.label}</span>
     </button>
   );
 }
@@ -71,6 +73,7 @@ export function LetterBank({
   disabled = false,
   className,
   ariaLabel = "Ngân hàng chữ cái",
+  itemTypeLabel = "chữ cái",
 }: LetterBankProps) {
   const placedSet = React.useMemo(() => new Set(placedIds), [placedIds]);
 
@@ -91,6 +94,7 @@ export function LetterBank({
             item={item}
             isPlaced={isPlaced}
             disabled={disabled || !!item.disabled}
+            itemTypeLabel={itemTypeLabel}
             onClick={() => onItemClick?.(item)}
           />
         );

@@ -16,6 +16,7 @@ export interface DropSlotsProps {
   disabled?: boolean;
   className?: string;
   ariaLabel?: string;
+  itemTypeLabel?: string;
 }
 
 interface SingleSlotProps {
@@ -23,10 +24,11 @@ interface SingleSlotProps {
   item: SlotItem | null;
   status: "idle" | "correct" | "wrong";
   disabled: boolean;
+  itemTypeLabel: string;
   onClick?: () => void;
 }
 
-function SingleSlot({ index, item, status, disabled, onClick }: SingleSlotProps) {
+function SingleSlot({ index, item, status, disabled, itemTypeLabel, onClick }: SingleSlotProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: `slot-${index}`,
     data: { index },
@@ -35,8 +37,8 @@ function SingleSlot({ index, item, status, disabled, onClick }: SingleSlotProps)
 
   const isFilled = item !== null;
   const slotAriaLabel = isFilled
-    ? `Ô chữ cái ${index + 1}: ${item.label}`
-    : `Ô chữ cái ${index + 1}: trống`;
+    ? `Ô ${itemTypeLabel} ${index + 1}: ${item.label}`
+    : `Ô ${itemTypeLabel} ${index + 1}: trống`;
 
   return (
     <button
@@ -47,7 +49,7 @@ function SingleSlot({ index, item, status, disabled, onClick }: SingleSlotProps)
       aria-label={slotAriaLabel}
       className={cn(
         "relative flex items-center justify-center font-black rounded-2xl select-none transition-all duration-150 touch-none",
-        "w-12 h-14 sm:w-16 sm:h-18 md:w-20 md:h-22 text-2xl sm:text-3xl md:text-4xl",
+        "min-w-12 h-14 sm:min-w-16 sm:h-18 md:min-w-20 md:h-22 px-2 sm:px-4 text-xl sm:text-2xl md:text-3xl",
         "border-3 sm:border-4 shadow-md",
         !isFilled &&
           !isOver &&
@@ -68,7 +70,7 @@ function SingleSlot({ index, item, status, disabled, onClick }: SingleSlotProps)
       )}
     >
       {isFilled ? (
-        <span className="transform transition-transform">{item.label}</span>
+        <span className="transform transition-transform whitespace-nowrap">{item.label}</span>
       ) : (
         <span className="w-5 h-1 sm:w-7 sm:h-1.5 rounded-full bg-primary/30" />
       )}
@@ -83,13 +85,14 @@ export function DropSlots({
   disabled = false,
   className,
   ariaLabel = "Các ô ghép chữ",
+  itemTypeLabel = "chữ cái",
 }: DropSlotsProps) {
   return (
     <div
       role="region"
       aria-label={ariaLabel}
       className={cn(
-        "flex items-center justify-center gap-2.5 sm:gap-4 p-3 sm:p-5 rounded-3xl bg-primary/5 border-2 border-primary/20 min-h-20 sm:min-h-26",
+        "flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 p-3 sm:p-5 rounded-3xl bg-primary/5 border-2 border-primary/20 min-h-20 sm:min-h-26",
         className
       )}
     >
@@ -100,6 +103,7 @@ export function DropSlots({
           item={item}
           status={status}
           disabled={disabled}
+          itemTypeLabel={itemTypeLabel}
           onClick={() => onSlotClick?.(index, item)}
         />
       ))}

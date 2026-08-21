@@ -113,6 +113,18 @@ describe("Spelling Game Page (app/games/spelling/page.tsx)", () => {
     expect(screen.getByText(/Trình duyệt chưa hỗ trợ phát âm/i)).toBeInTheDocument();
   });
 
+  it("speaks the letter when a letter tile is placed into a slot", () => {
+    render(<SpellingGamePage />);
+
+    const bankButtons = screen.getAllByRole("button", { name: /Chữ cái [A-Z]/i });
+    fireEvent.click(bankButtons[0]);
+
+    expect(mockSpeak).toHaveBeenCalled();
+    const spokenLetter = mockSpeak.mock.calls[0][0];
+    expect(typeof spokenLetter).toBe("string");
+    expect(spokenLetter.length).toBe(1);
+  });
+
   it("allows filtering by topic and resets current word", () => {
     render(<SpellingGamePage />);
 

@@ -1,14 +1,8 @@
 "use client";
 
 import React, { useState, useMemo, useCallback } from "react";
-import topicsData from "@/data/topics.json";
-import animalsWords from "@/data/words/animals.json";
-import fruitsWords from "@/data/words/fruits.json";
-import familyWords from "@/data/words/family.json";
-import schoolWords from "@/data/words/school.json";
-import bodyPartsWords from "@/data/words/body-parts.json";
-
-import { Topic, Word } from "@/types";
+import sentencesData from "@/data/sentences.json";
+import { Sentence } from "@/types";
 import { BackButton } from "@/components/custom/BackButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
 import { DragDropBoard, DraggableItem } from "@/components/game/DragDropBoard";
@@ -36,76 +30,39 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const allTopics = topicsData as Topic[];
+const allSentences = sentencesData as Sentence[];
 
-const allWords: Word[] = [
-  ...(animalsWords as Word[]),
-  ...(fruitsWords as Word[]),
-  ...(familyWords as Word[]),
-  ...(schoolWords as Word[]),
-  ...(bodyPartsWords as Word[]),
+interface SentenceCategory {
+  id: string;
+  nameVi: string;
+  emoji: string;
+}
+
+const sentenceCategories: SentenceCategory[] = [
+  { id: "daily-actions", nameVi: "Hành động", emoji: "🍽️" },
+  { id: "animals", nameVi: "Động vật", emoji: "🐱" },
+  { id: "descriptions", nameVi: "Miêu tả", emoji: "🍎" },
+  { id: "feelings-preferences", nameVi: "Cảm xúc & Sở thích", emoji: "😊" },
+  { id: "school", nameVi: "Trường học", emoji: "🏫" },
 ];
 
-// Filter to 3-5 letter words for spelling
-const spellingEligibleAll = allWords.filter(
-  (w) => w.english.trim().length >= 3 && w.english.trim().length <= 5
-);
-
-const topicWordsMap: Record<string, Word[]> = {
-  animals: (animalsWords as Word[]).filter(
-    (w) => w.english.trim().length >= 3 && w.english.trim().length <= 5
-  ),
-  fruits: (fruitsWords as Word[]).filter(
-    (w) => w.english.trim().length >= 3 && w.english.trim().length <= 5
-  ),
-  family: (familyWords as Word[]).filter(
-    (w) => w.english.trim().length >= 3 && w.english.trim().length <= 5
-  ),
-  school: (schoolWords as Word[]).filter(
-    (w) => w.english.trim().length >= 3 && w.english.trim().length <= 5
-  ),
-  "body-parts": (bodyPartsWords as Word[]).filter(
-    (w) => w.english.trim().length >= 3 && w.english.trim().length <= 5
-  ),
-};
-
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
-function generateSpellingBank(targetWord: string, seed = 0): DraggableItem[] {
-  const letters = targetWord.trim().toUpperCase().split("");
-  const targetItems: DraggableItem[] = letters.map((letter, idx) => ({
-    id: `target-${idx}-${letter}`,
-    label: letter,
+function generateSentenceBank(targetWords: string[], seed = 0): DraggableItem[] {
+  const wordItems: DraggableItem[] = targetWords.map((word, idx) => ({
+    id: `word-${idx}-${word}`,
+    label: word,
   }));
 
-  const distractorCount = letters.length <= 3 ? 3 : 2;
-  const wordLettersSet = new Set(letters);
-  const candidateDistractors = ALPHABET.filter((c) => !wordLettersSet.has(c));
-
-  // Pick distinct distractors deterministically
-  const charSum = targetWord.split("").reduce((acc, c, idx) => acc + c.charCodeAt(0) * (idx + 1), 0);
-  const pickedDistractors: string[] = [];
-  for (let i = 0; i < distractorCount; i++) {
-    const idx = (charSum + i * 7 + seed) % candidateDistractors.length;
-    pickedDistractors.push(candidateDistractors[idx]);
-  }
-
-  const distractorItems: DraggableItem[] = pickedDistractors.map((letter, idx) => ({
-    id: `distractor-${idx}-${letter}`,
-    label: letter,
-  }));
-
-  const combined = [...targetItems, ...distractorItems];
-  // Scramble deterministically based on character hash for seamless SSR and CSR match
-  return combined.sort((a, b) => {
-    const hashA = (a.label.charCodeAt(0) * 17 + charSum + seed) % 31;
-    const hashB = (b.label.charCodeAt(0) * 17 + charSum + seed) % 31;
+  // Deterministic initial scramble based on seed and word length
+  const sumVal = targetWords.reduce((acc, w, i) => acc + w.length * (i + 1), 0);
+  return [...wordItems].sort((a, b) => {
+    const hashA = (a.label.length * 13 + a.id.charCodeAt(0) + sumVal + seed) % 19;
+    const hashB = (b.label.length * 13 + b.id.charCodeAt(0) + sumVal + seed) % 19;
     return hashA - hashB || a.id.localeCompare(b.id);
   });
 }
 
-export default function SpellingGamePage() {
-  const [selectedTopicId, setSelectedTopicId] = useState<string>("all");
+export default function SentencesGamePage() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameKey, setGameKey] = useState(0);
@@ -114,41 +71,42 @@ export default function SpellingGamePage() {
   const [feedbackState, setFeedbackState] = useState<{
     show: boolean;
     isCorrect: boolean;
-    formedWord: string;
+    formedSentence: string;
   }>({
     show: false,
     isCorrect: false,
-    formedWord: "",
+    formedSentence: "",
   });
   const [dismissUnsupported, setDismissUnsupported] = useState(false);
 
   const { speak, cancel, isSupported } = useSpeech();
 
-  // Active word pool based on selected topic
-  const activeWordPool = useMemo(() => {
-    if (selectedTopicId === "all") return spellingEligibleAll;
-    return topicWordsMap[selectedTopicId] || spellingEligibleAll;
-  }, [selectedTopicId]);
+  // Active pool based on selected category
+  const activePool = useMemo(() => {
+    if (selectedCategory === "all") return allSentences;
+    return allSentences.filter((s) => s.category === selectedCategory);
+  }, [selectedCategory]);
 
-  // Selected 10 words for the game session (shuffled when gameKey > 0 or topic changes)
-  const gameWords = useMemo(() => {
-    const pool = activeWordPool.length > 0 ? activeWordPool : spellingEligibleAll;
+  // Session sentences (up to 10)
+  const gameSentences = useMemo(() => {
+    const pool = activePool.length > 0 ? activePool : allSentences;
     const targetPool = gameKey > 0 ? shuffle([...pool]) : pool;
     return targetPool.slice(0, Math.min(10, targetPool.length));
-  }, [activeWordPool, gameKey]);
+  }, [activePool, gameKey]);
 
-  const totalQuestions = gameWords.length;
-  const currentWord = gameWords[currentIndex] || gameWords[0] || spellingEligibleAll[0];
+  const totalQuestions = gameSentences.length;
+  const currentSentence =
+    gameSentences[currentIndex] || gameSentences[0] || allSentences[0];
 
-  const targetLetters = useMemo(() => {
-    return currentWord ? currentWord.english.trim().toUpperCase().split("") : [];
-  }, [currentWord]);
+  const targetWords = useMemo(() => {
+    return currentSentence ? currentSentence.words : [];
+  }, [currentSentence]);
 
-  // Scrambled bank items with distractors
+  // Scrambled bank items
   const bankItems = useMemo(() => {
-    if (!currentWord) return [];
-    return generateSpellingBank(currentWord.english, boardKey);
-  }, [currentWord, boardKey]);
+    if (!currentSentence) return [];
+    return generateSentenceBank(currentSentence.words, boardKey);
+  }, [currentSentence, boardKey]);
 
   const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -160,19 +118,19 @@ export default function SpellingGamePage() {
 
   const resetQuestion = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
+    setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
     setBoardKey((prev) => prev + 1);
   }, []);
 
-  const handleTopicChange = useCallback(
-    (topicId: string) => {
+  const handleCategoryChange = useCallback(
+    (categoryId: string) => {
       if (timerRef.current) clearTimeout(timerRef.current);
       cancel();
-      setSelectedTopicId(topicId);
+      setSelectedCategory(categoryId);
       setCurrentIndex(0);
       setScore(0);
       setIsCompleted(false);
-      setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
+      setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
       setGameKey((prev) => prev + 1);
       setBoardKey((prev) => prev + 1);
     },
@@ -185,7 +143,7 @@ export default function SpellingGamePage() {
     setCurrentIndex(0);
     setScore(0);
     setIsCompleted(false);
-    setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
+    setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
     setGameKey((prev) => prev + 1);
     setBoardKey((prev) => prev + 1);
   }, [cancel]);
@@ -197,27 +155,27 @@ export default function SpellingGamePage() {
     [speak]
   );
 
-  const handleCompleteSpelling = useCallback(
+  const handleCompleteSentence = useCallback(
     (isCorrect: boolean, formedString: string) => {
       if (isCorrect) {
         if (timerRef.current) clearTimeout(timerRef.current);
         timerRef.current = setTimeout(() => {
-          speak(currentWord.english);
+          speak(currentSentence.full);
         }, 300);
         setScore((prev) => prev + 1);
       }
       setFeedbackState({
         show: true,
         isCorrect,
-        formedWord: formedString,
+        formedSentence: formedString,
       });
     },
-    [currentWord, speak]
+    [currentSentence, speak]
   );
 
-  const handleNextWord = useCallback(() => {
+  const handleNextSentence = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
+    setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
     if (currentIndex + 1 >= totalQuestions) {
       setIsCompleted(true);
     } else {
@@ -226,15 +184,15 @@ export default function SpellingGamePage() {
     }
   }, [currentIndex, totalQuestions]);
 
-  const handleRetryWord = useCallback(() => {
+  const handleRetrySentence = useCallback(() => {
     resetQuestion();
   }, [resetQuestion]);
 
-  const handleSpeakCurrentWord = useCallback(() => {
-    if (currentWord) {
-      speak(currentWord.english);
+  const handleSpeakSentence = useCallback(() => {
+    if (currentSentence) {
+      speak(currentSentence.full);
     }
-  }, [currentWord, speak]);
+  }, [currentSentence, speak]);
 
   const progressPercent =
     totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;
@@ -246,12 +204,12 @@ export default function SpellingGamePage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-amber-600 dark:text-amber-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
-              <span>✏️</span>
-              <span>Đánh vần & Ghép từ</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
+              <span>💬</span>
+              <span>Luyện câu đơn giản</span>
             </h1>
             <p className="text-sm sm:text-base font-semibold text-muted-foreground mt-0.5">
-              Kéo thả hoặc chạm các chữ cái để ghép thành từ tiếng Anh đúng nhé!
+              Sắp xếp các từ để tạo thành câu tiếng Anh hoàn chỉnh nhé!
             </p>
           </div>
         </div>
@@ -264,49 +222,49 @@ export default function SpellingGamePage() {
           />
         )}
 
-        {/* Topic Filter Pill Buttons */}
+        {/* Category Filter Buttons */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-muted-foreground px-1">
-            <Filter className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-            <span>Chọn chủ đề từ vựng:</span>
+            <Filter className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+            <span>Chọn chủ đề câu:</span>
           </div>
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
             <Button
               type="button"
-              variant={selectedTopicId === "all" ? "default" : "outline"}
+              variant={selectedCategory === "all" ? "default" : "outline"}
               size="sm"
-              onClick={() => handleTopicChange("all")}
+              onClick={() => handleCategoryChange("all")}
               className={cn(
                 "rounded-full font-bold px-4 py-2 text-xs sm:text-sm whitespace-nowrap shadow-sm cursor-pointer transition-all",
-                selectedTopicId === "all"
-                  ? "bg-amber-500 hover:bg-amber-600 text-white shadow-md"
-                  : "hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30"
+                selectedCategory === "all"
+                  ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-md"
+                  : "hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/30"
               )}
             >
               <Sparkles className="w-3.5 h-3.5 mr-1" />
-              <span>Tất cả ({spellingEligibleAll.length})</span>
+              <span>Tất cả ({allSentences.length})</span>
             </Button>
 
-            {allTopics.map((topic) => {
-              const count = topicWordsMap[topic.id]?.length || 0;
-              const isSelected = selectedTopicId === topic.id;
+            {sentenceCategories.map((cat) => {
+              const count = allSentences.filter((s) => s.category === cat.id).length;
+              const isSelected = selectedCategory === cat.id;
 
               return (
                 <Button
-                  key={topic.id}
+                  key={cat.id}
                   type="button"
                   variant={isSelected ? "default" : "outline"}
                   size="sm"
-                  onClick={() => handleTopicChange(topic.id)}
+                  onClick={() => handleCategoryChange(cat.id)}
                   className={cn(
                     "rounded-full font-bold px-3.5 py-2 text-xs sm:text-sm whitespace-nowrap shadow-sm cursor-pointer transition-all flex items-center gap-1.5",
                     isSelected
-                      ? "bg-amber-500 hover:bg-amber-600 text-white shadow-md"
-                      : "hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30"
+                      ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-md"
+                      : "hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/30"
                   )}
                 >
-                  <span>{topic.emoji}</span>
-                  <span>{topic.nameVi}</span>
+                  <span>{cat.emoji}</span>
+                  <span>{cat.nameVi}</span>
                   <span className="opacity-70 text-xs">({count})</span>
                 </Button>
               );
@@ -314,36 +272,36 @@ export default function SpellingGamePage() {
           </div>
         </div>
 
-        {/* Main Game Area */}
-        <Card className="p-4 sm:p-6 md:p-8 rounded-3xl border-4 border-amber-300 dark:border-amber-700/60 bg-card shadow-xl space-y-6">
+        {/* Main Game Card */}
+        <Card className="p-4 sm:p-6 md:p-8 rounded-3xl border-4 border-indigo-200 dark:border-indigo-800/60 bg-card shadow-xl space-y-6">
           {!isCompleted ? (
             <>
-              {/* Progress & Header */}
+              {/* Progress & Score */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-sm sm:text-base font-extrabold text-muted-foreground">
-                  <span className="text-amber-600 dark:text-amber-400">
-                    Từ {currentIndex + 1} / {totalQuestions}
+                  <span className="text-indigo-600 dark:text-indigo-400">
+                    Câu {currentIndex + 1} / {totalQuestions}
                   </span>
                   <span>Điểm: {score}</span>
                 </div>
                 <Progress value={progressPercent} className="h-3 rounded-full" />
               </div>
 
-              {/* Word Visual Prompt */}
-              <div className="flex flex-col items-center text-center space-y-3 py-2 bg-amber-50/50 dark:bg-amber-950/20 rounded-3xl p-4 border-2 border-amber-200/60 dark:border-amber-800/40">
+              {/* Sentence Visual Situation Prompt */}
+              <div className="flex flex-col items-center text-center space-y-3 py-3 bg-indigo-50/50 dark:bg-indigo-950/20 rounded-3xl p-4 border-2 border-indigo-200/60 dark:border-indigo-800/40">
                 <span
                   aria-hidden="true"
-                  className="text-7xl sm:text-8xl md:text-9xl select-none animate-in zoom-in-50 duration-200"
+                  className="text-7xl sm:text-8xl select-none animate-in zoom-in-50 duration-200"
                 >
-                  {currentWord?.emoji}
+                  {currentSentence?.emoji}
                 </span>
 
                 <div className="flex flex-col items-center">
                   <span className="text-xl sm:text-2xl font-black text-foreground">
-                    {currentWord?.vietnamese}
+                    {currentSentence?.vietnamese}
                   </span>
-                  <span className="text-xs sm:text-sm font-semibold text-muted-foreground">
-                    {currentWord?.phonetic}
+                  <span className="text-xs sm:text-sm font-semibold text-muted-foreground mt-0.5">
+                    Gợi ý: Câu gồm {targetWords.length} từ
                   </span>
                 </div>
 
@@ -351,22 +309,24 @@ export default function SpellingGamePage() {
                   type="button"
                   variant="secondary"
                   size="sm"
-                  onClick={handleSpeakCurrentWord}
-                  aria-label={`Nghe phát âm từ`}
-                  className="rounded-full font-bold px-4 py-2 text-xs sm:text-sm cursor-pointer shadow-sm hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-100 hover:bg-amber-200"
+                  onClick={handleSpeakSentence}
+                  aria-label="Nghe câu mẫu"
+                  className="rounded-full font-bold px-4 py-2 text-xs sm:text-sm cursor-pointer shadow-sm hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900/60 text-indigo-900 dark:text-indigo-100 hover:bg-indigo-200"
                 >
-                  <Volume2 className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  <span>Nghe phát âm</span>
+                  <Volume2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                  <span>Nghe câu mẫu</span>
                 </Button>
               </div>
 
-              {/* Interactive Drag Drop Spelling Board */}
+              {/* Interactive Drag Drop Word Board */}
               <DragDropBoard
                 key={`${currentIndex}-${boardKey}`}
-                targetItems={targetLetters}
+                targetItems={targetWords}
                 bankItems={bankItems}
+                itemTypeLabel="từ"
+                joinSeparator=" "
                 onItemPlaced={handleItemPlaced}
-                onComplete={handleCompleteSpelling}
+                onComplete={handleCompleteSentence}
               />
             </>
           ) : (
@@ -374,11 +334,11 @@ export default function SpellingGamePage() {
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6 animate-in zoom-in-75 duration-300">
               <div className="text-7xl sm:text-8xl select-none animate-bounce">🏆</div>
               <div className="space-y-2">
-                <h2 className="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400">
+                <h2 className="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">
                   🎉 Bé đã hoàn thành xuất sắc!
                 </h2>
                 <p className="text-base sm:text-lg font-bold text-muted-foreground">
-                  Bé đã ghép đúng {score} / {totalQuestions} từ vựng tiếng Anh!
+                  Bé đã ghép đúng {score} / {totalQuestions} câu tiếng Anh hoàn chỉnh!
                 </p>
               </div>
 
@@ -387,7 +347,7 @@ export default function SpellingGamePage() {
                   type="button"
                   size="lg"
                   onClick={handleRestart}
-                  className="rounded-2xl px-6 py-6 text-lg font-extrabold cursor-pointer bg-amber-500 hover:bg-amber-600 text-white shadow-lg flex items-center gap-2"
+                  className="rounded-2xl px-6 py-6 text-lg font-extrabold cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2"
                 >
                   <RotateCcw className="w-5 h-5" />
                   <span>Chơi lại</span>
@@ -399,7 +359,7 @@ export default function SpellingGamePage() {
         </Card>
       </div>
 
-      {/* Feedback Dialog Overlay */}
+      {/* Feedback Dialog */}
       <Dialog
         open={feedbackState.show}
         onOpenChange={(open) => !open && setFeedbackState((prev) => ({ ...prev, show: false }))}
@@ -414,11 +374,13 @@ export default function SpellingGamePage() {
                   <span>Bé giỏi quá! Chính xác!</span>
                 </DialogTitle>
                 <DialogDescription className="text-base font-bold text-foreground">
-                  Từ đúng là:{" "}
-                  <span className="text-xl font-black text-amber-600 dark:text-amber-400">
-                    {currentWord?.english}
-                  </span>{" "}
-                  ({currentWord?.vietnamese})
+                  Câu đúng là:{" "}
+                  <span className="text-xl font-black text-indigo-600 dark:text-indigo-400 block mt-1">
+                    &ldquo;{currentSentence?.full}&rdquo;
+                  </span>
+                  <span className="text-sm font-semibold text-muted-foreground mt-1 block">
+                    ({currentSentence?.vietnamese})
+                  </span>
                 </DialogDescription>
               </>
             ) : (
@@ -430,12 +392,11 @@ export default function SpellingGamePage() {
                 </DialogTitle>
                 <DialogDescription className="text-base font-bold text-foreground">
                   Bé đã ghép:{" "}
-                  <span className="text-lg font-black text-rose-600 line-through">
-                    {feedbackState.formedWord}
+                  <span className="text-lg font-black text-rose-600 line-through block mt-1">
+                    &ldquo;{feedbackState.formedSentence}&rdquo;
                   </span>
-                  <br />
-                  <span className="text-sm text-muted-foreground">
-                    Gợi ý: Từ này có {targetLetters.length} chữ cái. Bé hãy thử lại nhé!
+                  <span className="text-sm text-muted-foreground block mt-1">
+                    Bé hãy thử sắp xếp lại các từ cho đúng thứ tự nhé!
                   </span>
                 </DialogDescription>
               </>
@@ -447,18 +408,18 @@ export default function SpellingGamePage() {
               <Button
                 type="button"
                 size="lg"
-                onClick={handleNextWord}
+                onClick={handleNextSentence}
                 className="w-full rounded-2xl py-6 text-base sm:text-lg font-black cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg flex items-center justify-center gap-2"
               >
-                <span>Từ tiếp theo</span>
+                <span>Câu tiếp theo</span>
                 <ArrowRight className="w-5 h-5" />
               </Button>
             ) : (
               <Button
                 type="button"
                 size="lg"
-                onClick={handleRetryWord}
-                className="w-full rounded-2xl py-6 text-base sm:text-lg font-black cursor-pointer bg-amber-500 hover:bg-amber-600 text-white shadow-lg flex items-center justify-center gap-2"
+                onClick={handleRetrySentence}
+                className="w-full rounded-2xl py-6 text-base sm:text-lg font-black cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-5 h-5" />
                 <span>Thử lại</span>

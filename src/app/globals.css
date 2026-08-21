@@ -116,4 +116,54 @@
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
   }
+
+  /* Custom Feedback Keyframe Animations */
+  @keyframes celebrate {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.08) rotate(-3deg); }
+    60% { transform: scale(1.08) rotate(3deg); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.9); opacity: 0; }
+    70% { transform: scale(1.06); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-4deg); }
+    75% { transform: rotate(4deg); }
+  }
+
+  .animate-celebrate {
+    animation: celebrate 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .animate-shake {
+    animation: shake 0.4s ease-in-out;
+  }
+
+  .animate-pop {
+    animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .animate-wiggle {
+    animation: wiggle 0.4s ease-in-out;
+  }
+
+  /* Duolingo-style Chunky 3D Button Utility */
+  .btn-3d {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .btn-3d:active:not(:disabled) {
+    transform: translateY(3px);
+  }
 }

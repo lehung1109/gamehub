@@ -1,0 +1,122 @@
+[
+  {
+    "id": "i-am-eating",
+    "words": ["I", "am", "eating"],
+    "full": "I am eating",
+    "vietnamese": "Tôi đang ăn",
+    "emoji": "🍽️",
+    "category": "daily-actions"
+  },
+  {
+    "id": "the-cat-sleeps",
+    "words": ["The", "cat", "sleeps"],
+    "full": "The cat sleeps",
+    "vietnamese": "Con mèo đang ngủ",
+    "emoji": "🐱",
+    "category": "animals"
+  },
+  {
+    "id": "this-apple-is-red",
+    "words": ["This", "apple", "is", "red"],
+    "full": "This apple is red",
+    "vietnamese": "Quả táo này màu đỏ",
+    "emoji": "🍎",
+    "category": "descriptions"
+  },
+  {
+    "id": "i-like-bananas",
+    "words": ["I", "like", "bananas"],
+    "full": "I like bananas",
+    "vietnamese": "Tôi thích chuối",
+    "emoji": "🍌",
+    "category": "feelings-preferences"
+  },
+  {
+    "id": "the-dog-runs-fast",
+    "words": ["The", "dog", "runs", "fast"],
+    "full": "The dog runs fast",
+    "vietnamese": "Chú chó chạy rất nhanh",
+    "emoji": "🐶",
+    "category": "animals"
+  },
+  {
+    "id": "i-read-a-book",
+    "words": ["I", "read", "a", "book"],
+    "full": "I read a book",
+    "vietnamese": "Tôi đọc một cuốn sách",
+    "emoji": "📖",
+    "category": "school"
+  },
+  {
+    "id": "she-is-happy",
+    "words": ["She", "is", "happy"],
+    "full": "She is happy",
+    "vietnamese": "Cô ấy đang vui vẻ",
+    "emoji": "😊",
+    "category": "feelings-preferences"
+  },
+  {
+    "id": "the-ball-is-big",
+    "words": ["The", "ball", "is", "big"],
+    "full": "The ball is big",
+    "vietnamese": "Quả bóng rất to",
+    "emoji": "⚽",
+    "category": "descriptions"
+  },
+  {
+    "id": "birds-can-fly",
+    "words": ["Birds", "can", "fly"],
+    "full": "Birds can fly",
+    "vietnamese": "Những chú chim có thể bay",
+    "emoji": "🐦",
+    "category": "animals"
+  },
+  {
+    "id": "i-drink-water",
+    "words": ["I", "drink", "water"],
+    "full": "I drink water",
+    "vietnamese": "Tôi uống nước",
+    "emoji": "💧",
+    "category": "daily-actions"
+  },
+  {
+    "id": "this-is-my-pen",
+    "words": ["This", "is", "my", "pen"],
+    "full": "This is my pen",
+    "vietnamese": "Đây là cây bút của tôi",
+    "emoji": "🖊️",
+    "category": "school"
+  },
+  {
+    "id": "the-sun-is-bright",
+    "words": ["The", "sun", "is", "bright"],
+    "full": "The sun is bright",
+    "vietnamese": "Mặt trời tỏa sáng rực rỡ",
+    "emoji": "☀️",
+    "category": "descriptions"
+  },
+  {
+    "id": "i-love-my-mom",
+    "words": ["I", "love", "my", "mom"],
+    "full": "I love my mom",
+    "vietnamese": "Tôi yêu mẹ của tôi",
+    "emoji": "👩‍👦",
+    "category": "feelings-preferences"
+  },
+  {
+    "id": "we-go-to-school",
+    "words": ["We", "go", "to", "school"],
+    "full": "We go to school",
+    "vietnamese": "Chúng tôi đi đến trường",
+    "emoji": "🏫",
+    "category": "school"
+  },
+  {
+    "id": "fish-swim-in-water",
+    "words": ["Fish", "swim", "in", "water"],
+    "full": "Fish swim in water",
+    "vietnamese": "Cá bơi trong nước",
+    "emoji": "🐟",
+    "category": "animals"
+  }
+]

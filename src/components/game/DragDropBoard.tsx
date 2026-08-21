@@ -24,11 +24,13 @@ export interface DragDropBoardProps {
   bankItems: DraggableItem[];
   onComplete?: (isCorrect: boolean, formedString: string) => void;
   onStateChange?: (slots: (SlotItem | null)[]) => void;
+  onItemPlaced?: (item: DraggableItem | SlotItem) => void;
   disabled?: boolean;
   showCheckButton?: boolean;
   onReset?: () => void;
   className?: string;
   itemTypeLabel?: string;
+  joinSeparator?: string;
 }
 
 export function DragDropBoard({
@@ -36,11 +38,13 @@ export function DragDropBoard({
   bankItems,
   onComplete,
   onStateChange,
+  onItemPlaced,
   disabled = false,
   showCheckButton = false,
   onReset,
   className,
   itemTypeLabel = "chữ cái",
+  joinSeparator = "",
 }: DragDropBoardProps) {
   const [slots, setSlots] = useState<(SlotItem | null)[]>(() =>
     new Array(targetItems.length).fill(null)
@@ -80,14 +84,14 @@ export function DragDropBoard({
         return;
       }
 
-      const formed = currentSlots.map((s) => s?.label || "").join("");
-      const target = targetItems.join("");
+      const formed = currentSlots.map((s) => s?.label || "").join(joinSeparator);
+      const target = targetItems.join(joinSeparator);
       const isCorrect = formed.trim().toUpperCase() === target.trim().toUpperCase();
 
       setStatus(isCorrect ? "correct" : "wrong");
       onComplete?.(isCorrect, formed);
     },
-    [targetItems, onComplete]
+    [targetItems, joinSeparator, onComplete]
   );
 
   const updateSlots = useCallback(
@@ -144,12 +148,17 @@ export function DragDropBoard({
         const temp = nextSlots[targetSlotIndex];
         nextSlots[targetSlotIndex] = nextSlots[slotOriginIndex];
         nextSlots[slotOriginIndex] = temp;
+        if (nextSlots[targetSlotIndex]) {
+          onItemPlaced?.(nextSlots[targetSlotIndex]);
+        }
       } else if (activeFromBank) {
         // Dragging from bank to a slot
-        nextSlots[targetSlotIndex] = {
+        const placedItem = {
           id: activeFromBank.id,
           label: activeFromBank.label,
         };
+        nextSlots[targetSlotIndex] = placedItem;
+        onItemPlaced?.(placedItem);
       }
 
       updateSlots(nextSlots);
@@ -171,7 +180,9 @@ export function DragDropBoard({
     if (emptyIndex === -1) return;
 
     const nextSlots = [...slots];
-    nextSlots[emptyIndex] = { id: item.id, label: item.label };
+    const placedItem = { id: item.id, label: item.label };
+    nextSlots[emptyIndex] = placedItem;
+    onItemPlaced?.(placedItem);
     updateSlots(nextSlots);
   };
 
@@ -219,6 +230,7 @@ export function DragDropBoard({
             onSlotClick={handleSlotClick}
             status={status}
             disabled={disabled}
+            itemTypeLabel={itemTypeLabel}
             className="w-full justify-center"
           />
         </div>
@@ -233,6 +245,7 @@ export function DragDropBoard({
             placedIds={placedIds}
             onItemClick={handleBankItemClick}
             disabled={disabled}
+            itemTypeLabel={itemTypeLabel}
             className="w-full justify-center"
           />
         </div>
@@ -270,7 +283,7 @@ export function DragDropBoard({
         {/* Drag Overlay for smooth kid-friendly floating tile without return animation */}
         <DragOverlay dropAnimation={null}>
           {activeItem ? (
-            <div className="flex items-center justify-center font-black rounded-2xl select-none w-14 h-14 sm:w-16 sm:h-16 text-2xl sm:text-3xl bg-amber-200 text-amber-950 border-3 border-b-6 border-amber-500 shadow-2xl scale-110 rotate-3">
+            <div className="flex items-center justify-center font-black rounded-2xl select-none min-w-14 min-h-14 px-4 py-2 text-xl sm:text-2xl md:text-3xl bg-amber-200 text-amber-950 border-3 border-b-6 border-amber-500 shadow-2xl scale-110 rotate-3 whitespace-nowrap">
               {activeItem.label}
             </div>
           ) : null}
