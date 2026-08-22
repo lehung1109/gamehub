@@ -57,13 +57,13 @@ description: "Task list template for feature implementation"
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] E2E test for teacher creating/managing class in `tests/e2e/class-tracking.spec.ts`
+- [x] T006 [P] [US1] E2E test for teacher creating/managing class in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T007 [P] [US1] Create create class form component in `src/components/class/CreateClassForm.tsx`
-- [ ] T008 [P] [US1] Create class list component in `src/components/class/ClassList.tsx`
-- [ ] T009 [US1] Implement teacher dashboard classes page in `src/app/(admin)/dashboard/classes/page.tsx`
+- [x] T007 [P] [US1] Create create class form component in `src/components/class/CreateClassForm.tsx`
+- [x] T008 [P] [US1] Create class list component in `src/components/class/ClassList.tsx`
+- [x] T009 [US1] Implement teacher dashboard classes page in `src/app/admin/dashboard/classes/page.tsx`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 

@@ -71,6 +71,28 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
       </div>
+      
+      {/* Quick Access */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Link href="/admin/dashboard/classes" className="group">
+          <Card className="border-indigo-100 bg-indigo-50/50 hover:bg-indigo-50 hover:border-indigo-200 transition-colors shadow-none">
+            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 22v-4a2 2 0 1 0-4 0v4"/><path d="m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2"/><path d="M18 5v17"/><path d="m4 6 8-4 8 4"/><path d="M6 5v17"/><circle cx="12" cy="9" r="2"/></svg>
+                </div>
+                <div>
+                  <CardTitle className="text-base text-indigo-900">Quản lý Lớp học</CardTitle>
+                  <CardDescription className="text-indigo-700/70 text-xs mt-0.5">Tạo mã lớp & theo dõi tiến trình học sinh</CardDescription>
+                </div>
+              </div>
+              <div className="text-indigo-400 group-hover:text-indigo-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
+      </div>
 
       {/* Games Section */}
       <div className="space-y-4">
