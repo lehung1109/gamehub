@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 /supabase
 *.sql
-types/database.ts
+src/types/database.ts
 test-results
 setup_output.json
 setup_tasks_output*.json
