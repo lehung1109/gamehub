@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { generateClassCode } from '@/lib/class-code'
 import type { Database } from '@/types/database'
 
@@ -42,7 +43,7 @@ export async function createClassAction(input: {
 
     // Generate unique class code (with collision retry)
     let created: Classroom | null = null
-    let insertError: { message: string } | null = null
+    let insertError: { message: string; code?: string } | null = null
     let attempts = 0
 
     while (attempts < 5) {
@@ -158,7 +159,8 @@ export async function updateClassAction(
       return { error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
     }
 
-    const updatePayload: Record<string, unknown> = {}
+    type ClassroomUpdate = Database['public']['Tables']['classrooms']['Update']
+    const updatePayload: ClassroomUpdate = {}
 
     if (updates.name !== undefined) {
       if (typeof updates.name !== 'string') {
@@ -216,3 +218,45 @@ export async function activateClassAction(
 ): Promise<{ data?: Classroom; error?: string }> {
   return updateClassAction(id, { is_active: true })
 }
+
+export async function validateClassCodeAction(code: string): Promise<{
+  valid: boolean
+  classId?: string
+  className?: string
+  classCode?: string
+  error?: string
+}> {
+  try {
+    if (!code || typeof code !== 'string' || !code.trim()) {
+      return { valid: false, error: 'Bé vui lòng nhập mã lớp nhé!' }
+    }
+    const cleanCode = code.trim().toUpperCase()
+    const supabase = createAdminClient()
+    const { data, error } = await supabase
+      .from('classrooms')
+      .select('id, name, code, is_active')
+      .eq('code', cleanCode)
+      .single()
+
+    if (error || !data || !data.is_active) {
+      return {
+        valid: false,
+        error: 'Mã lớp không đúng rồi, bé hãy kiểm tra lại nhé! 🔍',
+      }
+    }
+
+    return {
+      valid: true,
+      classId: data.id,
+      className: data.name,
+      classCode: data.code,
+    }
+  } catch (err) {
+    console.error('[validateClassCodeAction] Error:', err)
+    return {
+      valid: false,
+      error: 'Đã xảy ra lỗi khi kiểm tra mã lớp. Bé thử lại sau nhé!',
+    }
+  }
+}
+
