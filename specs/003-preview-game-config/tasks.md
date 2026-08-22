@@ -34,13 +34,13 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T007 [P] [US1] Write E2E test for create flow preview in tests/e2e/preview-config.spec.ts
-- [ ] T008 [P] [US1] Write unit tests for PreviewButton rendering and click handling in src/components/config/PreviewButton.test.tsx
+- [X] T007 [P] [US1] Write E2E test for create flow preview in tests/e2e/preview-config.spec.ts
+- [X] T008 [P] [US1] Write unit tests for PreviewButton rendering and click handling in src/components/config/PreviewButton.test.tsx
 
 ### Implementation for User Story 1
 
-- [ ] T009 [P] [US1] Create PreviewButton component in src/components/config/PreviewButton.tsx (using validateGameSettings and buildPreviewUrl)
-- [ ] T010 [US1] Integrate PreviewButton into src/components/config/ConfigCreateForm.tsx
+- [X] T009 [P] [US1] Create PreviewButton component in src/components/config/PreviewButton.tsx (using validateGameSettings and buildPreviewUrl)
+- [X] T010 [US1] Integrate PreviewButton into src/components/config/ConfigCreateForm.tsx
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 

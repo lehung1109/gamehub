@@ -132,7 +132,10 @@ describe('Game Config Forms', () => {
     expect(screen.getByLabelText(/hiển thị gợi ý nghĩa tiếng việt/i)).toBeChecked()
   })
 
-  it('renders ConfigCreateForm with name input and submit button', () => {
+  it('renders ConfigCreateForm with name input, submit button, and preview button', () => {
+    const mockWindowOpen = vi.fn()
+    vi.stubGlobal('open', mockWindowOpen)
+
     render(<ConfigCreateForm game={mockGame} />)
 
     expect(
@@ -142,5 +145,14 @@ describe('Game Config Forms', () => {
     expect(
       screen.getByRole('button', { name: /lưu cấu hình/i })
     ).toBeInTheDocument()
+
+    const previewBtn = screen.getByRole('button', { name: /chơi thử/i })
+    expect(previewBtn).toBeInTheDocument()
+
+    fireEvent.click(previewBtn)
+    expect(mockWindowOpen).toHaveBeenCalledTimes(1)
+    expect(mockWindowOpen.mock.calls[0][0]).toMatch(/^\/games\/flashcard\?preview=/)
+
+    vi.unstubAllGlobals()
   })
 })

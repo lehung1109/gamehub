@@ -74,9 +74,34 @@ test.describe('Preview Game Configuration (E2E)', () => {
     })
   })
 
-  test.describe('US1: Preview New Config Before Saving (UI Placeholders for Future Phase)', () => {
-    test.skip('admin can preview new game configuration directly from creation form', async () => {
-      // Will be enabled when Phase 3 (US1 PreviewButton) is implemented
+  test.describe('US1: Preview New Config Before Saving', () => {
+    test('admin can preview new game configuration directly via preview query parameter', async ({ page }) => {
+      // Simulate creating a new flashcard configuration with specific topic and word limit
+      const previewPayload = encodePreviewSettings('flashcard', {
+        topics: ['fruits'],
+        wordLimit: 3,
+        autoSpeak: true,
+      })
+
+      await page.goto(`/games/flashcard?preview=${previewPayload}`)
+      await expect(page.getByRole('heading', { level: 1, name: /Học từ vựng qua Flashcard/i })).toBeVisible()
+
+      // Only Trái cây topic is shown
+      await expect(page.getByRole('link', { name: /Trái cây/i })).toBeVisible()
+      await expect(page.getByRole('link', { name: /Động vật/i })).not.toBeVisible()
+    })
+
+    test('admin can preview spelling game configuration with customized topics', async ({ page }) => {
+      const previewPayload = encodePreviewSettings('spelling', {
+        topics: ['school'],
+        wordLimit: 4,
+        showEmoji: true,
+      })
+
+      await page.goto(`/games/spelling?preview=${previewPayload}`)
+      await expect(page.getByRole('heading', { level: 1, name: /Đánh vần & Ghép từ/i })).toBeVisible()
+      await expect(page.getByRole('button', { name: /Trường học/i })).toBeVisible()
+      await expect(page.getByRole('button', { name: /Động vật/i })).not.toBeVisible()
     })
   })
 

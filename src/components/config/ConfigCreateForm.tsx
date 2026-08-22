@@ -17,6 +17,7 @@ import { ListeningConfigForm } from './ListeningConfigForm'
 import { SpellingConfigForm } from './SpellingConfigForm'
 import { NumbersColorsConfigForm } from './NumbersColorsConfigForm'
 import { SentencesConfigForm } from './SentencesConfigForm'
+import { PreviewButton } from './PreviewButton'
 import { ArrowLeft, Save, Loader2, AlertCircle } from 'lucide-react'
 
 interface Props {
@@ -192,23 +193,32 @@ export function ConfigCreateForm({ game }: Props) {
             Hủy & Quay lại
           </Link>
 
-          <Button
-            type="submit"
-            disabled={isPending || !name.trim()}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white"
-          >
-            {isPending ? (
-              <>
-                <Loader2 className="size-4 mr-1.5 animate-spin" />
-                Đang lưu cấu hình...
-              </>
-            ) : (
-              <>
-                <Save className="size-4 mr-1.5" />
-                Lưu cấu hình
-              </>
-            )}
-          </Button>
+          <div className="flex items-center gap-2">
+            <PreviewButton
+              gameId={gameId}
+              settings={settings}
+              disabled={isPending}
+              onError={setErrorMessage}
+            />
+
+            <Button
+              type="submit"
+              disabled={isPending || !name.trim()}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            >
+              {isPending ? (
+                <>
+                  <Loader2 className="size-4 mr-1.5 animate-spin" />
+                  Đang lưu cấu hình...
+                </>
+              ) : (
+                <>
+                  <Save className="size-4 mr-1.5" />
+                  Lưu cấu hình
+                </>
+              )}
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </form>
