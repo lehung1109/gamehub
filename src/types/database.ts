@@ -14,7 +14,210 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      classrooms: {
+        Row: {
+          code: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          teacher_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          teacher_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          teacher_id?: string
+        }
+        Relationships: []
+      }
+      game_configs: {
+        Row: {
+          created_at: string
+          game_id: string
+          id: string
+          is_active: boolean
+          name: string
+          settings: Json
+          share_slug: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          game_id: string
+          id?: string
+          is_active?: boolean
+          name: string
+          settings?: Json
+          share_slug?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          game_id?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          settings?: Json
+          share_slug?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      game_sessions: {
+        Row: {
+          completed_at: string | null
+          config_id: string | null
+          game_type: string
+          id: string
+          score: number | null
+          started_at: string | null
+          student_id: string
+          topic: string
+          total_questions: number | null
+        }
+        Insert: {
+          completed_at?: string | null
+          config_id?: string | null
+          game_type: string
+          id?: string
+          score?: number | null
+          started_at?: string | null
+          student_id: string
+          topic: string
+          total_questions?: number | null
+        }
+        Update: {
+          completed_at?: string | null
+          config_id?: string | null
+          game_type?: string
+          id?: string
+          score?: number | null
+          started_at?: string | null
+          student_id?: string
+          topic?: string
+          total_questions?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string
+          id: string
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email: string
+          id: string
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string
+          id?: string
+          role?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      session_details: {
+        Row: {
+          attempts: number | null
+          correct_answer: string | null
+          id: string
+          is_correct: boolean
+          prompt: string
+          selected_answer: string | null
+          session_id: string
+          time_taken_ms: number
+        }
+        Insert: {
+          attempts?: number | null
+          correct_answer?: string | null
+          id?: string
+          is_correct: boolean
+          prompt: string
+          selected_answer?: string | null
+          session_id: string
+          time_taken_ms: number
+        }
+        Update: {
+          attempts?: number | null
+          correct_answer?: string | null
+          id?: string
+          is_correct?: boolean
+          prompt?: string
+          selected_answer?: string | null
+          session_id?: string
+          time_taken_ms?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "session_details_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "game_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      students: {
+        Row: {
+          classroom_id: string
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          classroom_id: string
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          classroom_id?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "students_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
