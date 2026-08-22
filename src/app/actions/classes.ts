@@ -57,6 +57,61 @@ export interface ClassDashboardData {
   timeframe: 'all' | '7d' | '30d'
 }
 
+export interface SessionDetailItem {
+  id: string
+  sessionId: string
+  prompt: string
+  selectedAnswer: string | null
+  correctAnswer: string | null
+  isCorrect: boolean
+  timeTakenMs: number
+  attempts: number | null
+}
+
+export interface StudentSessionItem {
+  id: string
+  gameType: string
+  gameLabel: string
+  topic: string
+  score: number | null
+  totalQuestions: number | null
+  scorePercent: number
+  startedAt: string | null
+  completedAt: string | null
+  details: SessionDetailItem[]
+}
+
+export interface DifficultWordItem {
+  prompt: string
+  gameType: string
+  gameLabel: string
+  topic: string
+  incorrectCount: number
+  totalAttempts: number
+  accuracyPercent: number
+}
+
+export interface StudentDashboardData {
+  classroom: Classroom
+  student: {
+    id: string
+    name: string
+    classroom_id: string
+    created_at: string | null
+  }
+  totalSessions: number
+  avgScorePercent: number
+  mostPlayedGame: {
+    gameType: string
+    gameLabel: string
+    sessionCount: number
+  } | null
+  lastActiveAt: string | null
+  sessions: StudentSessionItem[]
+  difficultWords: DifficultWordItem[]
+  timeframe: 'all' | '7d' | '30d'
+}
+
 export const GAME_LABELS: Record<string, string> = {
   listening: 'Luyện nghe',
   spelling: 'Đánh vần',
@@ -575,4 +630,229 @@ export async function getClassDashboardAction(
     return { error: 'Đã xảy ra lỗi máy chủ khi tải thống kê.' }
   }
 }
+
+export async function getStudentDashboardAction(
+  classId: string,
+  studentId: string,
+  timeframe: 'all' | '7d' | '30d' = 'all'
+): Promise<{ data?: StudentDashboardData; error?: string }> {
+  try {
+    if (!classId || typeof classId !== 'string' || !classId.trim()) {
+      return { error: 'ID lớp học không hợp lệ' }
+    }
+    if (!studentId || typeof studentId !== 'string' || !studentId.trim()) {
+      return { error: 'ID học sinh không hợp lệ' }
+    }
+    const cleanClassId = classId.trim()
+    const cleanStudentId = studentId.trim()
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
+    // 1. Fetch classroom owned by teacher
+    const { data: classroom, error: classError } = await supabase
+      .from('classrooms')
+      .select('*')
+      .eq('id', cleanClassId)
+      .eq('teacher_id', user.id)
+      .single()
+
+    if (classError || !classroom) {
+      return { error: 'Không tìm thấy thông tin lớp học này' }
+    }
+
+    // 2. Fetch student belonging to this classroom
+    const { data: student, error: studentError } = await supabase
+      .from('students')
+      .select('*')
+      .eq('id', cleanStudentId)
+      .eq('classroom_id', cleanClassId)
+      .single()
+
+    if (studentError || !student) {
+      return { error: 'Không tìm thấy thông tin học sinh này' }
+    }
+
+    // 3. Fetch game sessions for this student with session_details
+    let sessionsQuery = supabase
+      .from('game_sessions')
+      .select('*, session_details(*)')
+      .eq('student_id', cleanStudentId)
+
+    if (timeframe === '7d') {
+      const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+      sessionsQuery = sessionsQuery.gte('completed_at', sevenDaysAgo)
+    } else if (timeframe === '30d') {
+      const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
+      sessionsQuery = sessionsQuery.gte('completed_at', thirtyDaysAgo)
+    }
+
+    const { data: sessionsData, error: sessionsError } = await sessionsQuery.order('completed_at', {
+      ascending: false,
+    })
+
+    if (sessionsError) {
+      console.error('[getStudentDashboardAction] Error fetching sessions:', sessionsError)
+      return { error: 'Lỗi tải thống kê phiên chơi của học sinh' }
+    }
+
+    const rawSessions = sessionsData || []
+    const totalSessions = rawSessions.length
+
+    let totalPercentageSum = 0
+    let validScoreCount = 0
+    let lastActiveAt: string | null = null
+
+    // Game stats map to find most played game
+    const gameCountMap = new Map<string, number>()
+
+    // Word/question error tracker map: key -> { prompt, gameType, topic, incorrectCount, totalAttempts }
+    const wordStatsMap = new Map<
+      string,
+      {
+        prompt: string
+        gameType: string
+        topic: string
+        incorrectCount: number
+        totalAttempts: number
+      }
+    >()
+
+    const sessions: StudentSessionItem[] = []
+
+    for (const sess of rawSessions) {
+      const gType = sess.game_type || 'unspecified'
+      const gLabel = getGameLabel(gType)
+
+      const hasScore =
+        typeof sess.score === 'number' &&
+        typeof sess.total_questions === 'number' &&
+        sess.total_questions > 0
+
+      const sPercent = hasScore ? Math.round((sess.score! / sess.total_questions!) * 100) : 0
+
+      if (hasScore) {
+        totalPercentageSum += sPercent
+        validScoreCount++
+      }
+
+      gameCountMap.set(gType, (gameCountMap.get(gType) || 0) + 1)
+
+      const sessionDate = sess.completed_at || sess.started_at
+      if (!lastActiveAt || (sessionDate && sessionDate > lastActiveAt)) {
+        lastActiveAt = sessionDate
+      }
+
+      const rawDetails = (sess.session_details as any[]) || []
+      const details: SessionDetailItem[] = []
+
+      for (const d of rawDetails) {
+        const dPrompt = (d.prompt || '').trim()
+        const isCorrect = Boolean(d.is_correct)
+        details.push({
+          id: d.id,
+          sessionId: sess.id,
+          prompt: dPrompt,
+          selectedAnswer: d.selected_answer,
+          correctAnswer: d.correct_answer,
+          isCorrect,
+          timeTakenMs: d.time_taken_ms ?? 0,
+          attempts: d.attempts ?? 1,
+        })
+
+        if (dPrompt) {
+          const normalizedPromptKey = `${gType}:::${dPrompt.toLowerCase()}`
+          if (!wordStatsMap.has(normalizedPromptKey)) {
+            wordStatsMap.set(normalizedPromptKey, {
+              prompt: dPrompt,
+              gameType: gType,
+              topic: sess.topic,
+              incorrectCount: 0,
+              totalAttempts: 0,
+            })
+          }
+          const wStat = wordStatsMap.get(normalizedPromptKey)!
+          wStat.totalAttempts++
+          if (!isCorrect) {
+            wStat.incorrectCount++
+          }
+        }
+      }
+
+      sessions.push({
+        id: sess.id,
+        gameType: gType,
+        gameLabel: gLabel,
+        topic: sess.topic,
+        score: sess.score,
+        totalQuestions: sess.total_questions,
+        scorePercent: sPercent,
+        startedAt: sess.started_at,
+        completedAt: sess.completed_at,
+        details,
+      })
+    }
+
+    const avgScorePercent =
+      validScoreCount > 0 ? Math.round(totalPercentageSum / validScoreCount) : 0
+
+    // Most played game
+    let mostPlayedGame: { gameType: string; gameLabel: string; sessionCount: number } | null = null
+    let maxGameCount = 0
+    for (const [gType, count] of gameCountMap.entries()) {
+      if (count > maxGameCount) {
+        maxGameCount = count
+        mostPlayedGame = {
+          gameType: gType,
+          gameLabel: getGameLabel(gType),
+          sessionCount: count,
+        }
+      }
+    }
+
+    // Difficult words ranking: filter where incorrectCount > 0, sort by incorrectCount desc, error rate desc
+    const difficultWords: DifficultWordItem[] = Array.from(wordStatsMap.values())
+      .filter((w) => w.incorrectCount > 0)
+      .map((w) => {
+        const accuracy =
+          w.totalAttempts > 0
+            ? Math.round(((w.totalAttempts - w.incorrectCount) / w.totalAttempts) * 100)
+            : 0
+        return {
+          prompt: w.prompt,
+          gameType: w.gameType,
+          gameLabel: getGameLabel(w.gameType),
+          topic: w.topic,
+          incorrectCount: w.incorrectCount,
+          totalAttempts: w.totalAttempts,
+          accuracyPercent: accuracy,
+        }
+      })
+      .sort((a, b) => b.incorrectCount - a.incorrectCount || a.accuracyPercent - b.accuracyPercent)
+
+    const studentDashboardData: StudentDashboardData = {
+      classroom,
+      student,
+      totalSessions,
+      avgScorePercent,
+      mostPlayedGame,
+      lastActiveAt,
+      sessions,
+      difficultWords,
+      timeframe,
+    }
+
+    return { data: studentDashboardData }
+  } catch (err) {
+    console.error('[getStudentDashboardAction] Error:', err)
+    return { error: 'Đã xảy ra lỗi máy chủ khi tải thông tin học sinh.' }
+  }
+}
+
 

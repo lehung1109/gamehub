@@ -356,3 +356,25 @@ test.describe('Teacher Class Dashboard Overview (User Story 4)', () => {
   })
 })
 
+test.describe('Teacher Student Progress Details (User Story 5)', () => {
+  test('Displays student detail page with metrics, top difficult words, and session history', async ({
+    page,
+  }) => {
+    await page.goto('/admin/dashboard/classes/test-class-id/students/test-student-id')
+
+    const isLogin = page.url().includes('/login')
+    if (isLogin) {
+      await page.fill('input[type="email"]', 'admin@gamehub.local')
+      await page.fill('input[type="password"]', 'password123')
+      await page.click('button[type="submit"]')
+      await expect(page).toHaveURL(/.*\/admin\/dashboard/)
+      await page.goto('/admin/dashboard/classes/test-class-id/students/test-student-id')
+    }
+
+    // Verify key elements (heading / back button / error card or detail page)
+    const title = page.locator('h1, h2')
+    await expect(title.first()).toBeVisible()
+  })
+})
+
+

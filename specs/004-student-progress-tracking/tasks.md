@@ -136,12 +136,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 5
 
-- [ ] T023 [P] [US5] E2E test for viewing student details in `tests/e2e/class-tracking.spec.ts`
+- [x] T023 [P] [US5] E2E test for viewing student details in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 5
 
-- [ ] T024 [P] [US5] Create student history components in `src/components/dashboard/StudentDetail.tsx`
-- [ ] T025 [US5] Implement student detail page in `src/app/(admin)/dashboard/classes/[classId]/students/[studentId]/page.tsx`
+- [x] T024 [P] [US5] Create student history components in `src/components/dashboard/StudentDetail.tsx`
+- [x] T025 [US5] Implement student detail page in `src/app/admin/dashboard/classes/[classId]/students/[studentId]/page.tsx`
 
 ---
 
