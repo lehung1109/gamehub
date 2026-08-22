@@ -107,8 +107,8 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T020 Run full E2E test suite across all 6 games to ensure universal support
-- [ ] T021 Run quickstart.md validation scenarios manually
+- [X] T020 Run full E2E test suite across all 6 games to ensure universal support
+- [X] T021 Run quickstart.md validation scenarios manually
 
 ---
 

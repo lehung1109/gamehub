@@ -154,6 +154,29 @@ describe('Preview Utilities (src/lib/preview.ts)', () => {
       const encoded = Buffer.from(invalidJson).toString('base64url')
       expect(decodePreviewSettings(encoded)).toBeNull()
     })
+
+    it('returns null when gameId is an unrecognized game name', () => {
+      const invalidJson = JSON.stringify({ gameId: 'unknown-game', settings: { foo: 'bar' } })
+      const encoded = Buffer.from(invalidJson).toString('base64url')
+      expect(decodePreviewSettings(encoded)).toBeNull()
+    })
+
+    it('sanitizes and clamps settings during decode for valid gameId', () => {
+      // numberRange out of bounds [0, 50] gets clamped to [1, 20]
+      const rawJson = JSON.stringify({
+        gameId: 'numbers-colors',
+        settings: { numberRange: [0, 50], includeColors: true, mode: 'learn' },
+      })
+      const encoded = Buffer.from(rawJson).toString('base64url')
+      const decoded = decodePreviewSettings(encoded)
+      expect(decoded).not.toBeNull()
+      expect(decoded?.gameId).toBe('numbers-colors')
+      expect(decoded?.settings).toEqual({
+        numberRange: [1, 20],
+        includeColors: true,
+        mode: 'learn',
+      })
+    })
   })
 
   describe('buildPreviewUrl', () => {

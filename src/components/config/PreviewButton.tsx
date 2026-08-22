@@ -40,7 +40,7 @@ export function PreviewButton({
     }
 
     const previewUrl = buildPreviewUrl(gameId, validation.data)
-    window.open(previewUrl, '_blank')
+    window.open(previewUrl, '_blank', 'noopener')
   }
 
   return (

@@ -1,5 +1,5 @@
-// src/lib/preview.ts
 import type { GameId, AnyGameSettings, PreviewPayload } from '@/types/config'
+import { validateGameSettings, isValidGameId } from '@/lib/game-config-schema'
 
 /**
  * Encodes a game's settings into a URL-safe base64 string for use as a query parameter.
@@ -23,7 +23,8 @@ export function encodePreviewSettings(gameId: GameId, settings: AnyGameSettings)
 
 /**
  * Decodes a URL-safe base64 string back into a PreviewPayload.
- * Never throws — returns null if decoding or parsing fails.
+ * Validates and sanitizes settings against game schema.
+ * Never throws — returns null if decoding or validation fails.
  */
 export function decodePreviewSettings(encoded: string): PreviewPayload | null {
   if (!encoded || typeof encoded !== 'string') {
@@ -48,13 +49,17 @@ export function decodePreviewSettings(encoded: string): PreviewPayload | null {
       typeof parsed === 'object' &&
       !Array.isArray(parsed) &&
       typeof parsed.gameId === 'string' &&
+      isValidGameId(parsed.gameId) &&
       parsed.settings &&
       typeof parsed.settings === 'object' &&
       !Array.isArray(parsed.settings)
     ) {
-      return {
-        gameId: parsed.gameId as GameId,
-        settings: parsed.settings as AnyGameSettings,
+      const validation = validateGameSettings(parsed.gameId, parsed.settings)
+      if (validation.valid && validation.data) {
+        return {
+          gameId: parsed.gameId,
+          settings: validation.data,
+        }
       }
     }
     return null
