@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import type { Game, Topic, Word, Letter, GameNumber, Color, Sentence } from "@/types";
+import type { PreviewPayload, UseGameConfigResult, FlashcardSettings } from "@/types/config";
 
 describe("Type definitions", () => {
   it("allows constructing valid Game objects", () => {
@@ -79,5 +80,39 @@ describe("Type definitions", () => {
       category: "daily-actions",
     };
     expect(sentence.words).toHaveLength(3);
+  });
+
+  it("allows constructing valid PreviewPayload objects", () => {
+    const payload: PreviewPayload = {
+      gameId: "flashcard",
+      settings: {
+        topics: ["animals"],
+        wordLimit: 5,
+        autoSpeak: false,
+      },
+    };
+    expect(payload.gameId).toBe("flashcard");
+    expect(payload.settings).toEqual({
+      topics: ["animals"],
+      wordLimit: 5,
+      autoSpeak: false,
+    });
+  });
+
+  it("allows constructing valid UseGameConfigResult objects with isPreview", () => {
+    const result: UseGameConfigResult<FlashcardSettings> = {
+      config: null,
+      settings: {
+        topics: ["animals"],
+        wordLimit: 5,
+        autoSpeak: true,
+      },
+      configName: null,
+      configId: null,
+      isLoading: false,
+      isPreview: true,
+    };
+    expect(result.isPreview).toBe(true);
+    expect(result.settings?.wordLimit).toBe(5);
   });
 });

@@ -63,6 +63,11 @@ export type GameSettings =
   | { gameId: 'numbers-colors'; settings: NumbersColorsSettings }
   | { gameId: 'sentences'; settings: SentencesSettings }
 
+export interface PreviewPayload {
+  gameId: GameId
+  settings: AnyGameSettings
+}
+
 export interface GameConfig<T = Record<string, unknown>> {
   id: string
   user_id: string
@@ -73,6 +78,15 @@ export interface GameConfig<T = Record<string, unknown>> {
   is_active: boolean
   created_at: string
   updated_at: string
+}
+
+export interface UseGameConfigResult<T> {
+  config: GameConfig<T> | null
+  settings: T | null
+  configName: string | null
+  configId: string | null
+  isLoading: boolean
+  isPreview: boolean
 }
 
 export interface CreateConfigInput {

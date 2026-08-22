@@ -1,11 +1,11 @@
-﻿# Tasks: Preview Game Configuration
+# Tasks: Preview Game Configuration
 
 ## Phase 1: Setup (Shared Infrastructure)
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Update PreviewPayload and UseGameConfigResult types in src/types/config.ts
-- [ ] T002 [P] Create E2E test file skeleton 	ests/e2e/preview-config.spec.ts
+- [X] T001 Update PreviewPayload and UseGameConfigResult types in src/types/config.ts
+- [X] T002 [P] Create E2E test file skeleton tests/e2e/preview-config.spec.ts
 
 ---
 
@@ -16,7 +16,7 @@
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
 - [ ] T003 [P] Write unit tests for preview.ts utilities in src/lib/preview.test.ts
-- [ ] T004 Implement encodePreviewSettings, decodePreviewSettings, and uildPreviewUrl in src/lib/preview.ts
+- [ ] T004 Implement encodePreviewSettings, decodePreviewSettings, and buildPreviewUrl in src/lib/preview.ts
 - [ ] T005 Write unit tests for useGameConfig preview detection in src/hooks/useGameConfig.test.ts
 - [ ] T006 Update useGameConfig in src/hooks/useGameConfig.ts to detect preview param and decode settings
 
@@ -34,7 +34,7 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T007 [P] [US1] Write E2E test for create flow preview in 	ests/e2e/preview-config.spec.ts
+- [ ] T007 [P] [US1] Write E2E test for create flow preview in tests/e2e/preview-config.spec.ts
 - [ ] T008 [P] [US1] Write unit tests for PreviewButton rendering and click handling in src/components/config/PreviewButton.test.tsx
 
 ### Implementation for User Story 1
@@ -54,7 +54,7 @@
 
 ### Tests for User Story 2
 
-- [ ] T011 [P] [US2] Write E2E test for edit flow preview in 	ests/e2e/preview-config.spec.ts
+- [ ] T011 [P] [US2] Write E2E test for edit flow preview in tests/e2e/preview-config.spec.ts
 
 ### Implementation for User Story 2
 
@@ -73,7 +73,7 @@
 ### Tests for User Story 4
 
 - [ ] T013 [P] [US4] Write unit tests for validation behavior in src/components/config/PreviewButton.test.tsx
-- [ ] T014 [P] [US4] Update E2E tests in 	ests/e2e/preview-config.spec.ts to cover validation failures blocking preview
+- [ ] T014 [P] [US4] Update E2E tests in tests/e2e/preview-config.spec.ts to cover validation failures blocking preview
 
 ### Implementation for User Story 4
 
@@ -92,12 +92,12 @@
 ### Tests for User Story 3
 
 - [ ] T016 [P] [US3] Write component test for PreviewBanner in src/components/game/PreviewBanner.test.tsx
-- [ ] T017 [P] [US3] Add E2E assertions for banner rendering in 	ests/e2e/preview-config.spec.ts
+- [ ] T017 [P] [US3] Add E2E assertions for banner rendering in tests/e2e/preview-config.spec.ts
 
 ### Implementation for User Story 3
 
 - [ ] T018 [P] [US3] Create PreviewBanner component in src/components/game/PreviewBanner.tsx using shadcn/ui Badge
-- [ ] T019 [US3] Update game pages (src/app/games/) to render PreviewBanner conditionally when isPreview === True
+- [ ] T019 [US3] Update game pages (src/app/games/) to render PreviewBanner conditionally when isPreview === true
 
 **Checkpoint**: All user stories should now be independently functional
 
