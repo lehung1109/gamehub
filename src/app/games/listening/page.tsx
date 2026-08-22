@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, Suspense } from "react";
 import topicsData from "@/data/topics.json";
 import animalsWords from "@/data/words/animals.json";
 import fruitsWords from "@/data/words/fruits.json";
@@ -12,11 +12,14 @@ import { Topic, Word } from "@/types";
 import { QuizEngine, QuizQuestion } from "@/components/game/QuizEngine";
 import { BackButton } from "@/components/custom/BackButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useGameConfig } from "@/hooks/useGameConfig";
+import type { ListeningSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
-import { Volume2, Ear, Sparkles, Filter } from "lucide-react";
+import { Volume2, Ear, Sparkles, Filter, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const allTopics = topicsData as Topic[];
@@ -88,29 +91,56 @@ function generateListeningQuestions(
 
 const emptySubscribe = () => () => {};
 
-export default function ListeningGamePage() {
+function ListeningGameContent() {
   const mounted = React.useSyncExternalStore(
     emptySubscribe,
     () => true,
     () => false
   );
+
+  const { settings, configName } = useGameConfig<ListeningSettings>("listening");
+
+  // Filter topics if specified in config
+  const displayedTopics = useMemo(() => {
+    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+      const allowed = new Set(settings.topics);
+      const filtered = allTopics.filter((t) => allowed.has(t.id));
+      return filtered.length > 0 ? filtered : allTopics;
+    }
+    return allTopics;
+  }, [settings?.topics]);
+
   const [selectedTopicId, setSelectedTopicId] = useState<string>("all");
   const [gameKey, setGameKey] = useState(0);
   const [dismissUnsupported, setDismissUnsupported] = useState(false);
 
   const { speak, cancel, isSupported } = useSpeech();
 
-  // Active word pool based on selected topic
+  // Active word pool based on selected topic or config topics
   const activeWordPool = useMemo(() => {
-    if (selectedTopicId === "all") return allWords;
-    return topicWordsMap[selectedTopicId] || allWords;
-  }, [selectedTopicId]);
+    if (selectedTopicId !== "all") {
+      return topicWordsMap[selectedTopicId] || allWords;
+    }
+    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+      const words: Word[] = [];
+      settings.topics.forEach((tId) => {
+        if (topicWordsMap[tId]) {
+          words.push(...topicWordsMap[tId]);
+        }
+      });
+      return words.length > 0 ? words : allWords;
+    }
+    return allWords;
+  }, [selectedTopicId, settings?.topics]);
 
-  // Generate 10 randomized listening quiz questions
+  const questionCount = settings?.questionCount || 10;
+  const showHint = settings?.showHint ?? true;
+
+  // Generate randomized listening quiz questions
   const questions = useMemo(() => {
-    return generateListeningQuestions(activeWordPool, allWords, 10, mounted);
+    return generateListeningQuestions(activeWordPool, allWords, questionCount, mounted);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTopicId, gameKey, mounted]);
+  }, [activeWordPool, questionCount, gameKey, mounted]);
 
   const handleTopicChange = useCallback(
     (topicId: string) => {
@@ -140,10 +170,13 @@ export default function ListeningGamePage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
-              <span>👂</span>
-              <span>Nghe hiểu</span>
-            </h1>
+            <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
+              {configName && <ConfigBanner configName={configName} />}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2">
+                <span>👂</span>
+                <span>Nghe hiểu</span>
+              </h1>
+            </div>
             <p className="text-sm sm:text-base font-semibold text-muted-foreground mt-0.5">
               Lắng nghe từ tiếng Anh và chọn hình ảnh chính xác
             </p>
@@ -178,10 +211,10 @@ export default function ListeningGamePage() {
               )}
             >
               <Sparkles className="w-3.5 h-3.5 mr-1" />
-              <span>Tất cả ({allWords.length})</span>
+              <span>Tất cả ({activeWordPool.length})</span>
             </Button>
 
-            {allTopics.map((topic) => {
+            {displayedTopics.map((topic) => {
               const count = topicWordsMap[topic.id]?.length || 0;
               const isSelected = selectedTopicId === topic.id;
 
@@ -238,9 +271,16 @@ export default function ListeningGamePage() {
                     <Volume2 className="w-7 h-7 animate-pulse" />
                     <span>Nghe lại âm thanh</span>
                   </Button>
-                  <span className="text-xs sm:text-sm font-semibold text-muted-foreground">
-                    (Nhấn vào nút trên để nghe lại từ)
-                  </span>
+                  {showHint ? (
+                    <span className="text-xs sm:text-sm font-semibold text-muted-foreground flex items-center gap-1">
+                      <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
+                      (Gợi ý: Nhấn vào nút trên để nghe lại âm thanh từ vựng)
+                    </span>
+                  ) : (
+                    <span className="text-xs sm:text-sm font-semibold text-muted-foreground">
+                      (Nhấn vào nút trên để nghe lại từ)
+                    </span>
+                  )}
                 </div>
               </div>
             )}
@@ -268,5 +308,13 @@ export default function ListeningGamePage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function ListeningGamePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <ListeningGameContent />
+    </Suspense>
   );
 }

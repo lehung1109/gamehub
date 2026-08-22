@@ -10,7 +10,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { DeleteDialog } from './DeleteDialog'
-import { Plus, Layers, Calendar, Edit3, Trash2, AlertCircle } from 'lucide-react'
+import { ShareDialog } from './ShareDialog'
+import { Plus, Layers, Calendar, Edit3, Trash2, AlertCircle, Share2 } from 'lucide-react'
 
 interface ConfigListProps {
   game: Game
@@ -20,6 +21,7 @@ interface ConfigListProps {
 export function ConfigList({ game, configs }: ConfigListProps) {
   const router = useRouter()
   const [selectedForDelete, setSelectedForDelete] = useState<GameConfig | null>(null)
+  const [selectedForShare, setSelectedForShare] = useState<GameConfig | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
   const [isDeleting, startTransition] = useTransition()
 
@@ -114,18 +116,31 @@ export function ConfigList({ game, configs }: ConfigListProps) {
                 </div>
               </CardHeader>
 
-              <CardFooter className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                <Link
-                  href={`/admin/configs/${config.id}`}
-                  className={buttonVariants({
-                    variant: 'outline',
-                    size: 'sm',
-                    className: 'text-indigo-600 hover:bg-indigo-50 border-indigo-200 text-xs h-8 px-2.5',
-                  })}
-                >
-                  <Edit3 className="size-3.5 mr-1" />
-                  Chỉnh sửa
-                </Link>
+              <CardFooter className="pt-3 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                <div className="flex items-center gap-1.5">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSelectedForShare(config)}
+                    className="text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700 border-emerald-200 text-xs h-8 px-2.5"
+                  >
+                    <Share2 className="size-3.5 mr-1" />
+                    Chia sẻ
+                  </Button>
+
+                  <Link
+                    href={`/admin/configs/${config.id}`}
+                    className={buttonVariants({
+                      variant: 'outline',
+                      size: 'sm',
+                      className: 'text-indigo-600 hover:bg-indigo-50 border-indigo-200 text-xs h-8 px-2.5',
+                    })}
+                  >
+                    <Edit3 className="size-3.5 mr-1" />
+                    Chỉnh sửa
+                  </Link>
+                </div>
 
                 <Button
                   type="button"
@@ -149,6 +164,15 @@ export function ConfigList({ game, configs }: ConfigListProps) {
         onConfirm={handleDeleteConfirm}
         configName={selectedForDelete?.name || ''}
         isDeleting={isDeleting}
+      />
+
+      <ShareDialog
+        isOpen={Boolean(selectedForShare)}
+        onClose={() => {
+          setSelectedForShare(null)
+          router.refresh()
+        }}
+        config={selectedForShare}
       />
     </div>
   )

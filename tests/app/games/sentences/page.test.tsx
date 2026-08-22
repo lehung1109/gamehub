@@ -20,6 +20,7 @@ vi.mock("next/navigation", () => ({
     push: vi.fn(),
     back: vi.fn(),
   }),
+  useSearchParams: () => new URLSearchParams(),
 }));
 
 describe("SentencesGamePage (US7 - Simple Sentences)", () => {

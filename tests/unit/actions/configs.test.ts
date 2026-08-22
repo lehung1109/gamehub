@@ -491,4 +491,111 @@ describe('Configs Server Actions', () => {
       expect(mockRevalidatePath).toHaveBeenCalledWith('/admin/dashboard')
     })
   })
+
+  describe('generateShareSlug', () => {
+    it('returns error when user is not authenticated', async () => {
+      mockGetUser.mockResolvedValue({ data: { user: null } })
+      const { generateShareSlug } = await import('@/app/actions/configs')
+
+      const result = await generateShareSlug('cfg-123')
+      expect(result).toEqual({ error: 'Bạn cần đăng nhập để thực hiện thao tác này' })
+    })
+
+    it('returns error when configId is invalid', async () => {
+      mockGetUser.mockResolvedValue({
+        data: { user: { id: 'admin-1', email: 'teacher@school.edu' } },
+      })
+      const { generateShareSlug } = await import('@/app/actions/configs')
+
+      const result = await generateShareSlug('   ')
+      expect(result).toEqual({ error: 'ID cấu hình không hợp lệ' })
+    })
+
+    it('returns existing share_slug if config already has one', async () => {
+      mockGetUser.mockResolvedValue({
+        data: { user: { id: 'admin-1', email: 'teacher@school.edu' } },
+      })
+
+      const existing = {
+        id: 'cfg-123',
+        game_id: 'flashcard',
+        share_slug: 'existing10c',
+      }
+
+      const eqUserId = vi.fn().mockReturnValue({
+        single: vi.fn().mockResolvedValue({ data: existing, error: null }),
+      })
+      const eqId = vi.fn().mockReturnValue({ eq: eqUserId })
+      mockSelect.mockReturnValue({ eq: eqId })
+
+      const { generateShareSlug } = await import('@/app/actions/configs')
+      const result = await generateShareSlug('cfg-123')
+
+      expect(result).toEqual({ slug: 'existing10c' })
+    })
+
+    it('generates a new slug, updates database, and returns slug when config has no slug', async () => {
+      mockGetUser.mockResolvedValue({
+        data: { user: { id: 'admin-1', email: 'teacher@school.edu' } },
+      })
+
+      const existing = {
+        id: 'cfg-123',
+        game_id: 'flashcard',
+        share_slug: null,
+      }
+
+      const eqUserId = vi.fn().mockReturnValue({
+        single: vi.fn().mockResolvedValue({ data: existing, error: null }),
+      })
+      const eqId = vi.fn().mockReturnValue({ eq: eqUserId })
+      mockSelect.mockReturnValue({ eq: eqId })
+
+      const selectAfterUpdate = vi.fn().mockReturnValue({
+        single: vi.fn().mockResolvedValue({
+          data: { ...existing, share_slug: 'newslug123' },
+          error: null,
+        }),
+      })
+      const eqUserIdUpdate = vi.fn().mockReturnValue({ select: selectAfterUpdate })
+      const eqIdUpdate = vi.fn().mockReturnValue({ eq: eqUserIdUpdate })
+      mockUpdate.mockReturnValue({ eq: eqIdUpdate })
+
+      const { generateShareSlug } = await import('@/app/actions/configs')
+      const result = await generateShareSlug('cfg-123')
+
+      expect(result).toHaveProperty('slug')
+      expect(result.slug).toBeTypeOf('string')
+    })
+  })
+
+  describe('getConfigByIdPublic', () => {
+    it('returns error for invalid configId', async () => {
+      const { getConfigByIdPublic } = await import('@/app/actions/configs')
+      const result = await getConfigByIdPublic('   ')
+      expect(result).toEqual({ error: 'ID cấu hình không hợp lệ' })
+    })
+
+    it('fetches active config publicly without requiring user authentication', async () => {
+      const activeConfig = {
+        id: 'cfg-123',
+        game_id: 'listening',
+        name: 'Public Config',
+        settings: { questionCount: 5 },
+        is_active: true,
+      }
+
+      const eqActive = vi.fn().mockReturnValue({
+        single: vi.fn().mockResolvedValue({ data: activeConfig, error: null }),
+      })
+      const eqId = vi.fn().mockReturnValue({ eq: eqActive })
+      mockSelect.mockReturnValue({ eq: eqId })
+
+      const { getConfigByIdPublic } = await import('@/app/actions/configs')
+      const result = await getConfigByIdPublic('cfg-123')
+
+      expect(result).toEqual({ data: activeConfig })
+    })
+  })
 })
+

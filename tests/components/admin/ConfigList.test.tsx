@@ -125,4 +125,15 @@ describe('ConfigList Component', () => {
       expect(screen.getByRole('alert')).toHaveTextContent('Không thể xóa cấu hình này')
     })
   })
+
+  it('opens share dialog when share button is clicked', () => {
+    render(<ConfigList game={mockGame} configs={mockConfigs} />)
+
+    const shareButtons = screen.getAllByRole('button', { name: /chia sẻ/i })
+    expect(shareButtons).toHaveLength(2)
+
+    fireEvent.click(shareButtons[1]) // click on cfg-2 which has slug123
+    expect(screen.getByRole('heading', { name: /chia sẻ cấu hình/i })).toBeInTheDocument()
+  })
 })
+

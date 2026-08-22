@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 export interface FlashcardStackProps {
   words: Word[];
   topicTitle?: string;
+  autoSpeak?: boolean;
   onComplete?: () => void;
   className?: string;
 }
@@ -21,6 +22,7 @@ export interface FlashcardStackProps {
 export function FlashcardStack({
   words,
   topicTitle,
+  autoSpeak = false,
   onComplete,
   className,
 }: FlashcardStackProps) {
@@ -34,6 +36,12 @@ export function FlashcardStack({
 
   const total = words.length;
   const currentWord = words[currentIndex];
+
+  useEffect(() => {
+    if (autoSpeak && currentWord && !isCompleted) {
+      speak(currentWord.english);
+    }
+  }, [autoSpeak, currentIndex, currentWord, isCompleted, speak]);
 
   const handleFlip = useCallback(() => {
     setIsFlipped((prev) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useCallback, useEffect, Suspense } from "react";
 import numbersData from "@/data/numbers.json";
 import colorsData from "@/data/colors.json";
 import { GameNumber, Color } from "@/types";
@@ -9,6 +9,9 @@ import { QuizEngine, QuizQuestion } from "@/components/game/QuizEngine";
 import { BackButton } from "@/components/custom/BackButton";
 import { SpeakButton } from "@/components/custom/SpeakButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { useGameConfig } from "@/hooks/useGameConfig";
+import type { NumbersColorsSettings } from "@/types/config";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -37,7 +40,12 @@ function generateNumberQuizQuestions(
   const selectedTargets = shuffledPool.slice(0, Math.min(count, shuffledPool.length));
 
   return selectedTargets.map((target) => {
-    const distractors = shuffle(pool.filter((n) => n.value !== target.value)).slice(0, 3);
+    const otherInPool = pool.filter((n) => n.value !== target.value);
+    const poolForDistractors =
+      otherInPool.length >= 3
+        ? otherInPool
+        : allNumbers.filter((n) => n.value !== target.value);
+    const distractors = shuffle(poolForDistractors).slice(0, 3);
     const options = shuffle([target, ...distractors]);
     const correctIndex = options.findIndex((opt) => opt.value === target.value);
 
@@ -73,11 +81,36 @@ function generateColorQuizQuestions(
   });
 }
 
-export default function NumbersColorsPage() {
-  const [activeCategory, setActiveCategory] = useState<"numbers" | "colors">("numbers");
-  const [activeMode, setActiveMode] = useState<"learn" | "quiz">("learn");
+function NumbersColorsContent() {
+  const { settings, configName } = useGameConfig<NumbersColorsSettings>("numbers-colors");
 
-  const [selectedNumber, setSelectedNumber] = useState<GameNumber>(allNumbers[0]);
+  const filteredNumbers = useMemo(() => {
+    if (settings?.numberRange && Array.isArray(settings.numberRange) && settings.numberRange.length === 2) {
+      const [min, max] = settings.numberRange;
+      const res = allNumbers.filter((n) => n.value >= min && n.value <= max);
+      return res.length > 0 ? res : allNumbers;
+    }
+    return allNumbers;
+  }, [settings?.numberRange]);
+
+  const showColors = settings?.includeColors ?? true;
+
+  const [userActiveCategory, setUserActiveCategory] = useState<"numbers" | "colors" | null>(null);
+  const requestedCategory = userActiveCategory ?? "numbers";
+  const activeCategory = (!showColors && requestedCategory === "colors") ? "numbers" : requestedCategory;
+
+  const [userActiveMode, setUserActiveMode] = useState<"learn" | "quiz" | null>(null);
+  const activeMode = userActiveMode ?? settings?.mode ?? "learn";
+
+  const [userSelectedNumberValue, setUserSelectedNumberValue] = useState<number | null>(null);
+  const selectedNumber = useMemo(() => {
+    if (userSelectedNumberValue !== null) {
+      const found = filteredNumbers.find((n) => n.value === userSelectedNumberValue);
+      if (found) return found;
+    }
+    return filteredNumbers[0] || allNumbers[0];
+  }, [userSelectedNumberValue, filteredNumbers]);
+
   const [selectedColor, setSelectedColor] = useState<Color>(allColors[0]);
 
   const [quizKey, setQuizKey] = useState(0);
@@ -89,7 +122,7 @@ export default function NumbersColorsPage() {
   const handleCategoryChange = useCallback(
     (val: string) => {
       cancel();
-      setActiveCategory(val as "numbers" | "colors");
+      setUserActiveCategory(val as "numbers" | "colors");
     },
     [cancel]
   );
@@ -98,16 +131,16 @@ export default function NumbersColorsPage() {
   const handleModeChange = useCallback(
     (val: string) => {
       cancel();
-      setActiveMode(val as "learn" | "quiz");
+      setUserActiveMode(val as "learn" | "quiz");
     },
     [cancel]
   );
 
   // Current Number index
   const currentNumberIndex = useMemo(() => {
-    const idx = allNumbers.findIndex((n) => n.value === selectedNumber.value);
+    const idx = filteredNumbers.findIndex((n) => n.value === selectedNumber.value);
     return idx >= 0 ? idx : 0;
-  }, [selectedNumber]);
+  }, [selectedNumber, filteredNumbers]);
 
   // Current Color index
   const currentColorIndex = useMemo(() => {
@@ -118,7 +151,7 @@ export default function NumbersColorsPage() {
   // Number selection
   const handleSelectNumber = useCallback(
     (num: GameNumber) => {
-      setSelectedNumber(num);
+      setUserSelectedNumberValue(num.value);
       speak(num.english);
     },
     [speak]
@@ -136,17 +169,17 @@ export default function NumbersColorsPage() {
   // Sequential number navigation
   const handlePrevNumber = useCallback(() => {
     if (currentNumberIndex > 0) {
-      const prev = allNumbers[currentNumberIndex - 1];
+      const prev = filteredNumbers[currentNumberIndex - 1];
       handleSelectNumber(prev);
     }
-  }, [currentNumberIndex, handleSelectNumber]);
+  }, [currentNumberIndex, filteredNumbers, handleSelectNumber]);
 
   const handleNextNumber = useCallback(() => {
-    if (currentNumberIndex < allNumbers.length - 1) {
-      const next = allNumbers[currentNumberIndex + 1];
+    if (currentNumberIndex < filteredNumbers.length - 1) {
+      const next = filteredNumbers[currentNumberIndex + 1];
       handleSelectNumber(next);
     }
-  }, [currentNumberIndex, handleSelectNumber]);
+  }, [currentNumberIndex, filteredNumbers, handleSelectNumber]);
 
   // Sequential color navigation
   const handlePrevColor = useCallback(() => {
@@ -217,9 +250,9 @@ export default function NumbersColorsPage() {
 
   // Quiz questions
   const numberQuizQuestions = useMemo(() => {
-    return generateNumberQuizQuestions(allNumbers, 10);
+    return generateNumberQuizQuestions(filteredNumbers, 10);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizKey]);
+  }, [filteredNumbers, quizKey]);
 
   const colorQuizQuestions = useMemo(() => {
     return generateColorQuizQuestions(allColors, 10);
@@ -244,10 +277,15 @@ export default function NumbersColorsPage() {
     [speak]
   );
 
-  const categoryTabs = [
-    { id: "numbers", label: "Số đếm (1-20)", emoji: "🔢", icon: <Hash className="w-4 h-4" /> },
-    { id: "colors", label: "Màu sắc (Colors)", emoji: "🎨", icon: <Palette className="w-4 h-4" /> },
-  ];
+  const categoryTabs = useMemo(() => {
+    const tabs = [
+      { id: "numbers", label: `Số đếm (${filteredNumbers.length} số)`, emoji: "🔢", icon: <Hash className="w-4 h-4" /> },
+    ];
+    if (showColors) {
+      tabs.push({ id: "colors", label: "Màu sắc (Colors)", emoji: "🎨", icon: <Palette className="w-4 h-4" /> });
+    }
+    return tabs;
+  }, [filteredNumbers.length, showColors]);
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center py-6 px-4 sm:px-6">
@@ -256,12 +294,15 @@ export default function NumbersColorsPage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
-              <span>🔢</span>
-              <span>Số & Màu sắc</span>
-            </h1>
+            <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
+              {configName && <ConfigBanner configName={configName} />}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2">
+                <span>🔢</span>
+                <span>Số & Màu sắc</span>
+              </h1>
+            </div>
             <p className="text-sm sm:text-base font-semibold text-muted-foreground mt-0.5">
-              Học đếm số từ 1-20 và nhận diện các màu sắc cơ bản bằng tiếng Anh
+              Học đếm số và nhận diện các màu sắc cơ bản bằng tiếng Anh
             </p>
           </div>
         </div>
@@ -275,11 +316,13 @@ export default function NumbersColorsPage() {
         )}
 
         {/* Primary Category Switcher (Numbers vs Colors) */}
-        <TabSwitcher
-          tabs={categoryTabs}
-          activeTab={activeCategory}
-          onTabChange={handleCategoryChange}
-        />
+        {showColors && (
+          <TabSwitcher
+            tabs={categoryTabs}
+            activeTab={activeCategory}
+            onTabChange={handleCategoryChange}
+          />
+        )}
 
         {/* Mode Switcher (Learn vs Quiz) */}
         <Tabs
@@ -399,7 +442,7 @@ export default function NumbersColorsPage() {
                     </span>
                   </div>
                   <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-2.5 sm:gap-3">
-                    {allNumbers.map((num) => {
+                    {filteredNumbers.map((num) => {
                       const isSelected = selectedNumber.value === num.value;
                       return (
                         <button
@@ -660,5 +703,13 @@ export default function NumbersColorsPage() {
         </Tabs>
       </div>
     </div>
+  );
+}
+
+export default function NumbersColorsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <NumbersColorsContent />
+    </Suspense>
   );
 }

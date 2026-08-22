@@ -1,6 +1,10 @@
+import React from "react";
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/custom/BackButton";
 import { FlashcardStack } from "@/components/game/FlashcardStack";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { getConfigByIdPublic } from "@/app/actions/configs";
+import type { FlashcardSettings } from "@/types/config";
 import topics from "@/data/topics.json";
 import { Word } from "@/types";
 
@@ -44,11 +48,15 @@ export async function generateMetadata({
   };
 }
 
+interface FlashcardTopicPageProps {
+  params: Promise<{ topicId: string }>;
+  searchParams?: Promise<{ config?: string }>;
+}
+
 export default async function FlashcardTopicPage({
   params,
-}: {
-  params: Promise<{ topicId: string }>;
-}) {
+  searchParams,
+}: FlashcardTopicPageProps) {
   const { topicId } = await params;
   const topic = topics.find((t) => t.id === topicId);
 
@@ -56,7 +64,32 @@ export default async function FlashcardTopicPage({
     notFound();
   }
 
-  const words = topicWordsMap[topicId] || [];
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const configId = resolvedSearchParams?.config;
+
+  let activeConfig = null;
+  let wordLimit: number | undefined = undefined;
+  let autoSpeak = false;
+
+  if (configId) {
+    const res = await getConfigByIdPublic(configId);
+    if (res.data && res.data.game_id === "flashcard") {
+      activeConfig = res.data;
+      const settings = res.data.settings as unknown as FlashcardSettings;
+      if (settings?.wordLimit && typeof settings.wordLimit === "number" && settings.wordLimit > 0) {
+        wordLimit = settings.wordLimit;
+      }
+      if (typeof settings?.autoSpeak === "boolean") {
+        autoSpeak = settings.autoSpeak;
+      }
+    }
+  }
+
+  const rawWords = topicWordsMap[topicId] || [];
+  const words = wordLimit ? rawWords.slice(0, wordLimit) : rawWords;
+  const backHref = configId
+    ? `/games/flashcard?config=${encodeURIComponent(configId)}`
+    : "/games/flashcard";
 
   return (
     <main className="min-h-screen bg-background py-6 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col gap-6">
@@ -64,8 +97,9 @@ export default async function FlashcardTopicPage({
 
       {/* Navigation & Header */}
       <div className="flex items-center justify-between">
-        <BackButton href="/games/flashcard" label="Chọn chủ đề" />
-        <div className="text-right">
+        <BackButton href={backHref} label="Chọn chủ đề" />
+        <div className="flex items-center gap-3">
+          {activeConfig && <ConfigBanner configName={activeConfig.name} />}
           <span className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">
             Flashcard
           </span>
@@ -76,6 +110,7 @@ export default async function FlashcardTopicPage({
       <div className="flex-1 flex flex-col items-center justify-center py-4">
         <FlashcardStack
           words={words}
+          autoSpeak={autoSpeak}
           topicTitle={`${topic.emoji} ${topic.nameVi}`}
         />
       </div>

@@ -1,7 +1,13 @@
+"use client";
+
+import React, { useMemo, Suspense } from "react";
 import Link from "next/link";
 import { BackButton } from "@/components/custom/BackButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { useGameConfig } from "@/hooks/useGameConfig";
+import type { FlashcardSettings } from "@/types/config";
 import topics from "@/data/topics.json";
 import animalsWords from "@/data/words/animals.json";
 import fruitsWords from "@/data/words/fruits.json";
@@ -18,20 +24,29 @@ const wordCounts: Record<string, number> = {
   "body-parts": bodyPartsWords.length,
 };
 
-export const metadata = {
-  title: "Học từ vựng qua Flashcard | English Games for Kids",
-  description: "Chọn chủ đề từ vựng để học tiếng Anh qua thẻ lật flashcard sinh động",
-};
+function FlashcardTopicSelectionContent() {
+  const { settings, configName, configId } = useGameConfig<FlashcardSettings>("flashcard");
 
-export default function FlashcardTopicSelectionPage() {
+  const displayedTopics = useMemo(() => {
+    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+      const allowed = new Set(settings.topics);
+      const filtered = topics.filter((t) => allowed.has(t.id));
+      return filtered.length > 0 ? filtered : topics;
+    }
+    return topics;
+  }, [settings?.topics]);
+
   return (
     <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col gap-8">
       {/* Top Bar Navigation */}
       <div className="flex items-center justify-between">
         <BackButton href="/" label="Về trang chủ" />
-        <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold">
-          <BookOpen className="w-6 h-6 stroke-[2.5]" />
-          <span className="hidden sm:inline">6-7 tuổi</span>
+        <div className="flex items-center gap-3">
+          {configName && <ConfigBanner configName={configName} />}
+          <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold">
+            <BookOpen className="w-6 h-6 stroke-[2.5]" />
+            <span className="hidden sm:inline">6-7 tuổi</span>
+          </div>
         </div>
       </div>
 
@@ -51,12 +66,16 @@ export default function FlashcardTopicSelectionPage() {
 
       {/* Topic Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-        {topics.map((topic) => {
+        {displayedTopics.map((topic) => {
           const count = wordCounts[topic.id] || 0;
+          const targetHref = configId
+            ? `/games/flashcard/${topic.id}?config=${encodeURIComponent(configId)}`
+            : `/games/flashcard/${topic.id}`;
+
           return (
             <Link
               key={topic.id}
-              href={`/games/flashcard/${topic.id}`}
+              href={targetHref}
               className="group block outline-none focus-visible:ring-4 focus-visible:ring-primary rounded-3xl"
             >
               <Card className="h-full rounded-3xl border-3 border-border hover:border-primary/60 bg-card hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 group-active:scale-98">
@@ -87,5 +106,13 @@ export default function FlashcardTopicSelectionPage() {
         })}
       </div>
     </main>
+  );
+}
+
+export default function FlashcardTopicSelectionPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <FlashcardTopicSelectionContent />
+    </Suspense>
   );
 }

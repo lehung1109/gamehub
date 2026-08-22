@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect, Suspense } from "react";
 import lettersData from "@/data/letters.json";
 import { Letter } from "@/types";
 import { LetterGrid } from "@/components/game/LetterGrid";
@@ -8,23 +8,30 @@ import { QuizEngine, QuizQuestion } from "@/components/game/QuizEngine";
 import { BackButton } from "@/components/custom/BackButton";
 import { SpeakButton } from "@/components/custom/SpeakButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useGameConfig } from "@/hooks/useGameConfig";
+import type { AlphabetSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import { Volume2, BookOpen, Brain, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
-const allLetters = lettersData as Letter[];
+const allLettersData = lettersData as Letter[];
 
 function generateQuizQuestions(letterPool: Letter[], questionCount = 10): QuizQuestion<Letter>[] {
   const shuffledPool = shuffle([...letterPool]);
   const selectedTargets = shuffledPool.slice(0, Math.min(questionCount, shuffledPool.length));
 
   return selectedTargets.map((target) => {
-    // Pick 3 distractors from remaining letters
-    const otherLetters = letterPool.filter((l) => l.letter !== target.letter);
-    const distractors = shuffle(otherLetters).slice(0, 3);
+    // Pick 3 distractors, drawing from full alphabet if current pool is small
+    const otherInPool = letterPool.filter((l) => l.letter !== target.letter);
+    const poolForDistractors =
+      otherInPool.length >= 3
+        ? otherInPool
+        : allLettersData.filter((l) => l.letter !== target.letter);
+    const distractors = shuffle(poolForDistractors).slice(0, 3);
     const options = shuffle([target, ...distractors]);
     const correctIndex = options.findIndex((opt) => opt.letter === target.letter);
 
@@ -37,31 +44,58 @@ function generateQuizQuestions(letterPool: Letter[], questionCount = 10): QuizQu
   });
 }
 
-export default function AlphabetGamePage() {
-  const [activeTab, setActiveTab] = useState<"learn" | "quiz">("learn");
-  const [selectedLetter, setSelectedLetter] = useState<Letter>(allLetters[0]);
+function AlphabetGameContent() {
+  const { settings, configName } = useGameConfig<AlphabetSettings>("alphabet");
+
+  const filteredLetters = useMemo(() => {
+    if (settings?.letterRange && Array.isArray(settings.letterRange) && settings.letterRange.length > 0) {
+      const allowed = new Set(settings.letterRange);
+      const filtered = allLettersData.filter((l) => allowed.has(l.letter));
+      return filtered.length > 0 ? filtered : allLettersData;
+    }
+    return allLettersData;
+  }, [settings?.letterRange]);
+
+  const [userActiveTab, setUserActiveTab] = useState<"learn" | "quiz" | null>(null);
+  const activeTab = userActiveTab ?? settings?.mode ?? "learn";
+
+  const [userSelectedLetterChar, setUserSelectedLetterChar] = useState<string | null>(null);
+  const selectedLetter = useMemo(() => {
+    if (userSelectedLetterChar) {
+      const found = filteredLetters.find((l) => l.letter === userSelectedLetterChar);
+      if (found) return found;
+    }
+    return filteredLetters[0] || allLettersData[0];
+  }, [userSelectedLetterChar, filteredLetters]);
+
   const [quizKey, setQuizKey] = useState(0);
   const [dismissUnsupported, setDismissUnsupported] = useState(false);
 
   const { speak, cancel, isSupported } = useSpeech();
 
+  useEffect(() => {
+    if (settings?.autoSpeak && selectedLetter && activeTab === "learn") {
+      speak(selectedLetter.letter);
+    }
+  }, [settings?.autoSpeak, selectedLetter, activeTab, speak]);
+
   const handleTabChange = useCallback(
     (val: string) => {
       cancel();
-      setActiveTab(val as "learn" | "quiz");
+      setUserActiveTab(val as "learn" | "quiz");
     },
     [cancel]
   );
 
   // Selected letter index for prev/next buttons
   const currentIndex = useMemo(() => {
-    const idx = allLetters.findIndex((l) => l.letter === selectedLetter.letter);
+    const idx = filteredLetters.findIndex((l) => l.letter === selectedLetter.letter);
     return idx >= 0 ? idx : 0;
-  }, [selectedLetter]);
+  }, [selectedLetter, filteredLetters]);
 
   const handleSelectLetter = useCallback(
     (letter: Letter) => {
-      setSelectedLetter(letter);
+      setUserSelectedLetterChar(letter.letter);
       speak(letter.letter);
     },
     [speak]
@@ -69,20 +103,20 @@ export default function AlphabetGamePage() {
 
   const handlePrevLetter = useCallback(() => {
     if (currentIndex > 0) {
-      const prev = allLetters[currentIndex - 1];
+      const prev = filteredLetters[currentIndex - 1];
       handleSelectLetter(prev);
     }
-  }, [currentIndex, handleSelectLetter]);
+  }, [currentIndex, filteredLetters, handleSelectLetter]);
 
   const handleNextLetter = useCallback(() => {
-    if (currentIndex < allLetters.length - 1) {
-      const next = allLetters[currentIndex + 1];
+    if (currentIndex < filteredLetters.length - 1) {
+      const next = filteredLetters[currentIndex + 1];
       handleSelectLetter(next);
     }
-  }, [currentIndex, handleSelectLetter]);
+  }, [currentIndex, filteredLetters, handleSelectLetter]);
 
   // Keyboard navigation in Learn mode (ArrowLeft, ArrowRight, Space/Enter)
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeTab !== "learn") return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -110,11 +144,10 @@ export default function AlphabetGamePage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeTab, handleNextLetter, handlePrevLetter, selectedLetter, speak]);
 
-  // Generate 10 quiz questions
+  // Generate quiz questions based on filtered letters
   const quizQuestions = useMemo(() => {
-    return generateQuizQuestions(allLetters, 10);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizKey]);
+    return generateQuizQuestions(filteredLetters, 10);
+  }, [filteredLetters, quizKey]);
 
   const handleRestartQuiz = useCallback(() => {
     setQuizKey((k) => k + 1);
@@ -134,10 +167,13 @@ export default function AlphabetGamePage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
-              <span>🔤</span>
-              <span>Chữ cái & Phonics</span>
-            </h1>
+            <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
+              {configName && <ConfigBanner configName={configName} />}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2">
+                <span>🔤</span>
+                <span>Chữ cái & Phonics</span>
+              </h1>
+            </div>
             <p className="text-sm sm:text-base font-semibold text-muted-foreground mt-0.5">
               Học phát âm bảng chữ cái tiếng Anh qua hình ảnh sinh động
             </p>
@@ -241,13 +277,13 @@ export default function AlphabetGamePage() {
                       <ChevronLeft className="w-6 h-6" />
                     </Button>
                     <span className="text-sm font-bold text-muted-foreground px-2">
-                      {currentIndex + 1} / {allLetters.length}
+                      {currentIndex + 1} / {filteredLetters.length}
                     </span>
                     <Button
                       type="button"
                       variant="outline"
                       size="icon"
-                      disabled={currentIndex === allLetters.length - 1}
+                      disabled={currentIndex === filteredLetters.length - 1}
                       onClick={handleNextLetter}
                       aria-label="Chữ tiếp theo"
                       className="rounded-xl w-12 h-12 border-2 cursor-pointer disabled:opacity-30"
@@ -263,7 +299,7 @@ export default function AlphabetGamePage() {
             <div className="space-y-3">
               <div className="flex items-center justify-between px-1">
                 <h2 className="text-lg sm:text-xl font-black text-foreground flex items-center gap-2">
-                  <span>Bảng chữ cái A-Z</span>
+                  <span>Bảng chữ cái ({filteredLetters.length} chữ)</span>
                   <Sparkles className="w-5 h-5 text-amber-500 fill-amber-400" />
                 </h2>
                 <span className="text-xs sm:text-sm text-muted-foreground font-semibold">
@@ -271,7 +307,7 @@ export default function AlphabetGamePage() {
                 </span>
               </div>
               <LetterGrid
-                letters={allLetters}
+                letters={filteredLetters}
                 selectedLetter={selectedLetter.letter}
                 onSelectLetter={handleSelectLetter}
               />
@@ -323,5 +359,13 @@ export default function AlphabetGamePage() {
         </Tabs>
       </div>
     </div>
+  );
+}
+
+export default function AlphabetGamePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <AlphabetGameContent />
+    </Suspense>
   );
 }

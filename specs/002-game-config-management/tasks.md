@@ -152,16 +152,16 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 4 ⚠️
 
-- [ ] T033 [P] [US4] Unit test for slug generation in `tests/unit/lib/slug.test.ts`
-- [ ] T034 [P] [US4] E2E test for share link access flow in `tests/e2e/share-link.spec.ts`
+- [x] T033 [P] [US4] Unit test for slug generation in `tests/unit/lib/slug.test.ts`
+- [x] T034 [P] [US4] E2E test for share link access flow in `tests/e2e/share-link.spec.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T035 [US4] Create nanoid helper in `src/lib/slug.ts` and implement `generateShareSlug` in `src/app/actions/configs.ts`
-- [ ] T036 [P] [US4] Create `ShareDialog` component in `src/components/admin/ShareDialog.tsx`
-- [ ] T037 [US4] Integrate `ShareDialog` into `src/components/admin/ConfigList.tsx`
-- [ ] T038 [US4] Implement share link resolver (redirect) in `src/app/play/[slug]/page.tsx`
-- [ ] T039 [US4] Update all games to conditionally fetch and apply config via query param in `src/app/games/*/page.tsx`
+- [x] T035 [US4] Create nanoid helper in `src/lib/slug.ts` and implement `generateShareSlug` in `src/app/actions/configs.ts`
+- [x] T036 [P] [US4] Create `ShareDialog` component in `src/components/admin/ShareDialog.tsx`
+- [x] T037 [US4] Integrate `ShareDialog` into `src/components/admin/ConfigList.tsx`
+- [x] T038 [US4] Implement share link resolver (redirect) in `src/app/play/[slug]/page.tsx`
+- [x] T039 [US4] Update all games to conditionally fetch and apply config via query param in `src/app/games/*/page.tsx`
 
 **Checkpoint**: All user stories should now be independently functional.
 

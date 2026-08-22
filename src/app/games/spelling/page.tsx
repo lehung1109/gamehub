@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, Suspense } from "react";
 import topicsData from "@/data/topics.json";
 import animalsWords from "@/data/words/animals.json";
 import fruitsWords from "@/data/words/fruits.json";
@@ -11,7 +11,8 @@ import bodyPartsWords from "@/data/words/body-parts.json";
 import { Topic, Word } from "@/types";
 import { BackButton } from "@/components/custom/BackButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
-import { DragDropBoard, DraggableItem } from "@/components/game/DragDropBoard";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { DragDropBoard, DraggableItem, SlotItem } from "@/components/game/DragDropBoard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -24,6 +25,8 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useGameConfig } from "@/hooks/useGameConfig";
+import type { SpellingSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import {
   Volume2,
@@ -33,6 +36,7 @@ import {
   ArrowRight,
   CheckCircle2,
   XCircle,
+  HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -104,7 +108,18 @@ function generateSpellingBank(targetWord: string, seed = 0): DraggableItem[] {
   });
 }
 
-export default function SpellingGamePage() {
+function SpellingGameContent() {
+  const { settings, configName } = useGameConfig<SpellingSettings>("spelling");
+
+  const displayedTopics = useMemo(() => {
+    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+      const allowed = new Set(settings.topics);
+      const filtered = allTopics.filter((t) => allowed.has(t.id));
+      return filtered.length > 0 ? filtered : allTopics;
+    }
+    return allTopics;
+  }, [settings?.topics]);
+
   const [selectedTopicId, setSelectedTopicId] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -124,75 +139,82 @@ export default function SpellingGamePage() {
 
   const { speak, cancel, isSupported } = useSpeech();
 
-  // Active word pool based on selected topic
+  // Active word pool based on selected topic or config topics
   const activeWordPool = useMemo(() => {
-    if (selectedTopicId === "all") return spellingEligibleAll;
-    return topicWordsMap[selectedTopicId] || spellingEligibleAll;
-  }, [selectedTopicId]);
+    if (selectedTopicId !== "all") {
+      return topicWordsMap[selectedTopicId] || spellingEligibleAll;
+    }
+    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+      const words: Word[] = [];
+      settings.topics.forEach((tId) => {
+        if (topicWordsMap[tId]) {
+          words.push(...topicWordsMap[tId]);
+        }
+      });
+      return words.length > 0 ? words : spellingEligibleAll;
+    }
+    return spellingEligibleAll;
+  }, [selectedTopicId, settings?.topics]);
 
-  // Selected 10 words for the game session (shuffled when gameKey > 0 or topic changes)
+  const wordLimit =
+    settings?.wordLimit && settings.wordLimit > 0
+      ? settings.wordLimit
+      : 10;
+  const showEmoji = settings?.showEmoji ?? true;
+
+  // Session words
   const gameWords = useMemo(() => {
     const pool = activeWordPool.length > 0 ? activeWordPool : spellingEligibleAll;
     const targetPool = gameKey > 0 ? shuffle([...pool]) : pool;
-    return targetPool.slice(0, Math.min(10, targetPool.length));
-  }, [activeWordPool, gameKey]);
+    return targetPool.slice(0, Math.min(wordLimit, targetPool.length));
+  }, [activeWordPool, wordLimit, gameKey]);
 
   const totalQuestions = gameWords.length;
   const currentWord = gameWords[currentIndex] || gameWords[0] || spellingEligibleAll[0];
-
   const targetLetters = useMemo(() => {
-    return currentWord ? currentWord.english.trim().toUpperCase().split("") : [];
+    return (currentWord?.english || "").trim().toUpperCase().split("");
   }, [currentWord]);
 
-  // Scrambled bank items with distractors
+  // Initial letter bank items scrambled
   const bankItems = useMemo(() => {
-    if (!currentWord) return [];
-    return generateSpellingBank(currentWord.english, boardKey);
-  }, [currentWord, boardKey]);
-
-  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  React.useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
-  const resetQuestion = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
-    setBoardKey((prev) => prev + 1);
-  }, []);
+    return generateSpellingBank(currentWord?.english || "CAT", boardKey + currentIndex * 5);
+  }, [currentWord?.english, boardKey, currentIndex]);
 
   const handleTopicChange = useCallback(
     (topicId: string) => {
-      if (timerRef.current) clearTimeout(timerRef.current);
       cancel();
       setSelectedTopicId(topicId);
       setCurrentIndex(0);
       setScore(0);
       setIsCompleted(false);
       setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
-      setGameKey((prev) => prev + 1);
-      setBoardKey((prev) => prev + 1);
+      setGameKey((k) => k + 1);
+      setBoardKey((k) => k + 1);
     },
     [cancel]
   );
 
   const handleRestart = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
     cancel();
     setCurrentIndex(0);
     setScore(0);
     setIsCompleted(false);
     setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
-    setGameKey((prev) => prev + 1);
-    setBoardKey((prev) => prev + 1);
+    setGameKey((k) => k + 1);
+    setBoardKey((k) => k + 1);
+  }, [cancel]);
+
+  const handleRetryWord = useCallback(() => {
+    cancel();
+    setBoardKey((k) => k + 1);
+    setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
   }, [cancel]);
 
   const handleItemPlaced = useCallback(
-    (item: { label: string }) => {
-      speak(item.label);
+    (item: DraggableItem | SlotItem) => {
+      if (item && item.label) {
+        speak(item.label);
+      }
     },
     [speak]
   );
@@ -200,41 +222,37 @@ export default function SpellingGamePage() {
   const handleCompleteSpelling = useCallback(
     (isCorrect: boolean, formedString: string) => {
       if (isCorrect) {
-        if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => {
+        setScore((s) => s + 1);
+        if (currentWord?.english) {
           speak(currentWord.english);
-        }, 300);
-        setScore((prev) => prev + 1);
+        }
       }
+
       setFeedbackState({
         show: true,
         isCorrect,
         formedWord: formedString,
       });
     },
-    [currentWord, speak]
+    [currentWord?.english, speak]
   );
 
   const handleNextWord = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
+    cancel();
     setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
-    if (currentIndex + 1 >= totalQuestions) {
-      setIsCompleted(true);
-    } else {
+    if (currentIndex < totalQuestions - 1) {
       setCurrentIndex((prev) => prev + 1);
-      setBoardKey((prev) => prev + 1);
+      setBoardKey((k) => k + 1);
+    } else {
+      setIsCompleted(true);
     }
-  }, [currentIndex, totalQuestions]);
-
-  const handleRetryWord = useCallback(() => {
-    resetQuestion();
-  }, [resetQuestion]);
+  }, [currentIndex, totalQuestions, cancel]);
 
   const handleSpeakCurrentWord = useCallback(() => {
-    if (currentWord) {
+    if (currentWord?.english) {
       speak(currentWord.english);
     }
-  }, [currentWord, speak]);
+  }, [currentWord?.english, speak]);
 
   const progressPercent =
     totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;
@@ -246,10 +264,13 @@ export default function SpellingGamePage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-amber-600 dark:text-amber-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
-              <span>✏️</span>
-              <span>Đánh vần & Ghép từ</span>
-            </h1>
+            <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
+              {configName && <ConfigBanner configName={configName} />}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-amber-600 dark:text-amber-400 tracking-tight flex items-center gap-2">
+                <span>✏️</span>
+                <span>Đánh vần & Ghép từ</span>
+              </h1>
+            </div>
             <p className="text-sm sm:text-base font-semibold text-muted-foreground mt-0.5">
               Kéo thả hoặc chạm các chữ cái để ghép thành từ tiếng Anh đúng nhé!
             </p>
@@ -284,10 +305,10 @@ export default function SpellingGamePage() {
               )}
             >
               <Sparkles className="w-3.5 h-3.5 mr-1" />
-              <span>Tất cả ({spellingEligibleAll.length})</span>
+              <span>Tất cả ({activeWordPool.length})</span>
             </Button>
 
-            {allTopics.map((topic) => {
+            {displayedTopics.map((topic) => {
               const count = topicWordsMap[topic.id]?.length || 0;
               const isSelected = selectedTopicId === topic.id;
 
@@ -331,12 +352,18 @@ export default function SpellingGamePage() {
 
               {/* Word Visual Prompt */}
               <div className="flex flex-col items-center text-center space-y-3 py-2 bg-amber-50/50 dark:bg-amber-950/20 rounded-3xl p-4 border-2 border-amber-200/60 dark:border-amber-800/40">
-                <span
-                  aria-hidden="true"
-                  className="text-7xl sm:text-8xl md:text-9xl select-none animate-in zoom-in-50 duration-200"
-                >
-                  {currentWord?.emoji}
-                </span>
+                {showEmoji ? (
+                  <span
+                    aria-hidden="true"
+                    className="text-7xl sm:text-8xl md:text-9xl select-none animate-in zoom-in-50 duration-200"
+                  >
+                    {currentWord?.emoji}
+                  </span>
+                ) : (
+                  <div className="size-20 rounded-2xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-700 dark:text-amber-300">
+                    <HelpCircle className="size-12" />
+                  </div>
+                )}
 
                 <div className="flex flex-col items-center">
                   <span className="text-xl sm:text-2xl font-black text-foreground">
@@ -468,5 +495,13 @@ export default function SpellingGamePage() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export default function SpellingGamePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <SpellingGameContent />
+    </Suspense>
   );
 }

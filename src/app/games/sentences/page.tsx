@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, Suspense } from "react";
 import sentencesData from "@/data/sentences.json";
 import { Sentence } from "@/types";
 import { BackButton } from "@/components/custom/BackButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
-import { DragDropBoard, DraggableItem } from "@/components/game/DragDropBoard";
+import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { DragDropBoard, DraggableItem, SlotItem } from "@/components/game/DragDropBoard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -18,6 +19,8 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useGameConfig } from "@/hooks/useGameConfig";
+import type { SentencesSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import {
   Volume2,
@@ -38,7 +41,7 @@ interface SentenceCategory {
   emoji: string;
 }
 
-const sentenceCategories: SentenceCategory[] = [
+const allSentenceCategories: SentenceCategory[] = [
   { id: "daily-actions", nameVi: "Hành động", emoji: "🍽️" },
   { id: "animals", nameVi: "Động vật", emoji: "🐱" },
   { id: "descriptions", nameVi: "Miêu tả", emoji: "🍎" },
@@ -61,7 +64,18 @@ function generateSentenceBank(targetWords: string[], seed = 0): DraggableItem[] 
   });
 }
 
-export default function SentencesGamePage() {
+function SentencesGameContent() {
+  const { settings, configName } = useGameConfig<SentencesSettings>("sentences");
+
+  const displayedCategories = useMemo(() => {
+    if (settings?.categories && Array.isArray(settings.categories) && settings.categories.length > 0) {
+      const allowed = new Set(settings.categories);
+      const filtered = allSentenceCategories.filter((c) => allowed.has(c.id));
+      return filtered.length > 0 ? filtered : allSentenceCategories;
+    }
+    return allSentenceCategories;
+  }, [settings?.categories]);
+
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -81,76 +95,82 @@ export default function SentencesGamePage() {
 
   const { speak, cancel, isSupported } = useSpeech();
 
-  // Active pool based on selected category
+  // Active pool based on selected category or config categories
   const activePool = useMemo(() => {
-    if (selectedCategory === "all") return allSentences;
-    return allSentences.filter((s) => s.category === selectedCategory);
-  }, [selectedCategory]);
+    if (selectedCategory !== "all") {
+      return allSentences.filter((s) => s.category === selectedCategory);
+    }
+    if (settings?.categories && Array.isArray(settings.categories) && settings.categories.length > 0) {
+      const allowed = new Set(settings.categories);
+      const filtered = allSentences.filter((s) => allowed.has(s.category));
+      return filtered.length > 0 ? filtered : allSentences;
+    }
+    return allSentences;
+  }, [selectedCategory, settings?.categories]);
 
-  // Session sentences (up to 10)
+  const sentenceLimit =
+    settings?.sentenceCount && settings.sentenceCount > 0
+      ? settings.sentenceCount
+      : 10;
+  const showVietnamese = settings?.showVietnamese ?? true;
+
+  // Session sentences (up to sentenceLimit)
   const gameSentences = useMemo(() => {
     const pool = activePool.length > 0 ? activePool : allSentences;
     const targetPool = gameKey > 0 ? shuffle([...pool]) : pool;
-    return targetPool.slice(0, Math.min(10, targetPool.length));
-  }, [activePool, gameKey]);
+    return targetPool.slice(0, Math.min(sentenceLimit, targetPool.length));
+  }, [activePool, sentenceLimit, gameKey]);
 
   const totalQuestions = gameSentences.length;
   const currentSentence =
     gameSentences[currentIndex] || gameSentences[0] || allSentences[0];
 
+  // Target words for current sentence
   const targetWords = useMemo(() => {
-    return currentSentence ? currentSentence.words : [];
+    if (!currentSentence?.words) return [];
+    return currentSentence.words;
   }, [currentSentence]);
 
-  // Scrambled bank items
+  // Initial bank items scrambled
   const bankItems = useMemo(() => {
-    if (!currentSentence) return [];
-    return generateSentenceBank(currentSentence.words, boardKey);
-  }, [currentSentence, boardKey]);
-
-  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  React.useEffect(() => {
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
-
-  const resetQuestion = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
-    setBoardKey((prev) => prev + 1);
-  }, []);
+    return generateSentenceBank(targetWords, boardKey + currentIndex * 7);
+  }, [targetWords, boardKey, currentIndex]);
 
   const handleCategoryChange = useCallback(
     (categoryId: string) => {
-      if (timerRef.current) clearTimeout(timerRef.current);
       cancel();
       setSelectedCategory(categoryId);
       setCurrentIndex(0);
       setScore(0);
       setIsCompleted(false);
       setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
-      setGameKey((prev) => prev + 1);
-      setBoardKey((prev) => prev + 1);
+      setGameKey((k) => k + 1);
+      setBoardKey((k) => k + 1);
     },
     [cancel]
   );
 
   const handleRestart = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
     cancel();
     setCurrentIndex(0);
     setScore(0);
     setIsCompleted(false);
     setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
-    setGameKey((prev) => prev + 1);
-    setBoardKey((prev) => prev + 1);
+    setGameKey((k) => k + 1);
+    setBoardKey((k) => k + 1);
+  }, [cancel]);
+
+  const handleRetrySentence = useCallback(() => {
+    cancel();
+    setBoardKey((k) => k + 1);
+    setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
   }, [cancel]);
 
   const handleItemPlaced = useCallback(
-    (item: { label: string }) => {
-      speak(item.label);
+    (item: DraggableItem | SlotItem) => {
+      if (item && item.label) {
+        speak(item.label);
+      }
     },
     [speak]
   );
@@ -158,44 +178,40 @@ export default function SentencesGamePage() {
   const handleCompleteSentence = useCallback(
     (isCorrect: boolean, formedString: string) => {
       if (isCorrect) {
-        if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => {
+        setScore((s) => s + 1);
+        if (currentSentence?.full) {
           speak(currentSentence.full);
-        }, 300);
-        setScore((prev) => prev + 1);
+        }
       }
+
       setFeedbackState({
         show: true,
         isCorrect,
         formedSentence: formedString,
       });
     },
-    [currentSentence, speak]
+    [currentSentence?.full, speak]
   );
 
   const handleNextSentence = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
+    cancel();
     setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
-    if (currentIndex + 1 >= totalQuestions) {
-      setIsCompleted(true);
-    } else {
+    if (currentIndex < totalQuestions - 1) {
       setCurrentIndex((prev) => prev + 1);
-      setBoardKey((prev) => prev + 1);
+      setBoardKey((k) => k + 1);
+    } else {
+      setIsCompleted(true);
     }
-  }, [currentIndex, totalQuestions]);
-
-  const handleRetrySentence = useCallback(() => {
-    resetQuestion();
-  }, [resetQuestion]);
+  }, [currentIndex, totalQuestions, cancel]);
 
   const handleSpeakSentence = useCallback(() => {
-    if (currentSentence) {
+    if (currentSentence?.full) {
       speak(currentSentence.full);
     }
-  }, [currentSentence, speak]);
+  }, [currentSentence?.full, speak]);
 
   const progressPercent =
-    totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;
+    totalQuestions > 0 ? Math.round((currentIndex / totalQuestions) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center py-6 px-4 sm:px-6">
@@ -204,10 +220,13 @@ export default function SentencesGamePage() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight flex items-center gap-2 justify-center sm:justify-end">
-              <span>💬</span>
-              <span>Luyện câu đơn giản</span>
-            </h1>
+            <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
+              {configName && <ConfigBanner configName={configName} />}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight flex items-center gap-2">
+                <span>💬</span>
+                <span>Luyện câu đơn giản</span>
+              </h1>
+            </div>
             <p className="text-sm sm:text-base font-semibold text-muted-foreground mt-0.5">
               Sắp xếp các từ để tạo thành câu tiếng Anh hoàn chỉnh nhé!
             </p>
@@ -242,10 +261,10 @@ export default function SentencesGamePage() {
               )}
             >
               <Sparkles className="w-3.5 h-3.5 mr-1" />
-              <span>Tất cả ({allSentences.length})</span>
+              <span>Tất cả ({activePool.length})</span>
             </Button>
 
-            {sentenceCategories.map((cat) => {
+            {displayedCategories.map((cat) => {
               const count = allSentences.filter((s) => s.category === cat.id).length;
               const isSelected = selectedCategory === cat.id;
 
@@ -297,9 +316,11 @@ export default function SentencesGamePage() {
                 </span>
 
                 <div className="flex flex-col items-center">
-                  <span className="text-xl sm:text-2xl font-black text-foreground">
-                    {currentSentence?.vietnamese}
-                  </span>
+                  {showVietnamese && (
+                    <span className="text-xl sm:text-2xl font-black text-foreground">
+                      {currentSentence?.vietnamese}
+                    </span>
+                  )}
                   <span className="text-xs sm:text-sm font-semibold text-muted-foreground mt-0.5">
                     Gợi ý: Câu gồm {targetWords.length} từ
                   </span>
@@ -429,5 +450,13 @@ export default function SentencesGamePage() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export default function SentencesGamePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <SentencesGameContent />
+    </Suspense>
   );
 }

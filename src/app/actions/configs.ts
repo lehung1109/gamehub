@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { isValidGameId, validateGameSettings } from '@/lib/game-config-schema'
+import { generateSlug, isValidSlug } from '@/lib/slug'
 import type { CreateConfigInput, GameConfig, UpdateConfigInput } from '@/types/config'
 
 export async function createConfig(
@@ -353,3 +354,181 @@ export async function deleteConfig(
     return { error: 'Đã xảy ra lỗi máy chủ khi xóa cấu hình.' }
   }
 }
+
+export async function generateShareSlug(
+  configId: string
+): Promise<{ slug?: string; error?: string }> {
+  try {
+    if (!configId || typeof configId !== 'string' || !configId.trim()) {
+      return { error: 'ID cấu hình không hợp lệ' }
+    }
+    const cleanConfigId = configId.trim()
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
+    // Fetch existing config to check if slug already exists
+    const { data: existing, error: fetchError } = await (supabase as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: string) => {
+              single: () => Promise<{ data: { id: string; game_id: string; share_slug: string | null } | null; error: { message: string } | null }>
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .select('id, game_id, share_slug')
+      .eq('id', cleanConfigId)
+      .eq('user_id', user.id)
+      .single()
+
+    if (fetchError || !existing) {
+      return { error: 'Không tìm thấy cấu hình hoặc bạn không có quyền chia sẻ' }
+    }
+
+    if (existing.share_slug) {
+      return { slug: existing.share_slug }
+    }
+
+    // Generate new unique slug with retry loop for collision safety
+    let attempts = 0
+    let updated: { id: string; share_slug: string } | null = null
+    let updateError: { message: string } | null = null
+
+    while (attempts < 3) {
+      attempts++
+      const newSlug = generateSlug()
+
+      const res = await (supabase as unknown as {
+        from: (table: string) => {
+          update: (values: Record<string, unknown>) => {
+            eq: (col: string, val: string) => {
+              eq: (col: string, val: string) => {
+                select: () => {
+                  single: () => Promise<{ data: { id: string; share_slug: string } | null; error: { message: string } | null }>
+                }
+              }
+            }
+          }
+        }
+      })
+        .from('game_configs')
+        .update({
+          share_slug: newSlug,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', cleanConfigId)
+        .eq('user_id', user.id)
+        .select()
+        .single()
+
+      if (!res.error && res.data) {
+        updated = res.data
+        updateError = null
+        break
+      }
+      updateError = res.error
+    }
+
+    if (updateError || !updated) {
+      return { error: updateError?.message || 'Không thể tạo mã chia sẻ' }
+    }
+
+    revalidatePath(`/admin/games/${existing.game_id}`)
+    revalidatePath(`/admin/configs/${cleanConfigId}`)
+
+    return { slug: updated.share_slug }
+  } catch (err) {
+    console.error('[generateShareSlug] Error:', err)
+    return { error: 'Đã xảy ra lỗi khi tạo liên kết chia sẻ.' }
+  }
+}
+
+export async function getConfigByIdPublic(
+  configId: string
+): Promise<{ data?: GameConfig; error?: string }> {
+  try {
+    if (!configId || typeof configId !== 'string' || !configId.trim()) {
+      return { error: 'ID cấu hình không hợp lệ' }
+    }
+    const cleanConfigId = configId.trim()
+
+    const supabase = await createClient()
+    const { data, error } = await (supabase as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: boolean) => {
+              single: () => Promise<{ data: GameConfig | null; error: { message: string } | null }>
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .select('id, game_id, name, settings, share_slug, is_active')
+      .eq('id', cleanConfigId)
+      .eq('is_active', true)
+      .single()
+
+    if (error || !data) {
+      return { error: 'Không tìm thấy cấu hình' }
+    }
+
+    return { data }
+  } catch (err) {
+    console.error('[getConfigByIdPublic] Error:', err)
+    return { error: 'Đã xảy ra lỗi khi tải cấu hình.' }
+  }
+}
+
+export async function getConfigBySlug(
+  slug: string
+): Promise<{ data?: GameConfig; error?: string }> {
+  try {
+    if (!slug || typeof slug !== 'string' || !slug.trim()) {
+      return { error: 'Mã chia sẻ không hợp lệ' }
+    }
+    const cleanSlug = slug.trim()
+    if (!isValidSlug(cleanSlug)) {
+      return { error: 'Mã chia sẻ không đúng định dạng' }
+    }
+
+    const supabase = await createClient()
+    const { data, error } = await (supabase as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          eq: (col: string, val: string) => {
+            eq: (col: string, val: boolean) => {
+              single: () => Promise<{ data: GameConfig | null; error: { message: string } | null }>
+            }
+          }
+        }
+      }
+    })
+      .from('game_configs')
+      .select('id, game_id, name, settings, share_slug, is_active')
+      .eq('share_slug', cleanSlug)
+      .eq('is_active', true)
+      .single()
+
+    if (error || !data) {
+      return { error: 'Không tìm thấy cấu hình tương ứng với liên kết này' }
+    }
+
+    return { data }
+  } catch (err) {
+    console.error('[getConfigBySlug] Error:', err)
+    return { error: 'Đã xảy ra lỗi khi tìm cấu hình.' }
+  }
+}
+
