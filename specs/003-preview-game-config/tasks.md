@@ -54,11 +54,11 @@
 
 ### Tests for User Story 2
 
-- [ ] T011 [P] [US2] Write E2E test for edit flow preview in tests/e2e/preview-config.spec.ts
+- [X] T011 [P] [US2] Write E2E test for edit flow preview in tests/e2e/preview-config.spec.ts
 
 ### Implementation for User Story 2
 
-- [ ] T012 [US2] Integrate PreviewButton into src/components/config/ConfigEditForm.tsx
+- [X] T012 [US2] Integrate PreviewButton into src/components/config/ConfigEditForm.tsx
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 

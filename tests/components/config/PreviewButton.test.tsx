@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { PreviewButton } from '@/components/config/PreviewButton'
-import type { FlashcardSettings, AlphabetSettings } from '@/types/config'
+import type { FlashcardSettings, AlphabetSettings, GameId } from '@/types/config'
 
 describe('PreviewButton Component', () => {
   let mockWindowOpen: ReturnType<typeof vi.fn>
@@ -67,8 +67,8 @@ describe('PreviewButton Component', () => {
     // Invalid settings (null or invalid type passed as any)
     render(
       <PreviewButton
-        gameId={'invalid-game' as any}
-        settings={null as any}
+        gameId={'invalid-game' as unknown as GameId}
+        settings={null as unknown as FlashcardSettings}
         onError={onError}
       />
     )

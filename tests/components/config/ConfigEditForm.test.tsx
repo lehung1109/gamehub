@@ -3,7 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { ConfigEditForm } from '@/components/config/ConfigEditForm'
 import type { Game } from '@/types'
-import type { GameConfig } from '@/types/config'
+import type { GameConfig, FlashcardSettings, GameId } from '@/types/config'
+import { decodePreviewSettings } from '@/lib/preview'
 
 const mockPush = vi.fn()
 const mockRefresh = vi.fn()
@@ -90,4 +91,55 @@ describe('ConfigEditForm Component', () => {
       expect(screen.getByRole('alert')).toHaveTextContent('Tên cấu hình đã tồn tại')
     })
   })
+
+  it('renders PreviewButton and previews modified settings before saving', () => {
+    const mockWindowOpen = vi.fn()
+    vi.stubGlobal('open', mockWindowOpen)
+
+    render(<ConfigEditForm game={mockGame} config={mockConfig} />)
+
+    const previewBtn = screen.getByRole('button', { name: /chơi thử/i })
+    expect(previewBtn).toBeInTheDocument()
+
+    // Modify a setting in the form: change wordLimit from 5 to 15
+    const wordLimitInput = screen.getByLabelText(/số lượng từ tối đa/i)
+    fireEvent.change(wordLimitInput, { target: { value: '15' } })
+
+    // Click "Chơi thử"
+    fireEvent.click(previewBtn)
+
+    expect(mockWindowOpen).toHaveBeenCalledTimes(1)
+    const [previewUrl, target] = mockWindowOpen.mock.calls[0]
+    expect(previewUrl).toMatch(/^\/games\/flashcard\?preview=/)
+    expect(target).toBe('_blank')
+
+    // Explicitly verify the payload contains the modified wordLimit (15), not the original (5)
+    const encoded = previewUrl.split('preview=')[1]
+    const decoded = decodePreviewSettings(encoded)
+    expect(decoded).not.toBeNull()
+    expect(decoded?.gameId).toBe('flashcard')
+    expect((decoded?.settings as FlashcardSettings).wordLimit).toBe(15)
+
+    // Ensure form was not submitted
+    expect(mockUpdateConfig).not.toHaveBeenCalled()
+
+    vi.unstubAllGlobals()
+  })
+
+  it('displays error in alert banner when preview validation fails', () => {
+    const mockWindowOpen = vi.fn()
+    vi.stubGlobal('open', mockWindowOpen)
+
+    const invalidGame = { ...mockGame, id: 'invalid-game' as GameId }
+    render(<ConfigEditForm game={invalidGame} config={mockConfig} />)
+
+    const previewBtn = screen.getByRole('button', { name: /chơi thử/i })
+    fireEvent.click(previewBtn)
+
+    expect(mockWindowOpen).not.toHaveBeenCalled()
+    expect(screen.getByRole('alert')).toHaveTextContent(/invalid game id/i)
+
+    vi.unstubAllGlobals()
+  })
 })
+

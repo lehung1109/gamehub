@@ -105,9 +105,36 @@ test.describe('Preview Game Configuration (E2E)', () => {
     })
   })
 
-  test.describe('US2: Preview Edited Config Before Saving Changes (UI Placeholders for Future Phase)', () => {
-    test.skip('admin can preview modified settings from edit form without saving', async () => {
-      // Will be enabled when Phase 4 (US2 ConfigEditForm integration) is implemented
+  test.describe('US2: Preview Edited Config Before Saving Changes', () => {
+    test('admin can preview modified numbers-colors settings without altering original configuration', async ({ page }) => {
+      // Simulate editing an existing config from 1-20 to 1-5 with mode='quiz'
+      const modifiedSettingsPayload = encodePreviewSettings('numbers-colors', {
+        numberRange: [1, 5],
+        includeColors: true,
+        mode: 'quiz',
+      })
+
+      await page.goto(`/games/numbers-colors?preview=${modifiedSettingsPayload}`)
+      await expect(page.getByRole('heading', { level: 1, name: /Số & Màu sắc/i })).toBeVisible()
+
+      // In numbers-colors with range [1, 5], number 5 is present but number 10 is not
+      await expect(page.getByText('Số 5', { exact: false })).toBeVisible()
+      await expect(page.getByText('Số 10', { exact: false })).not.toBeVisible()
+    })
+
+    test('admin can preview modified sentence categories in preview mode', async ({ page }) => {
+      // Simulate editing sentence config to only show school category
+      const modifiedSettingsPayload = encodePreviewSettings('sentences', {
+        categories: ['school'],
+        sentenceCount: 5,
+        showVietnamese: true,
+      })
+
+      await page.goto(`/games/sentences?preview=${modifiedSettingsPayload}`)
+      await expect(page.getByRole('heading', { level: 1, name: /Luyện câu đơn giản/i })).toBeVisible()
+      // Only school category button should be active/visible
+      await expect(page.getByRole('button', { name: /Trường học/i })).toBeVisible()
+      await expect(page.getByRole('button', { name: /Động vật/i })).not.toBeVisible()
     })
   })
 
