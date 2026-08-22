@@ -138,9 +138,29 @@ test.describe('Preview Game Configuration (E2E)', () => {
     })
   })
 
-  test.describe('US4: Settings Validation Before Preview (UI Placeholders for Future Phase)', () => {
-    test.skip('blocks preview and displays validation error when settings are invalid', async () => {
-      // Will be enabled when Phase 5 (US4 Validation in PreviewButton) is implemented
+  test.describe('US4: Settings Validation Before Preview', () => {
+    test('game falls back to default settings gracefully when invalid preview param is supplied', async ({ page }) => {
+      // Pass a corrupted preview param
+      await page.goto('/games/flashcard?preview=invalid-corrupted-base64-payload!!!')
+      await expect(page.getByRole('heading', { level: 1, name: /Học từ vựng qua Flashcard/i })).toBeVisible()
+
+      // Default game loads all topics when preview fails decoding
+      await expect(page.getByRole('link', { name: /Động vật/i })).toBeVisible()
+      await expect(page.getByRole('link', { name: /Trường học/i })).toBeVisible()
+    })
+
+    test('game falls back to default settings when preview param belongs to a mismatched game', async ({ page }) => {
+      // Create a preview payload for alphabet but open on spelling game
+      const alphabetPreview = encodePreviewSettings('alphabet', {
+        letterRange: ['A', 'B'],
+        mode: 'quiz',
+        autoSpeak: false,
+      })
+
+      await page.goto(`/games/spelling?preview=${alphabetPreview}`)
+      await expect(page.getByRole('heading', { level: 1, name: /Đánh vần & Ghép từ/i })).toBeVisible()
+      // Should show default spelling categories
+      await expect(page.getByRole('button', { name: /Động vật/i })).toBeVisible()
     })
   })
 

@@ -62,7 +62,24 @@ describe('PreviewButton Component', () => {
     expect(target).toBe('_blank')
   })
 
-  it('calls onError and does not open window if settings validation fails', () => {
+  it('calls onError with JSON object error message when settings is not an object', () => {
+    const onError = vi.fn()
+    render(
+      <PreviewButton
+        gameId="flashcard"
+        settings={null as unknown as FlashcardSettings}
+        onError={onError}
+      />
+    )
+
+    const button = screen.getByRole('button', { name: /chơi thử/i })
+    fireEvent.click(button)
+
+    expect(mockWindowOpen).not.toHaveBeenCalled()
+    expect(onError).toHaveBeenCalledWith('Settings must be a valid JSON object')
+  })
+
+  it('calls onError and does not open window if settings validation fails with invalid gameId', () => {
     const onError = vi.fn()
     // Invalid settings (null or invalid type passed as any)
     render(
@@ -77,7 +94,63 @@ describe('PreviewButton Component', () => {
     fireEvent.click(button)
 
     expect(mockWindowOpen).not.toHaveBeenCalled()
-    expect(onError).toHaveBeenCalledWith(expect.any(String))
+    expect(onError).toHaveBeenCalledWith(expect.stringContaining('Invalid game ID'))
+  })
+
+  it('logs to console.error when validation fails and no onError callback is provided', () => {
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
+    render(
+      <PreviewButton
+        gameId={'invalid-game' as unknown as GameId}
+        settings={null as unknown as FlashcardSettings}
+      />
+    )
+
+    const button = screen.getByRole('button', { name: /chơi thử/i })
+    fireEvent.click(button)
+
+    expect(mockWindowOpen).not.toHaveBeenCalled()
+    expect(consoleSpy).toHaveBeenCalledWith(
+      '[PreviewButton] Validation failed:',
+      expect.stringContaining('Invalid game ID')
+    )
+
+    consoleSpy.mockRestore()
+  })
+
+  it('allows preview after correcting previously invalid settings (US4 Scenario 2)', () => {
+    const onError = vi.fn()
+    const { rerender } = render(
+      <PreviewButton
+        gameId={'unknown' as unknown as GameId}
+        settings={{} as unknown as FlashcardSettings}
+        onError={onError}
+      />
+    )
+
+    const button = screen.getByRole('button', { name: /chơi thử/i })
+    fireEvent.click(button)
+    expect(mockWindowOpen).not.toHaveBeenCalled()
+    expect(onError).toHaveBeenCalled()
+
+    // Correct to valid settings and gameId
+    const validSettings: FlashcardSettings = {
+      topics: ['fruits'],
+      wordLimit: 5,
+      autoSpeak: true,
+    }
+    rerender(
+      <PreviewButton
+        gameId="flashcard"
+        settings={validSettings}
+        onError={onError}
+      />
+    )
+
+    fireEvent.click(button)
+    expect(mockWindowOpen).toHaveBeenCalledTimes(1)
+    expect(mockWindowOpen.mock.calls[0][0]).toMatch(/^\/games\/flashcard\?preview=/)
   })
 
   it('does not trigger parent form submission on click', () => {

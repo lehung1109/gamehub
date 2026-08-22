@@ -72,12 +72,12 @@
 
 ### Tests for User Story 4
 
-- [ ] T013 [P] [US4] Write unit tests for validation behavior in src/components/config/PreviewButton.test.tsx
-- [ ] T014 [P] [US4] Update E2E tests in tests/e2e/preview-config.spec.ts to cover validation failures blocking preview
+- [X] T013 [P] [US4] Write unit tests for validation behavior in src/components/config/PreviewButton.test.tsx
+- [X] T014 [P] [US4] Update E2E tests in tests/e2e/preview-config.spec.ts to cover validation failures blocking preview
 
 ### Implementation for User Story 4
 
-- [ ] T015 [US4] Update PreviewButton.tsx to handle validation failures and display errors (if not already handled in US1)
+- [X] T015 [US4] Update PreviewButton.tsx to handle validation failures and display errors (if not already handled in US1)
 
 **Checkpoint**: Preview creation gracefully handles invalid settings
 
