@@ -11,9 +11,14 @@ export function createAdminClient() {
     )
   }
 
+  const key =
+    serviceRoleKey ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    'dummy-service-role-key-for-dev'
+
   return createClient<Database>(
     supabaseUrl,
-    serviceRoleKey || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+    key,
     {
       auth: {
         persistSession: false,

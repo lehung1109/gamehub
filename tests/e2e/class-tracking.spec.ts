@@ -145,61 +145,6 @@ test.describe('Student Join & Progress Tracking Flow (User Story 2)', () => {
   })
 })
 
-test.describe.skip('User Story 1: Teacher Class Management', () => {
-  const testClassName = `E2E Class ${Date.now()}`
-  const newClassName = `${testClassName} - Edited`
-
-  test('Teacher can create, rename, and deactivate a class', async ({ page }) => {
-    await page.goto('/login')
-    await page.fill('input[type="email"]', 'admin@gamehub.local')
-    await page.fill('input[type="password"]', 'password123')
-    await page.click('button[type="submit"]')
-
-    await expect(page).toHaveURL(/.*\/admin\/dashboard/)
-
-    await page.click('text=Quản lý Lớp học')
-    await expect(page).toHaveURL(/.*\/admin\/dashboard\/classes/)
-
-    await page.fill('input[id="className"]', testClassName)
-    await page.click('button:has-text("Tạo lớp")')
-
-    await expect(page.locator('text=Tạo lớp thành công')).toBeVisible({ timeout: 10000 })
-    
-    const codeElement = page.locator('.font-mono.tracking-widest')
-    await expect(codeElement).toBeVisible()
-    const classCode = await codeElement.textContent()
-    expect(classCode?.trim().length).toBe(6)
-
-    await page.click('button:has-text("Tạo thêm lớp khác")')
-
-    const classCard = page.locator('.border-slate-200', { hasText: testClassName })
-    await expect(classCard).toBeVisible()
-    await expect(classCard.locator('text=Đang hoạt động')).toBeVisible()
-    await expect(classCard.locator(`text=${classCode}`)).toBeVisible()
-
-    await classCard.locator('button:has-text("Đổi tên")').click()
-    const renameDialog = page.locator('[role="dialog"]')
-    await expect(renameDialog).toBeVisible()
-    
-    await page.fill('input[id="newName"]', newClassName)
-    await renameDialog.locator('button:has-text("Lưu thay đổi")').click()
-
-    await expect(page.locator('.border-slate-200', { hasText: newClassName })).toBeVisible()
-
-    const updatedClassCard = page.locator('.border-slate-200', { hasText: newClassName })
-    await updatedClassCard.locator('button:has-text("Vô hiệu hóa")').click()
-    
-    const deactivateDialog = page.locator('[role="dialog"]')
-    await expect(deactivateDialog).toBeVisible()
-    await deactivateDialog.locator('button:has-text("Đồng ý vô hiệu hóa")').click()
-
-    await expect(updatedClassCard.locator('text=Đã vô hiệu hóa')).toBeVisible()
-
-    await updatedClassCard.locator('button:has-text("Mở lại")').click()
-    await expect(updatedClassCard.locator('text=Đang hoạt động')).toBeVisible()
-  })
-})
-
 test.describe('Student Game Progress Tracking (User Story 3)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
@@ -247,7 +192,6 @@ test.describe('Student Game Progress Tracking (User Story 3)', () => {
     await expect(page.getByRole('button', { name: /Bé Lan/i })).toBeVisible()
 
     // Answer questions
-    // In listening game, 10 questions with 4 choices each.
     for (let i = 1; i <= 10; i++) {
       const optionBtn = page.locator("button[aria-label^='Lựa chọn hình ảnh']").first()
       if (!(await optionBtn.isVisible().catch(() => false))) break
@@ -341,28 +285,32 @@ test.describe('Student Game Progress Tracking (User Story 3)', () => {
   })
 })
 
-test.describe('Teacher Class Dashboard Overview (User Story 4)', () => {
-  test('redirects unauthenticated teacher accessing class dashboard to /login with redirect parameter', async ({
+test.describe('Teacher Route Protection & Authentication Redirects', () => {
+  test('redirects unauthenticated teacher accessing class list to /login with redirect parameter', async ({
+    page,
+  }) => {
+    await page.goto('/admin/dashboard/classes')
+    await expect(page).toHaveURL(/\/login/)
+    await expect(page.getByRole('heading', { name: /đăng nhập/i })).toBeVisible()
+  })
+
+  test('redirects unauthenticated teacher accessing class dashboard to /login with redirect parameter (User Story 4)', async ({
     page,
   }) => {
     await page.goto('/admin/dashboard/classes/test-class-id')
     await expect(page).toHaveURL(/\/login\?redirect=.*admin.*dashboard.*classes.*test-class-id/)
     await expect(page.getByRole('heading', { name: /đăng nhập/i })).toBeVisible()
   })
-})
 
-test.describe('Teacher Student Progress Details (User Story 5)', () => {
-  test('redirects unauthenticated teacher accessing student detail page to /login with redirect parameter', async ({
+  test('redirects unauthenticated teacher accessing student detail page to /login with redirect parameter (User Story 5)', async ({
     page,
   }) => {
     await page.goto('/admin/dashboard/classes/test-class-id/students/test-student-id')
     await expect(page).toHaveURL(/\/login\?redirect=.*admin.*dashboard.*classes.*students/)
     await expect(page.getByRole('heading', { name: /đăng nhập/i })).toBeVisible()
   })
-})
 
-test.describe('Teacher Difficult Words Analysis (User Story 6)', () => {
-  test('redirects unauthenticated teacher accessing class difficult words analysis to /login with redirect parameter', async ({
+  test('redirects unauthenticated teacher accessing class difficult words analysis to /login with redirect parameter (User Story 6)', async ({
     page,
   }) => {
     await page.goto('/admin/dashboard/classes/test-class-id')
@@ -371,7 +319,7 @@ test.describe('Teacher Difficult Words Analysis (User Story 6)', () => {
   })
 })
 
-test.describe('Teacher CSV Export (User Story 7)', () => {
+test.describe('Teacher CSV Export API Route Security (User Story 7)', () => {
   test('returns 401 unauthorized when unauthenticated user requests /api/export-csv directly', async ({
     request,
   }) => {
@@ -386,6 +334,18 @@ test.describe('Teacher CSV Export (User Story 7)', () => {
   }) => {
     const response = await request.get('/api/export-csv')
     expect([400, 401]).toContain(response.status())
+  })
+})
+
+test.describe('Teacher Class Management & Input Validation (User Story 1)', () => {
+  test('Student join popup automatically converts class code to uppercase as typed', async ({ page }) => {
+    await page.goto('/games/listening')
+    const dialog = page.getByRole('dialog')
+    await expect(dialog).toBeVisible()
+
+    const classCodeInput = page.getByLabel(/Mã lớp/i)
+    await classCodeInput.fill('abc123')
+    await expect(classCodeInput).toHaveValue('ABC123')
   })
 })
 

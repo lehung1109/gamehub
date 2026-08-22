@@ -183,9 +183,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T032 [P] Run `specs/004-student-progress-tracking/quickstart.md` validation scenarios end-to-end
-- [ ] T033 Code cleanup, formatting, and check type validations with `npx tsc --noEmit`
-- [ ] T034 Verify RLS policies are strictly enforced for teachers and completely bypassable ONLY at `/api/track`
+- [x] T032 [P] Run `specs/004-student-progress-tracking/quickstart.md` validation scenarios end-to-end
+- [x] T033 Code cleanup, formatting, and check type validations with `npx tsc --noEmit`
+- [x] T034 Verify RLS policies are strictly enforced for teachers and completely bypassable ONLY at `/api/track`
 
 ---
 

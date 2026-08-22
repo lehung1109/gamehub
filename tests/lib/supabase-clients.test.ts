@@ -15,6 +15,15 @@ vi.mock('@supabase/ssr', () => ({
   })),
 }))
 
+vi.mock('@supabase/supabase-js', () => ({
+  createClient: vi.fn((url: string, key: string, options: unknown) => ({
+    url,
+    key,
+    options,
+    type: 'admin',
+  })),
+}))
+
 vi.mock('next/headers', () => ({
   cookies: vi.fn().mockResolvedValue({
     getAll: vi.fn().mockReturnValue([{ name: 'sb-token', value: 'xyz' }]),
@@ -50,5 +59,23 @@ describe('Supabase Client Factories', () => {
     expect((client as unknown as { url: string; key: string }).key).toBe(
       'test-anon-key'
     )
+  })
+
+  it('creates admin client with SUPABASE_SERVICE_ROLE_KEY', async () => {
+    vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY', 'test-service-role-key')
+    const { createAdminClient } = await import('@/lib/supabase/admin')
+    const client = createAdminClient()
+    expect(client).toBeDefined()
+    expect((client as unknown as { url: string; key: string }).key).toBe(
+      'test-service-role-key'
+    )
+  })
+
+  it('creates admin client fallback when service role key is missing', async () => {
+    vi.unstubAllEnvs()
+    const { createAdminClient } = await import('@/lib/supabase/admin')
+    const client = createAdminClient()
+    expect(client).toBeDefined()
+    expect((client as unknown as { url: string; key: string }).key).toBeTruthy()
   })
 })
