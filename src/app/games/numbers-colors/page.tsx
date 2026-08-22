@@ -417,13 +417,13 @@ function NumbersColorsContent() {
                           <ChevronLeft className="w-6 h-6" />
                         </Button>
                         <span className="text-sm font-bold text-muted-foreground px-2">
-                          {selectedNumber.value} / {allNumbers.length}
+                          {currentNumberIndex + 1} / {filteredNumbers.length}
                         </span>
                         <Button
                           type="button"
                           variant="outline"
                           size="icon"
-                          disabled={currentNumberIndex === allNumbers.length - 1}
+                          disabled={currentNumberIndex === filteredNumbers.length - 1}
                           onClick={handleNextNumber}
                           aria-label="Số tiếp theo"
                           className="rounded-xl w-12 h-12 border-2 cursor-pointer disabled:opacity-30"

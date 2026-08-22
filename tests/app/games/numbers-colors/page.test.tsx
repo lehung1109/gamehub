@@ -166,4 +166,15 @@ describe("Numbers & Colors Game Page (app/games/numbers-colors/page.tsx)", () =>
 
     expect(screen.queryByText(/Trình duyệt chưa hỗ trợ phát âm/i)).not.toBeInTheDocument();
   });
+
+  it("displays correct counter format (current / total) in Numbers Learn mode", () => {
+    render(<NumbersColorsPage />);
+
+    expect(screen.getByText("1 / 20")).toBeInTheDocument();
+
+    const nextBtn = screen.getByRole("button", { name: /Số tiếp theo/i });
+    fireEvent.click(nextBtn);
+
+    expect(screen.getByText("2 / 20")).toBeInTheDocument();
+  });
 });

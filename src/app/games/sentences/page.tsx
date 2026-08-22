@@ -216,7 +216,7 @@ function SentencesGameContent() {
   }, [fullSentence, speak]);
 
   const progressPercent =
-    totalQuestions > 0 ? Math.round((currentIndex / totalQuestions) * 100) : 0;
+    totalQuestions > 0 ? Math.round(((currentIndex + 1) / totalQuestions) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center py-6 px-4 sm:px-6">
