@@ -145,10 +145,21 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
   )
 }
 
+const defaultStudentSessionContext: StudentSessionContextValue = {
+  session: null,
+  isAnonymous: false,
+  isLoaded: true,
+  isOpen: false,
+  setOpen: () => {},
+  joinClass: () => {},
+  skip: () => {},
+  clearSession: () => {},
+}
+
 export function useStudentSession(): StudentSessionContextValue {
   const context = useContext(StudentSessionContext)
   if (!context) {
-    throw new Error('useStudentSession must be used within a StudentSessionProvider')
+    return defaultStudentSessionContext
   }
   return context
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { FeedbackOverlay } from "@/components/custom/FeedbackOverlay";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,15 @@ export interface QuizQuestion<T = unknown> {
   explanation?: string;
 }
 
+export interface QuestionAnswerDetail<T = unknown> {
+  question: QuizQuestion<T>;
+  promptText: string;
+  selectedAnswerText?: string;
+  correctAnswerText?: string;
+  isCorrect: boolean;
+  timeTakenMs: number;
+}
+
 export interface QuizEngineProps<T = unknown> {
   questions: QuizQuestion<T>[];
   renderPrompt?: (prompt: T, question: QuizQuestion<T>) => React.ReactNode;
@@ -25,6 +34,7 @@ export interface QuizEngineProps<T = unknown> {
   ) => React.ReactNode;
   getOptionAriaLabel?: (option: T, index: number) => string | undefined;
   onSpeak?: (prompt: T) => void;
+  onAnswer?: (detail: QuestionAnswerDetail<T>) => void;
   onComplete: (score: number, total: number) => void;
   onRestart?: () => void;
   title?: string;
@@ -33,16 +43,19 @@ export interface QuizEngineProps<T = unknown> {
   className?: string;
 }
 
-function extractOptionText(option: unknown): string | undefined {
+export function extractOptionText(option: unknown): string {
   if (typeof option === "string") return option;
+  if (typeof option === "number") return String(option);
   if (typeof option === "object" && option !== null) {
     const record = option as Record<string, unknown>;
-    if (typeof record.word === "string") return record.word;
     if (typeof record.english === "string") return record.english;
+    if (typeof record.word === "string") return record.word;
     if (typeof record.name === "string") return record.name;
     if (typeof record.letter === "string") return record.letter;
+    if (typeof record.value !== "undefined") return String(record.value);
+    if (typeof record.full === "string") return record.full;
   }
-  return undefined;
+  return "";
 }
 
 export function QuizEngine<T = unknown>({
@@ -51,6 +64,7 @@ export function QuizEngine<T = unknown>({
   renderOption,
   getOptionAriaLabel,
   onSpeak,
+  onAnswer,
   onComplete,
   onRestart,
   title,
@@ -70,10 +84,16 @@ export function QuizEngine<T = unknown>({
     type: "correct",
   });
   const [isCompleted, setIsCompleted] = useState(false);
-  const isSelectingRef = React.useRef(false);
+  const isSelectingRef = useRef(false);
+  const questionStartTimeRef = useRef<number>(Date.now());
 
   const hasQuestions = questions && questions.length > 0;
   const currentQuestion = hasQuestions ? questions[currentIndex] : undefined;
+
+  // Reset timer whenever currentIndex changes
+  useEffect(() => {
+    questionStartTimeRef.current = Date.now();
+  }, [currentIndex]);
 
   // Automatically trigger onSpeak when a new question is presented
   useEffect(() => {
@@ -96,9 +116,31 @@ export function QuizEngine<T = unknown>({
     if (selectedOption !== null || feedback.open || isCompleted || isSelectingRef.current) return;
     isSelectingRef.current = true;
 
+    const timeTakenMs = Math.max(0, Date.now() - questionStartTimeRef.current);
     setSelectedOption(index);
     const isCorrect = index === currentQuestion.correctIndex;
     const nextScore = isCorrect ? score + 1 : score;
+
+    const correctAnswer =
+      currentQuestion.correctAnswerText ||
+      extractOptionText(currentQuestion.options[currentQuestion.correctIndex]);
+
+    const selectedAnswerText = extractOptionText(currentQuestion.options[index]);
+    const promptText =
+      extractOptionText(currentQuestion.prompt) ||
+      correctAnswer ||
+      `Question ${currentIndex + 1}`;
+
+    if (onAnswer) {
+      onAnswer({
+        question: currentQuestion,
+        promptText,
+        selectedAnswerText,
+        correctAnswerText: correctAnswer,
+        isCorrect,
+        timeTakenMs,
+      });
+    }
 
     if (isCorrect) {
       setScore(nextScore);
@@ -107,14 +149,10 @@ export function QuizEngine<T = unknown>({
         type: "correct",
       });
     } else {
-      const answerText =
-        currentQuestion.correctAnswerText ||
-        extractOptionText(currentQuestion.options[currentQuestion.correctIndex]);
-
       setFeedback({
         open: true,
         type: "wrong",
-        correctAnswer: answerText,
+        correctAnswer,
       });
     }
   };
@@ -139,6 +177,7 @@ export function QuizEngine<T = unknown>({
     setScore(0);
     setIsCompleted(false);
     isSelectingRef.current = false;
+    questionStartTimeRef.current = Date.now();
     setFeedback({ open: false, type: "correct" });
     if (onRestart) {
       onRestart();

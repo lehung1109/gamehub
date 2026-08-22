@@ -9,11 +9,14 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { SpeakButton } from "@/components/custom/SpeakButton";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import { cn } from "@/lib/utils";
 
 export interface FlashcardStackProps {
   words: Word[];
   topicTitle?: string;
+  topicId?: string;
+  configId?: string;
   autoSpeak?: boolean;
   onComplete?: () => void;
   className?: string;
@@ -22,6 +25,8 @@ export interface FlashcardStackProps {
 export function FlashcardStack({
   words,
   topicTitle,
+  topicId,
+  configId,
   autoSpeak = false,
   onComplete,
   className,
@@ -33,9 +38,22 @@ export function FlashcardStack({
   const { speak, cancel: cancelSpeech } = useSpeech();
   const touchStartXRef = useRef<number | null>(null);
   const touchStartYRef = useRef<number | null>(null);
+  const cardStartTimeRef = useRef<number>(Date.now());
+  const visitedIndicesRef = useRef<Set<number>>(new Set());
 
   const total = words.length;
   const currentWord = words[currentIndex];
+
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: "flashcard",
+    topic: topicId || topicTitle || "general",
+    configId: configId || undefined,
+    totalQuestions: total,
+  });
+
+  useEffect(() => {
+    cardStartTimeRef.current = Date.now();
+  }, [currentIndex]);
 
   useEffect(() => {
     if (autoSpeak && currentWord && !isCompleted) {
@@ -57,16 +75,32 @@ export function FlashcardStack({
 
   const handleNext = useCallback(() => {
     cancelSpeech();
+
+    if (currentWord && !visitedIndicesRef.current.has(currentIndex)) {
+      visitedIndicesRef.current.add(currentIndex);
+      recordQuestion({
+        prompt: currentWord.english,
+        correctAnswer: currentWord.english,
+        isCorrect: true,
+        timeTakenMs: Math.max(0, Date.now() - cardStartTimeRef.current),
+        attempts: 1,
+      });
+    }
+
     if (currentIndex < total - 1) {
       setIsFlipped(false);
       setCurrentIndex((prev) => prev + 1);
     } else {
       setIsCompleted(true);
+      submitSession({
+        totalQuestions: total,
+        topic: topicId || topicTitle || "general",
+      });
       if (onComplete) {
         onComplete();
       }
     }
-  }, [currentIndex, total, onComplete, cancelSpeech]);
+  }, [currentIndex, total, onComplete, cancelSpeech, currentWord, recordQuestion, submitSession, topicId, topicTitle]);
 
   const handlePrev = useCallback(() => {
     cancelSpeech();
@@ -78,10 +112,13 @@ export function FlashcardStack({
 
   const handleRestart = useCallback(() => {
     cancelSpeech();
+    resetSession();
+    visitedIndicesRef.current.clear();
     setCurrentIndex(0);
     setIsFlipped(false);
     setIsCompleted(false);
-  }, [cancelSpeech]);
+    cardStartTimeRef.current = Date.now();
+  }, [cancelSpeech, resetSession]);
 
   // Touch swipe handling for mobile / tablet
   const handleTouchStart = (e: React.TouchEvent) => {

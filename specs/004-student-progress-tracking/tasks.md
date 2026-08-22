@@ -98,14 +98,14 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 3
 
-- [ ] T015 [P] [US3] Unit test for `use-game-tracking` hook in `tests/unit/use-game-tracking.test.ts`
-- [ ] T016 [P] [US3] Contract test for `/api/track` in `tests/unit/tracking-api.test.ts`
+- [x] T015 [P] [US3] Unit test for `use-game-tracking` hook in `tests/unit/use-game-tracking.test.ts`
+- [x] T016 [P] [US3] Contract test for `/api/track` in `tests/unit/tracking-api.test.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T017 [P] [US3] Implement secure POST handler in `src/app/api/track/route.ts` bypassing RLS for unauthenticated students
-- [ ] T018 [P] [US3] Implement `use-game-tracking` hook in `src/hooks/use-game-tracking.ts`
-- [ ] T019 [US3] Integrate tracking hook into game components (Listening, Spelling, Flashcard, etc.) to record results silently
+- [x] T017 [P] [US3] Implement secure POST handler in `src/app/api/track/route.ts` bypassing RLS for unauthenticated students
+- [x] T018 [P] [US3] Implement `use-game-tracking` hook in `src/hooks/use-game-tracking.ts`
+- [x] T019 [US3] Integrate tracking hook into game components (Listening, Spelling, Flashcard, etc.) to record results silently
 
 **Checkpoint**: All core data entry flows are fully functional
 

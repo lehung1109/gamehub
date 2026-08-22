@@ -199,3 +199,135 @@ test.describe.skip('User Story 1: Teacher Class Management', () => {
     await expect(updatedClassCard.locator('text=Đang hoạt động')).toBeVisible()
   })
 })
+
+test.describe('Student Game Progress Tracking (User Story 3)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      window.sessionStorage.clear()
+    })
+  })
+
+  test('Tracks game results and posts to /api/track with question details when student finishes a game', async ({
+    page,
+  }) => {
+    let trackingRequestPayload: any = null
+
+    // Intercept tracking API
+    await page.route('**/api/track', async (route) => {
+      const request = route.request()
+      if (request.method() === 'POST') {
+        trackingRequestPayload = JSON.parse(request.postData() || '{}')
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ success: true, sessionId: 'e2e-session-123' }),
+        })
+      } else {
+        await route.continue()
+      }
+    })
+
+    // Pre-populate sessionStorage with student session
+    await page.addInitScript(() => {
+      window.sessionStorage.setItem(
+        'gamehub_student_session',
+        JSON.stringify({
+          classCode: 'ABC123',
+          studentName: 'Bé Lan',
+          className: 'Lớp 1A',
+          isAnonymous: false,
+        })
+      )
+    })
+
+    await page.goto('/games/listening')
+
+    // Verify student badge is present
+    await expect(page.getByRole('button', { name: /Bé Lan/i })).toBeVisible()
+
+    // Answer questions
+    // In listening game, 10 questions with 4 choices each.
+    for (let i = 0; i < 10; i++) {
+      // Find the first option button and click it
+      const optionButtons = page.locator('.grid button')
+      await expect(optionButtons.first()).toBeVisible({ timeout: 5000 })
+      await optionButtons.first().click()
+
+      // If auto-advance or feedback overlay appears, wait or let it advance
+      const summaryVisible = await page
+        .locator('text=/tuyệt đỉnh|chúc mừng|hoàn thành/i')
+        .isVisible()
+      if (summaryVisible) break
+
+      // Wait a short moment for transition if not yet completed
+      await page.waitForTimeout(1600)
+    }
+
+    // Verify completion summary screen
+    await expect(
+      page.locator('text=/tuyệt đỉnh|chúc mừng|hoàn thành bài tập/i')
+    ).toBeVisible({ timeout: 10000 })
+
+    // Verify tracking payload was sent
+    expect(trackingRequestPayload).not.toBeNull()
+    expect(trackingRequestPayload.classCode).toBe('ABC123')
+    expect(trackingRequestPayload.studentName).toBe('Bé Lan')
+    expect(trackingRequestPayload.gameType).toBe('listening')
+    expect(trackingRequestPayload.totalQuestions).toBeGreaterThanOrEqual(1)
+    expect(Array.isArray(trackingRequestPayload.details)).toBe(true)
+    expect(trackingRequestPayload.details.length).toBeGreaterThanOrEqual(1)
+    expect(trackingRequestPayload.details[0]).toHaveProperty('prompt')
+    expect(trackingRequestPayload.details[0]).toHaveProperty('isCorrect')
+    expect(trackingRequestPayload.details[0]).toHaveProperty('timeTakenMs')
+  })
+
+  test('Does not submit tracking request to /api/track when playing anonymously', async ({
+    page,
+  }) => {
+    let trackingCalled = false
+
+    await page.route('**/api/track', async (route) => {
+      trackingCalled = true
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      })
+    })
+
+    // Pre-populate sessionStorage with anonymous session
+    await page.addInitScript(() => {
+      window.sessionStorage.setItem(
+        'gamehub_student_session',
+        JSON.stringify({
+          isAnonymous: true,
+        })
+      )
+    })
+
+    await page.goto('/games/listening')
+    await expect(page.getByText(/Chơi tự do/i)).toBeVisible()
+
+    // Answer questions
+    for (let i = 0; i < 10; i++) {
+      const optionButtons = page.locator('.grid button')
+      await expect(optionButtons.first()).toBeVisible({ timeout: 5000 })
+      await optionButtons.first().click()
+
+      const summaryVisible = await page
+        .locator('text=/tuyệt đỉnh|chúc mừng|hoàn thành/i')
+        .isVisible()
+      if (summaryVisible) break
+
+      await page.waitForTimeout(1600)
+    }
+
+    await expect(
+      page.locator('text=/tuyệt đỉnh|chúc mừng|hoàn thành bài tập/i')
+    ).toBeVisible({ timeout: 10000 })
+
+    // Verify /api/track was never called
+    expect(trackingCalled).toBe(false)
+  })
+})
+

@@ -17,6 +17,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import { shuffle } from "@/lib/shuffle";
 import {
   Volume2,
@@ -83,7 +84,7 @@ function generateColorQuizQuestions(
 }
 
 function NumbersColorsContent() {
-  const { settings, configName, isPreview } = useGameConfig<NumbersColorsSettings>("numbers-colors");
+  const { settings, configName, isPreview, configId } = useGameConfig<NumbersColorsSettings>("numbers-colors");
 
   const filteredNumbers = useMemo(() => {
     if (settings?.numberRange && Array.isArray(settings.numberRange) && settings.numberRange.length === 2) {
@@ -119,22 +120,44 @@ function NumbersColorsContent() {
 
   const { speak, cancel, isSupported } = useSpeech();
 
+  // Quiz questions
+  const numberQuizQuestions = useMemo(() => {
+    return generateNumberQuizQuestions(filteredNumbers, 10);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filteredNumbers, quizKey]);
+
+  const colorQuizQuestions = useMemo(() => {
+    return generateColorQuizQuestions(allColors, 10);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quizKey]);
+
+  const currentQuizTotal = activeCategory === "numbers" ? numberQuizQuestions.length : colorQuizQuestions.length;
+
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: "numbers-colors",
+    topic: activeCategory,
+    configId: configId || undefined,
+    totalQuestions: currentQuizTotal,
+  });
+
   // Category switch
   const handleCategoryChange = useCallback(
     (val: string) => {
       cancel();
+      resetSession();
       setUserActiveCategory(val as "numbers" | "colors");
     },
-    [cancel]
+    [cancel, resetSession]
   );
 
   // Mode switch
   const handleModeChange = useCallback(
     (val: string) => {
       cancel();
+      resetSession();
       setUserActiveMode(val as "learn" | "quiz");
     },
-    [cancel]
+    [cancel, resetSession]
   );
 
   // Current Number index
@@ -249,20 +272,10 @@ function NumbersColorsContent() {
     speak,
   ]);
 
-  // Quiz questions
-  const numberQuizQuestions = useMemo(() => {
-    return generateNumberQuizQuestions(filteredNumbers, 10);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filteredNumbers, quizKey]);
-
-  const colorQuizQuestions = useMemo(() => {
-    return generateColorQuizQuestions(allColors, 10);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizKey]);
-
   const handleRestartQuiz = useCallback(() => {
+    resetSession();
     setQuizKey((k) => k + 1);
-  }, []);
+  }, [resetSession]);
 
   const handleNumberQuizSpeak = useCallback(
     (promptNum: GameNumber) => {
@@ -486,7 +499,23 @@ function NumbersColorsContent() {
                     questions={numberQuizQuestions}
                     title="🎯 Thử thách nhận diện số đếm"
                     onSpeak={handleNumberQuizSpeak}
-                    onComplete={() => {}}
+                    onAnswer={({ promptText, selectedAnswerText, correctAnswerText, isCorrect, timeTakenMs }) => {
+                      recordQuestion({
+                        prompt: promptText,
+                        selectedAnswer: selectedAnswerText,
+                        correctAnswer: correctAnswerText,
+                        isCorrect,
+                        timeTakenMs,
+                        attempts: 1,
+                      });
+                    }}
+                    onComplete={(finalScore, total) => {
+                      submitSession({
+                        score: finalScore,
+                        totalQuestions: total,
+                        topic: "numbers",
+                      });
+                    }}
                     onRestart={handleRestartQuiz}
                     getOptionAriaLabel={(option) => `Lựa chọn số ${option.value} (${option.english})`}
                     renderPrompt={(target) => (
@@ -662,7 +691,23 @@ function NumbersColorsContent() {
                     questions={colorQuizQuestions}
                     title="🎯 Thử thách nhận diện màu sắc"
                     onSpeak={handleColorQuizSpeak}
-                    onComplete={() => {}}
+                    onAnswer={({ promptText, selectedAnswerText, correctAnswerText, isCorrect, timeTakenMs }) => {
+                      recordQuestion({
+                        prompt: promptText,
+                        selectedAnswer: selectedAnswerText,
+                        correctAnswer: correctAnswerText,
+                        isCorrect,
+                        timeTakenMs,
+                        attempts: 1,
+                      });
+                    }}
+                    onComplete={(finalScore, total) => {
+                      submitSession({
+                        score: finalScore,
+                        totalQuestions: total,
+                        topic: "colors",
+                      });
+                    }}
                     onRestart={handleRestartQuiz}
                     getOptionAriaLabel={(option) => `Lựa chọn màu ${option.english} (${option.vietnamese})`}
                     renderPrompt={(target) => (

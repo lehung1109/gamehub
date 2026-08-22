@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useSpeech } from "@/hooks/useSpeech";
 import { useGameConfig } from "@/hooks/useGameConfig";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import type { AlphabetSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import { Volume2, BookOpen, Brain, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
@@ -46,7 +47,7 @@ function generateQuizQuestions(letterPool: Letter[], questionCount = 10): QuizQu
 }
 
 function AlphabetGameContent() {
-  const { settings, configName, isPreview } = useGameConfig<AlphabetSettings>("alphabet");
+  const { settings, configName, isPreview, configId } = useGameConfig<AlphabetSettings>("alphabet");
 
   const letterRange = settings?.letterRange;
   const filteredLetters = useMemo(() => {
@@ -152,9 +153,17 @@ function AlphabetGameContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredLetters, quizKey]);
 
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: "alphabet",
+    topic: "alphabet",
+    configId: configId || undefined,
+    totalQuestions: quizQuestions.length,
+  });
+
   const handleRestartQuiz = useCallback(() => {
+    resetSession();
     setQuizKey((k) => k + 1);
-  }, []);
+  }, [resetSession]);
 
   const handleQuizSpeak = useCallback(
     (promptLetter: Letter) => {
@@ -329,7 +338,23 @@ function AlphabetGameContent() {
                 questions={quizQuestions}
                 title="🎯 Thử thách nhận diện chữ cái"
                 onSpeak={handleQuizSpeak}
-                onComplete={() => {}}
+                onAnswer={({ promptText, selectedAnswerText, correctAnswerText, isCorrect, timeTakenMs }) => {
+                  recordQuestion({
+                    prompt: promptText,
+                    selectedAnswer: selectedAnswerText,
+                    correctAnswer: correctAnswerText,
+                    isCorrect,
+                    timeTakenMs,
+                    attempts: 1,
+                  });
+                }}
+                onComplete={(finalScore, total) => {
+                  submitSession({
+                    score: finalScore,
+                    totalQuestions: total,
+                    topic: "alphabet",
+                  });
+                }}
                 onRestart={handleRestartQuiz}
                 renderPrompt={(target) => (
                   <div className="flex flex-col items-center text-center space-y-4 py-4">

@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { useSpeech } from "@/hooks/useSpeech";
 import { useGameConfig } from "@/hooks/useGameConfig";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import type { SentencesSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import {
@@ -66,7 +67,7 @@ function generateSentenceBank(targetWords: string[], seed = 0): DraggableItem[] 
 }
 
 function SentencesGameContent() {
-  const { settings, configName, isPreview } = useGameConfig<SentencesSettings>("sentences");
+  const { settings, configName, isPreview, configId } = useGameConfig<SentencesSettings>("sentences");
 
   const categoriesConfig = settings?.categories;
 
@@ -97,6 +98,9 @@ function SentencesGameContent() {
   const [dismissUnsupported, setDismissUnsupported] = useState(false);
 
   const { speak, cancel, isSupported } = useSpeech();
+  const sentenceStartTimeRef = React.useRef<number>(Date.now());
+  const attemptsRef = React.useRef<number>(1);
+  const totalTimeTakenRef = React.useRef<number>(0);
 
   // Active pool based on selected category or config categories
   const activePool = useMemo(() => {
@@ -128,6 +132,13 @@ function SentencesGameContent() {
   const currentSentence =
     gameSentences[currentIndex] || gameSentences[0] || allSentences[0];
 
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: "sentences",
+    topic: selectedCategory,
+    configId: configId || undefined,
+    totalQuestions,
+  });
+
   // Target words for current sentence
   const targetWords = useMemo(() => {
     if (!currentSentence?.words) return [];
@@ -142,6 +153,7 @@ function SentencesGameContent() {
   const handleCategoryChange = useCallback(
     (categoryId: string) => {
       cancel();
+      resetSession();
       setSelectedCategory(categoryId);
       setCurrentIndex(0);
       setScore(0);
@@ -149,24 +161,34 @@ function SentencesGameContent() {
       setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
       setGameKey((k) => k + 1);
       setBoardKey((k) => k + 1);
+      attemptsRef.current = 1;
+      totalTimeTakenRef.current = 0;
+      sentenceStartTimeRef.current = Date.now();
     },
-    [cancel]
+    [cancel, resetSession]
   );
 
   const handleRestart = useCallback(() => {
     cancel();
+    resetSession();
     setCurrentIndex(0);
     setScore(0);
     setIsCompleted(false);
     setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
     setGameKey((k) => k + 1);
     setBoardKey((k) => k + 1);
-  }, [cancel]);
+    attemptsRef.current = 1;
+    totalTimeTakenRef.current = 0;
+    sentenceStartTimeRef.current = Date.now();
+  }, [cancel, resetSession]);
 
   const handleRetrySentence = useCallback(() => {
     cancel();
+    attemptsRef.current += 1;
+    totalTimeTakenRef.current += Math.max(0, Date.now() - sentenceStartTimeRef.current);
     setBoardKey((k) => k + 1);
     setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
+    sentenceStartTimeRef.current = Date.now();
   }, [cancel]);
 
   const handleItemPlaced = useCallback(
@@ -182,7 +204,18 @@ function SentencesGameContent() {
 
   const handleCompleteSentence = useCallback(
     (isCorrect: boolean, formedString: string) => {
+      const timeTakenMs = totalTimeTakenRef.current + Math.max(0, Date.now() - sentenceStartTimeRef.current);
+
       if (isCorrect) {
+        recordQuestion({
+          prompt: fullSentence || "",
+          selectedAnswer: formedString,
+          correctAnswer: fullSentence || "",
+          isCorrect: true,
+          timeTakenMs,
+          attempts: attemptsRef.current,
+        });
+
         setScore((s) => s + 1);
         if (fullSentence) {
           speak(fullSentence);
@@ -195,19 +228,27 @@ function SentencesGameContent() {
         formedSentence: formedString,
       });
     },
-    [fullSentence, speak]
+    [fullSentence, speak, recordQuestion]
   );
 
   const handleNextSentence = useCallback(() => {
     cancel();
     setFeedbackState({ show: false, isCorrect: false, formedSentence: "" });
+    attemptsRef.current = 1;
+    totalTimeTakenRef.current = 0;
     if (currentIndex < totalQuestions - 1) {
       setCurrentIndex((prev) => prev + 1);
       setBoardKey((k) => k + 1);
+      sentenceStartTimeRef.current = Date.now();
     } else {
       setIsCompleted(true);
+      submitSession({
+        score,
+        totalQuestions,
+        topic: selectedCategory,
+      });
     }
-  }, [currentIndex, totalQuestions, cancel]);
+  }, [currentIndex, totalQuestions, cancel, submitSession, score, selectedCategory]);
 
   const handleSpeakSentence = useCallback(() => {
     if (fullSentence) {
