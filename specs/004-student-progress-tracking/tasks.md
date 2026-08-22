@@ -28,9 +28,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create Supabase migration SQL file for new tables (classrooms, students, game_sessions, session_details) and RLS policies
-- [ ] T002 [P] Update `src/types/database.ts` with new Supabase types based on the data model
-- [ ] T003 [P] Create API route boilerplate for tracking at `src/app/api/track/route.ts`
+- [x] T001 Create Supabase migration SQL file for new tables (classrooms, students, game_sessions, session_details) and RLS policies
+- [x] T002 [P] Update `src/types/database.ts` with new Supabase types based on the data model
+- [x] T003 [P] Create API route boilerplate for tracking at `src/app/api/track/route.ts`
 
 ---
 
@@ -40,8 +40,8 @@ description: "Task list template for feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Setup `src/lib/supabase/` server and client utilities if not already present
-- [ ] T005 Create database wrapper functions for class and student queries in `src/lib/supabase/queries.ts`
+- [x] T004 Setup `src/lib/supabase/` server and client utilities if not already present
+- [x] T005 Create database wrapper functions for class and student queries in `src/lib/supabase/queries.ts`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
