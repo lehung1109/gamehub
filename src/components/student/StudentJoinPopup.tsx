@@ -83,8 +83,20 @@ export function StudentJoinPopup() {
     skip()
   }
 
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      if (!session) {
+        skip()
+      } else {
+        setOpen(false)
+      }
+    } else {
+      setOpen(true)
+    }
+  }
+
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => setOpen(open)}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent
         showCloseButton={false}
         className="sm:max-w-md bg-white/95 backdrop-blur-md border-2 border-amber-200/80 shadow-2xl rounded-3xl p-6 sm:p-8"
