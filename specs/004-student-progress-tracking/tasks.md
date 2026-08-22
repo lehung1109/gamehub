@@ -77,14 +77,14 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 2
 
-- [ ] T010 [P] [US2] Unit test for `use-student-session` hook in `tests/unit/use-student-session.test.ts`
-- [ ] T011 [P] [US2] E2E test for student join flow in `tests/e2e/class-tracking.spec.ts`
+- [x] T010 [P] [US2] Unit test for `use-student-session` hook in `tests/unit/use-student-session.test.ts`
+- [x] T011 [P] [US2] E2E test for student join flow in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T012 [P] [US2] Implement `use-student-session` hook in `src/hooks/use-student-session.ts` to manage sessionStorage
-- [ ] T013 [P] [US2] Create Student Popup component in `src/components/student/StudentJoinPopup.tsx`
-- [ ] T014 [US2] Integrate StudentJoinPopup into main game layout/wrapper to ensure it triggers before gameplay
+- [x] T012 [P] [US2] Implement `use-student-session` hook in `src/hooks/use-student-session.ts` to manage sessionStorage
+- [x] T013 [P] [US2] Create Student Popup component in `src/components/student/StudentJoinPopup.tsx`
+- [x] T014 [US2] Integrate StudentJoinPopup into main game layout/wrapper to ensure it triggers before gameplay
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
