@@ -35,6 +35,7 @@ const mockEmptyData: ClassDashboardData = {
   students: [],
   recentSessions: [],
   timeframe: 'all',
+  difficultWords: [],
 }
 
 const mockPopulatedData: ClassDashboardData = {
@@ -103,6 +104,20 @@ const mockPopulatedData: ClassDashboardData = {
     },
   ],
   timeframe: 'all',
+  difficultWords: [
+    {
+      prompt: 'giraffe',
+      gameType: 'listening',
+      gameLabel: 'Luyện nghe',
+      topic: 'animals',
+      incorrectCount: 3,
+      totalAttempts: 5,
+      incorrectStudentCount: 3,
+      totalStudentsAttempted: 5,
+      errorRatePercent: 60,
+      accuracyPercent: 40,
+    },
+  ],
 }
 
 describe('ClassOverview Component', () => {
@@ -188,9 +203,16 @@ describe('ClassOverview Component', () => {
   it('renders timeframe selector (Tất cả, 7 ngày qua, 30 ngày qua)', () => {
     render(<ClassOverview data={mockPopulatedData} />)
 
-    expect(screen.getByRole('button', { name: /tất cả/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /7 ngày/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /30 ngày/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^tất cả$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^7 ngày$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^30 ngày$/i })).toBeInTheDocument()
+  })
+
+  it('renders difficult words analysis section when populated', () => {
+    render(<ClassOverview data={mockPopulatedData} />)
+
+    expect(screen.getByText(/phân tích từ khó toàn lớp/i)).toBeInTheDocument()
+    expect(screen.getByText('giraffe')).toBeInTheDocument()
   })
 
   it('filters students list when search input is used', () => {

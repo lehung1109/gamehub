@@ -153,12 +153,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 6
 
-- [ ] T026 [P] [US6] Unit test for difficult words calculation logic in `tests/unit/analytics.test.ts`
+- [x] T026 [P] [US6] Unit test for difficult words calculation logic in `tests/unit/analytics.test.ts`
 
 ### Implementation for User Story 6
 
-- [ ] T027 [P] [US6] Create Difficult Words analysis component in `src/components/dashboard/DifficultWordsAnalysis.tsx`
-- [ ] T028 [US6] Integrate Difficult Words table into `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
+- [x] T027 [P] [US6] Create Difficult Words analysis component in `src/components/dashboard/DifficultWordsAnalysis.tsx`
+- [x] T028 [US6] Integrate Difficult Words table into `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
 
 ---
 

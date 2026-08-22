@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { ClassDashboardData } from '@/app/actions/classes'
 import { copyToClipboard } from '@/lib/clipboard'
+import { DifficultWordsAnalysis } from '@/components/dashboard/DifficultWordsAnalysis'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -64,6 +65,7 @@ export function ClassOverview({ data }: ClassOverviewProps) {
     students,
     recentSessions,
     timeframe,
+    difficultWords,
   } = data
 
   const handleCopyCode = async () => {
@@ -508,6 +510,11 @@ export function ClassOverview({ data }: ClassOverviewProps) {
                 )}
               </CardContent>
             </Card>
+          </div>
+
+          {/* Full Width Row: Class Difficult Words Analysis */}
+          <div className="lg:col-span-3">
+            <DifficultWordsAnalysis items={difficultWords || []} />
           </div>
         </div>
       )}

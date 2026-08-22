@@ -368,4 +368,95 @@ describe('getClassDashboardAction', () => {
     expect(flashcardStat?.sessionCount).toBe(1)
     expect(flashcardStat?.avgScorePercent).toBe(0)
   })
+
+  it('calculates class difficult words across students with session_details', async () => {
+    const mockClass = {
+      id: 'class-1',
+      teacher_id: 'teacher-123',
+      name: 'Lớp 1A',
+      code: 'ABC123',
+      is_active: true,
+      created_at: '2026-08-20T00:00:00Z',
+    }
+
+    const mockStudents = [
+      { id: 's1', classroom_id: 'class-1', name: 'Bé Lan', created_at: '2026-08-21T00:00:00Z' },
+      { id: 's2', classroom_id: 'class-1', name: 'Bé Minh', created_at: '2026-08-21T00:00:00Z' },
+    ]
+
+    const mockSessions = [
+      {
+        id: 'sess-1',
+        student_id: 's1',
+        game_type: 'listening',
+        topic: 'animals',
+        score: 1,
+        total_questions: 2,
+        completed_at: '2026-08-22T10:00:00Z',
+        started_at: '2026-08-22T09:55:00Z',
+        students: { id: 's1', name: 'Bé Lan', classroom_id: 'class-1' },
+        session_details: [
+          { id: 'd1', prompt: 'giraffe', is_correct: false, selected_answer: 'elephant', correct_answer: 'giraffe' },
+          { id: 'd2', prompt: 'cat', is_correct: true, selected_answer: 'cat', correct_answer: 'cat' },
+        ],
+      },
+      {
+        id: 'sess-2',
+        student_id: 's2',
+        game_type: 'listening',
+        topic: 'animals',
+        score: 1,
+        total_questions: 2,
+        completed_at: '2026-08-22T11:00:00Z',
+        started_at: '2026-08-22T10:55:00Z',
+        students: { id: 's2', name: 'Bé Minh', classroom_id: 'class-1' },
+        session_details: [
+          { id: 'd3', prompt: 'giraffe', is_correct: false, selected_answer: 'lion', correct_answer: 'giraffe' },
+          { id: 'd4', prompt: 'cat', is_correct: true, selected_answer: 'cat', correct_answer: 'cat' },
+        ],
+      },
+    ]
+
+    mockSupabase.from.mockImplementation((table: string) => {
+      if (table === 'classrooms') {
+        return {
+          select: () => ({
+            eq: () => ({
+              eq: () => ({
+                single: vi.fn().mockResolvedValue({ data: mockClass, error: null }),
+              }),
+            }),
+          }),
+        }
+      }
+      if (table === 'students') {
+        return {
+          select: () => ({
+            eq: vi.fn().mockResolvedValue({ data: mockStudents, error: null }),
+          }),
+        }
+      }
+      if (table === 'game_sessions') {
+        return {
+          select: () => ({
+            eq: () => ({
+              order: vi.fn().mockResolvedValue({ data: mockSessions, error: null }),
+            }),
+          }),
+        }
+      }
+      return { select: vi.fn() }
+    })
+
+    const res = await getClassDashboardAction('class-1', 'all')
+    expect(res.data?.difficultWords).toBeDefined()
+    expect(res.data?.difficultWords?.length).toBe(1)
+    const giraffe = res.data?.difficultWords?.[0]
+    expect(giraffe?.prompt).toBe('giraffe')
+    expect(giraffe?.incorrectCount).toBe(2)
+    expect(giraffe?.totalAttempts).toBe(2)
+    expect(giraffe?.errorRatePercent).toBe(100)
+    expect(giraffe?.incorrectStudentCount).toBe(2)
+  })
 })
+

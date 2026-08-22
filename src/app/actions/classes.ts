@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { generateClassCode } from '@/lib/class-code'
+import { calculateClassDifficultWords, getGameLabel, GAME_LABELS } from '@/lib/analytics'
 import type { Database } from '@/types/database'
 
 export type Classroom = Database['public']['Tables']['classrooms']['Row']
@@ -41,6 +42,19 @@ export interface RecentSession {
   completedAt: string | null
 }
 
+export interface ClassDifficultWordItem {
+  prompt: string
+  gameType: string
+  gameLabel: string
+  topic: string
+  incorrectCount: number
+  totalAttempts: number
+  incorrectStudentCount: number
+  totalStudentsAttempted: number
+  errorRatePercent: number
+  accuracyPercent: number
+}
+
 export interface ClassDashboardData {
   classroom: Classroom
   totalStudents: number
@@ -55,6 +69,7 @@ export interface ClassDashboardData {
   students: StudentSummary[]
   recentSessions: RecentSession[]
   timeframe: 'all' | '7d' | '30d'
+  difficultWords: ClassDifficultWordItem[]
 }
 
 export interface SessionDetailItem {
@@ -110,19 +125,6 @@ export interface StudentDashboardData {
   sessions: StudentSessionItem[]
   difficultWords: DifficultWordItem[]
   timeframe: 'all' | '7d' | '30d'
-}
-
-export const GAME_LABELS: Record<string, string> = {
-  listening: 'Luyện nghe',
-  spelling: 'Đánh vần',
-  flashcard: 'Thẻ từ vựng',
-  alphabet: 'Bảng chữ cái',
-  'numbers-colors': 'Số đếm & Màu sắc',
-  sentences: 'Ghép câu',
-}
-
-export function getGameLabel(gameType: string): string {
-  return GAME_LABELS[gameType] || gameType.charAt(0).toUpperCase() + gameType.slice(1)
 }
 
 export async function createClassAction(input: {
@@ -422,10 +424,10 @@ export async function getClassDashboardAction(
       studentMap.set(st.id, st.name)
     }
 
-    // 3. Fetch game sessions for students in this classroom
+    // 3. Fetch game sessions for students in this classroom with session_details
     let sessionsQuery = supabase
       .from('game_sessions')
-      .select('*, students!inner(id, name, classroom_id)')
+      .select('*, students!inner(id, name, classroom_id), session_details(*)')
       .eq('students.classroom_id', cleanId)
 
     if (timeframe === '7d') {
@@ -612,6 +614,9 @@ export async function getClassDashboardAction(
       })
       .sort((a, b) => b.sessionCount - a.sessionCount || a.name.localeCompare(b.name))
 
+    // Calculate class-level difficult words from session details
+    const difficultWords = calculateClassDifficultWords(rawSessions)
+
     const dashboardData: ClassDashboardData = {
       classroom,
       totalStudents: students.length,
@@ -622,6 +627,7 @@ export async function getClassDashboardAction(
       students: studentList,
       recentSessions,
       timeframe,
+      difficultWords,
     }
 
     return { data: dashboardData }
@@ -778,6 +784,9 @@ export async function getStudentDashboardAction(
             })
           }
           const wStat = wordStatsMap.get(normalizedPromptKey)!
+          if (!wStat.topic && sess.topic) {
+            wStat.topic = sess.topic
+          }
           wStat.totalAttempts++
           if (!isCorrect) {
             wStat.incorrectCount++
