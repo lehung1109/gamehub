@@ -119,12 +119,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 4
 
-- [ ] T020 [P] [US4] E2E test for dashboard overview in `tests/e2e/class-tracking.spec.ts`
+- [x] T020 [P] [US4] E2E test for dashboard overview in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T021 [P] [US4] Create stats and overview charts components in `src/components/dashboard/ClassOverview.tsx`
-- [ ] T022 [US4] Implement class dashboard page in `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
+- [x] T021 [P] [US4] Create stats and overview charts components in `src/components/dashboard/ClassOverview.tsx`
+- [x] T022 [US4] Implement class dashboard page in `src/app/admin/dashboard/classes/[classId]/page.tsx`
 
 ---
 
