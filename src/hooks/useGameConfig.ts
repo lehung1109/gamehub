@@ -2,26 +2,21 @@
 
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import type { GameConfig } from '@/types/config'
+import type { GameConfig, UseGameConfigResult } from '@/types/config'
 import { getConfigByIdPublic } from '@/app/actions/configs'
-
-interface UseGameConfigResult<T> {
-  config: GameConfig<T> | null
-  settings: T | null
-  configName: string | null
-  configId: string | null
-  isLoading: boolean
-}
+import { decodePreviewSettings } from '@/lib/preview'
 
 export function useGameConfig<T = Record<string, unknown>>(
   expectedGameId: string
 ): UseGameConfigResult<T> {
   const searchParams = useSearchParams()
+  let previewParam = searchParams?.get('preview') || null
   let configId = searchParams?.get('config') || null
 
-  if (!configId && typeof window !== 'undefined' && window.location?.search) {
+  if (!previewParam && !configId && typeof window !== 'undefined' && window.location?.search) {
     try {
       const urlParams = new URLSearchParams(window.location.search)
+      previewParam = urlParams.get('preview') || null
       configId = urlParams.get('config') || null
     } catch {
       // ignore
@@ -37,7 +32,8 @@ export function useGameConfig<T = Record<string, unknown>>(
   })
 
   useEffect(() => {
-    if (!configId) {
+    // If preview param is present, preview mode takes precedence and skips database fetch
+    if (previewParam || !configId) {
       return
     }
 
@@ -60,7 +56,30 @@ export function useGameConfig<T = Record<string, unknown>>(
     return () => {
       isMounted = false
     }
-  }, [configId, expectedGameId])
+  }, [previewParam, configId, expectedGameId])
+
+  // Handle preview mode
+  if (previewParam) {
+    const decoded = decodePreviewSettings(previewParam)
+    if (decoded && decoded.gameId === expectedGameId) {
+      return {
+        config: null,
+        settings: decoded.settings as unknown as T,
+        configName: null,
+        configId: null,
+        isLoading: false,
+        isPreview: true,
+      }
+    }
+    return {
+      config: null,
+      settings: null,
+      configName: null,
+      configId: null,
+      isLoading: false,
+      isPreview: false,
+    }
+  }
 
   const isLoadedForCurrentId = state.id === configId
   const config = configId && isLoadedForCurrentId ? state.config : null
@@ -72,5 +91,6 @@ export function useGameConfig<T = Record<string, unknown>>(
     configName: config?.name || null,
     configId,
     isLoading,
+    isPreview: false,
   }
 }

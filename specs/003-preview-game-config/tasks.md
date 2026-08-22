@@ -15,10 +15,10 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T003 [P] Write unit tests for preview.ts utilities in src/lib/preview.test.ts
-- [ ] T004 Implement encodePreviewSettings, decodePreviewSettings, and buildPreviewUrl in src/lib/preview.ts
-- [ ] T005 Write unit tests for useGameConfig preview detection in src/hooks/useGameConfig.test.ts
-- [ ] T006 Update useGameConfig in src/hooks/useGameConfig.ts to detect preview param and decode settings
+- [X] T003 [P] Write unit tests for preview.ts utilities in src/lib/preview.test.ts
+- [X] T004 Implement encodePreviewSettings, decodePreviewSettings, and buildPreviewUrl in src/lib/preview.ts
+- [X] T005 Write unit tests for useGameConfig preview detection in src/hooks/useGameConfig.test.ts
+- [X] T006 Update useGameConfig in src/hooks/useGameConfig.ts to detect preview param and decode settings
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
