@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { BackButton } from "@/components/custom/BackButton";
 import { FlashcardStack } from "@/components/game/FlashcardStack";
 import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { PreviewBanner } from "@/components/game/PreviewBanner";
+import { decodePreviewSettings } from "@/lib/preview";
 import { getConfigByIdPublic } from "@/app/actions/configs";
 import type { FlashcardSettings } from "@/types/config";
 import topics from "@/data/topics.json";
@@ -50,7 +52,7 @@ export async function generateMetadata({
 
 interface FlashcardTopicPageProps {
   params: Promise<{ topicId: string }>;
-  searchParams?: Promise<{ config?: string }>;
+  searchParams?: Promise<{ config?: string; preview?: string }>;
 }
 
 export default async function FlashcardTopicPage({
@@ -66,12 +68,26 @@ export default async function FlashcardTopicPage({
 
   const resolvedSearchParams = searchParams ? await searchParams : {};
   const configId = resolvedSearchParams?.config;
+  const previewParam = resolvedSearchParams?.preview;
 
   let activeConfig = null;
   let wordLimit: number | undefined = undefined;
   let autoSpeak = false;
+  let isPreview = false;
 
-  if (configId) {
+  if (previewParam) {
+    const decoded = decodePreviewSettings(previewParam);
+    if (decoded && decoded.gameId === "flashcard") {
+      isPreview = true;
+      const settings = decoded.settings as FlashcardSettings;
+      if (settings?.wordLimit && typeof settings.wordLimit === "number" && settings.wordLimit > 0) {
+        wordLimit = settings.wordLimit;
+      }
+      if (typeof settings?.autoSpeak === "boolean") {
+        autoSpeak = settings.autoSpeak;
+      }
+    }
+  } else if (configId) {
     const res = await getConfigByIdPublic(configId);
     if (res.data && res.data.game_id === "flashcard") {
       activeConfig = res.data;
@@ -87,7 +103,9 @@ export default async function FlashcardTopicPage({
 
   const rawWords = topicWordsMap[topicId] || [];
   const words = wordLimit ? rawWords.slice(0, wordLimit) : rawWords;
-  const backHref = configId
+  const backHref = previewParam
+    ? `/games/flashcard?preview=${encodeURIComponent(previewParam)}`
+    : configId
     ? `/games/flashcard?config=${encodeURIComponent(configId)}`
     : "/games/flashcard";
 
@@ -99,7 +117,11 @@ export default async function FlashcardTopicPage({
       <div className="flex items-center justify-between">
         <BackButton href={backHref} label="Chọn chủ đề" />
         <div className="flex items-center gap-3">
-          {activeConfig && <ConfigBanner configName={activeConfig.name} />}
+          {isPreview ? (
+            <PreviewBanner />
+          ) : (
+            activeConfig && <ConfigBanner configName={activeConfig.name} />
+          )}
           <span className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">
             Flashcard
           </span>

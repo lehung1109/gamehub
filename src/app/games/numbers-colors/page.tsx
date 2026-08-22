@@ -10,6 +10,7 @@ import { BackButton } from "@/components/custom/BackButton";
 import { SpeakButton } from "@/components/custom/SpeakButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
 import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { PreviewBanner } from "@/components/game/PreviewBanner";
 import { useGameConfig } from "@/hooks/useGameConfig";
 import type { NumbersColorsSettings } from "@/types/config";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -82,7 +83,7 @@ function generateColorQuizQuestions(
 }
 
 function NumbersColorsContent() {
-  const { settings, configName } = useGameConfig<NumbersColorsSettings>("numbers-colors");
+  const { settings, configName, isPreview } = useGameConfig<NumbersColorsSettings>("numbers-colors");
 
   const filteredNumbers = useMemo(() => {
     if (settings?.numberRange && Array.isArray(settings.numberRange) && settings.numberRange.length === 2) {
@@ -295,7 +296,11 @@ function NumbersColorsContent() {
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
             <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
-              {configName && <ConfigBanner configName={configName} />}
+              {isPreview ? (
+                <PreviewBanner />
+              ) : (
+                configName && <ConfigBanner configName={configName} />
+              )}
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2">
                 <span>🔢</span>
                 <span>Số & Màu sắc</span>

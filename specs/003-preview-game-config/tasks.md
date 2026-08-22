@@ -91,13 +91,13 @@
 
 ### Tests for User Story 3
 
-- [ ] T016 [P] [US3] Write component test for PreviewBanner in src/components/game/PreviewBanner.test.tsx
-- [ ] T017 [P] [US3] Add E2E assertions for banner rendering in tests/e2e/preview-config.spec.ts
+- [X] T016 [P] [US3] Write component test for PreviewBanner in src/components/game/PreviewBanner.test.tsx
+- [X] T017 [P] [US3] Add E2E assertions for banner rendering in tests/e2e/preview-config.spec.ts
 
 ### Implementation for User Story 3
 
-- [ ] T018 [P] [US3] Create PreviewBanner component in src/components/game/PreviewBanner.tsx using shadcn/ui Badge
-- [ ] T019 [US3] Update game pages (src/app/games/) to render PreviewBanner conditionally when isPreview === true
+- [X] T018 [P] [US3] Create PreviewBanner component in src/components/game/PreviewBanner.tsx using shadcn/ui Badge
+- [X] T019 [US3] Update game pages (src/app/games/) to render PreviewBanner conditionally when isPreview === true
 
 **Checkpoint**: All user stories should now be independently functional
 

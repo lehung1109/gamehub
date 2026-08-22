@@ -2,10 +2,12 @@
 
 import React, { useMemo, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { BackButton } from "@/components/custom/BackButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { PreviewBanner } from "@/components/game/PreviewBanner";
 import { useGameConfig } from "@/hooks/useGameConfig";
 import type { FlashcardSettings } from "@/types/config";
 import topics from "@/data/topics.json";
@@ -25,7 +27,9 @@ const wordCounts: Record<string, number> = {
 };
 
 function FlashcardTopicSelectionContent() {
-  const { settings, configName, configId } = useGameConfig<FlashcardSettings>("flashcard");
+  const searchParams = useSearchParams();
+  const previewParam = searchParams?.get("preview") || null;
+  const { settings, configName, configId, isPreview } = useGameConfig<FlashcardSettings>("flashcard");
 
   const topicsConfig = settings?.topics;
   const displayedTopics = useMemo(() => {
@@ -43,7 +47,11 @@ function FlashcardTopicSelectionContent() {
       <div className="flex items-center justify-between">
         <BackButton href="/" label="Về trang chủ" />
         <div className="flex items-center gap-3">
-          {configName && <ConfigBanner configName={configName} />}
+          {isPreview ? (
+            <PreviewBanner />
+          ) : (
+            configName && <ConfigBanner configName={configName} />
+          )}
           <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold">
             <BookOpen className="w-6 h-6 stroke-[2.5]" />
             <span className="hidden sm:inline">6-7 tuổi</span>
@@ -69,7 +77,9 @@ function FlashcardTopicSelectionContent() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
         {displayedTopics.map((topic) => {
           const count = wordCounts[topic.id] || 0;
-          const targetHref = configId
+          const targetHref = previewParam
+            ? `/games/flashcard/${topic.id}?preview=${encodeURIComponent(previewParam)}`
+            : configId
             ? `/games/flashcard/${topic.id}?config=${encodeURIComponent(configId)}`
             : `/games/flashcard/${topic.id}`;
 

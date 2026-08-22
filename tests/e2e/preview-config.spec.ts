@@ -164,9 +164,30 @@ test.describe('Preview Game Configuration (E2E)', () => {
     })
   })
 
-  test.describe('US3: Visual Distinction in Preview Mode (UI Placeholders for Future Phase)', () => {
-    test.skip('displays amber preview mode banner on game page when in preview mode', async () => {
-      // Will be enabled when Phase 6 (US3 PreviewBanner) is implemented
+  test.describe('US3: Visual Distinction in Preview Mode', () => {
+    test('displays amber preview mode banner on game page when in preview mode', async ({ page }) => {
+      const previewPayload = encodePreviewSettings('alphabet', {
+        letterRange: ['A', 'B', 'C'],
+        mode: 'learn',
+        autoSpeak: false,
+      })
+
+      await page.goto(`/games/alphabet?preview=${previewPayload}`)
+      await expect(page.getByRole('heading', { level: 1, name: /Chữ cái & Phonics/i })).toBeVisible()
+
+      // Preview banner is immediately visible with role="status"
+      const banner = page.getByRole('status', { name: /Chế độ xem trước/i })
+      await expect(banner).toBeVisible()
+      await expect(banner).toContainText(/Chế độ xem trước/i)
+      await expect(banner).toContainText(/Cấu hình chưa được lưu/i)
+    })
+
+    test('does not show preview banner when game runs in standard mode without preview parameter', async ({ page }) => {
+      await page.goto('/games/alphabet')
+      await expect(page.getByRole('heading', { level: 1, name: /Chữ cái & Phonics/i })).toBeVisible()
+
+      // Preview banner should NOT be present
+      await expect(page.getByRole('status', { name: /Chế độ xem trước/i })).not.toBeVisible()
     })
   })
 })

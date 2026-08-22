@@ -9,6 +9,7 @@ import { BackButton } from "@/components/custom/BackButton";
 import { SpeakButton } from "@/components/custom/SpeakButton";
 import { SpeechUnsupportedBanner } from "@/components/custom/SpeechUnsupportedBanner";
 import { ConfigBanner } from "@/components/game/ConfigBanner";
+import { PreviewBanner } from "@/components/game/PreviewBanner";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,7 @@ function generateQuizQuestions(letterPool: Letter[], questionCount = 10): QuizQu
 }
 
 function AlphabetGameContent() {
-  const { settings, configName } = useGameConfig<AlphabetSettings>("alphabet");
+  const { settings, configName, isPreview } = useGameConfig<AlphabetSettings>("alphabet");
 
   const letterRange = settings?.letterRange;
   const filteredLetters = useMemo(() => {
@@ -170,7 +171,11 @@ function AlphabetGameContent() {
           <BackButton href="/" label="Về trang chủ" />
           <div className="text-center sm:text-right flex-1">
             <div className="flex items-center gap-2 justify-center sm:justify-end flex-wrap">
-              {configName && <ConfigBanner configName={configName} />}
+              {isPreview ? (
+                <PreviewBanner />
+              ) : (
+                configName && <ConfigBanner configName={configName} />
+              )}
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700 dark:text-emerald-400 tracking-tight flex items-center gap-2">
                 <span>🔤</span>
                 <span>Chữ cái & Phonics</span>
