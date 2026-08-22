@@ -77,11 +77,13 @@ export async function createClassAction(input: {
     }
 
     if (insertError || !created) {
+      if (insertError && (insertError.code === '23505' || insertError.message?.includes('unique'))) {
+        return { error: 'Không thể sinh mã lớp ngẫu nhiên duy nhất lúc này. Vui lòng thử lại.' }
+      }
       return { error: insertError?.message || 'Không thể tạo lớp học' }
     }
 
     revalidatePath('/admin/dashboard/classes')
-    revalidatePath('/admin/classes')
     revalidatePath('/admin/dashboard')
 
     return { data: created }
@@ -193,7 +195,6 @@ export async function updateClassAction(
     }
 
     revalidatePath('/admin/dashboard/classes')
-    revalidatePath('/admin/classes')
     revalidatePath(`/admin/dashboard/classes/${cleanId}`)
     revalidatePath('/admin/dashboard')
 

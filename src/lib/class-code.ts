@@ -1,8 +1,8 @@
 import { customAlphabet } from 'nanoid'
 
-// Use unambiguous uppercase characters (omitting easily confused chars like 0/O, 1/I if desired, or standard uppercase alphanumeric)
-// Using uppercase letters and numbers:
-const CLASS_CODE_ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+// Use unambiguous uppercase characters (omitting easily confused chars: 0/O, 1/I)
+// 32 unambiguous alphanumeric characters:
+const CLASS_CODE_ALPHABET = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'
 
 const defaultClassCodeNanoid = customAlphabet(CLASS_CODE_ALPHABET, 6)
 

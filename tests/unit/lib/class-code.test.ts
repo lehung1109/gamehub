@@ -11,10 +11,11 @@ describe('class-code utilities', () => {
       expect(code.length).toBe(6)
     })
 
-    it('generates only uppercase alphanumeric characters', () => {
-      for (let i = 0; i < 20; i++) {
+    it('generates only uppercase alphanumeric characters without ambiguous chars (0, O, 1, I)', () => {
+      for (let i = 0; i < 50; i++) {
         const code = generateClassCode()
-        expect(code).toMatch(/^[A-Z0-9]{6}$/)
+        expect(code).toMatch(/^[2-9A-HJ-NP-Z]{6}$/)
+        expect(code).not.toMatch(/[01OI]/)
       }
     })
 

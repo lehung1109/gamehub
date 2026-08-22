@@ -3,6 +3,7 @@
 import React, { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClassAction, type Classroom } from '@/app/actions/classes'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -56,11 +57,13 @@ export function CreateClassForm({ onSuccess }: CreateClassFormProps) {
     })
   }
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     if (createdClass?.code) {
-      navigator.clipboard.writeText(createdClass.code)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      const ok = await copyToClipboard(createdClass.code)
+      if (ok) {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      }
     }
   }
 

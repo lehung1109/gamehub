@@ -5,13 +5,28 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { ClassroomWithCount } from '@/app/actions/classes'
 import { updateClassAction, deactivateClassAction, activateClassAction } from '@/app/actions/classes'
+import { copyToClipboard } from '@/lib/clipboard'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Users, Calendar, Edit3, ShieldAlert, PowerOff, Power, Copy, CheckCircle2, ChevronRight, School } from 'lucide-react'
+import { Users, Calendar, Edit3, ShieldAlert, PowerOff, Power, Copy, CheckCircle2, ChevronRight, School, AlertCircle } from 'lucide-react'
+
+function formatDateVi(dateStr?: string | null): string {
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (isNaN(d.getTime())) return ''
+    const day = String(d.getDate()).padStart(2, '0')
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const year = d.getFullYear()
+    return `${day}/${month}/${year}`
+  } catch {
+    return ''
+  }
+}
 
 interface ClassListProps {
   classes: ClassroomWithCount[]
@@ -29,11 +44,14 @@ export function ClassList({ classes }: ClassListProps) {
   const [isPending, startTransition] = useTransition()
 
   const [actionError, setActionError] = useState<string | null>(null)
+  const [listError, setListError] = useState<string | null>(null)
 
-  const handleCopy = (id: string, code: string) => {
-    navigator.clipboard.writeText(code)
-    setCopiedId(id)
-    setTimeout(() => setCopiedId(null), 2000)
+  const handleCopy = async (id: string, code: string) => {
+    const ok = await copyToClipboard(code)
+    if (ok) {
+      setCopiedId(id)
+      setTimeout(() => setCopiedId(null), 2000)
+    }
   }
 
   const handleRename = async () => {
@@ -67,11 +85,14 @@ export function ClassList({ classes }: ClassListProps) {
   }
 
   const handleActivate = (id: string) => {
+    setListError(null)
     startTransition(async () => {
-      // For inline action, we might just fire and forget or handle error globally,
-      // but let's log or alert if needed. For now, just call it.
-      await activateClassAction(id)
-      router.refresh()
+      const res = await activateClassAction(id)
+      if (res.error) {
+        setListError(res.error)
+      } else {
+        router.refresh()
+      }
     })
   }
 
@@ -97,13 +118,16 @@ export function ClassList({ classes }: ClassListProps) {
 
   return (
     <div className="space-y-4">
+      {listError && (
+        <div className="flex items-start gap-2 text-red-600 bg-red-50 p-3 rounded-lg border border-red-100 text-sm">
+          <AlertCircle className="size-4 shrink-0 mt-0.5" />
+          <span>{listError}</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {classes.map((cls) => {
-          const formattedDate = new Date(cls.created_at || '').toLocaleDateString('vi-VN', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-          })
+          const formattedDate = formatDateVi(cls.created_at)
 
           return (
             <Card
