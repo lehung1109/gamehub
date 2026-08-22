@@ -258,4 +258,42 @@ describe('ClassOverview Component', () => {
 
     expect(screen.getByText('Đã hoàn thành')).toBeInTheDocument()
   })
+
+  it('renders disabled "Xuất báo cáo" button when totalSessions is 0 (Acceptance Scenario 2)', () => {
+    render(<ClassOverview data={mockEmptyData} />)
+
+    const exportBtn = screen.getByRole('button', { name: /xuất báo cáo/i })
+    expect(exportBtn).toBeInTheDocument()
+    expect(exportBtn).toBeDisabled()
+  })
+
+  it('renders active "Xuất báo cáo" button and initiates export when clicked (Acceptance Scenario 1)', async () => {
+    // Mock global window.fetch and URL.createObjectURL / revokeObjectURL
+    const mockBlob = new Blob(['\uFEFFtest,csv'], { type: 'text/csv' })
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: vi.fn().mockResolvedValue(mockBlob),
+    })
+    globalThis.fetch = mockFetch
+
+    const mockCreateObjectURL = vi.fn().mockReturnValue('blob:http://localhost/test-blob')
+    const mockRevokeObjectURL = vi.fn()
+    globalThis.URL.createObjectURL = mockCreateObjectURL
+    globalThis.URL.revokeObjectURL = mockRevokeObjectURL
+
+    render(<ClassOverview data={mockPopulatedData} />)
+
+    const exportBtn = screen.getByRole('button', { name: /xuất báo cáo/i })
+    expect(exportBtn).toBeInTheDocument()
+    expect(exportBtn).not.toBeDisabled()
+
+    fireEvent.click(exportBtn)
+
+    await waitFor(() => {
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringContaining('/api/export-csv?classId=class-1')
+      )
+    })
+  })
 })
+

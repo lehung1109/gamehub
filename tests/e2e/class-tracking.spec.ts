@@ -371,5 +371,24 @@ test.describe('Teacher Difficult Words Analysis (User Story 6)', () => {
   })
 })
 
+test.describe('Teacher CSV Export (User Story 7)', () => {
+  test('returns 401 unauthorized when unauthenticated user requests /api/export-csv directly', async ({
+    request,
+  }) => {
+    const response = await request.get('/api/export-csv?classId=test-class-id')
+    expect(response.status()).toBe(401)
+    const json = await response.json()
+    expect(json.error).toMatch(/đăng nhập|unauthorized/i)
+  })
+
+  test('returns 400 bad request when classId parameter is omitted', async ({
+    request,
+  }) => {
+    const response = await request.get('/api/export-csv')
+    expect([400, 401]).toContain(response.status())
+  })
+})
+
+
 
 

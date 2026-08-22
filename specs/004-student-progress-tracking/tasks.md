@@ -170,12 +170,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 7
 
-- [ ] T029 [P] [US7] Unit test for CSV generation in `tests/unit/export-csv.test.ts`
+- [x] T029 [P] [US7] Unit test for CSV generation in `tests/unit/export-csv.test.ts`
 
 ### Implementation for User Story 7
 
-- [ ] T030 [P] [US7] Implement `/api/export-csv` API route for CSV export in `src/app/api/export-csv/route.ts`
-- [ ] T031 [US7] Add "Export Report" button and trigger in `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
+- [x] T030 [P] [US7] Implement `/api/export-csv` API route for CSV export in `src/app/api/export-csv/route.ts`
+- [x] T031 [US7] Add "Export Report" button and trigger in `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
 
 ---
 

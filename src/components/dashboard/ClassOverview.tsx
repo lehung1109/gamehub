@@ -26,6 +26,7 @@ import {
   History,
   Search,
   Loader2,
+  Download,
 } from 'lucide-react'
 
 function formatDateVi(dateStr?: string | null): string {
@@ -54,6 +55,7 @@ export function ClassOverview({ data }: ClassOverviewProps) {
   const [copied, setCopied] = useState(false)
   const [studentSearch, setStudentSearch] = useState('')
   const [isPending, startTransition] = useTransition()
+  const [isExporting, setIsExporting] = useState(false)
 
   const {
     classroom,
@@ -73,6 +75,37 @@ export function ClassOverview({ data }: ClassOverviewProps) {
     if (ok) {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  const handleExportCsv = async () => {
+    if (totalSessions === 0 || isExporting) return
+
+    try {
+      setIsExporting(true)
+      const tfParam = timeframe !== 'all' ? `&timeframe=${timeframe}` : ''
+      const res = await fetch(`/api/export-csv?classId=${classroom.id}${tfParam}`)
+      if (!res.ok) {
+        throw new Error('Không thể tải file báo cáo')
+      }
+
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      const safeCode = (classroom.code || classroom.id).replace(/[^a-zA-Z0-9_-]/g, '')
+      a.download = `report-${safeCode || 'class'}.csv`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      window.URL.revokeObjectURL(url)
+    } catch (err) {
+      console.error('Lỗi khi xuất CSV:', err)
+      if (typeof window !== 'undefined') {
+        window.alert('Đã xảy ra lỗi khi xuất báo cáo. Vui lòng thử lại sau.')
+      }
+    } finally {
+      setIsExporting(false)
     }
   }
 
@@ -126,8 +159,30 @@ export function ClassOverview({ data }: ClassOverviewProps) {
           </p>
         </div>
 
-        {/* Action / Code Badge */}
+        {/* Action / Code Badge / Export */}
         <div className="flex items-center gap-3 flex-wrap">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleExportCsv}
+            disabled={totalSessions === 0 || isExporting}
+            title={totalSessions === 0 ? 'Chưa có dữ liệu để xuất' : 'Xuất báo cáo CSV'}
+            className="h-8 px-3 text-xs font-semibold border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-indigo-600 shadow-2xs gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isExporting ? (
+              <>
+                <Loader2 className="size-3.5 animate-spin" />
+                <span>Đang xuất...</span>
+              </>
+            ) : (
+              <>
+                <Download className="size-3.5" />
+                <span>Xuất báo cáo</span>
+              </>
+            )}
+          </Button>
+
           <div className="flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-3 py-1.5 rounded-lg shadow-2xs">
             <span className="text-xs text-indigo-700 font-medium">Mã lớp:</span>
             <span className="font-mono font-black text-indigo-900 tracking-wider text-sm">
