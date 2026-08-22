@@ -47,14 +47,15 @@ function generateQuizQuestions(letterPool: Letter[], questionCount = 10): QuizQu
 function AlphabetGameContent() {
   const { settings, configName } = useGameConfig<AlphabetSettings>("alphabet");
 
+  const letterRange = settings?.letterRange;
   const filteredLetters = useMemo(() => {
-    if (settings?.letterRange && Array.isArray(settings.letterRange) && settings.letterRange.length > 0) {
-      const allowed = new Set(settings.letterRange);
+    if (letterRange && Array.isArray(letterRange) && letterRange.length > 0) {
+      const allowed = new Set(letterRange);
       const filtered = allLettersData.filter((l) => allowed.has(l.letter));
       return filtered.length > 0 ? filtered : allLettersData;
     }
     return allLettersData;
-  }, [settings?.letterRange]);
+  }, [letterRange]);
 
   const [userActiveTab, setUserActiveTab] = useState<"learn" | "quiz" | null>(null);
   const activeTab = userActiveTab ?? settings?.mode ?? "learn";
@@ -147,6 +148,7 @@ function AlphabetGameContent() {
   // Generate quiz questions based on filtered letters
   const quizQuestions = useMemo(() => {
     return generateQuizQuestions(filteredLetters, 10);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredLetters, quizKey]);
 
   const handleRestartQuiz = useCallback(() => {

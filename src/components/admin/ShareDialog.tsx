@@ -30,11 +30,15 @@ export function ShareDialog({ isOpen, onClose, config }: ShareDialogProps) {
 
   const slug = config?.share_slug || generatedSlug
 
+  const handleClose = () => {
+    setGeneratedSlug(null)
+    setErrorMessage('')
+    setCopied(false)
+    onClose()
+  }
+
   useEffect(() => {
     if (!isOpen || !config) {
-      setGeneratedSlug(null)
-      setErrorMessage('')
-      setCopied(false)
       return
     }
 
@@ -95,7 +99,7 @@ export function ShareDialog({ isOpen, onClose, config }: ShareDialogProps) {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogContent className="sm:max-w-md rounded-2xl p-6 bg-white">
         <DialogHeader className="space-y-2">
           <div className="size-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto sm:mx-0 shadow-xs">
@@ -183,7 +187,7 @@ export function ShareDialog({ isOpen, onClose, config }: ShareDialogProps) {
           <Button
             type="button"
             variant="outline"
-            onClick={onClose}
+            onClick={handleClose}
             className="border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold"
           >
             Đóng

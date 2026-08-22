@@ -67,14 +67,16 @@ function generateSentenceBank(targetWords: string[], seed = 0): DraggableItem[] 
 function SentencesGameContent() {
   const { settings, configName } = useGameConfig<SentencesSettings>("sentences");
 
+  const categoriesConfig = settings?.categories;
+
   const displayedCategories = useMemo(() => {
-    if (settings?.categories && Array.isArray(settings.categories) && settings.categories.length > 0) {
-      const allowed = new Set(settings.categories);
+    if (categoriesConfig && Array.isArray(categoriesConfig) && categoriesConfig.length > 0) {
+      const allowed = new Set(categoriesConfig);
       const filtered = allSentenceCategories.filter((c) => allowed.has(c.id));
       return filtered.length > 0 ? filtered : allSentenceCategories;
     }
     return allSentenceCategories;
-  }, [settings?.categories]);
+  }, [categoriesConfig]);
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -100,13 +102,13 @@ function SentencesGameContent() {
     if (selectedCategory !== "all") {
       return allSentences.filter((s) => s.category === selectedCategory);
     }
-    if (settings?.categories && Array.isArray(settings.categories) && settings.categories.length > 0) {
-      const allowed = new Set(settings.categories);
+    if (categoriesConfig && Array.isArray(categoriesConfig) && categoriesConfig.length > 0) {
+      const allowed = new Set(categoriesConfig);
       const filtered = allSentences.filter((s) => allowed.has(s.category));
       return filtered.length > 0 ? filtered : allSentences;
     }
     return allSentences;
-  }, [selectedCategory, settings?.categories]);
+  }, [selectedCategory, categoriesConfig]);
 
   const sentenceLimit =
     settings?.sentenceCount && settings.sentenceCount > 0
@@ -175,12 +177,14 @@ function SentencesGameContent() {
     [speak]
   );
 
+  const fullSentence = currentSentence?.full;
+
   const handleCompleteSentence = useCallback(
     (isCorrect: boolean, formedString: string) => {
       if (isCorrect) {
         setScore((s) => s + 1);
-        if (currentSentence?.full) {
-          speak(currentSentence.full);
+        if (fullSentence) {
+          speak(fullSentence);
         }
       }
 
@@ -190,7 +194,7 @@ function SentencesGameContent() {
         formedSentence: formedString,
       });
     },
-    [currentSentence?.full, speak]
+    [fullSentence, speak]
   );
 
   const handleNextSentence = useCallback(() => {
@@ -205,10 +209,10 @@ function SentencesGameContent() {
   }, [currentIndex, totalQuestions, cancel]);
 
   const handleSpeakSentence = useCallback(() => {
-    if (currentSentence?.full) {
-      speak(currentSentence.full);
+    if (fullSentence) {
+      speak(fullSentence);
     }
-  }, [currentSentence?.full, speak]);
+  }, [fullSentence, speak]);
 
   const progressPercent =
     totalQuestions > 0 ? Math.round((currentIndex / totalQuestions) * 100) : 0;

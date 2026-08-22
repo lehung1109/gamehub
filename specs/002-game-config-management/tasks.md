@@ -171,9 +171,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T040 [P] Update `quickstart.md` with new test scenarios and instructions
-- [ ] T041 Code cleanup, formatting, and strict type-check verification across all files
-- [ ] T042 Security verification of Supabase RLS and zero-tracking constraint
+- [x] T040 [P] Update `quickstart.md` with new test scenarios and instructions
+- [x] T041 Code cleanup, formatting, and strict type-check verification across all files
+- [x] T042 Security verification of Supabase RLS and zero-tracking constraint
 
 ---
 

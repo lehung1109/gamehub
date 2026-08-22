@@ -100,15 +100,17 @@ function ListeningGameContent() {
 
   const { settings, configName } = useGameConfig<ListeningSettings>("listening");
 
+  const topicsConfig = settings?.topics;
+
   // Filter topics if specified in config
   const displayedTopics = useMemo(() => {
-    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
-      const allowed = new Set(settings.topics);
+    if (topicsConfig && Array.isArray(topicsConfig) && topicsConfig.length > 0) {
+      const allowed = new Set(topicsConfig);
       const filtered = allTopics.filter((t) => allowed.has(t.id));
       return filtered.length > 0 ? filtered : allTopics;
     }
     return allTopics;
-  }, [settings?.topics]);
+  }, [topicsConfig]);
 
   const [selectedTopicId, setSelectedTopicId] = useState<string>("all");
   const [gameKey, setGameKey] = useState(0);
@@ -121,9 +123,9 @@ function ListeningGameContent() {
     if (selectedTopicId !== "all") {
       return topicWordsMap[selectedTopicId] || allWords;
     }
-    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+    if (topicsConfig && Array.isArray(topicsConfig) && topicsConfig.length > 0) {
       const words: Word[] = [];
-      settings.topics.forEach((tId) => {
+      topicsConfig.forEach((tId) => {
         if (topicWordsMap[tId]) {
           words.push(...topicWordsMap[tId]);
         }
@@ -131,7 +133,7 @@ function ListeningGameContent() {
       return words.length > 0 ? words : allWords;
     }
     return allWords;
-  }, [selectedTopicId, settings?.topics]);
+  }, [selectedTopicId, topicsConfig]);
 
   const questionCount = settings?.questionCount || 10;
   const showHint = settings?.showHint ?? true;

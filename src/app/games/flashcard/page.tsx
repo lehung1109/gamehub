@@ -27,14 +27,15 @@ const wordCounts: Record<string, number> = {
 function FlashcardTopicSelectionContent() {
   const { settings, configName, configId } = useGameConfig<FlashcardSettings>("flashcard");
 
+  const topicsConfig = settings?.topics;
   const displayedTopics = useMemo(() => {
-    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
-      const allowed = new Set(settings.topics);
+    if (topicsConfig && Array.isArray(topicsConfig) && topicsConfig.length > 0) {
+      const allowed = new Set(topicsConfig);
       const filtered = topics.filter((t) => allowed.has(t.id));
       return filtered.length > 0 ? filtered : topics;
     }
     return topics;
-  }, [settings?.topics]);
+  }, [topicsConfig]);
 
   return (
     <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col gap-8">

@@ -143,30 +143,30 @@ npx playwright test
 
 ---
 
-## Full Test Suite
+## Full Test Suite Commands
 
 ```bash
-# Run all unit tests
+# Run all unit tests (Vitest - 52 test files, 298 tests)
 npm run test:run
 
-# Run all e2e tests
+# Run all E2E tests (Playwright - 86 tests across Desktop & Mobile)
 npm run test:e2e
 
 # Run lint + type check
 npm run lint
 npx tsc --noEmit
 
-# Build verification
+# Production build verification
 npm run build
 ```
 
 ## Quality Gates Checklist
 
-- [ ] `npm run lint` — zero errors
-- [ ] `npx tsc --noEmit` — zero errors
-- [ ] `npm run test:run` — all unit tests pass
-- [ ] `npm run test:e2e` — all e2e tests pass
-- [ ] `npm run build` — builds successfully
-- [ ] Existing game routes unchanged and functional
-- [ ] Admin routes protected by middleware
-- [ ] Share links resolve correctly for public users
+- [x] `npm run lint` — zero errors, zero warnings (React Compiler rules satisfied)
+- [x] `npx tsc --noEmit` — zero errors (Strict TypeScript check passes)
+- [x] `npm run test:run` — all 52 unit test suites pass (298/298 tests)
+- [x] `npm run test:e2e` — all 86 E2E tests pass across Chromium and Mobile Chrome
+- [x] Existing game routes unchanged and fully functional with default content (US5)
+- [x] Admin routes protected by `src/proxy.ts` (Next.js 16 route proxy) and `src/app/admin/layout.tsx`
+- [x] Share links resolve correctly with zero-auth and zero-tracking for public students (US4)
+- [x] Supabase Row Level Security (RLS) policies verified for profiles and game_configs

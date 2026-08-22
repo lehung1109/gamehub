@@ -28,40 +28,43 @@ export function useGameConfig<T = Record<string, unknown>>(
     }
   }
 
-  const [config, setConfig] = useState<GameConfig<T> | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(Boolean(configId))
+  const [state, setState] = useState<{
+    id: string | null
+    config: GameConfig<T> | null
+  }>({
+    id: null,
+    config: null,
+  })
 
   useEffect(() => {
     if (!configId) {
-      setConfig(null)
-      setIsLoading(false)
       return
     }
 
     let isMounted = true
-    setIsLoading(true)
 
     getConfigByIdPublic(configId)
       .then((res) => {
         if (!isMounted) return
         if (res.data && res.data.game_id === expectedGameId) {
-          setConfig(res.data as unknown as GameConfig<T>)
+          setState({ id: configId, config: res.data as unknown as GameConfig<T> })
         } else {
-          setConfig(null)
+          setState({ id: configId, config: null })
         }
       })
       .catch((err) => {
         console.error('[useGameConfig] Error fetching config:', err)
-        if (isMounted) setConfig(null)
-      })
-      .finally(() => {
-        if (isMounted) setIsLoading(false)
+        if (isMounted) setState({ id: configId, config: null })
       })
 
     return () => {
       isMounted = false
     }
   }, [configId, expectedGameId])
+
+  const isLoadedForCurrentId = state.id === configId
+  const config = configId && isLoadedForCurrentId ? state.config : null
+  const isLoading = Boolean(configId) && !isLoadedForCurrentId
 
   return {
     config,

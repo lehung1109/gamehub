@@ -87,9 +87,8 @@ test.describe("Listening Game E2E Flow (/games/listening)", () => {
       await optionBtn.click();
 
       const continueBtn = page.getByRole("button", { name: /Tiếp tục/i });
-      if (await continueBtn.isVisible()) {
-        await continueBtn.click();
-      }
+      await continueBtn.waitFor({ state: "visible", timeout: 3000 });
+      await continueBtn.click();
     }
 
     // Completion celebration screen should display

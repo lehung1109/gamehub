@@ -46,10 +46,11 @@ test.describe("Numbers & Colors Game Flow", () => {
 
     // Switch to Quiz mode
     const quizModeTab = page.getByRole("tab", { name: /Luyện tập/i });
+    await expect(quizModeTab).toBeVisible();
     await quizModeTab.click();
 
     // Verify quiz is loaded
-    await expect(page.getByText(/Câu 1 \/ 10/i)).toBeVisible();
+    await expect(page.getByText(/Câu 1 \/ 10/i)).toBeVisible({ timeout: 10000 });
 
     // Click first answer option
     const optionBtn = page.locator("button[aria-label^='Lựa chọn số']").first();
@@ -60,11 +61,10 @@ test.describe("Numbers & Colors Game Flow", () => {
     const feedbackDialog = page.locator('[data-slot="dialog-content"]');
     await expect(feedbackDialog).toBeVisible();
 
-    // Click Continue if visible
+    // Click Continue
     const continueBtn = page.getByRole("button", { name: /Tiếp tục/i });
-    if (await continueBtn.isVisible()) {
-      await continueBtn.click();
-    }
+    await continueBtn.waitFor({ state: "visible", timeout: 3000 });
+    await continueBtn.click();
 
     // Advances to Question 2
     await expect(page.getByText(/Câu 2 \/ 10/i)).toBeVisible({ timeout: 5000 });
@@ -77,10 +77,12 @@ test.describe("Numbers & Colors Game Flow", () => {
 
     // Switch to Colors tab
     const colorsTab = page.getByRole("tab", { name: /Màu sắc/i });
+    await expect(colorsTab).toBeVisible();
     await colorsTab.click();
 
     // Switch to Quiz mode
     const quizModeTab = page.getByRole("tab", { name: /Luyện tập/i });
+    await expect(quizModeTab).toBeVisible();
     await quizModeTab.click();
 
     // Answer 10 questions
@@ -93,9 +95,8 @@ test.describe("Numbers & Colors Game Flow", () => {
       await optionBtn.click();
 
       const continueBtn = page.getByRole("button", { name: /Tiếp tục/i });
-      if (await continueBtn.isVisible()) {
-        await continueBtn.click();
-      }
+      await continueBtn.waitFor({ state: "visible", timeout: 3000 });
+      await continueBtn.click();
     }
 
     // Celebration screen should appear

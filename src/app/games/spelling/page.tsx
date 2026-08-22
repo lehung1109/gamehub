@@ -111,14 +111,16 @@ function generateSpellingBank(targetWord: string, seed = 0): DraggableItem[] {
 function SpellingGameContent() {
   const { settings, configName } = useGameConfig<SpellingSettings>("spelling");
 
+  const topicsConfig = settings?.topics;
+
   const displayedTopics = useMemo(() => {
-    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
-      const allowed = new Set(settings.topics);
+    if (topicsConfig && Array.isArray(topicsConfig) && topicsConfig.length > 0) {
+      const allowed = new Set(topicsConfig);
       const filtered = allTopics.filter((t) => allowed.has(t.id));
       return filtered.length > 0 ? filtered : allTopics;
     }
     return allTopics;
-  }, [settings?.topics]);
+  }, [topicsConfig]);
 
   const [selectedTopicId, setSelectedTopicId] = useState<string>("all");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -144,9 +146,9 @@ function SpellingGameContent() {
     if (selectedTopicId !== "all") {
       return topicWordsMap[selectedTopicId] || spellingEligibleAll;
     }
-    if (settings?.topics && Array.isArray(settings.topics) && settings.topics.length > 0) {
+    if (topicsConfig && Array.isArray(topicsConfig) && topicsConfig.length > 0) {
       const words: Word[] = [];
-      settings.topics.forEach((tId) => {
+      topicsConfig.forEach((tId) => {
         if (topicWordsMap[tId]) {
           words.push(...topicWordsMap[tId]);
         }
@@ -154,7 +156,7 @@ function SpellingGameContent() {
       return words.length > 0 ? words : spellingEligibleAll;
     }
     return spellingEligibleAll;
-  }, [selectedTopicId, settings?.topics]);
+  }, [selectedTopicId, topicsConfig]);
 
   const wordLimit =
     settings?.wordLimit && settings.wordLimit > 0
@@ -219,12 +221,14 @@ function SpellingGameContent() {
     [speak]
   );
 
+  const currentWordEnglish = currentWord?.english;
+
   const handleCompleteSpelling = useCallback(
     (isCorrect: boolean, formedString: string) => {
       if (isCorrect) {
         setScore((s) => s + 1);
-        if (currentWord?.english) {
-          speak(currentWord.english);
+        if (currentWordEnglish) {
+          speak(currentWordEnglish);
         }
       }
 
@@ -234,7 +238,7 @@ function SpellingGameContent() {
         formedWord: formedString,
       });
     },
-    [currentWord?.english, speak]
+    [currentWordEnglish, speak]
   );
 
   const handleNextWord = useCallback(() => {
@@ -249,10 +253,10 @@ function SpellingGameContent() {
   }, [currentIndex, totalQuestions, cancel]);
 
   const handleSpeakCurrentWord = useCallback(() => {
-    if (currentWord?.english) {
-      speak(currentWord.english);
+    if (currentWordEnglish) {
+      speak(currentWordEnglish);
     }
-  }, [currentWord?.english, speak]);
+  }, [currentWordEnglish, speak]);
 
   const progressPercent =
     totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;

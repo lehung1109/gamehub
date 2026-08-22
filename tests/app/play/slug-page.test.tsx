@@ -1,4 +1,3 @@
-import React from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import PlaySlugPage from '@/app/play/[slug]/page'
@@ -45,7 +44,7 @@ describe('/play/[slug] resolver page (T038 / US4)', () => {
       error: null,
     })
 
-    const PageComponent = await PlaySlugPage({
+    await PlaySlugPage({
       params: Promise.resolve({ slug: 'valid-slug-123' }),
     })
 

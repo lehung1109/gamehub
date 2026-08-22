@@ -42,32 +42,36 @@ export async function proxy(request: NextRequest) {
     }
   )
 
-  // IMPORTANT: Use getUser() instead of getSession() for server-verified authentication
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
   const pathname = request.nextUrl.pathname
+  const isAdminRoute = pathname === '/admin' || pathname.startsWith('/admin/')
+  const isLoginRoute = pathname === '/login'
 
-  // 1. Protect all /admin routes (preserve full path with search query, clear direct query params on /login)
-  if ((pathname === '/admin' || pathname.startsWith('/admin/')) && !user) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    const fullRedirectPath = pathname + request.nextUrl.search
-    url.search = ''
-    url.searchParams.set('redirect', fullRedirectPath)
-    return NextResponse.redirect(url)
-  }
+  // Only authenticate if accessing protected admin routes or login route
+  if (isAdminRoute || isLoginRoute) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-  // 2. Redirect logged-in user away from /login
-  if (pathname === '/login' && user) {
-    const redirectParam = request.nextUrl.searchParams.get('redirect')
-    const target = isValidAdminRedirect(redirectParam)
-      ? redirectParam!
-      : '/admin/dashboard'
+    // 1. Protect all /admin routes (preserve full path with search query, clear direct query params on /login)
+    if (isAdminRoute && !user) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/login'
+      const fullRedirectPath = pathname + request.nextUrl.search
+      url.search = ''
+      url.searchParams.set('redirect', fullRedirectPath)
+      return NextResponse.redirect(url)
+    }
 
-    const url = new URL(target, request.nextUrl.origin)
-    return NextResponse.redirect(url)
+    // 2. Redirect logged-in user away from /login
+    if (isLoginRoute && user) {
+      const redirectParam = request.nextUrl.searchParams.get('redirect')
+      const target = isValidAdminRedirect(redirectParam)
+        ? redirectParam!
+        : '/admin/dashboard'
+
+      const url = new URL(target, request.nextUrl.origin)
+      return NextResponse.redirect(url)
+    }
   }
 
   return supabaseResponse
