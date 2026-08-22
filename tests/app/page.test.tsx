@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import HomePage from "@/app/page";
 import games from "@/data/games.json";
@@ -15,8 +15,9 @@ describe("HomePage (src/app/page.tsx)", () => {
   it("renders all 6 game cards sorted strictly by priority order in the DOM", () => {
     render(<HomePage />);
 
-    const gameLinks = screen.getAllByRole("link");
-    expect(gameLinks.length).toBeGreaterThanOrEqual(6);
+    const mainRegion = screen.getByRole("main", { name: /danh sách trò chơi/i });
+    const gameLinks = within(mainRegion).getAllByRole("link");
+    expect(gameLinks.length).toBe(6);
 
     // Verify all 6 games are present in strict priority order
     const sortedGames = [...games].sort((a, b) => a.priority - b.priority);
@@ -31,6 +32,14 @@ describe("HomePage (src/app/page.tsx)", () => {
       expect(screen.getByText(game.titleEn)).toBeInTheDocument();
       expect(screen.getByText(game.emoji)).toBeInTheDocument();
     });
+  });
+
+  it("renders a login button linking to /login for teachers/admins", () => {
+    render(<HomePage />);
+
+    const loginLink = screen.getByRole("link", { name: /đăng nhập/i });
+    expect(loginLink).toBeInTheDocument();
+    expect(loginLink).toHaveAttribute("href", "/login");
   });
 
   it("links to all 6 game routes correctly and accessibly", () => {

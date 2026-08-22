@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { LogIn } from "lucide-react";
 import gamesData from "@/data/games.json";
 import { Game } from "@/types";
 import { GameCard } from "@/components/custom/GameCard";
@@ -14,6 +16,18 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
   return (
     <div className="flex-1 flex flex-col justify-between py-2 sm:py-6">
       <div>
+        {/* Top bar with Login link for teachers/admins */}
+        <div className="flex justify-end mb-2">
+          <Link
+            href="/login"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 bg-card border border-border shadow-xs hover:bg-accent hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            title="Đăng nhập dành cho giáo viên"
+          >
+            <LogIn className="size-3.5 sm:size-4" aria-hidden="true" />
+            <span>Đăng nhập</span>
+          </Link>
+        </div>
+
         {/* Header Hero */}
         <header className="text-center py-4 sm:py-8 mb-6">
           <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 font-black text-sm uppercase tracking-wider mb-4 animate-bounce motion-reduce:animate-none">
