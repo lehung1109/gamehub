@@ -14,7 +14,7 @@ describe('getStudentProgress Server Action', () => {
     mockSupabase = {
       from: vi.fn(),
     }
-    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockSupabase)
+    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockSupabase as any)
   })
 
   it('fails if classCode is missing or whitespace', async () => {

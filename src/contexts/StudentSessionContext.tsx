@@ -143,8 +143,9 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
 
   // Auto-fetch progress whenever session credentials change
   useEffect(() => {
+    let isCancelled = false
+
     if (session?.classCode && session?.studentName) {
-      const fetchId = ++fetchIdRef.current
       hasInitializedStarsRef.current = false
       setIsLoadingStars(true)
 
@@ -153,7 +154,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
         studentName: session.studentName,
       })
         .then((res) => {
-          if (fetchId !== fetchIdRef.current) return
+          if (isCancelled) return
           if (res && res.success && typeof res.totalStars === 'number') {
             const newStars = res.totalStars
             const newLevelProgress = getLevelInfo(newStars)
@@ -170,20 +171,19 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
           }
         })
         .catch((err) => {
-          if (fetchId !== fetchIdRef.current) return
+          if (isCancelled) return
           console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
         })
         .finally(() => {
-          if (fetchId === fetchIdRef.current) {
+          if (!isCancelled) {
             setIsLoadingStars(false)
           }
         })
 
       return () => {
-        fetchIdRef.current++
+        isCancelled = true
       }
     } else {
-      fetchIdRef.current++
       setTotalStars(0)
       setIsLoadingStars(false)
       prevLevelRef.current = 1
