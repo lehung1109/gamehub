@@ -95,7 +95,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
   const [initial] = useState(getInitialState)
   const [session, setSession] = useState<StudentSession | null>(initial.session)
   const [isAnonymous, setIsAnonymous] = useState<boolean>(initial.isAnonymous)
-  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+  const [isLoaded] = useState<boolean>(() => typeof window !== 'undefined')
   const [isOpen, setIsOpen] = useState<boolean>(initial.isOpen)
 
   // Gamification state
@@ -111,11 +111,6 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
 
   // Calculate current level info
   const levelInfo = useMemo(() => getLevelInfo(totalStars), [totalStars])
-
-  // Mark loaded on client mount
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
 
   // Auto-fetch progress whenever session credentials change
   useEffect(() => {
@@ -152,9 +147,11 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
         isCancelled = true
       }
     } else {
-      setTotalStars(0)
-      prevLevelRef.current = 1
-      hasInitializedStarsRef.current = false
+      queueMicrotask(() => {
+        setTotalStars(0)
+        prevLevelRef.current = 1
+        hasInitializedStarsRef.current = false
+      })
     }
   }, [session?.classCode, session?.studentName])
 
@@ -165,12 +162,18 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
       return
     }
 
+    const currentSession = session
+
     try {
       setIsLoadingStars(true)
       const res = await getStudentProgress({
         classCode: session.classCode,
         studentName: session.studentName,
       })
+
+      if (currentSession.classCode !== session.classCode || currentSession.studentName !== session.studentName) {
+        return
+      }
 
       if (res && res.success && typeof res.totalStars === 'number') {
         const newStars = res.totalStars

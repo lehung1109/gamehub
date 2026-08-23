@@ -47,9 +47,9 @@ description: "Task list for feature implementation: Student Rewards & Leveling"
 
 ### Implementation for User Story 1
 
-- [ ] T006 [P] [US1] Create UI component in `src/components/StudentProfileBadge.tsx`
-- [ ] T007 [US1] Update `src/contexts/StudentSessionContext.tsx` to fetch initial progress using `getStudentProgress`
-- [ ] T008 [US1] Integrate `StudentSessionProvider` and `StudentProfileBadge` into `src/app/(games)/layout.tsx`
+- [x] T006 [P] [US1] Create UI component in `src/components/StudentProfileBadge.tsx`
+- [x] T007 [US1] Update `src/contexts/StudentSessionContext.tsx` to fetch initial progress using `getStudentProgress`
+- [x] T008 [US1] Integrate `StudentSessionProvider` and `StudentProfileBadge` into `src/app/(games)/layout.tsx`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
