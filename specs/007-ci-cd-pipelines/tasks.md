@@ -26,8 +26,8 @@
 
 **Purpose**: Project initialization and prerequisite structure for CI workflows
 
-- [ ] T001 Create `.github/workflows` directory structure in `.github/workflows`
-- [ ] T002 Add `build:ci` npm script (`next build`) to `package.json` to decouple CI builds from remote Supabase type generation
+- [X] T001 Create `.github/workflows` directory structure in `.github/workflows`
+- [X] T002 Add `build:ci` npm script (`next build`) to `package.json` to decouple CI builds from remote Supabase type generation
 
 ---
 
@@ -37,7 +37,7 @@
 
 **⚠️ CRITICAL**: No user story workflow can be tested/verified until local build and test execution scripts are validated
 
-- [ ] T003 Verify local execution of `npm run build:ci`, `npm run lint`, `npx tsc --noEmit`, and `npm run test:run` in `package.json`
+- [X] T003 Verify local execution of `npm run build:ci`, `npm run lint`, `npx tsc --noEmit`, and `npm run test:run` in `package.json`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -51,8 +51,8 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Create core CI workflow in `.github/workflows/ci.yml` with PR and push triggers, concurrency cancellation, Node 20 setup with npm cache, and execution of lint, typecheck, test:run, and build:ci steps
-- [ ] T005 [US1] Validate `.github/workflows/ci.yml` syntax, trigger events, and step sequences against workflow contract in `specs/007-ci-cd-pipelines/contracts/workflows.md`
+- [X] T004 [US1] Create core CI workflow in `.github/workflows/ci.yml` with PR and push triggers, concurrency cancellation, Node 20 setup with npm cache, and execution of lint, typecheck, test:run, and build:ci steps
+- [X] T005 [US1] Validate `.github/workflows/ci.yml` syntax, trigger events, and step sequences against workflow contract in `specs/007-ci-cd-pipelines/contracts/workflows.md`
 
 **Checkpoint**: At this point, User Story 1 (Core CI) should be fully functional and testable independently
 
@@ -66,8 +66,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T006 [P] [US2] Create Playwright E2E testing workflow in `.github/workflows/e2e.yml` with PR and push triggers, concurrency cancellation, Node 20 setup with npm cache, Playwright Chromium installation, test:e2e execution, and artifact upload on failure
-- [ ] T007 [US2] Validate `.github/workflows/e2e.yml` artifact upload paths, upload conditions, and retention against workflow contract in `specs/007-ci-cd-pipelines/contracts/workflows.md`
+- [X] T006 [P] [US2] Create Playwright E2E testing workflow in `.github/workflows/e2e.yml` with PR and push triggers, concurrency cancellation, Node 20 setup with npm cache, Playwright Chromium installation, test:e2e execution, and artifact upload on failure
+- [X] T007 [US2] Validate `.github/workflows/e2e.yml` artifact upload paths, upload conditions, and retention against workflow contract in `specs/007-ci-cd-pipelines/contracts/workflows.md`
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -81,8 +81,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T008 [P] [US3] Create Supabase migration validation workflow in `.github/workflows/supabase.yml` with path filtering on `supabase/migrations/**`, concurrency cancellation, Node 20 setup with npm cache, and `npx supabase db lint` execution step
-- [ ] T009 [US3] Validate `.github/workflows/supabase.yml` path filter rules and lint step against workflow contract in `specs/007-ci-cd-pipelines/contracts/workflows.md`
+- [X] T008 [P] [US3] Create Supabase migration validation workflow in `.github/workflows/supabase.yml` with path filtering on `supabase/migrations/**`, concurrency cancellation, Node 20 setup with npm cache, and `npx supabase db lint` execution step
+- [X] T009 [US3] Validate `.github/workflows/supabase.yml` path filter rules and lint step against workflow contract in `specs/007-ci-cd-pipelines/contracts/workflows.md`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -92,8 +92,8 @@
 
 **Purpose**: Documentation updates and comprehensive validation across all workflows
 
-- [ ] T010 [P] Document CI/CD pipeline architecture, npm scripts (`build:ci`), and PR status checks in `README.md`
-- [ ] T011 Run quickstart validation checklist against all workflow definitions per `specs/007-ci-cd-pipelines/quickstart.md`
+- [X] T010 [P] Document CI/CD pipeline architecture, npm scripts (`build:ci`), and PR status checks in `README.md`
+- [X] T011 Run quickstart validation checklist against all workflow definitions per `specs/007-ci-cd-pipelines/quickstart.md`
 
 ---
 
