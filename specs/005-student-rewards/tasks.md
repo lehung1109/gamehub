@@ -80,8 +80,8 @@ description: "Task list for feature implementation: Student Rewards & Leveling"
 
 ### Implementation for User Story 3
 
-- [ ] T013 [US3] Ensure `localStorage` hydration correctly sets up credentials and triggers progress fetch in `src/contexts/StudentSessionContext.tsx`
-- [ ] T014 [US3] Verify cross-session fetch correctly handles absent or newly registered students in `src/contexts/StudentSessionContext.tsx`
+- [x] T013 [US3] Ensure `localStorage` hydration correctly sets up credentials and triggers progress fetch in `src/contexts/StudentSessionContext.tsx`
+- [x] T014 [US3] Verify cross-session fetch correctly handles absent or newly registered students in `src/contexts/StudentSessionContext.tsx`
 
 **Checkpoint**: All user stories should now be independently functional
 

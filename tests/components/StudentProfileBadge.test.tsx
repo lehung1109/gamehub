@@ -23,13 +23,22 @@ function TestWrapper({
       'gamehub_student_session',
       JSON.stringify({ ...initialSession, isAnonymous: false })
     )
+    localStorage.setItem(
+      'gamehub_student_session',
+      JSON.stringify({ ...initialSession, isAnonymous: false })
+    )
   } else if (initialAnonymous) {
     sessionStorage.setItem(
       'gamehub_student_session',
       JSON.stringify({ isAnonymous: true })
     )
+    localStorage.setItem(
+      'gamehub_student_session',
+      JSON.stringify({ isAnonymous: true })
+    )
   } else {
     sessionStorage.clear()
+    localStorage.clear()
   }
 
   return (
@@ -43,6 +52,7 @@ function TestWrapper({
 describe('StudentProfileBadge Component', () => {
   beforeEach(() => {
     sessionStorage.clear()
+    localStorage.clear()
     vi.clearAllMocks()
   })
 

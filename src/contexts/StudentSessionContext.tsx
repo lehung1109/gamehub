@@ -72,36 +72,69 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
   const prevLevelRef = useRef<number>(1)
   const hasInitializedStarsRef = useRef<boolean>(false)
   const fetchIdRef = useRef<number>(0)
+  const sessionRef = useRef<StudentSession | null>(null)
 
-  // Hydrate session from sessionStorage on client mount
   useEffect(() => {
-    try {
-      const raw = window.sessionStorage.getItem(STUDENT_SESSION_KEY)
+    sessionRef.current = session
+  }, [session])
+
+  // Hydrate session from sessionStorage (or localStorage) on client mount and listen to storage events
+  useEffect(() => {
+    const hydrateFromStorage = (raw: string | null) => {
       if (raw) {
-        const parsed: StoredStudentSession = JSON.parse(raw)
-        if (parsed.isAnonymous) {
-          setIsAnonymous(true)
-          setIsOpen(false)
-        } else if (parsed.classCode && parsed.studentName) {
-          setSession({
-            classCode: parsed.classCode,
-            studentName: parsed.studentName,
-            className: parsed.className,
-            classId: parsed.classId,
-          })
-          setIsAnonymous(false)
-          setIsOpen(false)
-        } else {
+        try {
+          const parsed: StoredStudentSession = JSON.parse(raw)
+          if (parsed.isAnonymous) {
+            setIsAnonymous(true)
+            setSession(null)
+            setIsOpen(false)
+          } else if (parsed.classCode && parsed.studentName) {
+            setSession({
+              classCode: parsed.classCode,
+              studentName: parsed.studentName,
+              className: parsed.className,
+              classId: parsed.classId,
+            })
+            setIsAnonymous(false)
+            setIsOpen(false)
+          } else {
+            setIsOpen(true)
+          }
+        } catch (e) {
+          console.warn('Failed to parse student session from storage:', e)
           setIsOpen(true)
         }
       } else {
+        setSession(null)
+        setIsAnonymous(false)
         setIsOpen(true)
       }
-    } catch (e) {
-      console.warn('Failed to parse student session from sessionStorage:', e)
-      setIsOpen(true)
+    }
+
+    try {
+      let initialRaw: string | null = null
+      if (typeof window !== 'undefined') {
+        initialRaw =
+          window.sessionStorage.getItem(STUDENT_SESSION_KEY) ||
+          window.localStorage.getItem(STUDENT_SESSION_KEY)
+      }
+      hydrateFromStorage(initialRaw)
     } finally {
       setIsLoaded(true)
+    }
+
+    // Cross-tab synchronization via storage event
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === STUDENT_SESSION_KEY) {
+        hydrateFromStorage(event.newValue)
+      }
+    }
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('storage', handleStorage)
+      return () => {
+        window.removeEventListener('storage', handleStorage)
+      }
     }
   }, [])
 
@@ -113,6 +146,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
     if (session?.classCode && session?.studentName) {
       const fetchId = ++fetchIdRef.current
       hasInitializedStarsRef.current = false
+      setIsLoadingStars(true)
 
       getStudentProgress({
         classCode: session.classCode,
@@ -139,17 +173,21 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
           if (fetchId !== fetchIdRef.current) return
           console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
         })
+        .finally(() => {
+          if (fetchId === fetchIdRef.current) {
+            setIsLoadingStars(false)
+          }
+        })
 
       return () => {
         fetchIdRef.current++
       }
     } else {
       fetchIdRef.current++
-      queueMicrotask(() => {
-        setTotalStars(0)
-        prevLevelRef.current = 1
-        hasInitializedStarsRef.current = false
-      })
+      setTotalStars(0)
+      setIsLoadingStars(false)
+      prevLevelRef.current = 1
+      hasInitializedStarsRef.current = false
     }
   }, [session?.classCode, session?.studentName])
 
@@ -174,7 +212,11 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
         return
       }
 
-      if (currentSession.classCode !== session.classCode || currentSession.studentName !== session.studentName) {
+      if (
+        !sessionRef.current ||
+        sessionRef.current.classCode !== currentSession.classCode ||
+        sessionRef.current.studentName !== currentSession.studentName
+      ) {
         return
       }
 
@@ -215,6 +257,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
           isAnonymous: false,
         }
         window.sessionStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(toStore))
+        window.localStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(toStore))
       }
     } catch (e) {
       console.error('Failed to save student session:', e)
@@ -236,6 +279,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
           isAnonymous: true,
         }
         window.sessionStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(toStore))
+        window.localStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(toStore))
       }
     } catch (e) {
       console.error('Failed to save anonymous student session:', e)
@@ -254,6 +298,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
     try {
       if (typeof window !== 'undefined') {
         window.sessionStorage.removeItem(STUDENT_SESSION_KEY)
+        window.localStorage.removeItem(STUDENT_SESSION_KEY)
       }
     } catch (e) {
       console.error('Failed to remove student session:', e)
