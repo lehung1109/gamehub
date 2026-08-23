@@ -18,9 +18,9 @@
 
 **Purpose**: Project initialization, type definitions, and standalone dataset preparation.
 
-- [ ] T001 Create dedicated TypeScript interfaces for 12-Tenses system in `src/types/tenses.ts`
-- [ ] T002 [P] Create 12-Tenses master catalog dataset in `src/data/tenses/index.json`
-- [ ] T003 [P] Create complete Present Simple lesson data (5 rule cards, 8 conjugation items, 6 error hunter items, 6 sentence builder items) in `src/data/tenses/present-simple.json`
+- [X] T001 Create dedicated TypeScript interfaces for 12-Tenses system in `src/types/tenses.ts`
+- [X] T002 [P] Create 12-Tenses master catalog dataset in `src/data/tenses/index.json`
+- [X] T003 [P] Create complete Present Simple lesson data (5 rule cards, 8 conjugation items, 6 error hunter items, 6 sentence builder items) in `src/data/tenses/present-simple.json`
 
 ---
 
@@ -30,11 +30,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T004 [P] Implement data validation and text normalization utilities in `src/lib/tenses/validation.ts`
-- [ ] T005 [P] Create unit tests for validation utilities in `tests/unit/tenses/validation.test.ts`
-- [ ] T006 [P] Implement LocalStorage progress persistence and hydration helper in `src/lib/tenses/storage.ts`
-- [ ] T007 [P] Create unit tests for storage helper in `tests/unit/tenses/storage.test.ts`
-- [ ] T008 [P] Create schema and data integrity tests in `tests/unit/data/tenses-schema.test.ts`
+- [X] T004 [P] Implement data validation and text normalization utilities in `src/lib/tenses/validation.ts`
+- [X] T005 [P] Create unit tests for validation utilities in `tests/unit/tenses/validation.test.ts`
+- [X] T006 [P] Implement LocalStorage progress persistence and hydration helper in `src/lib/tenses/storage.ts`
+- [X] T007 [P] Create unit tests for storage helper in `tests/unit/tenses/storage.test.ts`
+- [X] T008 [P] Create schema and data integrity tests in `tests/unit/data/tenses-schema.test.ts`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel.
 
