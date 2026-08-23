@@ -7,7 +7,7 @@ vi.mock('@/lib/supabase/admin', () => ({
 }))
 
 describe('validateClassCodeAction', () => {
-  let mockSupabase: any
+  let mockSupabase: { from: ReturnType<typeof vi.fn> }
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -16,7 +16,7 @@ describe('validateClassCodeAction', () => {
       from: vi.fn(),
     }
 
-    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockSupabase)
+    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockSupabase as unknown as ReturnType<typeof adminSupabase.createAdminClient>)
   })
 
   it('returns error when class code is empty', async () => {

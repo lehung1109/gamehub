@@ -72,10 +72,20 @@ describe('Supabase Client Factories', () => {
   })
 
   it('creates admin client fallback when service role key is missing', async () => {
-    vi.unstubAllEnvs()
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const oldServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    const oldSecretKey = process.env.SUPABASE_SECRET_KEY
+    delete process.env.SUPABASE_SERVICE_ROLE_KEY
+    delete process.env.SUPABASE_SECRET_KEY
+
     const { createAdminClient } = await import('@/lib/supabase/admin')
     const client = createAdminClient()
     expect(client).toBeDefined()
     expect((client as unknown as { url: string; key: string }).key).toBeTruthy()
+    expect(warnSpy).toHaveBeenCalled()
+    warnSpy.mockRestore()
+
+    if (oldServiceKey !== undefined) process.env.SUPABASE_SERVICE_ROLE_KEY = oldServiceKey
+    if (oldSecretKey !== undefined) process.env.SUPABASE_SECRET_KEY = oldSecretKey
   })
 })

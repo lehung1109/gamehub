@@ -102,16 +102,6 @@ export function QuizEngine<T = unknown>({
     }
   }, [currentIndex, onSpeak, isCompleted, currentQuestion]);
 
-  if (!hasQuestions || !currentQuestion) {
-    return (
-      <div className="text-center p-8 text-muted-foreground font-medium">
-        Không có câu hỏi nào. (No questions available.)
-      </div>
-    );
-  }
-
-  const progressPercentage = ((currentIndex + 1) / questions.length) * 100;
-
   const handleSelectOption = React.useCallback(
     (index: number) => {
       if (
@@ -171,21 +161,21 @@ export function QuizEngine<T = unknown>({
     [selectedOption, feedback.open, isCompleted, currentQuestion, currentIndex, onAnswer, score]
   );
 
-  const handleContinue = () => {
+  const handleContinue = React.useCallback(() => {
     if (!feedback.open && selectedOption === null) return;
     setFeedback((prev) => ({ ...prev, open: false }));
     setSelectedOption(null);
     isSelectingRef.current = false;
 
-    if (currentIndex + 1 < questions.length) {
+    if (currentIndex + 1 < (questions?.length || 0)) {
       setCurrentIndex((prev) => prev + 1);
     } else {
       setIsCompleted(true);
-      onComplete(score, questions.length);
+      onComplete(score, questions?.length || 0);
     }
-  };
+  }, [feedback.open, selectedOption, currentIndex, questions?.length, onComplete, score]);
 
-  const handlePlayAgain = () => {
+  const handlePlayAgain = React.useCallback(() => {
     setCurrentIndex(0);
     setSelectedOption(null);
     setScore(0);
@@ -196,7 +186,17 @@ export function QuizEngine<T = unknown>({
     if (onRestart) {
       onRestart();
     }
-  };
+  }, [onRestart]);
+
+  if (!hasQuestions || !currentQuestion) {
+    return (
+      <div className="text-center p-8 text-muted-foreground font-medium">
+        Không có câu hỏi nào. (No questions available.)
+      </div>
+    );
+  }
+
+  const progressPercentage = ((currentIndex + 1) / questions.length) * 100;
 
   if (isCompleted) {
     const perfectScore = score === questions.length;

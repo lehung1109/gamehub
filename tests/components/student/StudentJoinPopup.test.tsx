@@ -9,6 +9,13 @@ vi.mock('@/app/actions/classes', () => ({
   validateClassCodeAction: vi.fn(),
 }))
 
+vi.mock('@/app/actions/student-progress', () => ({
+  getStudentProgress: vi.fn().mockResolvedValue({
+    success: true,
+    totalStars: 0,
+  }),
+}))
+
 function TestWrapper({
   children,
   initialSession,

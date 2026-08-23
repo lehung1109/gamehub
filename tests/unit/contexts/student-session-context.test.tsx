@@ -273,19 +273,19 @@ describe('StudentSessionContext Gamification & Progress', () => {
   })
 
   it('US3: ignores out-of-order in-flight responses when switching student credentials rapidly', async () => {
-    let resolveFirst: (val: any) => void
-    const firstPromise = new Promise((resolve) => {
+    let resolveFirst: (val: studentProgressAction.GetStudentProgressOutput) => void
+    const firstPromise = new Promise<studentProgressAction.GetStudentProgressOutput>((resolve) => {
       resolveFirst = resolve
     })
 
-    let resolveSecond: (val: any) => void
-    const secondPromise = new Promise((resolve) => {
+    let resolveSecond: (val: studentProgressAction.GetStudentProgressOutput) => void
+    const secondPromise = new Promise<studentProgressAction.GetStudentProgressOutput>((resolve) => {
       resolveSecond = resolve
     })
 
     vi.mocked(studentProgressAction.getStudentProgress)
-      .mockImplementationOnce(() => firstPromise as any)
-      .mockImplementationOnce(() => secondPromise as any)
+      .mockImplementationOnce(() => firstPromise)
+      .mockImplementationOnce(() => secondPromise)
 
     const { result } = renderHook(() => useStudentSession(), { wrapper })
 

@@ -51,7 +51,7 @@ export function CreateClassForm({ onSuccess }: CreateClassFormProps) {
             onSuccess(res.data)
           }
         }
-      } catch (err) {
+      } catch {
         setError('Đã xảy ra lỗi không xác định')
       }
     })

@@ -42,16 +42,20 @@ describe('useStudentSession Hook', () => {
     expect(result.current.isOpen).toBe(true)
   })
 
-  it('saves session and closes popup when joinClass is called', () => {
+  it('saves session and closes popup when joinClass is called', async () => {
     const { result } = renderHook(() => useStudentSession(), { wrapper })
 
-    act(() => {
+    await act(async () => {
       result.current.joinClass({
         classCode: 'ABC123',
         studentName: 'Minh',
         className: 'Lớp 1A',
         classId: 'cls-123',
       })
+    })
+
+    await waitFor(() => {
+      expect(result.current.isLoadingStars).toBe(false)
     })
 
     expect(result.current.session).toEqual({
@@ -91,7 +95,7 @@ describe('useStudentSession Hook', () => {
     })
   })
 
-  it('loads existing student session from sessionStorage on mount without opening popup', () => {
+  it('loads existing student session from sessionStorage on mount without opening popup', async () => {
     const existingSession = {
       classCode: 'XYZ789',
       studentName: 'Linh',
@@ -103,7 +107,11 @@ describe('useStudentSession Hook', () => {
 
     const { result } = renderHook(() => useStudentSession(), { wrapper })
 
-    expect(result.current.isLoaded).toBe(true)
+    await waitFor(() => {
+      expect(result.current.isLoaded).toBe(true)
+      expect(result.current.isLoadingStars).toBe(false)
+    })
+
     expect(result.current.session).toEqual({
       classCode: 'XYZ789',
       studentName: 'Linh',
@@ -125,7 +133,7 @@ describe('useStudentSession Hook', () => {
     expect(result.current.isOpen).toBe(false)
   })
 
-  it('clears session and resets state when clearSession is called', () => {
+  it('clears session and resets state when clearSession is called', async () => {
     sessionStorage.setItem(
       STUDENT_SESSION_KEY,
       JSON.stringify({
@@ -136,6 +144,11 @@ describe('useStudentSession Hook', () => {
     )
 
     const { result } = renderHook(() => useStudentSession(), { wrapper })
+
+    await waitFor(() => {
+      expect(result.current.isLoaded).toBe(true)
+      expect(result.current.isLoadingStars).toBe(false)
+    })
 
     act(() => {
       result.current.clearSession()
@@ -161,6 +174,7 @@ describe('useStudentSession Hook', () => {
   })
 
   it('handles corrupted sessionStorage data gracefully', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
     sessionStorage.setItem(STUDENT_SESSION_KEY, 'invalid-json{{{')
 
     const { result } = renderHook(() => useStudentSession(), { wrapper })
@@ -169,6 +183,8 @@ describe('useStudentSession Hook', () => {
     expect(result.current.session).toBeNull()
     expect(result.current.isAnonymous).toBe(false)
     expect(result.current.isOpen).toBe(true)
+    expect(warnSpy).toHaveBeenCalled()
+    warnSpy.mockRestore()
   })
 
   it('fetches totalStars and levelInfo when student session is present', async () => {

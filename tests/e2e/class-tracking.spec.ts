@@ -156,7 +156,13 @@ test.describe('Student Game Progress Tracking (User Story 3)', () => {
   test('Tracks game results and posts to /api/track with question details when student finishes a game', async ({
     page,
   }) => {
-    let trackingRequestPayload: any = null
+    let trackingRequestPayload: {
+      classCode?: string
+      studentName?: string
+      gameType?: string
+      totalQuestions?: number
+      details?: Array<{ prompt?: string; isCorrect?: boolean; timeTakenMs?: number }>
+    } | null = null
 
     // Intercept tracking API
     await page.route('**/api/track', async (route) => {
@@ -218,15 +224,15 @@ test.describe('Student Game Progress Tracking (User Story 3)', () => {
 
     // Verify tracking payload was sent
     expect(trackingRequestPayload).not.toBeNull()
-    expect(trackingRequestPayload.classCode).toBe('ABC123')
-    expect(trackingRequestPayload.studentName).toBe('Bé Lan')
-    expect(trackingRequestPayload.gameType).toBe('listening')
-    expect(trackingRequestPayload.totalQuestions).toBeGreaterThanOrEqual(1)
-    expect(Array.isArray(trackingRequestPayload.details)).toBe(true)
-    expect(trackingRequestPayload.details.length).toBeGreaterThanOrEqual(1)
-    expect(trackingRequestPayload.details[0]).toHaveProperty('prompt')
-    expect(trackingRequestPayload.details[0]).toHaveProperty('isCorrect')
-    expect(trackingRequestPayload.details[0]).toHaveProperty('timeTakenMs')
+    expect(trackingRequestPayload!.classCode).toBe('ABC123')
+    expect(trackingRequestPayload!.studentName).toBe('Bé Lan')
+    expect(trackingRequestPayload!.gameType).toBe('listening')
+    expect(trackingRequestPayload!.totalQuestions).toBeGreaterThanOrEqual(1)
+    expect(Array.isArray(trackingRequestPayload!.details)).toBe(true)
+    expect(trackingRequestPayload!.details!.length).toBeGreaterThanOrEqual(1)
+    expect(trackingRequestPayload!.details![0]).toHaveProperty('prompt')
+    expect(trackingRequestPayload!.details![0]).toHaveProperty('isCorrect')
+    expect(trackingRequestPayload!.details![0]).toHaveProperty('timeTakenMs')
   })
 
   test('Does not submit tracking request to /api/track when playing anonymously', async ({

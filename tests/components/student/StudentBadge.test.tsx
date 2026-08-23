@@ -4,6 +4,13 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { StudentBadge } from '@/components/student/StudentBadge'
 import { StudentSessionProvider, useStudentSession } from '@/hooks/use-student-session'
 
+vi.mock('@/app/actions/student-progress', () => ({
+  getStudentProgress: vi.fn().mockResolvedValue({
+    success: true,
+    totalStars: 0,
+  }),
+}))
+
 function TestWrapper({
   children,
   initialSession,

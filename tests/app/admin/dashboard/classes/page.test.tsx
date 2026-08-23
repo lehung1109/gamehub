@@ -9,7 +9,7 @@ vi.mock('@/app/actions/classes', () => ({
 }))
 
 vi.mock('@/components/class/ClassList', () => ({
-  ClassList: ({ classes }: any) => (
+  ClassList: ({ classes }: { classes?: Array<{ id: string; name: string }> }) => (
     <div data-testid="class-list-mock">
       Classes count: {classes?.length || 0}
     </div>
@@ -28,7 +28,7 @@ describe('Classes Dashboard Page', () => {
     ]
     
     vi.mocked(classActions.getClassesAction).mockResolvedValue({
-      data: mockClasses as any,
+      data: mockClasses as unknown as classActions.ClassroomWithCount[],
     })
 
     const PageContent = await ClassesPage()

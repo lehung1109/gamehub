@@ -1,7 +1,7 @@
 // tests/unit/use-game-tracking.test.tsx
 import React from 'react'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { renderHook, act } from '@testing-library/react'
+import { renderHook, act, waitFor } from '@testing-library/react'
 import { useGameTracking } from '@/hooks/use-game-tracking'
 import { StudentSessionProvider, STUDENT_SESSION_KEY } from '@/hooks/use-student-session'
 
@@ -35,9 +35,11 @@ describe('useGameTracking Hook', () => {
       window.sessionStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(sessionData))
     }
 
-    return ({ children }: { children: React.ReactNode }) => (
+    const TestWrapper = ({ children }: { children: React.ReactNode }) => (
       <StudentSessionProvider>{children}</StudentSessionProvider>
     )
+    TestWrapper.displayName = 'TestWrapper'
+    return TestWrapper
   }
 
   it('initializes with isTracking false when no student session exists', () => {
@@ -61,7 +63,7 @@ describe('useGameTracking Hook', () => {
     expect(result.current.isAnonymous).toBe(true)
   })
 
-  it('initializes with isTracking true when a valid student session exists', () => {
+  it('initializes with isTracking true when a valid student session exists', async () => {
     const { result } = renderHook(
       () => useGameTracking({ gameType: 'listening', topic: 'animals', configId: 'cfg-1' }),
       {
@@ -73,7 +75,10 @@ describe('useGameTracking Hook', () => {
       }
     )
 
-    expect(result.current.isTracking).toBe(true)
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
     expect(result.current.session).toEqual(
       expect.objectContaining({
         classCode: 'ABC123',
@@ -82,7 +87,7 @@ describe('useGameTracking Hook', () => {
     )
   })
 
-  it('records question answers into details array', () => {
+  it('records question answers into details array', async () => {
     const { result } = renderHook(
       () => useGameTracking({ gameType: 'listening', topic: 'animals' }),
       {
@@ -92,6 +97,10 @@ describe('useGameTracking Hook', () => {
         }),
       }
     )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
 
     act(() => {
       result.current.recordQuestion({
@@ -265,6 +274,7 @@ describe('useGameTracking Hook', () => {
   })
 
   it('handles network error silently without throwing an exception', async () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const mockFetch = vi.fn().mockRejectedValue(new Error('Network offline'))
     global.fetch = mockFetch
 
@@ -284,9 +294,11 @@ describe('useGameTracking Hook', () => {
     })
 
     expect(success).toBe(false)
+    expect(warnSpy).toHaveBeenCalled()
+    warnSpy.mockRestore()
   })
 
-  it('resets details and timer on resetSession', () => {
+  it('resets details and timer on resetSession', async () => {
     const { result } = renderHook(
       () => useGameTracking({ gameType: 'listening', topic: 'animals' }),
       {
@@ -296,6 +308,10 @@ describe('useGameTracking Hook', () => {
         }),
       }
     )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
 
     act(() => {
       result.current.recordQuestion({

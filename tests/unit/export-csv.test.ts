@@ -125,8 +125,11 @@ describe('CSV Generation Utility (src/lib/export-csv.ts)', () => {
 })
 
 describe('Export CSV API Route Contract (GET /api/export-csv)', () => {
-  let mockSupabase: any
-  let mockUser: any
+  let mockSupabase: {
+    auth: { getUser: ReturnType<typeof vi.fn> }
+    from: ReturnType<typeof vi.fn>
+  }
+  let mockUser: { id: string; email: string } | null
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -143,7 +146,7 @@ describe('Export CSV API Route Contract (GET /api/export-csv)', () => {
       from: vi.fn(),
     }
 
-    vi.mocked(serverSupabase.createClient).mockResolvedValue(mockSupabase)
+    vi.mocked(serverSupabase.createClient).mockResolvedValue(mockSupabase as unknown as Awaited<ReturnType<typeof serverSupabase.createClient>>)
   })
 
   it('returns 401 Unauthorized when teacher is not logged in', async () => {
@@ -309,6 +312,8 @@ describe('Export CSV API Route Contract (GET /api/export-csv)', () => {
   })
 
   it('returns 500 when database error occurs while fetching sessions', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
     // Mock classroom success
     const classroomSelectMock = vi.fn().mockReturnValue({
       eq: vi.fn().mockReturnValue({
@@ -345,5 +350,7 @@ describe('Export CSV API Route Contract (GET /api/export-csv)', () => {
     expect(response.status).toBe(500)
     const json = await response.json()
     expect(json.error).toMatch(/lỗi|error/i)
+    expect(errorSpy).toHaveBeenCalled()
+    errorSpy.mockRestore()
   })
 })
