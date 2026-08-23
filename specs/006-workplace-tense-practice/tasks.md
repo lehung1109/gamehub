@@ -133,9 +133,9 @@
 
 ### Implementation for User Story 6
 
-- [ ] T029 [P] [US6] Implement `CompletionDashboard` showing stage-by-stage scores, accuracy percentage, stage replay buttons, and return-to-hub navigation in `src/components/tenses/CompletionDashboard.tsx`
-- [ ] T030 [US6] Integrate `CompletionDashboard` and local progress saving via `storage.ts` in `src/components/tenses/TenseLessonContainer.tsx`
-- [ ] T031 [US6] Connect `TenseHubMap` progress badges with dynamic LocalStorage hydration in `src/components/tenses/TenseHubMap.tsx`
+- [X] T029 [P] [US6] Implement `CompletionDashboard` showing stage-by-stage scores, accuracy percentage, stage replay buttons, and return-to-hub navigation in `src/components/tenses/CompletionDashboard.tsx`
+- [X] T030 [US6] Integrate `CompletionDashboard` and local progress saving via `storage.ts` in `src/components/tenses/TenseLessonContainer.tsx`
+- [X] T031 [US6] Connect `TenseHubMap` progress badges with dynamic LocalStorage hydration in `src/components/tenses/TenseHubMap.tsx`
 
 **Checkpoint**: Complete learning loop is fully operational and persisted across browser sessions.
 
@@ -145,9 +145,9 @@
 
 **Purpose**: End-to-end test coverage, responsive design verification across viewports (mobile 360px+, tablet, desktop), and code quality checks.
 
-- [ ] T032 [P] Create end-to-end integration test suite covering the full user flow in `tests/e2e/tenses-flow.spec.ts`
-- [ ] T033 Verify responsive layouts (mobile 360px+, tablet, desktop) and touch targets across all tense components
-- [ ] T034 Run TypeScript typecheck, ESLint, and test suite to ensure zero regressions across the codebase
+- [X] T032 [P] Create end-to-end integration test suite covering the full user flow in `tests/e2e/tenses-flow.spec.ts`
+- [X] T033 Verify responsive layouts (mobile 360px+, tablet, desktop) and touch targets across all tense components
+- [X] T034 Run TypeScript typecheck, ESLint, and test suite to ensure zero regressions across the codebase
 
 ---
 

@@ -5,6 +5,15 @@ import presentSimpleData from "@/data/tenses/present-simple.json";
 import { TenseModuleData } from "@/types/tenses";
 import * as storageHelper from "@/lib/tenses/storage";
 
+vi.mock("next/navigation", () => ({
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    prefetch: vi.fn(),
+  })),
+  usePathname: vi.fn(() => "/tenses/present-simple"),
+}));
+
 const mockLessonData = presentSimpleData as unknown as TenseModuleData;
 
 describe("TenseLessonContainer component", () => {
@@ -106,7 +115,7 @@ describe("TenseLessonContainer component", () => {
     expect(saveSpy).toHaveBeenCalledWith("present-simple", "conjugation", 1, 1);
 
     // Returned to stage overview
-    expect(screen.getByRole("button", { name: /vào chặng 1/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /luyện lại chặng 1|vào chặng 1/i })).toBeInTheDocument();
   });
 
   it("navigates from QuickRulesTab CTA into Stage 1 directly", () => {
@@ -153,7 +162,7 @@ describe("TenseLessonContainer component", () => {
     fireEvent.click(finishBtn);
 
     expect(saveSpy).toHaveBeenCalledWith("present-simple", "errorHunting", 1, 1);
-    expect(screen.getByRole("button", { name: /vào chặng 2/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /luyện lại chặng 2|vào chặng 2/i })).toBeInTheDocument();
   });
 
   it("allows entering Stage 3 (SentenceBuilderStage) and persisting progress", () => {
@@ -189,6 +198,53 @@ describe("TenseLessonContainer component", () => {
     fireEvent.click(finishBtn);
 
     expect(saveSpy).toHaveBeenCalledWith("present-simple", "sentenceBuilding", 1, 1);
-    expect(screen.getByRole("button", { name: /vào chặng 3/i })).toBeInTheDocument();
+  });
+
+  it("displays CompletionDashboard when all stages are completed and handles replay/reset", () => {
+    const resetSpy = vi.spyOn(storageHelper, "resetProgress");
+    vi.spyOn(storageHelper, "getProgress").mockReturnValue({
+      tenseId: "present-simple",
+      completed: true,
+      stageScores: {
+        conjugation: { score: 8, total: 8, passed: true },
+        errorHunting: { score: 6, total: 6, passed: true },
+        sentenceBuilding: { score: 6, total: 6, passed: true },
+      },
+      totalScore: 20,
+      maxPossibleScore: 20,
+      accuracyPercentage: 100,
+      lastStudiedAt: new Date().toISOString(),
+    });
+
+    render(<TenseLessonContainer lessonData={mockLessonData} />);
+
+    fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
+
+    // Summary quick-access banner is rendered
+    expect(screen.getByText(/bạn đã hoàn thành trọn vẹn bài học này!/i)).toBeInTheDocument();
+    const viewSummaryBtn = screen.getByRole("button", { name: /xem bảng tổng kết/i });
+    fireEvent.click(viewSummaryBtn);
+
+    // Completion dashboard is active
+    expect(screen.getByRole("heading", { name: /chúc mừng bạn đã hoàn thành/i })).toBeInTheDocument();
+    expect(screen.getByText("100%")).toBeInTheDocument();
+
+    // Test replay stage 2 from dashboard
+    const replayStage2 = screen.getByRole("button", { name: /luyện lại chặng 2/i });
+    fireEvent.click(replayStage2);
+    expect(screen.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeInTheDocument();
+
+    // Back to stage list
+    fireEvent.click(screen.getByRole("button", { name: /quay lại/i }));
+
+    // Click "Xem bảng tổng kết" again
+    fireEvent.click(screen.getByRole("button", { name: /xem bảng tổng kết/i }));
+
+    // Test reset all
+    const resetAllBtn = screen.getByRole("button", { name: /luyện tập lại từ đầu/i });
+    fireEvent.click(resetAllBtn);
+
+    expect(resetSpy).toHaveBeenCalledWith("present-simple");
+    expect(screen.getByText(/chặng 1 • chia động từ/i)).toBeInTheDocument();
   });
 });

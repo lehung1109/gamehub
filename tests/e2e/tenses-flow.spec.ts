@@ -499,4 +499,87 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     expect(progressInStorage).not.toBeNull();
     expect(progressInStorage).toContain('"sentenceBuilding"');
   });
+
+  test("US6: completes full 3-stage learning loop, views Completion Dashboard, replays a stage, and verifies Hub Map progress badge persistence", async ({
+    page,
+  }) => {
+    // 1. Seed completed progress in LocalStorage
+    await page.goto("/tenses/present-simple");
+    await page.evaluate(() => {
+      const sampleProgress = {
+        "present-simple": {
+          tenseId: "present-simple",
+          completed: true,
+          stageScores: {
+            conjugation: { score: 8, total: 8, passed: true, completedAt: new Date().toISOString() },
+            errorHunting: { score: 6, total: 6, passed: true, completedAt: new Date().toISOString() },
+            sentenceBuilding: { score: 6, total: 6, passed: true, completedAt: new Date().toISOString() },
+          },
+          totalScore: 20,
+          maxPossibleScore: 20,
+          accuracyPercentage: 100,
+          lastStudiedAt: new Date().toISOString(),
+        },
+      };
+      localStorage.setItem("gamehub_tense_progress_v1", JSON.stringify(sampleProgress));
+    });
+
+    // 2. Reload lesson page and verify completed banner in practice tab
+    await page.reload();
+    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await practiceTab.click();
+
+    await expect(page.getByText(/bạn đã hoàn thành trọn vẹn bài học này!/i)).toBeVisible();
+    await expect(page.getByText(/100% chính xác/i).first()).toBeVisible();
+
+    // 3. Open Completion Dashboard
+    const viewSummaryBtn = page.getByRole("button", { name: /xem bảng tổng kết/i });
+    await expect(viewSummaryBtn).toBeVisible();
+    await viewSummaryBtn.click();
+
+    // 4. Verify Completion Dashboard Elements
+    await expect(
+      page.getByRole("heading", { name: /chúc mừng bạn đã hoàn thành bài học!/i })
+    ).toBeVisible();
+    await expect(page.getByText("Xuất Sắc (Mastered)")).toBeVisible();
+    await expect(page.getByText(/Ghi nhớ cốt lõi cho môi trường công sở/i)).toBeVisible();
+
+    // 5. Test Replaying Stage 2 from Dashboard
+    const replayStage2Btn = page.getByRole("button", { name: /luyện lại chặng 2/i });
+    await expect(replayStage2Btn).toBeVisible();
+    await replayStage2Btn.click();
+
+    await expect(page.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeVisible();
+    await expect(page.getByText(/câu 1 \/ 6/i)).toBeVisible();
+
+    // 6. Return back to practice tab and open Summary again
+    const returnStageListBtn = page.getByRole("button", { name: /quay lại/i });
+    await expect(returnStageListBtn).toBeVisible();
+    await returnStageListBtn.click();
+
+    await page.getByRole("button", { name: /xem bảng tổng kết/i }).click();
+
+    // 7. Click "Quay về Hub 12 Thì"
+    const returnToHubBtn = page.getByRole("button", { name: /quay về hub 12 thì/i });
+    await expect(returnToHubBtn).toBeVisible();
+    await returnToHubBtn.click();
+
+    // 8. Verify landing on /tenses and Hub Map displays progress badge
+    await expect(page).toHaveURL(/\/tenses$/);
+    await expect(
+      page.getByRole("heading", { level: 1, name: /bản đồ 12 thì tiếng anh/i })
+    ).toBeVisible();
+
+    // Verify header stats badge "Đã hoàn thành 1/12 thì"
+    await expect(page.getByText(/đã hoàn thành 1\/12 thì/i)).toBeVisible();
+
+    // Verify Present Simple card displays "Đã hoàn thành" and "100% chính xác"
+    await expect(page.getByText("Đã hoàn thành").first()).toBeVisible();
+    await expect(page.getByText("100% chính xác").first()).toBeVisible();
+
+    // 9. Reload Hub page (F5) to verify dynamic LocalStorage hydration
+    await page.reload();
+    await expect(page.getByText(/đã hoàn thành 1\/12 thì/i)).toBeVisible();
+    await expect(page.getByText("Đã hoàn thành").first()).toBeVisible();
+  });
 });

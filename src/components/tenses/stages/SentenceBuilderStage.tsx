@@ -190,7 +190,9 @@ export function SentenceBuilderStage({
 }: SentenceBuilderStageProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [placedTokens, setPlacedTokens] = useState<SentenceBuilderToken[]>([]);
-  const [bankTokens, setBankTokens] = useState<SentenceBuilderToken[]>([]);
+  const [bankTokens, setBankTokens] = useState<SentenceBuilderToken[]>(() =>
+    items?.[0]?.scrambledTokens ? [...items[0].scrambledTokens] : []
+  );
   const [activeToken, setActiveToken] = useState<SentenceBuilderToken | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -201,16 +203,6 @@ export function SentenceBuilderStage({
 
   const total = items?.length || 0;
   const currentItem = items?.[currentIndex];
-
-  // Initialize/reset tokens when currentItem changes
-  useEffect(() => {
-    if (currentItem) {
-      setBankTokens([...currentItem.scrambledTokens]);
-      setPlacedTokens([]);
-      setIsSubmitted(false);
-      setIsCorrect(null);
-    }
-  }, [currentIndex, currentItem]);
 
   useEffect(() => {
     if (isSubmitted && nextButtonRef.current) {
@@ -294,7 +286,15 @@ export function SentenceBuilderStage({
 
   const handleNext = () => {
     if (currentIndex < total - 1) {
-      setCurrentIndex((prev) => prev + 1);
+      const nextIdx = currentIndex + 1;
+      setCurrentIndex(nextIdx);
+      const nextItem = items[nextIdx];
+      if (nextItem) {
+        setBankTokens([...nextItem.scrambledTokens]);
+        setPlacedTokens([]);
+        setIsSubmitted(false);
+        setIsCorrect(null);
+      }
     } else {
       onStageComplete(score, total);
     }

@@ -90,7 +90,7 @@ export function TenseCard({ tense, progress }: TenseCardProps) {
 
         {/* Progress badge if studied */}
         {progress && (
-          <div className="mt-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs relative z-10">
+          <div className="mt-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs relative z-10 pointer-events-none">
             <div className="flex items-center gap-1.5 font-semibold text-emerald-600 dark:text-emerald-400">
               {isCompleted ? (
                 <>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Clock, Award, Sparkles } from "lucide-react";
 import { TenseMetadata, TensesProgressMap, TenseGroup } from "@/types/tenses";
@@ -43,15 +43,16 @@ const TENSE_GROUPS: GroupConfig[] = [
   },
 ];
 
-export function TenseHubMap({ tenses }: TenseHubMapProps) {
-  const [progressMap, setProgressMap] = useState<TensesProgressMap>({});
-  const [mounted, setMounted] = useState(false);
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
-    setMounted(true);
-    const progress = getAllProgress();
-    setProgressMap(progress);
-  }, []);
+export function TenseHubMap({ tenses }: TenseHubMapProps) {
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
+  const progressMap: TensesProgressMap = isClient ? getAllProgress() : {};
 
   // Calculate statistics across 12 tenses
   const completedCount = Object.values(progressMap).filter((p) => p.completed).length;
@@ -69,7 +70,7 @@ export function TenseHubMap({ tenses }: TenseHubMapProps) {
             <span>Về trang chủ</span>
           </Link>
 
-          {mounted && completedCount > 0 && (
+          {isClient && completedCount > 0 && (
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold">
               <Award className="size-3.5" aria-hidden="true" />
               <span>Đã hoàn thành {completedCount}/12 thì</span>
@@ -141,7 +142,7 @@ export function TenseHubMap({ tenses }: TenseHubMapProps) {
                     <TenseCard
                       key={tense.id}
                       tense={tense}
-                      progress={mounted ? progressMap[tense.id] : null}
+                      progress={isClient ? progressMap[tense.id] : null}
                     />
                   ))}
                 </div>
