@@ -40,7 +40,7 @@ export interface UseGameTrackingReturn {
 }
 
 export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackingReturn {
-  const { session, isAnonymous } = useStudentSession()
+  const { session, isAnonymous, refreshProgress } = useStudentSession()
   const [details, setDetails] = useState<SessionDetailPayload[]>([])
   const detailsRef = useRef<SessionDetailPayload[]>([])
   const startedAtRef = useRef<string>(new Date().toISOString())
@@ -74,6 +74,8 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
     isSubmittingRef.current = false
   }, [])
 
+  const { gameType, topic, configId, totalQuestions: optionsTotalQuestions } = options
+
   const submitSession = useCallback(
     async (override?: SubmitSessionOptions): Promise<boolean> => {
       if (!isTracking || !session || isSubmittingRef.current) {
@@ -84,9 +86,9 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
 
       try {
         const finalDetails = override?.details || detailsRef.current
-        const finalGameType = override?.gameType || options.gameType
-        const finalTopic = override?.topic || options.topic || 'general'
-        const finalConfigId = override?.configId || options.configId
+        const finalGameType = override?.gameType || gameType
+        const finalTopic = override?.topic || topic || 'general'
+        const finalConfigId = override?.configId || configId
 
         let calculatedScore: number | undefined = undefined
         if (override?.score !== undefined) {
@@ -98,8 +100,8 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
         const calculatedTotalQuestions =
           override?.totalQuestions !== undefined
             ? override.totalQuestions
-            : options.totalQuestions !== undefined
-            ? options.totalQuestions
+            : optionsTotalQuestions !== undefined
+            ? optionsTotalQuestions
             : finalDetails.length
 
         const payload: TrackGamePayload = {
@@ -128,6 +130,13 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
           return false
         }
 
+        // Trigger progress refresh in StudentSessionContext so totalStars and Level Up celebration update immediately
+        try {
+          await refreshProgress()
+        } catch (refreshErr) {
+          console.warn('[useGameTracking] Error refreshing student progress:', refreshErr)
+        }
+
         return true
       } catch (err) {
         // Suppress visual errors to prevent gameplay disruption as specified in spec
@@ -137,7 +146,7 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
         isSubmittingRef.current = false
       }
     },
-    [isTracking, session, options]
+    [isTracking, session, gameType, topic, configId, optionsTotalQuestions, refreshProgress]
   )
 
   return useMemo(

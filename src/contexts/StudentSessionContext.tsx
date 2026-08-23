@@ -53,50 +53,13 @@ export interface StudentSessionContextValue {
   dismissCelebration: () => void
 }
 
-function getInitialState(): {
-  session: StudentSession | null
-  isAnonymous: boolean
-  isOpen: boolean
-} {
-  if (typeof window === 'undefined') {
-    return { session: null, isAnonymous: false, isOpen: false }
-  }
-
-  try {
-    const raw = window.sessionStorage.getItem(STUDENT_SESSION_KEY)
-    if (raw) {
-      const parsed: StoredStudentSession = JSON.parse(raw)
-      if (parsed.isAnonymous) {
-        return { session: null, isAnonymous: true, isOpen: false }
-      }
-      if (parsed.classCode && parsed.studentName) {
-        return {
-          session: {
-            classCode: parsed.classCode,
-            studentName: parsed.studentName,
-            className: parsed.className,
-            classId: parsed.classId,
-          },
-          isAnonymous: false,
-          isOpen: false,
-        }
-      }
-    }
-  } catch (e) {
-    console.warn('Failed to parse student session from sessionStorage:', e)
-  }
-
-  return { session: null, isAnonymous: false, isOpen: true }
-}
-
 const StudentSessionContext = createContext<StudentSessionContextValue | null>(null)
 
 export function StudentSessionProvider({ children }: { children: React.ReactNode }) {
-  const [initial] = useState(getInitialState)
-  const [session, setSession] = useState<StudentSession | null>(initial.session)
-  const [isAnonymous, setIsAnonymous] = useState<boolean>(initial.isAnonymous)
-  const [isLoaded] = useState<boolean>(() => typeof window !== 'undefined')
-  const [isOpen, setIsOpen] = useState<boolean>(initial.isOpen)
+  const [session, setSession] = useState<StudentSession | null>(null)
+  const [isAnonymous, setIsAnonymous] = useState<boolean>(false)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   // Gamification state
   const [totalStars, setTotalStars] = useState<number>(0)
@@ -108,6 +71,39 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
 
   const prevLevelRef = useRef<number>(1)
   const hasInitializedStarsRef = useRef<boolean>(false)
+  const fetchIdRef = useRef<number>(0)
+
+  // Hydrate session from sessionStorage on client mount
+  useEffect(() => {
+    try {
+      const raw = window.sessionStorage.getItem(STUDENT_SESSION_KEY)
+      if (raw) {
+        const parsed: StoredStudentSession = JSON.parse(raw)
+        if (parsed.isAnonymous) {
+          setIsAnonymous(true)
+          setIsOpen(false)
+        } else if (parsed.classCode && parsed.studentName) {
+          setSession({
+            classCode: parsed.classCode,
+            studentName: parsed.studentName,
+            className: parsed.className,
+            classId: parsed.classId,
+          })
+          setIsAnonymous(false)
+          setIsOpen(false)
+        } else {
+          setIsOpen(true)
+        }
+      } else {
+        setIsOpen(true)
+      }
+    } catch (e) {
+      console.warn('Failed to parse student session from sessionStorage:', e)
+      setIsOpen(true)
+    } finally {
+      setIsLoaded(true)
+    }
+  }, [])
 
   // Calculate current level info
   const levelInfo = useMemo(() => getLevelInfo(totalStars), [totalStars])
@@ -115,7 +111,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
   // Auto-fetch progress whenever session credentials change
   useEffect(() => {
     if (session?.classCode && session?.studentName) {
-      let isCancelled = false
+      const fetchId = ++fetchIdRef.current
       hasInitializedStarsRef.current = false
 
       getStudentProgress({
@@ -123,7 +119,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
         studentName: session.studentName,
       })
         .then((res) => {
-          if (isCancelled) return
+          if (fetchId !== fetchIdRef.current) return
           if (res && res.success && typeof res.totalStars === 'number') {
             const newStars = res.totalStars
             const newLevelProgress = getLevelInfo(newStars)
@@ -140,13 +136,15 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
           }
         })
         .catch((err) => {
+          if (fetchId !== fetchIdRef.current) return
           console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
         })
 
       return () => {
-        isCancelled = true
+        fetchIdRef.current++
       }
     } else {
+      fetchIdRef.current++
       queueMicrotask(() => {
         setTotalStars(0)
         prevLevelRef.current = 1
@@ -163,6 +161,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
     }
 
     const currentSession = session
+    const fetchId = ++fetchIdRef.current
 
     try {
       setIsLoadingStars(true)
@@ -170,6 +169,10 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
         classCode: session.classCode,
         studentName: session.studentName,
       })
+
+      if (fetchId !== fetchIdRef.current) {
+        return
+      }
 
       if (currentSession.classCode !== session.classCode || currentSession.studentName !== session.studentName) {
         return
@@ -190,9 +193,13 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
         setTotalStars(newStars)
       }
     } catch (err) {
-      console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
+      if (fetchId === fetchIdRef.current) {
+        console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
+      }
     } finally {
-      setIsLoadingStars(false)
+      if (fetchId === fetchIdRef.current) {
+        setIsLoadingStars(false)
+      }
     }
   }, [session])
 
@@ -219,6 +226,9 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
     setIsAnonymous(true)
     setIsOpen(false)
     setTotalStars(0)
+    prevLevelRef.current = 1
+    hasInitializedStarsRef.current = false
+    setCelebration({ show: false, level: null })
 
     try {
       if (typeof window !== 'undefined') {
@@ -238,6 +248,8 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
     setIsOpen(true)
     setTotalStars(0)
     prevLevelRef.current = 1
+    hasInitializedStarsRef.current = false
+    setCelebration({ show: false, level: null })
 
     try {
       if (typeof window !== 'undefined') {

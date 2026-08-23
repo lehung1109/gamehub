@@ -107,7 +107,7 @@ describe('StudentSessionContext Gamification & Progress', () => {
     expect(result.current.celebration.show).toBe(false)
   })
 
-  it('resets totalStars to 0 when clearSession is called', async () => {
+  it('resets totalStars and celebration to default when clearSession is called', async () => {
     vi.mocked(studentProgressAction.getStudentProgress).mockResolvedValue({
       success: true,
       totalStars: 80,
@@ -132,5 +132,36 @@ describe('StudentSessionContext Gamification & Progress', () => {
 
     expect(result.current.totalStars).toBe(0)
     expect(result.current.levelInfo.currentLevel.level).toBe(1)
+    expect(result.current.celebration.show).toBe(false)
+    expect(result.current.celebration.level).toBeNull()
+  })
+
+  it('resets totalStars and celebration to default when skip is called', async () => {
+    vi.mocked(studentProgressAction.getStudentProgress).mockResolvedValue({
+      success: true,
+      totalStars: 80,
+    })
+
+    const { result } = renderHook(() => useStudentSession(), { wrapper })
+
+    await act(async () => {
+      result.current.joinClass({
+        classCode: 'ABC123',
+        studentName: 'Bé An',
+      })
+    })
+
+    await waitFor(() => {
+      expect(result.current.totalStars).toBe(80)
+    })
+
+    act(() => {
+      result.current.skip()
+    })
+
+    expect(result.current.totalStars).toBe(0)
+    expect(result.current.levelInfo.currentLevel.level).toBe(1)
+    expect(result.current.celebration.show).toBe(false)
+    expect(result.current.celebration.level).toBeNull()
   })
 })

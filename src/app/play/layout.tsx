@@ -5,6 +5,7 @@ import { StudentSessionProvider } from '@/hooks/use-student-session'
 import { StudentJoinPopup } from '@/components/student/StudentJoinPopup'
 import { StudentBadge } from '@/components/student/StudentBadge'
 import { StudentProfileBadge } from '@/components/StudentProfileBadge'
+import { LevelUpCelebrationDialog } from '@/components/student/LevelUpCelebrationDialog'
 
 export default function PlayLayout({
   children,
@@ -20,6 +21,7 @@ export default function PlayLayout({
         </div>
         {children}
         <StudentJoinPopup />
+        <LevelUpCelebrationDialog />
       </div>
     </StudentSessionProvider>
   )

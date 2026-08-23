@@ -93,6 +93,7 @@ export function FlashcardStack({
     } else {
       setIsCompleted(true);
       submitSession({
+        score: 5,
         totalQuestions: total,
         topic: topicId || topicTitle || "general",
       });

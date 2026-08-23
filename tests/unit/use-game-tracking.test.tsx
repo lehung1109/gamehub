@@ -313,4 +313,38 @@ describe('useGameTracking Hook', () => {
 
     expect(result.current.details).toHaveLength(0)
   })
+
+  it('triggers progress refresh in StudentSessionContext upon successful submit', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-success' }),
+    })
+    global.fetch = mockFetch
+
+    const studentProgressAction = await import('@/app/actions/student-progress')
+    const getProgressSpy = vi.spyOn(studentProgressAction, 'getStudentProgress')
+    getProgressSpy.mockResolvedValue({
+      success: true,
+      totalStars: 50,
+    })
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'flashcard', topic: 'animals' }),
+      {
+        wrapper: createWrapper({
+          classCode: 'ABC123',
+          studentName: 'Bé Linh',
+        }),
+      }
+    )
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 5, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(true)
+    expect(getProgressSpy).toHaveBeenCalled()
+  })
 })

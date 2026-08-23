@@ -63,10 +63,10 @@ description: "Task list for feature implementation: Student Rewards & Leveling"
 
 ### Implementation for User Story 2
 
-- [ ] T009 [P] [US2] Update `src/app/api/track/route.ts` to support fixed default scores for non-scoring games
-- [ ] T010 [P] [US2] Update non-scoring game components to pass `score: 5` to the tracking API
-- [ ] T011 [US2] Add level-up detection and celebration UI state in `src/contexts/StudentSessionContext.tsx`
-- [ ] T012 [US2] Update game completion flow to trigger progress refresh and level-up celebration in `src/contexts/StudentSessionContext.tsx`
+- [x] T009 [P] [US2] Update `src/app/api/track/route.ts` to support fixed default scores for non-scoring games
+- [x] T010 [P] [US2] Update non-scoring game components to pass `score: 5` to the tracking API
+- [x] T011 [US2] Add level-up detection and celebration UI state in `src/contexts/StudentSessionContext.tsx`
+- [x] T012 [US2] Update game completion flow to trigger progress refresh and level-up celebration in `src/contexts/StudentSessionContext.tsx`
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -91,7 +91,7 @@ description: "Task list for feature implementation: Student Rewards & Leveling"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T015 [P] Implement E2E tests for gamification flow in `tests/e2e/student-rewards.spec.ts`
+- [x] T015 [P] Implement E2E tests for gamification flow in `tests/e2e/student-rewards.spec.ts`
 
 ---
 

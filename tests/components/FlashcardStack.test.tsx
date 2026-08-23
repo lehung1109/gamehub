@@ -200,4 +200,38 @@ describe("FlashcardStack", () => {
       screen.getByText(/chưa có từ vựng nào/i)
     ).toBeInTheDocument();
   });
+
+  it('submits game session with fixed score of 5 on completion', async () => {
+    const gameTrackingHook = await import('@/hooks/use-game-tracking')
+    const mockSubmitSession = vi.fn().mockResolvedValue(true)
+    const mockRecordQuestion = vi.fn()
+    const mockResetSession = vi.fn()
+
+    vi.spyOn(gameTrackingHook, 'useGameTracking').mockReturnValue({
+      isTracking: true,
+      isAnonymous: false,
+      session: { classCode: 'ABC123', studentName: 'Bé Linh' },
+      details: [],
+      recordQuestion: mockRecordQuestion,
+      submitSession: mockSubmitSession,
+      resetSession: mockResetSession,
+    })
+
+    render(<FlashcardStack words={mockWords} topicId="animals" topicTitle="Động vật" />)
+
+    const nextButton = () => screen.getByRole('button', { name: /tiếp/i })
+    fireEvent.click(nextButton())
+    fireEvent.click(nextButton())
+
+    const finishButton = screen.getByRole('button', { name: /hoàn thành/i })
+    fireEvent.click(finishButton)
+
+    expect(mockSubmitSession).toHaveBeenCalledWith(
+      expect.objectContaining({
+        score: 5,
+        totalQuestions: 3,
+        topic: 'animals',
+      })
+    )
+  })
 });

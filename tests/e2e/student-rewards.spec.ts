@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Student Rewards - Phase 3 (Profile Badge)', () => {
+test.describe('Student Rewards & Gamification (Phase 3 & Phase 4)', () => {
   const classCode = 'TEST123';
   const studentName = 'Bé Bắp';
 
   test('US1: displays student profile badge with emoji, level, and stars in navbar', async ({
     page,
   }) => {
-    // Pre-populate sessionStorage with a student session
+    // Mock getStudentProgress action response if called
     await page.addInitScript(
       (data) => {
         window.sessionStorage.setItem('gamehub_student_session', JSON.stringify(data));
@@ -41,7 +41,6 @@ test.describe('Student Rewards - Phase 3 (Profile Badge)', () => {
   });
 
   test('US1: does not display profile badge when playing anonymously', async ({ page }) => {
-    // Pre-populate sessionStorage with anonymous session
     await page.addInitScript(() => {
       window.sessionStorage.setItem(
         'gamehub_student_session',
@@ -51,8 +50,116 @@ test.describe('Student Rewards - Phase 3 (Profile Badge)', () => {
 
     await page.goto('/games/listening');
 
-    // Ensure student-profile-badge is not present
     const badge = page.getByTestId('student-profile-badge');
     await expect(badge).not.toBeVisible();
+  });
+
+  test('US2: completes non-scoring flashcard deck and submits fixed 5 stars score', async ({
+    page,
+  }) => {
+    await page.addInitScript(
+      (data) => {
+        window.sessionStorage.setItem('gamehub_student_session', JSON.stringify(data));
+      },
+      {
+        classCode: classCode,
+        studentName: studentName,
+      }
+    );
+
+    // Intercept tracking API call
+    let trackPayload: any = null;
+    await page.route('/api/track', async (route) => {
+      const request = route.request();
+      if (request.method() === 'POST') {
+        trackPayload = JSON.parse(request.postData() || '{}');
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ success: true, sessionId: 'mock-session-fc' }),
+        });
+      } else {
+        await route.continue();
+      }
+    });
+
+    await page.goto('/games/flashcard/fruits');
+
+    // Cycle through all flashcards
+    while (true) {
+      const nextBtn = page.getByRole('button', { name: 'Tiếp' });
+      const finishBtn = page.getByRole('button', { name: 'Hoàn thành' });
+
+      if (await finishBtn.isVisible()) {
+        await finishBtn.click();
+        break;
+      } else if (await nextBtn.isVisible()) {
+        await nextBtn.click();
+      } else {
+        break;
+      }
+    }
+
+    // Completion message visible
+    await expect(page.getByRole('heading', { name: /Xuất sắc!/i })).toBeVisible();
+
+    // Verify track payload contained fixed score of 5 for flashcards
+    expect(trackPayload).not.toBeNull();
+    expect(trackPayload.score).toBe(5);
+    expect(trackPayload.gameType).toBe('flashcard');
+    expect(trackPayload.studentName).toBe(studentName);
+    expect(trackPayload.classCode).toBe(classCode);
+  });
+
+  test('US2: displays level-up celebration dialog when student reaches next level', async ({
+    page,
+  }) => {
+    await page.addInitScript(
+      (data) => {
+        window.sessionStorage.setItem('gamehub_student_session', JSON.stringify(data));
+      },
+      {
+        classCode: classCode,
+        studentName: studentName,
+      }
+    );
+
+    // Route track request to succeed
+    await page.route('/api/track', async (route) => {
+      const request = route.request();
+      if (request.method() === 'POST') {
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ success: true, sessionId: 'mock-session-levelup' }),
+        });
+      } else {
+        await route.continue();
+      }
+    });
+
+    await page.goto('/games/flashcard/animals');
+
+    const celebrationDialog = page.getByTestId('level-up-dialog');
+    // Initially not visible
+    await expect(celebrationDialog).not.toBeVisible();
+
+    // Complete cards
+    while (true) {
+      const nextBtn = page.getByRole('button', { name: 'Tiếp' });
+      const finishBtn = page.getByRole('button', { name: 'Hoàn thành' });
+
+      if (await finishBtn.isVisible()) {
+        await finishBtn.click();
+        break;
+      } else if (await nextBtn.isVisible()) {
+        await nextBtn.click();
+      } else {
+        break;
+      }
+    }
+
+    // Completion message visible
+    await expect(page.getByRole('heading', { name: /Xuất sắc!/i })).toBeVisible();
   });
 });

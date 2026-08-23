@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useStudentSession } from '@/contexts/StudentSessionContext'
+import { useStudentSession } from '@/hooks/use-student-session'
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -56,7 +56,14 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
 
         {/* Progress Bar towards Next Level */}
         {nextLevel ? (
-          <div className="w-20 sm:w-24 h-1.5 bg-amber-200/80 rounded-full overflow-hidden mt-1">
+          <div
+            role="progressbar"
+            aria-valuenow={progressToNext}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`Tiến trình lên ${nextLevel.title}: ${progressToNext}%`}
+            className="w-20 sm:w-24 h-1.5 bg-amber-200/80 rounded-full overflow-hidden mt-1"
+          >
             <div
               className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-500"
               style={{ width: `${progressToNext}%` }}
