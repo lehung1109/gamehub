@@ -88,6 +88,10 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
             setIsAnonymous(true)
             setSession(null)
             setIsOpen(false)
+            setTotalStars(0)
+            setIsLoadingStars(false)
+            prevLevelRef.current = 1
+            hasInitializedStarsRef.current = false
           } else if (parsed.classCode && parsed.studentName) {
             setSession({
               classCode: parsed.classCode,
@@ -98,16 +102,32 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
             setIsAnonymous(false)
             setIsOpen(false)
           } else {
+            setSession(null)
+            setIsAnonymous(false)
             setIsOpen(true)
+            setTotalStars(0)
+            setIsLoadingStars(false)
+            prevLevelRef.current = 1
+            hasInitializedStarsRef.current = false
           }
         } catch (e) {
           console.warn('Failed to parse student session from storage:', e)
+          setSession(null)
+          setIsAnonymous(false)
           setIsOpen(true)
+          setTotalStars(0)
+          setIsLoadingStars(false)
+          prevLevelRef.current = 1
+          hasInitializedStarsRef.current = false
         }
       } else {
         setSession(null)
         setIsAnonymous(false)
         setIsOpen(true)
+        setTotalStars(0)
+        setIsLoadingStars(false)
+        prevLevelRef.current = 1
+        hasInitializedStarsRef.current = false
       }
     }
 
@@ -145,49 +165,43 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
   useEffect(() => {
     let isCancelled = false
 
-    if (session?.classCode && session?.studentName) {
-      hasInitializedStarsRef.current = false
-      setIsLoadingStars(true)
+    if (!session?.classCode || !session?.studentName) {
+      return
+    }
 
-      getStudentProgress({
-        classCode: session.classCode,
-        studentName: session.studentName,
+    getStudentProgress({
+      classCode: session.classCode,
+      studentName: session.studentName,
+    })
+      .then((res) => {
+        if (isCancelled) return
+        if (res && res.success && typeof res.totalStars === 'number') {
+          const newStars = res.totalStars
+          const newLevelProgress = getLevelInfo(newStars)
+
+          if (hasInitializedStarsRef.current && newLevelProgress.currentLevel.level > prevLevelRef.current) {
+            setCelebration({
+              show: true,
+              level: newLevelProgress.currentLevel,
+            })
+          }
+          prevLevelRef.current = newLevelProgress.currentLevel.level
+          hasInitializedStarsRef.current = true
+          setTotalStars(newStars)
+        }
       })
-        .then((res) => {
-          if (isCancelled) return
-          if (res && res.success && typeof res.totalStars === 'number') {
-            const newStars = res.totalStars
-            const newLevelProgress = getLevelInfo(newStars)
+      .catch((err) => {
+        if (isCancelled) return
+        console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setIsLoadingStars(false)
+        }
+      })
 
-            if (hasInitializedStarsRef.current && newLevelProgress.currentLevel.level > prevLevelRef.current) {
-              setCelebration({
-                show: true,
-                level: newLevelProgress.currentLevel,
-              })
-            }
-            prevLevelRef.current = newLevelProgress.currentLevel.level
-            hasInitializedStarsRef.current = true
-            setTotalStars(newStars)
-          }
-        })
-        .catch((err) => {
-          if (isCancelled) return
-          console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
-        })
-        .finally(() => {
-          if (!isCancelled) {
-            setIsLoadingStars(false)
-          }
-        })
-
-      return () => {
-        isCancelled = true
-      }
-    } else {
-      setTotalStars(0)
-      setIsLoadingStars(false)
-      prevLevelRef.current = 1
-      hasInitializedStarsRef.current = false
+    return () => {
+      isCancelled = true
     }
   }, [session?.classCode, session?.studentName])
 
@@ -249,6 +263,8 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
     setSession(sessionData)
     setIsAnonymous(false)
     setIsOpen(false)
+    hasInitializedStarsRef.current = false
+    setIsLoadingStars(true)
 
     try {
       if (typeof window !== 'undefined') {

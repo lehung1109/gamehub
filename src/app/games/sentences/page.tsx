@@ -98,7 +98,7 @@ function SentencesGameContent() {
   const [dismissUnsupported, setDismissUnsupported] = useState(false);
 
   const { speak, cancel, isSupported } = useSpeech();
-  const sentenceStartTimeRef = React.useRef<number>(Date.now());
+  const sentenceStartTimeRef = React.useRef<number>(0);
   const attemptsRef = React.useRef<number>(1);
   const totalTimeTakenRef = React.useRef<number>(0);
 

@@ -85,7 +85,7 @@ export function QuizEngine<T = unknown>({
   });
   const [isCompleted, setIsCompleted] = useState(false);
   const isSelectingRef = useRef(false);
-  const questionStartTimeRef = useRef<number>(Date.now());
+  const questionStartTimeRef = useRef<number>(0);
 
   const hasQuestions = questions && questions.length > 0;
   const currentQuestion = hasQuestions ? questions[currentIndex] : undefined;
@@ -112,50 +112,64 @@ export function QuizEngine<T = unknown>({
 
   const progressPercentage = ((currentIndex + 1) / questions.length) * 100;
 
-  const handleSelectOption = (index: number) => {
-    if (selectedOption !== null || feedback.open || isCompleted || isSelectingRef.current) return;
-    isSelectingRef.current = true;
+  const handleSelectOption = React.useCallback(
+    (index: number) => {
+      if (
+        selectedOption !== null ||
+        feedback.open ||
+        isCompleted ||
+        isSelectingRef.current ||
+        !currentQuestion
+      ) {
+        return;
+      }
+      isSelectingRef.current = true;
 
-    const timeTakenMs = Math.max(0, Date.now() - questionStartTimeRef.current);
-    setSelectedOption(index);
-    const isCorrect = index === currentQuestion.correctIndex;
-    const nextScore = isCorrect ? score + 1 : score;
+      const timeTakenMs =
+        questionStartTimeRef.current > 0
+          ? Math.max(0, Date.now() - questionStartTimeRef.current)
+          : 0;
+      setSelectedOption(index);
+      const isCorrect = index === currentQuestion.correctIndex;
+      const nextScore = isCorrect ? score + 1 : score;
 
-    const correctAnswer =
-      currentQuestion.correctAnswerText ||
-      extractOptionText(currentQuestion.options[currentQuestion.correctIndex]);
+      const correctAnswer =
+        currentQuestion.correctAnswerText ||
+        extractOptionText(currentQuestion.options[currentQuestion.correctIndex]);
 
-    const selectedAnswerText = extractOptionText(currentQuestion.options[index]);
-    const promptText =
-      extractOptionText(currentQuestion.prompt) ||
-      correctAnswer ||
-      `Question ${currentIndex + 1}`;
+      const selectedAnswerText = extractOptionText(currentQuestion.options[index]);
+      const promptText =
+        extractOptionText(currentQuestion.prompt) ||
+        correctAnswer ||
+        `Question ${currentIndex + 1}`;
 
-    if (onAnswer) {
-      onAnswer({
-        question: currentQuestion,
-        promptText,
-        selectedAnswerText,
-        correctAnswerText: correctAnswer,
-        isCorrect,
-        timeTakenMs,
-      });
-    }
+      if (onAnswer) {
+        onAnswer({
+          question: currentQuestion,
+          promptText,
+          selectedAnswerText,
+          correctAnswerText: correctAnswer,
+          isCorrect,
+          timeTakenMs,
+        });
+      }
 
-    if (isCorrect) {
-      setScore(nextScore);
-      setFeedback({
-        open: true,
-        type: "correct",
-      });
-    } else {
-      setFeedback({
-        open: true,
-        type: "wrong",
-        correctAnswer,
-      });
-    }
-  };
+      if (isCorrect) {
+        setScore(nextScore);
+        setFeedback({
+          open: true,
+          type: "correct",
+        });
+      } else {
+        setFeedback({
+          open: true,
+          type: "wrong",
+          correctAnswer,
+        });
+      }
+    },
+    [selectedOption, feedback.open, isCompleted, currentQuestion, currentIndex, onAnswer, score]
+  );
 
   const handleContinue = () => {
     if (!feedback.open && selectedOption === null) return;
