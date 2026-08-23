@@ -121,18 +121,53 @@ describe("TenseLessonContainer component", () => {
     expect(screen.getByText(/câu 1 \/ 8/i)).toBeInTheDocument();
   });
 
-  it("shows coming soon placeholder for Stage 2 & Stage 3", () => {
-    render(<TenseLessonContainer lessonData={mockLessonData} />);
+  it("allows entering Stage 2 (ErrorHunterStage) and persisting progress", () => {
+    const saveSpy = vi.spyOn(storageHelper, "saveStageProgress");
+
+    const singleItemData: TenseModuleData = {
+      ...mockLessonData,
+      challenges: {
+        ...mockLessonData.challenges,
+        errorHunting: [mockLessonData.challenges.errorHunting[0]],
+      },
+    };
+
+    render(<TenseLessonContainer lessonData={singleItemData} />);
 
     fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
 
     // Click "Vào Chặng 2"
     fireEvent.click(screen.getByRole("button", { name: /vào chặng 2/i }));
 
+    // ErrorHunter stage is active
+    expect(screen.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ 1/i)).toBeInTheDocument();
+
+    // Select error token and replacement
+    fireEvent.click(screen.getByRole("button", { name: "don't" }));
+    fireEvent.click(screen.getByRole("button", { name: "doesn't" }));
+    fireEvent.click(screen.getByRole("button", { name: /xác nhận sửa lỗi|kiểm tra/i }));
+
+    // Complete stage
+    const finishBtn = screen.getByRole("button", { name: /xem kết quả|hoàn thành/i });
+    fireEvent.click(finishBtn);
+
+    expect(saveSpy).toHaveBeenCalledWith("present-simple", "errorHunting", 1, 1);
+    expect(screen.getByRole("button", { name: /vào chặng 2/i })).toBeInTheDocument();
+  });
+
+  it("shows coming soon placeholder for Stage 3 (Sentence Builder)", () => {
+    render(<TenseLessonContainer lessonData={mockLessonData} />);
+
+    fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
+
+    // Click "Vào Chặng 3"
+    fireEvent.click(screen.getByRole("button", { name: /vào chặng 3/i }));
+
     expect(screen.getByText(/chặng này đang được hoàn thiện/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /quay lại danh sách chặng/i })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: /quay lại danh sách chặng/i }));
-    expect(screen.getByRole("button", { name: /vào chặng 2/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /vào chặng 3/i })).toBeInTheDocument();
   });
 });

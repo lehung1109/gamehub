@@ -178,7 +178,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await textInput.press("Enter");
 
     await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
-    await expect(page.getByText(/Ms\. Lan/i)).toBeVisible();
+    await expect(page.getByText("Ms. Lan", { exact: true }).first()).toBeVisible();
 
     // 10. Test Incorrect Answer feedback on Q3
     await page.getByRole("button", { name: /câu tiếp theo/i }).click();
@@ -190,7 +190,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
 
     await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
     await expect(page.getByText(/đáp án đúng:/i)).toBeVisible();
-    await expect(page.getByText(/does not send/i)).toBeVisible();
+    await expect(page.getByText(/does not send/i).first()).toBeVisible();
 
     // 11. Loop through remaining questions (Q4 to Q8)
     const answers = [
@@ -229,5 +229,116 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     expect(progressInStorage).not.toBeNull();
     expect(progressInStorage).toContain('"conjugation"');
     expect(progressInStorage).toContain('"present-simple"');
+  });
+
+  test("US4: completes Stage 2 (Error Hunter) with token clicking, non-error hints, replacement selection, workplace impact feedback, and storage saving", async ({
+    page,
+  }) => {
+    // 1. Navigate to /tenses/present-simple
+    await page.goto("/tenses/present-simple");
+
+    // 2. Go to Practice tab
+    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await practiceTab.click();
+
+    // 3. Enter Stage 2
+    const enterStage2Btn = page.getByRole("button", { name: /vào chặng 2/i });
+    await expect(enterStage2Btn).toBeVisible();
+    await enterStage2Btn.click();
+
+    // 4. Verify Stage 2 UI & Q1
+    await expect(page.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeVisible();
+    await expect(page.getByText(/câu 1 \/ 6/i)).toBeVisible();
+    await expect(page.getByText(/Trao đổi ý kiến về đề xuất của khách hàng/i)).toBeVisible();
+    await expect(page.getByText(/Cô ấy không đồng ý với đề xuất mới của khách hàng/i)).toBeVisible();
+
+    // 5. Click a non-error token ("She") -> verify helper notice (Acceptance Scenario 4)
+    const tokenShe = page.getByRole("button", { name: "She", exact: true });
+    await expect(tokenShe).toBeVisible();
+    await tokenShe.click();
+    await expect(
+      page.getByText(/vị trí này không có lỗi|từ "she" đã đúng ngữ pháp/i)
+    ).toBeVisible();
+
+    // Submit button is disabled because no error token / replacement chosen
+    const submitBtn = page.getByRole("button", { name: /xác nhận sửa lỗi/i });
+    await expect(submitBtn).toBeDisabled();
+
+    // 6. Click the error token ("don't") -> verify step 2 options appear
+    const tokenDont = page.getByRole("button", { name: "don't", exact: true });
+    await expect(tokenDont).toBeVisible();
+    await tokenDont.click();
+
+    await expect(page.getByText(/chọn phương án sửa đúng/i)).toBeVisible();
+    const optDoesnt = page.getByRole("button", { name: "doesn't", exact: true });
+    await expect(optDoesnt).toBeVisible();
+    await optDoesnt.click();
+
+    await expect(submitBtn).toBeEnabled();
+    await submitBtn.click();
+
+    // 7. Verify positive feedback, full correct sentence, explanations, and audio button
+    await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    await expect(page.getByText(/Phân tích lỗi sai:/i)).toBeVisible();
+    await expect(page.getByText(/Tác động công sở:/i)).toBeVisible();
+    await expect(page.getByText("She doesn't agree with the client's new proposal.")).toBeVisible();
+
+    const audioBtn = page.getByRole("button", { name: /nghe phát âm câu chuẩn/i });
+    await expect(audioBtn).toBeVisible();
+    await audioBtn.click();
+
+    // 8. Next to Q2
+    const nextBtn = page.getByRole("button", { name: /câu tiếp theo/i });
+    await expect(nextBtn).toBeVisible();
+    await nextBtn.click();
+
+    // 9. Q2: CEO always attend -> "attends"
+    await expect(page.getByText(/câu 2 \/ 6/i)).toBeVisible();
+    await page.getByRole("button", { name: "attend", exact: true }).click();
+    await page.getByRole("button", { name: "attends", exact: true }).click();
+    await page.getByRole("button", { name: /xác nhận sửa lỗi/i }).click();
+    await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+
+    // 10. Q3: Test incorrect replacement choice (Error token "provide", choose "is provide")
+    await page.getByRole("button", { name: /câu tiếp theo/i }).click();
+    await expect(page.getByText(/câu 3 \/ 6/i)).toBeVisible();
+    await page.getByRole("button", { name: "provide", exact: true }).click();
+    await page.getByRole("button", { name: "is provide", exact: true }).click();
+    await page.getByRole("button", { name: /xác nhận sửa lỗi/i }).click();
+
+    await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
+    await expect(page.getByText(/sửa đúng là:/i)).toBeVisible();
+    await expect(page.getByText(/provides/i).first()).toBeVisible();
+
+    // 11. Loop through remaining questions Q4 to Q6
+    const errorStages = [
+      { errorToken: "do", correctReplacement: "does" },       // Q4
+      { errorToken: "teach", correctReplacement: "teaches" }, // Q5
+      { errorToken: "make", correctReplacement: "makes" },    // Q6
+    ];
+
+    for (let i = 0; i < errorStages.length; i++) {
+      await page.getByRole("button", { name: /câu tiếp theo/i }).click();
+      const { errorToken, correctReplacement } = errorStages[i];
+      await page.getByRole("button", { name: errorToken, exact: true }).click();
+      await page.getByRole("button", { name: correctReplacement, exact: true }).click();
+      await page.getByRole("button", { name: /xác nhận sửa lỗi/i }).click();
+      await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    }
+
+    // 12. Finish Stage 2 on last question
+    const finishStage2Btn = page.getByRole("button", { name: /xem kết quả chặng 2|hoàn thành/i });
+    await expect(finishStage2Btn).toBeVisible();
+    await finishStage2Btn.click();
+
+    // 13. Verify return to stage list
+    await expect(page.getByRole("button", { name: /vào chặng 2/i })).toBeVisible();
+
+    // 14. Verify LocalStorage has errorHunting progress saved
+    const progressInStorage = await page.evaluate(() => {
+      return localStorage.getItem("gamehub_tense_progress_v1");
+    });
+    expect(progressInStorage).not.toBeNull();
+    expect(progressInStorage).toContain('"errorHunting"');
   });
 });

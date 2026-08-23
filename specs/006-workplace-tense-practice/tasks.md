@@ -101,9 +101,9 @@
 
 ### Implementation for User Story 4
 
-- [ ] T023 [P] [US4] Implement `ErrorHunterStage` (Stage 2) with interactive token chips, target error selection, replacement dropdown/popover, and workplace impact explanations in `src/components/tenses/stages/ErrorHunterStage.tsx`
-- [ ] T024 [P] [US4] Create unit tests for `ErrorHunterStage` proofreading interactions in `tests/unit/tenses/ErrorHunterStage.test.tsx`
-- [ ] T025 [US4] Wire `ErrorHunterStage` into `TenseLessonContainer` practice flow in `src/components/tenses/TenseLessonContainer.tsx`
+- [X] T023 [P] [US4] Implement `ErrorHunterStage` (Stage 2) with interactive token chips, target error selection, replacement dropdown/popover, and workplace impact explanations in `src/components/tenses/stages/ErrorHunterStage.tsx`
+- [X] T024 [P] [US4] Create unit tests for `ErrorHunterStage` proofreading interactions in `tests/unit/tenses/ErrorHunterStage.test.tsx`
+- [X] T025 [US4] Wire `ErrorHunterStage` into `TenseLessonContainer` practice flow in `src/components/tenses/TenseLessonContainer.tsx`
 
 **Checkpoint**: At this point, User Stories 1, 2, 3, and 4 should all work independently.
 

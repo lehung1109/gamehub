@@ -12,16 +12,13 @@ import {
   ArrowRight,
   ArrowLeft,
   Volume2,
-  VolumeX,
-  Sparkles,
   Lightbulb,
   Check,
-  Send,
   HelpCircle,
 } from "lucide-react";
 import { ConjugationItem, WorkplaceContextType } from "@/types/tenses";
 import { isConjugationAnswerCorrect, normalizeAnswer } from "@/lib/tenses/validation";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";

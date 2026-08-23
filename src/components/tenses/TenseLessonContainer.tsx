@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useRef, KeyboardEvent } from "react";
-import { BookOpen, Sparkles, ArrowRight, Play, ArrowLeft, CheckCircle2, HelpCircle } from "lucide-react";
+import { BookOpen, Sparkles, Play, ArrowLeft, HelpCircle } from "lucide-react";
 import { TenseModuleData, StageType } from "@/types/tenses";
 import { LessonHeader } from "@/components/tenses/LessonHeader";
 import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { ConjugationStage } from "@/components/tenses/stages/ConjugationStage";
+import { ErrorHunterStage } from "@/components/tenses/stages/ErrorHunterStage";
 import { saveStageProgress } from "@/lib/tenses/storage";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -159,6 +160,12 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
               <ConjugationStage
                 items={challenges.conjugation}
                 onStageComplete={(score, total) => handleStageComplete("conjugation", score, total)}
+                onBack={() => setCurrentStage(null)}
+              />
+            ) : currentStage === "errorHunting" ? (
+              <ErrorHunterStage
+                items={challenges.errorHunting}
+                onStageComplete={(score, total) => handleStageComplete("errorHunting", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
             ) : currentStage && selectedStageMeta ? (
