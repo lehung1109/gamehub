@@ -5,6 +5,13 @@ import { renderHook, act } from '@testing-library/react'
 import { useGameTracking } from '@/hooks/use-game-tracking'
 import { StudentSessionProvider, STUDENT_SESSION_KEY } from '@/hooks/use-student-session'
 
+vi.mock('@/app/actions/student-progress', () => ({
+  getStudentProgress: vi.fn().mockResolvedValue({
+    success: true,
+    totalStars: 0,
+  }),
+}))
+
 describe('useGameTracking Hook', () => {
   const originalFetch = global.fetch
 

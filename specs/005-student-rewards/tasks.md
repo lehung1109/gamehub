@@ -20,8 +20,8 @@ description: "Task list for feature implementation: Student Rewards & Leveling"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create level system configuration mapping total stars to levels in `src/lib/levels.ts`
-- [ ] T002 [P] Create unit tests for level calculations in `tests/unit/lib/levels.test.ts`
+- [x] T001 Create level system configuration mapping total stars to levels in `src/lib/levels.ts`
+- [x] T002 [P] Create unit tests for level calculations in `tests/unit/lib/levels.test.ts`
 
 ---
 
@@ -31,9 +31,9 @@ description: "Task list for feature implementation: Student Rewards & Leveling"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T003 Implement `getStudentProgress` Server Action in `src/app/actions/student-progress.ts`
-- [ ] T004 [P] Create unit tests for server action in `tests/unit/actions/student-progress.test.ts`
-- [ ] T005 Implement base `StudentSessionContext` provider in `src/contexts/StudentSessionContext.tsx`
+- [x] T003 Implement `getStudentProgress` Server Action in `src/app/actions/student-progress.ts`
+- [x] T004 [P] Create unit tests for server action in `tests/unit/actions/student-progress.test.ts`
+- [x] T005 Implement base `StudentSessionContext` provider in `src/contexts/StudentSessionContext.tsx`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

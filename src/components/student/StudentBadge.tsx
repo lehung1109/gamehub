@@ -3,7 +3,7 @@
 import React from 'react'
 import { useStudentSession } from '@/hooks/use-student-session'
 import { Button } from '@/components/ui/button'
-import { GraduationCap, User, Edit3, Sparkles } from 'lucide-react'
+import { GraduationCap, User, Edit3 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface StudentBadgeProps {
