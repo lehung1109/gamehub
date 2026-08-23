@@ -5,6 +5,8 @@ import { CreateClassForm } from '@/components/class/CreateClassForm'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { AlertCircle, School } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Quản lý lớp học | GameHub Admin',
 }

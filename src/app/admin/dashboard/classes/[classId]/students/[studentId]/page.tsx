@@ -6,6 +6,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { AlertCircle, ArrowLeft } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Chi tiết Tiến trình Học sinh | GameHub Admin',
 }

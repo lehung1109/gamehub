@@ -10,6 +10,8 @@ import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Plus, Settings, Gamepad2, Sparkles, Layers } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminDashboardPage() {
   const supabase = await createClient()
   const {
