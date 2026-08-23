@@ -156,18 +156,39 @@ describe("TenseLessonContainer component", () => {
     expect(screen.getByRole("button", { name: /vào chặng 2/i })).toBeInTheDocument();
   });
 
-  it("shows coming soon placeholder for Stage 3 (Sentence Builder)", () => {
-    render(<TenseLessonContainer lessonData={mockLessonData} />);
+  it("allows entering Stage 3 (SentenceBuilderStage) and persisting progress", () => {
+    const saveSpy = vi.spyOn(storageHelper, "saveStageProgress");
+
+    const singleItemData: TenseModuleData = {
+      ...mockLessonData,
+      challenges: {
+        ...mockLessonData.challenges,
+        sentenceBuilding: [mockLessonData.challenges.sentenceBuilding[0]],
+      },
+    };
+
+    render(<TenseLessonContainer lessonData={singleItemData} />);
 
     fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
 
     // Click "Vào Chặng 3"
     fireEvent.click(screen.getByRole("button", { name: /vào chặng 3/i }));
 
-    expect(screen.getByText(/chặng này đang được hoàn thiện/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /quay lại danh sách chặng/i })).toBeInTheDocument();
+    // SentenceBuilder stage is active
+    expect(screen.getByText(/chặng 3 • ghép câu/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ 1/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: /quay lại danh sách chặng/i }));
+    // Place tokens
+    singleItemData.challenges.sentenceBuilding[0].correctTokenOrder.forEach((tokText) => {
+      fireEvent.click(screen.getByRole("button", { name: new RegExp(`thêm "${tokText}"`, "i") }));
+    });
+    fireEvent.click(screen.getByRole("button", { name: /kiểm tra câu|xác nhận/i }));
+
+    // Complete stage
+    const finishBtn = screen.getByRole("button", { name: /xem kết quả chặng 3|hoàn thành/i });
+    fireEvent.click(finishBtn);
+
+    expect(saveSpy).toHaveBeenCalledWith("present-simple", "sentenceBuilding", 1, 1);
     expect(screen.getByRole("button", { name: /vào chặng 3/i })).toBeInTheDocument();
   });
 });

@@ -117,9 +117,9 @@
 
 ### Implementation for User Story 5
 
-- [ ] T026 [P] [US5] Implement `SentenceBuilderStage` (Stage 3) using `@dnd-kit/core` with `PointerSensor` & `KeyboardSensor`, tap-to-place token bank, audio pronunciation on success, and grammar tips in `src/components/tenses/stages/SentenceBuilderStage.tsx`
-- [ ] T027 [P] [US5] Create unit tests for `SentenceBuilderStage` dnd and tap interactions in `tests/unit/tenses/SentenceBuilderStage.test.tsx`
-- [ ] T028 [US5] Wire `SentenceBuilderStage` into `TenseLessonContainer` practice flow in `src/components/tenses/TenseLessonContainer.tsx`
+- [X] T026 [P] [US5] Implement `SentenceBuilderStage` (Stage 3) using `@dnd-kit/core` with `PointerSensor` & `KeyboardSensor`, tap-to-place token bank, audio pronunciation on success, and grammar tips in `src/components/tenses/stages/SentenceBuilderStage.tsx`
+- [X] T027 [P] [US5] Create unit tests for `SentenceBuilderStage` dnd and tap interactions in `tests/unit/tenses/SentenceBuilderStage.test.tsx`
+- [X] T028 [US5] Wire `SentenceBuilderStage` into `TenseLessonContainer` practice flow in `src/components/tenses/TenseLessonContainer.tsx`
 
 **Checkpoint**: All 3 challenge stages should now be independently functional.
 

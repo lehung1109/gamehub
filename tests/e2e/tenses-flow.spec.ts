@@ -341,4 +341,162 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     expect(progressInStorage).not.toBeNull();
     expect(progressInStorage).toContain('"errorHunting"');
   });
+
+  test("US5: completes Stage 3 (Sentence Builder) with tap-to-place, tap-to-remove, reset, audio pronunciation, grammar tips, and storage saving", async ({
+    page,
+  }) => {
+    // 1. Navigate to /tenses/present-simple
+    await page.goto("/tenses/present-simple");
+
+    // 2. Go to Practice tab
+    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await practiceTab.click();
+
+    // 3. Enter Stage 3
+    const enterStage3Btn = page.getByRole("button", { name: /vào chặng 3/i });
+    await expect(enterStage3Btn).toBeVisible();
+    await enterStage3Btn.click();
+
+    // 4. Verify Stage 3 UI & Q1
+    await expect(page.getByText(/chặng 3 • ghép câu lịch trình & giao tiếp/i)).toBeVisible();
+    await expect(page.getByText(/câu 1 \/ 6/i)).toBeVisible();
+    await expect(page.getByText(/Lịch trình họp giao ban đầu tuần của công ty/i)).toBeVisible();
+    await expect(
+      page.getByText(/Công ty chúng tôi luôn tổ chức buổi họp toàn thể vào sáng thứ Hai/i)
+    ).toBeVisible();
+
+    // Verify initial placeholder
+    await expect(page.getByText(/chạm hoặc kéo thả các từ bên dưới vào đây/i)).toBeVisible();
+
+    // Verify submit button disabled initially
+    const submitBtn = page.getByRole("button", { name: /kiểm tra câu/i });
+    await expect(submitBtn).toBeDisabled();
+
+    // 5. Test Tap-to-Place tokens
+    await page.getByRole("button", { name: /thêm "our company"/i }).click();
+    await page.getByRole("button", { name: /thêm "always"/i }).click();
+
+    // Verify placeholder disappears and placed tokens are visible
+    await expect(page.getByText(/chạm hoặc kéo thả các từ bên dưới vào đây/i)).not.toBeVisible();
+    await expect(page.getByRole("button", { name: /xóa "our company"/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /xóa "always"/i })).toBeVisible();
+
+    // 6. Test Tap-to-Remove token
+    await page.getByRole("button", { name: /xóa "always"/i }).click();
+    await expect(page.getByRole("button", { name: /thêm "always"/i })).toBeVisible();
+
+    // 7. Test "Đặt lại câu" (Reset button)
+    const resetBtn = page.getByRole("button", { name: /đặt lại câu/i });
+    await expect(resetBtn).toBeVisible();
+    await resetBtn.click();
+    await expect(page.getByText(/chạm hoặc kéo thả các từ bên dưới vào đây/i)).toBeVisible();
+    await expect(submitBtn).toBeDisabled();
+
+    // 8. Place tokens in correct order for Q1
+    const q1Tokens = [
+      "Our company",
+      "always",
+      "holds",
+      "an all-hands meeting",
+      "on Monday morning.",
+    ];
+    for (const tok of q1Tokens) {
+      await page.getByRole("button", { name: new RegExp(`thêm "${tok}"`, "i") }).click();
+    }
+
+    await expect(submitBtn).toBeEnabled();
+    await submitBtn.click();
+
+    // 9. Verify positive feedback, full sentence, grammar tips, and audio button
+    await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    await expect(
+      page.getByText("Our company always holds an all-hands meeting on Monday morning.")
+    ).toBeVisible();
+    await expect(page.getByText(/Mẹo ngữ pháp \(Vị trí trạng từ chỉ tần suất\):/i)).toBeVisible();
+
+    const audioBtn = page.getByRole("button", { name: /nghe phát âm câu chuẩn/i });
+    await expect(audioBtn).toBeVisible();
+    await audioBtn.click();
+
+    // 10. Next to Q2
+    const nextBtn = page.getByRole("button", { name: /câu tiếp theo/i });
+    await expect(nextBtn).toBeVisible();
+    await nextBtn.click();
+
+    // 11. Test Incorrect Answer order on Q2
+    await expect(page.getByText(/câu 2 \/ 6/i)).toBeVisible();
+    await page.getByRole("button", { name: /thêm "before the interview\."/i }).click();
+    await page.getByRole("button", { name: /thêm "candidate resumes"/i }).click();
+    await page.getByRole("button", { name: /kiểm tra câu/i }).click();
+
+    await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
+    await expect(page.getByText(/câu chuẩn xác là:/i)).toBeVisible();
+    await expect(
+      page.getByText("The HR manager regularly reviews candidate resumes before the interview.")
+    ).toBeVisible();
+    await expect(page.getByText(/Mẹo ngữ pháp \(Chủ ngữ số ít và trạng từ\):/i)).toBeVisible();
+
+    // 12. Loop through remaining questions Q3 to Q6 with correct answers
+    const sentenceStages = [
+      // Q3
+      [
+        "We",
+        "usually",
+        "send",
+        "the project progress report",
+        "to the client",
+        "on Friday.",
+      ],
+      // Q4
+      [
+        "The IT support team",
+        "never",
+        "ignores",
+        "urgent requests",
+        "from customers.",
+      ],
+      // Q5
+      [
+        "The project director",
+        "rarely",
+        "approves",
+        "plans",
+        "without a clear budget estimate.",
+      ],
+      // Q6
+      [
+        "The branch office",
+        "opens",
+        "at 8:00 AM",
+        "and closes",
+        "at 6:00 PM",
+        "every day.",
+      ],
+    ];
+
+    for (let i = 0; i < sentenceStages.length; i++) {
+      await page.getByRole("button", { name: /câu tiếp theo/i }).click();
+      const currentTokens = sentenceStages[i];
+      for (const tok of currentTokens) {
+        await page.getByRole("button", { name: new RegExp(`thêm "${tok}"`, "i") }).click();
+      }
+      await page.getByRole("button", { name: /kiểm tra câu/i }).click();
+      await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    }
+
+    // 13. Finish Stage 3 on last question
+    const finishStage3Btn = page.getByRole("button", { name: /xem kết quả chặng 3|hoàn thành/i });
+    await expect(finishStage3Btn).toBeVisible();
+    await finishStage3Btn.click();
+
+    // 14. Verify return to stage list
+    await expect(page.getByRole("button", { name: /vào chặng 3/i })).toBeVisible();
+
+    // 15. Verify LocalStorage has sentenceBuilding progress saved
+    const progressInStorage = await page.evaluate(() => {
+      return localStorage.getItem("gamehub_tense_progress_v1");
+    });
+    expect(progressInStorage).not.toBeNull();
+    expect(progressInStorage).toContain('"sentenceBuilding"');
+  });
 });

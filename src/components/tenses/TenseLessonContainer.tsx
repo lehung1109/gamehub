@@ -7,6 +7,7 @@ import { LessonHeader } from "@/components/tenses/LessonHeader";
 import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { ConjugationStage } from "@/components/tenses/stages/ConjugationStage";
 import { ErrorHunterStage } from "@/components/tenses/stages/ErrorHunterStage";
+import { SentenceBuilderStage } from "@/components/tenses/stages/SentenceBuilderStage";
 import { saveStageProgress } from "@/lib/tenses/storage";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -166,6 +167,12 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
               <ErrorHunterStage
                 items={challenges.errorHunting}
                 onStageComplete={(score, total) => handleStageComplete("errorHunting", score, total)}
+                onBack={() => setCurrentStage(null)}
+              />
+            ) : currentStage === "sentenceBuilding" ? (
+              <SentenceBuilderStage
+                items={challenges.sentenceBuilding}
+                onStageComplete={(score, total) => handleStageComplete("sentenceBuilding", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
             ) : currentStage && selectedStageMeta ? (
