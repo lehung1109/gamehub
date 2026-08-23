@@ -69,9 +69,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T017 [P] [US2] Implement `QuickRulesTab` displaying formula cards, spelling rules, adverbs table, workplace tips, and Web Speech audio buttons in `src/components/tenses/QuickRulesTab.tsx`
-- [ ] T018 [P] [US2] Create unit tests for `QuickRulesTab` rule rendering and audio pronunciation in `tests/unit/tenses/QuickRulesTab.test.tsx`
-- [ ] T019 [US2] Integrate `QuickRulesTab` into `TenseLessonContainer` in `src/components/tenses/TenseLessonContainer.tsx`
+- [X] T017 [P] [US2] Implement `QuickRulesTab` displaying formula cards, spelling rules, adverbs table, workplace tips, and Web Speech audio buttons in `src/components/tenses/QuickRulesTab.tsx`
+- [X] T018 [P] [US2] Create unit tests for `QuickRulesTab` rule rendering and audio pronunciation in `tests/unit/tenses/QuickRulesTab.test.tsx`
+- [X] T019 [US2] Integrate `QuickRulesTab` into `TenseLessonContainer` in `src/components/tenses/TenseLessonContainer.tsx`
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 

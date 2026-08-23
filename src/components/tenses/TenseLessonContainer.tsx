@@ -4,6 +4,7 @@ import { useState, useRef, KeyboardEvent } from "react";
 import { BookOpen, Sparkles, ArrowRight, Play, ArrowLeft, CheckCircle2, HelpCircle } from "lucide-react";
 import { TenseModuleData, StageType } from "@/types/tenses";
 import { LessonHeader } from "@/components/tenses/LessonHeader";
+import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -133,51 +134,14 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
 
         {/* Tab Panel 1: Quick Rules Overview */}
         {activeTab === "rules" && (
-          <div id="tabpanel-rules" role="tabpanel" aria-labelledby="tab-rules" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {quickRules.map((rule) => (
-                <Card key={rule.id} className="border border-border/80 shadow-xs hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors">
-                  <CardHeader className="pb-2">
-                    <div className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
-                      {rule.titleEn}
-                    </div>
-                    <CardTitle className="text-lg font-bold text-foreground">
-                      {rule.titleVi}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-sm text-muted-foreground leading-relaxed">
-                    <p className="mb-3">{rule.summaryVi}</p>
-
-                    {rule.formulas && rule.formulas.length > 0 && (
-                      <div className="space-y-2 mt-2">
-                        {rule.formulas.map((f, idx) => (
-                          <div key={idx} className="p-2.5 rounded-lg bg-muted/60 text-xs font-mono">
-                            <span className="font-bold text-foreground">{f.label}:</span>{" "}
-                            <span className="text-indigo-600 dark:text-indigo-300">{f.structure}</span>
-                            <div className="text-muted-foreground font-sans mt-1 text-xs">
-                              VD: <em>&quot;{f.example}&quot;</em> ({f.vietnameseTranslation})
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center pt-4 pb-2">
-              <Button
-                onClick={() => {
-                  setActiveTab("practice");
-                  setCurrentStage("conjugation");
-                }}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm sm:text-base gap-2 shadow-sm"
-              >
-                <span>Bắt đầu Luyện Tập 3 Chặng</span>
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Button>
-            </div>
+          <div id="tabpanel-rules" role="tabpanel" aria-labelledby="tab-rules">
+            <QuickRulesTab
+              rules={quickRules}
+              onStartPractice={() => {
+                setActiveTab("practice");
+                setCurrentStage("conjugation");
+              }}
+            />
           </div>
         )}
 
