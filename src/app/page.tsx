@@ -55,6 +55,40 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           </div>
         </header>
 
+        {/* Workplace Tenses Feature Banner */}
+        <section aria-label="Luyện Thì Tiếng Anh Cho Người Đi Làm" className="mb-8">
+          <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white p-6 sm:p-8 shadow-md border border-indigo-700/50">
+            {/* Background glowing shapes */}
+            <div className="absolute -right-12 -top-12 size-48 rounded-full bg-indigo-500/20 blur-2xl pointer-events-none" />
+            <div className="absolute -left-12 -bottom-12 size-48 rounded-full bg-sky-500/20 blur-2xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="space-y-2 max-w-xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 text-xs font-bold uppercase tracking-wider">
+                  <span>💼 Dành cho người đi làm &amp; sinh viên</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white">
+                  Luyện Thì Tiếng Anh Cho Người Đi Làm
+                </h2>
+                <p className="text-xs sm:text-sm text-indigo-100/90 leading-relaxed">
+                  Khám phá bản đồ 12 thì thực chiến: chia động từ email, săn lỗi sai văn phòng và ghép câu lịch trình với Thì Hiện Tại Đơn.
+                </p>
+              </div>
+
+              <div className="flex items-center">
+                <Link
+                  href="/tenses"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white text-indigo-900 hover:bg-indigo-50 font-black text-sm shadow-sm transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  aria-label="Khám phá Hub 12 Thì Tiếng Anh Cho Người Đi Làm"
+                >
+                  <span>Khám phá Hub 12 Thì</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Games Grid or Empty State */}
         <main aria-label="Danh sách trò chơi">
           {games.length === 0 ? (

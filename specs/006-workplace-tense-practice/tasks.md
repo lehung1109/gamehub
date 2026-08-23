@@ -48,14 +48,14 @@
 
 ### Implementation for User Story 1
 
-- [ ] T009 [P] [US1] Create `TenseCard` component with active and coming-soon status indicators in `src/components/tenses/TenseCard.tsx`
-- [ ] T010 [P] [US1] Create `TenseHubMap` component grouping tenses into Present, Past, and Future sections in `src/components/tenses/TenseHubMap.tsx`
-- [ ] T011 [P] [US1] Create unit test for `TenseHubMap` and `TenseCard` rendering in `tests/unit/tenses/TenseHubMap.test.tsx`
-- [ ] T012 [US1] Implement SSG Server Component for 12-Tenses Hub page in `src/app/tenses/page.tsx`
-- [ ] T013 [US1] Add prominent workplace tense practice banner/card to homepage in `src/app/page.tsx`
-- [ ] T014 [P] [US1] Create `LessonHeader` component with breadcrumbs, stage progress bar, and audio indicator in `src/components/tenses/LessonHeader.tsx`
-- [ ] T015 [US1] Create client container `TenseLessonContainer` managing tabs and stages in `src/components/tenses/TenseLessonContainer.tsx`
-- [ ] T016 [US1] Implement dynamic SSG lesson page with `generateStaticParams` in `src/app/tenses/[slug]/page.tsx`
+- [X] T009 [P] [US1] Create `TenseCard` component with active and coming-soon status indicators in `src/components/tenses/TenseCard.tsx`
+- [X] T010 [P] [US1] Create `TenseHubMap` component grouping tenses into Present, Past, and Future sections in `src/components/tenses/TenseHubMap.tsx`
+- [X] T011 [P] [US1] Create unit test for `TenseHubMap` and `TenseCard` rendering in `tests/unit/tenses/TenseHubMap.test.tsx`
+- [X] T012 [US1] Implement SSG Server Component for 12-Tenses Hub page in `src/app/tenses/page.tsx`
+- [X] T013 [US1] Add prominent workplace tense practice banner/card to homepage in `src/app/page.tsx`
+- [X] T014 [P] [US1] Create `LessonHeader` component with breadcrumbs, stage progress bar, and audio indicator in `src/components/tenses/LessonHeader.tsx`
+- [X] T015 [US1] Create client container `TenseLessonContainer` managing tabs and stages in `src/components/tenses/TenseLessonContainer.tsx`
+- [X] T016 [US1] Implement dynamic SSG lesson page with `generateStaticParams` in `src/app/tenses/[slug]/page.tsx`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
