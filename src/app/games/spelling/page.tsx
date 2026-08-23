@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dialog";
 import { useSpeech } from "@/hooks/useSpeech";
 import { useGameConfig } from "@/hooks/useGameConfig";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import type { SpellingSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import {
@@ -110,7 +111,7 @@ function generateSpellingBank(targetWord: string, seed = 0): DraggableItem[] {
 }
 
 function SpellingGameContent() {
-  const { settings, configName, isPreview } = useGameConfig<SpellingSettings>("spelling");
+  const { settings, configName, isPreview, configId } = useGameConfig<SpellingSettings>("spelling");
 
   const topicsConfig = settings?.topics;
 
@@ -141,6 +142,9 @@ function SpellingGameContent() {
   const [dismissUnsupported, setDismissUnsupported] = useState(false);
 
   const { speak, cancel, isSupported } = useSpeech();
+  const wordStartTimeRef = React.useRef<number>(Date.now());
+  const attemptsRef = React.useRef<number>(1);
+  const totalTimeTakenRef = React.useRef<number>(0);
 
   // Active word pool based on selected topic or config topics
   const activeWordPool = useMemo(() => {
@@ -178,6 +182,13 @@ function SpellingGameContent() {
     return (currentWord?.english || "").trim().toUpperCase().split("");
   }, [currentWord]);
 
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: "spelling",
+    topic: selectedTopicId,
+    configId: configId || undefined,
+    totalQuestions,
+  });
+
   // Initial letter bank items scrambled
   const bankItems = useMemo(() => {
     return generateSpellingBank(currentWord?.english || "CAT", boardKey + currentIndex * 5);
@@ -186,6 +197,7 @@ function SpellingGameContent() {
   const handleTopicChange = useCallback(
     (topicId: string) => {
       cancel();
+      resetSession();
       setSelectedTopicId(topicId);
       setCurrentIndex(0);
       setScore(0);
@@ -193,24 +205,34 @@ function SpellingGameContent() {
       setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
       setGameKey((k) => k + 1);
       setBoardKey((k) => k + 1);
+      attemptsRef.current = 1;
+      totalTimeTakenRef.current = 0;
+      wordStartTimeRef.current = Date.now();
     },
-    [cancel]
+    [cancel, resetSession]
   );
 
   const handleRestart = useCallback(() => {
     cancel();
+    resetSession();
     setCurrentIndex(0);
     setScore(0);
     setIsCompleted(false);
     setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
     setGameKey((k) => k + 1);
     setBoardKey((k) => k + 1);
-  }, [cancel]);
+    attemptsRef.current = 1;
+    totalTimeTakenRef.current = 0;
+    wordStartTimeRef.current = Date.now();
+  }, [cancel, resetSession]);
 
   const handleRetryWord = useCallback(() => {
     cancel();
+    attemptsRef.current += 1;
+    totalTimeTakenRef.current += Math.max(0, Date.now() - wordStartTimeRef.current);
     setBoardKey((k) => k + 1);
     setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
+    wordStartTimeRef.current = Date.now();
   }, [cancel]);
 
   const handleItemPlaced = useCallback(
@@ -226,7 +248,18 @@ function SpellingGameContent() {
 
   const handleCompleteSpelling = useCallback(
     (isCorrect: boolean, formedString: string) => {
+      const timeTakenMs = totalTimeTakenRef.current + Math.max(0, Date.now() - wordStartTimeRef.current);
+
       if (isCorrect) {
+        recordQuestion({
+          prompt: currentWordEnglish || "",
+          selectedAnswer: formedString,
+          correctAnswer: currentWordEnglish || "",
+          isCorrect: true,
+          timeTakenMs,
+          attempts: attemptsRef.current,
+        });
+
         setScore((s) => s + 1);
         if (currentWordEnglish) {
           speak(currentWordEnglish);
@@ -239,19 +272,27 @@ function SpellingGameContent() {
         formedWord: formedString,
       });
     },
-    [currentWordEnglish, speak]
+    [currentWordEnglish, speak, recordQuestion]
   );
 
   const handleNextWord = useCallback(() => {
     cancel();
     setFeedbackState({ show: false, isCorrect: false, formedWord: "" });
+    attemptsRef.current = 1;
+    totalTimeTakenRef.current = 0;
     if (currentIndex < totalQuestions - 1) {
       setCurrentIndex((prev) => prev + 1);
       setBoardKey((k) => k + 1);
+      wordStartTimeRef.current = Date.now();
     } else {
       setIsCompleted(true);
+      submitSession({
+        score,
+        totalQuestions,
+        topic: selectedTopicId,
+      });
     }
-  }, [currentIndex, totalQuestions, cancel]);
+  }, [currentIndex, totalQuestions, cancel, submitSession, score, selectedTopicId]);
 
   const handleSpeakCurrentWord = useCallback(() => {
     if (currentWordEnglish) {

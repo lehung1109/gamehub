@@ -28,9 +28,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create Supabase migration SQL file for new tables (classrooms, students, game_sessions, session_details) and RLS policies
-- [ ] T002 [P] Update `src/types/database.ts` with new Supabase types based on the data model
-- [ ] T003 [P] Create API route boilerplate for tracking at `src/app/api/track/route.ts`
+- [x] T001 Create Supabase migration SQL file for new tables (classrooms, students, game_sessions, session_details) and RLS policies
+- [x] T002 [P] Update `src/types/database.ts` with new Supabase types based on the data model
+- [x] T003 [P] Create API route boilerplate for tracking at `src/app/api/track/route.ts`
 
 ---
 
@@ -40,8 +40,8 @@ description: "Task list template for feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Setup `src/lib/supabase/` server and client utilities if not already present
-- [ ] T005 Create database wrapper functions for class and student queries in `src/lib/supabase/queries.ts`
+- [x] T004 Setup `src/lib/supabase/` server and client utilities if not already present
+- [x] T005 Create database wrapper functions for class and student queries in `src/lib/supabase/queries.ts`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -57,13 +57,13 @@ description: "Task list template for feature implementation"
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] E2E test for teacher creating/managing class in `tests/e2e/class-tracking.spec.ts`
+- [x] T006 [P] [US1] E2E test for teacher creating/managing class in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T007 [P] [US1] Create create class form component in `src/components/class/CreateClassForm.tsx`
-- [ ] T008 [P] [US1] Create class list component in `src/components/class/ClassList.tsx`
-- [ ] T009 [US1] Implement teacher dashboard classes page in `src/app/(admin)/dashboard/classes/page.tsx`
+- [x] T007 [P] [US1] Create create class form component in `src/components/class/CreateClassForm.tsx`
+- [x] T008 [P] [US1] Create class list component in `src/components/class/ClassList.tsx`
+- [x] T009 [US1] Implement teacher dashboard classes page in `src/app/admin/dashboard/classes/page.tsx`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -77,14 +77,14 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 2
 
-- [ ] T010 [P] [US2] Unit test for `use-student-session` hook in `tests/unit/use-student-session.test.ts`
-- [ ] T011 [P] [US2] E2E test for student join flow in `tests/e2e/class-tracking.spec.ts`
+- [x] T010 [P] [US2] Unit test for `use-student-session` hook in `tests/unit/use-student-session.test.ts`
+- [x] T011 [P] [US2] E2E test for student join flow in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T012 [P] [US2] Implement `use-student-session` hook in `src/hooks/use-student-session.ts` to manage sessionStorage
-- [ ] T013 [P] [US2] Create Student Popup component in `src/components/student/StudentJoinPopup.tsx`
-- [ ] T014 [US2] Integrate StudentJoinPopup into main game layout/wrapper to ensure it triggers before gameplay
+- [x] T012 [P] [US2] Implement `use-student-session` hook in `src/hooks/use-student-session.ts` to manage sessionStorage
+- [x] T013 [P] [US2] Create Student Popup component in `src/components/student/StudentJoinPopup.tsx`
+- [x] T014 [US2] Integrate StudentJoinPopup into main game layout/wrapper to ensure it triggers before gameplay
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -98,14 +98,14 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 3
 
-- [ ] T015 [P] [US3] Unit test for `use-game-tracking` hook in `tests/unit/use-game-tracking.test.ts`
-- [ ] T016 [P] [US3] Contract test for `/api/track` in `tests/unit/tracking-api.test.ts`
+- [x] T015 [P] [US3] Unit test for `use-game-tracking` hook in `tests/unit/use-game-tracking.test.ts`
+- [x] T016 [P] [US3] Contract test for `/api/track` in `tests/unit/tracking-api.test.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T017 [P] [US3] Implement secure POST handler in `src/app/api/track/route.ts` bypassing RLS for unauthenticated students
-- [ ] T018 [P] [US3] Implement `use-game-tracking` hook in `src/hooks/use-game-tracking.ts`
-- [ ] T019 [US3] Integrate tracking hook into game components (Listening, Spelling, Flashcard, etc.) to record results silently
+- [x] T017 [P] [US3] Implement secure POST handler in `src/app/api/track/route.ts` bypassing RLS for unauthenticated students
+- [x] T018 [P] [US3] Implement `use-game-tracking` hook in `src/hooks/use-game-tracking.ts`
+- [x] T019 [US3] Integrate tracking hook into game components (Listening, Spelling, Flashcard, etc.) to record results silently
 
 **Checkpoint**: All core data entry flows are fully functional
 
@@ -119,12 +119,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 4
 
-- [ ] T020 [P] [US4] E2E test for dashboard overview in `tests/e2e/class-tracking.spec.ts`
+- [x] T020 [P] [US4] E2E test for dashboard overview in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T021 [P] [US4] Create stats and overview charts components in `src/components/dashboard/ClassOverview.tsx`
-- [ ] T022 [US4] Implement class dashboard page in `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
+- [x] T021 [P] [US4] Create stats and overview charts components in `src/components/dashboard/ClassOverview.tsx`
+- [x] T022 [US4] Implement class dashboard page in `src/app/admin/dashboard/classes/[classId]/page.tsx`
 
 ---
 
@@ -136,12 +136,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 5
 
-- [ ] T023 [P] [US5] E2E test for viewing student details in `tests/e2e/class-tracking.spec.ts`
+- [x] T023 [P] [US5] E2E test for viewing student details in `tests/e2e/class-tracking.spec.ts`
 
 ### Implementation for User Story 5
 
-- [ ] T024 [P] [US5] Create student history components in `src/components/dashboard/StudentDetail.tsx`
-- [ ] T025 [US5] Implement student detail page in `src/app/(admin)/dashboard/classes/[classId]/students/[studentId]/page.tsx`
+- [x] T024 [P] [US5] Create student history components in `src/components/dashboard/StudentDetail.tsx`
+- [x] T025 [US5] Implement student detail page in `src/app/admin/dashboard/classes/[classId]/students/[studentId]/page.tsx`
 
 ---
 
@@ -153,12 +153,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 6
 
-- [ ] T026 [P] [US6] Unit test for difficult words calculation logic in `tests/unit/analytics.test.ts`
+- [x] T026 [P] [US6] Unit test for difficult words calculation logic in `tests/unit/analytics.test.ts`
 
 ### Implementation for User Story 6
 
-- [ ] T027 [P] [US6] Create Difficult Words analysis component in `src/components/dashboard/DifficultWordsAnalysis.tsx`
-- [ ] T028 [US6] Integrate Difficult Words table into `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
+- [x] T027 [P] [US6] Create Difficult Words analysis component in `src/components/dashboard/DifficultWordsAnalysis.tsx`
+- [x] T028 [US6] Integrate Difficult Words table into `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
 
 ---
 
@@ -170,12 +170,12 @@ description: "Task list template for feature implementation"
 
 ### Tests for User Story 7
 
-- [ ] T029 [P] [US7] Unit test for CSV generation in `tests/unit/export-csv.test.ts`
+- [x] T029 [P] [US7] Unit test for CSV generation in `tests/unit/export-csv.test.ts`
 
 ### Implementation for User Story 7
 
-- [ ] T030 [P] [US7] Implement `/api/export-csv` API route for CSV export in `src/app/api/export-csv/route.ts`
-- [ ] T031 [US7] Add "Export Report" button and trigger in `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
+- [x] T030 [P] [US7] Implement `/api/export-csv` API route for CSV export in `src/app/api/export-csv/route.ts`
+- [x] T031 [US7] Add "Export Report" button and trigger in `src/app/(admin)/dashboard/classes/[classId]/page.tsx`
 
 ---
 
@@ -183,9 +183,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T032 [P] Run `specs/004-student-progress-tracking/quickstart.md` validation scenarios end-to-end
-- [ ] T033 Code cleanup, formatting, and check type validations with `npx tsc --noEmit`
-- [ ] T034 Verify RLS policies are strictly enforced for teachers and completely bypassable ONLY at `/api/track`
+- [x] T032 [P] Run `specs/004-student-progress-tracking/quickstart.md` validation scenarios end-to-end
+- [x] T033 Code cleanup, formatting, and check type validations with `npx tsc --noEmit`
+- [x] T034 Verify RLS policies are strictly enforced for teachers and completely bypassable ONLY at `/api/track`
 
 ---
 

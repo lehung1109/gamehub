@@ -111,4 +111,30 @@ describe("QuizEngine component", () => {
 
     expect(handleSpeak).toHaveBeenCalledWith(mockQuestions[0].prompt);
   });
+
+  it("invokes onAnswer with question answer details when option is selected", () => {
+    const handleAnswer = vi.fn();
+    render(
+      <QuizEngine
+        questions={mockQuestions}
+        renderPrompt={(prompt) => <div>Prompt: {prompt.word}</div>}
+        renderOption={(option) => <span>Option: {option.word}</span>}
+        onAnswer={handleAnswer}
+        onComplete={vi.fn()}
+      />
+    );
+
+    const options = screen.getAllByRole("button", { name: /Option:/i });
+    fireEvent.click(options[0]); // Option 0 is correct
+
+    expect(handleAnswer).toHaveBeenCalledTimes(1);
+    expect(handleAnswer).toHaveBeenCalledWith(
+      expect.objectContaining({
+        promptText: "Cat",
+        selectedAnswerText: "Cat",
+        isCorrect: true,
+        timeTakenMs: expect.any(Number),
+      })
+    );
+  });
 });

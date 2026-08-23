@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useSpeech } from "@/hooks/useSpeech";
 import { useGameConfig } from "@/hooks/useGameConfig";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import type { ListeningSettings } from "@/types/config";
 import { shuffle } from "@/lib/shuffle";
 import { Volume2, Ear, Sparkles, Filter, Lightbulb } from "lucide-react";
@@ -99,7 +100,7 @@ function ListeningGameContent() {
     () => false
   );
 
-  const { settings, configName, isPreview } = useGameConfig<ListeningSettings>("listening");
+  const { settings, configName, isPreview, configId } = useGameConfig<ListeningSettings>("listening");
 
   const topicsConfig = settings?.topics;
 
@@ -145,19 +146,28 @@ function ListeningGameContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeWordPool, questionCount, gameKey, mounted]);
 
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: "listening",
+    topic: selectedTopicId,
+    configId: configId || undefined,
+    totalQuestions: questions.length,
+  });
+
   const handleTopicChange = useCallback(
     (topicId: string) => {
       cancel();
+      resetSession();
       setSelectedTopicId(topicId);
       setGameKey((prev) => prev + 1);
     },
-    [cancel]
+    [cancel, resetSession]
   );
 
   const handleRestart = useCallback(() => {
     cancel();
+    resetSession();
     setGameKey((prev) => prev + 1);
-  }, [cancel]);
+  }, [cancel, resetSession]);
 
   const handleSpeakWord = useCallback(
     (promptWord: Word) => {
@@ -258,7 +268,23 @@ function ListeningGameContent() {
             autoAdvanceMs={1500}
             getOptionAriaLabel={(_opt, idx) => `Lựa chọn hình ảnh ${idx + 1}`}
             onSpeak={handleSpeakWord}
-            onComplete={() => {}}
+            onAnswer={({ promptText, selectedAnswerText, correctAnswerText, isCorrect, timeTakenMs }) => {
+              recordQuestion({
+                prompt: promptText,
+                selectedAnswer: selectedAnswerText,
+                correctAnswer: correctAnswerText,
+                isCorrect,
+                timeTakenMs,
+                attempts: 1,
+              });
+            }}
+            onComplete={(finalScore, total) => {
+              submitSession({
+                score: finalScore,
+                totalQuestions: total,
+                topic: selectedTopicId,
+              });
+            }}
             onRestart={handleRestart}
             renderPrompt={(targetWord) => (
               <div className="flex flex-col items-center text-center space-y-4 py-3">

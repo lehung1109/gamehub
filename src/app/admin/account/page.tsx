@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { AccountForm } from './AccountForm'
 import { UserCircle, Shield, Mail, Calendar } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Quản lý Tài khoản | GameHub Admin',
 }

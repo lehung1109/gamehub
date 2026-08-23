@@ -134,6 +134,8 @@ export default async function FlashcardTopicPage({
           words={words}
           autoSpeak={autoSpeak}
           topicTitle={`${topic.emoji} ${topic.nameVi}`}
+          topicId={topicId}
+          configId={configId}
         />
       </div>
     </main>
