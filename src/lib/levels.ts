@@ -24,7 +24,8 @@ export const LEVELS: LevelInfo[] = [
  * Calculates the highest LevelInfo reached for a given total stars.
  */
 export function calculateLevel(totalStars: number): LevelInfo {
-  const stars = typeof totalStars === 'number' && !isNaN(totalStars) ? Math.max(0, totalStars) : 0
+  const stars =
+    typeof totalStars === 'number' && Number.isFinite(totalStars) ? Math.max(0, totalStars) : 0
   
   let currentLevel = LEVELS[0]
   for (const level of LEVELS) {
@@ -41,7 +42,8 @@ export function calculateLevel(totalStars: number): LevelInfo {
  * Returns detailed progress information (current level, next level, stars remaining, percentage).
  */
 export function getLevelInfo(totalStars: number): LevelProgress {
-  const stars = typeof totalStars === 'number' && !isNaN(totalStars) ? Math.max(0, totalStars) : 0
+  const stars =
+    typeof totalStars === 'number' && Number.isFinite(totalStars) ? Math.max(0, totalStars) : 0
   const currentLevel = calculateLevel(stars)
   const currentIndex = LEVELS.findIndex((l) => l.level === currentLevel.level)
   const nextLevel = currentIndex < LEVELS.length - 1 ? LEVELS[currentIndex + 1] : null

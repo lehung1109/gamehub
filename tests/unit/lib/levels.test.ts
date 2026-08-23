@@ -44,9 +44,13 @@ describe('Level System (levels.ts)', () => {
       expect(level.badge).toBe(maxLevel.badge)
     })
 
-    it('handles negative or invalid numbers by defaulting to Level 1', () => {
+    it('handles negative, non-finite or invalid numbers by defaulting to Level 1', () => {
       expect(calculateLevel(-10).level).toBe(1)
       expect(calculateLevel(NaN).level).toBe(1)
+      expect(calculateLevel(Infinity).level).toBe(1)
+      expect(calculateLevel(-Infinity).level).toBe(1)
+      expect(calculateLevel(null as unknown as number).level).toBe(1)
+      expect(calculateLevel(undefined as unknown as number).level).toBe(1)
     })
   })
 
