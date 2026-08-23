@@ -5,6 +5,8 @@ import { BookOpen, Sparkles, ArrowRight, Play, ArrowLeft, CheckCircle2, HelpCirc
 import { TenseModuleData, StageType } from "@/types/tenses";
 import { LessonHeader } from "@/components/tenses/LessonHeader";
 import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
+import { ConjugationStage } from "@/components/tenses/stages/ConjugationStage";
+import { saveStageProgress } from "@/lib/tenses/storage";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -75,6 +77,11 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
   };
 
   const selectedStageMeta = stageList.find((s) => s.id === currentStage);
+
+  const handleStageComplete = (stage: StageType, score: number, total: number) => {
+    saveStageProgress(metadata.id, stage, score, total);
+    setCurrentStage(null);
+  };
 
   return (
     <div className="flex-1 flex flex-col justify-between py-2 sm:py-6 max-w-5xl mx-auto w-full px-3 sm:px-6">
@@ -148,8 +155,14 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
         {/* Tab Panel 2: Practice Stages */}
         {activeTab === "practice" && (
           <div id="tabpanel-practice" role="tabpanel" aria-labelledby="tab-practice" className="space-y-6">
-            {currentStage && selectedStageMeta ? (
-              /* Single Stage View */
+            {currentStage === "conjugation" ? (
+              <ConjugationStage
+                items={challenges.conjugation}
+                onStageComplete={(score, total) => handleStageComplete("conjugation", score, total)}
+                onBack={() => setCurrentStage(null)}
+              />
+            ) : currentStage && selectedStageMeta ? (
+              /* Coming soon placeholder for Stage 2 & Stage 3 */
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <Button
@@ -183,7 +196,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                     <div className="p-4 rounded-xl bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900 text-xs sm:text-sm text-indigo-900 dark:text-indigo-200 flex items-start gap-2.5">
                       <HelpCircle className="size-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
                       <span>
-                        Mẹo làm bài: Đọc kỹ ngữ cảnh email/tình huống công sở và áp dụng quy tắc thì Hiện Tại Đơn trước khi chọn hoặc nộp đáp án.
+                        Chặng này đang được hoàn thiện. Vui lòng quay lại làm Chặng 1 để rèn luyện kỹ năng chia động từ!
                       </span>
                     </div>
                   </div>

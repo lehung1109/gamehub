@@ -21,6 +21,7 @@ import {
 export function normalizeAnswer(input?: string | null): string {
   if (!input) return "";
   return input
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")                   // Strip zero-width chars
     .replace(/[\u2018\u2019\u201A\u201B\u0060\u00B4]/g, "'") // Smart single quotes/apostrophes
     .replace(/[\u201C\u201D\u201E\u201F]/g, '"')             // Smart double quotes
     .replace(/[\u2013\u2014]/g, "-")                         // En/em dashes
@@ -42,8 +43,9 @@ function stripTrailingPunctuation(str: string): string {
  */
 export function isConjugationAnswerCorrect(
   userAnswer: string,
-  item: ConjugationItem
+  item?: ConjugationItem | null
 ): boolean {
+  if (!item || !item.correctAnswer) return false;
   const normalizedUser = normalizeAnswer(userAnswer);
   if (!normalizedUser) return false;
 

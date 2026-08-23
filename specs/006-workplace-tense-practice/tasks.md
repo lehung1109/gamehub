@@ -85,9 +85,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T020 [P] [US3] Implement `ConjugationStage` (Stage 1) with email context card, multiple-choice options, direct text input, instant feedback, and grammar explanations in `src/components/tenses/stages/ConjugationStage.tsx`
-- [ ] T021 [P] [US3] Create unit tests for `ConjugationStage` interaction and grading in `tests/unit/tenses/ConjugationStage.test.tsx`
-- [ ] T022 [US3] Wire `ConjugationStage` into `TenseLessonContainer` practice flow in `src/components/tenses/TenseLessonContainer.tsx`
+- [X] T020 [P] [US3] Implement `ConjugationStage` (Stage 1) with email context card, multiple-choice options, direct text input, instant feedback, and grammar explanations in `src/components/tenses/stages/ConjugationStage.tsx`
+- [X] T021 [P] [US3] Create unit tests for `ConjugationStage` interaction and grading in `tests/unit/tenses/ConjugationStage.test.tsx`
+- [X] T022 [US3] Wire `ConjugationStage` into `TenseLessonContainer` practice flow in `src/components/tenses/TenseLessonContainer.tsx`
 
 **Checkpoint**: At this point, User Story 3 should be fully functional and testable independently.
 

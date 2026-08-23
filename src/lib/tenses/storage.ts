@@ -141,6 +141,9 @@ export function saveStageProgress(
   score: number,
   total: number
 ): TenseUserProgressRecord {
+  if (!tenseId) {
+    return createInitialProgressRecord("");
+  }
   const all = getAllProgress();
   const defaultRecord = createInitialProgressRecord(tenseId);
   const existing = all[tenseId] || defaultRecord;

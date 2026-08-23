@@ -117,11 +117,117 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(startPracticeCTA).toBeVisible();
     await startPracticeCTA.click();
 
-    // 8. Verify transition to Practice tab and Stage list
+    // 8. Verify transition to Practice tab and Stage 1
     const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
     await expect(practiceTab).toHaveAttribute("aria-selected", "true");
-    await expect(
-      page.getByRole("heading", { level: 2, name: /chặng 1/i }).or(page.getByText(/chặng 1: chia động từ/i))
-    ).toBeVisible();
+    await expect(page.getByText(/chặng 1 • chia động từ/i)).toBeVisible();
+  });
+
+  test("US3: completes Stage 1 (Conjugation) with multiple-choice, direct typing, audio, instant feedback, and storage saving", async ({
+    page,
+  }) => {
+    // 1. Open Present Simple lesson page
+    await page.goto("/tenses/present-simple");
+
+    // 2. Go to Practice tab
+    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await practiceTab.click();
+
+    // 3. Enter Stage 1
+    const enterStage1Btn = page.getByRole("button", { name: /vào chặng 1/i });
+    await expect(enterStage1Btn).toBeVisible();
+    await enterStage1Btn.click();
+
+    // 4. Verify Stage 1 UI
+    await expect(page.getByText(/chặng 1 • chia động từ/i)).toBeVisible();
+    await expect(page.getByText(/câu 1 \/ 8/i)).toBeVisible();
+    await expect(page.getByText(/Email thông báo lịch họp định kỳ/i)).toBeVisible();
+    await expect(page.getByText(/Weekly Sprint Planning Meeting/i)).toBeVisible();
+
+    // 5. Test Multiple-Choice Selection on Q1
+    const optionMeets = page.getByRole("button", { name: "meets", exact: true });
+    await expect(optionMeets).toBeVisible();
+    await optionMeets.click();
+
+    const submitBtn = page.getByRole("button", { name: /kiểm tra đáp án/i });
+    await expect(submitBtn).toBeEnabled();
+    await submitBtn.click();
+
+    // 6. Verify Instant Feedback and Grammar Explanation
+    await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    await expect(page.getByText(/Quy tắc áp dụng:/i)).toBeVisible();
+    await expect(page.getByText(/Chủ ngữ 'Our team'/i)).toBeVisible();
+
+    // 7. Test Speech button
+    const audioBtn = page.getByRole("button", { name: /nghe phát âm/i });
+    await expect(audioBtn).toBeVisible();
+    await audioBtn.click();
+
+    // 8. Next to Q2
+    const nextBtn = page.getByRole("button", { name: /câu tiếp theo/i });
+    await expect(nextBtn).toBeVisible();
+    await nextBtn.click();
+
+    // 9. Test Direct Typing & Enter key on Q2
+    await expect(page.getByText(/câu 2 \/ 8/i)).toBeVisible();
+    await expect(page.getByText(/Welcome our new Marketing Manager/i)).toBeVisible();
+
+    const textInput = page.getByPlaceholder(/nhập dạng đúng của động từ/i);
+    await expect(textInput).toBeVisible();
+    await textInput.fill("manages");
+    await textInput.press("Enter");
+
+    await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    await expect(page.getByText(/Ms\. Lan/i)).toBeVisible();
+
+    // 10. Test Incorrect Answer feedback on Q3
+    await page.getByRole("button", { name: /câu tiếp theo/i }).click();
+    await expect(page.getByText(/câu 3 \/ 8/i)).toBeVisible();
+
+    // Select incorrect choice "do not send"
+    await page.getByRole("button", { name: "do not send", exact: true }).click();
+    await page.getByRole("button", { name: /kiểm tra đáp án/i }).click();
+
+    await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
+    await expect(page.getByText(/đáp án đúng:/i)).toBeVisible();
+    await expect(page.getByText(/does not send/i)).toBeVisible();
+
+    // 11. Loop through remaining questions (Q4 to Q8)
+    const answers = [
+      "verifies",           // Q4
+      "does the CEO arrive",// Q5
+      "deliver",            // Q6
+      "have",               // Q7
+      "does not exceed",    // Q8
+    ];
+
+    for (let i = 0; i < answers.length; i++) {
+      await page.getByRole("button", { name: /câu tiếp theo/i }).click();
+      const currentAns = answers[i];
+      const optBtn = page.getByRole("button", { name: currentAns, exact: true });
+      if (await optBtn.isVisible()) {
+        await optBtn.click();
+      } else {
+        await page.getByPlaceholder(/nhập dạng đúng của động từ/i).fill(currentAns);
+      }
+      await page.getByRole("button", { name: /kiểm tra đáp án/i }).click();
+      await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
+    }
+
+    // 12. Finish Stage 1 on last question
+    const finishBtn = page.getByRole("button", { name: /xem kết quả chặng 1|hoàn thành/i });
+    await expect(finishBtn).toBeVisible();
+    await finishBtn.click();
+
+    // 13. Verify return to stage list
+    await expect(page.getByRole("button", { name: /vào chặng 1/i })).toBeVisible();
+
+    // 14. Verify LocalStorage contains saved stage progress
+    const progressInStorage = await page.evaluate(() => {
+      return localStorage.getItem("gamehub_tense_progress_v1");
+    });
+    expect(progressInStorage).not.toBeNull();
+    expect(progressInStorage).toContain('"conjugation"');
+    expect(progressInStorage).toContain('"present-simple"');
   });
 });

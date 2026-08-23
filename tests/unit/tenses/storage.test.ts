@@ -100,6 +100,12 @@ describe("Tense Progress Storage Helper", () => {
       expect(record.completed).toBe(true);
     });
 
+    it("returns default record and avoids corrupting storage when empty tenseId is passed", () => {
+      const record = saveStageProgress("", "conjugation", 8, 8);
+      expect(record.tenseId).toBe("");
+      expect(record.totalScore).toBe(0);
+    });
+
     it("marks completed as false if any stage total is 0 or not passed", () => {
       saveStageProgress("present-simple", "conjugation", 8, 8);
       const record = saveStageProgress("present-simple", "errorHunting", 2, 6); // 2/6 = 33% -> fail (<70%)

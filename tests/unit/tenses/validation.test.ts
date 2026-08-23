@@ -42,6 +42,11 @@ describe("Tenses Validation Utilities", () => {
       expect(normalizeAnswer("pre—meeting")).toBe("pre-meeting");
     });
 
+    it("strips invisible zero-width characters (e.g. \\u200B, \\uFEFF)", () => {
+      expect(normalizeAnswer("meets\u200B")).toBe("meets");
+      expect(normalizeAnswer("\uFEFFdoes\u200Cnot\u200Dagree")).toBe("doesnotagree");
+    });
+
     it("handles null, undefined, and empty string safely", () => {
       expect(normalizeAnswer(null)).toBe("");
       expect(normalizeAnswer(undefined)).toBe("");
@@ -92,6 +97,12 @@ describe("Tenses Validation Utilities", () => {
       expect(isConjugationAnswerCorrect("approve", mockItem)).toBe(false);
       expect(isConjugationAnswerCorrect("wrong", mockItem)).toBe(false);
       expect(isConjugationAnswerCorrect("", mockItem)).toBe(false);
+    });
+
+    it("handles null, undefined, or missing items safely without throwing", () => {
+      expect(isConjugationAnswerCorrect("approves", null)).toBe(false);
+      expect(isConjugationAnswerCorrect("approves", undefined)).toBe(false);
+      expect(isConjugationAnswerCorrect("approves", {} as ConjugationItem)).toBe(false);
     });
   });
 
