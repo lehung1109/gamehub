@@ -4,6 +4,8 @@ import React from 'react'
 import { StudentSessionProvider } from '@/hooks/use-student-session'
 import { StudentJoinPopup } from '@/components/student/StudentJoinPopup'
 import { StudentBadge } from '@/components/student/StudentBadge'
+import { StudentProfileBadge } from '@/components/StudentProfileBadge'
+import { LevelUpCelebrationDialog } from '@/components/student/LevelUpCelebrationDialog'
 
 export default function PlayLayout({
   children,
@@ -13,11 +15,13 @@ export default function PlayLayout({
   return (
     <StudentSessionProvider>
       <div className="relative w-full flex flex-col min-h-full">
-        <div className="w-full flex justify-end pb-2">
+        <div className="w-full flex flex-wrap justify-end pb-2 gap-2">
+          <StudentProfileBadge />
           <StudentBadge />
         </div>
         {children}
         <StudentJoinPopup />
+        <LevelUpCelebrationDialog />
       </div>
     </StudentSessionProvider>
   )

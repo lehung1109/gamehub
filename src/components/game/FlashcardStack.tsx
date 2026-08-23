@@ -38,7 +38,7 @@ export function FlashcardStack({
   const { speak, cancel: cancelSpeech } = useSpeech();
   const touchStartXRef = useRef<number | null>(null);
   const touchStartYRef = useRef<number | null>(null);
-  const cardStartTimeRef = useRef<number>(Date.now());
+  const cardStartTimeRef = useRef<number>(0);
   const visitedIndicesRef = useRef<Set<number>>(new Set());
 
   const total = words.length;
@@ -93,6 +93,7 @@ export function FlashcardStack({
     } else {
       setIsCompleted(true);
       submitSession({
+        score: 5,
         totalQuestions: total,
         topic: topicId || topicTitle || "general",
       });

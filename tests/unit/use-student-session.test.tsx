@@ -1,16 +1,28 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
-import { renderHook, act } from '@testing-library/react'
+import { renderHook, act, waitFor } from '@testing-library/react'
 import {
   useStudentSession,
   StudentSessionProvider,
   STUDENT_SESSION_KEY,
 } from '@/hooks/use-student-session'
+import { getStudentProgress } from '@/app/actions/student-progress'
 import React from 'react'
+
+vi.mock('@/app/actions/student-progress', () => ({
+  getStudentProgress: vi.fn().mockResolvedValue({
+    success: true,
+    totalStars: 0,
+  }),
+}))
 
 describe('useStudentSession Hook', () => {
   beforeEach(() => {
     sessionStorage.clear()
     vi.clearAllMocks()
+    vi.mocked(getStudentProgress).mockResolvedValue({
+      success: true,
+      totalStars: 0,
+    })
   })
 
   afterEach(() => {
@@ -157,5 +169,75 @@ describe('useStudentSession Hook', () => {
     expect(result.current.session).toBeNull()
     expect(result.current.isAnonymous).toBe(false)
     expect(result.current.isOpen).toBe(true)
+  })
+
+  it('fetches totalStars and levelInfo when student session is present', async () => {
+    vi.mocked(getStudentProgress).mockResolvedValue({
+      success: true,
+      totalStars: 25,
+    })
+
+    const existingSession = {
+      classCode: 'ABC123',
+      studentName: 'Linh',
+      isAnonymous: false,
+    }
+    sessionStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(existingSession))
+
+    const { result } = renderHook(() => useStudentSession(), { wrapper })
+
+    await waitFor(() => {
+      expect(result.current.totalStars).toBe(25)
+    })
+
+    expect(result.current.levelInfo.currentLevel.level).toBe(1)
+  })
+
+  it('triggers level-up celebration when refreshProgress detects higher level', async () => {
+    vi.mocked(getStudentProgress).mockResolvedValueOnce({
+      success: true,
+      totalStars: 10,
+    })
+
+    const { result } = renderHook(() => useStudentSession(), { wrapper })
+
+    await act(async () => {
+      result.current.joinClass({
+        classCode: 'ABC123',
+        studentName: 'Linh',
+      })
+    })
+
+    await waitFor(() => {
+      expect(result.current.totalStars).toBe(10)
+    })
+    expect(result.current.levelInfo.currentLevel.level).toBe(1)
+    expect(result.current.celebration.show).toBe(false)
+
+    // Now student earns stars up to 55 (Level 2)
+    vi.mocked(getStudentProgress).mockResolvedValueOnce({
+      success: true,
+      totalStars: 55,
+    })
+
+    await act(async () => {
+      await result.current.refreshProgress()
+    })
+
+    await waitFor(() => {
+      expect(result.current.totalStars).toBe(55)
+      expect(result.current.levelInfo.currentLevel.level).toBe(2)
+      expect(result.current.celebration.show).toBe(true)
+      expect(result.current.celebration.level?.level).toBe(2)
+      expect(result.current.celebration.level?.badge).toBe('🐱')
+    })
+
+    // Dismiss celebration
+    act(() => {
+      result.current.dismissCelebration()
+    })
+
+    expect(result.current.celebration.show).toBe(false)
+    expect(result.current.celebration.level).toBeNull()
   })
 })
