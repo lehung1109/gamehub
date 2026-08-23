@@ -388,6 +388,8 @@ describe('Tracking API Route Contract (POST /api/track)', () => {
   })
 
   it('returns 500 Internal Server Error when database insertion fails', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
     // Classroom found
     const classroomSingleMock = vi.fn().mockResolvedValue({
       data: { id: 'cls-1', code: 'ABC123', is_active: true },
@@ -437,5 +439,7 @@ describe('Tracking API Route Contract (POST /api/track)', () => {
 
     expect(response.status).toBe(500)
     expect(json.error).toBe('Internal server error')
+    expect(errorSpy).toHaveBeenCalled()
+    errorSpy.mockRestore()
   })
 })

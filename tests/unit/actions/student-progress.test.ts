@@ -96,6 +96,8 @@ describe('getStudentProgress Server Action', () => {
   })
 
   it('handles database error when fetching game_sessions', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
     const mockClass = { id: 'c1', is_active: true }
     const classSingleMock = vi.fn().mockResolvedValue({ data: mockClass, error: null })
     const classEqMock = vi.fn().mockReturnValue({ single: classSingleMock })
@@ -122,5 +124,7 @@ describe('getStudentProgress Server Action', () => {
     const res = await getStudentProgress({ classCode: 'ABC123', studentName: 'Bé Linh' })
     expect(res.success).toBe(false)
     expect(res.error).toBeDefined()
+    expect(errorSpy).toHaveBeenCalled()
+    errorSpy.mockRestore()
   })
 })

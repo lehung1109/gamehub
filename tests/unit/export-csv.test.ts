@@ -309,6 +309,8 @@ describe('Export CSV API Route Contract (GET /api/export-csv)', () => {
   })
 
   it('returns 500 when database error occurs while fetching sessions', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
     // Mock classroom success
     const classroomSelectMock = vi.fn().mockReturnValue({
       eq: vi.fn().mockReturnValue({
@@ -345,5 +347,7 @@ describe('Export CSV API Route Contract (GET /api/export-csv)', () => {
     expect(response.status).toBe(500)
     const json = await response.json()
     expect(json.error).toMatch(/lỗi|error/i)
+    expect(errorSpy).toHaveBeenCalled()
+    errorSpy.mockRestore()
   })
 })
