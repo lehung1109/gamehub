@@ -1,5 +1,4 @@
-// tests/components/dashboard/DifficultWordsAnalysis.test.tsx
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { DifficultWordsAnalysis } from '@/components/dashboard/DifficultWordsAnalysis'
 import type { ClassDifficultWordItem } from '@/app/actions/classes'

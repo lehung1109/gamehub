@@ -209,7 +209,7 @@ describe('Analytics - Class Difficult Words Calculation', () => {
         student_id: 'st-1',
         game_type: 'spelling',
         topic: 'colors',
-        session_details: null as any,
+        session_details: null,
       },
       {
         id: 'sess-3',

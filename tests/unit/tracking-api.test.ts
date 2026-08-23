@@ -8,7 +8,7 @@ vi.mock('@/lib/supabase/admin', () => ({
 }))
 
 describe('Tracking API Route Contract (POST /api/track)', () => {
-  let mockAdminSupabase: any
+  let mockAdminSupabase: { from: ReturnType<typeof vi.fn> }
 
   const validPayload = {
     classCode: 'ABC123',
@@ -47,7 +47,7 @@ describe('Tracking API Route Contract (POST /api/track)', () => {
       from: vi.fn(),
     }
 
-    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockAdminSupabase)
+    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockAdminSupabase as unknown as ReturnType<typeof adminSupabase.createAdminClient>)
   })
 
   it('records a game session and details successfully for a new student', async () => {

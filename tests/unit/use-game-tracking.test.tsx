@@ -35,9 +35,11 @@ describe('useGameTracking Hook', () => {
       window.sessionStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(sessionData))
     }
 
-    return ({ children }: { children: React.ReactNode }) => (
+    const TestWrapper = ({ children }: { children: React.ReactNode }) => (
       <StudentSessionProvider>{children}</StudentSessionProvider>
     )
+    TestWrapper.displayName = 'TestWrapper'
+    return TestWrapper
   }
 
   it('initializes with isTracking false when no student session exists', () => {

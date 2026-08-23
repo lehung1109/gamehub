@@ -105,7 +105,13 @@ test.describe('Student Rewards & Gamification (Phase 3, Phase 4, Phase 5, Phase 
       );
 
       // Intercept tracking API call
-      let trackPayload: any = null;
+      let trackPayload: {
+        score?: number
+        gameType?: string
+        studentName?: string
+        classCode?: string
+        details?: unknown[]
+      } | null = null;
       await page.route('**/api/track', async (route) => {
         const request = route.request();
         if (request.method() === 'POST') {
@@ -142,16 +148,22 @@ test.describe('Student Rewards & Gamification (Phase 3, Phase 4, Phase 5, Phase 
 
       // Verify track payload contained fixed score of 5 for flashcards
       expect(trackPayload).not.toBeNull();
-      expect(trackPayload.score).toBe(5);
-      expect(trackPayload.gameType).toBe('flashcard');
-      expect(trackPayload.studentName).toBe(studentName);
-      expect(trackPayload.classCode).toBe(classCode);
+      expect(trackPayload!.score).toBe(5);
+      expect(trackPayload!.gameType).toBe('flashcard');
+      expect(trackPayload!.studentName).toBe(studentName);
+      expect(trackPayload!.classCode).toBe(classCode);
     });
 
     test('US2: completes scoring game (listening) and submits question details & score', async ({
       page,
     }) => {
-      let trackPayload: any = null;
+      let trackPayload: {
+        score?: number
+        gameType?: string
+        studentName?: string
+        classCode?: string
+        details?: unknown[]
+      } | null = null;
       await page.route('**/api/track', async (route) => {
         const request = route.request();
         if (request.method() === 'POST') {
@@ -203,11 +215,11 @@ test.describe('Student Rewards & Gamification (Phase 3, Phase 4, Phase 5, Phase 
       ).toBeVisible({ timeout: 10000 });
 
       expect(trackPayload).not.toBeNull();
-      expect(trackPayload.classCode).toBe(classCode);
-      expect(trackPayload.studentName).toBe(studentName);
-      expect(trackPayload.gameType).toBe('listening');
-      expect(typeof trackPayload.score).toBe('number');
-      expect(Array.isArray(trackPayload.details)).toBe(true);
+      expect(trackPayload!.classCode).toBe(classCode);
+      expect(trackPayload!.studentName).toBe(studentName);
+      expect(trackPayload!.gameType).toBe('listening');
+      expect(typeof trackPayload!.score).toBe('number');
+      expect(Array.isArray(trackPayload!.details)).toBe(true);
     });
 
     test('US2: celebration dialog is hidden during normal gameplay and does not flash unexpectedly', async ({

@@ -11,8 +11,15 @@ vi.mock('next/cache', () => ({
   revalidatePath: vi.fn(),
 }))
 
+type MockSupabaseClient = {
+  auth: {
+    getUser: ReturnType<typeof vi.fn>
+  }
+  from: ReturnType<typeof vi.fn>
+}
+
 describe('getStudentDashboardAction', () => {
-  let mockSupabase: any
+  let mockSupabase: MockSupabaseClient
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -27,7 +34,7 @@ describe('getStudentDashboardAction', () => {
       from: vi.fn(),
     }
 
-    vi.mocked(serverSupabase.createClient).mockResolvedValue(mockSupabase)
+    vi.mocked(serverSupabase.createClient).mockResolvedValue(mockSupabase as unknown as Awaited<ReturnType<typeof serverSupabase.createClient>>)
   })
 
   it('returns error if user is unauthenticated', async () => {

@@ -74,7 +74,18 @@ export async function GET(request: Request) {
     }
 
     // 3. Map database records to CSV format
-    const records: CsvSessionRecord[] = (sessions || []).map((sess: any) => {
+    interface RawSessionRow {
+      student_id?: string
+      game_type?: string | null
+      topic?: string | null
+      score?: number | null
+      total_questions?: number | null
+      completed_at?: string | null
+      started_at?: string | null
+      students?: { name?: string } | null
+    }
+
+    const records: CsvSessionRecord[] = ((sessions as unknown as RawSessionRow[]) || []).map((sess) => {
       const studentName = sess.students?.name || 'Học sinh'
       const gameName = getGameLabel(sess.game_type || '')
       const topic = sess.topic || 'Mặc định'

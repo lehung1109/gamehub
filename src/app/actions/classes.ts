@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { generateClassCode } from '@/lib/class-code'
-import { calculateClassDifficultWords, getGameLabel, GAME_LABELS } from '@/lib/analytics'
+import { calculateClassDifficultWords, getGameLabel } from '@/lib/analytics'
 import type { Database } from '@/types/database'
 
 export type Classroom = Database['public']['Tables']['classrooms']['Row']
@@ -237,8 +237,8 @@ export async function getClassesAction(): Promise<{
 
     const classroomsWithCount: ClassroomWithCount[] = (data || []).map((row) => {
       const studentCount = (row.students as unknown as { count: number }[])?.[0]?.count || 0
-
-      const { students, ...classroomData } = row
+      const classroomData = { ...row }
+      delete (classroomData as Record<string, unknown>).students
       return {
         ...(classroomData as Classroom),
         student_count: studentCount,
@@ -452,8 +452,6 @@ export async function getClassDashboardAction(
     // 4. Compute aggregations
     const totalSessions = rawSessions.length
 
-    let totalScoreSum = 0
-    let totalQuestionsSum = 0
     let totalPercentageSum = 0
     let validScoreCount = 0
 
@@ -491,7 +489,7 @@ export async function getClassDashboardAction(
 
     for (const sess of rawSessions) {
       const sId = sess.student_id
-      const stName = (sess.students as any)?.name || studentMap.get(sId) || 'Học sinh'
+      const stName = (sess.students as unknown as { name?: string } | null)?.name || studentMap.get(sId) || 'Học sinh'
       const gType = sess.game_type || 'unspecified'
       const gLabel = getGameLabel(gType)
 
@@ -506,8 +504,6 @@ export async function getClassDashboardAction(
 
       if (hasScore) {
         totalPercentageSum += sPercent
-        totalScoreSum += sScore
-        totalQuestionsSum += sTotalQ
         validScoreCount++
       }
 
@@ -755,7 +751,15 @@ export async function getStudentDashboardAction(
         lastActiveAt = sessionDate
       }
 
-      const rawDetails = (sess.session_details as any[]) || []
+      const rawDetails = (sess.session_details as unknown as Array<{
+        id: string
+        prompt?: string | null
+        selected_answer?: string | null
+        correct_answer?: string | null
+        is_correct?: boolean | null
+        time_taken_ms?: number | null
+        attempts?: number | null
+      }>) || []
       const details: SessionDetailItem[] = []
 
       for (const d of rawDetails) {
@@ -765,8 +769,8 @@ export async function getStudentDashboardAction(
           id: d.id,
           sessionId: sess.id,
           prompt: dPrompt,
-          selectedAnswer: d.selected_answer,
-          correctAnswer: d.correct_answer,
+          selectedAnswer: d.selected_answer ?? null,
+          correctAnswer: d.correct_answer ?? null,
           isCorrect,
           timeTakenMs: d.time_taken_ms ?? 0,
           attempts: d.attempts ?? 1,

@@ -167,7 +167,7 @@ export function DifficultWordsAnalysis({ items }: DifficultWordsAnalysisProps) {
                     id="sort-difficult-words"
                     aria-label="Sắp xếp"
                     value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value as any)}
+                    onChange={(e) => setSortBy(e.target.value as 'errorRate' | 'incorrectCount' | 'studentCount')}
                     className="h-8 px-2.5 text-xs bg-slate-50 border border-slate-200 rounded-md text-slate-700 font-medium focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="errorRate">Tỷ lệ sai cao nhất</option>

@@ -9,7 +9,7 @@ vi.mock('@/app/actions/classes', () => ({
 }))
 
 vi.mock('@/components/dashboard/ClassOverview', () => ({
-  ClassOverview: ({ data }: any) => (
+  ClassOverview: ({ data }: { data?: { classroom?: { name?: string }; totalStudents?: number } }) => (
     <div data-testid="class-overview-mock">
       Overview for: {data?.classroom?.name} - Students: {data?.totalStudents}
     </div>
@@ -29,7 +29,7 @@ describe('Class Detail Dashboard Page', () => {
     }
 
     vi.mocked(classActions.getClassDashboardAction).mockResolvedValue({
-      data: mockData as any,
+      data: mockData as unknown as classActions.ClassDashboardData,
     })
 
     const PageContent = await ClassDetailPage({
