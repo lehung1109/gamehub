@@ -1,12 +1,10 @@
 <!--
   Sync Impact Report
-  Version change: 1.1.0 → 2.0.0 (MAJOR — removed principles, updated Task Generation Standards)
+  Version change: 2.0.0 → 2.0.1 (PATCH — refined Phase 1 Worktree logic to default to creating a new worktree)
   Modified principles:
-    - Principle VIII: Task Generation Standards → Principle VI: Task Generation Standards (restructured to mandate worktree evaluation in Phase 1, dedicated subagent execution per phase, strict TDD workflow, iterative review/bug hunt subagent loop until zero bugs, phase-end commits, and explicit task-level checklist representation)
+    - Principle VI: Task Generation Standards (updated Phase 1 to prioritize worktree creation, ask for user confirmation, and default to creating new)
   Added sections: (none)
-  Removed sections:
-    - Principle VI: Spec-Driven Development
-    - Principle VII: Superpowers Implementation Workflow
+  Removed sections: (none)
   Follow-up TODOs: none
 -->
 
@@ -79,9 +77,11 @@ The `speckit-tasks` agent skill MUST follow rigorous planning and phase-level
 decomposition standards when generating `tasks.md`. Every phase generated in
 `tasks.md` MUST explicitly list and incorporate the following requirements:
 
-1. **Phase 1 Worktree Evaluation**:
-   - Phase 1 MUST evaluate whether to use git worktrees or workspace branching
-     for workspace isolation before starting implementation tasks.
+1. **Phase 1 Worktree Creation**:
+   - Phase 1 MUST prioritize creating a new git worktree for workspace isolation
+     before starting implementation tasks.
+   - It MUST ask the user to confirm the creation of the new worktree, defaulting
+     to creating a new one.
 2. **Dedicated Subagent Execution per Phase**:
    - Each phase MUST be executed within a dedicated subagent session to maintain
      clean context boundaries and isolated task execution.
@@ -112,7 +112,7 @@ decomposition standards when generating `tasks.md`. Every phase generated in
      dependencies without declaring them first is prohibited.
    - The spec (`spec.md`) and plan (`plan.md`) MUST both be read before
      generating tasks; partial context generation is prohibited.
-   - All above phase workflow requirements (worktree evaluation in Phase 1,
+   - All above phase workflow requirements (worktree creation in Phase 1,
      subagent execution, TDD steps, iterative review subagent loop, and
      phase-end commit) MUST be explicitly listed as actionable checklist items
      in each phase of `tasks.md`.
@@ -190,4 +190,4 @@ GameHub project.
 - The `speckit-tasks` and implementation agents MUST verify that Principle VI
   is satisfied when creating and executing task lists
 
-**Version**: 2.0.0 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-08-24
+**Version**: 2.0.1 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-08-24
