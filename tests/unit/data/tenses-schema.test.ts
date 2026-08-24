@@ -83,11 +83,11 @@ describe("Tenses Schema & Data Integrity Tests", () => {
     });
 
     describe("Stage 1: Conjugation (Email & Workplace Context)", () => {
-      it("contains exactly 8 conjugation challenge items", () => {
-        expect(data.challenges.conjugation).toHaveLength(8);
+      it("contains at least 15 conjugation challenge items", () => {
+        expect(data.challenges.conjugation.length).toBeGreaterThanOrEqual(15);
       });
 
-      it("validates all 8 conjugation items with validateConjugationItem", () => {
+      it("validates all conjugation items with validateConjugationItem", () => {
         data.challenges.conjugation.forEach((item) => {
           const res = validateConjugationItem(item);
           expect(res.valid, `Conjugation ${item.id} errors: ${res.errors.join(", ")}`).toBe(true);

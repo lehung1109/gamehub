@@ -4,6 +4,10 @@ import { ConjugationStage } from "@/components/tenses/stages/ConjugationStage";
 import { ConjugationItem } from "@/types/tenses";
 import presentSimpleData from "@/data/tenses/present-simple.json";
 
+vi.mock("@/hooks/useSessionQuestions", () => ({
+  useSessionQuestions: vi.fn((items, count, key) => items.slice(0, count)),
+}));
+
 const mockItems: ConjugationItem[] = presentSimpleData.challenges.conjugation as ConjugationItem[];
 
 describe("ConjugationStage (Stage 1)", () => {

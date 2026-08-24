@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useSessionQuestions } from "@/hooks/useSessionQuestions";
 import { cn } from "@/lib/utils";
 
 export interface ConjugationStageProps {
@@ -72,6 +73,8 @@ export function ConjugationStage({
   onBack,
   className,
 }: ConjugationStageProps) {
+  const sessionQuestions = useSessionQuestions(items, 8, 'gamehub-session-present-simple-conjugation');
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -82,8 +85,8 @@ export function ConjugationStage({
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
-  const total = items?.length || 0;
-  const currentItem = items?.[currentIndex];
+  const total = sessionQuestions?.length || 0;
+  const currentItem = sessionQuestions?.[currentIndex];
 
   useEffect(() => {
     if (isSubmitted && nextButtonRef.current) {
@@ -93,7 +96,11 @@ export function ConjugationStage({
     }
   }, [currentIndex, isSubmitted]);
 
-  if (!items || items.length === 0 || !currentItem) {
+  if (items && items.length > 0 && sessionQuestions.length === 0) {
+    return null; // or a loading spinner
+  }
+
+  if (!sessionQuestions || sessionQuestions.length === 0 || !currentItem) {
     return (
       <Card className="p-8 text-center border-dashed">
         <div className="flex flex-col items-center justify-center space-y-4">

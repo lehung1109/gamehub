@@ -129,8 +129,17 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 1. Open Present Simple lesson page
     await page.goto("/tenses/present-simple");
 
+    // Seed sessionStorage to ensure deterministic order of questions for this test
+    await page.evaluate(() => {
+      sessionStorage.setItem(
+        'gamehub-session-present-simple-conjugation',
+        JSON.stringify(["conj-01", "conj-02", "conj-03", "conj-04", "conj-05", "conj-06", "conj-07", "conj-08"])
+      );
+    });
+
     // 2. Go to Practice tab
     const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+
     await practiceTab.click();
 
     // 3. Enter Stage 1

@@ -12,6 +12,10 @@ import { StudentSessionProvider } from '@/contexts/StudentSessionContext';
 import presentSimpleData from '@/data/tenses/present-simple.json';
 import type { ConjugationItem, ErrorHunterItem, SentenceBuilderItem } from '@/types/tenses';
 
+vi.mock("@/hooks/useSessionQuestions", () => ({
+  useSessionQuestions: vi.fn((items, count, key) => items.slice(0, count)),
+}));
+
 vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn().mockResolvedValue({
     success: true,

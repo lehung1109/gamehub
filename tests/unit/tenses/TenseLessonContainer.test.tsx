@@ -14,6 +14,10 @@ vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/tenses/present-simple"),
 }));
 
+vi.mock("@/hooks/useSessionQuestions", () => ({
+  useSessionQuestions: vi.fn((items, count, key) => items.slice(0, count)),
+}));
+
 const mockLessonData = presentSimpleData as unknown as TenseModuleData;
 
 describe("TenseLessonContainer component", () => {

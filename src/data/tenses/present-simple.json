@@ -303,8 +303,15 @@
         "baseVerb": "meet",
         "textAfter": " every Monday morning at 9:00 AM to review sprint goals.",
         "correctAnswer": "meets",
-        "acceptableAlternatives": ["MEETS"],
-        "options": ["meet", "meets", "meeting", "is meet"],
+        "acceptableAlternatives": [
+          "MEETS"
+        ],
+        "options": [
+          "meet",
+          "meets",
+          "meeting",
+          "is meet"
+        ],
         "explanation": {
           "ruleVi": "Chủ ngữ 'Our team' (danh từ tập hợp số ít) đi với động từ thêm 's/es'.",
           "detailedAnalysisVi": "'Our team' đóng vai trò là một đơn vị tập thể số ít trong ngữ cảnh này, do đó động từ 'meet' phải chia thành 'meets' để diễn tả lịch sinh hoạt định kỳ."
@@ -321,8 +328,15 @@
         "baseVerb": "manage",
         "textAfter": " all digital marketing campaigns and social media channels.",
         "correctAnswer": "manages",
-        "acceptableAlternatives": ["MANAGES"],
-        "options": ["manage", "manages", "managing", "managed"],
+        "acceptableAlternatives": [
+          "MANAGES"
+        ],
+        "options": [
+          "manage",
+          "manages",
+          "managing",
+          "managed"
+        ],
         "explanation": {
           "ruleVi": "Chủ ngữ ngôi thứ ba số ít 'Ms. Lan' đòi hỏi động từ thêm 's'.",
           "detailedAnalysisVi": "'Ms. Lan' là ngôi thứ ba số ít (She), nên động từ 'manage' thêm đuôi 's' thành 'manages' để diễn tả nhiệm vụ và chức năng công việc thường trực."
@@ -339,8 +353,17 @@
         "baseVerb": "not send",
         "textAfter": " automatic confirmation emails when servers undergo maintenance.",
         "correctAnswer": "does not send",
-        "acceptableAlternatives": ["doesn't send", "DOES NOT SEND", "DOESN'T SEND"],
-        "options": ["do not send", "does not send", "not send", "is not send"],
+        "acceptableAlternatives": [
+          "doesn't send",
+          "DOES NOT SEND",
+          "DOESN'T SEND"
+        ],
+        "options": [
+          "do not send",
+          "does not send",
+          "not send",
+          "is not send"
+        ],
         "explanation": {
           "ruleVi": "Thể phủ định của động từ thường với chủ ngữ số ít dùng 'does not + V-infinitive'.",
           "detailedAnalysisVi": "Chủ ngữ 'The system' (ngôi thứ 3 số ít / It) nên cần mượn trợ động từ 'does', kết hợp với 'not' và động từ nguyên thể 'send' -> 'does not send' (hoặc 'doesn't send')."
@@ -357,8 +380,15 @@
         "baseVerb": "verify",
         "textAfter": " all invoices before sending them to the Director.",
         "correctAnswer": "verifies",
-        "acceptableAlternatives": ["VERIFIES"],
-        "options": ["verify", "verifies", "verifys", "verifying"],
+        "acceptableAlternatives": [
+          "VERIFIES"
+        ],
+        "options": [
+          "verify",
+          "verifies",
+          "verifys",
+          "verifying"
+        ],
         "explanation": {
           "ruleVi": "Động từ kết thúc bằng phụ âm + 'y' đổi 'y' thành 'i' rồi thêm '-es'.",
           "detailedAnalysisVi": "Động từ 'verify' kết thúc bằng phụ âm 'f' + 'y'. Với chủ ngữ số ít 'The chief accountant', ta đổi 'y' thành 'ies' -> 'verifies'."
@@ -375,8 +405,15 @@
         "baseVerb": "the CEO / arrive",
         "textAfter": " at the office every morning?",
         "correctAnswer": "does the CEO arrive",
-        "acceptableAlternatives": ["DOES THE CEO ARRIVE"],
-        "options": ["does the CEO arrive", "is the CEO arrive", "do the CEO arrive", "the CEO arrives"],
+        "acceptableAlternatives": [
+          "DOES THE CEO ARRIVE"
+        ],
+        "options": [
+          "does the CEO arrive",
+          "is the CEO arrive",
+          "do the CEO arrive",
+          "the CEO arrives"
+        ],
         "explanation": {
           "ruleVi": "Câu hỏi Wh-question với chủ ngữ số ít: Wh-word + does + S + V-inf?",
           "detailedAnalysisVi": "Chủ ngữ 'the CEO' là số ít nên dùng trợ động từ 'does' đứng trước chủ ngữ, động từ chính trở về dạng nguyên thể 'arrive'."
@@ -393,8 +430,15 @@
         "baseVerb": "deliver",
         "textAfter": " products to domestic customers within 24 hours.",
         "correctAnswer": "deliver",
-        "acceptableAlternatives": ["DELIVER"],
-        "options": ["delivers", "deliver", "delivering", "are deliver"],
+        "acceptableAlternatives": [
+          "DELIVER"
+        ],
+        "options": [
+          "delivers",
+          "deliver",
+          "delivering",
+          "are deliver"
+        ],
         "explanation": {
           "ruleVi": "Chủ ngữ ngôi thứ nhất số nhiều 'We' đi với động từ nguyên thể không chia.",
           "detailedAnalysisVi": "'We' là chủ ngữ số nhiều, do đó động từ giữ nguyên mẫu 'deliver' để diễn tả quy trình làm việc thường lệ của công ty."
@@ -411,8 +455,15 @@
         "baseVerb": "have",
         "textAfter": " full access to the intranet portal upon onboarding.",
         "correctAnswer": "have",
-        "acceptableAlternatives": ["HAVE"],
-        "options": ["has", "have", "having", "is have"],
+        "acceptableAlternatives": [
+          "HAVE"
+        ],
+        "options": [
+          "has",
+          "have",
+          "having",
+          "is have"
+        ],
         "explanation": {
           "ruleVi": "Chủ ngữ danh từ số nhiều 'New employees' đi với 'have'.",
           "detailedAnalysisVi": "'New employees' có đuôi 's' (danh từ số nhiều), nên động từ chia là 'have' (không dùng 'has')."
@@ -429,11 +480,199 @@
         "baseVerb": "not exceed",
         "textAfter": " the allocated budget for this fiscal quarter.",
         "correctAnswer": "does not exceed",
-        "acceptableAlternatives": ["doesn't exceed", "DOES NOT EXCEED", "DOESN'T EXCEED"],
-        "options": ["do not exceed", "does not exceed", "is not exceed", "not exceeds"],
+        "acceptableAlternatives": [
+          "doesn't exceed",
+          "DOES NOT EXCEED",
+          "DOESN'T EXCEED"
+        ],
+        "options": [
+          "do not exceed",
+          "does not exceed",
+          "is not exceed",
+          "not exceeds"
+        ],
         "explanation": {
           "ruleVi": "Thể phủ định thì Hiện Tại Đơn với chủ ngữ số ít 'Our department'.",
           "detailedAnalysisVi": "'Our department' là danh từ số ít, thể phủ định dùng 'does not' + V-nguyên mẫu ('exceed')."
+        }
+      },
+      {
+        "id": "conj-09",
+        "contextType": "email",
+        "scenarioVi": "Email xác nhận quy trình phê duyệt tài liệu",
+        "sender": "Project Manager",
+        "recipient": "Design Team",
+        "subject": "Approval Process",
+        "textBefore": "The lead designer ",
+        "baseVerb": "review",
+        "textAfter": " all creative assets before they go live.",
+        "correctAnswer": "reviews",
+        "acceptableAlternatives": [
+          "REVIEWS"
+        ],
+        "options": [
+          "review",
+          "reviews",
+          "reviewing",
+          "is review"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ ngôi thứ ba số ít cần thêm '-s'.",
+          "detailedAnalysisVi": "'The lead designer' là ngôi thứ 3 số ít, nên động từ 'review' thêm 's' thành 'reviews'."
+        }
+      },
+      {
+        "id": "conj-10",
+        "contextType": "meeting",
+        "scenarioVi": "Giải thích quy trình báo cáo trong cuộc họp",
+        "sender": "HR Manager",
+        "recipient": "New Hires",
+        "subject": "Onboarding Session",
+        "textBefore": "Our managers usually ",
+        "baseVerb": "hold",
+        "textAfter": " one-on-one sessions every Friday.",
+        "correctAnswer": "hold",
+        "acceptableAlternatives": [
+          "HOLD"
+        ],
+        "options": [
+          "hold",
+          "holds",
+          "holding",
+          "is hold"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ số nhiều đi với động từ nguyên thể.",
+          "detailedAnalysisVi": "'Our managers' là danh từ số nhiều, nên động từ 'hold' được giữ nguyên."
+        }
+      },
+      {
+        "id": "conj-11",
+        "contextType": "chat",
+        "scenarioVi": "Hỏi đồng nghiệp về lịch trình chuyến bay",
+        "sender": "Alex",
+        "recipient": "Sarah",
+        "subject": "Business Trip",
+        "textBefore": "What time ",
+        "baseVerb": "the flight / depart",
+        "textAfter": " tomorrow morning?",
+        "correctAnswer": "does the flight depart",
+        "acceptableAlternatives": [
+          "DOES THE FLIGHT DEPART"
+        ],
+        "options": [
+          "does the flight depart",
+          "do the flight depart",
+          "the flight departs",
+          "is the flight depart"
+        ],
+        "explanation": {
+          "ruleVi": "Câu hỏi với chủ ngữ số ít dùng trợ động từ 'does'.",
+          "detailedAnalysisVi": "'The flight' là chủ ngữ số ít nên dùng 'does', động từ chính ở dạng nguyên thể."
+        }
+      },
+      {
+        "id": "conj-12",
+        "contextType": "routine",
+        "scenarioVi": "Mô tả giờ làm việc cố định",
+        "sender": "Admin",
+        "recipient": "All Employees",
+        "subject": "Office Hours",
+        "textBefore": "The main entrance ",
+        "baseVerb": "not open",
+        "textAfter": " until 7:30 AM on weekdays.",
+        "correctAnswer": "does not open",
+        "acceptableAlternatives": [
+          "doesn't open",
+          "DOES NOT OPEN",
+          "DOESN'T OPEN"
+        ],
+        "options": [
+          "do not open",
+          "does not open",
+          "not open",
+          "is not open"
+        ],
+        "explanation": {
+          "ruleVi": "Câu phủ định với chủ ngữ số ít dùng 'does not + V'.",
+          "detailedAnalysisVi": "'The main entrance' là danh từ số ít nên dùng trợ động từ 'does not' kết hợp động từ nguyên thể 'open'."
+        }
+      },
+      {
+        "id": "conj-13",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo phân tích dữ liệu hàng tuần",
+        "sender": "Data Team",
+        "recipient": "Management",
+        "subject": "Weekly Analytics",
+        "textBefore": "These metrics clearly ",
+        "baseVerb": "show",
+        "textAfter": " a steady increase in user engagement.",
+        "correctAnswer": "show",
+        "acceptableAlternatives": [
+          "SHOW"
+        ],
+        "options": [
+          "shows",
+          "show",
+          "showing",
+          "are show"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ số nhiều đi với động từ không chia.",
+          "detailedAnalysisVi": "'These metrics' là chủ ngữ số nhiều nên động từ 'show' được giữ nguyên mẫu."
+        }
+      },
+      {
+        "id": "conj-14",
+        "contextType": "email",
+        "scenarioVi": "Email nhắc nhở về chính sách bảo mật",
+        "sender": "IT Security",
+        "recipient": "All Staff",
+        "subject": "Password Policy",
+        "textBefore": "The company system ",
+        "baseVerb": "require",
+        "textAfter": " a password change every 90 days.",
+        "correctAnswer": "requires",
+        "acceptableAlternatives": [
+          "REQUIRES"
+        ],
+        "options": [
+          "require",
+          "requires",
+          "requiring",
+          "is require"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ ngôi thứ ba số ít thêm '-s'.",
+          "detailedAnalysisVi": "'The company system' là số ít nên động từ 'require' thêm đuôi '-s'."
+        }
+      },
+      {
+        "id": "conj-15",
+        "contextType": "chat",
+        "scenarioVi": "Tin nhắn thông báo công việc đang chờ xử lý",
+        "sender": "Jane (QA)",
+        "recipient": "Dev Team",
+        "subject": "Pending Bugs",
+        "textBefore": "I ",
+        "baseVerb": "not think",
+        "textAfter": " we have enough time to fix this before release.",
+        "correctAnswer": "do not think",
+        "acceptableAlternatives": [
+          "don't think",
+          "DO NOT THINK",
+          "DON'T THINK"
+        ],
+        "options": [
+          "do not think",
+          "does not think",
+          "not think",
+          "am not think"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ phủ định 'do not'.",
+          "detailedAnalysisVi": "Ngôi thứ nhất 'I' dùng trợ động từ 'do not' kết hợp động từ nguyên thể 'think'."
         }
       }
     ],
@@ -441,14 +680,39 @@
       {
         "id": "err-01",
         "scenarioVi": "Trao đổi ý kiến về đề xuất của khách hàng",
-        "tokens": ["She", "don't", "agree", "with", "the", "client's", "new", "proposal."],
+        "tokens": [
+          "She",
+          "don't",
+          "agree",
+          "with",
+          "the",
+          "client's",
+          "new",
+          "proposal."
+        ],
         "errorTokenIndex": 1,
         "correctToken": "doesn't",
         "options": [
-          { "value": "doesn't", "label": "doesn't", "isCorrect": true },
-          { "value": "isn't", "label": "isn't", "isCorrect": false },
-          { "value": "don't", "label": "don't", "isCorrect": false },
-          { "value": "not", "label": "not", "isCorrect": false }
+          {
+            "value": "doesn't",
+            "label": "doesn't",
+            "isCorrect": true
+          },
+          {
+            "value": "isn't",
+            "label": "isn't",
+            "isCorrect": false
+          },
+          {
+            "value": "don't",
+            "label": "don't",
+            "isCorrect": false
+          },
+          {
+            "value": "not",
+            "label": "not",
+            "isCorrect": false
+          }
         ],
         "fullCorrectSentence": "She doesn't agree with the client's new proposal.",
         "vietnameseMeaning": "Cô ấy không đồng ý với đề xuất mới của khách hàng.",
@@ -460,14 +724,39 @@
       {
         "id": "err-02",
         "scenarioVi": "Thông báo lịch tham gia cuộc họp của Ban giám đốc",
-        "tokens": ["The", "CEO", "always", "attend", "the", "Monday", "morning", "briefing."],
+        "tokens": [
+          "The",
+          "CEO",
+          "always",
+          "attend",
+          "the",
+          "Monday",
+          "morning",
+          "briefing."
+        ],
         "errorTokenIndex": 3,
         "correctToken": "attends",
         "options": [
-          { "value": "attends", "label": "attends", "isCorrect": true },
-          { "value": "is attending", "label": "is attending", "isCorrect": false },
-          { "value": "attend", "label": "attend", "isCorrect": false },
-          { "value": "attending", "label": "attending", "isCorrect": false }
+          {
+            "value": "attends",
+            "label": "attends",
+            "isCorrect": true
+          },
+          {
+            "value": "is attending",
+            "label": "is attending",
+            "isCorrect": false
+          },
+          {
+            "value": "attend",
+            "label": "attend",
+            "isCorrect": false
+          },
+          {
+            "value": "attending",
+            "label": "attending",
+            "isCorrect": false
+          }
         ],
         "fullCorrectSentence": "The CEO always attends the Monday morning briefing.",
         "vietnameseMeaning": "Giám đốc điều hành luôn tham dự cuộc họp tóm tắt sáng thứ Hai.",
@@ -479,14 +768,39 @@
       {
         "id": "err-03",
         "scenarioVi": "Giới thiệu năng lực và dịch vụ của công ty",
-        "tokens": ["Our", "company", "provide", "consulting", "services", "to", "international", "clients."],
+        "tokens": [
+          "Our",
+          "company",
+          "provide",
+          "consulting",
+          "services",
+          "to",
+          "international",
+          "clients."
+        ],
         "errorTokenIndex": 2,
         "correctToken": "provides",
         "options": [
-          { "value": "provides", "label": "provides", "isCorrect": true },
-          { "value": "provide", "label": "provide", "isCorrect": false },
-          { "value": "is provide", "label": "is provide", "isCorrect": false },
-          { "value": "providing", "label": "providing", "isCorrect": false }
+          {
+            "value": "provides",
+            "label": "provides",
+            "isCorrect": true
+          },
+          {
+            "value": "provide",
+            "label": "provide",
+            "isCorrect": false
+          },
+          {
+            "value": "is provide",
+            "label": "is provide",
+            "isCorrect": false
+          },
+          {
+            "value": "providing",
+            "label": "providing",
+            "isCorrect": false
+          }
         ],
         "fullCorrectSentence": "Our company provides consulting services to international clients.",
         "vietnameseMeaning": "Công ty chúng tôi cung cấp dịch vụ tư vấn cho các khách hàng quốc tế.",
@@ -498,14 +812,39 @@
       {
         "id": "err-04",
         "scenarioVi": "Mô tả tính năng của phần mềm kế toán tự động",
-        "tokens": ["The", "software", "do", "not", "require", "manual", "data", "entry."],
+        "tokens": [
+          "The",
+          "software",
+          "do",
+          "not",
+          "require",
+          "manual",
+          "data",
+          "entry."
+        ],
         "errorTokenIndex": 2,
         "correctToken": "does",
         "options": [
-          { "value": "does", "label": "does", "isCorrect": true },
-          { "value": "do", "label": "do", "isCorrect": false },
-          { "value": "is", "label": "is", "isCorrect": false },
-          { "value": "are", "label": "are", "isCorrect": false }
+          {
+            "value": "does",
+            "label": "does",
+            "isCorrect": true
+          },
+          {
+            "value": "do",
+            "label": "do",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": false
+          }
         ],
         "fullCorrectSentence": "The software does not require manual data entry.",
         "vietnameseMeaning": "Phần mềm không yêu cầu nhập dữ liệu thủ công.",
@@ -517,14 +856,40 @@
       {
         "id": "err-05",
         "scenarioVi": "Trách nhiệm đào tạo của Trưởng phòng nhân sự",
-        "tokens": ["He", "teach", "new", "employees", "about", "company", "policies", "every", "month."],
+        "tokens": [
+          "He",
+          "teach",
+          "new",
+          "employees",
+          "about",
+          "company",
+          "policies",
+          "every",
+          "month."
+        ],
         "errorTokenIndex": 1,
         "correctToken": "teaches",
         "options": [
-          { "value": "teaches", "label": "teaches", "isCorrect": true },
-          { "value": "teachs", "label": "teachs", "isCorrect": false },
-          { "value": "teaching", "label": "teaching", "isCorrect": false },
-          { "value": "teach", "label": "teach", "isCorrect": false }
+          {
+            "value": "teaches",
+            "label": "teaches",
+            "isCorrect": true
+          },
+          {
+            "value": "teachs",
+            "label": "teachs",
+            "isCorrect": false
+          },
+          {
+            "value": "teaching",
+            "label": "teaching",
+            "isCorrect": false
+          },
+          {
+            "value": "teach",
+            "label": "teach",
+            "isCorrect": false
+          }
         ],
         "fullCorrectSentence": "He teaches new employees about company policies every month.",
         "vietnameseMeaning": "Anh ấy hướng dẫn nhân viên mới về chính sách công ty mỗi tháng.",
@@ -536,14 +901,41 @@
       {
         "id": "err-06",
         "scenarioVi": "Tần suất gửi báo cáo tài chính cho ban giám đốc",
-        "tokens": ["The", "financial", "analyst", "rarely", "make", "mistakes", "in", "the", "quarterly", "report."],
+        "tokens": [
+          "The",
+          "financial",
+          "analyst",
+          "rarely",
+          "make",
+          "mistakes",
+          "in",
+          "the",
+          "quarterly",
+          "report."
+        ],
         "errorTokenIndex": 4,
         "correctToken": "makes",
         "options": [
-          { "value": "makes", "label": "makes", "isCorrect": true },
-          { "value": "make", "label": "make", "isCorrect": false },
-          { "value": "making", "label": "making", "isCorrect": false },
-          { "value": "is make", "label": "is make", "isCorrect": false }
+          {
+            "value": "makes",
+            "label": "makes",
+            "isCorrect": true
+          },
+          {
+            "value": "make",
+            "label": "make",
+            "isCorrect": false
+          },
+          {
+            "value": "making",
+            "label": "making",
+            "isCorrect": false
+          },
+          {
+            "value": "is make",
+            "label": "is make",
+            "isCorrect": false
+          }
         ],
         "fullCorrectSentence": "The financial analyst rarely makes mistakes in the quarterly report.",
         "vietnameseMeaning": "Chuyên viên phân tích tài chính hiếm khi mắc lỗi trong báo cáo quý.",
@@ -559,11 +951,26 @@
         "scenarioVi": "Lịch trình họp giao ban đầu tuần của công ty",
         "vietnameseMeaning": "Công ty chúng tôi luôn tổ chức buổi họp toàn thể vào sáng thứ Hai.",
         "scrambledTokens": [
-          { "id": "tok-3", "text": "holds" },
-          { "id": "tok-1", "text": "Our company" },
-          { "id": "tok-5", "text": "on Monday morning." },
-          { "id": "tok-2", "text": "always" },
-          { "id": "tok-4", "text": "an all-hands meeting" }
+          {
+            "id": "tok-3",
+            "text": "holds"
+          },
+          {
+            "id": "tok-1",
+            "text": "Our company"
+          },
+          {
+            "id": "tok-5",
+            "text": "on Monday morning."
+          },
+          {
+            "id": "tok-2",
+            "text": "always"
+          },
+          {
+            "id": "tok-4",
+            "text": "an all-hands meeting"
+          }
         ],
         "correctTokenOrder": [
           "Our company",
@@ -583,11 +990,26 @@
         "scenarioVi": "Quy trình xem xét hồ sơ của bộ phận nhân sự",
         "vietnameseMeaning": "Người quản lý nhân sự thường xuyên duyệt hồ sơ ứng viên trước giờ phỏng vấn.",
         "scrambledTokens": [
-          { "id": "tok-3", "text": "reviews" },
-          { "id": "tok-5", "text": "before the interview." },
-          { "id": "tok-1", "text": "The HR manager" },
-          { "id": "tok-4", "text": "candidate resumes" },
-          { "id": "tok-2", "text": "regularly" }
+          {
+            "id": "tok-3",
+            "text": "reviews"
+          },
+          {
+            "id": "tok-5",
+            "text": "before the interview."
+          },
+          {
+            "id": "tok-1",
+            "text": "The HR manager"
+          },
+          {
+            "id": "tok-4",
+            "text": "candidate resumes"
+          },
+          {
+            "id": "tok-2",
+            "text": "regularly"
+          }
         ],
         "correctTokenOrder": [
           "The HR manager",
@@ -607,12 +1029,30 @@
         "scenarioVi": "Tiến độ gửi báo cáo công việc hàng tuần",
         "vietnameseMeaning": "Chúng tôi thường gửi báo cáo tiến độ dự án cho khách hàng vào thứ Sáu.",
         "scrambledTokens": [
-          { "id": "tok-2", "text": "usually" },
-          { "id": "tok-4", "text": "the project progress report" },
-          { "id": "tok-1", "text": "We" },
-          { "id": "tok-6", "text": "on Friday." },
-          { "id": "tok-5", "text": "to the client" },
-          { "id": "tok-3", "text": "send" }
+          {
+            "id": "tok-2",
+            "text": "usually"
+          },
+          {
+            "id": "tok-4",
+            "text": "the project progress report"
+          },
+          {
+            "id": "tok-1",
+            "text": "We"
+          },
+          {
+            "id": "tok-6",
+            "text": "on Friday."
+          },
+          {
+            "id": "tok-5",
+            "text": "to the client"
+          },
+          {
+            "id": "tok-3",
+            "text": "send"
+          }
         ],
         "correctTokenOrder": [
           "We",
@@ -633,11 +1073,26 @@
         "scenarioVi": "Cam kết hỗ trợ khách hàng của đội ngũ kỹ thuật",
         "vietnameseMeaning": "Đội ngũ hỗ trợ kỹ thuật không bao giờ bỏ qua yêu cầu khẩn cấp của khách hàng.",
         "scrambledTokens": [
-          { "id": "tok-2", "text": "never" },
-          { "id": "tok-1", "text": "The IT support team" },
-          { "id": "tok-5", "text": "from customers." },
-          { "id": "tok-3", "text": "ignores" },
-          { "id": "tok-4", "text": "urgent requests" }
+          {
+            "id": "tok-2",
+            "text": "never"
+          },
+          {
+            "id": "tok-1",
+            "text": "The IT support team"
+          },
+          {
+            "id": "tok-5",
+            "text": "from customers."
+          },
+          {
+            "id": "tok-3",
+            "text": "ignores"
+          },
+          {
+            "id": "tok-4",
+            "text": "urgent requests"
+          }
         ],
         "correctTokenOrder": [
           "The IT support team",
@@ -657,11 +1112,26 @@
         "scenarioVi": "Thói quen kiểm tra tài liệu của Giám đốc dự án",
         "vietnameseMeaning": "Giám đốc dự án hiếm khi phê duyệt các kế hoạch chưa có ước tính ngân sách rõ ràng.",
         "scrambledTokens": [
-          { "id": "tok-4", "text": "plans" },
-          { "id": "tok-1", "text": "The project director" },
-          { "id": "tok-5", "text": "without a clear budget estimate." },
-          { "id": "tok-3", "text": "approves" },
-          { "id": "tok-2", "text": "rarely" }
+          {
+            "id": "tok-4",
+            "text": "plans"
+          },
+          {
+            "id": "tok-1",
+            "text": "The project director"
+          },
+          {
+            "id": "tok-5",
+            "text": "without a clear budget estimate."
+          },
+          {
+            "id": "tok-3",
+            "text": "approves"
+          },
+          {
+            "id": "tok-2",
+            "text": "rarely"
+          }
         ],
         "correctTokenOrder": [
           "The project director",
@@ -681,12 +1151,30 @@
         "scenarioVi": "Thông báo giờ đóng mở cửa văn phòng",
         "vietnameseMeaning": "Văn phòng chi nhánh mở cửa lúc 8:00 sáng và đóng cửa lúc 6:00 chiều mỗi ngày.",
         "scrambledTokens": [
-          { "id": "tok-5", "text": "at 6:00 PM" },
-          { "id": "tok-2", "text": "opens" },
-          { "id": "tok-1", "text": "The branch office" },
-          { "id": "tok-6", "text": "every day." },
-          { "id": "tok-4", "text": "and closes" },
-          { "id": "tok-3", "text": "at 8:00 AM" }
+          {
+            "id": "tok-5",
+            "text": "at 6:00 PM"
+          },
+          {
+            "id": "tok-2",
+            "text": "opens"
+          },
+          {
+            "id": "tok-1",
+            "text": "The branch office"
+          },
+          {
+            "id": "tok-6",
+            "text": "every day."
+          },
+          {
+            "id": "tok-4",
+            "text": "and closes"
+          },
+          {
+            "id": "tok-3",
+            "text": "at 8:00 AM"
+          }
         ],
         "correctTokenOrder": [
           "The branch office",
