@@ -103,12 +103,12 @@ describe("Tenses Schema & Data Integrity Tests", () => {
     });
 
     describe("Stage 2: Error Hunter (Workplace Proofreading)", () => {
-      it("contains exactly 6 error hunter challenge items", () => {
-        expect(data.challenges.errorHunting).toHaveLength(6);
+      it("contains at least 12 error hunter challenge items", () => {
+        expect(data.challenges.errorHunting.length).toBeGreaterThanOrEqual(12);
       });
 
-      it("validates all 6 error hunter items with validateErrorHunterItem", () => {
-        data.challenges.errorHunting.forEach((item) => {
+      it("validates all 12 error hunter items with validateErrorHunterItem", () => {
+        data.challenges.errorHunting.forEach((item: any) => {
           const res = validateErrorHunterItem(item);
           expect(res.valid, `ErrorHunter ${item.id} errors: ${res.errors.join(", ")}`).toBe(true);
         });

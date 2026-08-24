@@ -943,6 +943,270 @@
           "whyWrongVi": "'The financial analyst' là chủ ngữ số ít, trạng từ tần suất 'rarely' không làm thay đổi việc chia động từ 'make' -> 'makes'.",
           "workplaceImpactVi": "Dù có trạng từ tần suất xen vào giữa, động từ vẫn phải tuân theo quy tắc hòa hợp chủ vị với chủ ngữ chính."
         }
+      },
+      {
+        "id": "err-07",
+        "scenarioVi": "Báo cáo tình trạng hệ thống với khách hàng",
+        "tokens": [
+          "The",
+          "client",
+          "does",
+          "not",
+          "needs",
+          "any",
+          "further",
+          "revisions."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "need",
+        "options": [
+          {
+            "value": "need",
+            "label": "need",
+            "isCorrect": true
+          },
+          {
+            "value": "needs",
+            "label": "needs",
+            "isCorrect": false
+          },
+          {
+            "value": "needing",
+            "label": "needing",
+            "isCorrect": false
+          },
+          {
+            "value": "needed",
+            "label": "needed",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The client does not need any further revisions.",
+        "vietnameseMeaning": "Khách hàng không cần bất kỳ chỉnh sửa nào thêm.",
+        "explanation": {
+          "whyWrongVi": "Khi đã mượn trợ động từ 'does' trong câu phủ định, động từ chính BẮT BUỘC phải trở về dạng nguyên mẫu 'need' (không có 's').",
+          "workplaceImpactVi": "Viết 'does not needs' là một lỗi dư thừa đuôi 's' phổ biến, khiến email phản hồi cho khách hàng trở nên thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "err-08",
+        "scenarioVi": "Cập nhật lịch làm việc của nhóm",
+        "tokens": [
+          "The",
+          "project",
+          "managers",
+          "has",
+          "a",
+          "meeting",
+          "at",
+          "3",
+          "PM."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "having",
+            "label": "having",
+            "isCorrect": false
+          },
+          {
+            "value": "is having",
+            "label": "is having",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The project managers have a meeting at 3 PM.",
+        "vietnameseMeaning": "Các quản lý dự án có một cuộc họp lúc 3 giờ chiều.",
+        "explanation": {
+          "whyWrongVi": "Chủ ngữ 'The project managers' là danh từ số nhiều (số nhiều của manager), nên phải dùng động từ 'have' thay vì 'has'.",
+          "workplaceImpactVi": "Lỗi hòa hợp chủ vị với danh từ số nhiều thường xảy ra khi người viết không để ý đuôi 's' ở chủ ngữ, gây bối rối khi nhắc đến số lượng người tham gia."
+        }
+      },
+      {
+        "id": "err-09",
+        "scenarioVi": "Mô tả nhiệm vụ kiểm tra chất lượng",
+        "tokens": [
+          "Our",
+          "QA",
+          "engineer",
+          "verifys",
+          "the",
+          "system",
+          "logs",
+          "daily."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "verifies",
+        "options": [
+          {
+            "value": "verifies",
+            "label": "verifies",
+            "isCorrect": true
+          },
+          {
+            "value": "verifys",
+            "label": "verifys",
+            "isCorrect": false
+          },
+          {
+            "value": "verify",
+            "label": "verify",
+            "isCorrect": false
+          },
+          {
+            "value": "verifying",
+            "label": "verifying",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Our QA engineer verifies the system logs daily.",
+        "vietnameseMeaning": "Kỹ sư QA của chúng tôi xác minh nhật ký hệ thống hằng ngày.",
+        "explanation": {
+          "whyWrongVi": "Động từ 'verify' tận cùng bằng phụ âm + 'y', nên khi chia ở ngôi thứ 3 số ít phải đổi 'y' thành 'i' rồi thêm 'es' (thành 'verifies').",
+          "workplaceImpactVi": "Viết sai chính tả động từ chuyên ngành ('verifys' thay vì 'verifies') làm giảm độ tin cậy trong các báo cáo kỹ thuật."
+        }
+      },
+      {
+        "id": "err-10",
+        "scenarioVi": "Thông báo giờ làm việc của phòng ban",
+        "tokens": [
+          "The",
+          "IT",
+          "department",
+          "do",
+          "not",
+          "work",
+          "on",
+          "weekends."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "does",
+        "options": [
+          {
+            "value": "does",
+            "label": "does",
+            "isCorrect": true
+          },
+          {
+            "value": "do",
+            "label": "do",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The IT department does not work on weekends.",
+        "vietnameseMeaning": "Phòng IT không làm việc vào cuối tuần.",
+        "explanation": {
+          "whyWrongVi": "'The IT department' được coi là một đơn vị tập thể (số ít), nên phải dùng trợ động từ 'does' thay vì 'do' trong câu phủ định.",
+          "workplaceImpactVi": "Dùng sai trợ động từ cho các danh từ tập hợp như 'team', 'department', 'company' khá phổ biến nhưng cần tránh trong các thông báo chính thức."
+        }
+      },
+      {
+        "id": "err-11",
+        "scenarioVi": "Hỏi thông tin về tính năng phần mềm mới",
+        "tokens": [
+          "Does",
+          "the",
+          "new",
+          "software",
+          "supports",
+          "multi-language",
+          "features?"
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "support",
+        "options": [
+          {
+            "value": "support",
+            "label": "support",
+            "isCorrect": true
+          },
+          {
+            "value": "supports",
+            "label": "supports",
+            "isCorrect": false
+          },
+          {
+            "value": "supporting",
+            "label": "supporting",
+            "isCorrect": false
+          },
+          {
+            "value": "supported",
+            "label": "supported",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Does the new software support multi-language features?",
+        "vietnameseMeaning": "Phần mềm mới có hỗ trợ các tính năng đa ngôn ngữ không?",
+        "explanation": {
+          "whyWrongVi": "Trong câu hỏi (nghi vấn) đã có trợ động từ 'Does' đứng đầu, động từ chính ('support') phải giữ nguyên mẫu không chia.",
+          "workplaceImpactVi": "Để quên đuôi 's' ở động từ chính khi đặt câu hỏi 'Does...?' khiến câu văn lủng củng và kém tự nhiên khi trao đổi với đối tác."
+        }
+      },
+      {
+        "id": "err-12",
+        "scenarioVi": "Nhắc nhở quy định nộp chi phí công tác",
+        "tokens": [
+          "We",
+          "are",
+          "not",
+          "accept",
+          "late",
+          "submissions",
+          "for",
+          "expenses."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "do",
+        "options": [
+          {
+            "value": "do",
+            "label": "do",
+            "isCorrect": true
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": false
+          },
+          {
+            "value": "does",
+            "label": "does",
+            "isCorrect": false
+          },
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "We do not accept late submissions for expenses.",
+        "vietnameseMeaning": "Chúng tôi không chấp nhận việc nộp trễ các khoản thanh toán công tác phí.",
+        "explanation": {
+          "whyWrongVi": "Động từ 'accept' là động từ thường hành động, không đi kèm trực tiếp với 'to be' (are) trong câu phủ định. Phải dùng trợ động từ 'do not'.",
+          "workplaceImpactVi": "Việc dùng nhầm động từ to be ('are') cho động từ thường ('accept') là lỗi ảnh hưởng nghiêm trọng đến cách hiểu của người đọc đối với các quy định công ty."
+        }
       }
     ],
     "sentenceBuilding": [

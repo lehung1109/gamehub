@@ -6,6 +6,10 @@ import presentSimpleData from "@/data/tenses/present-simple.json";
 
 const mockItems: ErrorHunterItem[] = presentSimpleData.challenges.errorHunting as ErrorHunterItem[];
 
+vi.mock("@/hooks/useSessionQuestions", () => ({
+  useSessionQuestions: (items: any[], count: number) => items.slice(0, count),
+}));
+
 describe("ErrorHunterStage (Stage 2)", () => {
   let mockSpeak: ReturnType<typeof vi.fn>;
   let mockCancel: ReturnType<typeof vi.fn>;

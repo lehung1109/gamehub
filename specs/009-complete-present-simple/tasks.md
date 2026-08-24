@@ -55,19 +55,19 @@ description: "Task list for Complete Present Simple feature implementation"
 
 **Independent Test**: Load the Conjugation stage. Verify exactly 8 questions appear. Reload the page, verify the same 8 questions persist. Go back and re-enter, verify a new set of 8 questions appears.
 
-- [ ] T010 Start a dedicated subagent for Phase 2 execution
-- [ ] T011 [US1] Write failing E2E tests for randomized Conjugation questions in `tests/e2e/present-simple.spec.ts`
+- [X] T010 Start a dedicated subagent for Phase 2 execution
+- [X] T011 [US1] Write failing E2E tests for randomized Conjugation questions in `tests/e2e/present-simple.spec.ts`
   - Add test block for Conjugation stage checking that F5 reload preserves questions, but a new session resets them.
   - Verify failure: `npm run test:e2e`
-- [ ] T012 [P] [US1] Expand Conjugation questions in `src/data/tenses/present-simple.json`
-  - Add $\ge$ 7 new Conjugation items to `challenges.conjugation` (Total $\ge$ 15).
+- [X] T012 [P] [US1] Expand Conjugation questions in `src/data/tenses/present-simple.json`
+  - Add >= 7 new Conjugation items to `challenges.conjugation` (Total >= 15).
   - Ensure diverse contexts: email, meeting, routine, report, chat. Validate schema correctness.
-- [ ] T013 [US1] Update `src/components/stages/ConjugationStage.tsx` to use `useSessionQuestions`
+- [X] T013 [US1] Update `src/components/stages/ConjugationStage.tsx` to use `useSessionQuestions`
   - Replace direct use of `challenges.conjugation` with: `const sessionQuestions = useSessionQuestions(challenges.conjugation, 8, 'gamehub-session-present-simple-conjugation')`
   - Verify pass: `npm run test:run` and `npm run test:e2e`
-- [ ] T014 Spawn review subagent to conduct code review and bug hunting for Phase 2
-- [ ] T015 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
-- [ ] T016 Commit Phase 2 changes with descriptive conventional commit message (`git commit -m "feat(conjugation): expand present simple conjugation questions and add randomization"`)
+- [X] T014 Spawn review subagent to conduct code review and bug hunting for Phase 2
+- [X] T015 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
+- [X] T016 Commit Phase 2 changes with descriptive conventional commit message (`git commit -m "feat(conjugation): expand present simple conjugation questions and add randomization"`)
 
 **Checkpoint**: User Story 1 should be fully functional and independently testable.
 

@@ -82,4 +82,63 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
 
     await newContext.close();
   });
+
+  test("US2 - Error Hunting Expansion: F5 reload preserves questions, but a new session resets them", async ({
+    page,
+    browser,
+  }) => {
+    await page.goto("/tenses/present-simple");
+    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await practiceTab.click();
+
+    const enterStage2Btn = page.getByRole("button", { name: /vào chặng 2/i });
+    await expect(enterStage2Btn).toBeVisible();
+    await enterStage2Btn.click();
+
+    await expect(page.getByText(/chặng 2 • săn lỗi sai/i)).toBeVisible();
+
+    const scenarioLocator = page.locator("p.line-clamp-1, p.line-clamp-2");
+    await expect(scenarioLocator).toBeVisible();
+    const firstSessionScenario = await scenarioLocator.textContent();
+
+    await page.reload();
+
+    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await practiceTabAfterReload.click();
+    
+    const enterStage2BtnAfterReload = page.getByRole("button", { name: /vào chặng 2/i });
+    await expect(enterStage2BtnAfterReload).toBeVisible();
+    await enterStage2BtnAfterReload.click();
+
+    await expect(page.getByText(/chặng 2 • săn lỗi sai/i)).toBeVisible();
+
+    const reloadedScenarioLocator = page.locator("p.line-clamp-1, p.line-clamp-2");
+    await expect(reloadedScenarioLocator).toBeVisible();
+    const reloadedScenario = await reloadedScenarioLocator.textContent();
+    
+    expect(reloadedScenario).toEqual(firstSessionScenario);
+
+    const newContext = await browser.newContext();
+    const newPage = await newContext.newPage();
+
+    await newPage.goto("/tenses/present-simple");
+    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    await newPracticeTab.click();
+
+    const newEnterStage2Btn = newPage.getByRole("button", { name: /vào chặng 2/i });
+    await expect(newEnterStage2Btn).toBeVisible();
+    await newEnterStage2Btn.click();
+
+    await expect(newPage.getByText(/chặng 2 • săn lỗi sai/i)).toBeVisible();
+
+    const session1Storage = await page.evaluate(() => sessionStorage.getItem('gamehub-session-present-simple-errorHunting'));
+    const session2Storage = await newPage.evaluate(() => sessionStorage.getItem('gamehub-session-present-simple-errorHunting'));
+
+    expect(session1Storage).toBeTruthy();
+    expect(session2Storage).toBeTruthy();
+    
+    expect(session1Storage).not.toEqual(session2Storage);
+
+    await newContext.close();
+  });
 });
