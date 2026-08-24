@@ -130,7 +130,7 @@ export function ErrorHunterStage({
   const isLastQuestion = currentIndex === total - 1;
 
   return (
-    <div className={cn("space-y-6 max-w-4xl mx-auto w-full", className)}>
+    <div className={cn("space-y-6 max-w-4xl xl:max-w-5xl mx-auto w-full", className)}>
       {/* Stage Header & Progress Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-border">
         <div className="flex items-center gap-3">
@@ -155,7 +155,7 @@ export function ErrorHunterStage({
                 (Câu {currentIndex + 1} / {total})
               </span>
             </div>
-            <p className="text-xs text-muted-foreground font-medium line-clamp-1">
+            <p className="text-xs text-muted-foreground font-medium line-clamp-1 xl:line-clamp-2">
               {currentItem.scenarioVi}
             </p>
           </div>

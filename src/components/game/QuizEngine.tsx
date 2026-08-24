@@ -239,7 +239,7 @@ export function QuizEngine<T = unknown>({
   }
 
   return (
-    <div className={cn("w-full max-w-2xl mx-auto space-y-6", className)}>
+    <div className={cn("w-full max-w-2xl xl:max-w-3xl mx-auto space-y-6", className)}>
       {/* Header & Progress */}
       <div className="space-y-2">
         <div className="flex justify-between items-center text-sm sm:text-base font-bold text-muted-foreground px-1">

@@ -39,7 +39,7 @@ export function TenseCard({ tense, progress }: TenseCardProps) {
         </CardHeader>
 
         <CardContent className="pb-4">
-          <CardDescription className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+          <CardDescription className="text-xs sm:text-sm text-muted-foreground line-clamp-2 xl:line-clamp-3 leading-relaxed">
             {tense.description}
           </CardDescription>
         </CardContent>
@@ -84,7 +84,7 @@ export function TenseCard({ tense, progress }: TenseCardProps) {
       </CardHeader>
 
       <CardContent className="pb-4">
-        <CardDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3">
+        <CardDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 xl:line-clamp-3 mb-3">
           {tense.description}
         </CardDescription>
 

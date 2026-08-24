@@ -9,11 +9,11 @@
 
 **Purpose**: Test infrastructure and shared helper setup for responsive viewport testing across Vitest and Playwright.
 
-- [ ] T001 Verify baseline test suite and Next.js / Tailwind v4 build environment in `package.json`
+- [X] T001 Verify baseline test suite and Next.js / Tailwind v4 build environment in `package.json`
   - **Action**: Run `npm run test:run`, `npx tsc --noEmit`, and `npm run lint` to verify that existing unit tests, type checks, and linting pass with zero errors before introducing any changes.
   - **Verification**: Clean exit code 0 across all verification commands.
 
-- [ ] T002 [P] Create Playwright viewport helper for multi-screen responsive validation in `tests/e2e/helpers/viewport-helper.ts`
+- [X] T002 [P] Create Playwright viewport helper for multi-screen responsive validation in `tests/e2e/helpers/viewport-helper.ts`
   - **Action**: Create helper utility exporting viewport constants:
     - `VIEWPORT_MOBILE = { width: 375, height: 667 }`
     - `VIEWPORT_TABLET = { width: 768, height: 1024 }`
@@ -34,7 +34,7 @@
 
 **⚠️ CRITICAL**: No user story work can be completed or visually validated until this phase is complete.
 
-- [ ] T003 Update root layout container max-width tiers in `src/app/layout.tsx`
+- [X] T003 Update root layout container max-width tiers in `src/app/layout.tsx`
   - **Action**: Replace `max-w-5xl` in line 31 with responsive breakpoint tiers:
     ```tsx
     // Before:
@@ -44,7 +44,7 @@
     ```
   - **Verification**: Inspect root layout JSX; ensure classes `max-w-5xl`, `lg:max-w-7xl`, `xl:max-w-[1400px]`, `2xl:max-w-[1800px]` are present.
 
-- [ ] T004 [P] Create unit test for root layout container classes in `tests/app/layout.test.tsx`
+- [X] T004 [P] Create unit test for root layout container classes in `tests/app/layout.test.tsx`
   - **Action**: Add Vitest unit test verifying `RootLayout` component renders outer container with classes `max-w-5xl`, `lg:max-w-7xl`, `xl:max-w-[1400px]`, and `2xl:max-w-[1800px]`.
   - **Verification**: Run `npm run test:run -- tests/app/layout.test.tsx` and confirm test passes.
 
@@ -60,7 +60,7 @@
 
 ### Tests for User Story 1 🧪
 
-- [ ] T005 [P] [US1] Create E2E test for root container scaling across breakpoints in `tests/e2e/container-scaling.spec.ts`
+- [X] T005 [P] [US1] Create E2E test for root container scaling across breakpoints in `tests/e2e/container-scaling.spec.ts`
   - **Action**: Write Playwright test suite testing home page (`/`) and admin dashboard (`/admin/dashboard` with mock auth):
     1. At 1024px viewport width: computed container width is `<= 1024px`
     2. At 1280px viewport width: computed container width is `<= 1280px`
@@ -71,7 +71,7 @@
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] Validate and fine-tune root layout responsiveness across page wrappers in `src/app/layout.tsx`
+- [X] T006 [US1] Validate and fine-tune root layout responsiveness across page wrappers in `src/app/layout.tsx`
   - **Action**: Ensure root layout container classes integrate cleanly with body wrapper and children components without horizontal overflow or margin collapses.
   - **Verification**: Run `npm run test:e2e -- tests/e2e/container-scaling.spec.ts` and confirm all viewport scaling assertions pass.
 
@@ -87,7 +87,7 @@
 
 ### Tests for User Story 2 🧪
 
-- [ ] T007 [P] [US2] Create unit tests for text truncation relaxation in `tests/components/truncation-relaxation.test.tsx`
+- [X] T007 [P] [US2] Create unit tests for text truncation relaxation in `tests/components/truncation-relaxation.test.tsx`
   - **Action**: Create unit tests testing:
     1. `StudentProfileBadge`: checks `currentLevel.title` element has `xl:max-w-[200px]`
     2. `StudentBadge`: checks `session.studentName` and `session.className` have `xl:max-w-none` and `xl:truncate-none`
@@ -96,7 +96,7 @@
     5. Stage components (`ConjugationStage`, `ErrorHunterStage`, `SentenceBuilderStage`): check scenario elements have `line-clamp-1` and `xl:line-clamp-2`
   - **Verification**: Run `npm run test:run -- tests/components/truncation-relaxation.test.tsx`.
 
-- [ ] T008 [P] [US2] Create E2E test for text visibility on desktop vs mobile in `tests/e2e/text-truncation.spec.ts`
+- [X] T008 [P] [US2] Create E2E test for text visibility on desktop vs mobile in `tests/e2e/text-truncation.spec.ts`
   - **Action**: Write Playwright test verifying:
     1. At 1280px (`xl`): Long game descriptions wrap into multiple lines without hard clipping at 2 lines; student names up to 30 characters render without ellipsis.
     2. At 768px (`md`): Truncation and line-clamp remain intact for compact mobile/tablet views.
@@ -104,7 +104,7 @@
 
 ### Implementation for User Story 2
 
-- [ ] T009 [P] [US2] Update `src/components/StudentProfileBadge.tsx` to relax title truncation on desktop with `xl:max-w-[200px]`
+- [X] T009 [P] [US2] Update `src/components/StudentProfileBadge.tsx` to relax title truncation on desktop with `xl:max-w-[200px]`
   - **Action**: Update line 52:
     ```tsx
     // Before:
@@ -114,7 +114,7 @@
     ```
   - **Verification**: Run unit test `npm run test:run -- tests/components/truncation-relaxation.test.tsx`.
 
-- [ ] T010 [P] [US2] Update `src/components/student/StudentBadge.tsx` to remove name and class truncation on desktop with `xl:max-w-none xl:truncate-none`
+- [X] T010 [P] [US2] Update `src/components/student/StudentBadge.tsx` to remove name and class truncation on desktop with `xl:max-w-none xl:truncate-none`
   - **Action**: Update lines 37 and 43:
     ```tsx
     // Line 37 Before:
@@ -129,7 +129,7 @@
     ```
   - **Verification**: Run unit test `npm run test:run -- tests/components/truncation-relaxation.test.tsx`.
 
-- [ ] T011 [P] [US2] Update `src/app/admin/layout.tsx` to remove teacher email truncation on desktop with `xl:max-w-none xl:truncate-none`
+- [X] T011 [P] [US2] Update `src/app/admin/layout.tsx` to remove teacher email truncation on desktop with `xl:max-w-none xl:truncate-none`
   - **Action**: Update line 83:
     ```tsx
     // Before:
@@ -139,7 +139,7 @@
     ```
   - **Verification**: Verify in browser or unit test that email is not truncated at ≥1280px.
 
-- [ ] T012 [P] [US2] Update `src/components/custom/GameCard.tsx` to remove description clamping on desktop with `xl:line-clamp-none`
+- [X] T012 [P] [US2] Update `src/components/custom/GameCard.tsx` to remove description clamping on desktop with `xl:line-clamp-none`
   - **Action**: Update line 47:
     ```tsx
     // Before:
@@ -149,7 +149,7 @@
     ```
   - **Verification**: Run unit test `npm run test:run -- tests/components/truncation-relaxation.test.tsx`.
 
-- [ ] T013 [P] [US2] Update `src/components/tenses/TenseCard.tsx` to expand description clamping on desktop with `xl:line-clamp-3`
+- [X] T013 [P] [US2] Update `src/components/tenses/TenseCard.tsx` to expand description clamping on desktop with `xl:line-clamp-3`
   - **Action**: Update lines 42 and 87:
     ```tsx
     // Lines 42 & 87 Before:
@@ -159,14 +159,14 @@
     ```
   - **Verification**: Run unit test `npm run test:run -- tests/components/truncation-relaxation.test.tsx`.
 
-- [ ] T014 [P] [US2] Update tense stage scenario headers in `src/components/tenses/stages/ConjugationStage.tsx`, `src/components/tenses/stages/ErrorHunterStage.tsx`, and `src/components/tenses/stages/SentenceBuilderStage.tsx` with `xl:line-clamp-2`
+- [X] T014 [P] [US2] Update tense stage scenario headers in `src/components/tenses/stages/ConjugationStage.tsx`, `src/components/tenses/stages/ErrorHunterStage.tsx`, and `src/components/tenses/stages/SentenceBuilderStage.tsx` with `xl:line-clamp-2`
   - **Action**: Update scenario text classes:
     - `ConjugationStage.tsx` line 191: `line-clamp-1` → `line-clamp-1 xl:line-clamp-2`
     - `ErrorHunterStage.tsx` line 158: `line-clamp-1` → `line-clamp-1 xl:line-clamp-2`
     - `SentenceBuilderStage.tsx` line 352: `line-clamp-1` → `line-clamp-1 xl:line-clamp-2`
   - **Verification**: Run unit test `npm run test:run -- tests/components/truncation-relaxation.test.tsx`.
 
-- [ ] T015 [P] [US2] Update admin and dashboard list item titles in `src/components/admin/ConfigList.tsx`, `src/components/class/ClassList.tsx`, `src/components/dashboard/ClassOverview.tsx`, `src/components/dashboard/StudentDetail.tsx`, `src/app/admin/dashboard/page.tsx`, and `src/app/admin/configs/new/page.tsx`
+- [X] T015 [P] [US2] Update admin and dashboard list item titles in `src/components/admin/ConfigList.tsx`, `src/components/class/ClassList.tsx`, `src/components/dashboard/ClassOverview.tsx`, `src/components/dashboard/StudentDetail.tsx`, `src/app/admin/dashboard/page.tsx`, and `src/app/admin/configs/new/page.tsx`
   - **Action**: Update card title and description clamps:
     - `ConfigList.tsx` line 106: `line-clamp-1` → `line-clamp-1 xl:line-clamp-none`
     - `ClassList.tsx` line 139: `line-clamp-1` → `line-clamp-1 xl:line-clamp-none`
@@ -188,7 +188,7 @@
 
 ### Tests for User Story 3 🧪
 
-- [ ] T016 [P] [US3] Create unit tests for grid column and play area container scaling in `tests/components/container-scaling-unit.test.tsx`
+- [X] T016 [P] [US3] Create unit tests for grid column and play area container scaling in `tests/components/container-scaling-unit.test.tsx`
   - **Action**: Create Vitest unit test asserting:
     1. `LetterGrid` contains `xl:grid-cols-11 2xl:grid-cols-13`
     2. `FlashcardStack` contains `max-w-xl xl:max-w-2xl`
@@ -197,7 +197,7 @@
     5. `TenseLessonContainer` contains `max-w-5xl xl:max-w-6xl`
   - **Verification**: Run `npm run test:run -- tests/components/container-scaling-unit.test.tsx`.
 
-- [ ] T017 [P] [US3] Create E2E test for grid columns and play area widths in `tests/e2e/grid-and-play-areas.spec.ts`
+- [X] T017 [P] [US3] Create E2E test for grid columns and play area widths in `tests/e2e/grid-and-play-areas.spec.ts`
   - **Action**: Write Playwright test suite verifying:
     1. Home page (`/`): at 1536px viewport, game cards grid has 5 columns (SC-003)
     2. Flashcard topics (`/games/flashcard`): at 1536px viewport, topic cards grid has 5 columns
@@ -211,14 +211,14 @@
 
 ### Implementation for User Story 3
 
-- [ ] T018 [P] [US3] Update student listing grids in `src/app/page.tsx`, `src/app/games/flashcard/page.tsx`, and `src/components/tenses/TenseHubMap.tsx`
+- [X] T018 [P] [US3] Update student listing grids in `src/app/page.tsx`, `src/app/games/flashcard/page.tsx`, and `src/components/tenses/TenseHubMap.tsx`
   - **Action**: Update grid classes:
     - `src/app/page.tsx` line 107: `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6` → `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6`
     - `src/app/games/flashcard/page.tsx` line 77: `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2` → `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 pt-2`
     - `src/components/tenses/TenseHubMap.tsx` line 140: `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6` → `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-6`
   - **Verification**: Run `npm run test:e2e -- tests/e2e/grid-and-play-areas.spec.ts`.
 
-- [ ] T019 [P] [US3] Update `src/components/game/LetterGrid.tsx` to add desktop column breakpoints `xl:grid-cols-11 2xl:grid-cols-13`
+- [X] T019 [P] [US3] Update `src/components/game/LetterGrid.tsx` to add desktop column breakpoints `xl:grid-cols-11 2xl:grid-cols-13`
   - **Action**: Update line 31:
     ```tsx
     // Before:
@@ -228,14 +228,14 @@
     ```
   - **Verification**: Run unit test `npm run test:run -- tests/components/container-scaling-unit.test.tsx`.
 
-- [ ] T020 [P] [US3] Update game play area components in `src/components/game/FlashcardStack.tsx`, `src/components/game/DragDropBoard.tsx`, and `src/components/game/QuizEngine.tsx`
+- [X] T020 [P] [US3] Update game play area components in `src/components/game/FlashcardStack.tsx`, `src/components/game/DragDropBoard.tsx`, and `src/components/game/QuizEngine.tsx`
   - **Action**: Update max-width classes:
     - `src/components/game/FlashcardStack.tsx` line 253: `max-w-xl` → `max-w-xl xl:max-w-2xl`
     - `src/components/game/DragDropBoard.tsx` line 222: `max-w-2xl` → `max-w-2xl xl:max-w-4xl`
     - `src/components/game/QuizEngine.tsx` line 242: `max-w-2xl` → `max-w-2xl xl:max-w-3xl`
   - **Verification**: Run unit test `npm run test:run -- tests/components/container-scaling-unit.test.tsx`.
 
-- [ ] T021 [P] [US3] Update tense lesson container and stage wrappers in `src/components/tenses/TenseLessonContainer.tsx`, `src/components/tenses/stages/ConjugationStage.tsx`, `src/components/tenses/stages/ErrorHunterStage.tsx`, `src/components/tenses/stages/SentenceBuilderStage.tsx`, and `src/components/tenses/CompletionDashboard.tsx`
+- [X] T021 [P] [US3] Update tense lesson container and stage wrappers in `src/components/tenses/TenseLessonContainer.tsx`, `src/components/tenses/stages/ConjugationStage.tsx`, `src/components/tenses/stages/ErrorHunterStage.tsx`, `src/components/tenses/stages/SentenceBuilderStage.tsx`, and `src/components/tenses/CompletionDashboard.tsx`
   - **Action**: Update max-width classes:
     - `src/components/tenses/TenseLessonContainer.tsx` line 138: `max-w-5xl` → `max-w-5xl xl:max-w-6xl`
     - `src/components/tenses/stages/ConjugationStage.tsx` line 166: `max-w-4xl` → `max-w-4xl xl:max-w-5xl`
@@ -244,7 +244,7 @@
     - `src/components/tenses/CompletionDashboard.tsx` line 101: `max-w-4xl` → `max-w-4xl xl:max-w-5xl`
   - **Verification**: Run unit test `npm run test:run -- tests/components/container-scaling-unit.test.tsx`.
 
-- [ ] T022 [P] [US3] Update game page container wrappers in `src/app/games/flashcard/page.tsx`, `src/app/games/flashcard/[topicId]/page.tsx`, `src/app/games/sentences/page.tsx`, `src/app/games/spelling/page.tsx`, `src/app/games/listening/page.tsx`, `src/app/games/alphabet/page.tsx`, and `src/app/games/numbers-colors/page.tsx`
+- [X] T022 [P] [US3] Update game page container wrappers in `src/app/games/flashcard/page.tsx`, `src/app/games/flashcard/[topicId]/page.tsx`, `src/app/games/sentences/page.tsx`, `src/app/games/spelling/page.tsx`, `src/app/games/listening/page.tsx`, `src/app/games/alphabet/page.tsx`, and `src/app/games/numbers-colors/page.tsx`
   - **Action**: Update page container max-widths:
     - `src/app/games/flashcard/page.tsx` line 45: `max-w-5xl` → `max-w-5xl xl:max-w-6xl`
     - `src/app/games/flashcard/[topicId]/page.tsx` line 113: `max-w-4xl` → `max-w-4xl xl:max-w-5xl`
@@ -267,7 +267,7 @@
 
 ### Tests for User Story 4 🧪
 
-- [ ] T023 [P] [US4] Create unit and E2E tests for admin desktop scaling in `tests/e2e/admin-scaling.spec.ts` and `tests/app/admin/dashboard/admin-scaling-unit.test.tsx`
+- [X] T023 [P] [US4] Create unit and E2E tests for admin desktop scaling in `tests/e2e/admin-scaling.spec.ts` and `tests/app/admin/dashboard/admin-scaling-unit.test.tsx`
   - **Action**: Write test suite testing:
     1. Admin dashboard games grid at 1280px (`xl`): displays 4 columns
     2. Admin config list grid at 1280px (`xl`): displays 4 columns
@@ -276,7 +276,7 @@
 
 ### Implementation for User Story 4
 
-- [ ] T024 [P] [US4] Update admin grids in `src/app/admin/dashboard/page.tsx`, `src/app/admin/configs/new/page.tsx`, `src/components/admin/ConfigList.tsx`, and `src/components/class/ClassList.tsx`
+- [X] T024 [P] [US4] Update admin grids in `src/app/admin/dashboard/page.tsx`, `src/app/admin/configs/new/page.tsx`, `src/components/admin/ConfigList.tsx`, and `src/components/class/ClassList.tsx`
   - **Action**: Update grid classes:
     - `src/app/admin/dashboard/page.tsx` line 110: `md:grid-cols-2 lg:grid-cols-3` → `md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`
     - `src/app/admin/configs/new/page.tsx` line 58: `sm:grid-cols-2 lg:grid-cols-3` → `sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`
@@ -284,7 +284,7 @@
     - `src/components/class/ClassList.tsx` line 128: `md:grid-cols-2 xl:grid-cols-3` → `md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4`
   - **Verification**: Run unit test `npm run test:run -- tests/app/admin/dashboard/admin-scaling-unit.test.tsx`.
 
-- [ ] T025 [US4] Update class overview and student detail dashboards in `src/components/dashboard/ClassOverview.tsx` and `src/components/dashboard/StudentDetail.tsx`
+- [X] T025 [US4] Update class overview and student detail dashboards in `src/components/dashboard/ClassOverview.tsx` and `src/components/dashboard/StudentDetail.tsx`
   - **Action**: Verify metrics grid (`lg:grid-cols-4`) and student tables expand naturally within widened admin layout without overflow.
   - **Verification**: Run `npx tsc --noEmit` and `npm run test:run`.
 
@@ -296,21 +296,21 @@
 
 **Purpose**: Validate edge cases (ultra-wide monitors, backwards compatibility at ≤1024px) and execute all Constitution Quality Gates.
 
-- [ ] T026 [P] Create and run ultra-wide monitor safety test (3440px viewport cap) in `tests/e2e/ultrawide-safety.spec.ts`
+- [X] T026 [P] Create and run ultra-wide monitor safety test (3440px viewport cap) in `tests/e2e/ultrawide-safety.spec.ts`
   - **Action**: Playwright test asserting that at 3440px and 3840px viewport widths:
     1. Root container computed width does NOT exceed `1800px` (FR-009, Contract 5)
     2. Content remains centered with balanced side margins
     3. No horizontal scrollbar (`scrollWidth === clientWidth`)
   - **Verification**: Run `npm run test:e2e -- tests/e2e/ultrawide-safety.spec.ts`.
 
-- [ ] T027 [P] Create and run backwards compatibility visual regression test (≤1024px) in `tests/e2e/backwards-compatibility.spec.ts`
+- [X] T027 [P] Create and run backwards compatibility visual regression test (≤1024px) in `tests/e2e/backwards-compatibility.spec.ts`
   - **Action**: Playwright test verifying that at 375px (mobile), 768px (tablet), and 1024px (laptop):
     1. Home page grid columns: 1 (mobile), 2 (tablet), 3 (1024px) (Contract 2)
     2. Truncation rules: badges and cards retain ellipsis and line clamps (Contract 3)
     3. Zero horizontal scrollbar or visual regressions (FR-008, SC-004)
   - **Verification**: Run `npm run test:e2e -- tests/e2e/backwards-compatibility.spec.ts`.
 
-- [ ] T028 Run full test suite and Constitution Quality Gates validation in `package.json`
+- [X] T028 Run full test suite and Constitution Quality Gates validation in `package.json`
   - **Action**: Execute all 5 required quality gates:
     1. `npm run lint` — zero errors
     2. `npx tsc --noEmit` — zero type errors

@@ -28,7 +28,7 @@ export function LetterGrid({
       role="region"
       aria-label="Bảng chữ cái A-Z"
       className={cn(
-        "grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-9 gap-2.5 sm:gap-3.5 w-full",
+        "grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11 2xl:grid-cols-13 gap-2.5 sm:gap-3.5 w-full",
         className
       )}
     >

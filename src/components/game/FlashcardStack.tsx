@@ -250,7 +250,7 @@ export function FlashcardStack({
   const isLastCard = currentIndex === total - 1;
 
   return (
-    <div className={cn("w-full max-w-xl mx-auto flex flex-col items-center space-y-6", className)}>
+    <div className={cn("w-full max-w-xl xl:max-w-2xl mx-auto flex flex-col items-center space-y-6", className)}>
       {/* Screen Reader Live Region for Accessibility */}
       <div aria-live="polite" className="sr-only">
         {isFlipped

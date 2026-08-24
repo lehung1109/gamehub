@@ -220,7 +220,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await finishBtn.click();
 
     // 13. Verify return to stage list
-    await expect(page.getByRole("button", { name: /vào chặng 1/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /luyện lại chặng 1|vào chặng 1/i })).toBeVisible();
 
     // 14. Verify LocalStorage contains saved stage progress
     const progressInStorage = await page.evaluate(() => {
@@ -332,7 +332,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await finishStage2Btn.click();
 
     // 13. Verify return to stage list
-    await expect(page.getByRole("button", { name: /vào chặng 2/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /luyện lại chặng 2|vào chặng 2/i })).toBeVisible();
 
     // 14. Verify LocalStorage has errorHunting progress saved
     const progressInStorage = await page.evaluate(() => {
@@ -490,7 +490,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await finishStage3Btn.click();
 
     // 14. Verify return to stage list
-    await expect(page.getByRole("button", { name: /vào chặng 3/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /luyện lại chặng 3|vào chặng 3/i })).toBeVisible();
 
     // 15. Verify LocalStorage has sentenceBuilding progress saved
     const progressInStorage = await page.evaluate(() => {

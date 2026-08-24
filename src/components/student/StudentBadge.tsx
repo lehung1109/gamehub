@@ -34,13 +34,13 @@ export function StudentBadge({ className }: StudentBadgeProps) {
         </div>
         <div className="flex flex-col text-left leading-tight min-w-0">
           <span className="text-xs font-black text-slate-800 flex items-center gap-1">
-            <span className="truncate max-w-[120px] sm:max-w-[180px]">
+            <span className="truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
               {session.studentName}
             </span>
             <Edit3 className="size-3 shrink-0 text-slate-400 group-hover:text-amber-600 transition-colors" />
           </span>
           {session.className && (
-            <span className="text-[11px] font-semibold text-amber-700/80 truncate max-w-[120px] sm:max-w-[180px]">
+            <span className="text-[11px] font-semibold text-amber-700/80 truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
               {session.className}
             </span>
           )}

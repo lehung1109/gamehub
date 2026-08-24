@@ -125,7 +125,7 @@ export function ClassList({ classes }: ClassListProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
         {classes.map((cls) => {
           const formattedDate = formatDateVi(cls.created_at)
 
@@ -136,7 +136,7 @@ export function ClassList({ classes }: ClassListProps) {
             >
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-base font-bold text-slate-900 line-clamp-1" title={cls.name}>
+                  <CardTitle className="text-base font-bold text-slate-900 line-clamp-1 xl:line-clamp-none" title={cls.name}>
                     {cls.name}
                   </CardTitle>
                   <Badge variant={cls.is_active ? 'default' : 'secondary'} className={cls.is_active ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-100' : 'bg-slate-200 text-slate-600 hover:bg-slate-200'}>

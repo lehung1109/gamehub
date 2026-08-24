@@ -80,7 +80,7 @@ export default async function AdminLayout({
             <div className="h-4 w-px bg-slate-200 hidden sm:block" />
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-500 hidden lg:inline-block max-w-[160px] truncate">
+              <span className="text-xs text-slate-500 hidden lg:inline-block max-w-[160px] truncate xl:max-w-none xl:truncate-none">
                 {user.email}
               </span>
               <form action={logout}>

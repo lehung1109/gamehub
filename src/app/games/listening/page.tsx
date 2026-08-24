@@ -178,7 +178,7 @@ function ListeningGameContent() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center py-6 px-4 sm:px-6">
-      <div className="w-full max-w-3xl space-y-6">
+      <div className="w-full max-w-3xl xl:max-w-4xl space-y-6">
         {/* Header navigation & Title */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BackButton href="/" label="Về trang chủ" />

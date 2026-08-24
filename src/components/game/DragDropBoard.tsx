@@ -219,7 +219,7 @@ export function DragDropBoard({
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className={cn("flex flex-col items-center gap-6 w-full max-w-2xl mx-auto", className)}>
+      <div className={cn("flex flex-col items-center gap-6 w-full max-w-2xl xl:max-w-4xl mx-auto", className)}>
         {/* Drop Slots Area */}
         <div className="w-full flex flex-col items-center gap-2">
           <span className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-wider">

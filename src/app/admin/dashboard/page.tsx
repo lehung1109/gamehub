@@ -107,7 +107,7 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {games.map((game) => {
             const count = configCountMap[game.id] || 0
             return (
@@ -143,7 +143,7 @@ export default async function AdminDashboardPage() {
                       {count} cấu hình
                     </Badge>
                   </div>
-                  <CardDescription className="text-xs text-slate-600 line-clamp-2 mt-2">
+                  <CardDescription className="text-xs text-slate-600 line-clamp-2 xl:line-clamp-3 mt-2">
                     {game.description}
                   </CardDescription>
                 </CardHeader>
