@@ -49,7 +49,7 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
             Lv {currentLevel.level}
           </span>
           <span className="text-[10px] text-amber-700 dark:text-amber-400 font-bold">•</span>
-          <span className="text-xs font-bold text-amber-800 dark:text-amber-300 truncate max-w-[90px] sm:max-w-[120px]">
+          <span className="text-xs font-bold text-amber-800 dark:text-amber-300 truncate max-w-[90px] sm:max-w-[120px] xl:max-w-[200px]">
             {currentLevel.title}
           </span>
         </div>

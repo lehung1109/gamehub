@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@utility truncate-none {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

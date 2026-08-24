@@ -327,7 +327,7 @@ export function ClassOverview({ data }: ClassOverviewProps) {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold text-slate-900 line-clamp-1">
+            <div className="text-lg font-bold text-slate-900 line-clamp-1 xl:line-clamp-none">
               {mostPlayedGame?.gameLabel || 'Chưa có'}
             </div>
             <p className="text-xs text-slate-500 mt-1">
@@ -540,7 +540,7 @@ export function ClassOverview({ data }: ClassOverviewProps) {
                     {recentSessions.map((sess) => (
                       <div key={sess.id} className="py-3 first:pt-0 last:pb-0 space-y-1">
                         <div className="flex items-center justify-between gap-2">
-                          <span className="font-bold text-slate-800 text-xs line-clamp-1">
+                          <span className="font-bold text-slate-800 text-xs line-clamp-1 xl:line-clamp-none">
                             {sess.studentName}
                           </span>
                           {sess.score !== null && sess.totalQuestions !== null ? (

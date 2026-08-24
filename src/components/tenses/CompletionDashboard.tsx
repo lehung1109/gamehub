@@ -98,7 +98,7 @@ export function CompletionDashboard({
   const evaluation = getEvaluation(accuracy);
 
   return (
-    <div className={cn("space-y-8 max-w-4xl mx-auto w-full pb-8", className)}>
+    <div className={cn("space-y-8 max-w-4xl xl:max-w-5xl mx-auto w-full pb-8", className)}>
       {/* Header Banner */}
       <Card className="border-2 border-indigo-200/80 dark:border-indigo-900/80 bg-linear-to-b from-indigo-50/60 via-card to-card dark:from-indigo-950/30 p-6 sm:p-8 text-center shadow-md relative overflow-hidden">
         <div className="flex flex-col items-center space-y-4">

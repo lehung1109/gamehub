@@ -228,7 +228,7 @@ export function StudentDetail({ data }: StudentDetailProps) {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold text-slate-900 line-clamp-1">
+            <div className="text-lg font-bold text-slate-900 line-clamp-1 xl:line-clamp-none">
               {mostPlayedGame?.gameLabel || 'Chưa có'}
             </div>
             <p className="text-xs text-slate-500 mt-1">
@@ -249,7 +249,7 @@ export function StudentDetail({ data }: StudentDetailProps) {
           </CardHeader>
           <CardContent>
             <div
-              className="text-sm font-bold text-slate-900 line-clamp-1"
+              className="text-sm font-bold text-slate-900 line-clamp-1 xl:line-clamp-none"
               suppressHydrationWarning
             >
               {formatDateVi(lastActiveAt)}

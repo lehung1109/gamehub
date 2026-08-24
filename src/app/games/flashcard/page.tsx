@@ -42,7 +42,7 @@ function FlashcardTopicSelectionContent() {
   }, [topicsConfig]);
 
   return (
-    <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col gap-8">
+    <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 max-w-5xl xl:max-w-6xl mx-auto flex flex-col gap-8">
       {/* Top Bar Navigation */}
       <div className="flex items-center justify-between">
         <BackButton href="/" label="Về trang chủ" />
@@ -74,7 +74,7 @@ function FlashcardTopicSelectionContent() {
       </div>
 
       {/* Topic Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 pt-2">
         {displayedTopics.map((topic) => {
           const count = wordCounts[topic.id] || 0;
           const targetHref = previewParam

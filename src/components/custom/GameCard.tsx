@@ -44,7 +44,7 @@ export function GameCard({ game, className }: GameCardProps) {
             <h2 className="text-xl md:text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
               {game.titleVi}
             </h2>
-            <CardDescription className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed line-clamp-2">
+            <CardDescription className="text-sm md:text-base font-medium text-muted-foreground leading-relaxed line-clamp-2 xl:line-clamp-none">
               {game.description}
             </CardDescription>
           </CardHeader>

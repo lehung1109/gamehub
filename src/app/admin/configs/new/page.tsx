@@ -55,7 +55,7 @@ export default async function NewConfigPage({ searchParams }: PageProps) {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {games.map((game) => (
           <Link
             key={game.id}
@@ -75,7 +75,7 @@ export default async function NewConfigPage({ searchParams }: PageProps) {
                 <CardTitle className="text-base font-bold text-slate-900 mt-2">
                   {game.titleVi}
                 </CardTitle>
-                <CardDescription className="text-xs text-slate-500 line-clamp-2">
+                <CardDescription className="text-xs text-slate-500 line-clamp-2 xl:line-clamp-3">
                   {game.description}
                 </CardDescription>
               </CardHeader>

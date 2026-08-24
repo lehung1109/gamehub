@@ -88,7 +88,7 @@ export function ConfigList({ game, configs }: ConfigListProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {configs.map((config) => {
           const formattedDate = new Date(config.created_at).toLocaleDateString('vi-VN', {
             month: 'short',
@@ -103,7 +103,7 @@ export function ConfigList({ game, configs }: ConfigListProps) {
             >
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-base font-bold text-slate-900 line-clamp-1">
+                  <CardTitle className="text-base font-bold text-slate-900 line-clamp-1 xl:line-clamp-none">
                     {config.name}
                   </CardTitle>
                   <Badge variant="secondary" className="bg-indigo-50 text-indigo-700 text-xs shrink-0">

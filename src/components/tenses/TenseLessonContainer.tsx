@@ -135,7 +135,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
   );
 
   return (
-    <div className="flex-1 flex flex-col justify-between py-2 sm:py-6 max-w-5xl mx-auto w-full px-3 sm:px-6">
+    <div className="flex-1 flex flex-col justify-between py-2 sm:py-6 max-w-5xl xl:max-w-6xl mx-auto w-full px-3 sm:px-6">
       <div>
         {/* Lesson Header with Breadcrumbs & Indicators */}
         <LessonHeader
