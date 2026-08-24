@@ -26,8 +26,9 @@ export default function RootLayout({
     <html
       lang="vi"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans" suppressHydrationWarning>
         <div
           data-testid="root-layout-container"
           className="flex-1 flex flex-col max-w-5xl lg:max-w-7xl xl:max-w-[1400px] 2xl:max-w-[1800px] w-full mx-auto p-4 sm:p-6 md:p-8"

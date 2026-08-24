@@ -103,19 +103,19 @@ description: "Task list for Complete Present Simple feature implementation"
 
 **Independent Test**: Load the Sentence Building stage. Verify exactly 6 questions appear. Reload the page, verify the same 6 questions persist. Re-enter, verify a new set of 6 appears.
 
-- [ ] T024 Start a dedicated subagent for Phase 4 execution
-- [ ] T025 [US3] Write failing E2E tests for randomized Sentence Building questions in `tests/e2e/present-simple.spec.ts`
+- [X] T024 Start a dedicated subagent for Phase 4 execution
+- [X] T025 [US3] Write failing E2E tests for randomized Sentence Building questions in `tests/e2e/present-simple.spec.ts`
   - Add test block for Sentence Building stage randomization behavior.
   - Verify failure: `npm run test:e2e`
-- [ ] T026 [P] [US3] Expand Sentence Building questions in `src/data/tenses/present-simple.json`
-  - Add $\ge$ 6 new Sentence Building items to `challenges.sentenceBuilding` (Total $\ge$ 12).
+- [X] T026 [P] [US3] Expand Sentence Building questions in `src/data/tenses/present-simple.json`
+  - Add >= 6 new Sentence Building items to `challenges.sentenceBuilding` (Total >= 12).
   - Ensure 4 sentence structures coverage. Validate schema.
-- [ ] T027 [US3] Update `src/components/stages/SentenceBuilderStage.tsx` to use `useSessionQuestions`
+- [X] T027 [US3] Update `src/components/stages/SentenceBuilderStage.tsx` to use `useSessionQuestions`
   - Replace direct use of `challenges.sentenceBuilding` with: `const sessionQuestions = useSessionQuestions(challenges.sentenceBuilding, 6, 'gamehub-session-present-simple-sentenceBuilding')`
   - Verify pass: `npm run test:run` and `npm run test:e2e`
-- [ ] T028 Spawn review subagent to conduct code review and bug hunting for Phase 4
-- [ ] T029 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
-- [ ] T030 Commit Phase 4 changes with descriptive conventional commit message (`git commit -m "feat(sentence-building): expand present simple sentence building questions and add randomization"`)
+- [X] T028 Spawn review subagent to conduct code review and bug hunting for Phase 4
+- [X] T029 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
+- [X] T030 Commit Phase 4 changes with descriptive conventional commit message (`git commit -m "feat(sentence-building): expand present simple sentence building questions and add randomization"`)
 
 **Checkpoint**: User Story 3 should be fully functional and independently testable.
 
@@ -125,15 +125,15 @@ description: "Task list for Complete Present Simple feature implementation"
 
 **Purpose**: Improvements, assertions on metadata, and cross-cutting concerns.
 
-- [ ] T031 Start a dedicated subagent for Phase 5 execution
-- [ ] T032 [US5] Verify `challengeCount` remains exactly `20` in `src/data/tenses/present-simple.json`
+- [X] T031 Start a dedicated subagent for Phase 5 execution
+- [X] T032 [US5] Verify `challengeCount` remains exactly `20` in `src/data/tenses/present-simple.json`
   - This ensures dashboards accurately reflect the required 20 answers per session run.
-- [ ] T033 [US5] Verify `challengeCount` remains exactly `20` in `src/data/tenses/index.json` (if applicable)
-- [ ] T034 [US5] Run `quickstart.md` validation
+- [X] T033 [US5] Verify `challengeCount` remains exactly `20` in `src/data/tenses/index.json` (if applicable)
+- [X] T034 [US5] Run `quickstart.md` validation
   - Test Scenario 1-4 manually or with fully automated scripts to ensure compliance.
-- [ ] T035 Spawn review subagent to conduct code review and bug hunting for Phase 5
-- [ ] T036 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
-- [ ] T037 Commit Phase 5 changes with descriptive conventional commit message (`git commit -m "chore(metadata): verify metadata metrics and perform final QA validation"`)
+- [X] T035 Spawn review subagent to conduct code review and bug hunting for Phase 5
+- [X] T036 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
+- [X] T037 Commit Phase 5 changes with descriptive conventional commit message (`git commit -m "chore(metadata): verify metadata metrics and perform final QA validation"`)
 
 ---
 
