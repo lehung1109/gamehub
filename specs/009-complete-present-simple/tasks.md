@@ -79,19 +79,19 @@ description: "Task list for Complete Present Simple feature implementation"
 
 **Independent Test**: Load the Error Hunting stage. Verify exactly 6 questions appear. Reload the page, verify the same 6 questions persist. Re-enter, verify a new set of 6 appears.
 
-- [ ] T017 Start a dedicated subagent for Phase 3 execution
-- [ ] T018 [US2] Write failing E2E tests for randomized Error Hunting questions in `tests/e2e/present-simple.spec.ts`
+- [X] T017 Start a dedicated subagent for Phase 3 execution
+- [X] T018 [US2] Write failing E2E tests for randomized Error Hunting questions in `tests/e2e/present-simple.spec.ts`
   - Add test block for Error Hunting stage randomization behavior.
   - Verify failure: `npm run test:e2e`
-- [ ] T019 [P] [US2] Expand Error Hunting questions in `src/data/tenses/present-simple.json`
-  - Add $\ge$ 6 new Error Hunting items to `challenges.errorHunting` (Total $\ge$ 12).
+- [X] T019 [P] [US2] Expand Error Hunting questions in `src/data/tenses/present-simple.json`
+  - Add >= 6 new Error Hunting items to `challenges.errorHunting` (Total >= 12).
   - Ensure 5 common mistakes coverage. Validate schema.
-- [ ] T020 [US2] Update `src/components/stages/ErrorHunterStage.tsx` to use `useSessionQuestions`
+- [X] T020 [US2] Update `src/components/stages/ErrorHunterStage.tsx` to use `useSessionQuestions`
   - Replace direct use of `challenges.errorHunting` with: `const sessionQuestions = useSessionQuestions(challenges.errorHunting, 6, 'gamehub-session-present-simple-errorHunting')`
   - Verify pass: `npm run test:run` and `npm run test:e2e`
-- [ ] T021 Spawn review subagent to conduct code review and bug hunting for Phase 3
-- [ ] T022 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
-- [ ] T023 Commit Phase 3 changes with descriptive conventional commit message (`git commit -m "feat(error-hunting): expand present simple error hunting questions and add randomization"`)
+- [X] T021 Spawn review subagent to conduct code review and bug hunting for Phase 3
+- [X] T022 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
+- [X] T023 Commit Phase 3 changes with descriptive conventional commit message (`git commit -m "feat(error-hunting): expand present simple error hunting questions and add randomization"`)
 
 **Checkpoint**: User Story 2 should be fully functional and independently testable.
 

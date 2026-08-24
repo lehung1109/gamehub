@@ -33,6 +33,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useSpeech } from "@/hooks/useSpeech";
+import { useSessionQuestions } from "@/hooks/useSessionQuestions";
 import { cn } from "@/lib/utils";
 
 export interface SentenceBuilderStageProps {
@@ -188,11 +189,11 @@ export function SentenceBuilderStage({
   onBack,
   className,
 }: SentenceBuilderStageProps) {
+  const sessionQuestions = useSessionQuestions(items, 6, 'gamehub-session-present-simple-sentenceBuilding');
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [placedTokens, setPlacedTokens] = useState<SentenceBuilderToken[]>([]);
-  const [bankTokens, setBankTokens] = useState<SentenceBuilderToken[]>(() =>
-    items?.[0]?.scrambledTokens ? [...items[0].scrambledTokens] : []
-  );
+  const [bankTokens, setBankTokens] = useState<SentenceBuilderToken[]>([]);
   const [activeToken, setActiveToken] = useState<SentenceBuilderToken | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -201,8 +202,14 @@ export function SentenceBuilderStage({
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
-  const total = items?.length || 0;
-  const currentItem = items?.[currentIndex];
+  const total = sessionQuestions?.length || 0;
+  const currentItem = sessionQuestions?.[currentIndex];
+
+  useEffect(() => {
+    if (currentItem && bankTokens.length === 0 && placedTokens.length === 0 && !isSubmitted) {
+      setBankTokens([...currentItem.scrambledTokens]);
+    }
+  }, [currentItem, bankTokens.length, placedTokens.length, isSubmitted]);
 
   useEffect(() => {
     if (isSubmitted && nextButtonRef.current) {
@@ -288,7 +295,7 @@ export function SentenceBuilderStage({
     if (currentIndex < total - 1) {
       const nextIdx = currentIndex + 1;
       setCurrentIndex(nextIdx);
-      const nextItem = items[nextIdx];
+      const nextItem = sessionQuestions[nextIdx];
       if (nextItem) {
         setBankTokens([...nextItem.scrambledTokens]);
         setPlacedTokens([]);
@@ -300,7 +307,11 @@ export function SentenceBuilderStage({
     }
   };
 
-  if (!items || items.length === 0 || !currentItem) {
+  if (items && items.length > 0 && sessionQuestions.length === 0) {
+    return null; // Or a loading spinner while session initializes
+  }
+
+  if (!sessionQuestions || sessionQuestions.length === 0 || !currentItem) {
     return (
       <Card className="p-8 text-center border-dashed">
         <div className="flex flex-col items-center justify-center space-y-4">

@@ -123,11 +123,11 @@ describe("Tenses Schema & Data Integrity Tests", () => {
     });
 
     describe("Stage 3: Sentence Builder (dnd-kit & Tap tokens)", () => {
-      it("contains exactly 6 sentence builder challenge items", () => {
-        expect(data.challenges.sentenceBuilding).toHaveLength(6);
+      it("contains at least 12 sentence builder challenge items", () => {
+        expect(data.challenges.sentenceBuilding.length).toBeGreaterThanOrEqual(12);
       });
 
-      it("validates all 6 sentence builder items with validateSentenceBuilderItem", () => {
+      it("validates all sentence builder items with validateSentenceBuilderItem", () => {
         data.challenges.sentenceBuilding.forEach((item) => {
           const res = validateSentenceBuilderItem(item);
           expect(res.valid, `SentenceBuilder ${item.id} errors: ${res.errors.join(", ")}`).toBe(true);

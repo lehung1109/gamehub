@@ -1453,6 +1453,380 @@
           "titleVi": "Lịch trình thời gian biểu cố định",
           "tipVi": "Thì Hiện Tại Đơn dùng để nói về lịch trình cố định của cơ quan, văn phòng: 'opens' và 'closes'."
         }
+      },
+      {
+        "id": "sb-07",
+        "scenarioVi": "Hỏi đồng nghiệp xem họ có thường kiểm tra email vào cuối tuần không",
+        "vietnameseMeaning": "Bạn có thường xuyên kiểm tra email công việc vào cuối tuần không?",
+        "fullSentenceEn": "Do you usually check work emails on the weekend?",
+        "correctTokenOrder": [
+          "Do",
+          "you",
+          "usually",
+          "check",
+          "work",
+          "emails",
+          "on",
+          "the",
+          "weekend?"
+        ],
+        "scrambledTokens": [
+          {
+            "id": "sb-07-1",
+            "text": "Do"
+          },
+          {
+            "id": "sb-07-9",
+            "text": "weekend?"
+          },
+          {
+            "id": "sb-07-2",
+            "text": "you"
+          },
+          {
+            "id": "sb-07-5",
+            "text": "work"
+          },
+          {
+            "id": "sb-07-4",
+            "text": "check"
+          },
+          {
+            "id": "sb-07-7",
+            "text": "on"
+          },
+          {
+            "id": "sb-07-8",
+            "text": "the"
+          },
+          {
+            "id": "sb-07-6",
+            "text": "emails"
+          },
+          {
+            "id": "sb-07-3",
+            "text": "usually"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Nghi vấn Action Verb",
+          "tipVi": "Cấu trúc Do/Does + S + Trạng từ tần suất (nếu có) + V-inf. Ở đây là Do you usually check...?"
+        }
+      },
+      {
+        "id": "sb-08",
+        "scenarioVi": "Giải thích rằng hệ thống không tự động cập nhật dữ liệu",
+        "vietnameseMeaning": "Hệ thống này không tự động cập nhật dữ liệu người dùng hàng ngày.",
+        "fullSentenceEn": "This system does not automatically update user data every day.",
+        "correctTokenOrder": [
+          "This",
+          "system",
+          "does",
+          "not",
+          "automatically",
+          "update",
+          "user",
+          "data",
+          "every",
+          "day."
+        ],
+        "scrambledTokens": [
+          {
+            "id": "sb-08-4",
+            "text": "not"
+          },
+          {
+            "id": "sb-08-2",
+            "text": "system"
+          },
+          {
+            "id": "sb-08-3",
+            "text": "does"
+          },
+          {
+            "id": "sb-08-9",
+            "text": "every"
+          },
+          {
+            "id": "sb-08-8",
+            "text": "data"
+          },
+          {
+            "id": "sb-08-10",
+            "text": "day."
+          },
+          {
+            "id": "sb-08-7",
+            "text": "user"
+          },
+          {
+            "id": "sb-08-1",
+            "text": "This"
+          },
+          {
+            "id": "sb-08-5",
+            "text": "automatically"
+          },
+          {
+            "id": "sb-08-6",
+            "text": "update"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Phủ định Action Verb",
+          "tipVi": "Dùng does not + V-inf cho chủ ngữ số ít (This system). Trạng từ (automatically) thường đứng trước động từ chính."
+        }
+      },
+      {
+        "id": "sb-09",
+        "scenarioVi": "Mô tả tính chất của một đối tác kinh doanh",
+        "vietnameseMeaning": "Họ là một đối tác rất đáng tin cậy trong ngành công nghiệp phần mềm.",
+        "fullSentenceEn": "They are a very reliable partner in the software industry.",
+        "correctTokenOrder": [
+          "They",
+          "are",
+          "a",
+          "very",
+          "reliable",
+          "partner",
+          "in",
+          "the",
+          "software",
+          "industry."
+        ],
+        "scrambledTokens": [
+          {
+            "id": "sb-09-2",
+            "text": "are"
+          },
+          {
+            "id": "sb-09-6",
+            "text": "partner"
+          },
+          {
+            "id": "sb-09-1",
+            "text": "They"
+          },
+          {
+            "id": "sb-09-3",
+            "text": "a"
+          },
+          {
+            "id": "sb-09-5",
+            "text": "reliable"
+          },
+          {
+            "id": "sb-09-10",
+            "text": "industry."
+          },
+          {
+            "id": "sb-09-7",
+            "text": "in"
+          },
+          {
+            "id": "sb-09-4",
+            "text": "very"
+          },
+          {
+            "id": "sb-09-8",
+            "text": "the"
+          },
+          {
+            "id": "sb-09-9",
+            "text": "software"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Khẳng định To Be",
+          "tipVi": "Với chủ ngữ They, động từ to be chia là are."
+        }
+      },
+      {
+        "id": "sb-10",
+        "scenarioVi": "Hỏi xem ngân sách dự án có đủ không",
+        "vietnameseMeaning": "Ngân sách hiện tại có đủ cho chiến dịch marketing mới không?",
+        "fullSentenceEn": "Is the current budget sufficient for the new marketing campaign?",
+        "correctTokenOrder": [
+          "Is",
+          "the",
+          "current",
+          "budget",
+          "sufficient",
+          "for",
+          "the",
+          "new",
+          "marketing",
+          "campaign?"
+        ],
+        "scrambledTokens": [
+          {
+            "id": "sb-10-8",
+            "text": "new"
+          },
+          {
+            "id": "sb-10-6",
+            "text": "for"
+          },
+          {
+            "id": "sb-10-5",
+            "text": "sufficient"
+          },
+          {
+            "id": "sb-10-3",
+            "text": "current"
+          },
+          {
+            "id": "sb-10-9",
+            "text": "marketing"
+          },
+          {
+            "id": "sb-10-10",
+            "text": "campaign?"
+          },
+          {
+            "id": "sb-10-2",
+            "text": "the"
+          },
+          {
+            "id": "sb-10-4",
+            "text": "budget"
+          },
+          {
+            "id": "sb-10-1",
+            "text": "Is"
+          },
+          {
+            "id": "sb-10-7",
+            "text": "the"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Nghi vấn To Be",
+          "tipVi": "Đưa động từ to be (Is) lên trước chủ ngữ số ít (the current budget) để tạo câu hỏi."
+        }
+      },
+      {
+        "id": "sb-11",
+        "scenarioVi": "Xác nhận rằng phòng họp chưa sẵn sàng",
+        "vietnameseMeaning": "Phòng họp chính vẫn chưa sẵn sàng cho buổi thuyết trình.",
+        "fullSentenceEn": "The main conference room is not ready for the presentation yet.",
+        "correctTokenOrder": [
+          "The",
+          "main",
+          "conference",
+          "room",
+          "is",
+          "not",
+          "ready",
+          "for",
+          "the",
+          "presentation",
+          "yet."
+        ],
+        "scrambledTokens": [
+          {
+            "id": "sb-11-11",
+            "text": "yet."
+          },
+          {
+            "id": "sb-11-7",
+            "text": "ready"
+          },
+          {
+            "id": "sb-11-3",
+            "text": "conference"
+          },
+          {
+            "id": "sb-11-5",
+            "text": "is"
+          },
+          {
+            "id": "sb-11-1",
+            "text": "The"
+          },
+          {
+            "id": "sb-11-8",
+            "text": "for"
+          },
+          {
+            "id": "sb-11-4",
+            "text": "room"
+          },
+          {
+            "id": "sb-11-6",
+            "text": "not"
+          },
+          {
+            "id": "sb-11-10",
+            "text": "presentation"
+          },
+          {
+            "id": "sb-11-2",
+            "text": "main"
+          },
+          {
+            "id": "sb-11-9",
+            "text": "the"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Phủ định To Be",
+          "tipVi": "Thêm not ngay sau động từ to be (is) đối với chủ ngữ số ít."
+        }
+      },
+      {
+        "id": "sb-12",
+        "scenarioVi": "Câu hỏi về lịch trình khởi hành",
+        "vietnameseMeaning": "Khi nào chuyến bay tiếp theo tới Tokyo khởi hành?",
+        "fullSentenceEn": "When does the next flight to Tokyo depart?",
+        "correctTokenOrder": [
+          "When",
+          "does",
+          "the",
+          "next",
+          "flight",
+          "to",
+          "Tokyo",
+          "depart?"
+        ],
+        "scrambledTokens": [
+          {
+            "id": "sb-12-6",
+            "text": "to"
+          },
+          {
+            "id": "sb-12-8",
+            "text": "depart?"
+          },
+          {
+            "id": "sb-12-2",
+            "text": "does"
+          },
+          {
+            "id": "sb-12-7",
+            "text": "Tokyo"
+          },
+          {
+            "id": "sb-12-1",
+            "text": "When"
+          },
+          {
+            "id": "sb-12-5",
+            "text": "flight"
+          },
+          {
+            "id": "sb-12-4",
+            "text": "next"
+          },
+          {
+            "id": "sb-12-3",
+            "text": "the"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Câu hỏi Wh- với Action Verb",
+          "tipVi": "Wh-word (When) + trợ động từ (does) + S (the next flight) + V-inf (depart)."
+        }
       }
     ]
   }

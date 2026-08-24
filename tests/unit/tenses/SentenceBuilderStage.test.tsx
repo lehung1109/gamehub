@@ -4,6 +4,10 @@ import { SentenceBuilderStage } from "@/components/tenses/stages/SentenceBuilder
 import { SentenceBuilderItem } from "@/types/tenses";
 import presentSimpleData from "@/data/tenses/present-simple.json";
 
+vi.mock("@/hooks/useSessionQuestions", () => ({
+  useSessionQuestions: vi.fn((items, count) => items.slice(0, count))
+}));
+
 const mockItems: SentenceBuilderItem[] = presentSimpleData.challenges.sentenceBuilding as SentenceBuilderItem[];
 
 describe("SentenceBuilderStage (Stage 3)", () => {
