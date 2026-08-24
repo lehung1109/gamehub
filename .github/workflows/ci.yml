@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: gen types
+        run: npm run gen:types
+
       - name: Lint
         run: npm run lint
 
