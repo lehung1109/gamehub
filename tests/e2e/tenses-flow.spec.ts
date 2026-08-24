@@ -246,6 +246,18 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 1. Navigate to /tenses/present-simple
     await page.goto("/tenses/present-simple");
 
+    // Seed sessionStorage to ensure deterministic order of questions for this test
+    await page.evaluate(() => {
+      sessionStorage.setItem(
+        'gamehub-session-present-simple-errorHunting',
+        JSON.stringify(["err-01", "err-02", "err-03", "err-04", "err-05", "err-06"])
+      );
+      sessionStorage.setItem(
+        'gamehub-session-present-simple-sentenceBuilding',
+        JSON.stringify(["sb-01", "sb-02", "sb-03", "sb-04", "sb-05", "sb-06"])
+      );
+    });
+
     // 2. Go to Practice tab
     const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
     await practiceTab.click();
@@ -356,6 +368,14 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
   }) => {
     // 1. Navigate to /tenses/present-simple
     await page.goto("/tenses/present-simple");
+
+    // Seed sessionStorage to ensure deterministic order of questions for this test
+    await page.evaluate(() => {
+      sessionStorage.setItem(
+        'gamehub-session-present-simple-sentenceBuilding',
+        JSON.stringify(["sb-01", "sb-02", "sb-03", "sb-04", "sb-05", "sb-06"])
+      );
+    });
 
     // 2. Go to Practice tab
     const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
