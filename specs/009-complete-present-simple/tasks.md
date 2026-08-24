@@ -24,26 +24,26 @@ description: "Task list for Complete Present Simple feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T001 Evaluate worktree vs workspace branching for workspace isolation
+- [X] T001 Evaluate worktree vs workspace branching for workspace isolation
   - Execute `git worktree list` to decide isolation strategy before starting development.
-- [ ] T002 Start a dedicated subagent for Phase 1 execution
+- [X] T002 Start a dedicated subagent for Phase 1 execution
   - Spawn subagent to perform the Phase 1 tasks.
-- [ ] T003 [P] [US4] Write failing unit tests for `shuffleArray` in `tests/unit/utils.test.ts`
+- [X] T003 [P] [US4] Write failing unit tests for `shuffleArray` in `tests/unit/utils.test.ts`
   - Write test verifying the length is preserved, elements are preserved, and order changes.
   - Verify failure by running `npm run test:run -- tests/unit/utils.test.ts`.
-- [ ] T004 [US4] Implement `shuffleArray` in `src/lib/utils.ts` to make tests pass
+- [X] T004 [US4] Implement `shuffleArray` in `src/lib/utils.ts` to make tests pass
   - Implement Fisher-Yates shuffle algorithm.
   - Verify pass by running `npm run test:run -- tests/unit/utils.test.ts`.
-- [ ] T005 [P] [US4] Write failing unit tests for `useSessionQuestions` in `tests/unit/useSessionQuestions.test.ts`
+- [X] T005 [P] [US4] Write failing unit tests for `useSessionQuestions` in `tests/unit/useSessionQuestions.test.ts`
   - Write tests checking `sessionStorage` saving/retrieving and returning a stable list on re-renders.
   - Verify failure by running `npm run test:run -- tests/unit/useSessionQuestions.test.ts`.
-- [ ] T006 [US4] Implement `useSessionQuestions` hook in `src/hooks/useSessionQuestions.ts` to make tests pass
+- [X] T006 [US4] Implement `useSessionQuestions` hook in `src/hooks/useSessionQuestions.ts` to make tests pass
   - Hook signature: `function useSessionQuestions<T extends { id: string }>(questions: T[], count: number, storageKey: string): T[]`
   - Read `sessionStorage.getItem(storageKey)`, if valid parse IDs and filter `questions`. Else, `shuffleArray(questions)`, take first `count`, save mapped IDs to `sessionStorage`, and return the objects. Use `useEffect` or `useState` initialization appropriately for Next.js client component.
   - Verify pass by running `npm run test:run -- tests/unit/useSessionQuestions.test.ts`.
-- [ ] T007 Spawn review subagent to conduct code review and bug hunting for Phase 1
-- [ ] T008 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
-- [ ] T009 Commit Phase 1 changes with descriptive conventional commit message (`git commit -m "feat(core): implement shuffle utility and session hook"`)
+- [X] T007 Spawn review subagent to conduct code review and bug hunting for Phase 1
+- [X] T008 Resolve any issues found by review subagent, and iteratively spawn re-review subagent until zero bugs
+- [X] T009 Commit Phase 1 changes with descriptive conventional commit message (`git commit -m "feat(core): implement shuffle utility and session hook"`)
 
 **Checkpoint**: Foundation ready - UI updates can now begin in parallel.
 
