@@ -8,6 +8,12 @@
 
 **Input**: User description: "hoàn thiện thì hiện tại đơn"
 
+## Clarifications
+
+### Session 2026-08-24
+- Q: Khi tải lại trang (F5 / hard refresh) lúc đang làm bài, bộ câu hỏi ngẫu nhiên của phiên hiện tại có cần được lưu giữ không? → A: Có, lưu vào `sessionStorage` để giữ nguyên bộ câu hỏi đang làm.
+- Q: Về yêu cầu "bộ câu không trùng hoàn toàn với lần trước" khi chọn ngẫu nhiên, hệ thống nên áp dụng mức độ chặt chẽ nào? → A: Chỉ cần xáo trộn ngẫu nhiên thông thường (xác suất trùng 100% rất thấp, mã nguồn đơn giản).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Mở Rộng Ngân Hàng Câu Hỏi Chia Động Từ (Conjugation) Đa Dạng Ngữ Cảnh (Priority: P1)
@@ -93,7 +99,7 @@ Sau khi mở rộng ngân hàng câu hỏi, metadata của module Present Simple
 ### Edge Cases
 
 - **Ngân hàng câu hỏi nhỏ hơn số yêu cầu**: Nếu vì lý do nào đó ngân hàng có ít hơn số câu cần chọn, hệ thống sử dụng toàn bộ câu có sẵn mà không gây lỗi.
-- **Random seed nhất quán trong phiên**: Trong cùng một phiên luyện tập (từ lúc bắt đầu chặng đến khi hoàn thành), bộ câu hỏi không thay đổi khi người dùng quay lại câu trước.
+- **Random seed nhất quán trong phiên**: Trong cùng một phiên luyện tập (từ lúc bắt đầu chặng đến khi hoàn thành), bộ câu hỏi không thay đổi khi người dùng quay lại câu trước hoặc tải lại trang (hard refresh). Danh sách ID của phiên hiện hành được lưu tạm thời thông qua `sessionStorage`.
 - **Tương thích ngược dữ liệu tiến độ**: Dữ liệu tiến độ đã lưu trong localStorage từ phiên bản cũ (20 câu cố định) vẫn được đọc và hiển thị đúng trên giao diện mới.
 - **Đảm bảo chất lượng nội dung**: Tất cả câu hỏi mới phải tuân thủ đúng schema `TenseModuleData` đã định nghĩa, có giải thích ngữ pháp đầy đủ và chính xác.
 - **Trạng thái scrambledTokens**: Các mảnh từ ghép câu mới phải có đủ số lượng token để tạo ra ít nhất 2 cách sắp xếp khác nhau (tránh bài quá dễ chỉ có 2 token).
@@ -105,8 +111,8 @@ Sau khi mở rộng ngân hàng câu hỏi, metadata của module Present Simple
 - **FR-001**: Ngân hàng câu hỏi Chặng 1 (Conjugation) PHẢI có ít nhất 15 câu hỏi chia động từ, bao phủ ít nhất 5 loại ngữ cảnh công sở (email, meeting, routine, report, chat).
 - **FR-002**: Ngân hàng câu hỏi Chặng 2 (Error Hunting) PHẢI có ít nhất 12 câu hỏi săn lỗi sai, bao phủ ít nhất 5 dạng lỗi thì Hiện Tại Đơn phổ biến.
 - **FR-003**: Ngân hàng câu hỏi Chặng 3 (Sentence Building) PHẢI có ít nhất 12 câu hỏi ghép câu, bao phủ ít nhất 4 dạng cấu trúc câu khác nhau.
-- **FR-004**: Hệ thống PHẢI có logic chọn ngẫu nhiên (randomization) chọn một tập con câu hỏi từ ngân hàng mỗi phiên: 8 câu cho Conjugation, 6 câu cho Error Hunting, 6 câu cho Sentence Building.
-- **FR-005**: Hệ thống PHẢI xáo trộn thứ tự câu hỏi được chọn trong mỗi phiên luyện tập.
+- **FR-004**: Hệ thống PHẢI sử dụng hàm xáo trộn ngẫu nhiên thông thường (basic random shuffle) để chọn một tập con câu hỏi từ ngân hàng mỗi phiên: 8 câu cho Conjugation, 6 câu cho Error Hunting, 6 câu cho Sentence Building. Không yêu cầu thuật toán chống trùng lặp phức tạp giữa các phiên liên tiếp.
+- **FR-005**: Hệ thống PHẢI xáo trộn thứ tự câu hỏi được chọn trong mỗi phiên luyện tập. Danh sách câu hỏi (hoặc ID) của phiên hiện tại PHẢI được giữ nguyên bằng `sessionStorage` để không bị thay đổi bộ câu khi người dùng tải lại trang (F5).
 - **FR-006**: Tất cả câu hỏi mới PHẢI tuân thủ schema `TenseModuleData` hiện tại (định nghĩa trong `src/types/tenses.ts`) và có giải thích ngữ pháp tiếng Việt đầy đủ.
 - **FR-007**: Metadata `challengeCount` trong file `present-simple.json` và `index.json` PHẢI phản ánh số lượng câu hỏi mỗi phiên luyện tập (20 câu/phiên: 8+6+6), không phải tổng ngân hàng.
 - **FR-008**: Hệ thống PHẢI duy trì tương thích ngược với dữ liệu tiến độ localStorage đã lưu từ phiên bản trước.
