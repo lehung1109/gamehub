@@ -4,7 +4,7 @@
 
 **Purpose**: Project initialization and isolated workspace creation
 
-- [ ] T001 Create a new git worktree for workspace isolation (`git worktree add ../gamehub-011-fix-github-action-secrets 011-fix-github-action-secrets`). Ask the user to confirm the creation of the new worktree before executing, defaulting to creating a new one.
+- [X] T001 Create a new git worktree for workspace isolation (`git worktree add ../gamehub-011-fix-github-action-secrets 011-fix-github-action-secrets`). Ask the user to confirm the creation of the new worktree before executing, defaulting to creating a new one.
 
 ---
 
@@ -14,8 +14,8 @@
 
 **✅ CRITICAL**: No user story work can begin until this phase is complete. Since this is a DevOps configuration change, there are no foundational code tasks.
 
-- [ ] T002 Start Phase 2 Review Subagent to confirm Phase 1 and 2 readiness.
-- [ ] T003 Commit any foundational changes (N/A but required for phase-end).
+- [X] T002 Start Phase 2 Review Subagent to confirm Phase 1 and 2 readiness.
+- [X] T003 Commit any foundational changes (N/A but required for phase-end).
 
 ---
 
@@ -27,12 +27,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Spawn dedicated subagent for Phase 3 execution.
-- [ ] T005 [P] [US1] Update `.github/workflows/ci.yml` to replace dummy Supabase environment variables with explicit `secrets.` mappings for `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_ACCESS_TOKEN`.
-- [ ] T006 [P] [US1] Update `.github/workflows/e2e.yml` to replace dummy Supabase environment variables with explicit `secrets.` mappings for `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_ACCESS_TOKEN`.
-- [ ] T007 [US1] Push changes to trigger the GitHub Actions workflows and verify they run without secret errors.
-- [ ] T008 [US1] Spawn dedicated Review Subagent to conduct code review, spec compliance verification, and bug hunting for Phase 3. If bugs are found, fix them and repeat this review step.
-- [ ] T009 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
+- [X] T004 [US1] Spawn dedicated subagent for Phase 3 execution.
+- [X] T005 [P] [US1] Update `.github/workflows/ci.yml` to replace dummy Supabase environment variables with explicit `secrets.` mappings for `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_ACCESS_TOKEN`.
+- [X] T006 [P] [US1] Update `.github/workflows/e2e.yml` to replace dummy Supabase environment variables with explicit `secrets.` mappings for `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_ACCESS_TOKEN`.
+- [X] T007 [US1] Push changes to trigger the GitHub Actions workflows and verify they run without secret errors.
+- [X] T008 [US1] Spawn dedicated Review Subagent to conduct code review, spec compliance verification, and bug hunting for Phase 3. If bugs are found, fix them and repeat this review step.
+- [X] T009 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -42,10 +42,10 @@
 
 **Purpose**: Holistic, feature-level review encompassing all previous phases.
 
-- [ ] T010 Spawn dedicated Review Subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature (verifying the GitHub Action workflows).
-- [ ] T011 If any bugs are found during final review, fix them and spawn another review subagent. Repeat until zero bugs remain.
-- [ ] T012 Make final comprehensive commit to finalize the feature implementation (if any fixes were made).
-- [ ] T013 Run quickstart.md validation steps manually or via subagent.
+- [X] T010 Spawn dedicated Review Subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature (verifying the GitHub Action workflows).
+- [X] T011 If any bugs are found during final review, fix them and spawn another review subagent. Repeat until zero bugs remain.
+- [X] T012 Make final comprehensive commit to finalize the feature implementation (if any fixes were made).
+- [X] T013 Run quickstart.md validation steps manually or via subagent.
 
 ---
 

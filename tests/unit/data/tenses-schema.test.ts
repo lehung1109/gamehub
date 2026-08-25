@@ -108,7 +108,7 @@ describe("Tenses Schema & Data Integrity Tests", () => {
       });
 
       it("validates all 12 error hunter items with validateErrorHunterItem", () => {
-        data.challenges.errorHunting.forEach((item: any) => {
+        data.challenges.errorHunting.forEach((item) => {
           const res = validateErrorHunterItem(item);
           expect(res.valid, `ErrorHunter ${item.id} errors: ${res.errors.join(", ")}`).toBe(true);
         });
