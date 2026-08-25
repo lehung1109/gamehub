@@ -126,4 +126,23 @@ describe("TenseHubMap component", () => {
     expect(screen.getByText(/100% chính xác/i)).toBeInTheDocument();
     expect(screen.getByText(/đã hoàn thành 1\/12 thì/i)).toBeInTheDocument();
   });
+
+  it("renders tense groups with a maximum of 4 columns on desktop and no 5/6 column classes", () => {
+    const { container } = render(<TenseHubMap tenses={mockTensesList} />);
+
+    const presentSection = container.querySelector('section[aria-labelledby="group-heading-present"]');
+    expect(presentSection).toBeInTheDocument();
+
+    const gridContainer = presentSection?.querySelector(".grid");
+    expect(gridContainer).toBeInTheDocument();
+
+    // Verify responsive grid classes
+    expect(gridContainer?.className).toContain("grid-cols-1");
+    expect(gridContainer?.className).toContain("sm:grid-cols-2");
+    expect(gridContainer?.className).toContain("lg:grid-cols-4");
+
+    // Verify xl:grid-cols-5 and 2xl:grid-cols-6 are NOT present
+    expect(gridContainer?.className).not.toContain("xl:grid-cols-5");
+    expect(gridContainer?.className).not.toContain("2xl:grid-cols-6");
+  });
 });
