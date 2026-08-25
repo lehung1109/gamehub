@@ -4,10 +4,10 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create a new git worktree for workspace isolation (ask user to confirm creation, default to yes).
-- [ ] T002 Spawn a dedicated subagent to execute Phase 1 tasks.
-- [ ] T003 Execute iterative review & bug hunt subagent loop for Phase 1.
-- [ ] T004 Commit Phase 1 changes with a descriptive conventional commit message.
+- [X] T001 Create a new git worktree for workspace isolation (ask user to confirm creation, default to yes).
+- [X] T002 Spawn a dedicated subagent to execute Phase 1 tasks.
+- [X] T003 Execute iterative review & bug hunt subagent loop for Phase 1.
+- [X] T004 Commit Phase 1 changes with a descriptive conventional commit message.
 
 ---
 
@@ -19,9 +19,9 @@
 
 *(No foundational prerequisites identified for this specific UI fix)*
 
-- [ ] T005 Spawn a dedicated subagent to execute Phase 2 tasks.
-- [ ] T006 Execute iterative review & bug hunt subagent loop for Phase 2.
-- [ ] T007 Commit Phase 2 changes with a descriptive conventional commit message.
+- [X] T005 Spawn a dedicated subagent to execute Phase 2 tasks.
+- [X] T006 Execute iterative review & bug hunt subagent loop for Phase 2.
+- [X] T007 Commit Phase 2 changes with a descriptive conventional commit message.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -33,25 +33,25 @@
 
 **Independent Test**: Can be fully tested by viewing the "group-heading-present" component on a desktop viewport and verifying it uses a 4-column layout, and scales down correctly on smaller screens.
 
-- [ ] T008 Spawn a dedicated subagent to execute Phase 3 tasks.
+- [X] T008 Spawn a dedicated subagent to execute Phase 3 tasks.
 
 ### Tests for User Story 1 (OPTIONAL - only if tests requested) 🧪
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T009 [P] [US1] Write an E2E test or component test in Playwright/Vitest to verify desktop 4-column layout.
+- [X] T009 [P] [US1] Write an E2E test or component test in Playwright/Vitest to verify desktop 4-column layout.
   - *Action*: In the test suite for `TenseHubMap` (e.g. `tests/e2e/tenses.spec.ts` or `src/components/tenses/TenseHubMap.test.tsx`), add a test case that checks for the presence of max 4 columns on large viewports.
   - *Verification*: Run the test using `npm run test:e2e` or `npm run test:run` and verify it fails (Red).
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Update `src/components/tenses/TenseHubMap.tsx` grid layout classes.
+- [X] T010 [US1] Update `src/components/tenses/TenseHubMap.tsx` grid layout classes.
   - *Action*: In `src/components/tenses/TenseHubMap.tsx`, locate the `div` element rendering the grid of tense cards.
   - *Code*: Change the `className` string containing the grid responsive column configuration by removing `xl:grid-cols-5` and `2xl:grid-cols-6`. The class list should look like `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6` (or preserve any other existing classes, modifying only the column counts).
   - *Verification*: Run the tests again and ensure they pass (Green). Run `npm run build` to verify no build errors.
 
-- [ ] T011 Execute iterative review & bug hunt subagent loop for Phase 3.
-- [ ] T012 Commit Phase 3 changes with a descriptive conventional commit message.
+- [X] T011 Execute iterative review & bug hunt subagent loop for Phase 3.
+- [X] T012 Commit Phase 3 changes with a descriptive conventional commit message.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -61,9 +61,9 @@
 
 **Purpose**: Holistic, feature-level review encompassing all previous phases to iteratively find/fix bugs.
 
-- [ ] T013 Spawn a dedicated subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature.
-- [ ] T014 Fix any bugs found and repeat review subagent execution until zero bugs remain.
-- [ ] T015 Final comprehensive commit to finalize the feature implementation.
+- [X] T013 Spawn a dedicated subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature.
+- [X] T014 Fix any bugs found and repeat review subagent execution until zero bugs remain.
+- [X] T015 Final comprehensive commit to finalize the feature implementation.
 
 ---
 
