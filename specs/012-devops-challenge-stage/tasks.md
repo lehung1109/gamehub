@@ -8,9 +8,9 @@
 
 **Purpose**: Project initialization and isolated workspace creation.
 
-- [ ] T001 Ask the user to confirm the creation of a new git worktree for workspace isolation. If confirmed, create the worktree and switch the current agent context to it.
-- [ ] T002 Update data models in `src/types/tenses.ts` to include `DevOpsItem` union, `TenseChallenges.devOpsChallenge`, `StageType`, and `TenseUserProgressRecord.stageScores.devOpsChallenge`.
-- [ ] T003 Execute an iterative review subagent loop to verify Phase 1 changes and fix any bugs.
+- [x] T001 Ask the user to confirm the creation of a new git worktree for workspace isolation. If confirmed, create the worktree and switch the current agent context to it.
+- [x] T002 Update data models in `src/types/tenses.ts` to include `DevOpsItem` union, `TenseChallenges.devOpsChallenge`, `StageType`, and `TenseUserProgressRecord.stageScores.devOpsChallenge`.
+- [x] T003 Execute an iterative review subagent loop to verify Phase 1 changes and fix any bugs.
 - [ ] T004 Commit Phase 1 changes with a descriptive conventional commit message.
 
 ---

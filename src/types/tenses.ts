@@ -9,7 +9,7 @@ export type TenseGroup = "present" | "past" | "future";
 export type TenseStatus = "active" | "coming_soon";
 export type TenseLevel = "A1-A2 (Beginner)" | "B1-B2 (Intermediate)" | "C1-C2 (Advanced)";
 export type WorkplaceContextType = "email" | "meeting" | "routine" | "report" | "chat";
-export type StageType = "conjugation" | "errorHunting" | "sentenceBuilding";
+export type StageType = "conjugation" | "errorHunting" | "sentenceBuilding" | "devOpsChallenge";
 
 export interface TenseMetadata {
   id: string;
@@ -109,10 +109,19 @@ export interface SentenceBuilderItem {
   };
 }
 
+export type DevOpsChallengeType = "conjugation" | "errorHunting" | "sentenceBuilding";
+
+export type DevOpsConjugationItem = ConjugationItem & { challengeType: "conjugation" };
+export type DevOpsErrorHunterItem = ErrorHunterItem & { challengeType: "errorHunting" };
+export type DevOpsSentenceBuilderItem = SentenceBuilderItem & { challengeType: "sentenceBuilding" };
+
+export type DevOpsItem = DevOpsConjugationItem | DevOpsErrorHunterItem | DevOpsSentenceBuilderItem;
+
 export interface TenseChallenges {
   conjugation: ConjugationItem[];
   errorHunting: ErrorHunterItem[];
   sentenceBuilding: SentenceBuilderItem[];
+  devOpsChallenge?: DevOpsItem[];
 }
 
 export interface TenseModuleData {
@@ -135,6 +144,7 @@ export interface TenseUserProgressRecord {
     conjugation: StageProgress;
     errorHunting: StageProgress;
     sentenceBuilding: StageProgress;
+    devOpsChallenge?: StageProgress;
   };
   totalScore: number;
   maxPossibleScore: number;
