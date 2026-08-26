@@ -13,7 +13,7 @@ import presentSimpleData from '@/data/tenses/present-simple.json';
 import type { ConjugationItem, ErrorHunterItem, SentenceBuilderItem } from '@/types/tenses';
 
 vi.mock("@/hooks/useSessionQuestions", () => ({
-  useSessionQuestions: vi.fn((items, count, key) => items.slice(0, count)),
+  useSessionQuestions: vi.fn((items, count) => items.slice(0, count)),
 }));
 
 vi.mock('@/app/actions/student-progress', () => ({

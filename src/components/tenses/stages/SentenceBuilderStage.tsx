@@ -207,6 +207,7 @@ export function SentenceBuilderStage({
 
   useEffect(() => {
     if (currentItem && bankTokens.length === 0 && placedTokens.length === 0 && !isSubmitted) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBankTokens([...currentItem.scrambledTokens]);
     }
   }, [currentItem, bankTokens.length, placedTokens.length, isSubmitted]);
