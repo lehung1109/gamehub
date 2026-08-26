@@ -72,6 +72,11 @@ export function calculateAggregates(
   completed: boolean;
 } {
   const stages: StageType[] = ["conjugation", "errorHunting", "sentenceBuilding"];
+  
+  if (stageScores.devOpsChallenge !== undefined && stageScores.devOpsChallenge.total > 0) {
+    stages.push("devOpsChallenge");
+  }
+
   let totalScore = 0;
   let maxPossibleScore = 0;
   let allStagesCompleted = true;
@@ -112,14 +117,14 @@ export function getAllProgress(): TensesProgressMap {
   }
   try {
     const raw = window.localStorage.getItem(TENSE_STORAGE_KEY);
-    if (!raw) return { ...memoryFallback };
+    if (!raw) return {};
     const parsed = JSON.parse(raw);
     if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
-      return { ...memoryFallback };
+      return {};
     }
     return parsed as TensesProgressMap;
   } catch {
-    return { ...memoryFallback };
+    return {};
   }
 }
 

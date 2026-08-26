@@ -100,6 +100,70 @@ describe("Tense Progress Storage Helper", () => {
       expect(record.completed).toBe(true);
     });
 
+    it("saves devOpsChallenge stage progress and updates aggregates correctly", () => {
+      const record = saveStageProgress("present-simple", "devOpsChallenge", 6, 6);
+      expect(record.stageScores.devOpsChallenge?.score).toBe(6);
+      expect(record.stageScores.devOpsChallenge?.total).toBe(6);
+      expect(record.stageScores.devOpsChallenge?.passed).toBe(true);
+      expect(record.totalScore).toBe(6);
+      expect(record.maxPossibleScore).toBe(6);
+      expect(record.accuracyPercentage).toBe(100);
+      expect(record.completed).toBe(false); // only devOpsChallenge done, other stages not done
+
+      const saved = JSON.parse(window.localStorage.getItem(TENSE_STORAGE_KEY) || "{}");
+      expect(saved["present-simple"].stageScores.devOpsChallenge).toBeDefined();
+    });
+
+    it("updates all 4 stages sequentially and marks completed when all pass", () => {
+      saveStageProgress("present-simple", "conjugation", 8, 8);
+      saveStageProgress("present-simple", "errorHunting", 6, 6);
+      saveStageProgress("present-simple", "sentenceBuilding", 6, 6);
+      const record = saveStageProgress("present-simple", "devOpsChallenge", 6, 6);
+
+      expect(record.totalScore).toBe(26);
+      expect(record.maxPossibleScore).toBe(26);
+      expect(record.accuracyPercentage).toBe(100);
+      expect(record.completed).toBe(true);
+    });
+
+    it("marks completed as false if 3 core stages pass but devOpsChallenge fails", () => {
+      saveStageProgress("present-simple", "conjugation", 8, 8);
+      saveStageProgress("present-simple", "errorHunting", 6, 6);
+      saveStageProgress("present-simple", "sentenceBuilding", 6, 6);
+      const record = saveStageProgress("present-simple", "devOpsChallenge", 2, 6); // 2/6 = 33% (<70%)
+
+      expect(record.stageScores.devOpsChallenge?.passed).toBe(false);
+      expect(record.completed).toBe(false);
+    });
+
+    it("preserves backward compatibility when devOpsChallenge is not present", () => {
+      // Pre-populate storage with legacy 3-stage format
+      const legacyRecord = {
+        tenseId: "present-simple",
+        completed: false,
+        stageScores: {
+          conjugation: { score: 8, total: 8, passed: true },
+          errorHunting: { score: 0, total: 0, passed: false },
+          sentenceBuilding: { score: 0, total: 0, passed: false },
+        },
+        totalScore: 8,
+        maxPossibleScore: 8,
+        accuracyPercentage: 100,
+        lastStudiedAt: new Date().toISOString(),
+      };
+      window.localStorage.setItem(
+        TENSE_STORAGE_KEY,
+        JSON.stringify({ "present-simple": legacyRecord })
+      );
+
+      const record = saveStageProgress("present-simple", "errorHunting", 6, 6);
+      expect(record.stageScores.devOpsChallenge).toBeUndefined();
+      expect(record.totalScore).toBe(14);
+      expect(record.maxPossibleScore).toBe(14);
+      expect(record.accuracyPercentage).toBe(100);
+      expect(record.completed).toBe(false); // sentenceBuilding still not passed
+    });
+
     it("returns default record and avoids corrupting storage when empty tenseId is passed", () => {
       const record = saveStageProgress("", "conjugation", 8, 8);
       expect(record.tenseId).toBe("");
@@ -138,6 +202,58 @@ describe("Tense Progress Storage Helper", () => {
       expect(res.maxPossibleScore).toBe(0);
       expect(res.accuracyPercentage).toBe(0);
       expect(res.completed).toBe(false);
+    });
+
+    it("aggregates correctly for 3 core stages without devOpsChallenge", () => {
+      const initial = createInitialProgressRecord("present-simple");
+      initial.stageScores.conjugation = { score: 8, total: 8, passed: true };
+      initial.stageScores.errorHunting = { score: 6, total: 6, passed: true };
+      initial.stageScores.sentenceBuilding = { score: 6, total: 6, passed: true };
+
+      const res = calculateAggregates(initial.stageScores);
+      expect(res.totalScore).toBe(20);
+      expect(res.maxPossibleScore).toBe(20);
+      expect(res.accuracyPercentage).toBe(100);
+      expect(res.completed).toBe(true);
+    });
+
+    it("aggregates correctly when devOpsChallenge is present and passed", () => {
+      const initial = createInitialProgressRecord("present-simple");
+      initial.stageScores.conjugation = { score: 8, total: 8, passed: true };
+      initial.stageScores.errorHunting = { score: 6, total: 6, passed: true };
+      initial.stageScores.sentenceBuilding = { score: 6, total: 6, passed: true };
+      initial.stageScores.devOpsChallenge = { score: 5, total: 6, passed: true };
+
+      const res = calculateAggregates(initial.stageScores);
+      expect(res.totalScore).toBe(25); // 8+6+6+5
+      expect(res.maxPossibleScore).toBe(26); // 8+6+6+6
+      expect(res.accuracyPercentage).toBe(96); // 25/26 ~ 96.15%
+      expect(res.completed).toBe(true);
+    });
+
+    it("marks completed=false if devOpsChallenge is present but not passed", () => {
+      const initial = createInitialProgressRecord("present-simple");
+      initial.stageScores.conjugation = { score: 8, total: 8, passed: true };
+      initial.stageScores.errorHunting = { score: 6, total: 6, passed: true };
+      initial.stageScores.sentenceBuilding = { score: 6, total: 6, passed: true };
+      initial.stageScores.devOpsChallenge = { score: 0, total: 6, passed: false };
+
+      const res = calculateAggregates(initial.stageScores);
+      expect(res.completed).toBe(false);
+    });
+
+    it("does not prevent completion if devOpsChallenge is present with total=0 (unattempted optional stage)", () => {
+      const initial = createInitialProgressRecord("present-simple");
+      initial.stageScores.conjugation = { score: 8, total: 8, passed: true };
+      initial.stageScores.errorHunting = { score: 6, total: 6, passed: true };
+      initial.stageScores.sentenceBuilding = { score: 6, total: 6, passed: true };
+      initial.stageScores.devOpsChallenge = { score: 0, total: 0, passed: false };
+
+      const res = calculateAggregates(initial.stageScores);
+      expect(res.totalScore).toBe(20);
+      expect(res.maxPossibleScore).toBe(20);
+      expect(res.accuracyPercentage).toBe(100);
+      expect(res.completed).toBe(true);
     });
   });
 

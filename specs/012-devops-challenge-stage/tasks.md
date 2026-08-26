@@ -11,7 +11,7 @@
 - [x] T001 Ask the user to confirm the creation of a new git worktree for workspace isolation. If confirmed, create the worktree and switch the current agent context to it.
 - [x] T002 Update data models in `src/types/tenses.ts` to include `DevOpsItem` union, `TenseChallenges.devOpsChallenge`, `StageType`, and `TenseUserProgressRecord.stageScores.devOpsChallenge`.
 - [x] T003 Execute an iterative review subagent loop to verify Phase 1 changes and fix any bugs.
-- [ ] T004 Commit Phase 1 changes with a descriptive conventional commit message.
+- [x] T004 Commit Phase 1 changes with a descriptive conventional commit message.
 
 ---
 
@@ -20,9 +20,9 @@
 **Goal**: Implement tracking for the optional `devOpsChallenge` stage in local storage without breaking existing user data.
 **Independent Test**: Running unit tests verifies that aggregating scores works with or without `devOpsChallenge` data.
 
-- [ ] T005 [US2] TDD: Write failing unit tests in `src/lib/tenses/storage.test.ts` (or equivalent test file) covering the new `devOpsChallenge` optional field in `calculateAggregates`. Verify failure (`npm run test:run`).
-- [ ] T006 [US2] TDD: Implement the `storage.ts` changes to make the unit tests pass and refactor while maintaining green tests.
-- [ ] T007 Execute an iterative review subagent loop to verify Phase 2 changes and fix any bugs.
+- [x] T005 [US2] TDD: Write failing unit tests in `src/lib/tenses/storage.test.ts` (or equivalent test file) covering the new `devOpsChallenge` optional field in `calculateAggregates`. Verify failure (`npm run test:run`).
+- [x] T006 [US2] TDD: Implement the `storage.ts` changes to make the unit tests pass and refactor while maintaining green tests.
+- [x] T007 Execute an iterative review subagent loop to verify Phase 2 changes and fix any bugs.
 - [ ] T008 Commit Phase 2 changes with a descriptive conventional commit message.
 
 ---
