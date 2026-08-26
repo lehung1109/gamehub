@@ -33,7 +33,7 @@ describe("TenseLessonContainer component", () => {
     
     // Tab triggers
     const rulesTab = screen.getByRole("tab", { name: /quy tắc cốt lõi/i });
-    const practiceTab = screen.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTab = screen.getByRole("tab", { name: /luyện tập .* chặng/i });
     expect(rulesTab).toBeInTheDocument();
     expect(practiceTab).toBeInTheDocument();
   });
@@ -42,7 +42,7 @@ describe("TenseLessonContainer component", () => {
     render(<TenseLessonContainer lessonData={mockLessonData} />);
 
     const rulesTab = screen.getByRole("tab", { name: /quy tắc cốt lõi/i });
-    const practiceTab = screen.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTab = screen.getByRole("tab", { name: /luyện tập .* chặng/i });
 
     // Click Practice Tab
     fireEvent.click(practiceTab);
@@ -68,7 +68,7 @@ describe("TenseLessonContainer component", () => {
   it("allows entering Stage 1 (ConjugationStage) and returning back to stage list", () => {
     render(<TenseLessonContainer lessonData={mockLessonData} />);
 
-    const practiceTab = screen.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTab = screen.getByRole("tab", { name: /luyện tập .* chặng/i });
     fireEvent.click(practiceTab);
 
     // Click "Vào Chặng 1"
@@ -102,7 +102,7 @@ describe("TenseLessonContainer component", () => {
     render(<TenseLessonContainer lessonData={singleItemData} />);
 
     // Switch to practice tab
-    fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
+    fireEvent.click(screen.getByRole("tab", { name: /luyện tập .* chặng/i }));
 
     // Enter Stage 1
     fireEvent.click(screen.getByRole("button", { name: /vào chặng 1/i }));
@@ -147,7 +147,7 @@ describe("TenseLessonContainer component", () => {
 
     render(<TenseLessonContainer lessonData={singleItemData} />);
 
-    fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
+    fireEvent.click(screen.getByRole("tab", { name: /luyện tập .* chặng/i }));
 
     // Click "Vào Chặng 2"
     fireEvent.click(screen.getByRole("button", { name: /vào chặng 2/i }));
@@ -182,7 +182,7 @@ describe("TenseLessonContainer component", () => {
 
     render(<TenseLessonContainer lessonData={singleItemData} />);
 
-    fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
+    fireEvent.click(screen.getByRole("tab", { name: /luyện tập .* chặng/i }));
 
     // Click "Vào Chặng 3"
     fireEvent.click(screen.getByRole("button", { name: /vào chặng 3/i }));
@@ -222,7 +222,7 @@ describe("TenseLessonContainer component", () => {
 
     render(<TenseLessonContainer lessonData={mockLessonData} />);
 
-    fireEvent.click(screen.getByRole("tab", { name: /luyện tập 3 chặng/i }));
+    fireEvent.click(screen.getByRole("tab", { name: /luyện tập .* chặng/i }));
 
     // Summary quick-access banner is rendered
     expect(screen.getByText(/bạn đã hoàn thành trọn vẹn bài học này!/i)).toBeInTheDocument();

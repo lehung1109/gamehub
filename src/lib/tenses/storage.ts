@@ -52,6 +52,7 @@ export function createInitialProgressRecord(tenseId: string): TenseUserProgressR
       conjugation: createDefaultStageProgress(),
       errorHunting: createDefaultStageProgress(),
       sentenceBuilding: createDefaultStageProgress(),
+      devOpsChallenge: createDefaultStageProgress(),
     },
     totalScore: 0,
     maxPossibleScore: 0,
@@ -72,6 +73,11 @@ export function calculateAggregates(
   completed: boolean;
 } {
   const stages: StageType[] = ["conjugation", "errorHunting", "sentenceBuilding"];
+  
+  if (stageScores.devOpsChallenge !== undefined && stageScores.devOpsChallenge.total > 0) {
+    stages.push("devOpsChallenge");
+  }
+
   let totalScore = 0;
   let maxPossibleScore = 0;
   let allStagesCompleted = true;
@@ -112,14 +118,14 @@ export function getAllProgress(): TensesProgressMap {
   }
   try {
     const raw = window.localStorage.getItem(TENSE_STORAGE_KEY);
-    if (!raw) return { ...memoryFallback };
+    if (!raw) return {};
     const parsed = JSON.parse(raw);
     if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
-      return { ...memoryFallback };
+      return {};
     }
     return parsed as TensesProgressMap;
   } catch {
-    return { ...memoryFallback };
+    return {};
   }
 }
 
@@ -158,10 +164,14 @@ export function saveStageProgress(
     completedAt: new Date().toISOString(),
   };
 
-  const safeExistingStageScores = {
-    ...defaultRecord.stageScores,
-    ...(existing.stageScores || {}),
+  const safeExistingStageScores: TenseUserProgressRecord["stageScores"] = {
+    conjugation: existing.stageScores?.conjugation || defaultRecord.stageScores.conjugation,
+    errorHunting: existing.stageScores?.errorHunting || defaultRecord.stageScores.errorHunting,
+    sentenceBuilding: existing.stageScores?.sentenceBuilding || defaultRecord.stageScores.sentenceBuilding,
   };
+  if (existing.stageScores?.devOpsChallenge) {
+    safeExistingStageScores.devOpsChallenge = existing.stageScores.devOpsChallenge;
+  }
 
   const updatedStageScores = {
     ...safeExistingStageScores,

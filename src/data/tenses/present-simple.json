@@ -1843,6 +1843,346 @@
           "tipVi": "Wh-word (When) + trợ động từ (does) + S (the next flight) + V-inf (depart)."
         }
       }
+    ],
+    "devOpsChallenge": [
+      {
+        "id": "do-conj-01",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Trao đổi lỗi CI/CD pipeline",
+        "sender": "DevOps Engineer",
+        "recipient": "Backend Team",
+        "subject": "Pipeline Failure",
+        "textBefore": "The CI/CD pipeline always ",
+        "baseVerb": "fail",
+        "textAfter": " on the deployment stage due to a timeout.",
+        "correctAnswer": "fails",
+        "options": [
+          "fail",
+          "fails",
+          "failing",
+          "is fail"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ the CI/CD pipeline là số ít nên dùng fails.",
+          "detailedAnalysisVi": "Trong DevOps, khi nói về pipeline như một đối tượng số ít, ta thêm s vào sau động từ."
+        }
+      },
+      {
+        "id": "do-conj-02",
+        "challengeType": "conjugation",
+        "contextType": "email",
+        "scenarioVi": "Email về cập nhật hạ tầng",
+        "sender": "Sysadmin",
+        "recipient": "Dev Team",
+        "subject": "Infrastructure Update",
+        "textBefore": "Our Kubernetes clusters ",
+        "baseVerb": "scale",
+        "textAfter": " automatically based on traffic.",
+        "correctAnswer": "scale",
+        "options": [
+          "scale",
+          "scales",
+          "scaling",
+          "are scale"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ clusters là số nhiều nên động từ scale nguyên thể.",
+          "detailedAnalysisVi": "Cụm danh từ số nhiều (clusters) yêu cầu động từ nguyên thể."
+        }
+      },
+      {
+        "id": "do-conj-03",
+        "challengeType": "conjugation",
+        "contextType": "routine",
+        "scenarioVi": "Quy trình backup",
+        "sender": "System",
+        "recipient": "Admin",
+        "subject": "Backup Log",
+        "textBefore": "The database ",
+        "baseVerb": "not sync",
+        "textAfter": " correctly during peak hours.",
+        "correctAnswer": "does not sync",
+        "options": [
+          "do not sync",
+          "does not sync",
+          "is not sync",
+          "not sync"
+        ],
+        "explanation": {
+          "ruleVi": "Thể phủ định của động từ thường với chủ ngữ số ít.",
+          "detailedAnalysisVi": "The database là số ít nên mượn trợ động từ does + not + V."
+        }
+      },
+      {
+        "id": "do-err-01",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Báo cáo lỗi server",
+        "tokens": [
+          "The",
+          "production",
+          "server",
+          "drop",
+          "connections",
+          "sometimes."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "drops",
+        "options": [
+          {
+            "value": "drops",
+            "label": "drops",
+            "isCorrect": true
+          },
+          {
+            "value": "dropping",
+            "label": "dropping",
+            "isCorrect": false
+          },
+          {
+            "value": "is drop",
+            "label": "is drop",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The production server drops connections sometimes.",
+        "vietnameseMeaning": "Server production đôi khi bị rớt kết nối.",
+        "explanation": {
+          "whyWrongVi": "Server là số ít, động từ drop phải thêm s.",
+          "workplaceImpactVi": "Gây hiểu lầm trong báo cáo kỹ thuật."
+        }
+      },
+      {
+        "id": "do-err-02",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Trao đổi về logs",
+        "tokens": [
+          "We",
+          "doesn't",
+          "store",
+          "user",
+          "passwords",
+          "in",
+          "plain",
+          "text."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "don't",
+        "options": [
+          {
+            "value": "don't",
+            "label": "don't",
+            "isCorrect": true
+          },
+          {
+            "value": "isn't",
+            "label": "isn't",
+            "isCorrect": false
+          },
+          {
+            "value": "not",
+            "label": "not",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "We don't store user passwords in plain text.",
+        "vietnameseMeaning": "Chúng tôi không lưu mật khẩu người dùng dưới dạng plain text.",
+        "explanation": {
+          "whyWrongVi": "Chủ ngữ We dùng don't.",
+          "workplaceImpactVi": "Lỗi cơ bản."
+        }
+      },
+      {
+        "id": "do-err-03",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Thông báo về service",
+        "tokens": [
+          "The",
+          "monitoring",
+          "tools",
+          "alerts",
+          "us",
+          "when",
+          "CPU",
+          "is",
+          "high."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "alert",
+        "options": [
+          {
+            "value": "alert",
+            "label": "alert",
+            "isCorrect": true
+          },
+          {
+            "value": "alerting",
+            "label": "alerting",
+            "isCorrect": false
+          },
+          {
+            "value": "is alert",
+            "label": "is alert",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The monitoring tools alert us when CPU is high.",
+        "vietnameseMeaning": "Các công cụ giám sát cảnh báo chúng tôi khi CPU cao.",
+        "explanation": {
+          "whyWrongVi": "Chủ ngữ số nhiều tools nên động từ không chia.",
+          "workplaceImpactVi": "Lỗi chia động từ cơ bản."
+        }
+      },
+      {
+        "id": "do-sb-01",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Lệnh deploy",
+        "vietnameseMeaning": "Quá trình deploy mất khoảng mười phút.",
+        "fullSentenceEn": "The deployment process takes about ten minutes.",
+        "correctTokenOrder": [
+          "The",
+          "deployment",
+          "process",
+          "takes",
+          "about",
+          "ten",
+          "minutes."
+        ],
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The"
+          },
+          {
+            "id": "t2",
+            "text": "takes"
+          },
+          {
+            "id": "t3",
+            "text": "about"
+          },
+          {
+            "id": "t4",
+            "text": "ten"
+          },
+          {
+            "id": "t5",
+            "text": "process"
+          },
+          {
+            "id": "t6",
+            "text": "deployment"
+          },
+          {
+            "id": "t7",
+            "text": "minutes."
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Trật tự câu",
+          "tipVi": "Chủ ngữ (The deployment process) + V (takes) + Tân ngữ."
+        }
+      },
+      {
+        "id": "do-sb-02",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Hỏi về load balancer",
+        "vietnameseMeaning": "Load balancer phân phối lưu lượng mạng như thế nào?",
+        "fullSentenceEn": "How does the load balancer distribute network traffic?",
+        "correctTokenOrder": [
+          "How",
+          "does",
+          "the",
+          "load",
+          "balancer",
+          "distribute",
+          "network",
+          "traffic?"
+        ],
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "How"
+          },
+          {
+            "id": "t2",
+            "text": "does"
+          },
+          {
+            "id": "t3",
+            "text": "the"
+          },
+          {
+            "id": "t4",
+            "text": "load"
+          },
+          {
+            "id": "t5",
+            "text": "traffic?"
+          },
+          {
+            "id": "t6",
+            "text": "distribute"
+          },
+          {
+            "id": "t7",
+            "text": "network"
+          },
+          {
+            "id": "t8",
+            "text": "balancer"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Câu hỏi Wh-",
+          "tipVi": "Từ để hỏi + trợ động từ + chủ ngữ + động từ chính."
+        }
+      },
+      {
+        "id": "do-sb-03",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cảnh báo về docker containers",
+        "vietnameseMeaning": "Các container không tự động khởi động lại.",
+        "fullSentenceEn": "The containers do not restart automatically.",
+        "correctTokenOrder": [
+          "The",
+          "containers",
+          "do",
+          "not",
+          "restart",
+          "automatically."
+        ],
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The"
+          },
+          {
+            "id": "t2",
+            "text": "not"
+          },
+          {
+            "id": "t3",
+            "text": "do"
+          },
+          {
+            "id": "t4",
+            "text": "restart"
+          },
+          {
+            "id": "t5",
+            "text": "automatically."
+          },
+          {
+            "id": "t6",
+            "text": "containers"
+          }
+        ],
+        "grammarTip": {
+          "titleVi": "Phủ định số nhiều",
+          "tipVi": "Chủ ngữ số nhiều đi với do not + V."
+        }
+      }
     ]
   }
 }

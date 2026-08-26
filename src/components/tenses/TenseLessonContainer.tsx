@@ -16,6 +16,7 @@ import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { ConjugationStage } from "@/components/tenses/stages/ConjugationStage";
 import { ErrorHunterStage } from "@/components/tenses/stages/ErrorHunterStage";
 import { SentenceBuilderStage } from "@/components/tenses/stages/SentenceBuilderStage";
+import { DevOpsChallengeStage } from "@/components/tenses/stages/DevOpsChallengeStage";
 import { CompletionDashboard } from "@/components/tenses/CompletionDashboard";
 import { getProgress, saveStageProgress, resetProgress } from "@/lib/tenses/storage";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -78,6 +79,16 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
     },
   ];
 
+  if (challenges.devOpsChallenge && challenges.devOpsChallenge.length > 0) {
+    stageList.push({
+      id: "devOpsChallenge",
+      titleVi: "Chặng 4: Thử Thách IT/DevOps",
+      subtitleVi: "IT & DevOps Context",
+      itemCount: challenges.devOpsChallenge.length,
+      descriptionVi: "Thử thách tổng hợp các kiến thức IT/DevOps thực tế.",
+    });
+  }
+
   const handleTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>, tab: "rules" | "practice") => {
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
       e.preventDefault();
@@ -107,6 +118,9 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
 
     // Check if all stages have been completed
     const stages: StageType[] = ["conjugation", "errorHunting", "sentenceBuilding"];
+    if (challenges.devOpsChallenge && challenges.devOpsChallenge.length > 0) {
+      stages.push("devOpsChallenge");
+    }
     const allDone = stages.every((s) => (updated.stageScores[s]?.total || 0) > 0);
 
     if (allDone || updated.completed) {
@@ -129,8 +143,8 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
   const isAllAttempted = Boolean(
     isClient &&
       progressRecord &&
-      (["conjugation", "errorHunting", "sentenceBuilding"] as StageType[]).every(
-        (s) => (progressRecord.stageScores[s]?.total || 0) > 0
+      stageList.every(
+        (s) => (progressRecord.stageScores[s.id]?.total || 0) > 0
       )
   );
 
@@ -186,7 +200,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
             }`}
           >
             <Sparkles className="size-4" aria-hidden="true" />
-            <span>Luyện Tập 3 Chặng (Practice)</span>
+            <span>Luyện Tập {stageList.length} Chặng (Practice)</span>
           </button>
         </div>
 
@@ -232,6 +246,12 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                 onStageComplete={(score, total) => handleStageComplete("sentenceBuilding", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
+            ) : currentStage === "devOpsChallenge" && challenges.devOpsChallenge ? (
+              <DevOpsChallengeStage
+                items={challenges.devOpsChallenge}
+                onStageComplete={(score, total) => handleStageComplete("devOpsChallenge", score, total)}
+                onBack={() => setCurrentStage(null)}
+              />
             ) : (
               /* 3 Stages Cards Grid */
               <div className="space-y-6">
@@ -246,7 +266,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                         <h3 className="text-sm sm:text-base font-bold text-foreground">
                           {progressRecord.completed
                             ? "Bạn đã hoàn thành trọn vẹn bài học này!"
-                            : "Bạn đã hoàn tất cả 3 chặng thử thách!"}
+                            : "Bạn đã hoàn tất cả các chặng thử thách!"}
                         </h3>
                         <p className="text-xs text-muted-foreground font-medium">
                           Tổng điểm: {progressRecord.totalScore}/{progressRecord.maxPossibleScore} ({progressRecord.accuracyPercentage}% chính xác)
