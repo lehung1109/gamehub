@@ -51,12 +51,12 @@
 
 ### Implementation for User Story 2
 
-- [ ] T007 [US2] Spawn a subagent to prepend the "Project Overview" and "Key Features" sections at the top of `README.md`.
+- [x] T007 [US2] Spawn a subagent to prepend the "Project Overview" and "Key Features" sections at the top of `README.md`.
   - **Pseudocode**: Write Markdown explaining Student profiles, game varieties (Alphabet, Flashcards, Tenses), and Teacher/Admin features.
   - **Verification**: `head -n 50 README.md` displays the overview and feature lists.
-- [ ] T008 [US2] Spawn an iterative review subagent to verify the described features match `src/data/games.json` and the existing components.
+- [x] T008 [US2] Spawn an iterative review subagent to verify the described features match `src/data/games.json` and the existing components.
   - **Verification**: Review subagent confirms accuracy.
-- [ ] T009 [US2] Phase-end commit: `git commit -m "docs: add project overview and features to README.md"`.
+- [x] T009 [US2] Phase-end commit: `git commit -m "docs: add project overview and features to README.md"`.
 
 **Checkpoint**: Both user stories are complete.
 

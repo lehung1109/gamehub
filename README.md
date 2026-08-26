@@ -1,10 +1,95 @@
-# GameHub
+<div align="center">
 
-An educational interactive mini-game platform built with Next.js App Router, React 19, Tailwind CSS, Vitest, Playwright, and Supabase.
+# 🌟 GameHub
+
+**An interactive, educational mini-game platform engineered for ESL / English learners, modern classrooms, and workplace professionals.**
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.0-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
+[![Vitest](https://img.shields.io/badge/Vitest-Testing-FCC72B?style=flat-square&logo=vitest&logoColor=black)](https://vitest.dev/)
+[![Playwright](https://img.shields.io/badge/Playwright-E2E-2EAD33?style=flat-square&logo=playwright)](https://playwright.dev/)
+
+</div>
 
 ---
 
-## Tech Stack
+## 📖 Overview
+
+**GameHub** is a web-first educational platform combining game-based learning with comprehensive classroom management. Designed for young learners, ESL students, and working professionals, GameHub delivers an intuitive, interactive environment for mastering English vocabulary, phonics, sentence construction, and workplace grammar.
+
+### Core Pillars
+
+1. **Zero-Friction Learner Experience**: Students can jump directly into learning without friction—play anonymously or join a teacher's classroom using a 6-character Class Code.
+2. **Pedagogically Structured Mini-Games**: Visual, auditory, and kinesthetic activities powered by drag-and-drop physics, speech synthesis, and real-time audio feedback.
+3. **Professional English Mastery**: Contextualized grammar modules (e.g. Workplace Tenses, DevOps & IT communication) designed to bridge the gap between classroom theory and real-world workplace scenarios.
+4. **Actionable Teacher & Admin Tools**: Intuitive dashboards for class roster management, custom game configuration builders, live game previewing, error analytics, and RFC 4180-compliant CSV reporting.
+
+---
+
+## ✨ Key Features
+
+### 🎮 Interactive Mini-Games
+
+GameHub features a diverse library of mini-games catering to different learning stages:
+
+- **🃏 Vocabulary Flashcards (`/games/flashcard`)**
+  - Interactive 3D flip card animations with bilingual terms (English / Vietnamese) and illustrative emojis.
+  - Native Web Speech synthesis for accurate American/British English pronunciation.
+  - Themed vocabulary categories: *Animals, Fruits, School, Family, Body Parts*.
+- **🔤 Alphabet & Phonics (`/games/alphabet`)**
+  - Complete 26-letter interactive alphabet board with IPA phonetic transcriptions.
+  - Dual modes: **Explore/Learn** (tap to hear pronunciation and example words) and **Phonics Quiz** (listen and identify target letters).
+- **👂 Listening & Audio Quiz (`/games/listening`)**
+  - Spoken English audio challenges where learners identify corresponding pictures, words, or meanings.
+  - Configurable hints and instant audio-visual answer feedback.
+- **✏️ Spelling Challenge (`/games/spelling`)**
+  - Kinesthetic drag-and-drop letter assembly powered by `@dnd-kit`.
+  - Scrambled letter banks with visual drop slot validation and audio reinforcement upon correct completion.
+- **🔢 Numbers & Colors (`/games/numbers-colors`)**
+  - Interactive number exploration from 1 to 20 with dynamic emoji counters.
+  - Color palette swatch recognition covering primary and secondary colors in English and Vietnamese.
+- **💬 Simple Sentences Builder (`/games/sentences`)**
+  - Drag-and-drop sentence puzzle reordering scrambled word tokens into grammatically sound English sentences.
+  - Real-world everyday contexts: *Daily Actions, Descriptions, Feelings & Preferences*.
+- **💼 Workplace Tense Practice (`/tenses`)**
+  - Tailored grammar training for workplace communication and IT/DevOps environments:
+    - **Present Simple & Quick Rules**: Visual formulas and quick reference rule cards for *To Be*, *Action Verbs*, *Spelling Rules*, and *Adverbs of Frequency*.
+    - **Conjugation Practice**: Contextual fill-in-the-blank verb conjugation in emails, standup chats, and status reports.
+    - **Error Hunter**: Spot and correct tense/grammar mistakes in workplace sentences with detailed diagnostic explanations.
+    - **Sentence Builder**: Construct complex workplace sentences by arranging clauses in correct syntax.
+    - **DevOps Workplace Challenge**: Industry-specific scenarios covering deployment notices, incident logs, code reviews, and sprint status updates.
+
+---
+
+### 🎓 Student Experience & Gamification
+
+- **Student Profiles & Avatars**: Students track their learning journey with custom avatars, nicknames, and persistent progress.
+- **Session Join via Class Code**: Simple modal login (`StudentJoinPopup`) requiring only a class code and student name—no passwords or emails needed for young students.
+- **Levels & Celebration Dialogs**: Earn Stars and XP to level up from *Tập sự* (Beginner) to *Bậc thầy* (Master), accompanied by animated celebration popups (`LevelUpCelebrationDialog`) and confetti effects.
+- **Real-Time Score Feedback**: Instant audio-visual feedback on answers with score calculations, streaks, and completion percentages.
+- **Attempt History & Review**: Detailed post-game reviews showing question breakdowns, submitted answers, correct solutions, and grammar explanations.
+
+---
+
+### 👩‍🏫 Teacher & Classroom Management
+
+- **Classroom Roster & Code Generation**: Create distinct classes, auto-generate unique join codes, and organize student cohorts.
+- **Custom Game Configuration Builder**:
+  - Full-featured configuration editor supporting custom word limits, category selection, letter/number ranges, and audio toggles.
+  - Game-specific configuration forms for Flashcards, Alphabet, Listening, Spelling, Numbers/Colors, and Sentences.
+- **Live Preview Mode**: Test drive any custom game configuration in a sandbox environment before assigning it to students.
+- **Performance Analytics & CSV Export**:
+  - Class-wide overview metrics: total students, active sessions, average accuracy, and total time spent.
+  - Filter analytics across timeframes: *Last 7 Days*, *Last 30 Days*, or *All Time*.
+  - One-click CSV export with UTF-8 BOM and formula injection protection for Excel compatibility.
+- **Difficult Words Analysis**: Automated diagnostic report identifying vocabulary words and grammar concepts with high error rates to guide classroom remediation.
+
+---
+
+## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Server Actions, Route Handlers)
 - **UI & Styling**: [React 19](https://react.dev/), [Tailwind CSS 4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), [Lucide React](https://lucide.dev/)
@@ -15,7 +100,7 @@ An educational interactive mini-game platform built with Next.js App Router, Rea
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 gamehub/
@@ -81,7 +166,7 @@ gamehub/
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -154,7 +239,7 @@ SUPABASE_ACCESS_TOKEN=your-supabase-access-token
 
 ---
 
-## NPM Scripts
+## 📜 NPM Scripts
 
 | Script | Command | Description |
 |--------|---------|-------------|
@@ -170,7 +255,7 @@ SUPABASE_ACCESS_TOKEN=your-supabase-access-token
 
 ---
 
-## CI/CD Pipelines & Quality Gates
+## 🔄 CI/CD Pipelines & Quality Gates
 
 Automated continuous integration and security audits are configured using GitHub Actions under `.github/workflows/`:
 
