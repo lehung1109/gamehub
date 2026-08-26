@@ -52,7 +52,7 @@
 - [x] T018 [US1] TDD: Implement `DevOpsChallengeStage.tsx` in `src/components/tenses/stages/` to handle the state and dynamically render the correct UI component from Phase 3.
 - [x] T019 [US1] TDD: Update `TenseLessonContainer.tsx` in `src/components/tenses/` to conditionally display Stage 4 only if `devOpsChallenge` data is present. Ensure all tests pass.
 - [x] T020 Execute an iterative review subagent loop to verify Phase 4 changes and fix any bugs.
-- [ ] T021 Commit Phase 4 changes with a descriptive conventional commit message.
+- [x] T021 Commit Phase 4 changes with a descriptive conventional commit message.
 
 ---
 
@@ -60,9 +60,9 @@
 
 **Purpose**: Holistic validation across all implemented user stories.
 
-- [ ] T022 Spawn a subagent to conduct a comprehensive feature-level review and bug hunt across the entire `012-devops-challenge-stage` feature.
-- [ ] T023 Fix any integration bugs or regressions identified in the review.
-- [ ] T024 Re-run the review subagent loop iteratively until zero bugs remain and all quickstart validation steps pass.
+- [x] T022 Spawn a subagent to conduct a comprehensive feature-level review and bug hunt across the entire `012-devops-challenge-stage` feature.
+- [x] T023 Fix any integration bugs or regressions identified in the review.
+- [x] T024 Re-run the review subagent loop iteratively until zero bugs remain and all quickstart validation steps pass.
 - [ ] T025 Make a final comprehensive commit to finalize the feature implementation.
 
 ---
