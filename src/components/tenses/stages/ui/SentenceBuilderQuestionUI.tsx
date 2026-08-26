@@ -39,7 +39,7 @@ export interface SentenceBuilderQuestionUIProps {
   currentIndex: number;
   total: number;
   score: number;
-  onNext: (isCorrect: boolean) => void;
+  onNext: (isCorrect: boolean, userAnswer: string) => void;
   onBack?: () => void;
   className?: string;
 }
@@ -203,6 +203,7 @@ export function SentenceBuilderQuestionUI({
   const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setBankTokens([...item.scrambledTokens]);
     setPlacedTokens([]);
     setIsSubmitted(false);
@@ -289,7 +290,8 @@ export function SentenceBuilderQuestionUI({
   };
 
   const handleNext = () => {
-    onNext(isCorrect ?? false);
+    const tokenTexts = placedTokens.map((t) => t.text).join(" ");
+    onNext(isCorrect ?? false, tokenTexts);
   };
 
   const isLastQuestion = currentIndex === total - 1;

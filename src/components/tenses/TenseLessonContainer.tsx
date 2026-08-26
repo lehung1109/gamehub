@@ -17,6 +17,7 @@ import { ConjugationStage } from "@/components/tenses/stages/ConjugationStage";
 import { ErrorHunterStage } from "@/components/tenses/stages/ErrorHunterStage";
 import { SentenceBuilderStage } from "@/components/tenses/stages/SentenceBuilderStage";
 import { DevOpsChallengeStage } from "@/components/tenses/stages/DevOpsChallengeStage";
+import { StageResultUI } from "@/components/tenses/stages/ui/StageResultUI";
 import { CompletionDashboard } from "@/components/tenses/CompletionDashboard";
 import { getProgress, saveStageProgress, resetProgress } from "@/lib/tenses/storage";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -33,6 +34,8 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<"rules" | "practice">("rules");
   const [currentStage, setCurrentStage] = useState<StageType | "summary" | null>(null);
+
+  const [stageResultToShow, setStageResultToShow] = useState<StageType | null>(null);
 
   const isClient = useSyncExternalStore(
     emptySubscribe,
@@ -98,12 +101,14 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
       } else {
         setActiveTab("rules");
         setCurrentStage(null);
+        setStageResultToShow(null);
         rulesTabRef.current?.focus();
       }
     } else if (e.key === "Home") {
       e.preventDefault();
       setActiveTab("rules");
       setCurrentStage(null);
+      setStageResultToShow(null);
       rulesTabRef.current?.focus();
     } else if (e.key === "End") {
       e.preventDefault();
@@ -112,22 +117,11 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
     }
   };
 
-  const handleStageComplete = (stage: StageType, score: number, total: number) => {
-    const updated = saveStageProgress(metadata.id, stage, score, total);
+  const handleStageComplete = (stage: StageType, score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => {
+    const updated = saveStageProgress(metadata.id, stage, score, total, attemptHistory);
     setOverrideProgress(updated);
-
-    // Check if all stages have been completed
-    const stages: StageType[] = ["conjugation", "errorHunting", "sentenceBuilding"];
-    if (challenges.devOpsChallenge && challenges.devOpsChallenge.length > 0) {
-      stages.push("devOpsChallenge");
-    }
-    const allDone = stages.every((s) => (updated.stageScores[s]?.total || 0) > 0);
-
-    if (allDone || updated.completed) {
-      setCurrentStage("summary");
-    } else {
-      setCurrentStage(null);
-    }
+    setCurrentStage(null);
+    setStageResultToShow(stage);
   };
 
   const handleResetAll = () => {
@@ -251,6 +245,35 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                 items={challenges.devOpsChallenge}
                 onStageComplete={(score, total) => handleStageComplete("devOpsChallenge", score, total)}
                 onBack={() => setCurrentStage(null)}
+              />
+            ) : stageResultToShow && progressRecord ? (
+              <StageResultUI
+                stage={stageResultToShow}
+                score={progressRecord.stageScores[stageResultToShow]?.score || 0}
+                total={progressRecord.stageScores[stageResultToShow]?.total || 0}
+                attemptHistory={progressRecord.stageScores[stageResultToShow]?.attemptHistory}
+                onReplay={() => {
+                  if (stageResultToShow) {
+                    sessionStorage.removeItem(`gamehub-session-present-simple-${stageResultToShow}`);
+                    if (stageResultToShow === "devOpsChallenge") {
+                      sessionStorage.removeItem("gamehub-session-present-simple-devops"); // Special case
+                    }
+                  }
+                  setStageResultToShow(null);
+                  setCurrentStage(stageResultToShow);
+                }}
+                onBackToList={() => {
+                  setStageResultToShow(null);
+                  // Auto redirect to summary if all done
+                  const stages: StageType[] = ["conjugation", "errorHunting", "sentenceBuilding"];
+                  if (challenges.devOpsChallenge && challenges.devOpsChallenge.length > 0) {
+                    stages.push("devOpsChallenge");
+                  }
+                  const allDone = stages.every((s) => (progressRecord.stageScores[s]?.total || 0) > 0);
+                  if (allDone || progressRecord.completed) {
+                    setCurrentStage("summary");
+                  }
+                }}
               />
             ) : (
               /* 3 Stages Cards Grid */

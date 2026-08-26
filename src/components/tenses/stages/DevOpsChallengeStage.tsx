@@ -12,7 +12,7 @@ import { SentenceBuilderQuestionUI } from "./ui/SentenceBuilderQuestionUI";
 
 export interface DevOpsChallengeStageProps {
   items: DevOpsItem[];
-  onStageComplete: (score: number, total: number) => void;
+  onStageComplete: (score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => void;
   onBack?: () => void;
   className?: string;
 }
@@ -23,10 +23,12 @@ export function DevOpsChallengeStage({
   onBack,
   className,
 }: DevOpsChallengeStageProps) {
-  const sessionQuestions = useSessionQuestions(items, 9, 'gamehub-session-present-simple-devops');
+  const sessionQuestions = useSessionQuestions(items, 10, 'gamehub-session-present-simple-devops');
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
+
+  const [attemptHistory, setAttemptHistory] = useState<import("@/types/tenses").AttemptItem[]>([]);
 
   const total = sessionQuestions?.length || 0;
   const currentItem = sessionQuestions?.[currentIndex];
@@ -55,14 +57,42 @@ export function DevOpsChallengeStage({
     );
   }
 
-  const handleNext = (isCorrect: boolean) => {
+  const handleNext = (isCorrect: boolean, userAnswer: string) => {
     const newScore = isCorrect ? score + 1 : score;
     setScore(newScore);
+
+    let correctAnswer = "";
+    let explanationVi = "";
+    
+    if (currentItem.challengeType === "conjugation") {
+      const cItem = currentItem as import("@/types/tenses").ConjugationItem;
+      correctAnswer = cItem.correctAnswer || "";
+      explanationVi = cItem.explanation.ruleVi || "";
+    } else if (currentItem.challengeType === "sentenceBuilding") {
+      const sItem = currentItem as import("@/types/tenses").SentenceBuilderItem;
+      correctAnswer = sItem.fullSentenceEn || "";
+      explanationVi = sItem.grammarTip.tipVi || "";
+    } else if (currentItem.challengeType === "errorHunting") {
+      const eItem = currentItem as import("@/types/tenses").ErrorHunterItem;
+      correctAnswer = eItem.correctToken || "";
+      explanationVi = eItem.explanation.whyWrongVi || "";
+    }
+
+    const attempt: import("@/types/tenses").AttemptItem = {
+      questionId: currentItem.id,
+      contextVi: currentItem.scenarioVi,
+      userAnswer,
+      correctAnswer,
+      isCorrect,
+      explanationVi,
+    };
+    const newHistory = [...attemptHistory, attempt];
+    setAttemptHistory(newHistory);
 
     if (currentIndex < total - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      onStageComplete(newScore, total);
+      onStageComplete(newScore, total, newHistory);
     }
   };
 

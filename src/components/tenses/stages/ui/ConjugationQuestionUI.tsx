@@ -63,7 +63,7 @@ export interface ConjugationQuestionUIProps {
   currentIndex: number;
   total: number;
   score: number;
-  onNext: (isCorrect: boolean) => void;
+  onNext: (isCorrect: boolean, userAnswer: string) => void;
   onBack?: () => void;
   className?: string;
 }
@@ -86,6 +86,7 @@ export function ConjugationQuestionUI({
   const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedAnswer("");
     setIsSubmitted(false);
     setIsCorrect(null);
@@ -115,7 +116,7 @@ export function ConjugationQuestionUI({
   };
 
   const handleNext = () => {
-    onNext(isCorrect ?? false);
+    onNext(isCorrect ?? false, selectedAnswer);
   };
 
   const handleOptionClick = (option: string) => {

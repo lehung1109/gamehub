@@ -298,7 +298,7 @@ export function validateTenseModuleData(data: unknown): {
       if (!Array.isArray(devOpsChallenge)) {
         errors.push("challenges.devOpsChallenge must be an array");
       } else {
-        devOpsChallenge.forEach((item: any) => {
+        devOpsChallenge.forEach((item: import("@/types/tenses").DevOpsItem) => {
           if (item.challengeType === "conjugation") {
             const res = validateConjugationItem(item);
             if (!res.valid) errors.push(...res.errors);
@@ -309,7 +309,7 @@ export function validateTenseModuleData(data: unknown): {
             const res = validateSentenceBuilderItem(item);
             if (!res.valid) errors.push(...res.errors);
           } else {
-            errors.push(`Invalid devOpsChallenge challengeType: ${item.challengeType}`);
+            errors.push(`Invalid devOpsChallenge challengeType: ${(item as any).challengeType}`);
           }
         });
       }
