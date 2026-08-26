@@ -4,9 +4,9 @@
 
 **Purpose**: Project initialization and workspace isolation
 
-- [ ] T001 Spawn a subagent to ask the user to confirm the creation of a new git worktree for `012-quiz-back-navigation` (default to yes) and execute the creation.
-- [ ] T002 Execute Phase 1 Review & Bug Hunt subagent to verify worktree.
-- [ ] T003 Commit Phase 1 changes (if any).
+- [X] T001 Spawn a subagent to ask the user to confirm the creation of a new git worktree for `012-quiz-back-navigation` (default to yes) and execute the creation.
+- [X] T002 Execute Phase 1 Review & Bug Hunt subagent to verify worktree.
+- [X] T003 Commit Phase 1 changes (if any).
 
 ---
 
@@ -15,10 +15,10 @@
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 **CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Spawn dedicated subagent for Phase 2 implementation.
-- [ ] T005 [P] Update `src/components/game/QuizEngine.tsx` state definitions to include `answers: Record<number, number>` instead of a single `score` integer.
-- [ ] T006 Execute Phase 2 Review & Bug Hunt subagent.
-- [ ] T007 Commit Phase 2 changes.
+- [X] T004 Spawn dedicated subagent for Phase 2 implementation.
+- [X] T005 [P] Update `src/components/game/QuizEngine.tsx` state definitions to include `answers: Record<number, number>` instead of a single `score` integer.
+- [X] T006 Execute Phase 2 Review & Bug Hunt subagent.
+- [X] T007 Commit Phase 2 changes.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -34,16 +34,16 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T008 [P] [US1] Write failing unit tests for "Back" button rendering and navigation in `tests/unit/components/game/QuizEngine.test.tsx`.
+- [X] T008 [P] [US1] Write failing unit tests for "Back" button rendering and navigation in `tests/unit/components/game/QuizEngine.test.tsx`.
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Spawn dedicated subagent for User Story 1 implementation.
-- [ ] T010 [US1] Update `src/components/game/QuizEngine.tsx` to render a "Back" button (e.g. in the header) when `currentIndex > 0`.
-- [ ] T011 [US1] Implement `handleBack` in `QuizEngine.tsx` to decrement `currentIndex` and clear `feedback.open`.
-- [ ] T012 [US1] Update `QuizEngine.tsx` to pre-select `answers[currentIndex]` if it exists when rendering options.
-- [ ] T013 [US1] Execute Phase 3 Review & Bug Hunt subagent.
-- [ ] T014 [US1] Commit Phase 3 changes.
+- [X] T009 [US1] Spawn dedicated subagent for User Story 1 implementation.
+- [X] T010 [US1] Update `src/components/game/QuizEngine.tsx` to render a "Back" button (e.g. in the header) when `currentIndex > 0`.
+- [X] T011 [US1] Implement `handleBack` in `QuizEngine.tsx` to decrement `currentIndex` and clear `feedback.open`.
+- [X] T012 [US1] Update `QuizEngine.tsx` to pre-select `answers[currentIndex]` if it exists when rendering options.
+- [X] T013 [US1] Execute Phase 3 Review & Bug Hunt subagent.
+- [X] T014 [US1] Commit Phase 3 changes.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -57,17 +57,17 @@
 
 ### Tests for User Story 2 (TDD)
 
-- [ ] T015 [P] [US2] Write failing unit tests for changing answers and dynamic score calculation in `tests/unit/components/game/QuizEngine.test.tsx`.
-- [ ] T016 [P] [US2] Write failing E2E tests for changing answers in `tests/e2e/alphabet-quiz.spec.ts`.
+- [X] T015 [P] [US2] Write failing unit tests for changing answers and dynamic score calculation in `tests/unit/components/game/QuizEngine.test.tsx`.
+- [X] T016 [P] [US2] Write failing E2E tests for changing answers in `tests/e2e/alphabet-quiz.spec.ts`.
 
 ### Implementation for User Story 2
 
-- [ ] T017 [US2] Spawn dedicated subagent for User Story 2 implementation.
-- [ ] T018 [US2] Update `handleSelectOption` in `src/components/game/QuizEngine.tsx` to save the selected answer into the `answers` record.
-- [ ] T019 [US2] Update `handleContinue` or `onComplete` invocation in `src/components/game/QuizEngine.tsx` to compute the total score based on the `answers` record compared to `correctIndex`.
-- [ ] T020 [US2] Ensure auto-advance correctly proceeds to the next sequential question when a past answer is changed.
-- [ ] T021 [US2] Execute Phase 4 Review & Bug Hunt subagent.
-- [ ] T022 [US2] Commit Phase 4 changes.
+- [X] T017 [US2] Spawn dedicated subagent for User Story 2 implementation.
+- [X] T018 [US2] Update `handleSelectOption` in `src/components/game/QuizEngine.tsx` to save the selected answer into the `answers` record.
+- [X] T019 [US2] Update `handleContinue` or `onComplete` invocation in `src/components/game/QuizEngine.tsx` to compute the total score based on the `answers` record compared to `correctIndex`.
+- [X] T020 [US2] Ensure auto-advance correctly proceeds to the next sequential question when a past answer is changed.
+- [X] T021 [US2] Execute Phase 4 Review & Bug Hunt subagent.
+- [X] T022 [US2] Commit Phase 4 changes.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -77,9 +77,9 @@
 
 **Purpose**: Holistic, feature-level review encompassing all previous phases.
 
-- [ ] T023 Spawn a dedicated subagent to conduct a comprehensive bug hunt and integration review across the entire feature.
-- [ ] T024 Fix any bugs found during the final review (repeat T023-T024 until zero bugs).
-- [ ] T025 Final comprehensive commit to finalize the feature implementation.
+- [X] T023 Spawn a dedicated subagent to conduct a comprehensive bug hunt and integration review across the entire feature.
+- [X] T024 Fix any bugs found during the final review (repeat T023-T024 until zero bugs).
+- [X] T025 Final comprehensive commit to finalize the feature implementation.
 
 ---
 

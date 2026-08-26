@@ -71,4 +71,47 @@ test.describe("Alphabet & Phonics Quiz Flow", () => {
     });
     await expect(page.getByRole("button", { name: /Chơi lại/i })).toBeVisible();
   });
+
+  test("can navigate back to previous question and change answer", async ({ page }) => {
+    await page.goto("/games/alphabet");
+
+    const quizTab = page.getByRole("tab", { name: /Luyện tập/i });
+    await expect(quizTab).toBeVisible();
+    await quizTab.click();
+
+    // Verify Question 1 is visible and Back button is NOT visible
+    await expect(page.getByText(/Câu 1 \/ 10/i)).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Quay lại/i })).not.toBeVisible();
+
+    // Answer Question 1
+    const firstOption = page.locator("button:has(span.tracking-wider)").first();
+    await firstOption.click();
+
+    const continueBtn = page.getByRole("button", { name: /Tiếp tục/i });
+    await continueBtn.waitFor({ state: "visible", timeout: 3000 });
+    await continueBtn.click();
+
+    // Now on Question 2, Back button SHOULD be visible
+    await expect(page.getByText(/Câu 2 \/ 10/i)).toBeVisible({ timeout: 5000 });
+    const backBtn = page.getByRole("button", { name: /Quay lại/i });
+    await expect(backBtn).toBeVisible();
+
+    // Click Back
+    await backBtn.click();
+
+    // Verify back to Question 1
+    await expect(page.getByText(/Câu 1 \/ 10/i)).toBeVisible({ timeout: 5000 });
+
+    // Pick an option on Question 1 again
+    const secondOption = page.locator("button:has(span.tracking-wider)").nth(1);
+    await secondOption.click();
+
+    const continueBtn2 = page.getByRole("button", { name: /Tiếp tục/i });
+    await continueBtn2.waitFor({ state: "visible", timeout: 3000 });
+    await continueBtn2.click();
+
+    // Advances to Question 2
+    await expect(page.getByText(/Câu 2 \/ 10/i)).toBeVisible({ timeout: 5000 });
+  });
 });
+

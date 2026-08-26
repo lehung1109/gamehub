@@ -137,4 +137,101 @@ describe("QuizEngine component", () => {
       })
     );
   });
+
+  it("does not display a back button on the first question", () => {
+    render(
+      <QuizEngine
+        questions={mockQuestions}
+        renderPrompt={(prompt) => <div>Prompt: {prompt.word}</div>}
+        renderOption={(option) => <span>Option: {option.word}</span>}
+        onComplete={vi.fn()}
+      />
+    );
+
+    expect(screen.queryByRole("button", { name: /quay lại/i })).not.toBeInTheDocument();
+  });
+
+  it("navigates back to the previous question when back button is clicked", () => {
+    vi.useFakeTimers();
+    render(
+      <QuizEngine
+        questions={mockQuestions}
+        renderPrompt={(prompt) => <div>Prompt: {prompt.word}</div>}
+        renderOption={(option) => <span>Option: {option.word}</span>}
+        onComplete={vi.fn()}
+        autoAdvance={true}
+      />
+    );
+
+    // Answer Question 1
+    const optionsQ1 = screen.getAllByRole("button", { name: /Option:/i });
+    fireEvent.click(optionsQ1[0]);
+
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
+
+    // We are on Question 2
+    expect(screen.getByText("Prompt: Dog")).toBeInTheDocument();
+    const backBtn = screen.getByRole("button", { name: /quay lại/i });
+    expect(backBtn).toBeInTheDocument();
+
+    // Click Back
+    fireEvent.click(backBtn);
+
+    // Back to Question 1
+    expect(screen.getByText("Prompt: Cat")).toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
+  it("allows re-selecting an answer and recalculates final score", () => {
+    vi.useFakeTimers();
+    const handleComplete = vi.fn();
+
+    render(
+      <QuizEngine
+        questions={mockQuestions}
+        renderPrompt={(prompt) => <div>Prompt: {prompt.word}</div>}
+        renderOption={(option) => <span>Option: {option.word}</span>}
+        onComplete={handleComplete}
+        autoAdvance={true}
+      />
+    );
+
+    // Step 1: Answer Question 1 WRONGLY (option 1: "Dog", correct is 0: "Cat")
+    const optionsQ1 = screen.getAllByRole("button", { name: /Option:/i });
+    fireEvent.click(optionsQ1[1]);
+
+    // For wrong answers, FeedbackOverlay does not auto-advance; click continue button
+    const continueBtn = screen.getByRole("button", { name: /tiếp tục/i });
+    fireEvent.click(continueBtn);
+
+    // Step 2: Now on Question 2. Click Back to Question 1.
+    expect(screen.getByText("Prompt: Dog")).toBeInTheDocument();
+    const backBtn = screen.getByRole("button", { name: /quay lại/i });
+    fireEvent.click(backBtn);
+
+    // Step 3: We are on Question 1. Change answer to CORRECT (option 0: "Cat")
+    expect(screen.getByText("Prompt: Cat")).toBeInTheDocument();
+    const reOptionsQ1 = screen.getAllByRole("button", { name: /Option:/i });
+    fireEvent.click(reOptionsQ1[0]);
+
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
+
+    // Step 4: Now on Question 2 again. Answer CORRECTLY (option 1: "Dog")
+    expect(screen.getByText("Prompt: Dog")).toBeInTheDocument();
+    const optionsQ2 = screen.getAllByRole("button", { name: /Option:/i });
+    fireEvent.click(optionsQ2[1]);
+
+    act(() => {
+      vi.advanceTimersByTime(1500);
+    });
+
+    // Quiz completed. Score should be 2 out of 2.
+    expect(handleComplete).toHaveBeenCalledWith(2, 2);
+    vi.useRealTimers();
+  });
 });
+
