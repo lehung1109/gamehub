@@ -164,10 +164,14 @@ export function saveStageProgress(
     completedAt: new Date().toISOString(),
   };
 
-  const safeExistingStageScores = {
-    ...defaultRecord.stageScores,
-    ...(existing.stageScores || {}),
+  const safeExistingStageScores: TenseUserProgressRecord["stageScores"] = {
+    conjugation: existing.stageScores?.conjugation || defaultRecord.stageScores.conjugation,
+    errorHunting: existing.stageScores?.errorHunting || defaultRecord.stageScores.errorHunting,
+    sentenceBuilding: existing.stageScores?.sentenceBuilding || defaultRecord.stageScores.sentenceBuilding,
   };
+  if (existing.stageScores?.devOpsChallenge) {
+    safeExistingStageScores.devOpsChallenge = existing.stageScores.devOpsChallenge;
+  }
 
   const updatedStageScores = {
     ...safeExistingStageScores,

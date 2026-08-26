@@ -53,8 +53,8 @@ describe("Question UI Components", () => {
       correctToken: "works",
       fullCorrectSentence: "He works here.",
       options: [
-        { label: "works", value: "works" },
-        { label: "working", value: "working" },
+        { label: "works", value: "works", isCorrect: true },
+        { label: "working", value: "working", isCorrect: false },
       ],
       explanation: {
         whyWrongVi: "Wrong",
