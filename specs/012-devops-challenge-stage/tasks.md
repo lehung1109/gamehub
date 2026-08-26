@@ -23,7 +23,7 @@
 - [x] T005 [US2] TDD: Write failing unit tests in `src/lib/tenses/storage.test.ts` (or equivalent test file) covering the new `devOpsChallenge` optional field in `calculateAggregates`. Verify failure (`npm run test:run`).
 - [x] T006 [US2] TDD: Implement the `storage.ts` changes to make the unit tests pass and refactor while maintaining green tests.
 - [x] T007 Execute an iterative review subagent loop to verify Phase 2 changes and fix any bugs.
-- [ ] T008 Commit Phase 2 changes with a descriptive conventional commit message.
+- [x] T008 Commit Phase 2 changes with a descriptive conventional commit message.
 
 ---
 
@@ -32,12 +32,12 @@
 **Goal**: Extract reusable single-question UI components from existing stages to satisfy the DRY requirement (SC-003).
 **Independent Test**: The original 3 stages must continue to function perfectly with no visual or interactive changes.
 
-- [ ] T009 [US3] TDD: Write failing unit tests for the extracted UI components (e.g., `tests/unit/ui-components.test.tsx`). Verify failure.
-- [ ] T010 [P] [US3] TDD: Extract and implement `ConjugationQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
-- [ ] T011 [P] [US3] TDD: Extract and implement `ErrorHunterQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
-- [ ] T012 [P] [US3] TDD: Extract and implement `SentenceBuilderQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
-- [ ] T013 [US3] TDD: Refactor `ConjugationStage.tsx`, `ErrorHunterStage.tsx`, and `SentenceBuilderStage.tsx` to consume the new UI components and pass all tests.
-- [ ] T014 Execute an iterative review subagent loop to verify Phase 3 changes (including running `npm run test:e2e` to ensure no regressions) and fix any bugs.
+- [x] T009 [US3] TDD: Write failing unit tests for the extracted UI components (e.g., `tests/unit/ui-components.test.tsx`). Verify failure.
+- [x] T010 [P] [US3] TDD: Extract and implement `ConjugationQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
+- [x] T011 [P] [US3] TDD: Extract and implement `ErrorHunterQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
+- [x] T012 [P] [US3] TDD: Extract and implement `SentenceBuilderQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
+- [x] T013 [US3] TDD: Refactor `ConjugationStage.tsx`, `ErrorHunterStage.tsx`, and `SentenceBuilderStage.tsx` to consume the new UI components and pass all tests.
+- [x] T014 Execute an iterative review subagent loop to verify Phase 3 changes (including running `npm run test:e2e` to ensure no regressions) and fix any bugs.
 - [ ] T015 Commit Phase 3 changes with a descriptive conventional commit message.
 
 ---
