@@ -52,6 +52,7 @@ export function createInitialProgressRecord(tenseId: string): TenseUserProgressR
       conjugation: createDefaultStageProgress(),
       errorHunting: createDefaultStageProgress(),
       sentenceBuilding: createDefaultStageProgress(),
+      devOpsChallenge: createDefaultStageProgress(),
     },
     totalScore: 0,
     maxPossibleScore: 0,

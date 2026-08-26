@@ -38,7 +38,7 @@
 - [x] T012 [P] [US3] TDD: Extract and implement `SentenceBuilderQuestionUI.tsx` in `src/components/tenses/stages/ui/`.
 - [x] T013 [US3] TDD: Refactor `ConjugationStage.tsx`, `ErrorHunterStage.tsx`, and `SentenceBuilderStage.tsx` to consume the new UI components and pass all tests.
 - [x] T014 Execute an iterative review subagent loop to verify Phase 3 changes (including running `npm run test:e2e` to ensure no regressions) and fix any bugs.
-- [ ] T015 Commit Phase 3 changes with a descriptive conventional commit message.
+- [x] T015 Commit Phase 3 changes with a descriptive conventional commit message.
 
 ---
 
@@ -47,11 +47,11 @@
 **Goal**: Implement the new Stage 4 that dynamically renders the extracted UI components based on the `challengeType` discriminator.
 **Independent Test**: Users can access Stage 4 and experience a seamless mix of the 3 question types in IT/DevOps contexts.
 
-- [ ] T016 [P] [US1] Add 9 mock IT/DevOps questions to the `devOpsChallenge` array in `src/data/tenses/present-simple.json`.
-- [ ] T017 [US1] TDD: Write failing E2E tests for the new DevOps Challenge flow in `tests/e2e/devops-challenge.spec.ts`. Verify failure (`npm run test:e2e`).
-- [ ] T018 [US1] TDD: Implement `DevOpsChallengeStage.tsx` in `src/components/tenses/stages/` to handle the state and dynamically render the correct UI component from Phase 3.
-- [ ] T019 [US1] TDD: Update `TenseLessonContainer.tsx` in `src/components/tenses/` to conditionally display Stage 4 only if `devOpsChallenge` data is present. Ensure all tests pass.
-- [ ] T020 Execute an iterative review subagent loop to verify Phase 4 changes and fix any bugs.
+- [x] T016 [P] [US1] Add 9 mock IT/DevOps questions to the `devOpsChallenge` array in `src/data/tenses/present-simple.json`.
+- [x] T017 [US1] TDD: Write failing E2E tests for the new DevOps Challenge flow in `tests/e2e/devops-challenge.spec.ts`. Verify failure (`npm run test:e2e`).
+- [x] T018 [US1] TDD: Implement `DevOpsChallengeStage.tsx` in `src/components/tenses/stages/` to handle the state and dynamically render the correct UI component from Phase 3.
+- [x] T019 [US1] TDD: Update `TenseLessonContainer.tsx` in `src/components/tenses/` to conditionally display Stage 4 only if `devOpsChallenge` data is present. Ensure all tests pass.
+- [x] T020 Execute an iterative review subagent loop to verify Phase 4 changes and fix any bugs.
 - [ ] T021 Commit Phase 4 changes with a descriptive conventional commit message.
 
 ---

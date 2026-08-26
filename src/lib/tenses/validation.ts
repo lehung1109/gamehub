@@ -292,6 +292,28 @@ export function validateTenseModuleData(data: unknown): {
         if (!res.valid) errors.push(...res.errors);
       });
     }
+
+    if (tenseModule.challenges.devOpsChallenge !== undefined) {
+      const devOpsChallenge = tenseModule.challenges.devOpsChallenge;
+      if (!Array.isArray(devOpsChallenge)) {
+        errors.push("challenges.devOpsChallenge must be an array");
+      } else {
+        devOpsChallenge.forEach((item: any) => {
+          if (item.challengeType === "conjugation") {
+            const res = validateConjugationItem(item);
+            if (!res.valid) errors.push(...res.errors);
+          } else if (item.challengeType === "errorHunting") {
+            const res = validateErrorHunterItem(item);
+            if (!res.valid) errors.push(...res.errors);
+          } else if (item.challengeType === "sentenceBuilding") {
+            const res = validateSentenceBuilderItem(item);
+            if (!res.valid) errors.push(...res.errors);
+          } else {
+            errors.push(`Invalid devOpsChallenge challengeType: ${item.challengeType}`);
+          }
+        });
+      }
+    }
   }
 
   return { valid: errors.length === 0, errors };
