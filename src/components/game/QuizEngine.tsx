@@ -74,7 +74,7 @@ export function QuizEngine<T = unknown>({
 }: QuizEngineProps<T>) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [feedback, setFeedback] = useState<{
     open: boolean;
     type: "correct" | "wrong";
@@ -89,6 +89,18 @@ export function QuizEngine<T = unknown>({
 
   const hasQuestions = questions && questions.length > 0;
   const currentQuestion = hasQuestions ? questions[currentIndex] : undefined;
+
+  const calculateScore = React.useCallback(
+    (currentAnswers: Record<number, number>) => {
+      if (!questions) return 0;
+      return questions.reduce((acc, q, idx) => {
+        return currentAnswers[idx] === q.correctIndex ? acc + 1 : acc;
+      }, 0);
+    },
+    [questions]
+  );
+
+  const score = calculateScore(answers);
 
   // Reset timer whenever currentIndex changes
   useEffect(() => {
@@ -120,8 +132,9 @@ export function QuizEngine<T = unknown>({
           ? Math.max(0, Date.now() - questionStartTimeRef.current)
           : 0;
       setSelectedOption(index);
+      setAnswers((prev) => ({ ...prev, [currentIndex]: index }));
+
       const isCorrect = index === currentQuestion.correctIndex;
-      const nextScore = isCorrect ? score + 1 : score;
 
       const correctAnswer =
         currentQuestion.correctAnswerText ||
@@ -145,7 +158,6 @@ export function QuizEngine<T = unknown>({
       }
 
       if (isCorrect) {
-        setScore(nextScore);
         setFeedback({
           open: true,
           type: "correct",
@@ -158,7 +170,7 @@ export function QuizEngine<T = unknown>({
         });
       }
     },
-    [selectedOption, feedback.open, isCompleted, currentQuestion, currentIndex, onAnswer, score]
+    [selectedOption, feedback.open, isCompleted, currentQuestion, currentIndex, onAnswer]
   );
 
   const handleContinue = React.useCallback(() => {
@@ -171,14 +183,36 @@ export function QuizEngine<T = unknown>({
       setCurrentIndex((prev) => prev + 1);
     } else {
       setIsCompleted(true);
-      onComplete(score, questions?.length || 0);
+      const finalAnswers =
+        selectedOption !== null
+          ? { ...answers, [currentIndex]: selectedOption }
+          : answers;
+      const finalScore = calculateScore(finalAnswers);
+      onComplete(finalScore, questions?.length || 0);
     }
-  }, [feedback.open, selectedOption, currentIndex, questions?.length, onComplete, score]);
+  }, [
+    feedback.open,
+    selectedOption,
+    currentIndex,
+    questions?.length,
+    onComplete,
+    answers,
+    calculateScore,
+  ]);
+
+  const handleBack = React.useCallback(() => {
+    if (currentIndex > 0) {
+      setFeedback({ open: false, type: "correct" });
+      setSelectedOption(null);
+      isSelectingRef.current = false;
+      setCurrentIndex((prev) => Math.max(0, prev - 1));
+    }
+  }, [currentIndex]);
 
   const handlePlayAgain = React.useCallback(() => {
     setCurrentIndex(0);
     setSelectedOption(null);
-    setScore(0);
+    setAnswers({});
     setIsCompleted(false);
     isSelectingRef.current = false;
     questionStartTimeRef.current = Date.now();
@@ -216,7 +250,11 @@ export function QuizEngine<T = unknown>({
               : "Hoàn thành bài tập! (Completed!)"}
           </h2>
           <p className="text-lg text-muted-foreground font-medium">
-            Bạn đã trả lời đúng <strong className="text-emerald-700 dark:text-emerald-400 font-black text-xl">{score}</strong> / {questions.length} câu hỏi!
+            Bạn đã trả lời đúng{" "}
+            <strong className="text-emerald-700 dark:text-emerald-400 font-black text-xl">
+              {score}
+            </strong>{" "}
+            / {questions.length} câu hỏi!
           </p>
         </div>
 
@@ -238,12 +276,34 @@ export function QuizEngine<T = unknown>({
     );
   }
 
+  const recordedAnswer = answers[currentIndex];
+  const currentSelected =
+    selectedOption !== null
+      ? selectedOption
+      : recordedAnswer !== undefined
+      ? recordedAnswer
+      : null;
+
   return (
     <div className={cn("w-full max-w-2xl xl:max-w-3xl mx-auto space-y-6", className)}>
       {/* Header & Progress */}
       <div className="space-y-2">
         <div className="flex justify-between items-center text-sm sm:text-base font-bold text-muted-foreground px-1">
-          <span>{title || "Trắc nghiệm / Quiz"}</span>
+          <div className="flex items-center gap-2">
+            {currentIndex > 0 && (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleBack}
+                className="rounded-full px-3 py-1 text-xs sm:text-sm font-bold flex items-center gap-1 cursor-pointer hover:bg-muted"
+                aria-label="Quay lại câu trước"
+              >
+                ⬅️ Quay lại
+              </Button>
+            )}
+            <span>{title || "Trắc nghiệm / Quiz"}</span>
+          </div>
           <span className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 px-3 py-1 rounded-full font-extrabold">
             Câu {currentIndex + 1} / {questions.length}
           </span>
@@ -266,8 +326,9 @@ export function QuizEngine<T = unknown>({
       {/* Options Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {currentQuestion.options.map((option, idx) => {
-          const isSelected = selectedOption === idx;
-          const isCorrect = selectedOption !== null ? idx === currentQuestion.correctIndex : null;
+          const isSelected = currentSelected === idx;
+          const isCorrect =
+            currentSelected !== null ? idx === currentQuestion.correctIndex : null;
           const ariaLabel = getOptionAriaLabel ? getOptionAriaLabel(option, idx) : undefined;
 
           return (
@@ -279,11 +340,22 @@ export function QuizEngine<T = unknown>({
               disabled={selectedOption !== null}
               className={cn(
                 "group p-4 sm:p-6 rounded-3xl border-4 text-left font-bold transition-all shadow-md active:scale-95 cursor-pointer disabled:cursor-default flex items-center justify-between",
-                selectedOption === null && "border-border bg-card hover:border-primary hover:bg-primary/5 hover:scale-[1.02]",
-                isSelected && isCorrect && "border-emerald-500 bg-emerald-100 text-emerald-950 ring-4 ring-emerald-300 dark:bg-emerald-950",
-                isSelected && !isCorrect && "border-rose-500 bg-rose-100 text-rose-950 ring-4 ring-rose-300 dark:bg-rose-950",
-                selectedOption !== null && !isSelected && idx === currentQuestion.correctIndex && "border-emerald-500 bg-emerald-50 text-emerald-900",
-                selectedOption !== null && !isSelected && idx !== currentQuestion.correctIndex && "opacity-60 border-border bg-muted/40"
+                currentSelected === null &&
+                  "border-border bg-card hover:border-primary hover:bg-primary/5 hover:scale-[1.02]",
+                isSelected &&
+                  isCorrect &&
+                  "border-emerald-500 bg-emerald-100 text-emerald-950 ring-4 ring-emerald-300 dark:bg-emerald-950",
+                isSelected &&
+                  !isCorrect &&
+                  "border-rose-500 bg-rose-100 text-rose-950 ring-4 ring-rose-300 dark:bg-rose-950",
+                currentSelected !== null &&
+                  !isSelected &&
+                  idx === currentQuestion.correctIndex &&
+                  "border-emerald-500 bg-emerald-50 text-emerald-900",
+                currentSelected !== null &&
+                  !isSelected &&
+                  idx !== currentQuestion.correctIndex &&
+                  "opacity-60 border-border bg-muted/40"
               )}
             >
               <div className="flex-1">
