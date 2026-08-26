@@ -14,8 +14,8 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T001 [P] Update `src/types/tenses.ts` to define `AttemptItem` interface and add `attemptHistory?: AttemptItem[]` to `StageProgress`.
-- [ ] T002 Update `src/lib/tenses/storage.ts` to support saving and retrieving `attemptHistory` along with stage scores in `saveStageProgress`.
+- [X] T001 [P] Update `src/types/tenses.ts` to define `AttemptItem` interface and add `attemptHistory?: AttemptItem[]` to `StageProgress`.
+- [X] T002 Update `src/lib/tenses/storage.ts` to support saving and retrieving `attemptHistory` along with stage scores in `saveStageProgress`.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -29,12 +29,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T003 [US1] Create `StageResultUI.tsx` in `src/components/tenses/stages/ui/` that displays the score, accuracy, evaluation message, and buttons ("Làm lại", "Về danh sách", "Xem chi tiết").
-- [ ] T004 [US1] Update `src/components/tenses/TenseLessonContainer.tsx` to handle a new state for displaying `StageResultUI` when a stage is finished but the overall lesson is not yet completed.
-- [ ] T005 [P] [US1] Update `ConjugationStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes, triggering the summary view.
-- [ ] T006 [P] [US1] Update `ErrorHunterStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes.
-- [ ] T007 [P] [US1] Update `SentenceBuilderStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes.
-- [ ] T008 [P] [US1] Update `DevOpsChallengeStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes.
+- [X] T003 [US1] Create `StageResultUI.tsx` in `src/components/tenses/stages/ui/` that displays the score, accuracy, evaluation message, and buttons ("Làm lại", "Về danh sách", "Xem chi tiết").
+- [X] T004 [US1] Update `src/components/tenses/TenseLessonContainer.tsx` to handle a new state for displaying `StageResultUI` when a stage is finished but the overall lesson is not yet completed.
+- [X] T005 [P] [US1] Update `ConjugationStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes, triggering the summary view.
+- [X] T006 [P] [US1] Update `ErrorHunterStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes.
+- [X] T007 [P] [US1] Update `SentenceBuilderStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes.
+- [X] T008 [P] [US1] Update `DevOpsChallengeStage.tsx` to pass the final attempt data back to `TenseLessonContainer` when the stage completes.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -48,9 +48,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Create `HistoryReviewUI.tsx` in `src/components/tenses/stages/ui/` to render a list of `AttemptItem` objects showing correct/incorrect indicators, chosen vs correct answers, and grammatical explanations.
-- [ ] T010 [US2] Update `ConjugationQuestionUI.tsx`, `ErrorHunterQuestionUI.tsx`, and `SentenceBuilderQuestionUI.tsx` to capture user's submitted answers into `AttemptItem` objects and accumulate them in the stage component's state.
-- [ ] T011 [US2] Wire `HistoryReviewUI` into `StageResultUI` (e.g., as a conditionally rendered view or a Dialog/Drawer) triggered by the "Xem chi tiết" button.
+- [X] T009 [US2] Create `HistoryReviewUI.tsx` in `src/components/tenses/stages/ui/` to render a list of `AttemptItem` objects showing correct/incorrect indicators, chosen vs correct answers, and grammatical explanations.
+- [X] T010 [US2] Update `ConjugationQuestionUI.tsx`, `ErrorHunterQuestionUI.tsx`, and `SentenceBuilderQuestionUI.tsx` to capture user's submitted answers into `AttemptItem` objects and accumulate them in the stage component's state.
+- [X] T011 [US2] Wire `HistoryReviewUI` into `StageResultUI` (e.g., as a conditionally rendered view or a Dialog/Drawer) triggered by the "Xem chi tiết" button.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -64,12 +64,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T012 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `conjugation` reaches 20 items.
-- [ ] T013 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `errorHunting` reaches 20 items.
-- [ ] T014 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `sentenceBuilding` reaches 20 items.
-- [ ] T015 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `devOpsChallenge` reaches 20 items.
-- [ ] T016 [US3] Update `src/hooks/useSessionQuestions.ts` to ensure it properly randomizes exactly `count` items (currently 10) on every new session initialization and handles storage reset logic for replays.
-- [ ] T017 [US3] Update `ConjugationStage.tsx`, `ErrorHunterStage.tsx`, `SentenceBuilderStage.tsx`, and `DevOpsChallengeStage.tsx` to call `useSessionQuestions` with `count: 10`.
+- [X] T012 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `conjugation` reaches 20 items.
+- [X] T013 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `errorHunting` reaches 20 items.
+- [X] T014 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `sentenceBuilding` reaches 20 items.
+- [X] T015 [P] [US3] Update `src/data/tenses/present-simple.json`: Add new items so `devOpsChallenge` reaches 20 items.
+- [X] T016 [US3] Update `src/hooks/useSessionQuestions.ts` to ensure it properly randomizes exactly `count` items (currently 10) on every new session initialization and handles storage reset logic for replays.
+- [X] T017 [US3] Update `ConjugationStage.tsx`, `ErrorHunterStage.tsx`, `SentenceBuilderStage.tsx`, and `DevOpsChallengeStage.tsx` to call `useSessionQuestions` with `count: 10`.
 
 **Checkpoint**: All user stories should now be independently functional.
 
@@ -83,18 +83,18 @@
 
 ### Implementation for User Story 4
 
-- [ ] T018 [US4] Update `CompletionDashboard.tsx` in `src/components/tenses/` to read `attemptHistory` from `StageProgress`.
-- [ ] T019 [US4] Add a "Xem chi tiết" (View Details) button for each completed stage in the `CompletionDashboard`.
-- [ ] T020 [US4] Wire the "Xem chi tiết" button in `CompletionDashboard` to open `HistoryReviewUI.tsx` with the persisted `attemptHistory` for that stage.
+- [X] T018 [US4] Update `CompletionDashboard.tsx` in `src/components/tenses/` to read `attemptHistory` from `StageProgress`.
+- [X] T019 [US4] Add a "Xem chi tiết" (View Details) button for each completed stage in the `CompletionDashboard`.
+- [X] T020 [US4] Wire the "Xem chi tiết" button in `CompletionDashboard` to open `HistoryReviewUI.tsx` with the persisted `attemptHistory` for that stage.
 
 ---
 
-## Phase 7: Polish & Cross-Cutting Concerns
+## Phase 7: Polish and Quality Assurance (Priority: P3)
 
-**Purpose**: Improvements that affect multiple user stories
+**Goal**: Ensure code passes type-checks, linters, and looks consistent with the design system.
 
-- [ ] T021 [P] Run `npm run lint` and `npx tsc --noEmit` to ensure no regressions in typing or styling.
-- [ ] T022 Update E2E Playwright tests (if applicable) for the new Stage Result Summary navigation flow.
+- [X] T021 [P] Run `npm run lint` and `npx tsc --noEmit`. Fix any TypeScript errors, specifically around the newly introduced `AttemptItem` fields and component props.
+- [X] T022 [P] Verify layout responsiveness (mobile vs desktop) for `StageResultUI.tsx` and `HistoryReviewUI.tsx` using standard Tailwind breakpoints. Verify dark mode colors match the rest of the app.
 
 ---
 

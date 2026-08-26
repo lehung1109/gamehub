@@ -10,7 +10,7 @@ import { ConjugationQuestionUI } from "./ui/ConjugationQuestionUI";
 
 export interface ConjugationStageProps {
   items: ConjugationItem[];
-  onStageComplete: (score: number, total: number) => void;
+  onStageComplete: (score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => void;
   onBack?: () => void;
   className?: string;
 }
@@ -21,10 +21,12 @@ export function ConjugationStage({
   onBack,
   className,
 }: ConjugationStageProps) {
-  const sessionQuestions = useSessionQuestions(items, 8, 'gamehub-session-present-simple-conjugation');
+  const sessionQuestions = useSessionQuestions(items, 10, 'gamehub-session-present-simple-conjugation');
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
+
+  const [attemptHistory, setAttemptHistory] = useState<import("@/types/tenses").AttemptItem[]>([]);
 
   const total = sessionQuestions?.length || 0;
   const currentItem = sessionQuestions?.[currentIndex];
@@ -53,14 +55,25 @@ export function ConjugationStage({
     );
   }
 
-  const handleNext = (isCorrect: boolean) => {
+  const handleNext = (isCorrect: boolean, userAnswer: string) => {
     const newScore = isCorrect ? score + 1 : score;
     setScore(newScore);
+
+    const attempt: import("@/types/tenses").AttemptItem = {
+      questionId: currentItem.id,
+      contextVi: currentItem.scenarioVi,
+      userAnswer,
+      correctAnswer: currentItem.correctAnswer,
+      isCorrect,
+      explanationVi: currentItem.explanation.ruleVi,
+    };
+    const newHistory = [...attemptHistory, attempt];
+    setAttemptHistory(newHistory);
 
     if (currentIndex < total - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      onStageComplete(newScore, total);
+      onStageComplete(newScore, total, newHistory);
     }
   };
 

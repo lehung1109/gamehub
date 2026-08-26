@@ -9,6 +9,7 @@ import {
   StageType,
   TensesProgressMap,
   TenseUserProgressRecord,
+  AttemptItem,
 } from "@/types/tenses";
 
 export const TENSE_STORAGE_KEY = "gamehub_tense_progress_v1";
@@ -145,7 +146,8 @@ export function saveStageProgress(
   tenseId: string,
   stage: StageType,
   score: number,
-  total: number
+  total: number,
+  attemptHistory?: AttemptItem[]
 ): TenseUserProgressRecord {
   if (!tenseId) {
     return createInitialProgressRecord("");
@@ -162,6 +164,7 @@ export function saveStageProgress(
     total: clampedTotal,
     passed: clampedTotal > 0 && clampedScore >= Math.ceil(clampedTotal * 0.7), // Passing mark at >=70%
     completedAt: new Date().toISOString(),
+    attemptHistory: attemptHistory,
   };
 
   const safeExistingStageScores: TenseUserProgressRecord["stageScores"] = {

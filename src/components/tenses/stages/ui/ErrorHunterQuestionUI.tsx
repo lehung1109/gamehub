@@ -26,7 +26,7 @@ export interface ErrorHunterQuestionUIProps {
   currentIndex: number;
   total: number;
   score: number;
-  onNext: (isCorrect: boolean) => void;
+  onNext: (isCorrect: boolean, userAnswer: string) => void;
   onBack?: () => void;
   className?: string;
 }
@@ -50,6 +50,7 @@ export function ErrorHunterQuestionUI({
   const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedTokenIndex(null);
     setSelectedReplacement(null);
     setIsSubmitted(false);
@@ -99,7 +100,7 @@ export function ErrorHunterQuestionUI({
   };
 
   const handleNext = () => {
-    onNext(isCorrect ?? false);
+    onNext(isCorrect ?? false, selectedReplacement || "");
   };
 
   const isLastQuestion = currentIndex === total - 1;

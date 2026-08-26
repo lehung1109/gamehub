@@ -130,11 +130,21 @@ export interface TenseModuleData {
   challenges: TenseChallenges;
 }
 
+export interface AttemptItem {
+  questionId: string;
+  contextVi: string;
+  userAnswer: string;
+  correctAnswer: string;
+  isCorrect: boolean;
+  explanationVi: string;
+}
+
 export interface StageProgress {
   score: number;
   total: number;
   passed: boolean;
   completedAt?: string;
+  attemptHistory?: AttemptItem[];
 }
 
 export interface TenseUserProgressRecord {
@@ -164,7 +174,8 @@ export interface ITenseProgressStorage {
     tenseId: string,
     stage: StageType,
     score: number,
-    total: number
+    total: number,
+    attemptHistory?: AttemptItem[]
   ): TenseUserProgressRecord;
   resetProgress(tenseId: string): void;
 }

@@ -12,6 +12,8 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { TenseMetadata, TenseUserProgressRecord, StageType } from "@/types/tenses";
+import { HistoryReviewUI } from "./stages/ui/HistoryReviewUI";
+import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -65,6 +67,8 @@ export function CompletionDashboard({
   const accuracy = progress.accuracyPercentage;
   const totalScore = progress.totalScore;
   const maxScore = progress.maxPossibleScore || 20;
+  
+  const [showHistoryStage, setShowHistoryStage] = useState<StageType | null>(null);
 
   const getEvaluation = (acc: number) => {
     if (acc >= 90) {
@@ -175,50 +179,71 @@ export function CompletionDashboard({
             const isPassed = stageScore?.passed;
 
             return (
-              <Card key={stage.id} className="border-2 border-border/80 flex flex-col justify-between shadow-xs bg-card">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">
-                    <span>CHẶNG {idx + 1}</span>
-                    {isPassed ? (
-                      <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold">
-                        <CheckCircle2 className="size-3.5" aria-hidden="true" />
-                        Đã đạt
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-amber-600 dark:text-amber-400 font-bold">
-                        <AlertCircle className="size-3.5" aria-hidden="true" />
-                        Chưa đạt
-                      </span>
+              <div key={stage.id} className={showHistoryStage === stage.id ? "md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4" : ""}>
+                <Card className={cn("border-2 border-border/80 flex flex-col justify-between shadow-xs bg-card", showHistoryStage === stage.id ? "md:col-span-1 h-fit" : "")}>
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">
+                      <span>CHẶNG {idx + 1}</span>
+                      {isPassed ? (
+                        <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold">
+                          <CheckCircle2 className="size-3.5" aria-hidden="true" />
+                          Đã đạt
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-amber-600 dark:text-amber-400 font-bold">
+                          <AlertCircle className="size-3.5" aria-hidden="true" />
+                          Chưa đạt
+                        </span>
+                      )}
+                    </div>
+
+                    <CardTitle className="text-base font-bold text-foreground">
+                      {stage.titleVi}
+                    </CardTitle>
+                    <CardDescription className="text-xs text-muted-foreground">
+                      {stage.subtitleVi}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="pb-4">
+                    <div className="flex items-baseline gap-1 text-2xl font-black text-foreground">
+                      <span>{score}</span>
+                      <span className="text-sm font-semibold text-muted-foreground">/ {total} câu đúng</span>
+                    </div>
+                  </CardContent>
+
+                  <CardFooter className="pt-2 border-t border-border/40 mt-auto flex flex-col gap-2">
+                    {stageScore?.attemptHistory && stageScore.attemptHistory.length > 0 && (
+                      <Button
+                        variant={showHistoryStage === stage.id ? "secondary" : "outline"}
+                        onClick={() => setShowHistoryStage(showHistoryStage === stage.id ? null : stage.id)}
+                        className="w-full text-xs font-bold gap-1.5 min-h-[44px] cursor-pointer"
+                      >
+                        <Lightbulb className="size-3.5" aria-hidden="true" />
+                        <span>{showHistoryStage === stage.id ? "Đóng chi tiết" : "Xem chi tiết"}</span>
+                      </Button>
                     )}
+                    <Button
+                      variant="outline"
+                      onClick={() => onReplayStage(stage.id)}
+                      className="w-full text-xs font-bold gap-1.5 min-h-[44px] cursor-pointer hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+                      aria-label={`Luyện lại Chặng ${idx + 1}`}
+                    >
+                      <RotateCcw className="size-3.5" aria-hidden="true" />
+                      <span>Luyện lại Chặng {idx + 1}</span>
+                    </Button>
+                  </CardFooter>
+                </Card>
+                
+                {showHistoryStage === stage.id && stageScore?.attemptHistory && (
+                  <div className="md:col-span-2 p-4 rounded-xl border border-indigo-200 bg-card">
+                    <h3 className="text-lg font-bold mb-3">Chi tiết bài làm: {stage.titleVi}</h3>
+                    <div className="max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                      <HistoryReviewUI history={stageScore.attemptHistory} />
+                    </div>
                   </div>
-
-                  <CardTitle className="text-base font-bold text-foreground">
-                    {stage.titleVi}
-                  </CardTitle>
-                  <CardDescription className="text-xs text-muted-foreground">
-                    {stage.subtitleVi}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="pb-4">
-                  <div className="flex items-baseline gap-1 text-2xl font-black text-foreground">
-                    <span>{score}</span>
-                    <span className="text-sm font-semibold text-muted-foreground">/ {total} câu đúng</span>
-                  </div>
-                </CardContent>
-
-                <CardFooter className="pt-2 border-t border-border/40 mt-auto">
-                  <Button
-                    variant="outline"
-                    onClick={() => onReplayStage(stage.id)}
-                    className="w-full text-xs font-bold gap-1.5 min-h-[44px] cursor-pointer hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400"
-                    aria-label={`Luyện lại Chặng ${idx + 1}`}
-                  >
-                    <RotateCcw className="size-3.5" aria-hidden="true" />
-                    <span>Luyện lại Chặng {idx + 1}</span>
-                  </Button>
-                </CardFooter>
-              </Card>
+                )}
+              </div>
             );
           })}
         </div>
