@@ -66,12 +66,12 @@
 
 **Purpose**: Comprehensive review (Constitution Principle VI.6)
 
-- [ ] T010 Spawn a subagent to conduct a final feature-level review of `README.md` (check markdown links, formatting, and overall flow).
+- [x] T010 Spawn a subagent to conduct a final feature-level review of `README.md` (check markdown links, formatting, and overall flow).
   - **Verification**: Subagent reports zero markdown syntax errors.
-- [ ] T011 Run quickstart validation. Open `README.md` in a previewer to confirm visual rendering is perfect.
-- [ ] T012 Remove backup file `README.old.md`.
+- [x] T011 Run quickstart validation. Open `README.md` in a previewer to confirm visual rendering is perfect.
+- [x] T012 Remove backup file `README.old.md`.
   - **Verification**: `ls README.old.md` returns an error.
-- [ ] T013 Final comprehensive commit: `git commit -m "docs: complete comprehensive README update"`.
+- [x] T013 Final comprehensive commit: `git commit -m "docs: complete comprehensive README update"`.
 
 ---
 
