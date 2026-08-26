@@ -110,6 +110,16 @@
               "vi": "Giám đốc xem xét kỹ lưỡng tất cả các thỏa thuận hợp đồng."
             }
           ]
+        },
+        {
+          "ruleVi": "Cách chọn trợ động từ 'do / does'",
+          "condition": "Dùng 'do' cho: I / You / We / They / Số nhiều. Dùng 'does' cho: He / She / It / Số ít.",
+          "examples": [
+            {
+              "en": "They do not skip the daily standup. Does he attend the meeting?",
+              "vi": "Họ không bỏ lỡ buổi họp giao ban hằng ngày. Anh ấy có tham dự cuộc họp không?"
+            }
+          ]
         }
       ],
       "workplaceTips": [
@@ -142,6 +152,11 @@
               "en": "The manager reaches out to international vendors.",
               "vi": "Người quản lý chủ động liên hệ với các nhà cung cấp quốc tế.",
               "note": "reach -> reaches"
+            },
+            {
+              "en": "Our CEO goes to branch offices to do site visits.",
+              "vi": "Giám đốc điều hành của chúng tôi đến các văn phòng chi nhánh để khảo sát thực tế.",
+              "note": "go -> goes (Tương tự: do -> does)"
             }
           ]
         },
