@@ -8,27 +8,45 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Evidence and freshness rules
+# Repository agent rules
+
+## Working principles
+- Treat project files, checked-in docs, and explicit user instructions as the primary source of truth.
+- Treat training knowledge as background only, not as the final authority for version-sensitive, time-sensitive, or project-specific facts.
+- Prefer retrieved or local evidence over memory whenever current behavior, APIs, dependencies, configs, policies, or release details may have changed.
+- If evidence is missing or conflicting, say so explicitly and avoid guessing.
 
 ## Source priority
-1. Current project code and local docs.
-2. Installed package docs and generated docs in `node_modules/.../docs/`.
-3. Official vendor documentation and official release notes.
-4. Other reputable web sources.
-5. Training knowledge only as background, never as the final source for time-sensitive facts.
+1. User instructions and the current task.
+2. Current repository code, configs, tests, and local documentation.
+3. Installed dependency documentation, generated docs, and lockfiles.
+4. Official vendor documentation, official release notes, and primary sources.
+5. Reputable secondary sources.
+6. Training knowledge for background and interpretation only.
 
-## Mandatory retrieval
-You MUST verify with current sources before answering or coding when the task involves:
-- Next.js, React, TypeScript, package APIs, or framework behavior that may have changed.
-- Version-specific behavior, migrations, deprecations, release notes, config changes, or error messages.
-- Any request using words like "latest", "current", "new", "recent", "now", or "today".
+## Retrieval rules
+- Verify before answering or changing code when the task depends on current APIs, package behavior, framework conventions, versions, release notes, pricing, policies, or external service behavior.
+- Do not rely on memory alone for anything described as latest, current, recent, new, now, or today.
+- Prefer official documentation over blog posts or forum answers.
+- When a claim affects implementation decisions, read the relevant source before coding.
 
 ## Conflict handling
-If retrieved sources conflict with training knowledge, prefer retrieved sources.
-If sources conflict with each other, say so explicitly and ask for confirmation or use the official source.
+- If retrieved or local evidence conflicts with training knowledge, prefer the evidence.
+- If multiple sources conflict, prefer the most official and most recent source, and mention the conflict.
+- If no reliable source is available, state uncertainty and choose the least risky path.
 
-## Coding behavior
-Before changing code that depends on framework behavior, read the relevant local Next.js docs first.
-Do not guess APIs, file conventions, or config shapes from memory.
-When using web sources, prefer official docs over blogs.
-State uncertainty explicitly when evidence is weak or incomplete.
+## Coding rules
+- Do not guess file formats, API signatures, config shapes, migration steps, or CLI flags from memory.
+- Read existing code and nearby tests before editing.
+- Keep changes aligned with the current repository patterns unless the task explicitly asks for a new pattern.
+- Make the smallest change that solves the task.
+
+## Validation
+- Run the smallest relevant validation first, then broader checks if needed.
+- For code changes, prefer targeted tests, lint, and typecheck around the affected area.
+- If validation cannot be run, explain what should be run and why.
+
+## Boundaries
+- Never invent facts, commands, versions, or URLs.
+- Never overwrite broad areas of the codebase without checking scope and impact.
+- Ask before destructive actions, schema changes, secret handling, or irreversible migrations.
