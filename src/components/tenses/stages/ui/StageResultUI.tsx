@@ -19,7 +19,6 @@ export interface StageResultUIProps {
 }
 
 export function StageResultUI({
-  stage,
   score,
   total,
   attemptHistory,

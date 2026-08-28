@@ -40,7 +40,7 @@ export function StudentBadge({ className }: StudentBadgeProps) {
             <Edit3 className="size-3 shrink-0 text-slate-400 group-hover:text-amber-600 transition-colors" />
           </span>
           {session.className && (
-            <span className="text-[11px] font-semibold text-amber-700/80 truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
+            <span className="text-xs font-semibold text-amber-700/80 truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
               {session.className}
             </span>
           )}
@@ -63,7 +63,7 @@ export function StudentBadge({ className }: StudentBadgeProps) {
       >
         <User className="size-3.5 text-slate-500" />
         <span>Chơi tự do</span>
-        <span className="text-[10px] text-amber-600 font-bold ml-0.5 underline">
+        <span className="text-xs text-amber-600 font-bold ml-0.5 underline">
           (Vào lớp)
         </span>
       </Button>

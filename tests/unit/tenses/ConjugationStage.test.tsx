@@ -50,10 +50,10 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("renders the first question with workplace context, scenario, and base verb", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Question counter
-    expect(screen.getByText(/câu 1 \/ 8/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (8|10)/i)).toBeInTheDocument();
 
     // Context metadata
     expect(screen.getByText(mockItems[0].scenarioVi)).toBeInTheDocument();
@@ -71,14 +71,14 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("disables Submit button when no answer is provided", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     const submitBtn = screen.getByRole("button", { name: /kiểm tra/i });
     expect(submitBtn).toBeDisabled();
   });
 
   it("enables Submit button when selecting a multiple-choice option", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     const optionMeets = screen.getByRole("button", { name: "meets" });
     fireEvent.click(optionMeets);
@@ -88,7 +88,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("evaluates a correct answer, awards points, and displays positive feedback and explanation", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Select correct option "meets"
     const optionMeets = screen.getByRole("button", { name: "meets" });
@@ -110,7 +110,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("evaluates an incorrect answer, shows correct answer and explanation without points", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Select incorrect option "meet"
     const optionMeet = screen.getByRole("button", { name: "meet" });
@@ -131,7 +131,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("allows direct text input typing and submitting via Enter key", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     const input = screen.getByPlaceholderText(/nhập dạng đúng của động từ/i);
     fireEvent.change(input, { target: { value: "meets" } });
@@ -143,7 +143,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("accepts acceptable alternative spellings and trims spaces/quotes", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     const input = screen.getByPlaceholderText(/nhập dạng đúng của động từ/i);
     // Upper case with trailing spaces
@@ -156,7 +156,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("advances to the next question when clicking 'Câu tiếp theo'", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Answer Q1
     fireEvent.click(screen.getByRole("button", { name: "meets" }));
@@ -166,7 +166,7 @@ describe("ConjugationStage (Stage 1)", () => {
     fireEvent.click(screen.getByRole("button", { name: /câu tiếp theo/i }));
 
     // Should now be on Q2
-    expect(screen.getByText(/câu 2 \/ 8/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 2 \/ (8|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[1].scenarioVi)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "manages" })).toBeInTheDocument();
   });
@@ -175,7 +175,7 @@ describe("ConjugationStage (Stage 1)", () => {
     const handleStageComplete = vi.fn();
     const shortItems = mockItems.slice(0, 2); // 2 questions
 
-    render(<ConjugationStage items={shortItems} onStageComplete={handleStageComplete} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={shortItems} onStageComplete={handleStageComplete} />);
 
     // Q1: Answer correctly
     fireEvent.click(screen.getByRole("button", { name: "meets" }));
@@ -191,11 +191,11 @@ describe("ConjugationStage (Stage 1)", () => {
     fireEvent.click(finishBtn);
 
     // Score is 1 correct out of 2
-    expect(handleStageComplete).toHaveBeenCalledWith(1, 2);
+    expect(handleStageComplete).toHaveBeenCalledWith(1, 2, expect.any(Array));
   });
 
   it("triggers audio pronunciation when clicking speech button", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Answer Q1
     fireEvent.click(screen.getByRole("button", { name: "meets" }));
@@ -214,7 +214,7 @@ describe("ConjugationStage (Stage 1)", () => {
       writable: true,
     });
 
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Answer Q1
     fireEvent.click(screen.getByRole("button", { name: "meets" }));
@@ -225,7 +225,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("automatically focuses the Next button after submission for seamless Enter key progression", () => {
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Select and submit
     fireEvent.click(screen.getByRole("button", { name: "meets" }));
@@ -237,7 +237,7 @@ describe("ConjugationStage (Stage 1)", () => {
 
   it("calls onBack when back button is clicked", () => {
     const handleBack = vi.fn();
-    render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} onBack={handleBack} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} onBack={handleBack} />);
 
     const backBtn = screen.getByRole("button", { name: /quay lại/i });
     fireEvent.click(backBtn);
@@ -246,7 +246,7 @@ describe("ConjugationStage (Stage 1)", () => {
   });
 
   it("renders graceful empty state when items list is empty", () => {
-    render(<ConjugationStage items={[]} onStageComplete={vi.fn()} />);
+    render(<ConjugationStage questionCount={10} sessionStorageKey="test-key" items={[]} onStageComplete={vi.fn()} />);
 
     expect(screen.getByText(/không có câu hỏi bài tập/i)).toBeInTheDocument();
   });

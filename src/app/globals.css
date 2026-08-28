@@ -46,6 +46,14 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Minimum 16px typography scale */
+  --text-xs: 1rem;
+  --text-xs--line-height: 1.5rem;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
 }
 
 :root {
@@ -95,6 +103,7 @@
 
 @layer base {
   html {
+    font-size: 16px;
     scrollbar-gutter: stable;
   }
   * {
@@ -102,6 +111,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 

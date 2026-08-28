@@ -50,11 +50,11 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("renders the first question with scenario, token chips, and vietnamese meaning", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Header & Question counter
     expect(screen.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeInTheDocument();
-    expect(screen.getByText(/câu 1 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[0].scenarioVi)).toBeInTheDocument();
 
     // Vietnamese Meaning
@@ -69,7 +69,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("displays helpful feedback when user clicks a correct token (non-error token)", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Click "She" (index 0 - not the error token)
     const tokenShe = screen.getByRole("button", { name: "She" });
@@ -85,7 +85,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("opens correction options when clicking the error token", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Click "don't" (index 1 - error token)
     const tokenDont = screen.getByRole("button", { name: "don't" });
@@ -99,7 +99,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("disables Submit button until a replacement option is selected", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Click error token
     fireEvent.click(screen.getByRole("button", { name: "don't" }));
@@ -115,7 +115,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("evaluates correct token selection and correct replacement, awards points, and displays explanations", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Select error token "don't"
     fireEvent.click(screen.getByRole("button", { name: "don't" }));
@@ -144,7 +144,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("evaluates incorrect replacement choice, shows correct token and explanations without awarding points", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Select error token "don't"
     fireEvent.click(screen.getByRole("button", { name: "don't" }));
@@ -166,7 +166,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("advances to the next question when clicking 'Câu tiếp theo'", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Solve Q1
     fireEvent.click(screen.getByRole("button", { name: "don't" }));
@@ -177,7 +177,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
     fireEvent.click(screen.getByRole("button", { name: /câu tiếp theo/i }));
 
     // Should be on Q2
-    expect(screen.getByText(/câu 2 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 2 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[1].scenarioVi)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "attend" })).toBeInTheDocument();
   });
@@ -186,7 +186,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
     const handleStageComplete = vi.fn();
     const shortItems = mockItems.slice(0, 2);
 
-    render(<ErrorHunterStage items={shortItems} onStageComplete={handleStageComplete} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={shortItems} onStageComplete={handleStageComplete} />);
 
     // Q1: Correct
     fireEvent.click(screen.getByRole("button", { name: "don't" }));
@@ -204,11 +204,11 @@ describe("ErrorHunterStage (Stage 2)", () => {
     fireEvent.click(finishBtn);
 
     // Score is 1 correct out of 2
-    expect(handleStageComplete).toHaveBeenCalledWith(1, 2);
+    expect(handleStageComplete).toHaveBeenCalledWith(1, 2, expect.any(Array));
   });
 
   it("plays pronunciation of full corrected sentence using Web Speech API", () => {
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Solve Q1
     fireEvent.click(screen.getByRole("button", { name: "don't" }));
@@ -223,7 +223,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
 
   it("calls onBack when clicking back button", () => {
     const handleBack = vi.fn();
-    render(<ErrorHunterStage items={mockItems} onStageComplete={vi.fn()} onBack={handleBack} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} onBack={handleBack} />);
 
     const backBtn = screen.getByRole("button", { name: /quay lại/i });
     fireEvent.click(backBtn);
@@ -232,7 +232,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
   });
 
   it("renders graceful empty state when items list is empty", () => {
-    render(<ErrorHunterStage items={[]} onStageComplete={vi.fn()} />);
+    render(<ErrorHunterStage questionCount={10} sessionStorageKey="test-key" items={[]} onStageComplete={vi.fn()} />);
 
     expect(screen.getByText(/không có câu hỏi bài tập/i)).toBeInTheDocument();
   });

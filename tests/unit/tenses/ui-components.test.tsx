@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { ConjugationQuestionUI } from "@/components/tenses/stages/ui/ConjugationQuestionUI";
 import { ErrorHunterQuestionUI } from "@/components/tenses/stages/ui/ErrorHunterQuestionUI";

@@ -48,6 +48,15 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
 
   const { metadata, challenges, quickRules } = lessonData;
 
+  const [selectedCounts, setSelectedCounts] = useState<Record<StageType, number>>(() => ({
+    conjugation: Math.min(10, challenges.conjugation.length),
+    errorHunting: Math.min(10, challenges.errorHunting.length),
+    sentenceBuilding: Math.min(10, challenges.sentenceBuilding.length),
+    devOpsChallenge: challenges.devOpsChallenge ? Math.min(10, challenges.devOpsChallenge.length) : 0,
+  }));
+
+  const getStageSessionKey = (stageId: StageType) => `gamehub-session-${metadata.id}-${stageId}`;
+
   const [overrideProgress, setOverrideProgress] = useState<TenseUserProgressRecord | null | undefined>(undefined);
   const progressRecord: TenseUserProgressRecord | null =
     overrideProgress !== undefined ? overrideProgress : isClient ? getProgress(metadata.id) : null;
@@ -127,6 +136,14 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
   const handleResetAll = () => {
     resetProgress(metadata.id);
     setOverrideProgress(null);
+    
+    // Clear session and history from sessionStorage
+    stageList.forEach(stage => {
+      const sessionKey = getStageSessionKey(stage.id);
+      sessionStorage.removeItem(sessionKey);
+      sessionStorage.removeItem(`${sessionKey}-history`);
+    });
+    
     setCurrentStage("conjugation");
   };
 
@@ -225,24 +242,32 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
             ) : currentStage === "conjugation" ? (
               <ConjugationStage
                 items={challenges.conjugation}
+                questionCount={selectedCounts.conjugation}
+                sessionStorageKey={getStageSessionKey("conjugation")}
                 onStageComplete={(score, total) => handleStageComplete("conjugation", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
             ) : currentStage === "errorHunting" ? (
               <ErrorHunterStage
                 items={challenges.errorHunting}
+                questionCount={selectedCounts.errorHunting}
+                sessionStorageKey={getStageSessionKey("errorHunting")}
                 onStageComplete={(score, total) => handleStageComplete("errorHunting", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
             ) : currentStage === "sentenceBuilding" ? (
               <SentenceBuilderStage
                 items={challenges.sentenceBuilding}
+                questionCount={selectedCounts.sentenceBuilding}
+                sessionStorageKey={getStageSessionKey("sentenceBuilding")}
                 onStageComplete={(score, total) => handleStageComplete("sentenceBuilding", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
             ) : currentStage === "devOpsChallenge" && challenges.devOpsChallenge ? (
               <DevOpsChallengeStage
                 items={challenges.devOpsChallenge}
+                questionCount={selectedCounts.devOpsChallenge}
+                sessionStorageKey={getStageSessionKey("devOpsChallenge")}
                 onStageComplete={(score, total) => handleStageComplete("devOpsChallenge", score, total)}
                 onBack={() => setCurrentStage(null)}
               />
@@ -254,10 +279,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                 attemptHistory={progressRecord.stageScores[stageResultToShow]?.attemptHistory}
                 onReplay={() => {
                   if (stageResultToShow) {
-                    sessionStorage.removeItem(`gamehub-session-present-simple-${stageResultToShow}`);
-                    if (stageResultToShow === "devOpsChallenge") {
-                      sessionStorage.removeItem("gamehub-session-present-simple-devops"); // Special case
-                    }
+                    sessionStorage.removeItem(getStageSessionKey(stageResultToShow));
                   }
                   setStageResultToShow(null);
                   setCurrentStage(stageResultToShow);
@@ -323,12 +345,12 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                             <span>CHẶNG {index + 1}</span>
                             {stProgress && hasScore ? (
                               isPassed ? (
-                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-[10px] px-1.5 py-0.5 gap-1">
-                                  <CheckCircle2 className="size-3" aria-hidden="true" />
+                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-xs font-semibold px-2 py-0.5 gap-1">
+                                  <CheckCircle2 className="size-3.5" aria-hidden="true" />
                                   <span>{stProgress.score}/{stProgress.total} đúng</span>
                                 </Badge>
                               ) : (
-                                <Badge variant="outline" className="bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800 text-[10px] px-1.5 py-0.5">
+                                <Badge variant="outline" className="bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800 text-xs font-semibold px-2 py-0.5">
                                   <span>{stProgress.score}/{stProgress.total}</span>
                                 </Badge>
                               )
@@ -344,15 +366,37 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                           </div>
                         </CardHeader>
 
-                        <CardContent className="pb-4">
+                        <CardContent className="pb-4 flex-grow">
                           <CardDescription className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                             {stage.descriptionVi}
                           </CardDescription>
+                          
+                          <div className="mt-4 pt-4 border-t border-border/40">
+                            <label className="text-xs font-semibold text-muted-foreground mb-2 block">Số lượng câu hỏi</label>
+                            <div className="flex flex-wrap gap-2">
+                              {[5, 10, 15, stage.itemCount].filter((val, i, arr) => val <= stage.itemCount && arr.indexOf(val) === i).sort((a, b) => a - b).map((countOption) => (
+                                <button
+                                  key={countOption}
+                                  onClick={() => setSelectedCounts(prev => ({ ...prev, [stage.id]: countOption }))}
+                                  className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors ${
+                                    selectedCounts[stage.id] === countOption
+                                      ? "bg-indigo-100 border-indigo-500 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-500 dark:text-indigo-300"
+                                      : "bg-background border-border text-muted-foreground hover:bg-muted"
+                                  }`}
+                                >
+                                  {countOption === stage.itemCount && stage.itemCount !== 5 && stage.itemCount !== 10 && stage.itemCount !== 15 ? `Tất cả (${stage.itemCount})` : `${countOption} câu`}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
                         </CardContent>
 
                         <CardFooter className="pt-2 border-t border-border/40 mt-auto">
                           <Button
-                            onClick={() => setCurrentStage(stage.id)}
+                            onClick={() => {
+                              sessionStorage.removeItem(getStageSessionKey(stage.id));
+                              setCurrentStage(stage.id);
+                            }}
                             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm gap-1.5 min-h-[44px] cursor-pointer"
                           >
                             <Play className="size-3.5" aria-hidden="true" />

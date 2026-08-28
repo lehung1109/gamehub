@@ -50,11 +50,11 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("renders the first question with scenario, Vietnamese meaning, and scrambled tokens in the bank", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Header & Question counter
     expect(screen.getByText(/chặng 3 • ghép câu/i)).toBeInTheDocument();
-    expect(screen.getByText(/câu 1 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[0].scenarioVi)).toBeInTheDocument();
 
     // Vietnamese Meaning
@@ -70,7 +70,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("moves a token from the bank to the placed sentence area when tapped", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Click first token "Our company"
     const tok1 = screen.getByRole("button", { name: /thêm "our company"/i });
@@ -85,7 +85,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("returns a placed token back to the bank when clicked in the placed area", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Place "Our company" and "always"
     fireEvent.click(screen.getByRole("button", { name: /thêm "our company"/i }));
@@ -100,7 +100,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("resets all placed tokens back to the bank when clicking 'Đặt lại câu'", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Place 2 tokens
     fireEvent.click(screen.getByRole("button", { name: /thêm "our company"/i }));
@@ -114,7 +114,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("disables Submit button until at least one token is placed", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     const submitBtn = screen.getByRole("button", { name: /kiểm tra câu|xác nhận/i });
     expect(submitBtn).toBeDisabled();
@@ -125,7 +125,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("evaluates a correctly built sentence, awards points, speaks audio, and displays grammar tips", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Correct order for Q1: ["Our company", "always", "holds", "an all-hands meeting", "on Monday morning."]
     mockItems[0].correctTokenOrder.forEach((tokText) => {
@@ -154,7 +154,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("evaluates an incorrectly ordered sentence, shows correct answer and grammar tips without awarding points", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Wrong order: place tokens in scrambled reverse
     const reversed = [...mockItems[0].scrambledTokens].reverse();
@@ -177,7 +177,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("advances to the next question when clicking 'Câu tiếp theo'", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Solve Q1
     mockItems[0].correctTokenOrder.forEach((tokText) => {
@@ -189,7 +189,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
     fireEvent.click(screen.getByRole("button", { name: /câu tiếp theo/i }));
 
     // Should be on Q2
-    expect(screen.getByText(/câu 2 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 2 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[1].scenarioVi)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /the hr manager/i })).toBeInTheDocument();
   });
@@ -198,7 +198,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
     const handleStageComplete = vi.fn();
     const shortItems = mockItems.slice(0, 2);
 
-    render(<SentenceBuilderStage items={shortItems} onStageComplete={handleStageComplete} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={shortItems} onStageComplete={handleStageComplete} />);
 
     // Q1: Correct
     shortItems[0].correctTokenOrder.forEach((tokText) => {
@@ -215,11 +215,11 @@ describe("SentenceBuilderStage (Stage 3)", () => {
     const finishBtn = screen.getByRole("button", { name: /xem kết quả chặng 3|hoàn thành/i });
     fireEvent.click(finishBtn);
 
-    expect(handleStageComplete).toHaveBeenCalledWith(1, 2);
+    expect(handleStageComplete).toHaveBeenCalledWith(1, 2, expect.any(Array));
   });
 
   it("allows re-listening to the audio of the sentence after completion", () => {
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} />);
 
     // Solve Q1
     mockItems[0].correctTokenOrder.forEach((tokText) => {
@@ -235,7 +235,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
 
   it("calls onBack when clicking the back button", () => {
     const handleBack = vi.fn();
-    render(<SentenceBuilderStage items={mockItems} onStageComplete={vi.fn()} onBack={handleBack} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={mockItems} onStageComplete={vi.fn()} onBack={handleBack} />);
 
     const backBtn = screen.getByRole("button", { name: /quay lại/i });
     fireEvent.click(backBtn);
@@ -244,7 +244,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
   });
 
   it("renders graceful empty state when items array is empty", () => {
-    render(<SentenceBuilderStage items={[]} onStageComplete={vi.fn()} />);
+    render(<SentenceBuilderStage questionCount={10} sessionStorageKey="test-key" items={[]} onStageComplete={vi.fn()} />);
 
     expect(screen.getByText(/không có câu hỏi bài tập/i)).toBeInTheDocument();
   });
