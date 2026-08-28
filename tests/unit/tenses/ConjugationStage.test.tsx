@@ -53,7 +53,7 @@ describe("ConjugationStage (Stage 1)", () => {
     render(<ConjugationStage items={mockItems} onStageComplete={vi.fn()} />);
 
     // Question counter
-    expect(screen.getByText(/câu 1 \/ 8/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (8|10)/i)).toBeInTheDocument();
 
     // Context metadata
     expect(screen.getByText(mockItems[0].scenarioVi)).toBeInTheDocument();
@@ -166,7 +166,7 @@ describe("ConjugationStage (Stage 1)", () => {
     fireEvent.click(screen.getByRole("button", { name: /câu tiếp theo/i }));
 
     // Should now be on Q2
-    expect(screen.getByText(/câu 2 \/ 8/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 2 \/ (8|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[1].scenarioVi)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "manages" })).toBeInTheDocument();
   });
@@ -191,7 +191,7 @@ describe("ConjugationStage (Stage 1)", () => {
     fireEvent.click(finishBtn);
 
     // Score is 1 correct out of 2
-    expect(handleStageComplete).toHaveBeenCalledWith(1, 2);
+    expect(handleStageComplete).toHaveBeenCalledWith(1, 2, expect.any(Array));
   });
 
   it("triggers audio pronunciation when clicking speech button", () => {

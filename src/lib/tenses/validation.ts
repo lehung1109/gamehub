@@ -309,7 +309,7 @@ export function validateTenseModuleData(data: unknown): {
             const res = validateSentenceBuilderItem(item);
             if (!res.valid) errors.push(...res.errors);
           } else {
-            errors.push(`Invalid devOpsChallenge challengeType: ${(item as any).challengeType}`);
+            errors.push(`Invalid devOpsChallenge challengeType: ${(item as { challengeType?: string }).challengeType}`);
           }
         });
       }

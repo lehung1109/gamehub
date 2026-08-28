@@ -478,7 +478,7 @@ function NumbersColorsContent() {
                           <span>{num.value}</span>
                           <span
                             className={cn(
-                              "text-[10px] sm:text-xs font-semibold truncate max-w-full px-1",
+                              "text-xs sm:text-sm font-semibold truncate max-w-full px-1",
                               isSelected ? "text-primary-foreground/90" : "text-muted-foreground"
                             )}
                           >

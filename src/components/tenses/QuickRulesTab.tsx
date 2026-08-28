@@ -138,7 +138,7 @@ export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickR
                   <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                     {rule.titleEn}
                   </span>
-                  <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60">
+                  <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60">
                     Quy tắc cốt lõi
                   </span>
                 </div>
@@ -178,7 +178,7 @@ export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickR
                               <p className="font-medium text-foreground italic break-words">
                                 &ldquo;{f.example}&rdquo;
                               </p>
-                              <p className="text-muted-foreground text-[11px]">
+                              <p className="text-muted-foreground text-xs">
                                 {f.vietnameseTranslation}
                               </p>
                             </div>
@@ -202,7 +202,7 @@ export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickR
                               {r.ruleVi}
                             </div>
                             {r.condition && (
-                              <div className="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 mt-0.5">
+                              <div className="text-xs font-mono text-indigo-600 dark:text-indigo-400 mt-0.5">
                                 Điều kiện: {r.condition}
                               </div>
                             )}
@@ -212,7 +212,7 @@ export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickR
                             <div className="space-y-1.5 pt-1">
                               {r.examples.map((ex, exIdx) => (
                                 <div
-                                  key={exIdx}
+                                   key={exIdx}
                                   className="flex items-center justify-between gap-2 p-2 rounded-lg bg-card border border-border/50 text-xs"
                                 >
                                   <div className="min-w-0 space-y-0.5">
@@ -221,12 +221,12 @@ export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickR
                                         {ex.en}
                                       </span>
                                       {ex.note && (
-                                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 font-mono border border-amber-200/60 dark:border-amber-800/60">
+                                        <span className="text-xs px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 font-mono border border-amber-200/60 dark:border-amber-800/60">
                                           {ex.note}
                                         </span>
                                       )}
                                     </div>
-                                    <p className="text-[11px] text-muted-foreground">
+                                    <p className="text-xs text-muted-foreground">
                                       {ex.vi}
                                     </p>
                                   </div>

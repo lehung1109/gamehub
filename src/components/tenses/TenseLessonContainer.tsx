@@ -323,12 +323,12 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
                             <span>CHẶNG {index + 1}</span>
                             {stProgress && hasScore ? (
                               isPassed ? (
-                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-[10px] px-1.5 py-0.5 gap-1">
-                                  <CheckCircle2 className="size-3" aria-hidden="true" />
+                                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800 text-xs font-semibold px-2 py-0.5 gap-1">
+                                  <CheckCircle2 className="size-3.5" aria-hidden="true" />
                                   <span>{stProgress.score}/{stProgress.total} đúng</span>
                                 </Badge>
                               ) : (
-                                <Badge variant="outline" className="bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800 text-[10px] px-1.5 py-0.5">
+                                <Badge variant="outline" className="bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800 text-xs font-semibold px-2 py-0.5">
                                   <span>{stProgress.score}/{stProgress.total}</span>
                                 </Badge>
                               )

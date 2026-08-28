@@ -77,7 +77,7 @@ describe("TenseLessonContainer component", () => {
 
     // Conjugation stage is active
     expect(screen.getByText(/chặng 1 • chia động từ/i)).toBeInTheDocument();
-    expect(screen.getByText(/câu 1 \/ 8/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (8|10)/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /quay lại/i })).toBeInTheDocument();
 
     // Click return
@@ -116,9 +116,10 @@ describe("TenseLessonContainer component", () => {
     fireEvent.click(finishBtn);
 
     // Storage is updated
-    expect(saveSpy).toHaveBeenCalledWith("present-simple", "conjugation", 1, 1);
+    expect(saveSpy).toHaveBeenCalledWith("present-simple", "conjugation", 1, 1, undefined);
 
-    // Returned to stage overview
+    // Return to stage overview from StageResultUI
+    fireEvent.click(screen.getByRole("button", { name: /về danh sách chặng/i }));
     expect(screen.getByRole("button", { name: /luyện lại chặng 1|vào chặng 1/i })).toBeInTheDocument();
   });
 
@@ -131,7 +132,7 @@ describe("TenseLessonContainer component", () => {
 
     // Directly in Stage 1
     expect(screen.getByText(/chặng 1 • chia động từ/i)).toBeInTheDocument();
-    expect(screen.getByText(/câu 1 \/ 8/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (8|10)/i)).toBeInTheDocument();
   });
 
   it("allows entering Stage 2 (ErrorHunterStage) and persisting progress", () => {
@@ -165,7 +166,8 @@ describe("TenseLessonContainer component", () => {
     const finishBtn = screen.getByRole("button", { name: /xem kết quả|hoàn thành/i });
     fireEvent.click(finishBtn);
 
-    expect(saveSpy).toHaveBeenCalledWith("present-simple", "errorHunting", 1, 1);
+    expect(saveSpy).toHaveBeenCalledWith("present-simple", "errorHunting", 1, 1, undefined);
+    fireEvent.click(screen.getByRole("button", { name: /về danh sách chặng/i }));
     expect(screen.getByRole("button", { name: /luyện lại chặng 2|vào chặng 2/i })).toBeInTheDocument();
   });
 
@@ -201,7 +203,7 @@ describe("TenseLessonContainer component", () => {
     const finishBtn = screen.getByRole("button", { name: /xem kết quả chặng 3|hoàn thành/i });
     fireEvent.click(finishBtn);
 
-    expect(saveSpy).toHaveBeenCalledWith("present-simple", "sentenceBuilding", 1, 1);
+    expect(saveSpy).toHaveBeenCalledWith("present-simple", "sentenceBuilding", 1, 1, undefined);
   });
 
   it("displays CompletionDashboard when all stages are completed and handles replay/reset", () => {

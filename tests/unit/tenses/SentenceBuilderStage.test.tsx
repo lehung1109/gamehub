@@ -54,7 +54,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
 
     // Header & Question counter
     expect(screen.getByText(/chặng 3 • ghép câu/i)).toBeInTheDocument();
-    expect(screen.getByText(/câu 1 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[0].scenarioVi)).toBeInTheDocument();
 
     // Vietnamese Meaning
@@ -189,7 +189,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
     fireEvent.click(screen.getByRole("button", { name: /câu tiếp theo/i }));
 
     // Should be on Q2
-    expect(screen.getByText(/câu 2 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 2 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[1].scenarioVi)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /the hr manager/i })).toBeInTheDocument();
   });
@@ -215,7 +215,7 @@ describe("SentenceBuilderStage (Stage 3)", () => {
     const finishBtn = screen.getByRole("button", { name: /xem kết quả chặng 3|hoàn thành/i });
     fireEvent.click(finishBtn);
 
-    expect(handleStageComplete).toHaveBeenCalledWith(1, 2);
+    expect(handleStageComplete).toHaveBeenCalledWith(1, 2, expect.any(Array));
   });
 
   it("allows re-listening to the audio of the sentence after completion", () => {

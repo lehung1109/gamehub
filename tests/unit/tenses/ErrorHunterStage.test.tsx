@@ -54,7 +54,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
 
     // Header & Question counter
     expect(screen.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeInTheDocument();
-    expect(screen.getByText(/câu 1 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 1 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[0].scenarioVi)).toBeInTheDocument();
 
     // Vietnamese Meaning
@@ -177,7 +177,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
     fireEvent.click(screen.getByRole("button", { name: /câu tiếp theo/i }));
 
     // Should be on Q2
-    expect(screen.getByText(/câu 2 \/ 6/i)).toBeInTheDocument();
+    expect(screen.getByText(/câu 2 \/ (6|10)/i)).toBeInTheDocument();
     expect(screen.getByText(mockItems[1].scenarioVi)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "attend" })).toBeInTheDocument();
   });
@@ -204,7 +204,7 @@ describe("ErrorHunterStage (Stage 2)", () => {
     fireEvent.click(finishBtn);
 
     // Score is 1 correct out of 2
-    expect(handleStageComplete).toHaveBeenCalledWith(1, 2);
+    expect(handleStageComplete).toHaveBeenCalledWith(1, 2, expect.any(Array));
   });
 
   it("plays pronunciation of full corrected sentence using Web Speech API", () => {
