@@ -10,6 +10,8 @@ import { ConjugationQuestionUI } from "./ui/ConjugationQuestionUI";
 
 export interface ConjugationStageProps {
   items: ConjugationItem[];
+  questionCount: number;
+  sessionStorageKey: string;
   onStageComplete: (score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => void;
   onBack?: () => void;
   className?: string;
@@ -17,11 +19,13 @@ export interface ConjugationStageProps {
 
 export function ConjugationStage({
   items,
+  questionCount,
+  sessionStorageKey,
   onStageComplete,
   onBack,
   className,
 }: ConjugationStageProps) {
-  const sessionQuestions = useSessionQuestions(items, 10, 'gamehub-session-present-simple-conjugation');
+  const sessionQuestions = useSessionQuestions(items, questionCount, sessionStorageKey);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);

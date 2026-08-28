@@ -10,6 +10,8 @@ import { ErrorHunterQuestionUI } from "./ui/ErrorHunterQuestionUI";
 
 export interface ErrorHunterStageProps {
   items: ErrorHunterItem[];
+  questionCount: number;
+  sessionStorageKey: string;
   onStageComplete: (score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => void;
   onBack?: () => void;
   className?: string;
@@ -17,11 +19,13 @@ export interface ErrorHunterStageProps {
 
 export function ErrorHunterStage({
   items,
+  questionCount,
+  sessionStorageKey,
   onStageComplete,
   onBack,
   className,
 }: ErrorHunterStageProps) {
-  const sessionQuestions = useSessionQuestions(items, 10, 'gamehub-session-present-simple-errorHunting');
+  const sessionQuestions = useSessionQuestions(items, questionCount, sessionStorageKey);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);

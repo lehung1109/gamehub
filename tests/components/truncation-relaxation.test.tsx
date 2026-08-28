@@ -107,6 +107,8 @@ describe('Truncation Relaxation on Desktop (US2)', () => {
     const { unmount: unmount1 } = render(
       <ConjugationStage
         items={conjugationItems}
+        questionCount={10}
+        sessionStorageKey="test-key"
         onStageComplete={vi.fn()}
       />
     );
@@ -120,6 +122,8 @@ describe('Truncation Relaxation on Desktop (US2)', () => {
     const { unmount: unmount2 } = render(
       <ErrorHunterStage
         items={hunterItems}
+        questionCount={10}
+        sessionStorageKey="test-key"
         onStageComplete={vi.fn()}
       />
     );
@@ -132,6 +136,8 @@ describe('Truncation Relaxation on Desktop (US2)', () => {
     render(
       <SentenceBuilderStage
         items={sentenceItems}
+        questionCount={10}
+        sessionStorageKey="test-key"
         onStageComplete={vi.fn()}
       />
     );

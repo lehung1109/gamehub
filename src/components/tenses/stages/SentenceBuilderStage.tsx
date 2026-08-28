@@ -10,6 +10,8 @@ import { SentenceBuilderQuestionUI } from "./ui/SentenceBuilderQuestionUI";
 
 export interface SentenceBuilderStageProps {
   items: SentenceBuilderItem[];
+  questionCount: number;
+  sessionStorageKey: string;
   onStageComplete: (score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => void;
   onBack?: () => void;
   className?: string;
@@ -17,11 +19,13 @@ export interface SentenceBuilderStageProps {
 
 export function SentenceBuilderStage({
   items,
+  questionCount,
+  sessionStorageKey,
   onStageComplete,
   onBack,
   className,
 }: SentenceBuilderStageProps) {
-  const sessionQuestions = useSessionQuestions(items, 10, 'gamehub-session-present-simple-sentenceBuilding');
+  const sessionQuestions = useSessionQuestions(items, questionCount, sessionStorageKey);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);

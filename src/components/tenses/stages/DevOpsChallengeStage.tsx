@@ -12,6 +12,8 @@ import { SentenceBuilderQuestionUI } from "./ui/SentenceBuilderQuestionUI";
 
 export interface DevOpsChallengeStageProps {
   items: DevOpsItem[];
+  questionCount: number;
+  sessionStorageKey: string;
   onStageComplete: (score: number, total: number, attemptHistory?: import("@/types/tenses").AttemptItem[]) => void;
   onBack?: () => void;
   className?: string;
@@ -19,11 +21,13 @@ export interface DevOpsChallengeStageProps {
 
 export function DevOpsChallengeStage({
   items,
+  questionCount,
+  sessionStorageKey,
   onStageComplete,
   onBack,
   className,
 }: DevOpsChallengeStageProps) {
-  const sessionQuestions = useSessionQuestions(items, 10, 'gamehub-session-present-simple-devops');
+  const sessionQuestions = useSessionQuestions(items, questionCount, sessionStorageKey);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
