@@ -69,9 +69,9 @@
 
 **Purpose**: Holistic review across the entire implemented feature to ensure Constitution compliance and zero bugs.
 
-- [ ] T020 Spawn a dedicated subagent to conduct a comprehensive feature-level bug hunt, run all checks (`npm run lint`, `npx tsc --noEmit`, `npm run test:run`, `npm run test:e2e`), and verify integration.
-- [ ] T021 If bugs are found during T020, fix them and repeat the review cycle (spawn another review subagent) until zero bugs remain.
-- [ ] T022 Make a final comprehensive commit to finalize the feature implementation.
+- [x] T020 Spawn a dedicated subagent to conduct a comprehensive feature-level bug hunt, run all checks (`npm run lint`, `npx tsc --noEmit`, `npm run test:run`, `npm run test:e2e`), and verify integration.
+- [x] T021 If bugs are found during T020, fix them and repeat the review cycle (spawn another review subagent) until zero bugs remain.
+- [x] T022 Make a final comprehensive commit to finalize the feature implementation.
 
 ---
 
