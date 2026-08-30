@@ -1,0 +1,3104 @@
+{
+  "metadata": {
+    "id": "present-perfect-continuous",
+    "slug": "present-perfect-continuous",
+    "name": "Present Perfect Continuous",
+    "vietnameseName": "Thì Hiện Tại Hoàn Thành Tiếp Diễn",
+    "group": "present",
+    "status": "active",
+    "level": "B1-B2 (Intermediate)",
+    "badge": "Thời gian & Nỗ lực",
+    "description": "Nhấn mạnh tính liên tục của dự án hoặc hành động bắt đầu từ quá khứ và vẫn đang tiếp diễn.",
+    "estimatedMinutes": 15,
+    "challengeCount": 20
+  },
+  "quickRules": [
+    {
+      "id": "ppc-formula",
+      "category": "workplace-usage",
+      "titleVi": "Công thức Hiện Tại Hoàn Thành Tiếp Diễn",
+      "titleEn": "Present Perfect Continuous Formula",
+      "summaryVi": "Dùng để nhấn mạnh quá trình hoặc khoảng thời gian của một công việc bắt đầu trong quá khứ và vẫn đang tiếp diễn ở hiện tại.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + have / has + been + V-ing",
+          "example": "I have been fixing this bug for 2 hours.",
+          "vietnameseTranslation": "Tôi đã và đang sửa lỗi này được 2 tiếng đồng hồ."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + have / has + not + been + V-ing",
+          "example": "We haven't been working on that module lately.",
+          "vietnameseTranslation": "Gần đây chúng tôi không làm việc trên module đó."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Have / Has + S + been + V-ing?",
+          "example": "How long have you been waiting for the build?",
+          "vietnameseTranslation": "Bạn đã đợi bản build được bao lâu rồi?"
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Dấu hiệu nhận biết",
+          "condition": "all day, all week, since, for, recently, lately",
+          "examples": [
+            {
+              "en": "She has been working on the report all morning.",
+              "vi": "Cô ấy đã làm báo cáo suốt cả buổi sáng."
+            },
+            {
+              "en": "They have been testing the application since yesterday.",
+              "vi": "Họ đã và đang kiểm thử ứng dụng từ hôm qua."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "ppc-conj-01",
+        "contextType": "email",
+        "scenarioVi": "Tôi đã làm việc với tác vụ này suốt cả sáng.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "I ",
+        "baseVerb": "work",
+        "textAfter": " on this task all morning.",
+        "correctAnswer": "have been working",
+        "acceptableAlternatives": [
+          "HAVE BEEN WORKING",
+          "have been working"
+        ],
+        "options": [
+          "have been work",
+          "has been working",
+          "have been working",
+          "have work"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'I' đi với 'have been' và động từ chính thêm '-ing' (working).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-02",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã debug hệ thống lõi được 3 giờ đồng hồ.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "We ",
+        "baseVerb": "debug",
+        "textAfter": " the core system for three hours.",
+        "correctAnswer": "have been debugging",
+        "acceptableAlternatives": [
+          "HAVE BEEN DEBUGGING",
+          "have been debugging"
+        ],
+        "options": [
+          "have debug",
+          "have been debugging",
+          "has been debugging",
+          "have been debug"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'We' đi với 'have been' và động từ chính thêm '-ing' (debugging).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-03",
+        "contextType": "email",
+        "scenarioVi": "Dạo gần đây cô ấy liên tục theo dõi log máy chủ.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "She ",
+        "baseVerb": "monitor",
+        "textAfter": " the server logs lately.",
+        "correctAnswer": "has been monitoring",
+        "acceptableAlternatives": [
+          "HAS BEEN MONITORING",
+          "has been monitoring"
+        ],
+        "options": [
+          "has been monitor",
+          "has monitor",
+          "has been monitoring",
+          "have been monitoring"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'She' đi với 'has been' và động từ chính thêm '-ing' (monitoring).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-04",
+        "contextType": "email",
+        "scenarioVi": "Nhóm đã và đang chờ sự phê duyệt của khách hàng từ thứ Hai.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "The team ",
+        "baseVerb": "wait",
+        "textAfter": " for the client's approval since Monday.",
+        "correctAnswer": "has been waiting",
+        "acceptableAlternatives": [
+          "HAS BEEN WAITING",
+          "has been waiting"
+        ],
+        "options": [
+          "have been waiting",
+          "has been wait",
+          "has wait",
+          "has been waiting"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'The team' đi với 'has been' và động từ chính thêm '-ing' (waiting).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-05",
+        "contextType": "email",
+        "scenarioVi": "Họ đã và đang phát triển API mới suốt cả tuần.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "They ",
+        "baseVerb": "develop",
+        "textAfter": " the new API all week.",
+        "correctAnswer": "have been developing",
+        "acceptableAlternatives": [
+          "HAVE BEEN DEVELOPING",
+          "have been developing"
+        ],
+        "options": [
+          "have been develop",
+          "have been developing",
+          "has been developing",
+          "have develop"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'They' đi với 'have been' và động từ chính thêm '-ing' (developing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-06",
+        "contextType": "email",
+        "scenarioVi": "Anh ấy đã ngồi review code trong suốt 2 tiếng qua.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "He ",
+        "baseVerb": "review",
+        "textAfter": " code for the past two hours.",
+        "correctAnswer": "has been reviewing",
+        "acceptableAlternatives": [
+          "HAS BEEN REVIEWING",
+          "has been reviewing"
+        ],
+        "options": [
+          "has been review",
+          "have been reviewing",
+          "has review",
+          "has been reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'He' đi với 'has been' và động từ chính thêm '-ing' (reviewing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-07",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã và đang kiểm thử cổng thanh toán một cách rộng rãi.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "We ",
+        "baseVerb": "test",
+        "textAfter": " the payment gateway extensively.",
+        "correctAnswer": "have been testing",
+        "acceptableAlternatives": [
+          "HAVE BEEN TESTING",
+          "have been testing"
+        ],
+        "options": [
+          "have been testing",
+          "has been testing",
+          "have test",
+          "have been test"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'We' đi với 'have been' và động từ chính thêm '-ing' (testing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-08",
+        "contextType": "email",
+        "scenarioVi": "Tôi đã liên tục thử tái hiện lại lỗi đó từ hôm qua.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "I ",
+        "baseVerb": "try",
+        "textAfter": " to reproduce the bug since yesterday.",
+        "correctAnswer": "have been trying",
+        "acceptableAlternatives": [
+          "HAVE BEEN TRYING",
+          "have been trying"
+        ],
+        "options": [
+          "have been trying",
+          "have been try",
+          "have try",
+          "has been trying"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'I' đi với 'have been' và động từ chính thêm '-ing' (trying).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-09",
+        "contextType": "email",
+        "scenarioVi": "Kịch bản đã chạy ngầm được 24 giờ.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "The script ",
+        "baseVerb": "run",
+        "textAfter": " in the background for 24 hours.",
+        "correctAnswer": "has been running",
+        "acceptableAlternatives": [
+          "HAS BEEN RUNNING",
+          "has been running"
+        ],
+        "options": [
+          "has been run",
+          "has run",
+          "have been running",
+          "has been running"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'The script' đi với 'has been' và động từ chính thêm '-ing' (running).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-10",
+        "contextType": "email",
+        "scenarioVi": "Bộ phận IT đã và đang cập nhật phần mềm trên tất cả các máy.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "IT support ",
+        "baseVerb": "update",
+        "textAfter": " the software on all machines.",
+        "correctAnswer": "has been updating",
+        "acceptableAlternatives": [
+          "HAS BEEN UPDATING",
+          "has been updating"
+        ],
+        "options": [
+          "has update",
+          "have been updating",
+          "has been updating",
+          "has been update"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'IT support' đi với 'has been' và động từ chính thêm '-ing' (updating).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-11",
+        "contextType": "email",
+        "scenarioVi": "Cô ấy đã viết tài liệu dự án suốt cả ngày.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "She ",
+        "baseVerb": "write",
+        "textAfter": " the project documentation all day.",
+        "correctAnswer": "has been writing",
+        "acceptableAlternatives": [
+          "HAS BEEN WRITING",
+          "has been writing"
+        ],
+        "options": [
+          "has write",
+          "has been writing",
+          "have been writing",
+          "has been write"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'She' đi với 'has been' và động từ chính thêm '-ing' (writing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-12",
+        "contextType": "email",
+        "scenarioVi": "Phòng nhân sự đã và đang phỏng vấn các ứng viên cho vị trí lập trình viên cấp cao.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "HR ",
+        "baseVerb": "interview",
+        "textAfter": " candidates for the senior dev role.",
+        "correctAnswer": "has been interviewing",
+        "acceptableAlternatives": [
+          "HAS BEEN INTERVIEWING",
+          "has been interviewing"
+        ],
+        "options": [
+          "have been interviewing",
+          "has been interviewing",
+          "has been interview",
+          "has interview"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'HR' đi với 'has been' và động từ chính thêm '-ing' (interviewing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-13",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã và đang lên kế hoạch cho sprint sắp tới.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "We ",
+        "baseVerb": "plan",
+        "textAfter": " the upcoming sprint.",
+        "correctAnswer": "have been planning",
+        "acceptableAlternatives": [
+          "HAVE BEEN PLANNING",
+          "have been planning"
+        ],
+        "options": [
+          "have plan",
+          "have been planning",
+          "has been planning",
+          "have been plan"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'We' đi với 'have been' và động từ chính thêm '-ing' (planning).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-14",
+        "contextType": "email",
+        "scenarioVi": "Đội bảo mật đang điều tra vụ rò rỉ dữ liệu.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "The security team ",
+        "baseVerb": "investigate",
+        "textAfter": " the data breach.",
+        "correctAnswer": "has been investigating",
+        "acceptableAlternatives": [
+          "HAS BEEN INVESTIGATING",
+          "has been investigating"
+        ],
+        "options": [
+          "has investigate",
+          "has been investigate",
+          "have been investigating",
+          "has been investigating"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'The security team' đi với 'has been' và động từ chính thêm '-ing' (investigating).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-15",
+        "contextType": "email",
+        "scenarioVi": "Ứng dụng đã được biên dịch suốt mười phút qua.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "The application ",
+        "baseVerb": "compile",
+        "textAfter": " for ten minutes.",
+        "correctAnswer": "has been compiling",
+        "acceptableAlternatives": [
+          "HAS BEEN COMPILING",
+          "has been compiling"
+        ],
+        "options": [
+          "have been compiling",
+          "has compile",
+          "has been compiling",
+          "has been compile"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'The application' đi với 'has been' và động từ chính thêm '-ing' (compiling).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-16",
+        "contextType": "email",
+        "scenarioVi": "Anh ấy đã thiết kế giao diện người dùng mới dạo gần đây.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "He ",
+        "baseVerb": "design",
+        "textAfter": " the new user interface lately.",
+        "correctAnswer": "has been designing",
+        "acceptableAlternatives": [
+          "HAS BEEN DESIGNING",
+          "has been designing"
+        ],
+        "options": [
+          "have been designing",
+          "has design",
+          "has been designing",
+          "has been design"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'He' đi với 'has been' và động từ chính thêm '-ing' (designing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-17",
+        "contextType": "email",
+        "scenarioVi": "Họ đã và đang migrate cơ sở dữ liệu từ đêm qua.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "They ",
+        "baseVerb": "migrate",
+        "textAfter": " the database since last night.",
+        "correctAnswer": "have been migrating",
+        "acceptableAlternatives": [
+          "HAVE BEEN MIGRATING",
+          "have been migrating"
+        ],
+        "options": [
+          "have migrate",
+          "has been migrating",
+          "have been migrating",
+          "have been migrate"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'They' đi với 'have been' và động từ chính thêm '-ing' (migrating).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-18",
+        "contextType": "email",
+        "scenarioVi": "Tôi đã phân tích các chỉ số hiệu suất suốt cả tuần.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "I ",
+        "baseVerb": "analyze",
+        "textAfter": " the performance metrics all week.",
+        "correctAnswer": "have been analyzing",
+        "acceptableAlternatives": [
+          "HAVE BEEN ANALYZING",
+          "have been analyzing"
+        ],
+        "options": [
+          "have been analyze",
+          "have analyze",
+          "have been analyzing",
+          "has been analyzing"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'I' đi với 'have been' và động từ chính thêm '-ing' (analyzing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-19",
+        "contextType": "email",
+        "scenarioVi": "Quản lý đã và đang đào tạo các nhân viên mới.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "The manager ",
+        "baseVerb": "train",
+        "textAfter": " the new recruits.",
+        "correctAnswer": "has been training",
+        "acceptableAlternatives": [
+          "HAS BEEN TRAINING",
+          "has been training"
+        ],
+        "options": [
+          "has train",
+          "has been train",
+          "has been training",
+          "have been training"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'The manager' đi với 'has been' và động từ chính thêm '-ing' (training).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      },
+      {
+        "id": "ppc-conj-20",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã đàm phán các điều khoản hợp đồng được một tháng rồi.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " the contract terms for a month.",
+        "correctAnswer": "have been negotiating",
+        "acceptableAlternatives": [
+          "HAVE BEEN NEGOTIATING",
+          "have been negotiating"
+        ],
+        "options": [
+          "have negotiate",
+          "has been negotiating",
+          "have been negotiate",
+          "have been negotiating"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'We' đi với 'have been' và động từ chính thêm '-ing' (negotiating).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "ppc-err-01",
+        "scenarioVi": "Tôi đã và đang làm việc trên ticket này.",
+        "tokens": [
+          "I",
+          "has",
+          "been",
+          "working",
+          "on",
+          "this",
+          "ticket."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "has",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I have been working on this ticket.",
+        "vietnameseMeaning": "Tôi đã và đang làm việc trên ticket này.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'have' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-02",
+        "scenarioVi": "Chúng tôi đã liên tục kiểm thử API.",
+        "tokens": [
+          "We",
+          "have",
+          "be",
+          "testing",
+          "the",
+          "API."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          },
+          {
+            "value": "be",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "We have been testing the API.",
+        "vietnameseMeaning": "Chúng tôi đã liên tục kiểm thử API.",
+        "explanation": {
+          "whyWrongVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn cần 'been' sau have/has.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-03",
+        "scenarioVi": "Cô ấy đã và đang review code.",
+        "tokens": [
+          "She",
+          "have",
+          "been",
+          "reviewing",
+          "code."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "has",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": true
+          },
+          {
+            "value": "have",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "She has been reviewing code.",
+        "vietnameseMeaning": "Cô ấy đã và đang review code.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-04",
+        "scenarioVi": "Họ không tập trung sửa lỗi dạo gần đây.",
+        "tokens": [
+          "They",
+          "hasn't",
+          "been",
+          "fixing",
+          "the",
+          "bugs."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "haven't",
+        "options": [
+          {
+            "value": "hasn't",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "haven't",
+            "label": "haven't",
+            "isCorrect": true
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "They haven't been fixing the bugs.",
+        "vietnameseMeaning": "Họ không tập trung sửa lỗi dạo gần đây.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'haven't' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-05",
+        "scenarioVi": "Hệ thống liên tục bị sập thường xuyên.",
+        "tokens": [
+          "The",
+          "system",
+          "has",
+          "been",
+          "crash",
+          "frequently."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "crashing",
+        "options": [
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": true
+          },
+          {
+            "value": "crash",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "crashed",
+            "label": "crashed",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system has been crashing frequently.",
+        "vietnameseMeaning": "Hệ thống liên tục bị sập thường xuyên.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-06",
+        "scenarioVi": "Anh ấy có liên tục gửi báo cáo không?",
+        "tokens": [
+          "Have",
+          "he",
+          "been",
+          "sending",
+          "the",
+          "reports?"
+        ],
+        "errorTokenIndex": 0,
+        "correctToken": "Has",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "Have",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "Has",
+            "label": "Has",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "Has he been sending the reports?",
+        "vietnameseMeaning": "Anh ấy có liên tục gửi báo cáo không?",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Has' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-07",
+        "scenarioVi": "Tôi liên tục nhận được email rác.",
+        "tokens": [
+          "I",
+          "have",
+          "been",
+          "receive",
+          "spam",
+          "emails."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "receiving",
+        "options": [
+          {
+            "value": "receiving",
+            "label": "receiving",
+            "isCorrect": true
+          },
+          {
+            "value": "receive",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "receiveed",
+            "label": "receiveed",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I have been receiving spam emails.",
+        "vietnameseMeaning": "Tôi liên tục nhận được email rác.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-08",
+        "scenarioVi": "Chúng tôi đã không lên lịch họp thường xuyên.",
+        "tokens": [
+          "We",
+          "haven't",
+          "been",
+          "schedule",
+          "meetings."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "scheduling",
+        "options": [
+          {
+            "value": "scheduleed",
+            "label": "scheduleed",
+            "isCorrect": false
+          },
+          {
+            "value": "schedule",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "scheduling",
+            "label": "scheduling",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "We haven't been scheduling meetings.",
+        "vietnameseMeaning": "Chúng tôi đã không lên lịch họp thường xuyên.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-09",
+        "scenarioVi": "Máy chủ vẫn đang chạy mượt mà.",
+        "tokens": [
+          "The",
+          "server",
+          "has",
+          "be",
+          "running",
+          "smoothly."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          },
+          {
+            "value": "be",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The server has been running smoothly.",
+        "vietnameseMeaning": "Máy chủ vẫn đang chạy mượt mà.",
+        "explanation": {
+          "whyWrongVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn cần 'been' sau have/has.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-10",
+        "scenarioVi": "Phòng nhân sự đã và đang tuyển dụng tích cực.",
+        "tokens": [
+          "HR",
+          "have",
+          "been",
+          "hiring",
+          "actively."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "has",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": true
+          },
+          {
+            "value": "have",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "HR has been hiring actively.",
+        "vietnameseMeaning": "Phòng nhân sự đã và đang tuyển dụng tích cực.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-11",
+        "scenarioVi": "Khách hàng có liên tục phàn nàn không?",
+        "tokens": [
+          "Has",
+          "the",
+          "clients",
+          "been",
+          "complaining?"
+        ],
+        "errorTokenIndex": 0,
+        "correctToken": "Have",
+        "options": [
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "Have",
+            "label": "Have",
+            "isCorrect": true
+          },
+          {
+            "value": "Has",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Have the clients been complaining?",
+        "vietnameseMeaning": "Khách hàng có liên tục phàn nàn không?",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Have' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-12",
+        "scenarioVi": "Dạo này tôi không tham gia các buổi standup.",
+        "tokens": [
+          "I",
+          "hasn't",
+          "been",
+          "joining",
+          "the",
+          "standups."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "haven't",
+        "options": [
+          {
+            "value": "haven't",
+            "label": "haven't",
+            "isCorrect": true
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "hasn't",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I haven't been joining the standups.",
+        "vietnameseMeaning": "Dạo này tôi không tham gia các buổi standup.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'haven't' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-13",
+        "scenarioVi": "Cô ấy liên tục cập nhật wiki.",
+        "tokens": [
+          "She",
+          "has",
+          "been",
+          "update",
+          "the",
+          "wiki."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "updating",
+        "options": [
+          {
+            "value": "updating",
+            "label": "updating",
+            "isCorrect": true
+          },
+          {
+            "value": "updateed",
+            "label": "updateed",
+            "isCorrect": false
+          },
+          {
+            "value": "update",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "She has been updating the wiki.",
+        "vietnameseMeaning": "Cô ấy liên tục cập nhật wiki.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-14",
+        "scenarioVi": "Họ đã liên tục kiểm thử UI mới.",
+        "tokens": [
+          "They",
+          "have",
+          "been",
+          "test",
+          "the",
+          "new",
+          "UI."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "testing",
+        "options": [
+          {
+            "value": "test",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "testing",
+            "label": "testing",
+            "isCorrect": true
+          },
+          {
+            "value": "tested",
+            "label": "tested",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "They have been testing the new UI.",
+        "vietnameseMeaning": "Họ đã liên tục kiểm thử UI mới.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-15",
+        "scenarioVi": "Chúng tôi đã và đang theo dõi logs.",
+        "tokens": [
+          "We",
+          "has",
+          "been",
+          "monitoring",
+          "the",
+          "logs."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "has",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "We have been monitoring the logs.",
+        "vietnameseMeaning": "Chúng tôi đã và đang theo dõi logs.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'have' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-16",
+        "scenarioVi": "Cơ sở dữ liệu liên tục phản hồi chậm.",
+        "tokens": [
+          "The",
+          "database",
+          "have",
+          "been",
+          "responding",
+          "slowly."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "has",
+        "options": [
+          {
+            "value": "have",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": true
+          },
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The database has been responding slowly.",
+        "vietnameseMeaning": "Cơ sở dữ liệu liên tục phản hồi chậm.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-17",
+        "scenarioVi": "Gần đây tôi luôn làm việc với nó.",
+        "tokens": [
+          "I",
+          "have",
+          "been",
+          "just",
+          "working",
+          "on",
+          "it."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "recently",
+        "options": [
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          },
+          {
+            "value": "recently",
+            "label": "recently",
+            "isCorrect": true
+          },
+          {
+            "value": "just",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I have been recently working on it.",
+        "vietnameseMeaning": "Gần đây tôi luôn làm việc với nó.",
+        "explanation": {
+          "whyWrongVi": "Lỗi dùng từ không phù hợp trong cấu trúc tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-18",
+        "scenarioVi": "Team có liên tục giải quyết các sự cố không?",
+        "tokens": [
+          "Have",
+          "the",
+          "team",
+          "been",
+          "resolve",
+          "issues?"
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "resolving",
+        "options": [
+          {
+            "value": "resolving",
+            "label": "resolving",
+            "isCorrect": true
+          },
+          {
+            "value": "resolveed",
+            "label": "resolveed",
+            "isCorrect": false
+          },
+          {
+            "value": "resolve",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Have the team been resolving issues?",
+        "vietnameseMeaning": "Team có liên tục giải quyết các sự cố không?",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-19",
+        "scenarioVi": "Mạng liên tục bị rớt kết nối.",
+        "tokens": [
+          "The",
+          "network",
+          "has",
+          "been",
+          "drop",
+          "connections."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "dropping",
+        "options": [
+          {
+            "value": "dropping",
+            "label": "dropping",
+            "isCorrect": true
+          },
+          {
+            "value": "drop",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "droped",
+            "label": "droped",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The network has been dropping connections.",
+        "vietnameseMeaning": "Mạng liên tục bị rớt kết nối.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      },
+      {
+        "id": "ppc-err-20",
+        "scenarioVi": "Bạn có liên tục review thiết kế không?",
+        "tokens": [
+          "Has",
+          "you",
+          "been",
+          "reviewing",
+          "the",
+          "design?"
+        ],
+        "errorTokenIndex": 0,
+        "correctToken": "Have",
+        "options": [
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "Has",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "Have",
+            "label": "Have",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "Have you been reviewing the design?",
+        "vietnameseMeaning": "Bạn có liên tục review thiết kế không?",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Have' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "ppc-sb-01",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Tôi đã và đang làm tính năng này cả tuần nay.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t7",
+            "text": "all"
+          },
+          {
+            "id": "t3",
+            "text": "working"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t4",
+            "text": "on"
+          },
+          {
+            "id": "t8",
+            "text": "week."
+          },
+          {
+            "id": "t0",
+            "text": "I"
+          },
+          {
+            "id": "t5",
+            "text": "this"
+          },
+          {
+            "id": "t6",
+            "text": "feature"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "fullSentenceEn": "I have been working on this feature all week.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-02",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Cô ấy đã ngồi review code từ sáng.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "morning."
+          },
+          {
+            "id": "t1",
+            "text": "has"
+          },
+          {
+            "id": "t5",
+            "text": "since"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t4",
+            "text": "code"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing"
+          },
+          {
+            "id": "t0",
+            "text": "She"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "She has been reviewing code since morning.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-03",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Chúng tôi đã liên tục cố gắng sửa lỗi.",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "fix"
+          },
+          {
+            "id": "t6",
+            "text": "the"
+          },
+          {
+            "id": "t7",
+            "text": "bug."
+          },
+          {
+            "id": "t3",
+            "text": "trying"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t4",
+            "text": "to"
+          },
+          {
+            "id": "t0",
+            "text": "We"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "We have been trying to fix the bug.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-04",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Dạo này họ không phản hồi email của chúng ta.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "our"
+          },
+          {
+            "id": "t5",
+            "text": "to"
+          },
+          {
+            "id": "t4",
+            "text": "responding"
+          },
+          {
+            "id": "t7",
+            "text": "emails."
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t2",
+            "text": "not"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t0",
+            "text": "They"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "They have not been responding to our emails.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-05",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Bạn đã theo dõi máy chủ được bao lâu rồi?",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "monitoring"
+          },
+          {
+            "id": "t2",
+            "text": "have"
+          },
+          {
+            "id": "t7",
+            "text": "server?"
+          },
+          {
+            "id": "t0",
+            "text": "How"
+          },
+          {
+            "id": "t6",
+            "text": "the"
+          },
+          {
+            "id": "t1",
+            "text": "long"
+          },
+          {
+            "id": "t4",
+            "text": "been"
+          },
+          {
+            "id": "t3",
+            "text": "you"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "How long have you been monitoring the server?",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-06",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Hệ thống vẫn đang chạy mượt mà dạo gần đây.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "lately."
+          },
+          {
+            "id": "t5",
+            "text": "smoothly"
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t0",
+            "text": "The"
+          },
+          {
+            "id": "t4",
+            "text": "running"
+          },
+          {
+            "id": "t1",
+            "text": "system"
+          },
+          {
+            "id": "t2",
+            "text": "has"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "The system has been running smoothly lately.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-07",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Tôi đã liên tục thiết kế giao diện mới.",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "new"
+          },
+          {
+            "id": "t3",
+            "text": "designing"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t6",
+            "text": "interface."
+          },
+          {
+            "id": "t0",
+            "text": "I"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "I have been designing the new interface.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-08",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Dạo này anh ấy có tham gia các buổi họp hằng ngày không?",
+        "scrambledTokens": [
+          {
+            "id": "t0",
+            "text": "Has"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t3",
+            "text": "attending"
+          },
+          {
+            "id": "t6",
+            "text": "standups?"
+          },
+          {
+            "id": "t1",
+            "text": "he"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "daily"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "Has he been attending the daily standups?",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-09",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Chúng tôi đã và đang phát triển sản phẩm này trong nhiều tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t5",
+            "text": "product"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t0",
+            "text": "We"
+          },
+          {
+            "id": "t7",
+            "text": "months."
+          },
+          {
+            "id": "t6",
+            "text": "for"
+          },
+          {
+            "id": "t3",
+            "text": "developing"
+          },
+          {
+            "id": "t4",
+            "text": "this"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "We have been developing this product for months.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-10",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Khách hàng liên tục phàn nàn về tốc độ.",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "about"
+          },
+          {
+            "id": "t0",
+            "text": "The"
+          },
+          {
+            "id": "t2",
+            "text": "has"
+          },
+          {
+            "id": "t1",
+            "text": "client"
+          },
+          {
+            "id": "t4",
+            "text": "complaining"
+          },
+          {
+            "id": "t6",
+            "text": "the"
+          },
+          {
+            "id": "t7",
+            "text": "speed."
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "The client has been complaining about the speed.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-11",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Gần đây tôi liên tục phân tích dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "recently."
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t0",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "analyzing"
+          },
+          {
+            "id": "t5",
+            "text": "data"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "I have been analyzing the data recently.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-12",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Họ đã và đang nâng cấp cơ sở hạ tầng.",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "infrastructure."
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t0",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "upgrading"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5"
+        ],
+        "fullSentenceEn": "They have been upgrading the infrastructure.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-13",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Team của chúng ta đã và đang thể hiện cực kỳ tốt.",
+        "scrambledTokens": [
+          {
+            "id": "t0",
+            "text": "Our"
+          },
+          {
+            "id": "t2",
+            "text": "has"
+          },
+          {
+            "id": "t6",
+            "text": "well."
+          },
+          {
+            "id": "t5",
+            "text": "exceptionally"
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t1",
+            "text": "team"
+          },
+          {
+            "id": "t4",
+            "text": "performing"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "Our team has been performing exceptionally well.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-14",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Chúng ta có đang phân bổ đủ nguồn lực không?",
+        "scrambledTokens": [
+          {
+            "id": "t4",
+            "text": "enough"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t5",
+            "text": "resources?"
+          },
+          {
+            "id": "t3",
+            "text": "allocating"
+          },
+          {
+            "id": "t1",
+            "text": "we"
+          },
+          {
+            "id": "t0",
+            "text": "Have"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5"
+        ],
+        "fullSentenceEn": "Have we been allocating enough resources?",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-15",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Cô ấy đã và đang dẫn dắt dự án rất thành công.",
+        "scrambledTokens": [
+          {
+            "id": "t3",
+            "text": "leading"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t6",
+            "text": "successfully."
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "project"
+          },
+          {
+            "id": "t0",
+            "text": "She"
+          },
+          {
+            "id": "t1",
+            "text": "has"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "She has been leading the project successfully.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-16",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Tôi đã và đang điều tra lỗ hổng bảo mật.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t0",
+            "text": "I"
+          },
+          {
+            "id": "t6",
+            "text": "breach."
+          },
+          {
+            "id": "t5",
+            "text": "security"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t3",
+            "text": "investigating"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "I have been investigating the security breach.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-17",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Ứng dụng liên tục bị sập.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "application"
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t0",
+            "text": "The"
+          },
+          {
+            "id": "t4",
+            "text": "crashing"
+          },
+          {
+            "id": "t5",
+            "text": "continuously."
+          },
+          {
+            "id": "t2",
+            "text": "has"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5"
+        ],
+        "fullSentenceEn": "The application has been crashing continuously.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-18",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Chúng ta đã không giao tiếp hiệu quả dạo gần đây.",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "effectively."
+          },
+          {
+            "id": "t0",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "not"
+          },
+          {
+            "id": "t4",
+            "text": "communicating"
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5"
+        ],
+        "fullSentenceEn": "We have not been communicating effectively.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-19",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Anh ấy đã và đang quản lý team từ xa.",
+        "scrambledTokens": [
+          {
+            "id": "t0",
+            "text": "He"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t1",
+            "text": "has"
+          },
+          {
+            "id": "t3",
+            "text": "managing"
+          },
+          {
+            "id": "t5",
+            "text": "team"
+          },
+          {
+            "id": "t6",
+            "text": "remotely."
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "He has been managing the team remotely.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      },
+      {
+        "id": "ppc-sb-20",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Bạn có liên tục sao lưu cơ sở dữ liệu không?",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t6",
+            "text": "database?"
+          },
+          {
+            "id": "t3",
+            "text": "backing"
+          },
+          {
+            "id": "t1",
+            "text": "you"
+          },
+          {
+            "id": "t0",
+            "text": "Have"
+          },
+          {
+            "id": "t5",
+            "text": "the"
+          },
+          {
+            "id": "t4",
+            "text": "up"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "Have you been backing up the database?",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "id": "ppc-do-conj-01",
+        "contextType": "email",
+        "scenarioVi": "Tôi đã làm việc với tác vụ này suốt cả sáng.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "I ",
+        "baseVerb": "work",
+        "textAfter": " on this task all morning.",
+        "correctAnswer": "have been working",
+        "acceptableAlternatives": [
+          "HAVE BEEN WORKING",
+          "have been working"
+        ],
+        "options": [
+          "have been work",
+          "has been working",
+          "have been working",
+          "have work"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'I' đi với 'have been' và động từ chính thêm '-ing' (working).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-conj-02",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã debug hệ thống lõi được 3 giờ đồng hồ.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "We ",
+        "baseVerb": "debug",
+        "textAfter": " the core system for three hours.",
+        "correctAnswer": "have been debugging",
+        "acceptableAlternatives": [
+          "HAVE BEEN DEBUGGING",
+          "have been debugging"
+        ],
+        "options": [
+          "have debug",
+          "have been debugging",
+          "has been debugging",
+          "have been debug"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'We' đi với 'have been' và động từ chính thêm '-ing' (debugging).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-conj-03",
+        "contextType": "email",
+        "scenarioVi": "Dạo gần đây cô ấy liên tục theo dõi log máy chủ.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "She ",
+        "baseVerb": "monitor",
+        "textAfter": " the server logs lately.",
+        "correctAnswer": "has been monitoring",
+        "acceptableAlternatives": [
+          "HAS BEEN MONITORING",
+          "has been monitoring"
+        ],
+        "options": [
+          "has been monitor",
+          "has monitor",
+          "has been monitoring",
+          "have been monitoring"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'She' đi với 'has been' và động từ chính thêm '-ing' (monitoring).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-conj-04",
+        "contextType": "email",
+        "scenarioVi": "Nhóm đã và đang chờ sự phê duyệt của khách hàng từ thứ Hai.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "The team ",
+        "baseVerb": "wait",
+        "textAfter": " for the client's approval since Monday.",
+        "correctAnswer": "has been waiting",
+        "acceptableAlternatives": [
+          "HAS BEEN WAITING",
+          "has been waiting"
+        ],
+        "options": [
+          "have been waiting",
+          "has been wait",
+          "has wait",
+          "has been waiting"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'The team' đi với 'has been' và động từ chính thêm '-ing' (waiting).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-conj-05",
+        "contextType": "email",
+        "scenarioVi": "Họ đã và đang phát triển API mới suốt cả tuần.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "They ",
+        "baseVerb": "develop",
+        "textAfter": " the new API all week.",
+        "correctAnswer": "have been developing",
+        "acceptableAlternatives": [
+          "HAVE BEEN DEVELOPING",
+          "have been developing"
+        ],
+        "options": [
+          "have been develop",
+          "have been developing",
+          "has been developing",
+          "have develop"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'They' đi với 'have been' và động từ chính thêm '-ing' (developing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-conj-06",
+        "contextType": "email",
+        "scenarioVi": "Anh ấy đã ngồi review code trong suốt 2 tiếng qua.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "He ",
+        "baseVerb": "review",
+        "textAfter": " code for the past two hours.",
+        "correctAnswer": "has been reviewing",
+        "acceptableAlternatives": [
+          "HAS BEEN REVIEWING",
+          "has been reviewing"
+        ],
+        "options": [
+          "has been review",
+          "have been reviewing",
+          "has review",
+          "has been reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'He' đi với 'has been' và động từ chính thêm '-ing' (reviewing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-conj-07",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã và đang kiểm thử cổng thanh toán một cách rộng rãi.",
+        "sender": "dev@company.com",
+        "recipient": "team@company.com",
+        "subject": "Status Update",
+        "textBefore": "We ",
+        "baseVerb": "test",
+        "textAfter": " the payment gateway extensively.",
+        "correctAnswer": "have been testing",
+        "acceptableAlternatives": [
+          "HAVE BEEN TESTING",
+          "have been testing"
+        ],
+        "options": [
+          "have been testing",
+          "has been testing",
+          "have test",
+          "have been test"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ 'We' đi với 'have been' và động từ chính thêm '-ing' (testing).",
+          "detailedAnalysisVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn (have/has + been + V-ing) dùng để diễn tả hành động kéo dài liên tục từ quá khứ đến hiện tại."
+        },
+        "challengeType": "conjugation"
+      },
+      {
+        "id": "ppc-do-err-01",
+        "scenarioVi": "Tôi đã và đang làm việc trên ticket này.",
+        "tokens": [
+          "I",
+          "has",
+          "been",
+          "working",
+          "on",
+          "this",
+          "ticket."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "has",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I have been working on this ticket.",
+        "vietnameseMeaning": "Tôi đã và đang làm việc trên ticket này.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'have' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-err-02",
+        "scenarioVi": "Chúng tôi đã liên tục kiểm thử API.",
+        "tokens": [
+          "We",
+          "have",
+          "be",
+          "testing",
+          "the",
+          "API."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          },
+          {
+            "value": "be",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "We have been testing the API.",
+        "vietnameseMeaning": "Chúng tôi đã liên tục kiểm thử API.",
+        "explanation": {
+          "whyWrongVi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn cần 'been' sau have/has.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-err-03",
+        "scenarioVi": "Cô ấy đã và đang review code.",
+        "tokens": [
+          "She",
+          "have",
+          "been",
+          "reviewing",
+          "code."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "has",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": true
+          },
+          {
+            "value": "have",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "She has been reviewing code.",
+        "vietnameseMeaning": "Cô ấy đã và đang review code.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-err-04",
+        "scenarioVi": "Họ không tập trung sửa lỗi dạo gần đây.",
+        "tokens": [
+          "They",
+          "hasn't",
+          "been",
+          "fixing",
+          "the",
+          "bugs."
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "haven't",
+        "options": [
+          {
+            "value": "hasn't",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "haven't",
+            "label": "haven't",
+            "isCorrect": true
+          },
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "They haven't been fixing the bugs.",
+        "vietnameseMeaning": "Họ không tập trung sửa lỗi dạo gần đây.",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'haven't' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-err-05",
+        "scenarioVi": "Hệ thống liên tục bị sập thường xuyên.",
+        "tokens": [
+          "The",
+          "system",
+          "has",
+          "been",
+          "crash",
+          "frequently."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "crashing",
+        "options": [
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": true
+          },
+          {
+            "value": "crash",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "crashed",
+            "label": "crashed",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system has been crashing frequently.",
+        "vietnameseMeaning": "Hệ thống liên tục bị sập thường xuyên.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-err-06",
+        "scenarioVi": "Anh ấy có liên tục gửi báo cáo không?",
+        "tokens": [
+          "Have",
+          "he",
+          "been",
+          "sending",
+          "the",
+          "reports?"
+        ],
+        "errorTokenIndex": 0,
+        "correctToken": "Has",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "Have",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "Has",
+            "label": "Has",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "Has he been sending the reports?",
+        "vietnameseMeaning": "Anh ấy có liên tục gửi báo cáo không?",
+        "explanation": {
+          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Has' để phù hợp với chủ ngữ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-err-07",
+        "scenarioVi": "Tôi liên tục nhận được email rác.",
+        "tokens": [
+          "I",
+          "have",
+          "been",
+          "receive",
+          "spam",
+          "emails."
+        ],
+        "errorTokenIndex": 3,
+        "correctToken": "receiving",
+        "options": [
+          {
+            "value": "receiving",
+            "label": "receiving",
+            "isCorrect": true
+          },
+          {
+            "value": "receive",
+            "label": "Giữ nguyên",
+            "isCorrect": false
+          },
+          {
+            "value": "receiveed",
+            "label": "receiveed",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I have been receiving spam emails.",
+        "vietnameseMeaning": "Tôi liên tục nhận được email rác.",
+        "explanation": {
+          "whyWrongVi": "Động từ chính phải thêm '-ing' trong thì tiếp diễn.",
+          "workplaceImpactVi": "Lỗi ngữ pháp có thể làm mờ đi tính liên tục của hành động mà bạn muốn nhấn mạnh."
+        },
+        "challengeType": "errorHunting"
+      },
+      {
+        "id": "ppc-do-sb-01",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Tôi đã và đang làm tính năng này cả tuần nay.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t7",
+            "text": "all"
+          },
+          {
+            "id": "t3",
+            "text": "working"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t4",
+            "text": "on"
+          },
+          {
+            "id": "t8",
+            "text": "week."
+          },
+          {
+            "id": "t0",
+            "text": "I"
+          },
+          {
+            "id": "t5",
+            "text": "this"
+          },
+          {
+            "id": "t6",
+            "text": "feature"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "fullSentenceEn": "I have been working on this feature all week.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        },
+        "challengeType": "sentenceBuilding"
+      },
+      {
+        "id": "ppc-do-sb-02",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Cô ấy đã ngồi review code từ sáng.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "morning."
+          },
+          {
+            "id": "t1",
+            "text": "has"
+          },
+          {
+            "id": "t5",
+            "text": "since"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t4",
+            "text": "code"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing"
+          },
+          {
+            "id": "t0",
+            "text": "She"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "She has been reviewing code since morning.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        },
+        "challengeType": "sentenceBuilding"
+      },
+      {
+        "id": "ppc-do-sb-03",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Chúng tôi đã liên tục cố gắng sửa lỗi.",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "fix"
+          },
+          {
+            "id": "t6",
+            "text": "the"
+          },
+          {
+            "id": "t7",
+            "text": "bug."
+          },
+          {
+            "id": "t3",
+            "text": "trying"
+          },
+          {
+            "id": "t2",
+            "text": "been"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t4",
+            "text": "to"
+          },
+          {
+            "id": "t0",
+            "text": "We"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "We have been trying to fix the bug.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        },
+        "challengeType": "sentenceBuilding"
+      },
+      {
+        "id": "ppc-do-sb-04",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Dạo này họ không phản hồi email của chúng ta.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "our"
+          },
+          {
+            "id": "t5",
+            "text": "to"
+          },
+          {
+            "id": "t4",
+            "text": "responding"
+          },
+          {
+            "id": "t7",
+            "text": "emails."
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t2",
+            "text": "not"
+          },
+          {
+            "id": "t1",
+            "text": "have"
+          },
+          {
+            "id": "t0",
+            "text": "They"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "They have not been responding to our emails.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        },
+        "challengeType": "sentenceBuilding"
+      },
+      {
+        "id": "ppc-do-sb-05",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Bạn đã theo dõi máy chủ được bao lâu rồi?",
+        "scrambledTokens": [
+          {
+            "id": "t5",
+            "text": "monitoring"
+          },
+          {
+            "id": "t2",
+            "text": "have"
+          },
+          {
+            "id": "t7",
+            "text": "server?"
+          },
+          {
+            "id": "t0",
+            "text": "How"
+          },
+          {
+            "id": "t6",
+            "text": "the"
+          },
+          {
+            "id": "t1",
+            "text": "long"
+          },
+          {
+            "id": "t4",
+            "text": "been"
+          },
+          {
+            "id": "t3",
+            "text": "you"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "fullSentenceEn": "How long have you been monitoring the server?",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        },
+        "challengeType": "sentenceBuilding"
+      },
+      {
+        "id": "ppc-do-sb-06",
+        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
+        "vietnameseMeaning": "Hệ thống vẫn đang chạy mượt mà dạo gần đây.",
+        "scrambledTokens": [
+          {
+            "id": "t6",
+            "text": "lately."
+          },
+          {
+            "id": "t5",
+            "text": "smoothly"
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t0",
+            "text": "The"
+          },
+          {
+            "id": "t4",
+            "text": "running"
+          },
+          {
+            "id": "t1",
+            "text": "system"
+          },
+          {
+            "id": "t2",
+            "text": "has"
+          }
+        ],
+        "correctTokenOrder": [
+          "t0",
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6"
+        ],
+        "fullSentenceEn": "The system has been running smoothly lately.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành Tiếp Diễn",
+          "tipVi": "Nhớ cấu trúc: S + have/has + been + V-ing."
+        },
+        "challengeType": "sentenceBuilding"
+      }
+    ]
+  }
+}

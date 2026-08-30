@@ -42,7 +42,7 @@
 - [X] T008 [US1] Append 20 IT/Workplace themed `devOpsChallenge` challenges to `src/data/tenses/present-perfect.json`
 - [X] T009 [US1] Run `npm run test:run` to verify tests for present perfect pass (TDD Green)
 - [X] T010 [US1] Spawn a subagent to conduct code review and bug hunt (verify JSON schema and content quality)
-- [ ] T011 [US1] Commit Phase 3 changes (Phase-End Commit)
+- [X] T011 [US1] Commit Phase 3 changes (Phase-End Commit)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -56,17 +56,17 @@
 
 ### Tests for User Story 2 (TDD)
 
-- [ ] T012 [US2] Create unit test in `tests/data/present-perfect-continuous.test.ts` to assert metadata, quickRules, and exactly 20 items per challenge category (80 total)
+- [X] T012 [US2] Create unit test in `tests/data/present-perfect-continuous.test.ts` to assert metadata, quickRules, and exactly 20 items per challenge category (80 total)
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Create base JSON file at `src/data/tenses/present-perfect-continuous.json` including `metadata` and `quickRules` focusing on IT/Workplace context, leaving `challenges` object with empty arrays
-- [ ] T014 [US2] Append 20 IT/Workplace themed `conjugation` challenges to `src/data/tenses/present-perfect-continuous.json`
-- [ ] T015 [US2] Append 20 IT/Workplace themed `errorHunting` challenges to `src/data/tenses/present-perfect-continuous.json`
-- [ ] T016 [US2] Append 20 IT/Workplace themed `sentenceBuilding` challenges to `src/data/tenses/present-perfect-continuous.json`
-- [ ] T017 [US2] Append 20 IT/Workplace themed `devOpsChallenge` challenges to `src/data/tenses/present-perfect-continuous.json`
-- [ ] T018 [US2] Run `npm run test:run` to verify tests for present perfect continuous pass (TDD Green)
-- [ ] T019 [US2] Spawn a subagent to conduct code review and bug hunt (verify JSON schema and content quality)
+- [X] T013 [US2] Create base JSON file at `src/data/tenses/present-perfect-continuous.json` including `metadata` and `quickRules` focusing on IT/Workplace context, leaving `challenges` object with empty arrays
+- [X] T014 [US2] Append 20 IT/Workplace themed `conjugation` challenges to `src/data/tenses/present-perfect-continuous.json`
+- [X] T015 [US2] Append 20 IT/Workplace themed `errorHunting` challenges to `src/data/tenses/present-perfect-continuous.json`
+- [X] T016 [US2] Append 20 IT/Workplace themed `sentenceBuilding` challenges to `src/data/tenses/present-perfect-continuous.json`
+- [X] T017 [US2] Append 20 IT/Workplace themed `devOpsChallenge` challenges to `src/data/tenses/present-perfect-continuous.json`
+- [X] T018 [US2] Run `npm run test:run` to verify tests for present perfect continuous pass (TDD Green)
+- [X] T019 [US2] Spawn a subagent to conduct code review and bug hunt (verify JSON schema and content quality)
 - [ ] T020 [US2] Commit Phase 4 changes (Phase-End Commit)
 
 **Checkpoint**: Both user stories should now be independently functional
