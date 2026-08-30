@@ -3,6 +3,10 @@ import { Metadata } from "next";
 import tensesCatalog from "@/data/tenses/index.json";
 import presentSimpleData from "@/data/tenses/present-simple.json";
 import presentContinuousData from "@/data/tenses/present-continuous.json";
+import futureSimpleData from "@/data/tenses/future-simple.json";
+import futureContinuousData from "@/data/tenses/future-continuous.json";
+import futurePerfectData from "@/data/tenses/future-perfect.json";
+import futurePerfectContinuousData from "@/data/tenses/future-perfect-continuous.json";
 import { TenseMetadata, TenseModuleData } from "@/types/tenses";
 import { TenseLessonContainer } from "@/components/tenses/TenseLessonContainer";
 
@@ -13,6 +17,10 @@ interface PageProps {
 const TENSE_DATA_MAP: Record<string, unknown> = {
   "present-simple": presentSimpleData,
   "present-continuous": presentContinuousData,
+  "future-simple": futureSimpleData,
+  "future-continuous": futureContinuousData,
+  "future-perfect": futurePerfectData,
+  "future-perfect-continuous": futurePerfectContinuousData,
 };
 
 export async function generateStaticParams() {

@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "id": "future-perfect",
+    "slug": "future-perfect",
+    "name": "Future Perfect",
+    "vietnameseName": "Thì Tương Lai Hoàn Thành",
+    "group": "future",
+    "status": "active",
+    "level": "B2 (Upper Intermediate)",
+    "badge": "Deadline hoàn thành",
+    "description": "Diễn tả hành động sẽ hoàn thành trước một thời điểm hoặc sự kiện trong tương lai.",
+    "estimatedMinutes": 10,
+    "challengeCount": 10
+  },
+  "quickRules": [
+    {
+      "id": "will-have-pp-formula",
+      "category": "will-have-pp",
+      "titleVi": "Cấu Trúc Will have + V3/ed",
+      "titleEn": "Will have P.P Structure",
+      "summaryVi": "Dùng để nhấn mạnh deadline: trước thời điểm đó việc đã xong.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will have + V3/ed",
+          "example": "I will have finished the report by Friday.",
+          "vietnameseTranslation": "Tôi sẽ hoàn thành xong báo cáo trước thứ Sáu."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Hoàn thành trước một thời điểm",
+          "condition": "Dấu hiệu nhận biết: by + mốc thời gian (by tomorrow, by the end of this year...).",
+          "examples": [
+            {
+              "en": "By next month, we will have launched the new feature.",
+              "vi": "Trước tháng sau, chúng ta sẽ ra mắt xong tính năng mới."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Rất hữu ích khi báo cáo tiến độ và hứa hẹn deadline: 'By the time you arrive, I will have prepared everything.'"
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "conj-fp-01",
+        "contextType": "email",
+        "scenarioVi": "Xác nhận deadline giao hàng",
+        "sender": "Supplier",
+        "recipient": "Client",
+        "subject": "",
+        "textBefore": "By the end of this week, we ",
+        "baseVerb": "ship",
+        "textAfter": " all your orders.",
+        "correctAnswer": "will have shipped",
+        "acceptableAlternatives": [
+          "will have shipped"
+        ],
+        "options": [
+          "will ship",
+          "have shipped",
+          "will have shipped",
+          "will be shipping"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu 'By the end of this week' yêu cầu dùng Tương lai hoàn thành.",
+          "detailedAnalysisVi": "Để diễn đạt rằng việc gửi hàng sẽ được hoàn tất TRƯỚC cuối tuần."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "err-fp-01",
+        "scenarioVi": "Báo cáo tiến độ hoàn thành KPI",
+        "tokens": [
+          "By",
+          "December,",
+          "we",
+          "will",
+          "has",
+          "achieved",
+          "our",
+          "sales",
+          "target."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By December, we will have achieved our sales target.",
+        "vietnameseMeaning": "Trước tháng 12, chúng ta sẽ hoàn thành chỉ tiêu doanh thu.",
+        "explanation": {
+          "whyWrongVi": "Luôn dùng 'have' sau 'will', không phân biệt chủ ngữ.",
+          "workplaceImpactVi": "Lỗi 'will has' là lỗi cơ bản nghiêm trọng."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "sb-fp-01",
+        "scenarioVi": "Cập nhật tiến độ dự án",
+        "vietnameseMeaning": "Họ sẽ ký xong hợp đồng trước thứ Sáu.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "will have signed"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t4",
+            "text": "by Friday."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have signed",
+          "the contract",
+          "by Friday."
+        ],
+        "fullSentenceEn": "They will have signed the contract by Friday.",
+        "grammarTip": {
+          "titleVi": "will have + V3/ed + by time",
+          "tipVi": "Cấu trúc tiêu chuẩn để nói về deadline hoàn tất."
+        }
+      }
+    ]
+  }
+}

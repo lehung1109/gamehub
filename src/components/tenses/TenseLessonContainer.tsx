@@ -220,6 +220,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
           <div id="tabpanel-rules" role="tabpanel" aria-labelledby="tab-rules">
             <QuickRulesTab
               rules={quickRules}
+              stageCount={stageList.length}
               onStartPractice={() => {
                 setActiveTab("practice");
                 setCurrentStage("conjugation");

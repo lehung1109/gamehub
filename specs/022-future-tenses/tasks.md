@@ -57,17 +57,17 @@ description: "Task list for Future Tenses implementation"
 **Independent Test**: Click vào từng thì tương lai và hoàn thành toàn bộ bài tập mà không bị lỗi thiếu data.
 
 ### Tests for User Story 2 (TDD)
-- [ ] T010 [US2] Update E2E test in `tests/e2e/tenses-flow.spec.ts` to click on "Future Simple", verify navigation to `/tenses/future-simple`, and check that the "Quy tắc cốt lõi" tab is visible. Run test to ensure it fails (since page will 404/error without JSON data).
+- [x] T010 [US2] Update E2E test in `tests/e2e/tenses-flow.spec.ts` to click on "Future Simple", verify navigation to `/tenses/future-simple`, and check that the "Quy tắc cốt lõi" tab is visible. Run test to ensure it fails (since page will 404/error without JSON data).
 
 ### Implementation for User Story 2
-- [ ] T011 [P] [US2] Create data file for Future Simple in `src/data/tenses/future-simple.json` following the schema in `specs/022-future-tenses/data-model.md`. Include metadata, quick rules, and mock workplace challenges.
-- [ ] T012 [P] [US2] Create data file for Future Continuous in `src/data/tenses/future-continuous.json` following the schema.
-- [ ] T013 [P] [US2] Create data file for Future Perfect in `src/data/tenses/future-perfect.json` following the schema.
-- [ ] T014 [P] [US2] Create data file for Future Perfect Continuous in `src/data/tenses/future-perfect-continuous.json` following the schema.
-- [ ] T015 [US2] Run `npm run dev` to manually verify data loads correctly and/or run `npm run build` to ensure Next.js static generation succeeds.
-- [ ] T016 [US2] Run E2E test `npm run test:e2e` to verify the page loads and passes the test.
-- [ ] T017 [US2] Execute the iterative review & bug hunt subagent loop (including eslint verification) for Phase 3.
-- [ ] T018 [US2] Commit Phase 3 changes with a descriptive conventional commit message.
+- [x] T011 [P] [US2] Create data file for Future Simple in `src/data/tenses/future-simple.json` following the schema in `specs/022-future-tenses/data-model.md`. Include metadata, quick rules, and mock workplace challenges.
+- [x] T012 [P] [US2] Create data file for Future Continuous in `src/data/tenses/future-continuous.json` following the schema.
+- [x] T013 [P] [US2] Create data file for Future Perfect in `src/data/tenses/future-perfect.json` following the schema.
+- [x] T014 [P] [US2] Create data file for Future Perfect Continuous in `src/data/tenses/future-perfect-continuous.json` following the schema.
+- [x] T015 [US2] Run `npm run dev` to manually verify data loads correctly and/or run `npm run build` to ensure Next.js static generation succeeds.
+- [x] T016 [US2] Run E2E test `npm run test:e2e` to verify the page loads and passes the test.
+- [x] T017 [US2] Execute the iterative review & bug hunt subagent loop (including eslint verification) for Phase 3.
+- [x] T018 [US2] Commit Phase 3 changes with a descriptive conventional commit message.
 
 ---
 
