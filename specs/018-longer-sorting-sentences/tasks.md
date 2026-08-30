@@ -6,7 +6,7 @@
 
 - [x] T001 Ask the user to confirm the creation of a new git worktree for workspace isolation, defaulting to creating a new one. (e.g., `git worktree add ../gamehub-018-longer-sorting-sentences 018-longer-sorting-sentences`)
 - [x] T002 Spawn a dedicated subagent to execute the Phase 1 Iterative Review & Bug Hunt (verify eslint, spec compliance, zero bugs).
-- [ ] T003 Commit Phase 1 changes with a descriptive conventional commit message.
+- [x] T003 Commit Phase 1 changes with a descriptive conventional commit message.
 
 ---
 
@@ -16,8 +16,8 @@
 
 *(No foundational architectural changes needed for this data-only feature, but we adhere to the phase structure)*
 
-- [ ] T004 Spawn a dedicated subagent to execute Phase 2 tasks (if any) and conduct an Iterative Review & Bug Hunt.
-- [ ] T005 Commit Phase 2 changes.
+- [x] T004 Spawn a dedicated subagent to execute Phase 2 tasks (if any) and conduct an Iterative Review & Bug Hunt.
+- [x] T005 Commit Phase 2 changes.
 
 ---
 
