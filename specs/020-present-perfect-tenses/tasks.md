@@ -7,7 +7,7 @@
 
 **Purpose**: Worktree initialization
 
-- [ ] T001 Create a new git worktree for workspace isolation (or confirm with user to proceed in current directory)
+- [X] T001 Create a new git worktree for workspace isolation (or confirm with user to proceed in current directory)
 
 ---
 
@@ -15,7 +15,7 @@
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-- [ ] T002 Update `src/data/tenses/index.json` to change the `status` of `present-perfect` and `present-perfect-continuous` to `"active"`
+- [X] T002 Update `src/data/tenses/index.json` to change the `status` of `present-perfect` and `present-perfect-continuous` to `"active"`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -31,17 +31,17 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T003 [US1] Create unit test in `tests/data/present-perfect.test.ts` to assert metadata, quickRules, and exactly 20 items per challenge category (80 total)
+- [X] T003 [US1] Create unit test in `tests/data/present-perfect.test.ts` to assert metadata, quickRules, and exactly 20 items per challenge category (80 total)
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Create base JSON file at `src/data/tenses/present-perfect.json` including `metadata` and `quickRules` focusing on IT/Workplace context, leaving `challenges` object with empty arrays
-- [ ] T005 [US1] Append 20 IT/Workplace themed `conjugation` challenges to `src/data/tenses/present-perfect.json`
-- [ ] T006 [US1] Append 20 IT/Workplace themed `errorHunting` challenges to `src/data/tenses/present-perfect.json`
-- [ ] T007 [US1] Append 20 IT/Workplace themed `sentenceBuilding` challenges to `src/data/tenses/present-perfect.json`
-- [ ] T008 [US1] Append 20 IT/Workplace themed `devOpsChallenge` challenges to `src/data/tenses/present-perfect.json`
-- [ ] T009 [US1] Run `npm run test:run` to verify tests for present perfect pass (TDD Green)
-- [ ] T010 [US1] Spawn a subagent to conduct code review and bug hunt (verify JSON schema and content quality)
+- [X] T004 [US1] Create base JSON file at `src/data/tenses/present-perfect.json` including `metadata` and `quickRules` focusing on IT/Workplace context, leaving `challenges` object with empty arrays
+- [X] T005 [US1] Append 20 IT/Workplace themed `conjugation` challenges to `src/data/tenses/present-perfect.json`
+- [X] T006 [US1] Append 20 IT/Workplace themed `errorHunting` challenges to `src/data/tenses/present-perfect.json`
+- [X] T007 [US1] Append 20 IT/Workplace themed `sentenceBuilding` challenges to `src/data/tenses/present-perfect.json`
+- [X] T008 [US1] Append 20 IT/Workplace themed `devOpsChallenge` challenges to `src/data/tenses/present-perfect.json`
+- [X] T009 [US1] Run `npm run test:run` to verify tests for present perfect pass (TDD Green)
+- [X] T010 [US1] Spawn a subagent to conduct code review and bug hunt (verify JSON schema and content quality)
 - [ ] T011 [US1] Commit Phase 3 changes (Phase-End Commit)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently

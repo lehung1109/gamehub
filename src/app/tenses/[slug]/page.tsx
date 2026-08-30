@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import tensesCatalog from "@/data/tenses/index.json";
 import presentSimpleData from "@/data/tenses/present-simple.json";
+import presentContinuousData from "@/data/tenses/present-continuous.json";
 import { TenseMetadata, TenseModuleData } from "@/types/tenses";
 import { TenseLessonContainer } from "@/components/tenses/TenseLessonContainer";
 
@@ -11,6 +12,7 @@ interface PageProps {
 
 const TENSE_DATA_MAP: Record<string, unknown> = {
   "present-simple": presentSimpleData,
+  "present-continuous": presentContinuousData,
 };
 
 export async function generateStaticParams() {
