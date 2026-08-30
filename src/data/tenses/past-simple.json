@@ -1,0 +1,2185 @@
+{
+  "metadata": {
+    "id": "past-simple",
+    "slug": "past-simple",
+    "name": "Past Simple",
+    "vietnameseName": "Thì Quá Khứ Đơn",
+    "group": "past",
+    "status": "active",
+    "level": "A1-A2 (Beginner)",
+    "description": "Mô tả thì quá khứ.",
+    "estimatedMinutes": 10,
+    "challengeCount": 80
+  },
+  "quickRules": [
+    {
+      "id": "qr-1",
+      "category": "action-verbs",
+      "titleVi": "Động từ thường",
+      "titleEn": "Action Verbs",
+      "summaryVi": "Sử dụng trong quá khứ.",
+      "rulesList": [
+        {
+          "ruleVi": "Thêm ed",
+          "condition": "Hầu hết",
+          "examples": [
+            {
+              "en": "I worked",
+              "vi": "Tôi đã làm"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "past-simple-conj-1",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 1",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-2",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 2",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-3",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 3",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-4",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 4",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-5",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 5",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-6",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 6",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-7",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 7",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-8",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 8",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-9",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 9",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-10",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 10",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-11",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 11",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-12",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 12",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-13",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 13",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-14",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 14",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-15",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 15",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-16",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 16",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-17",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 17",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-18",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 18",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-19",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 19",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      },
+      {
+        "id": "past-simple-conj-20",
+        "contextType": "email",
+        "scenarioVi": "Email báo cáo tiến độ 20",
+        "textBefore": "I ",
+        "baseVerb": "deploy",
+        "textAfter": " the server yesterday.",
+        "correctAnswer": "deployed",
+        "options": [
+          "deploy",
+          "deployed",
+          "deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Quá khứ đơn.",
+          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "past-simple-err-1",
+        "scenarioVi": "Review code lỗi 1",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-2",
+        "scenarioVi": "Review code lỗi 2",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-3",
+        "scenarioVi": "Review code lỗi 3",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-4",
+        "scenarioVi": "Review code lỗi 4",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-5",
+        "scenarioVi": "Review code lỗi 5",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-6",
+        "scenarioVi": "Review code lỗi 6",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-7",
+        "scenarioVi": "Review code lỗi 7",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-8",
+        "scenarioVi": "Review code lỗi 8",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-9",
+        "scenarioVi": "Review code lỗi 9",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-10",
+        "scenarioVi": "Review code lỗi 10",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-11",
+        "scenarioVi": "Review code lỗi 11",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-12",
+        "scenarioVi": "Review code lỗi 12",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-13",
+        "scenarioVi": "Review code lỗi 13",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-14",
+        "scenarioVi": "Review code lỗi 14",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-15",
+        "scenarioVi": "Review code lỗi 15",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-16",
+        "scenarioVi": "Review code lỗi 16",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-17",
+        "scenarioVi": "Review code lỗi 17",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-18",
+        "scenarioVi": "Review code lỗi 18",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-19",
+        "scenarioVi": "Review code lỗi 19",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      },
+      {
+        "id": "past-simple-err-20",
+        "scenarioVi": "Review code lỗi 20",
+        "tokens": [
+          "I",
+          "deploy",
+          "the",
+          "server",
+          "yesterday"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "deployed",
+        "options": [
+          {
+            "value": "deploy",
+            "label": "deploy",
+            "isCorrect": false
+          },
+          {
+            "value": "deployed",
+            "label": "deployed",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "I deployed the server yesterday",
+        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải chia ở quá khứ.",
+          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "past-simple-sb-1",
+        "scenarioVi": "Dịch câu hỏi 1",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-2",
+        "scenarioVi": "Dịch câu hỏi 2",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-3",
+        "scenarioVi": "Dịch câu hỏi 3",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-4",
+        "scenarioVi": "Dịch câu hỏi 4",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-5",
+        "scenarioVi": "Dịch câu hỏi 5",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-6",
+        "scenarioVi": "Dịch câu hỏi 6",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-7",
+        "scenarioVi": "Dịch câu hỏi 7",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-8",
+        "scenarioVi": "Dịch câu hỏi 8",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-9",
+        "scenarioVi": "Dịch câu hỏi 9",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-10",
+        "scenarioVi": "Dịch câu hỏi 10",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-11",
+        "scenarioVi": "Dịch câu hỏi 11",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-12",
+        "scenarioVi": "Dịch câu hỏi 12",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-13",
+        "scenarioVi": "Dịch câu hỏi 13",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-14",
+        "scenarioVi": "Dịch câu hỏi 14",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-15",
+        "scenarioVi": "Dịch câu hỏi 15",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-16",
+        "scenarioVi": "Dịch câu hỏi 16",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-17",
+        "scenarioVi": "Dịch câu hỏi 17",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-18",
+        "scenarioVi": "Dịch câu hỏi 18",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-19",
+        "scenarioVi": "Dịch câu hỏi 19",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      },
+      {
+        "id": "past-simple-sb-20",
+        "scenarioVi": "Dịch câu hỏi 20",
+        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "yesterday"
+          },
+          {
+            "id": "t2",
+            "text": "I"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the"
+          },
+          {
+            "id": "t5",
+            "text": "report"
+          }
+        ],
+        "correctTokenOrder": [
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t1"
+        ],
+        "fullSentenceEn": "I sent the report yesterday",
+        "grammarTip": {
+          "titleVi": "Trạng từ thời gian",
+          "tipVi": "Thường đặt cuối câu."
+        }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "id": "past-simple-do-1",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 1",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-2",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 2",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-3",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 3",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-4",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 4",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-5",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 5",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-6",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 6",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-7",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 7",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-8",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 8",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-9",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 9",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-10",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 10",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-11",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 11",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-12",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 12",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-13",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 13",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-14",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 14",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-15",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 15",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-16",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 16",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-17",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 17",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-18",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 18",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-19",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 19",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      },
+      {
+        "id": "past-simple-do-20",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Slack chat 20",
+        "textBefore": "The pipeline ",
+        "baseVerb": "fail",
+        "textAfter": " last night.",
+        "correctAnswer": "failed",
+        "options": [
+          "fail",
+          "failed",
+          "failing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự kiện trong quá khứ.",
+          "detailedAnalysisVi": "Last night là dấu hiệu."
+        }
+      }
+    ]
+  }
+}
