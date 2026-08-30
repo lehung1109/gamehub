@@ -1,8 +1,8 @@
 <!--
   Sync Impact Report
-  Version change: 2.0.1 → 2.1.0 (MINOR — materially expanded guidance on Task Generation Standards)
+  Version change: 2.1.0 → 2.1.1 (PATCH — added eslint verification to the Iterative Review & Bug Hunt Subagent Loop)
   Modified principles:
-    - Principle VI: Task Generation Standards (added requirement for a final feature-level review phase to iteratively find/fix bugs across all phases before final commit)
+    - Principle VI: Task Generation Standards (updated Iterative Review & Bug Hunt Subagent Loop to include eslint verification)
   Added sections: (none)
   Removed sections: (none)
   Follow-up TODOs: none
@@ -91,7 +91,7 @@ incorporate the following requirements:
      minimal code to make it pass, and refactor while maintaining green tests.
 4. **Iterative Review & Bug Hunt Subagent Loop**:
    - At the end of each phase, a dedicated subagent MUST be spawned to conduct
-     thorough code review, spec compliance verification, and bug hunting.
+     thorough code review, spec compliance verification, verify eslint, and bug hunting.
    - If any bugs or discrepancies are found, they MUST be resolved immediately.
    - After resolving identified issues, another review subagent MUST be spawned
      to re-evaluate and hunt for remaining bugs.
@@ -199,4 +199,4 @@ GameHub project.
 - The `speckit-tasks` and implementation agents MUST verify that Principle VI
   is satisfied when creating and executing task lists
 
-**Version**: 2.1.0 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-08-24
+**Version**: 2.1.1 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-08-30
