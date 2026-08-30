@@ -67,7 +67,7 @@
 - [X] T017 [US2] Append 20 IT/Workplace themed `devOpsChallenge` challenges to `src/data/tenses/present-perfect-continuous.json`
 - [X] T018 [US2] Run `npm run test:run` to verify tests for present perfect continuous pass (TDD Green)
 - [X] T019 [US2] Spawn a subagent to conduct code review and bug hunt (verify JSON schema and content quality)
-- [ ] T020 [US2] Commit Phase 4 changes (Phase-End Commit)
+- [X] T020 [US2] Commit Phase 4 changes (Phase-End Commit)
 
 **Checkpoint**: Both user stories should now be independently functional
 
@@ -77,8 +77,8 @@
 
 **Purpose**: Holistic feature-level review and final verification
 
-- [ ] T021 Spawn a subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature, ensuring data works flawlessly in the UI
-- [ ] T022 Final comprehensive commit to finalize the feature implementation
+- [X] T021 Spawn a subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature, ensuring data works flawlessly in the UI
+- [X] T022 Final comprehensive commit to finalize the feature implementation
 
 ---
 
