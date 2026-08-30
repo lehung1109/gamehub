@@ -27,13 +27,13 @@ describe("Tenses Schema & Data Integrity Tests", () => {
       expect(futureTenses).toHaveLength(4);
     });
 
-    it("has exactly 1 active tense (present-simple) and 11 coming_soon tenses", () => {
+    it("has exactly 2 active tenses (present-simple, present-continuous) and 10 coming_soon tenses", () => {
       const activeTenses = tensesIndex.filter((t) => t.status === "active");
       const comingSoonTenses = tensesIndex.filter((t) => t.status === "coming_soon");
 
-      expect(activeTenses).toHaveLength(1);
-      expect(activeTenses[0].id).toBe("present-simple");
-      expect(comingSoonTenses).toHaveLength(11);
+      expect(activeTenses).toHaveLength(2);
+      expect(activeTenses.map((t) => t.id).sort()).toEqual(["present-continuous", "present-simple"]);
+      expect(comingSoonTenses).toHaveLength(10);
     });
 
     it("validates all 12 tense items with validateTenseMetadata", () => {

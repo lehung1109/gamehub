@@ -31,15 +31,15 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [US1] Spawn a dedicated subagent to execute Phase 3 implementation and TDD.
-- [ ] T007 [US1] Create unit tests in `tests/data/tenses.test.ts` to assert that the `present-continuous` object in `src/data/tenses/index.json` has `status: "active"`. Verify the test fails initially (`npm run test:run`).
+- [x] T006 [US1] Spawn a dedicated subagent to execute Phase 3 implementation and TDD.
+- [x] T007 [US1] Create unit tests in `tests/data/tenses.test.ts` to assert that the `present-continuous` object in `src/data/tenses/index.json` has `status: "active"`. Verify the test fails initially (`npm run test:run`).
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Update `src/data/tenses/index.json` to change the `status` of the `present-continuous` tense object from `"coming_soon"` to `"active"`.
-- [ ] T009 [US1] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor if necessary until green.
-- [ ] T010 [US1] Run the application locally (`npm run dev`) and visually validate that the tense is active in the list.
-- [ ] T011 [US1] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (code review, spec compliance, `npm run lint`, zero bugs). If bugs found, fix and re-spawn review subagent until zero bugs remain.
+- [x] T008 [US1] Update `src/data/tenses/index.json` to change the `status` of the `present-continuous` tense object from `"coming_soon"` to `"active"`.
+- [x] T009 [US1] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor if necessary until green.
+- [x] T010 [US1] Run the application locally (`npm run dev`) and visually validate that the tense is active in the list.
+- [x] T011 [US1] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (code review, spec compliance, `npm run lint`, zero bugs). If bugs found, fix and re-spawn review subagent until zero bugs remain.
 - [ ] T012 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
 
 ---
