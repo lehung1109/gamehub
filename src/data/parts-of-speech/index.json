@@ -1,0 +1,47 @@
+[
+  {
+    "id": "noun",
+    "slug": "noun",
+    "name": "Noun",
+    "vietnameseName": "Danh từ",
+    "status": "active",
+    "description": "Nhận diện danh từ qua đuôi từ và vị trí trong câu công sở.",
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "verb",
+    "slug": "verb",
+    "name": "Verb",
+    "vietnameseName": "Động từ",
+    "status": "coming_soon",
+    "description": "Học cách dùng động từ và các đuôi nhận diện cơ bản.",
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "adjective",
+    "slug": "adjective",
+    "name": "Adjective",
+    "vietnameseName": "Tính từ",
+    "status": "coming_soon",
+    "description": "Mô tả tính chất sự vật, sự việc trong môi trường làm việc.",
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "adverb",
+    "slug": "adverb",
+    "name": "Adverb",
+    "vietnameseName": "Trạng từ",
+    "status": "coming_soon",
+    "description": "Bổ nghĩa cho động từ, tính từ và toàn câu.",
+    "estimatedMinutes": 10
+  },
+  {
+    "id": "mixed",
+    "slug": "mixed",
+    "name": "Mixed",
+    "vietnameseName": "Tổng hợp",
+    "status": "coming_soon",
+    "description": "Thử thách tổng hợp phân biệt 4 loại từ.",
+    "estimatedMinutes": 15
+  }
+]

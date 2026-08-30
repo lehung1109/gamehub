@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "id": "noun",
+    "slug": "noun",
+    "name": "Noun",
+    "vietnameseName": "Danh từ",
+    "status": "active",
+    "description": "Nhận diện danh từ qua đuôi từ và vị trí trong câu công sở.",
+    "estimatedMinutes": 10
+  },
+  "quickRules": [
+    {
+      "id": "noun-suffixes",
+      "category": "spelling-rules",
+      "titleVi": "Đuôi Danh Từ Phổ Biến",
+      "titleEn": "Common Noun Suffixes",
+      "summaryVi": "Nhận diện danh từ qua các hậu tố (đuôi) thường gặp.",
+      "rulesList": [
+        {
+          "ruleVi": "Các đuôi chỉ vật/sự việc",
+          "condition": "Thường gắn sau động từ hoặc tính từ",
+          "examples": [
+            { "en": "-ment (manage -> management)", "vi": "Sự quản lý" },
+            { "en": "-tion/-sion (inform -> information)", "vi": "Thông tin" },
+            { "en": "-ness (happy -> happiness)", "vi": "Sự hạnh phúc" },
+            { "en": "-ity (active -> activity)", "vi": "Hoạt động" }
+          ]
+        },
+        {
+          "ruleVi": "Các đuôi chỉ người",
+          "condition": "Thường gắn sau động từ hoặc danh từ khác",
+          "examples": [
+            { "en": "-er/-or (employ -> employer)", "vi": "Người sử dụng lao động" },
+            { "en": "-ee (employ -> employee)", "vi": "Nhân viên" },
+            { "en": "-ist (art -> artist)", "vi": "Nghệ sĩ" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noun-positions",
+      "category": "workplace-usage",
+      "titleVi": "Vị Trí Của Danh Từ",
+      "titleEn": "Noun Positions",
+      "summaryVi": "Các vị trí danh từ thường đứng trong câu.",
+      "rulesList": [
+        {
+          "ruleVi": "Sau tính từ (Adjective + Noun)",
+          "condition": "Bổ nghĩa cho danh từ",
+          "examples": [
+            { "en": "We need a *strategic* plan.", "vi": "Chúng ta cần một kế hoạch chiến lược." }
+          ]
+        },
+        {
+          "ruleVi": "Sau mạo từ (a/an/the) hoặc từ hạn định (my/his/this/some...)",
+          "condition": "",
+          "examples": [
+            { "en": "Please read *the* report.", "vi": "Vui lòng đọc bản báo cáo." }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "wordFamily": [
+      {
+        "id": "wf_noun_1",
+        "baseWord": "manage",
+        "targetWord": "management",
+        "options": ["-ment", "-tion", "-ness", "-ity"],
+        "explanationVi": "'Manage' là động từ. Thêm đuôi '-ment' để tạo thành danh từ 'management' (sự quản lý, ban quản lý)."
+      },
+      {
+        "id": "wf_noun_2",
+        "baseWord": "inform",
+        "targetWord": "information",
+        "options": ["-tion", "-ment", "-er", "-ness"],
+        "explanationVi": "'Inform' là động từ. Thêm đuôi '-tion' (biến đổi nhẹ thành 'information') để tạo thành danh từ."
+      }
+    ],
+    "fillInBlank": [
+      {
+        "id": "fib_noun_1",
+        "contextType": "email",
+        "textBefore": "We have received your ",
+        "textAfter": " and will process it shortly.",
+        "correctAnswer": "application",
+        "options": ["apply", "applicable", "application", "applied"],
+        "explanationVi": "Sau tính từ sở hữu 'your' cần một danh từ. 'application' (đơn từ) là đáp án đúng."
+      },
+      {
+        "id": "fib_noun_2",
+        "contextType": "report",
+        "textBefore": "The new marketing ",
+        "textAfter": " was a huge success.",
+        "correctAnswer": "strategy",
+        "options": ["strategic", "strategy", "strategize", "strategically"],
+        "explanationVi": "Sau tính từ 'marketing' cần một danh từ để làm chủ ngữ cho câu. 'strategy' (chiến lược) là danh từ."
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "eh_noun_1",
+        "scenarioVi": "Sử dụng sai từ loại sau mạo từ",
+        "tokens": ["The", "company", "needs", "to", "improve", "its", "productive", "immediately."],
+        "errorTokenIndex": 6,
+        "correctToken": "productivity",
+        "options": [
+          { "value": "productive", "label": "Giữ nguyên (productive)", "isCorrect": false },
+          { "value": "produce", "label": "produce", "isCorrect": false },
+          { "value": "productivity", "label": "productivity", "isCorrect": true }
+        ],
+        "fullCorrectSentence": "The company needs to improve its productivity immediately.",
+        "vietnameseMeaning": "Công ty cần cải thiện năng suất của mình ngay lập tức.",
+        "explanation": {
+          "whyWrongVi": "Sau tính từ sở hữu 'its' cần một danh từ, nhưng 'productive' lại là tính từ.",
+          "workplaceImpactVi": "Sử dụng sai từ loại làm câu mất tự nhiên. 'productivity' (năng suất) là danh từ cần thiết ở đây."
+        }
+      }
+    ]
+  }
+}
