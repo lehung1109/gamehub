@@ -118,7 +118,7 @@
 - [x] T030 [Final] Run E2E tests (`npm run test:e2e`) to verify full journey through the Hub and stages.
 - [x] T031 [Final] Check Next.js build (`npm run build`) to ensure no compilation errors or dynamic route resolution issues.
 - [x] T032 Validate the feature using `specs/017-parts-of-speech-hub/quickstart.md` scenarios manually or via test scripts.
-- [ ] T033 Make a final comprehensive commit to finalize the feature implementation.
+- [x] T033 Make a final comprehensive commit to finalize the feature implementation.
 
 ---
 
