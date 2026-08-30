@@ -23,10 +23,10 @@ description: "Task list for Future Tenses implementation"
 **Purpose**: Create an isolated worktree for this feature.
 *Requirement: As per Constitution Principle VI.1, a new git worktree must be created before starting implementation.*
 
-- [ ] T001 Ask the user to confirm the creation of a new git worktree for this feature. Default to creating a new one.
-- [ ] T002 Create and switch to the new git worktree for the feature branch (if confirmed).
-- [ ] T003 Execute the iterative review & bug hunt subagent loop for Phase 1.
-- [ ] T004 Commit Phase 1 changes with a descriptive conventional commit message.
+- [x] T001 Ask the user to confirm the creation of a new git worktree for this feature. Default to creating a new one.
+- [x] T002 Create and switch to the new git worktree for the feature branch (if confirmed).
+- [x] T003 Execute the iterative review & bug hunt subagent loop for Phase 1.
+- [x] T004 Commit Phase 1 changes with a descriptive conventional commit message.
 
 ---
 
@@ -39,13 +39,13 @@ description: "Task list for Future Tenses implementation"
 
 ### Tests for User Story 1 (TDD)
 *Requirement: As per Constitution Principle V & VI.3, write failing tests first.*
-- [ ] T005 [US1] Update E2E test in `tests/e2e/tenses-flow.spec.ts` to navigate to `/tenses` and assert that the 4 future tense cards are visible and not locked. Run `npm run test:e2e` to ensure it fails.
+- [x] T005 [US1] Update E2E test in `tests/e2e/tenses-flow.spec.ts` to navigate to `/tenses` and assert that the 4 future tense cards are visible and not locked. Run `npm run test:e2e` to ensure it fails.
 
 ### Implementation for User Story 1
-- [ ] T006 [US1] Edit `src/data/tenses/index.json` to change the `status` of "future-simple", "future-continuous", "future-perfect", and "future-perfect-continuous" from `"coming_soon"` to `"active"`.
-- [ ] T007 [US1] Run E2E test `npm run test:e2e` to verify the UI changes now pass the test.
-- [ ] T008 [US1] Execute the iterative review & bug hunt subagent loop (including eslint verification) for Phase 2.
-- [ ] T009 [US1] Commit Phase 2 changes with a descriptive conventional commit message.
+- [x] T006 [US1] Edit `src/data/tenses/index.json` to change the `status` of "future-simple", "future-continuous", "future-perfect", and "future-perfect-continuous" from `"coming_soon"` to `"active"`.
+- [x] T007 [US1] Run E2E test `npm run test:e2e` to verify the UI changes now pass the test.
+- [x] T008 [US1] Execute the iterative review & bug hunt subagent loop (including eslint verification) for Phase 2.
+- [x] T009 [US1] Commit Phase 2 changes with a descriptive conventional commit message.
 
 ---
 

@@ -65,6 +65,22 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(page).toHaveURL(/\/tenses$/);
   });
 
+  test("US1: future tenses cards are visible and active", async ({ page }) => {
+    await page.goto("/tenses");
+    
+    // Future Simple
+    await expect(page.getByRole("link", { name: "Bắt đầu học Thì Tương Lai Đơn", exact: true })).toBeVisible();
+    
+    // Future Continuous
+    await expect(page.getByRole("link", { name: "Bắt đầu học Thì Tương Lai Tiếp Diễn", exact: true })).toBeVisible();
+    
+    // Future Perfect
+    await expect(page.getByRole("link", { name: "Bắt đầu học Thì Tương Lai Hoàn Thành", exact: true })).toBeVisible();
+    
+    // Future Perfect Continuous
+    await expect(page.getByRole("link", { name: "Bắt đầu học Thì Tương Lai Hoàn Thành Tiếp Diễn", exact: true })).toBeVisible();
+  });
+
   test("US2: explores Quick Rules tab, filters categories, plays audio, and starts practice via CTA", async ({
     page,
   }) => {
