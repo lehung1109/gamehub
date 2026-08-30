@@ -40,7 +40,7 @@
 - [x] T009 [US1] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor if necessary until green.
 - [x] T010 [US1] Run the application locally (`npm run dev`) and visually validate that the tense is active in the list.
 - [x] T011 [US1] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (code review, spec compliance, `npm run lint`, zero bugs). If bugs found, fix and re-spawn review subagent until zero bugs remain.
-- [ ] T012 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
+- [x] T012 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
 
 ---
 
@@ -52,16 +52,16 @@
 
 ### Tests for User Story 2 (TDD REQUIRED)
 
-- [ ] T013 [US2] Spawn a dedicated subagent to execute Phase 4 implementation and TDD.
-- [ ] T014 [US2] Create unit tests in `tests/data/present-continuous.test.ts` to assert the schema of `src/data/tenses/present-continuous.json`. Ensure it checks for `metadata`, `quickRules`, and at least 10 items in the `challenges` array. Verify the test fails initially (since file doesn't exist yet).
+- [x] T013 [US2] Spawn a dedicated subagent to execute Phase 4 implementation and TDD.
+- [x] T014 [US2] Create unit tests in `tests/data/present-continuous.test.ts` to assert the schema of `src/data/tenses/present-continuous.json`. Ensure it checks for `metadata`, `quickRules`, and at least 10 items in the `challenges` array. Verify the test fails initially (since file doesn't exist yet).
 
 ### Implementation for User Story 2
 
-- [ ] T015 [US2] Create `src/data/tenses/present-continuous.json` containing the `metadata`, `quickRules`, and exactly 10 `challenges` formatted perfectly matching the `present-simple.json` schema.
-- [ ] T016 [US2] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor if necessary until green.
-- [ ] T017 [US2] Run the application locally and visually validate the page layout and challenges.
-- [ ] T018 [US2] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (verify eslint, spec compliance, zero bugs). 
-- [ ] T019 [US2] Commit Phase 4 changes.
+- [x] T015 [US2] Create `src/data/tenses/present-continuous.json` containing the `metadata`, `quickRules`, and exactly 10 `challenges` formatted perfectly matching the `present-simple.json` schema.
+- [x] T016 [US2] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor if necessary until green.
+- [x] T017 [US2] Run the application locally and visually validate the page layout and challenges.
+- [x] T018 [US2] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (verify eslint, spec compliance, zero bugs). 
+- [x] T019 [US2] Commit Phase 4 changes.
 
 ---
 

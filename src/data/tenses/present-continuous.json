@@ -1,0 +1,456 @@
+{
+  "metadata": {
+    "id": "present-continuous",
+    "slug": "present-continuous",
+    "name": "Present Continuous",
+    "vietnameseName": "Thì Hiện Tại Tiếp Diễn",
+    "group": "present",
+    "status": "active",
+    "level": "A1-A2 (Beginner)",
+    "badge": "Dành cho người đi làm",
+    "description": "Diễn tả hành động đang xảy ra tại thời điểm nói hoặc một dự án/kế hoạch mang tính tạm thời.",
+    "estimatedMinutes": 10,
+    "challengeCount": 10
+  },
+  "quickRules": [
+    {
+      "id": "pc-formula",
+      "category": "action-verbs",
+      "titleVi": "Cấu Trúc Khẳng Định / Phủ Định / Nghi Vấn",
+      "titleEn": "Formulas (Affirmative / Negative / Interrogative)",
+      "summaryVi": "Dùng am / is / are + V-ing để diễn tả hành động đang diễn ra.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + am / is / are + V-ing",
+          "example": "We are deploying the new feature now.",
+          "vietnameseTranslation": "Chúng tôi đang triển khai tính năng mới ngay bây giờ."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + am / is / are + not + V-ing",
+          "example": "He is not working on that project currently.",
+          "vietnameseTranslation": "Hiện tại anh ấy không làm việc trong dự án đó."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Am / Is / Are + S + V-ing?",
+          "example": "Are you attending the town hall meeting?",
+          "vietnameseTranslation": "Bạn có tham dự cuộc họp toàn công ty không?"
+        }
+      ],
+      "workplaceTips": [
+        "Sử dụng kèm các trạng từ chỉ thời gian như: right now, at the moment, currently."
+      ]
+    },
+    {
+      "id": "pc-usage",
+      "category": "workplace-usage",
+      "titleVi": "Cách Dùng Trong Công Sở",
+      "titleEn": "Workplace Usage",
+      "summaryVi": "Các trường hợp sử dụng thì Hiện Tại Tiếp Diễn phổ biến.",
+      "rulesList": [
+        {
+          "ruleVi": "Hành động đang diễn ra lúc nói",
+          "condition": "Đang xảy ra lúc giao tiếp",
+          "examples": [
+            {
+              "en": "I am writing the monthly report right now.",
+              "vi": "Tôi đang viết báo cáo tháng ngay lúc này."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Tình trạng tạm thời",
+          "condition": "Chỉ kéo dài trong khoảng thời gian ngắn",
+          "examples": [
+            {
+              "en": "She is covering for John while he is on leave.",
+              "vi": "Cô ấy đang làm thay việc cho John trong khi anh ấy nghỉ phép."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Dự định trong tương lai gần",
+          "condition": "Kế hoạch đã được lên lịch sẵn",
+          "examples": [
+            {
+              "en": "We are launching the product next week.",
+              "vi": "Chúng tôi sẽ ra mắt sản phẩm vào tuần tới."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "pc-conj-1",
+        "contextType": "chat",
+        "scenarioVi": "Đang trao đổi về việc fix bug lúc này",
+        "sender": "Dev 1",
+        "recipient": "Team",
+        "textBefore": "I ",
+        "baseVerb": "investigate",
+        "textAfter": " the server timeout issue at the moment.",
+        "correctAnswer": "am investigating",
+        "acceptableAlternatives": [
+          "AM INVESTIGATING",
+          "'m investigating"
+        ],
+        "options": [
+          "investigate",
+          "am investigating",
+          "investigating",
+          "is investigating"
+        ],
+        "explanation": {
+          "ruleVi": "Với chủ ngữ I và có cụm at the moment, ta dùng am + V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra lúc nói nên chia am investigating."
+        }
+      },
+      {
+        "id": "pc-conj-2",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo tiến độ cho khách hàng",
+        "sender": "PM",
+        "recipient": "Client",
+        "textBefore": "Currently, our design team ",
+        "baseVerb": "finalize",
+        "textAfter": " the user interface mockups.",
+        "correctAnswer": "is finalizing",
+        "acceptableAlternatives": [
+          "IS FINALIZING"
+        ],
+        "options": [
+          "finalizes",
+          "are finalizing",
+          "is finalizing",
+          "finalizing"
+        ],
+        "explanation": {
+          "ruleVi": "Chủ ngữ our design team (số ít tập hợp) và từ currently đòi hỏi is + V-ing.",
+          "detailedAnalysisVi": "Nhóm thiết kế đang trong quá trình hoàn thiện giao diện."
+        }
+      },
+      {
+        "id": "pc-conj-3",
+        "contextType": "routine",
+        "scenarioVi": "Nói về một lịch trình tạm thời",
+        "sender": "HR",
+        "recipient": "Staff",
+        "textBefore": "This week, we ",
+        "baseVerb": "not use",
+        "textAfter": " the main conference room due to renovations.",
+        "correctAnswer": "are not using",
+        "acceptableAlternatives": [
+          "ARE NOT USING",
+          "aren't using"
+        ],
+        "options": [
+          "do not use",
+          "are not using",
+          "is not using",
+          "not using"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc tạm thời trong tuần này (This week) -> dùng thì hiện tại tiếp diễn.",
+          "detailedAnalysisVi": "We đi với are + not + V-ing."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "pc-err-1",
+        "scenarioVi": "Trình bày tiến độ dự án",
+        "tokens": [
+          "The",
+          "developers",
+          "is",
+          "fixing",
+          "the",
+          "bugs",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "fixing",
+            "label": "fixing",
+            "isCorrect": false
+          },
+          {
+            "value": "now.",
+            "label": "now.",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The developers are fixing the bugs now.",
+        "vietnameseMeaning": "Các lập trình viên hiện đang sửa lỗi.",
+        "explanation": {
+          "whyWrongVi": "Chủ ngữ the developers số nhiều nên không dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản có thể làm giảm tính chuyên nghiệp trong văn phong email."
+        }
+      },
+      {
+        "id": "pc-err-2",
+        "scenarioVi": "Hỏi đồng nghiệp về dự án họ đang tham gia",
+        "tokens": [
+          "Are",
+          "you",
+          "work",
+          "on",
+          "the",
+          "new",
+          "feature?"
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "working",
+        "options": [
+          {
+            "value": "Are",
+            "label": "Are",
+            "isCorrect": false
+          },
+          {
+            "value": "work",
+            "label": "work",
+            "isCorrect": true
+          },
+          {
+            "value": "the",
+            "label": "the",
+            "isCorrect": false
+          },
+          {
+            "value": "feature?",
+            "label": "feature?",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Are you working on the new feature?",
+        "vietnameseMeaning": "Bạn có đang làm tính năng mới không?",
+        "explanation": {
+          "whyWrongVi": "Câu nghi vấn hiện tại tiếp diễn yêu cầu V-ing, không phải V nguyên thể.",
+          "workplaceImpactVi": "Gây nhầm lẫn về thì và trạng thái của hành động."
+        }
+      },
+      {
+        "id": "pc-err-3",
+        "scenarioVi": "Giải thích với sếp lý do chậm trễ",
+        "tokens": [
+          "I",
+          "am",
+          "wait",
+          "for",
+          "the",
+          "client",
+          "approval."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "waiting",
+        "options": [
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": false
+          },
+          {
+            "value": "wait",
+            "label": "wait",
+            "isCorrect": true
+          },
+          {
+            "value": "for",
+            "label": "for",
+            "isCorrect": false
+          },
+          {
+            "value": "approval.",
+            "label": "approval.",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for the client approval.",
+        "vietnameseMeaning": "Tôi đang chờ sự phê duyệt của khách hàng.",
+        "explanation": {
+          "whyWrongVi": "Sau am phải dùng V-ing để diễn tả hành động đang diễn ra.",
+          "workplaceImpactVi": "Mất điểm chuyên nghiệp khi giải trình tiến độ."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "pc-sb-1",
+        "scenarioVi": "Thông báo về lịch nghỉ phép tạm thời của nhân sự",
+        "vietnameseMeaning": "Cô ấy đang làm thay cho người quản lý hôm nay.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "She"
+          },
+          {
+            "id": "2",
+            "text": "is"
+          },
+          {
+            "id": "3",
+            "text": "covering"
+          },
+          {
+            "id": "4",
+            "text": "for"
+          },
+          {
+            "id": "5",
+            "text": "the"
+          },
+          {
+            "id": "6",
+            "text": "manager"
+          },
+          {
+            "id": "7",
+            "text": "today."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "fullSentenceEn": "She is covering for the manager today.",
+        "grammarTip": {
+          "titleVi": "Cover for someone",
+          "tipVi": "Cụm từ cover for mang ý nghĩa làm thay việc cho ai đó tạm thời."
+        }
+      },
+      {
+        "id": "pc-sb-2",
+        "scenarioVi": "Hỏi về việc triển khai hệ thống mới",
+        "vietnameseMeaning": "Họ có đang cập nhật cơ sở dữ liệu bây giờ không?",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "Are"
+          },
+          {
+            "id": "2",
+            "text": "they"
+          },
+          {
+            "id": "3",
+            "text": "updating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database"
+          },
+          {
+            "id": "6",
+            "text": "now?"
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "Are they updating the database now?",
+        "grammarTip": {
+          "titleVi": "Câu nghi vấn hiện tại tiếp diễn",
+          "tipVi": "Đưa to be lên trước chủ ngữ: Are + S + V-ing?"
+        }
+      },
+      {
+        "id": "pc-sb-3",
+        "scenarioVi": "Đang tiến hành họp khẩn cấp",
+        "vietnameseMeaning": "Chúng tôi đang thảo luận về vấn đề đó.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "discussing"
+          },
+          {
+            "id": "4",
+            "text": "that"
+          },
+          {
+            "id": "5",
+            "text": "issue."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are discussing that issue.",
+        "grammarTip": {
+          "titleVi": "Discuss vs Discuss about",
+          "tipVi": "Lưu ý: dùng discuss something chứ không dùng discuss about something."
+        }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "id": "pc-dev-1",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Kiểm tra trạng thái server",
+        "sender": "SysAdmin",
+        "recipient": "DevOps Team",
+        "textBefore": "The server ",
+        "baseVerb": "experience",
+        "textAfter": " high traffic right now.",
+        "correctAnswer": "is experiencing",
+        "acceptableAlternatives": [
+          "IS EXPERIENCING"
+        ],
+        "options": [
+          "experiences",
+          "is experiencing",
+          "experiencing",
+          "are experiencing"
+        ],
+        "explanation": {
+          "ruleVi": "Sự cố đang xảy ra lúc này (right now) nên chia ở thì hiện tại tiếp diễn.",
+          "detailedAnalysisVi": "The server số ít + is + V-ing."
+        }
+      }
+    ]
+  }
+}
