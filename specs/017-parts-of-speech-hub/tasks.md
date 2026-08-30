@@ -4,10 +4,10 @@
 
 **Purpose**: Project initialization, workspace isolation, and basic structure
 
-- [ ] T001 Ask the user to confirm creating a new git worktree for workspace isolation, defaulting to creating a new one. (Execute worktree creation upon confirmation).
-- [ ] T002 [P] Create project structure per implementation plan (directories in `src/app/parts-of-speech`, `src/components/parts-of-speech`, `src/data/parts-of-speech`).
-- [ ] T003 Execute dedicated subagent for Phase 1 review and bug hunt.
-- [ ] T004 Commit Phase 1 changes with a descriptive conventional commit message.
+- [x] T001 Ask the user to confirm creating a new git worktree for workspace isolation, defaulting to creating a new one. (Execute worktree creation upon confirmation).
+- [x] T002 [P] Create project structure per implementation plan (directories in `src/app/parts-of-speech`, `src/components/parts-of-speech`, `src/data/parts-of-speech`).
+- [x] T003 Execute dedicated subagent for Phase 1 review and bug hunt.
+- [x] T004 Commit Phase 1 changes with a descriptive conventional commit message.
 
 ---
 
@@ -17,11 +17,11 @@
 
 **🚨 CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 [P] Create `src/types/parts-of-speech.ts` to define models: `PartsOfSpeechMetadata`, `WordFamilyItem`, `FillInBlankItem`, `ErrorHuntingItem`, and progress tracking types.
-- [ ] T006 [P] Create local storage utility for progress tracking in `src/lib/parts-of-speech-storage.ts` (TDD: Write unit test in `tests/unit/lib/parts-of-speech-storage.test.ts` first).
-- [ ] T007 [P] Create initial JSON data files `src/data/parts-of-speech/index.json` and `src/data/parts-of-speech/noun.json` with mock data for all 3 stages.
-- [ ] T008 Execute dedicated subagent for Phase 2 review and bug hunt.
-- [ ] T009 Commit Phase 2 changes with a descriptive conventional commit message.
+- [x] T005 [P] Create `src/types/parts-of-speech.ts` to define models: `PartsOfSpeechMetadata`, `WordFamilyItem`, `FillInBlankItem`, `ErrorHuntingItem`, and progress tracking types.
+- [x] T006 [P] Create local storage utility for progress tracking in `src/lib/parts-of-speech-storage.ts` (TDD: Write unit test in `tests/unit/lib/parts-of-speech-storage.test.ts` first).
+- [x] T007 [P] Create initial JSON data files `src/data/parts-of-speech/index.json` and `src/data/parts-of-speech/noun.json` with mock data for all 3 stages.
+- [x] T008 Execute dedicated subagent for Phase 2 review and bug hunt.
+- [x] T009 Commit Phase 2 changes with a descriptive conventional commit message.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin.
 
@@ -37,13 +37,13 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [US1] Write E2E test for Hub navigation in `tests/e2e/parts-of-speech-hub.spec.ts` (test `/parts-of-speech` and clicking a lesson card).
+- [x] T010 [US1] Write E2E test for Hub navigation in `tests/e2e/parts-of-speech-hub.spec.ts` (test `/parts-of-speech` and clicking a lesson card).
 
 ### Implementation for User Story 1
 
-- [ ] T011 [US1] Implement Hub Page layout in `src/app/parts-of-speech/page.tsx` and `src/components/parts-of-speech/PartsOfSpeechHubMap.tsx` using `shadcn/ui` components.
-- [ ] T012 [US1] Execute dedicated subagent for Phase 3 review and bug hunt (verify E2E tests pass).
-- [ ] T013 [US1] Commit Phase 3 changes.
+- [x] T011 [US1] Implement Hub Page layout in `src/app/parts-of-speech/page.tsx` and `src/components/parts-of-speech/PartsOfSpeechHubMap.tsx` using `shadcn/ui` components.
+- [x] T012 [US1] Execute dedicated subagent for Phase 3 review and bug hunt (verify E2E tests pass).
+- [x] T013 [US1] Commit Phase 3 changes.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -57,15 +57,15 @@
 
 ### Tests for User Story 2 (TDD REQUIRED)
 
-- [ ] T014 [US2] Write unit tests for `WordFamilyStage` component in `tests/unit/components/parts-of-speech/WordFamilyStage.test.tsx` (mocking dnd-kit interactions).
+- [x] T014 [US2] Write unit tests for `WordFamilyStage` component in `tests/unit/components/parts-of-speech/WordFamilyStage.test.tsx` (mocking dnd-kit interactions).
 
 ### Implementation for User Story 2
 
-- [ ] T015 [US2] Implement `WordFamilyStage.tsx` in `src/components/parts-of-speech/stages/` using `@dnd-kit/core` and `@dnd-kit/sortable` (strict requirement).
-- [ ] T016 [US2] Implement `PartsOfSpeechLessonContainer.tsx` in `src/components/parts-of-speech/` to host and route between stages.
-- [ ] T017 [US2] Implement Lesson page `src/app/parts-of-speech/[slug]/page.tsx` integrating the container and mock data.
-- [ ] T018 [US2] Execute dedicated subagent for Phase 4 review and bug hunt.
-- [ ] T019 [US2] Commit Phase 4 changes.
+- [x] T015 [US2] Implement `WordFamilyStage.tsx` in `src/components/parts-of-speech/stages/` using `@dnd-kit/core` and `@dnd-kit/sortable` (strict requirement).
+- [x] T016 [US2] Implement `PartsOfSpeechLessonContainer.tsx` in `src/components/parts-of-speech/` to host and route between stages.
+- [x] T017 [US2] Implement Lesson page `src/app/parts-of-speech/[slug]/page.tsx` integrating the container and mock data.
+- [x] T018 [US2] Execute dedicated subagent for Phase 4 review and bug hunt.
+- [x] T019 [US2] Commit Phase 4 changes.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -79,14 +79,14 @@
 
 ### Tests for User Story 3 (TDD REQUIRED)
 
-- [ ] T020 [US3] Write unit tests for `FillInBlankStage` component in `tests/unit/components/parts-of-speech/FillInBlankStage.test.tsx`.
+- [x] T020 [US3] Write unit tests for `FillInBlankStage` component in `tests/unit/components/parts-of-speech/FillInBlankStage.test.tsx`.
 
 ### Implementation for User Story 3
 
-- [ ] T021 [US3] Implement `FillInBlankStage.tsx` in `src/components/parts-of-speech/stages/` applying the context data and option selection logic.
-- [ ] T022 [US3] Integrate `FillInBlankStage.tsx` into `PartsOfSpeechLessonContainer.tsx`.
-- [ ] T023 [US3] Execute dedicated subagent for Phase 5 review and bug hunt.
-- [ ] T024 [US3] Commit Phase 5 changes.
+- [x] T021 [US3] Implement `FillInBlankStage.tsx` in `src/components/parts-of-speech/stages/` applying the context data and option selection logic.
+- [x] T022 [US3] Integrate `FillInBlankStage.tsx` into `PartsOfSpeechLessonContainer.tsx`.
+- [x] T023 [US3] Execute dedicated subagent for Phase 5 review and bug hunt.
+- [x] T024 [US3] Commit Phase 5 changes.
 
 **Checkpoint**: All user stories up to US3 should now be independently functional.
 
@@ -100,14 +100,14 @@
 
 ### Tests for User Story 4 (TDD REQUIRED)
 
-- [ ] T025 [US4] Write unit tests for `ErrorHuntingStage` component in `tests/unit/components/parts-of-speech/ErrorHuntingStage.test.tsx`.
+- [x] T025 [US4] Write unit tests for `ErrorHuntingStage` component in `tests/unit/components/parts-of-speech/ErrorHuntingStage.test.tsx`.
 
 ### Implementation for User Story 4
 
-- [ ] T026 [US4] Implement `ErrorHuntingStage.tsx` in `src/components/parts-of-speech/stages/` (clickable tokens and options).
-- [ ] T027 [US4] Integrate `ErrorHuntingStage.tsx` into `PartsOfSpeechLessonContainer.tsx`.
-- [ ] T028 [US4] Execute dedicated subagent for Phase 6 review and bug hunt.
-- [ ] T029 [US4] Commit Phase 6 changes.
+- [x] T026 [US4] Implement `ErrorHuntingStage.tsx` in `src/components/parts-of-speech/stages/` with token selection and error feedback.
+- [x] T027 [US4] Integrate `ErrorHuntingStage.tsx` into `PartsOfSpeechLessonContainer.tsx`.
+- [x] T028 [US4] Execute dedicated subagent for Phase 6 review and bug hunt.
+- [x] T029 [US4] Commit Phase 6 changes.
 
 ---
 
@@ -115,9 +115,9 @@
 
 **Purpose**: Comprehensive, holistic review across the entire implemented feature before final delivery.
 
-- [ ] T030 Spawn a dedicated subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature.
-- [ ] T031 Iterate: If bugs are found, fix them and repeat the subagent review until zero bugs remain.
-- [ ] T032 Validate the feature using `specs/017-parts-of-speech-hub/quickstart.md` scenarios manually or via test scripts.
+- [x] T030 [Final] Run E2E tests (`npm run test:e2e`) to verify full journey through the Hub and stages.
+- [x] T031 [Final] Check Next.js build (`npm run build`) to ensure no compilation errors or dynamic route resolution issues.
+- [x] T032 Validate the feature using `specs/017-parts-of-speech-hub/quickstart.md` scenarios manually or via test scripts.
 - [ ] T033 Make a final comprehensive commit to finalize the feature implementation.
 
 ---
