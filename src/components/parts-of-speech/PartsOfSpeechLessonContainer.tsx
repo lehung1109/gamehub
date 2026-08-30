@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Play, Sparkles } from "lucide-react";
 import { PartsOfSpeechModuleData, PartsOfSpeechStageType } from "@/types/parts-of-speech";
 import { WordFamilyStage } from "@/components/parts-of-speech/stages/WordFamilyStage";
+import { FillInBlankStage } from "@/components/parts-of-speech/stages/FillInBlankStage";
 import { saveStageProgress, getProgress } from "@/lib/parts-of-speech-storage";
 import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -113,7 +114,10 @@ export function PartsOfSpeechLessonContainer({ lessonData }: PartsOfSpeechLesson
             onComplete={(score, total) => handleStageComplete("wordFamily", score, total)} 
           />
         ) : currentStage === "fillInBlank" ? (
-          <div className="text-center p-12">Đang xây dựng Chặng 2...</div>
+          <FillInBlankStage 
+            questions={challenges.fillInBlank} 
+            onComplete={(score, total) => handleStageComplete("fillInBlank", score, total)} 
+          />
         ) : currentStage === "errorHunting" ? (
           <div className="text-center p-12">Đang xây dựng Chặng 3...</div>
         ) : activeTab === "rules" ? (
