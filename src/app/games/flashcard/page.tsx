@@ -42,7 +42,7 @@ function FlashcardTopicSelectionContent() {
   }, [topicsConfig]);
 
   return (
-    <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 max-w-5xl xl:max-w-6xl mx-auto flex flex-col gap-8">
+    <main className="flex flex-col gap-8 w-full max-w-5xl mx-auto">
       {/* Top Bar Navigation */}
       <div className="flex items-center justify-between">
         <BackButton href="/" label="Về trang chủ" />

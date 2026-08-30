@@ -110,7 +110,7 @@ export default async function FlashcardTopicPage({
     : "/games/flashcard";
 
   return (
-    <main className="min-h-screen bg-background py-6 px-4 sm:px-6 lg:px-8 max-w-4xl xl:max-w-5xl mx-auto flex flex-col gap-6">
+    <main className="flex flex-col gap-6 w-full max-w-4xl mx-auto">
       <h1 className="sr-only">Học từ vựng chủ đề {topic.nameVi} - Flashcard Game</h1>
 
       {/* Navigation & Header */}

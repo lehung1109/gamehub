@@ -4,6 +4,8 @@ import gamesData from "@/data/games.json";
 import { Game } from "@/types";
 import { GameCard } from "@/components/custom/GameCard";
 
+import { Container } from "@/components/ui/container";
+
 export interface HomePageProps {
   gamesOverride?: Game[];
 }
@@ -14,8 +16,9 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
   );
 
   return (
-    <div className="flex-1 flex flex-col justify-between py-2 sm:py-6">
-      <div>
+    <Container>
+      <div className="flex-1 flex flex-col justify-between">
+        <div>
         {/* Top bar with Login link for teachers/admins */}
         <div className="flex justify-end mb-2">
           <Link
@@ -117,6 +120,7 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
       <footer className="text-center py-8 mt-12 text-sm font-medium text-muted-foreground border-t border-border/50">
         <p>🎈 GameHub Tiếng Anh cho bé — 100% An toàn &amp; Miễn phí</p>
       </footer>
-    </div>
+      </div>
+    </Container>
   );
 }

@@ -9,8 +9,14 @@ export const metadata: Metadata = {
     "Hệ thống luyện tập từ loại tiếng Anh thực chiến dành cho người đi làm và sinh viên. 100% miễn phí, ngữ cảnh công sở thực tế.",
 };
 
+import { Container } from "@/components/ui/container";
+
 export default function PartsOfSpeechHubPage() {
   const lessons = posCatalog as PartsOfSpeechMetadata[];
 
-  return <PartsOfSpeechHubMap lessons={lessons} />;
+  return (
+    <Container>
+      <PartsOfSpeechHubMap lessons={lessons} />
+    </Container>
+  );
 }

@@ -9,8 +9,14 @@ export const metadata: Metadata = {
     "Hệ thống luyện tập 12 thì tiếng Anh thực chiến dành cho người đi làm và sinh viên. 100% miễn phí, ngữ cảnh công sở thực tế.",
 };
 
+import { Container } from "@/components/ui/container";
+
 export default function TensesHubPage() {
   const tenses = tensesCatalog as TenseMetadata[];
 
-  return <TenseHubMap tenses={tenses} />;
+  return (
+    <Container>
+      <TenseHubMap tenses={tenses} />
+    </Container>
+  );
 }
