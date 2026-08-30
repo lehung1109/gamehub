@@ -5,8 +5,8 @@ import { Sentence } from "@/types";
 describe("sentences.json", () => {
   const sentences = sentencesData as Sentence[];
 
-  it("should contain at least 10 sentences", () => {
-    expect(sentences.length).toBeGreaterThanOrEqual(10);
+  it("should contain exactly 50 sentences", () => {
+    expect(sentences.length).toBe(50);
   });
 
   it("should have all required fields for each sentence", () => {
@@ -19,10 +19,10 @@ describe("sentences.json", () => {
       expect(ids.has(sentence.id)).toBe(false);
       ids.add(sentence.id);
 
-      // Words array (2-5 words for 6-7 year olds)
+      // Words array (10-12 words for older kids)
       expect(Array.isArray(sentence.words)).toBe(true);
-      expect(sentence.words.length).toBeGreaterThanOrEqual(2);
-      expect(sentence.words.length).toBeLessThanOrEqual(5);
+      expect(sentence.words.length).toBeGreaterThanOrEqual(10);
+      expect(sentence.words.length).toBeLessThanOrEqual(12);
 
       // full string matching words joined with single space
       expect(sentence.full).toBe(sentence.words.join(" "));

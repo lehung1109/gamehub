@@ -31,8 +31,8 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T006 [P] [US1] Spawn a dedicated subagent to execute Phase 3 implementation and TDD.
-- [ ] T007 [US1] Create or update unit tests in `tests/data/sentences.test.ts` (or `src/data/sentences.test.ts` if co-located) to assert the length and schema of the sentences. Verify the test fails initially (`npm run test:run`).
+- [x] T006 [P] [US1] Spawn a dedicated subagent to execute Phase 3 implementation and TDD.
+- [x] T007 [US1] Create or update unit tests in `tests/data/sentences.test.ts` (or `src/data/sentences.test.ts` if co-located) to assert the length and schema of the sentences. Verify the test fails initially (`npm run test:run`).
   ```typescript
   import { expect, test, describe } from 'vitest';
   import sentences from '../../src/data/sentences.json'; // adjust path
@@ -57,7 +57,7 @@
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Implement the 50 complex sentences in `src/data/sentences.json` ensuring they strictly match the schema (`id`, `words`, `full`, `vietnamese`, `emoji`, `category`) and the 10-12 word constraint.
+- [x] T008 [US1] Implement the 50 complex sentences in `src/data/sentences.json` ensuring they strictly match the schema (`id`, `words`, `full`, `vietnamese`, `emoji`, `category`) and the 10-12 word constraint.
   *Pseudocode/Example format:*
   ```json
   [
@@ -72,10 +72,10 @@
     ... (49 more)
   ]
   ```
-- [ ] T009 [US1] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor data if necessary until green.
-- [ ] T010 [US1] Run the application locally (`npm run dev`) and visually validate that sentences render correctly without layout breakage per `quickstart.md`.
-- [ ] T011 [US1] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (code review, spec compliance, `npm run lint`, zero bugs). If bugs found, fix and re-spawn review subagent until zero bugs remain.
-- [ ] T012 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
+- [x] T009 [US1] Run the unit tests (`npm run test:run`) to verify they now pass (Green step of TDD). Refactor data if necessary until green.
+- [x] T010 [US1] Run the application locally (`npm run dev`) and visually validate that sentences render correctly without layout breakage per `quickstart.md`.
+- [x] T011 [US1] Spawn a dedicated subagent to conduct an Iterative Review & Bug Hunt (code review, spec compliance, `npm run lint`, zero bugs). If bugs found, fix and re-spawn review subagent until zero bugs remain.
+- [x] T012 [US1] Commit Phase 3 changes with a descriptive conventional commit message.
 
 ---
 
