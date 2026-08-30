@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, CheckCircle2, Sparkles, ArrowRight, Lock, Award } from "lucide-react";
+import { Clock, CheckCircle2, ArrowRight, Lock, Award } from "lucide-react";
 import { PartsOfSpeechMetadata, PartsOfSpeechProgressRecord } from "@/types/parts-of-speech";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";

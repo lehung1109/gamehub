@@ -15,3 +15,41 @@ vi.mock("next/font/google", () => ({
     className: "font-geist-mono",
   }),
 }));
+
+const createStorageMock = () => {
+  let store: Record<string, string> = {};
+  return {
+    getItem(key: string) {
+      return store[key] || null;
+    },
+    setItem(key: string, value: string) {
+      store[key] = value.toString();
+    },
+    removeItem(key: string) {
+      delete store[key];
+    },
+    clear() {
+      store = {};
+    },
+    get length() {
+      return Object.keys(store).length;
+    },
+    key(index: number) {
+      const keys = Object.keys(store);
+      return keys[index] || null;
+    },
+  };
+};
+
+const localStorageMock = createStorageMock();
+const sessionStorageMock = createStorageMock();
+
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'localStorage', { value: localStorageMock, writable: true });
+  Object.defineProperty(window, 'sessionStorage', { value: sessionStorageMock, writable: true });
+}
+
+if (typeof global !== 'undefined') {
+  Object.defineProperty(global, 'localStorage', { value: localStorageMock, writable: true });
+  Object.defineProperty(global, 'sessionStorage', { value: sessionStorageMock, writable: true });
+}

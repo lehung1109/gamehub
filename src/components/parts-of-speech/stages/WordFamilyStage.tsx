@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -90,13 +90,6 @@ export function WordFamilyStage({ questions, onComplete }: WordFamilyStageProps)
 
   const currentQuestion = questions[currentIndex];
   
-  // Update placed option if moving to a new question
-  useEffect(() => {
-    setPlacedOption(null);
-    setIsSubmitted(false);
-    setIsCorrect(null);
-  }, [currentIndex]);
-
   const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 8 } });
   const keyboardSensor = useSensor(KeyboardSensor);
   const sensors = useSensors(pointerSensor, keyboardSensor);
@@ -149,6 +142,9 @@ export function WordFamilyStage({ questions, onComplete }: WordFamilyStageProps)
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
+      setPlacedOption(null);
+      setIsSubmitted(false);
+      setIsCorrect(null);
     } else {
       // score is already updated in handleSubmit, just pass score
       onComplete(score, questions.length);

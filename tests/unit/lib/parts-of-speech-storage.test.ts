@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import {
-  PARTS_OF_SPEECH_STORAGE_KEY,
   createDefaultStageProgress,
   createInitialProgressRecord,
   calculateAggregates,
@@ -8,9 +7,7 @@ import {
   getProgress,
   saveStageProgress,
   resetProgress,
-  partsOfSpeechProgressStorage,
 } from "@/lib/parts-of-speech-storage";
-import { PartsOfSpeechProgressRecord } from "@/types/parts-of-speech";
 
 describe("parts-of-speech-storage", () => {
   beforeEach(() => {
