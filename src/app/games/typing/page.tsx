@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from 'react';
+import React, { useMemo, Suspense } from 'react';
 import { useTypingGame } from '@/hooks/useTypingGame';
 import { parseTenseDataToTypingQuestions } from '@/lib/typingParser';
 import presentSimpleData from '@/data/tenses/present-simple.json';
@@ -13,7 +13,7 @@ import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useGameConfig } from '@/hooks/useGameConfig';
 import { TypingSettings } from '@/types/config';
 
-export default function TypingGamePage() {
+function TypingGameContent() {
   const { settings, isLoading, isPreview } = useGameConfig<TypingSettings>('typing');
 
   const questions = useMemo(() => {
@@ -130,5 +130,13 @@ export default function TypingGamePage() {
         )}
       </Card>
     </div>
+  );
+}
+
+export default function TypingGamePage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading game...</div>}>
+      <TypingGameContent />
+    </Suspense>
   );
 }
