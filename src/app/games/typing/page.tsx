@@ -23,8 +23,9 @@ function TypingGameContent() {
     const allQuestions = parseTenseDataToTypingQuestions(presentSimpleData);
     // shuffle and take first 10 for a session
     const shuffled = [...allQuestions].sort(() => Math.random() - 0.5).slice(0, 10);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setQuestions(shuffled);
+    // Defer state update to avoid synchronous cascading render warning
+    const timer = setTimeout(() => setQuestions(shuffled), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const {

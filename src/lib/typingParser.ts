@@ -16,14 +16,21 @@ export function parseTenseDataToTypingQuestions(tenseData: TenseData): FillBlank
     if (Array.isArray(challenges)) {
       for (const item of challenges) {
         if (typeof item === 'object' && item !== null) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const challenge = item as Record<string, any>;
+          const challenge = item as Record<string, unknown>;
           if (
             typeof challenge.textBefore === 'string' &&
             typeof challenge.textAfter === 'string' &&
             typeof challenge.correctAnswer === 'string' &&
             typeof challenge.baseVerb === 'string'
           ) {
+            let explanation;
+            if (typeof challenge.explanation === 'object' && challenge.explanation !== null) {
+              const expl = challenge.explanation as Record<string, unknown>;
+              if (typeof expl.ruleVi === 'string' && typeof expl.detailedAnalysisVi === 'string') {
+                explanation = { ruleVi: expl.ruleVi, detailedAnalysisVi: expl.detailedAnalysisVi };
+              }
+            }
+            
             questions.push({
               id: String(challenge.id),
               textBefore: challenge.textBefore,
@@ -31,10 +38,9 @@ export function parseTenseDataToTypingQuestions(tenseData: TenseData): FillBlank
               textAfter: challenge.textAfter,
               correctAnswer: challenge.correctAnswer,
               acceptableAlternatives: Array.isArray(challenge.acceptableAlternatives) 
-                ? challenge.acceptableAlternatives 
+                ? challenge.acceptableAlternatives.filter((a): a is string => typeof a === 'string')
                 : undefined,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              explanation: challenge.explanation as any,
+              explanation,
             });
           }
         }
