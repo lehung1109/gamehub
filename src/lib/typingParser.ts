@@ -1,6 +1,10 @@
 import { FillBlankQuestion } from '@/types/typing';
 
-export function parseTenseDataToTypingQuestions(tenseData: any): FillBlankQuestion[] {
+interface TenseData {
+  challenges?: Record<string, unknown[]>;
+}
+
+export function parseTenseDataToTypingQuestions(tenseData: TenseData): FillBlankQuestion[] {
   const questions: FillBlankQuestion[] = [];
   
   if (!tenseData || !tenseData.challenges) return questions;
@@ -10,22 +14,35 @@ export function parseTenseDataToTypingQuestions(tenseData: any): FillBlankQuesti
   for (const category in tenseData.challenges) {
     const challenges = tenseData.challenges[category];
     if (Array.isArray(challenges)) {
-      for (const challenge of challenges) {
-        if (
-          challenge.textBefore !== undefined &&
-          challenge.textAfter !== undefined &&
-          challenge.correctAnswer !== undefined &&
-          challenge.baseVerb !== undefined
-        ) {
-          questions.push({
-            id: challenge.id,
-            textBefore: challenge.textBefore,
-            baseVerb: challenge.baseVerb,
-            textAfter: challenge.textAfter,
-            correctAnswer: challenge.correctAnswer,
-            acceptableAlternatives: challenge.acceptableAlternatives,
-            explanation: challenge.explanation,
-          });
+      for (const item of challenges) {
+        if (typeof item === 'object' && item !== null) {
+          const challenge = item as Record<string, unknown>;
+          if (
+            typeof challenge.textBefore === 'string' &&
+            typeof challenge.textAfter === 'string' &&
+            typeof challenge.correctAnswer === 'string' &&
+            typeof challenge.baseVerb === 'string'
+          ) {
+            let explanation;
+            if (typeof challenge.explanation === 'object' && challenge.explanation !== null) {
+              const expl = challenge.explanation as Record<string, unknown>;
+              if (typeof expl.ruleVi === 'string' && typeof expl.detailedAnalysisVi === 'string') {
+                explanation = { ruleVi: expl.ruleVi, detailedAnalysisVi: expl.detailedAnalysisVi };
+              }
+            }
+            
+            questions.push({
+              id: String(challenge.id),
+              textBefore: challenge.textBefore,
+              baseVerb: challenge.baseVerb,
+              textAfter: challenge.textAfter,
+              correctAnswer: challenge.correctAnswer,
+              acceptableAlternatives: Array.isArray(challenge.acceptableAlternatives) 
+                ? challenge.acceptableAlternatives.filter((a): a is string => typeof a === 'string')
+                : undefined,
+              explanation,
+            });
+          }
         }
       }
     }

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { ConversationScenario, LearnerResponse, RoleplayGameState } from '@/types/roleplay'
 
 export interface UseRoleplayGameOptions {
