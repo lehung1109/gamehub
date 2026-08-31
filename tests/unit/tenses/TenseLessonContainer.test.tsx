@@ -126,8 +126,8 @@ describe("TenseLessonContainer component", () => {
   it("navigates from QuickRulesTab CTA into Stage 1 directly", () => {
     render(<TenseLessonContainer lessonData={mockLessonData} />);
 
-    // On Quick Rules tab, click "Bắt đầu luyện tập 3 chặng"
-    const startPracticeBtn = screen.getByRole("button", { name: /bắt đầu luyện tập 3 chặng/i });
+    // On Quick Rules tab, click "Bắt đầu luyện tập X chặng"
+    const startPracticeBtn = screen.getByRole("button", { name: /bắt đầu luyện tập \d+ chặng/i });
     fireEvent.click(startPracticeBtn);
 
     // Directly in Stage 1

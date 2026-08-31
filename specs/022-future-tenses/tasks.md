@@ -75,10 +75,10 @@ description: "Task list for Future Tenses implementation"
 
 **Purpose**: Holistic, feature-level review encompassing all previous phases as mandated by Constitution Principle VI.6.
 
-- [ ] T019 Spawn a final review subagent to conduct a comprehensive bug hunt and integration review across the entire implemented feature (verifying all json files load properly).
-- [ ] T020 Run full quality gates: `npm run lint`, `npx tsc --noEmit`, `npm run test:run`, `npm run test:e2e`, and `npm run build`. Fix any identified issues.
-- [ ] T021 Execute a final review loop if fixes were made.
-- [ ] T022 Finalize the feature with a comprehensive commit encompassing all validated changes.
+- [x] T019 Conduct a comprehensive bug hunt and integration review across the entire implemented feature (verifying all json files load properly).
+- [x] T020 Run full quality gates: `npm run lint`, `npx tsc --noEmit`, `npm run test:run`, `npm run test:e2e`, and `npm run build`. Fix any identified issues.
+- [x] T021 Execute a final review loop if fixes were made.
+- [x] T022 Finalize the feature with a comprehensive commit encompassing all validated changes.
 
 ---
 

@@ -240,6 +240,8 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
       "deliver",            // Q6
       "have",               // Q7
       "does not exceed",    // Q8
+      "reviews",            // Q9
+      "hold",               // Q10
     ];
 
     for (let i = 0; i < answers.length; i++) {
@@ -259,6 +261,11 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     const finishBtn = page.getByRole("button", { name: /xem kết quả chặng 1|hoàn thành/i });
     await expect(finishBtn).toBeVisible();
     await finishBtn.click();
+
+    // Click "Quay lại danh sách" on Stage Result UI
+    const backToListBtn = page.getByRole("button", { name: /về danh sách chặng/i });
+    await expect(backToListBtn).toBeVisible();
+    await backToListBtn.click();
 
     // 13. Verify return to stage list
     await expect(page.getByRole("button", { name: /luyện lại chặng 1|vào chặng 1/i })).toBeVisible();
@@ -388,6 +395,11 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(finishStage2Btn).toBeVisible();
     await finishStage2Btn.click();
 
+    // Click "Quay lại danh sách" on Stage Result UI
+    const backToListBtn2 = page.getByRole("button", { name: /về danh sách chặng/i });
+    await expect(backToListBtn2).toBeVisible();
+    await backToListBtn2.click();
+
     // 13. Verify return to stage list
     await expect(page.getByRole("button", { name: /luyện lại chặng 2|vào chặng 2/i })).toBeVisible();
 
@@ -409,7 +421,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await page.evaluate(() => {
       sessionStorage.setItem(
         'gamehub-session-present-simple-sentenceBuilding',
-        JSON.stringify(["sb-01", "sb-02", "sb-03", "sb-04", "sb-05", "sb-06"])
+        JSON.stringify(["sb-01", "sb-02", "sb-03", "sb-04", "sb-05", "sb-06", "sb-07", "sb-08", "sb-09", "sb-10"])
       );
     });
 
@@ -575,7 +587,8 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
       await page.getByRole("button", { name: /câu tiếp theo/i }).click();
       const currentTokens = sentenceStages[i];
       for (const tok of currentTokens) {
-        await page.getByRole("button", { name: new RegExp(`thêm "${tok}"`, "i") }).click();
+        const escapedTok = tok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        await page.getByRole("button", { name: new RegExp(`thêm "${escapedTok}"`, "i") }).first().click();
       }
       await page.getByRole("button", { name: /kiểm tra câu/i }).click();
       await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
@@ -585,6 +598,12 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     const finishStage3Btn = page.getByRole("button", { name: /xem kết quả chặng 3|hoàn thành/i });
     await expect(finishStage3Btn).toBeVisible();
     await finishStage3Btn.click();
+
+    // Click "Quay lại danh sách" on Stage Result UI
+    // Note: since this is the last stage, it auto redirects to completion dashboard!
+    const backToListBtn3 = page.getByRole("button", { name: /về danh sách chặng/i });
+    await expect(backToListBtn3).toBeVisible();
+    await backToListBtn3.click();
 
     // 14. Verify return to stage list
     await expect(page.getByRole("button", { name: /luyện lại chặng 3|vào chặng 3/i })).toBeVisible();

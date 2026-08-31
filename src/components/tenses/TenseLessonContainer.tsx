@@ -394,10 +394,7 @@ export function TenseLessonContainer({ lessonData }: TenseLessonContainerProps) 
 
                         <CardFooter className="pt-2 border-t border-border/40 mt-auto">
                           <Button
-                            onClick={() => {
-                              sessionStorage.removeItem(getStageSessionKey(stage.id));
-                              setCurrentStage(stage.id);
-                            }}
+                            onClick={() => setCurrentStage(stage.id)}
                             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm gap-1.5 min-h-[44px] cursor-pointer"
                           >
                             <Play className="size-3.5" aria-hidden="true" />
