@@ -63,7 +63,7 @@
     },
     {
       "id": "qr-2",
-      "category": "action-verbs",
+      "category": "spelling-rules",
       "titleVi": "Cách thêm -ing",
       "titleEn": "Spelling Rules for -ing",
       "summaryVi": "Quy tắc thêm đuôi -ing vào động từ.",
@@ -107,6 +107,35 @@
             {
               "en": "stop -> stopping",
               "vi": "đang dừng"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-signals",
+      "category": "adverbs-frequency",
+      "titleVi": "Dấu hiệu nhận biết",
+      "titleEn": "Time Expressions",
+      "summaryVi": "Các cụm từ thời gian thường đi kèm.",
+      "rulesList": [
+        {
+          "ruleVi": "Thời gian cụ thể trong quá khứ",
+          "condition": "at + giờ + thời gian quá khứ",
+          "examples": [
+            {
+              "en": "at 8 PM last night",
+              "vi": "lúc 8 giờ tối qua"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Hành động song song / Xen vào",
+          "condition": "while / when",
+          "examples": [
+            {
+              "en": "While I was coding, the server crashed.",
+              "vi": "Trong lúc tôi đang code thì server sập."
             }
           ]
         }

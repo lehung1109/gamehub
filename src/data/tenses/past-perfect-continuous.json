@@ -52,29 +52,6 @@
       ]
     },
     {
-      "id": "qr-2",
-      "category": "workplace-usage",
-      "titleVi": "Ứng dụng nơi công sở",
-      "titleEn": "Workplace Usage",
-      "summaryVi": "Giải thích nguyên nhân của một kết quả trong quá khứ hoặc báo cáo thời gian đã bỏ ra cho một dự án trước khi có sự cố.",
-      "workplaceTips": [
-        "Sử dụng trong các buổi họp post-mortem (rút kinh nghiệm) để giải thích tình trạng hệ thống hoặc công việc trước khi sự cố xảy ra.",
-        "Thường đi kèm với các từ chỉ nguyên nhân kết quả như because."
-      ],
-      "rulesList": [
-        {
-          "ruleVi": "Nguyên nhân của một kết quả trong quá khứ",
-          "condition": "Hành động kéo dài gây ra kết quả có thể thấy được.",
-          "examples": [
-            {
-              "en": "The server crashed because it had been processing too many requests.",
-              "vi": "Máy chủ bị sập vì nó đã và đang xử lý quá nhiều yêu cầu."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "qr-3",
       "category": "spelling-rules",
       "titleVi": "Quy tắc thêm -ing",
@@ -92,6 +69,48 @@
             {
               "en": "write -> writing",
               "vi": "viết"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-signals",
+      "category": "adverbs-frequency",
+      "titleVi": "Dấu hiệu nhận biết",
+      "titleEn": "Time Expressions",
+      "summaryVi": "Các dấu hiệu nhận biết thường gặp.",
+      "rulesList": [
+        {
+          "ruleVi": "Khoảng thời gian tính đến 1 mốc quá khứ",
+          "condition": "for + khoảng thời gian + before/by the time",
+          "examples": [
+            {
+              "en": "We had been trying for hours before we found the bug.",
+              "vi": "Chúng tôi đã tìm kiếm suốt nhiều giờ trước khi phát hiện ra lỗi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-2",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng nơi công sở",
+      "titleEn": "Workplace Usage",
+      "summaryVi": "Giải thích nguyên nhân của một kết quả trong quá khứ hoặc báo cáo thời gian đã bỏ ra cho một dự án trước khi có sự cố.",
+      "workplaceTips": [
+        "Sử dụng trong các buổi họp post-mortem (rút kinh nghiệm) để giải thích tình trạng hệ thống hoặc công việc trước khi sự cố xảy ra.",
+        "Thường đi kèm với các từ chỉ nguyên nhân kết quả như because."
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Nguyên nhân của một kết quả trong quá khứ",
+          "condition": "Hành động kéo dài gây ra kết quả có thể thấy được.",
+          "examples": [
+            {
+              "en": "The server crashed because it had been processing too many requests.",
+              "vi": "Máy chủ bị sập vì nó đã và đang xử lý quá nhiều yêu cầu."
             }
           ]
         }
