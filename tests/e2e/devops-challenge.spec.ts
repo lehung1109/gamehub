@@ -16,9 +16,9 @@ test.describe('DevOps Challenge Stage', () => {
     await page.locator('button', { hasText: 'Vào Chặng 4' }).click();
 
     // It should have mixed questions (Conjugation, Error Hunting, Sentence Building)
-    // We expect 9 questions total. We'll verify we are in the challenge
-    // by checking for the back button and progress indicator showing 1/9
-    await expect(page.locator('text=Câu 1 / 9')).toBeVisible();
+    // We expect 10 questions total. We'll verify we are in the challenge
+    // by checking for the back button and progress indicator showing 1/10
+    await expect(page.locator('text=Câu 1 / 10')).toBeVisible();
 
     // We will fail here if DevOpsChallengeStage.tsx is not implemented yet
   });

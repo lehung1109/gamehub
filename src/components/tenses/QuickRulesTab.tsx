@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export interface QuickRulesTabProps {
   rules?: GrammarRuleCard[];
+  stageCount?: number;
   onStartPractice?: () => void;
   className?: string;
 }
@@ -64,7 +65,12 @@ function AudioButton({ text, className }: AudioButtonProps) {
   );
 }
 
-export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickRulesTabProps) {
+export function QuickRulesTab({
+  rules = [],
+  stageCount = 3,
+  onStartPractice,
+  className,
+}: QuickRulesTabProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   if (!rules || rules.length === 0) {
@@ -270,14 +276,13 @@ export function QuickRulesTab({ rules = [], onStartPractice, className }: QuickR
       {/* Bottom CTA for starting practice */}
       {onStartPractice && (
         <div className="text-center pt-6 pb-2">
-          <Button
-            type="button"
-            onClick={onStartPractice}
-            className="min-h-[44px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm sm:text-base gap-2 shadow-sm cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-indigo-500"
-          >
-            <span>Bắt đầu Luyện Tập 3 Chặng</span>
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Button>
+            <Button
+              onClick={onStartPractice}
+              className="min-h-[44px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm sm:text-base gap-2 shadow-sm cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-indigo-500"
+            >
+              <span>Bắt đầu Luyện Tập {stageCount} Chặng</span>
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Button>
         </div>
       )}
     </div>

@@ -7,7 +7,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
   }) => {
     // 1. Visit the Present Simple lesson and go to Practice tab -> Stage 1
     await page.goto("/tenses/present-simple");
-    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTab = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await practiceTab.click();
 
     const enterStage1Btn = page.getByRole("button", { name: /vào chặng 1/i });
@@ -29,7 +29,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
     await page.reload();
 
     // Go back to Stage 1
-    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await practiceTabAfterReload.click();
     
     // Check if progress is saved or we need to enter Stage 1 again
@@ -54,7 +54,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
     const newPage = await newContext.newPage();
 
     await newPage.goto("/tenses/present-simple");
-    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await newPracticeTab.click();
 
     const newEnterStage1Btn = newPage.getByRole("button", { name: /vào chặng 1/i });
@@ -88,7 +88,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
     browser,
   }) => {
     await page.goto("/tenses/present-simple");
-    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTab = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await practiceTab.click();
 
     const enterStage2Btn = page.getByRole("button", { name: /vào chặng 2/i });
@@ -103,7 +103,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
 
     await page.reload();
 
-    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await practiceTabAfterReload.click();
     
     const enterStage2BtnAfterReload = page.getByRole("button", { name: /vào chặng 2/i });
@@ -122,7 +122,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
     const newPage = await newContext.newPage();
 
     await newPage.goto("/tenses/present-simple");
-    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await newPracticeTab.click();
 
     const newEnterStage2Btn = newPage.getByRole("button", { name: /vào chặng 2/i });
@@ -147,7 +147,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
     browser,
   }) => {
     await page.goto("/tenses/present-simple");
-    const practiceTab = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTab = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await practiceTab.click();
 
     const enterStage3Btn = page.getByRole("button", { name: /vào chặng 3/i });
@@ -162,7 +162,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
 
     await page.reload();
 
-    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const practiceTabAfterReload = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await practiceTabAfterReload.click();
     
     const enterStage3BtnAfterReload = page.getByRole("button", { name: /vào chặng 3/i });
@@ -181,7 +181,7 @@ test.describe("Present Simple Conjugation - Randomization & Session Persistence"
     const newPage = await newContext.newPage();
 
     await newPage.goto("/tenses/present-simple");
-    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập 3 chặng/i });
+    const newPracticeTab = newPage.getByRole("tab", { name: /luyện tập \d+ chặng/i });
     await newPracticeTab.click();
 
     const newEnterStage3Btn = newPage.getByRole("button", { name: /vào chặng 3/i });

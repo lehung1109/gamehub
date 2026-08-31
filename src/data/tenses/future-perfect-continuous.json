@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "id": "future-perfect-continuous",
+    "slug": "future-perfect-continuous",
+    "name": "Future Perfect Continuous",
+    "vietnameseName": "Thì Tương Lai Hoàn Thành Tiếp Diễn",
+    "group": "future",
+    "status": "active",
+    "level": "C1 (Advanced)",
+    "badge": "Nhấn mạnh khoảng thời gian",
+    "description": "Diễn tả một hành động sẽ đang xảy ra liên tục cho đến một thời điểm trong tương lai.",
+    "estimatedMinutes": 10,
+    "challengeCount": 10
+  },
+  "quickRules": [
+    {
+      "id": "will-have-been-ing-formula",
+      "category": "will-have-been-ing",
+      "titleVi": "Cấu Trúc Will have been + V-ing",
+      "titleEn": "Will have been V-ing Structure",
+      "summaryVi": "Dùng để nhấn mạnh khoảng thời gian kéo dài liên tục của hành động tính đến thời điểm tương lai.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will have been + V-ing",
+          "example": "By next month, I will have been working here for 5 years.",
+          "vietnameseTranslation": "Tính đến tháng sau, tôi sẽ làm việc ở đây được tròn 5 năm."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Dấu hiệu nhận biết",
+          "condition": "by + mốc thời gian tương lai, for + khoảng thời gian.",
+          "examples": [
+            {
+              "en": "By 5 PM, she will have been typing for 3 hours.",
+              "vi": "Tính đến 5 giờ chiều, cô ấy sẽ đánh máy được 3 tiếng."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Thường dùng trong các dịp kỷ niệm (anniversaries), đánh giá thâm niên hoặc báo cáo những quá trình làm việc dài hạn."
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "conj-fpc-01",
+        "contextType": "chat",
+        "scenarioVi": "Kỷ niệm thâm niên làm việc",
+        "sender": "HR",
+        "recipient": "Employee",
+        "subject": "",
+        "textBefore": "By December 1st, you ",
+        "baseVerb": "work",
+        "textAfter": " in our company for exactly 10 years.",
+        "correctAnswer": "will have been working",
+        "acceptableAlternatives": [
+          "will have been working"
+        ],
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu 'By December 1st' kết hợp với 'for exactly 10 years' đòi hỏi dùng Thì tương lai hoàn thành tiếp diễn (hoặc hoàn thành) để nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động work mang tính liên tục nên ưu tiên dùng will have been working."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "err-fpc-01",
+        "scenarioVi": "Đánh giá quá trình đàm phán",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "they",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "two",
+          "weeks."
+        ],
+        "errorTokenIndex": 5,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, they will have been negotiating for two weeks.",
+        "vietnameseMeaning": "Tính đến ngày mai, họ sẽ đàm phán được hai tuần rồi.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc chuẩn là 'will have been V-ing', không phải 'will have be'.",
+          "workplaceImpactVi": "Lỗi sử dụng thì hiếm gặp này dễ bị bỏ qua, nhưng sửa đúng sẽ thể hiện sự xuất sắc về ngữ pháp."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "sb-fpc-01",
+        "scenarioVi": "Kể về kinh nghiệm quản lý dự án",
+        "vietnameseMeaning": "Đến năm sau, cô ấy sẽ quản lý dự án này được 3 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By next year,"
+          },
+          {
+            "id": "t2",
+            "text": "she"
+          },
+          {
+            "id": "t3",
+            "text": "will have been managing"
+          },
+          {
+            "id": "t4",
+            "text": "this project"
+          },
+          {
+            "id": "t5",
+            "text": "for 3 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By next year,",
+          "she",
+          "will have been managing",
+          "this project",
+          "for 3 years."
+        ],
+        "fullSentenceEn": "By next year, she will have been managing this project for 3 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      }
+    ]
+  }
+}

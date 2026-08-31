@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "id": "future-continuous",
+    "slug": "future-continuous",
+    "name": "Future Continuous",
+    "vietnameseName": "Thì Tương Lai Tiếp Diễn",
+    "group": "future",
+    "status": "active",
+    "level": "B1 (Intermediate)",
+    "badge": "Lịch trình đang diễn ra",
+    "description": "Diễn tả hành động sẽ đang diễn ra tại một thời điểm cụ thể trong tương lai.",
+    "estimatedMinutes": 10,
+    "challengeCount": 10
+  },
+  "quickRules": [
+    {
+      "id": "will-be-ing-formula",
+      "category": "will-be-ing",
+      "titleVi": "Cấu Trúc Will be + V-ing",
+      "titleEn": "Will be V-ing Structure",
+      "summaryVi": "Sử dụng cho hành động sẽ đang xảy ra ở tương lai.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will be + V-ing",
+          "example": "At 9 AM tomorrow, I will be presenting the new project.",
+          "vietnameseTranslation": "Lúc 9 giờ sáng mai, tôi sẽ đang thuyết trình dự án mới."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Hành động đang diễn ra tại một thời điểm xác định",
+          "condition": "Thường đi kèm với: at this time tomorrow, at 10 AM next Monday...",
+          "examples": [
+            {
+              "en": "At this time next week, we will be flying to Tokyo.",
+              "vi": "Giờ này tuần sau, chúng tôi sẽ đang bay tới Tokyo."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Sử dụng để từ chối lịch hẹn một cách khéo léo: 'I can't meet at 2 PM. I will be interviewing a candidate then.'"
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "conj-fc-01",
+        "contextType": "chat",
+        "scenarioVi": "Từ chối khéo một lịch họp",
+        "sender": "Tom",
+        "recipient": "Jerry",
+        "subject": "",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the marketing team.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Hành động sẽ đang diễn ra tại thời điểm 3 PM trong tương lai.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "err-fc-01",
+        "scenarioVi": "Nói về lịch trình ngày mai",
+        "tokens": [
+          "At",
+          "10 AM",
+          "tomorrow,",
+          "she",
+          "will",
+          "working",
+          "on",
+          "the",
+          "report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At 10 AM tomorrow, she will be working on the report.",
+        "vietnameseMeaning": "Lúc 10 giờ sáng mai, cô ấy sẽ đang làm báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'to be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Thiếu 'be' làm sai ngữ pháp trầm trọng, người nghe vẫn hiểu nhưng thể hiện sự thiếu chuyên nghiệp."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "sb-fc-01",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống",
+        "vietnameseMeaning": "Đội ngũ IT sẽ đang nâng cấp máy chủ vào lúc nửa đêm nay.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The IT team"
+          },
+          {
+            "id": "t2",
+            "text": "will be upgrading"
+          },
+          {
+            "id": "t3",
+            "text": "the servers"
+          },
+          {
+            "id": "t4",
+            "text": "at midnight"
+          },
+          {
+            "id": "t5",
+            "text": "tonight."
+          }
+        ],
+        "correctTokenOrder": [
+          "The IT team",
+          "will be upgrading",
+          "the servers",
+          "at midnight",
+          "tonight."
+        ],
+        "fullSentenceEn": "The IT team will be upgrading the servers at midnight tonight.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian cụ thể",
+          "tipVi": "Sử dụng thời gian cụ thể (at midnight tonight) để nhấn mạnh quá trình đang diễn ra."
+        }
+      }
+    ]
+  }
+}

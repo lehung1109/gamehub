@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "id": "future-simple",
+    "slug": "future-simple",
+    "name": "Future Simple",
+    "vietnameseName": "Thì Tương Lai Đơn",
+    "group": "future",
+    "status": "active",
+    "level": "A1-A2 (Beginner)",
+    "badge": "Kế hoạch & Dự đoán",
+    "description": "Diễn tả quyết định tức thời, dự đoán không có căn cứ, và lời hứa hẹn trong công việc.",
+    "estimatedMinutes": 10,
+    "challengeCount": 10
+  },
+  "quickRules": [
+    {
+      "id": "will-formula",
+      "category": "will",
+      "titleVi": "Cấu Trúc Will",
+      "titleEn": "Will Structure",
+      "summaryVi": "Dùng để đưa ra quyết định ngay tại thời điểm nói, lời hứa, hoặc dự đoán.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will + V-infinitive",
+          "example": "I will send the report by 5 PM.",
+          "vietnameseTranslation": "Tôi sẽ gửi báo cáo trước 5 giờ chiều."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + will not (won't) + V-infinitive",
+          "example": "We won't launch the product this month.",
+          "vietnameseTranslation": "Chúng tôi sẽ không ra mắt sản phẩm trong tháng này."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Will + S + V-infinitive?",
+          "example": "Will you attend the conference tomorrow?",
+          "vietnameseTranslation": "Bạn có tham dự hội nghị ngày mai không?"
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Quyết định tức thời",
+          "condition": "Sử dụng khi quyết định một việc ngay lúc đang nói.",
+          "examples": [
+            {
+              "en": "I am thirsty. I will get some water.",
+              "vi": "Tôi khát nước. Tôi sẽ đi lấy nước."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Dự đoán (không có căn cứ chắc chắn)",
+          "condition": "Sử dụng với các từ: think, believe, suppose, perhaps, probably.",
+          "examples": [
+            {
+              "en": "I think the client will accept our proposal.",
+              "vi": "Tôi nghĩ khách hàng sẽ chấp nhận đề xuất của chúng ta."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Lời hứa, lời đề nghị",
+          "condition": "Sử dụng khi hứa hẹn hoặc đề nghị giúp đỡ.",
+          "examples": [
+            {
+              "en": "Don't worry, I won't tell anyone.",
+              "vi": "Đừng lo, tôi sẽ không nói với ai đâu."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Trong email giao dịch, 'I will' thường được dùng để cam kết hành động: 'I will check and revert to you shortly.'",
+        "Có thể viết tắt: I will -> I'll, We will -> We'll, Will not -> won't."
+      ]
+    }
+  ],
+  "challenges": {
+    "conjugation": [
+      {
+        "id": "conj-fs-01",
+        "contextType": "email",
+        "scenarioVi": "Cam kết thời gian gửi tài liệu cho đối tác",
+        "sender": "Anna <anna@company.com>",
+        "recipient": "Client <client@corp.com>",
+        "subject": "Project Documentation",
+        "textBefore": "I ",
+        "baseVerb": "send",
+        "textAfter": " the updated documents to you by tomorrow morning.",
+        "correctAnswer": "will send",
+        "acceptableAlternatives": [
+          "'ll send",
+          "will send"
+        ],
+        "options": [
+          "send",
+          "will send",
+          "sending",
+          "am send"
+        ],
+        "explanation": {
+          "ruleVi": "Cam kết/lời hứa trong công việc thường dùng 'will + V'.",
+          "detailedAnalysisVi": "Người viết đang hứa sẽ gửi tài liệu vào sáng mai, nên dùng thì tương lai đơn với 'will'."
+        }
+      },
+      {
+        "id": "conj-fs-02",
+        "contextType": "chat",
+        "scenarioVi": "Đưa ra quyết định tức thời trong cuộc họp",
+        "sender": "Manager",
+        "recipient": "Team",
+        "subject": "",
+        "textBefore": "We don't have enough time to discuss this now. We ",
+        "baseVerb": "continue",
+        "textAfter": " this topic in the next meeting.",
+        "correctAnswer": "will continue",
+        "acceptableAlternatives": [
+          "'ll continue",
+          "will continue"
+        ],
+        "options": [
+          "continue",
+          "will continue",
+          "are continuing",
+          "continues"
+        ],
+        "explanation": {
+          "ruleVi": "Quyết định tức thời ngay tại thời điểm nói.",
+          "detailedAnalysisVi": "Vì thời gian đã hết, người quản lý quyết định dời chủ đề sang cuộc họp sau, dùng 'will continue'."
+        }
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "err-fs-01",
+        "scenarioVi": "Dự đoán về doanh thu quý tới",
+        "tokens": [
+          "I",
+          "think",
+          "our",
+          "sales",
+          "will",
+          "increases",
+          "next",
+          "quarter."
+        ],
+        "errorTokenIndex": 5,
+        "correctToken": "increase",
+        "options": [
+          {
+            "value": "increase",
+            "label": "increase",
+            "isCorrect": true
+          },
+          {
+            "value": "increasing",
+            "label": "increasing",
+            "isCorrect": false
+          },
+          {
+            "value": "to increase",
+            "label": "to increase",
+            "isCorrect": false
+          },
+          {
+            "value": "increases",
+            "label": "increases",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I think our sales will increase next quarter.",
+        "vietnameseMeaning": "Tôi nghĩ doanh thu của chúng ta sẽ tăng vào quý tới.",
+        "explanation": {
+          "whyWrongVi": "Sau 'will' động từ phải ở dạng nguyên mẫu không 'to'.",
+          "workplaceImpactVi": "Lỗi thêm 's/es' sau 'will' là lỗi sai cơ bản thường gặp, làm giảm mức độ thành thạo ngôn ngữ trong mắt đối tác."
+        }
+      }
+    ],
+    "sentenceBuilding": [
+      {
+        "id": "sb-fs-01",
+        "scenarioVi": "Sắp xếp một cuộc hẹn qua email",
+        "vietnameseMeaning": "Tôi sẽ gọi cho bạn vào thứ Sáu tới để thảo luận chi tiết.",
+        "scrambledTokens": [
+          {
+            "id": "tok-3",
+            "text": "you"
+          },
+          {
+            "id": "tok-1",
+            "text": "I will"
+          },
+          {
+            "id": "tok-5",
+            "text": "to discuss the details."
+          },
+          {
+            "id": "tok-2",
+            "text": "call"
+          },
+          {
+            "id": "tok-4",
+            "text": "next Friday"
+          }
+        ],
+        "correctTokenOrder": [
+          "I will",
+          "call",
+          "you",
+          "next Friday",
+          "to discuss the details."
+        ],
+        "fullSentenceEn": "I will call you next Friday to discuss the details.",
+        "grammarTip": {
+          "titleVi": "Cấu trúc S + will + V + O",
+          "tipVi": "Theo sau 'will' là động từ nguyên mẫu 'call' rồi đến tân ngữ 'you' và trạng từ chỉ thời gian 'next Friday'."
+        }
+      }
+    ]
+  }
+}

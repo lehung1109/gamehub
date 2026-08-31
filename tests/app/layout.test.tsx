@@ -14,9 +14,8 @@ describe('RootLayout', () => {
     const container = body.props.children;
     expect(container.type).toBe('div');
     expect(container.props['data-testid']).toBe('root-layout-container');
-    expect(container.props.className).toContain('max-w-5xl');
-    expect(container.props.className).toContain('lg:max-w-7xl');
-    expect(container.props.className).toContain('xl:max-w-[1400px]');
-    expect(container.props.className).toContain('2xl:max-w-[1800px]');
+    expect(container.props.className).toContain('w-full');
+    expect(container.props.className).toContain('flex-1');
+    expect(container.props.className).toContain('flex-col');
   });
 });
