@@ -10,6 +10,7 @@ import type {
   SentencesSettings,
   ReadingSettings,
   TypingSettings,
+  RoleplaySettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -23,6 +24,7 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'sentences',
   'reading',
   'typing',
+  'roleplay',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -65,6 +67,10 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
   },
   typing: {
     topics: [],
+  },
+  roleplay: {
+    difficulty: 1,
+    autoSpeak: true,
   },
 }
 
@@ -185,6 +191,13 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
         ? obj.topics.filter((t): t is string => typeof t === 'string')
         : []
       const validated: TypingSettings = { topics }
+      return { valid: true, data: validated }
+    }
+
+    case 'roleplay': {
+      const difficulty = sanitizeInt(obj.difficulty, 1, 1, 10)
+      const autoSpeak = obj.autoSpeak !== undefined ? Boolean(obj.autoSpeak) : true
+      const validated: RoleplaySettings = { difficulty, autoSpeak }
       return { valid: true, data: validated }
     }
 

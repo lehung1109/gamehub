@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import { ChatBubble } from '@/components/roleplay/ChatBubble'
 import { ResponseChoices } from '@/components/roleplay/ResponseChoices'
 import { useRoleplayGame } from '@/hooks/useRoleplayGame'
@@ -12,7 +12,7 @@ import { RoleplaySettings } from '@/types/config'
 
 const scenario = orderingFoodData as ConversationScenario
 
-export default function RoleplayGamePage() {
+function RoleplayGameContent() {
   const { settings } = useGameConfig<RoleplaySettings>('roleplay')
   const { speak } = useSpeech()
   
@@ -86,5 +86,13 @@ export default function RoleplayGamePage() {
         />
       </div>
     </div>
+  )
+}
+
+export default function RoleplayGamePage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading game...</div>}>
+      <RoleplayGameContent />
+    </Suspense>
   )
 }
