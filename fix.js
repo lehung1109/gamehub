@@ -1,0 +1,1 @@
+const fs = require('fs'); let content = fs.readFileSync('src/data/tenses/present-perfect.json', 'utf8'); content = content.replace(/"grammarTip": \{ "titleVi": "([^"]+)", "([^"]+)" \}/g, '"grammarTip": { "titleVi": "", "tipVi": "" }'); fs.writeFileSync('src/data/tenses/present-perfect.json', content, 'utf8');

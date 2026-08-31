@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { ErrorHunterStage } from "@/components/tenses/stages/ErrorHunterStage";
 import { ErrorHunterItem } from "@/types/tenses";
-import presentSimpleData from "@/data/tenses/present-simple.json";
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 
 const mockItems: ErrorHunterItem[] = presentSimpleData.challenges.errorHunting as ErrorHunterItem[];
 

@@ -1363,10 +1363,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t4",
-          "t3"
+          "I",
+          "have",
+          "finished",
+          "my tasks."
         ],
         "fullSentenceEn": "I have finished my tasks.",
         "grammarTip": {
@@ -1397,10 +1397,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t2",
-          "t1",
-          "t3"
+          "We",
+          "have just",
+          "deployed",
+          "the server."
         ],
         "fullSentenceEn": "We have just deployed the server.",
         "grammarTip": {
@@ -1435,11 +1435,11 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t3",
-          "t1",
-          "t2",
-          "t5"
+          "He",
+          "hasn't",
+          "sent",
+          "the report",
+          "yet."
         ],
         "fullSentenceEn": "He hasn't sent the report yet.",
         "grammarTip": {
@@ -1470,10 +1470,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t4",
-          "t3"
+          "Have",
+          "they",
+          "contacted",
+          "the vendor?"
         ],
         "fullSentenceEn": "Have they contacted the vendor?",
         "grammarTip": {
@@ -1504,10 +1504,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t3",
-          "t2",
-          "t4"
+          "The client",
+          "has",
+          "approved",
+          "the budget."
         ],
         "fullSentenceEn": "The client has approved the budget.",
         "grammarTip": {
@@ -1538,10 +1538,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t1",
-          "t4"
+          "I",
+          "have",
+          "found",
+          "the root cause."
         ],
         "fullSentenceEn": "I have found the root cause.",
         "grammarTip": {
@@ -1572,10 +1572,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t1",
-          "t4"
+          "The team",
+          "has",
+          "worked",
+          "hard."
         ],
         "fullSentenceEn": "The team has worked hard.",
         "grammarTip": {
@@ -1610,11 +1610,11 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t4",
-          "t3",
-          "t5"
+          "I",
+          "haven't",
+          "granted",
+          "access",
+          "yet."
         ],
         "fullSentenceEn": "I haven't granted access yet.",
         "grammarTip": {
@@ -1645,10 +1645,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t3",
-          "t2",
-          "t1",
-          "t4"
+          "They",
+          "have",
+          "rescheduled",
+          "the meeting."
         ],
         "fullSentenceEn": "They have rescheduled the meeting.",
         "grammarTip": {
@@ -1679,10 +1679,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t4",
-          "t3"
+          "Users",
+          "have",
+          "reported",
+          "multiple bugs."
         ],
         "fullSentenceEn": "Users have reported multiple bugs.",
         "grammarTip": {
@@ -1713,10 +1713,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t3",
-          "t4",
-          "t1",
-          "t2"
+          "We",
+          "have",
+          "updated",
+          "the privacy policy."
         ],
         "fullSentenceEn": "We have updated the privacy policy.",
         "grammarTip": {
@@ -1747,10 +1747,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t3",
-          "t4",
-          "t2",
-          "t1"
+          "Have",
+          "you",
+          "checked",
+          "the logs?"
         ],
         "fullSentenceEn": "Have you checked the logs?",
         "grammarTip": {
@@ -1781,10 +1781,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t1",
-          "t4"
+          "She",
+          "has",
+          "left",
+          "the office."
         ],
         "fullSentenceEn": "She has left the office.",
         "grammarTip": {
@@ -1815,10 +1815,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t2",
-          "t1",
-          "t3"
+          "I",
+          "have",
+          "set up",
+          "the test environment."
         ],
         "fullSentenceEn": "I have set up the test environment.",
         "grammarTip": {
@@ -1853,11 +1853,11 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t5",
-          "t4",
-          "t1",
-          "t3"
+          "The project",
+          "hasn't",
+          "achieved",
+          "its goals",
+          "yet."
         ],
         "fullSentenceEn": "The project hasn't achieved its goals yet.",
         "grammarTip": {
@@ -1888,10 +1888,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t3",
-          "t2",
-          "t1"
+          "They",
+          "have",
+          "integrated",
+          "the API."
         ],
         "fullSentenceEn": "They have integrated the API.",
         "grammarTip": {
@@ -1922,10 +1922,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t3",
-          "t1",
-          "t2"
+          "I",
+          "have",
+          "resolved",
+          "the git conflict."
         ],
         "fullSentenceEn": "I have resolved the git conflict.",
         "grammarTip": {
@@ -1956,10 +1956,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t4",
-          "t2",
-          "t3"
+          "The manager",
+          "has",
+          "read",
+          "the summary."
         ],
         "fullSentenceEn": "The manager has read the summary.",
         "grammarTip": {
@@ -1990,10 +1990,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t1",
-          "t4",
-          "t3"
+          "The database",
+          "has",
+          "been",
+          "locked."
         ],
         "fullSentenceEn": "The database has been locked.",
         "grammarTip": {
@@ -2024,10 +2024,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t3",
-          "t2",
-          "t4"
+          "We",
+          "have",
+          "discussed",
+          "this feature."
         ],
         "fullSentenceEn": "We have discussed this feature.",
         "grammarTip": {
@@ -2121,10 +2121,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t1",
-          "t4",
-          "t3"
+          "We",
+          "have",
+          "scaled",
+          "the Kubernetes nodes."
         ],
         "fullSentenceEn": "We have scaled the Kubernetes nodes.",
         "grammarTip": {
@@ -2216,10 +2216,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t1",
-          "t4",
-          "t3"
+          "The API doc",
+          "hasn't",
+          "been",
+          "updated."
         ],
         "fullSentenceEn": "The API doc hasn't been updated.",
         "grammarTip": {
@@ -2310,10 +2310,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t2",
-          "t1",
-          "t3"
+          "The PM",
+          "has",
+          "assigned",
+          "the tasks."
         ],
         "fullSentenceEn": "The PM has assigned the tasks.",
         "grammarTip": {
@@ -2405,10 +2405,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t1",
-          "t4"
+          "I",
+          "have",
+          "backed up",
+          "the database."
         ],
         "fullSentenceEn": "I have backed up the database.",
         "grammarTip": {
@@ -2500,10 +2500,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t2",
-          "t3",
-          "t1"
+          "The password",
+          "has",
+          "been",
+          "changed."
         ],
         "fullSentenceEn": "The password has been changed.",
         "grammarTip": {
@@ -2595,10 +2595,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t4",
-          "t1",
-          "t2",
-          "t3"
+          "I",
+          "have",
+          "patched",
+          "the vulnerabilities."
         ],
         "fullSentenceEn": "I have patched the vulnerabilities.",
         "grammarTip": {

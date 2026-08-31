@@ -1193,10 +1193,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The system",
+          "will",
+          "reboot",
+          "at midnight."
         ],
         "fullSentenceEn": "The system will reboot at midnight.",
         "grammarTip": {
@@ -1227,10 +1227,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "We",
+          "will",
+          "migrate",
+          "the database."
         ],
         "fullSentenceEn": "We will migrate the database.",
         "grammarTip": {
@@ -1261,10 +1261,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The script",
+          "will",
+          "clear",
+          "the cache."
         ],
         "fullSentenceEn": "The script will clear the cache.",
         "grammarTip": {
@@ -1295,10 +1295,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The developer",
+          "will",
+          "fix",
+          "the bug."
         ],
         "fullSentenceEn": "The developer will fix the bug.",
         "grammarTip": {
@@ -1329,10 +1329,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "configure",
+          "the router."
         ],
         "fullSentenceEn": "I will configure the router.",
         "grammarTip": {
@@ -1363,10 +1363,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The server",
+          "will",
+          "handle",
+          "the load."
         ],
         "fullSentenceEn": "The server will handle the load.",
         "grammarTip": {
@@ -1397,10 +1397,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "We",
+          "will",
+          "monitor",
+          "the traffic."
         ],
         "fullSentenceEn": "We will monitor the traffic.",
         "grammarTip": {
@@ -1431,10 +1431,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The pipeline",
+          "will",
+          "build",
+          "the app."
         ],
         "fullSentenceEn": "The pipeline will build the app.",
         "grammarTip": {
@@ -1465,10 +1465,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "install",
+          "the dependency."
         ],
         "fullSentenceEn": "I will install the dependency.",
         "grammarTip": {
@@ -1499,10 +1499,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "They",
+          "will",
+          "patch",
+          "the vulnerability."
         ],
         "fullSentenceEn": "They will patch the vulnerability.",
         "grammarTip": {
@@ -1533,10 +1533,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The manager",
+          "will",
+          "approve",
+          "the budget."
         ],
         "fullSentenceEn": "The manager will approve the budget.",
         "grammarTip": {
@@ -1567,10 +1567,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "We",
+          "will",
+          "launch",
+          "the campaign."
         ],
         "fullSentenceEn": "We will launch the campaign.",
         "grammarTip": {
@@ -1601,10 +1601,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "draft",
+          "the contract."
         ],
         "fullSentenceEn": "I will draft the contract.",
         "grammarTip": {
@@ -1635,10 +1635,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "She",
+          "will",
+          "present",
+          "the strategy."
         ],
         "fullSentenceEn": "She will present the strategy.",
         "grammarTip": {
@@ -1669,10 +1669,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "They",
+          "will",
+          "sign",
+          "the agreement."
         ],
         "fullSentenceEn": "They will sign the agreement.",
         "grammarTip": {
@@ -1703,10 +1703,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "contact",
+          "the vendor."
         ],
         "fullSentenceEn": "I will contact the vendor.",
         "grammarTip": {
@@ -1737,10 +1737,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "We",
+          "will",
+          "review",
+          "the policy."
         ],
         "fullSentenceEn": "We will review the policy.",
         "grammarTip": {
@@ -1771,10 +1771,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "He",
+          "will",
+          "send",
+          "the invoice."
         ],
         "fullSentenceEn": "He will send the invoice.",
         "grammarTip": {
@@ -1805,10 +1805,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The team",
+          "will",
+          "discuss",
+          "the plan."
         ],
         "fullSentenceEn": "The team will discuss the plan.",
         "grammarTip": {
@@ -1839,10 +1839,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "organize",
+          "the event."
         ],
         "fullSentenceEn": "I will organize the event.",
         "grammarTip": {
@@ -2234,10 +2234,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "provision",
+          "the resources."
         ],
         "fullSentenceEn": "I will provision the resources.",
         "grammarTip": {
@@ -2269,10 +2269,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "The tool",
+          "will",
+          "configure",
+          "the network."
         ],
         "fullSentenceEn": "The tool will configure the network.",
         "grammarTip": {
@@ -2304,10 +2304,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "We",
+          "will",
+          "monitor",
+          "the server."
         ],
         "fullSentenceEn": "We will monitor the server.",
         "grammarTip": {
@@ -2339,10 +2339,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "I",
+          "will",
+          "schedule",
+          "the interview."
         ],
         "fullSentenceEn": "I will schedule the interview.",
         "grammarTip": {
@@ -2374,10 +2374,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "She",
+          "will",
+          "draft",
+          "the email."
         ],
         "fullSentenceEn": "She will draft the email.",
         "grammarTip": {
@@ -2409,10 +2409,10 @@
           }
         ],
         "correctTokenOrder": [
-          "t1",
-          "t2",
-          "t3",
-          "t4"
+          "They",
+          "will",
+          "analyze",
+          "the sales data."
         ],
         "fullSentenceEn": "They will analyze the sales data.",
         "grammarTip": {

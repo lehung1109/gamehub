@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { CompletionDashboard } from "@/components/tenses/CompletionDashboard";
 import { TenseMetadata, TenseUserProgressRecord } from "@/types/tenses";
-import presentSimpleData from "@/data/tenses/present-simple.json";
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 
 const mockMetadata: TenseMetadata = presentSimpleData.metadata as TenseMetadata;
 

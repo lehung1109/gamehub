@@ -1215,11 +1215,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "The",
+          "system",
+          "generates",
+          "logs",
+          "automatically."
         ],
         "fullSentenceEn": "The system generates logs automatically.",
         "grammarTip": {
@@ -1254,11 +1254,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "Developers",
+          "write",
+          "unit",
+          "tests",
+          "daily."
         ],
         "fullSentenceEn": "Developers write unit tests daily.",
         "grammarTip": {
@@ -1297,12 +1297,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "Our",
+          "server",
+          "handles",
+          "thousands",
+          "of",
+          "requests."
         ],
         "fullSentenceEn": "Our server handles thousands of requests.",
         "grammarTip": {
@@ -1341,12 +1341,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "Does",
+          "this",
+          "API",
+          "return",
+          "JSON",
+          "data?"
         ],
         "fullSentenceEn": "Does this API return JSON data?",
         "grammarTip": {
@@ -1397,15 +1397,15 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5",
-          "tok-6",
-          "tok-7",
-          "tok-8"
+          "The",
+          "database",
+          "does",
+          "not",
+          "store",
+          "passwords",
+          "in",
+          "plain",
+          "text."
         ],
         "fullSentenceEn": "The database does not store passwords in plain text.",
         "grammarTip": {
@@ -1444,12 +1444,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "We",
+          "use",
+          "Git",
+          "for",
+          "version",
+          "control."
         ],
         "fullSentenceEn": "We use Git for version control.",
         "grammarTip": {
@@ -1484,11 +1484,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "This",
+          "function",
+          "takes",
+          "two",
+          "arguments."
         ],
         "fullSentenceEn": "This function takes two arguments.",
         "grammarTip": {
@@ -1527,12 +1527,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "A",
+          "load",
+          "balancer",
+          "distributes",
+          "traffic",
+          "evenly."
         ],
         "fullSentenceEn": "A load balancer distributes traffic evenly.",
         "grammarTip": {
@@ -1571,12 +1571,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "The",
+          "cache",
+          "expires",
+          "after",
+          "one",
+          "hour."
         ],
         "fullSentenceEn": "The cache expires after one hour.",
         "grammarTip": {
@@ -1615,12 +1615,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "Security",
+          "tools",
+          "scan",
+          "the",
+          "codebase",
+          "regularly."
         ],
         "fullSentenceEn": "Security tools scan the codebase regularly.",
         "grammarTip": {
@@ -1663,13 +1663,13 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5",
-          "tok-6"
+          "We",
+          "have",
+          "a",
+          "team",
+          "meeting",
+          "every",
+          "Monday."
         ],
         "fullSentenceEn": "We have a team meeting every Monday.",
         "grammarTip": {
@@ -1708,12 +1708,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "She",
+          "prepares",
+          "the",
+          "monthly",
+          "financial",
+          "report."
         ],
         "fullSentenceEn": "She prepares the monthly financial report.",
         "grammarTip": {
@@ -1752,12 +1752,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "Our",
+          "company",
+          "offers",
+          "flexible",
+          "working",
+          "hours."
         ],
         "fullSentenceEn": "Our company offers flexible working hours.",
         "grammarTip": {
@@ -1800,13 +1800,13 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5",
-          "tok-6"
+          "Do",
+          "you",
+          "need",
+          "help",
+          "with",
+          "this",
+          "task?"
         ],
         "fullSentenceEn": "Do you need help with this task?",
         "grammarTip": {
@@ -1853,14 +1853,14 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5",
-          "tok-6",
-          "tok-7"
+          "He",
+          "does",
+          "not",
+          "work",
+          "in",
+          "the",
+          "marketing",
+          "department."
         ],
         "fullSentenceEn": "He does not work in the marketing department.",
         "grammarTip": {
@@ -1895,11 +1895,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "Clients",
+          "expect",
+          "high",
+          "quality",
+          "services."
         ],
         "fullSentenceEn": "Clients expect high quality services.",
         "grammarTip": {
@@ -1942,13 +1942,13 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5",
-          "tok-6"
+          "The",
+          "CEO",
+          "travels",
+          "to",
+          "overseas",
+          "branches",
+          "frequently."
         ],
         "fullSentenceEn": "The CEO travels to overseas branches frequently.",
         "grammarTip": {
@@ -1983,11 +1983,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "Employees",
+          "submit",
+          "timesheets",
+          "on",
+          "Fridays."
         ],
         "fullSentenceEn": "Employees submit timesheets on Fridays.",
         "grammarTip": {
@@ -2022,11 +2022,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "This",
+          "contract",
+          "requires",
+          "two",
+          "signatures."
         ],
         "fullSentenceEn": "This contract requires two signatures.",
         "grammarTip": {
@@ -2065,12 +2065,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "We",
+          "always",
+          "reply",
+          "to",
+          "customer",
+          "feedback."
         ],
         "fullSentenceEn": "We always reply to customer feedback.",
         "grammarTip": {
@@ -2163,11 +2163,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "The",
+          "monitor",
+          "alerts",
+          "us",
+          "immediately."
         ],
         "fullSentenceEn": "The monitor alerts us immediately.",
         "grammarTip": {
@@ -2251,10 +2251,10 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3"
+          "We",
+          "deploy",
+          "microservices",
+          "independently."
         ],
         "fullSentenceEn": "We deploy microservices independently.",
         "grammarTip": {
@@ -2346,12 +2346,12 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4",
-          "tok-5"
+          "The",
+          "cron",
+          "job",
+          "runs",
+          "at",
+          "midnight."
         ],
         "fullSentenceEn": "The cron job runs at midnight.",
         "grammarTip": {
@@ -2439,11 +2439,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "Security",
+          "policies",
+          "deny",
+          "unauthorized",
+          "access."
         ],
         "fullSentenceEn": "Security policies deny unauthorized access.",
         "grammarTip": {
@@ -2531,11 +2531,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "System",
+          "admins",
+          "patch",
+          "servers",
+          "monthly."
         ],
         "fullSentenceEn": "System admins patch servers monthly.",
         "grammarTip": {
@@ -2625,11 +2625,11 @@
           }
         ],
         "correctTokenOrder": [
-          "tok-0",
-          "tok-1",
-          "tok-2",
-          "tok-3",
-          "tok-4"
+          "Metrics",
+          "show",
+          "high",
+          "memory",
+          "usage."
         ],
         "fullSentenceEn": "Metrics show high memory usage.",
         "grammarTip": {

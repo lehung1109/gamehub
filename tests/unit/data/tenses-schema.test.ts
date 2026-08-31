@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import tensesIndex from "@/data/tenses/index.json";
-import presentSimpleData from "@/data/tenses/present-simple.json";
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 import {
   validateTenseMetadata,
   validateConjugationItem,
