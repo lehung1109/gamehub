@@ -151,7 +151,11 @@
         "baseVerb": "deploy",
         "textAfter": " the server.",
         "correctAnswer": "had deployed",
-        "options": ["deployed", "had deployed", "have deployed"],
+        "options": [
+          "deployed",
+          "had deployed",
+          "have deployed"
+        ],
         "explanation": {
           "ruleVi": "Hành động 'deploy' xảy ra trước 'called'.",
           "detailedAnalysisVi": "Sử dụng Quá khứ hoàn thành cho hành động xảy ra trước."
@@ -165,7 +169,11 @@
         "baseVerb": "send",
         "textAfter": " the report before the deadline.",
         "correctAnswer": "had sent",
-        "options": ["sent", "had sent", "has sent"],
+        "options": [
+          "sent",
+          "had sent",
+          "has sent"
+        ],
         "explanation": {
           "ruleVi": "Hành động 'send' xảy ra trước mốc thời gian trong quá khứ.",
           "detailedAnalysisVi": "Trước deadline (quá khứ) thì đã gửi xong."
@@ -179,7 +187,11 @@
         "baseVerb": "fix",
         "textAfter": " the bug before QA tested it.",
         "correctAnswer": "had fixed",
-        "options": ["fixed", "had fixed", "were fixing"],
+        "options": [
+          "fixed",
+          "had fixed",
+          "were fixing"
+        ],
         "explanation": {
           "ruleVi": "Sửa lỗi trước khi QA test.",
           "detailedAnalysisVi": "Hành động fix xảy ra trước tested."
@@ -193,7 +205,11 @@
         "baseVerb": "prepare",
         "textAfter": " all documents prior to the meeting.",
         "correctAnswer": "had prepared",
-        "options": ["prepared", "had prepared", "prepare"],
+        "options": [
+          "prepared",
+          "had prepared",
+          "prepare"
+        ],
         "explanation": {
           "ruleVi": "Chuẩn bị xong trước cuộc họp.",
           "detailedAnalysisVi": "Sử dụng Past Perfect nhấn mạnh hoàn tất trước một sự kiện."
@@ -207,7 +223,11 @@
         "baseVerb": "update",
         "textAfter": " the OS before the crash happened.",
         "correctAnswer": "had updated",
-        "options": ["updated", "have updated", "had updated"],
+        "options": [
+          "updated",
+          "have updated",
+          "had updated"
+        ],
         "explanation": {
           "ruleVi": "Hành động update xảy ra trước crash.",
           "detailedAnalysisVi": "Cấu trúc had + V3/ed."
@@ -221,7 +241,11 @@
         "baseVerb": "approve",
         "textAfter": " the budget before we started.",
         "correctAnswer": "had approved",
-        "options": ["approved", "had approved", "has approved"],
+        "options": [
+          "approved",
+          "had approved",
+          "has approved"
+        ],
         "explanation": {
           "ruleVi": "Phê duyệt trước khi bắt đầu.",
           "detailedAnalysisVi": "started là quá khứ, vậy approve phải là quá khứ hoàn thành."
@@ -235,7 +259,11 @@
         "baseVerb": "delete",
         "textAfter": " the logs.",
         "correctAnswer": "had deleted",
-        "options": ["deleted", "had deleted", "deletes"],
+        "options": [
+          "deleted",
+          "had deleted",
+          "deletes"
+        ],
         "explanation": {
           "ruleVi": "Hành động delete xảy ra trước khi noticed.",
           "detailedAnalysisVi": "Nhận ra (noticed) ở quá khứ, việc xóa xảy ra trước đó."
@@ -249,7 +277,11 @@
         "baseVerb": "sign",
         "textAfter": " the contract.",
         "correctAnswer": "had signed",
-        "options": ["signed", "had signed", "have signed"],
+        "options": [
+          "signed",
+          "had signed",
+          "have signed"
+        ],
         "explanation": {
           "ruleVi": "Hoàn tất trước một mốc thời gian quá khứ (5 PM yesterday).",
           "detailedAnalysisVi": "By + mốc quá khứ -> quá khứ hoàn thành."
@@ -263,7 +295,11 @@
         "baseVerb": "configure",
         "textAfter": " the firewall before the attack.",
         "correctAnswer": "had configured",
-        "options": ["configured", "had configured", "was configuring"],
+        "options": [
+          "configured",
+          "had configured",
+          "was configuring"
+        ],
         "explanation": {
           "ruleVi": "Cấu hình xong trước khi có cuộc tấn công.",
           "detailedAnalysisVi": "Hoàn tất trước một sự kiện trong quá khứ."
@@ -277,7 +313,11 @@
         "baseVerb": "book",
         "textAfter": " the flight before prices went up.",
         "correctAnswer": "had booked",
-        "options": ["booked", "had booked", "has booked"],
+        "options": [
+          "booked",
+          "had booked",
+          "has booked"
+        ],
         "explanation": {
           "ruleVi": "Đặt vé trước khi giá tăng (went up).",
           "detailedAnalysisVi": "Quá khứ hoàn thành diễn tả hành động trước."
@@ -291,7 +331,11 @@
         "baseVerb": "commit",
         "textAfter": " the code when the power went out.",
         "correctAnswer": "had committed",
-        "options": ["committed", "had committed", "commit"],
+        "options": [
+          "committed",
+          "had committed",
+          "commit"
+        ],
         "explanation": {
           "ruleVi": "Đã commit xong khi mất điện (went out).",
           "detailedAnalysisVi": "Hành động đã hoàn tất trong quá khứ trước sự kiện khác."
@@ -305,7 +349,11 @@
         "baseVerb": "interview",
         "textAfter": " five candidates by the end of last week.",
         "correctAnswer": "had interviewed",
-        "options": ["interviewed", "had interviewed", "have interviewed"],
+        "options": [
+          "interviewed",
+          "had interviewed",
+          "have interviewed"
+        ],
         "explanation": {
           "ruleVi": "Hoàn thành trước cuối tuần trước.",
           "detailedAnalysisVi": "By the end of + mốc quá khứ."
@@ -319,7 +367,11 @@
         "baseVerb": "merge",
         "textAfter": " the branch before the build failed.",
         "correctAnswer": "had merged",
-        "options": ["merged", "had merged", "has merged"],
+        "options": [
+          "merged",
+          "had merged",
+          "has merged"
+        ],
         "explanation": {
           "ruleVi": "Hành động merge trước khi build fail.",
           "detailedAnalysisVi": "Sự việc xảy ra trước một sự việc quá khứ khác."
@@ -333,7 +385,11 @@
         "baseVerb": "review",
         "textAfter": " the finances before making the decision.",
         "correctAnswer": "had reviewed",
-        "options": ["reviewed", "had reviewed", "were reviewing"],
+        "options": [
+          "reviewed",
+          "had reviewed",
+          "were reviewing"
+        ],
         "explanation": {
           "ruleVi": "Xem xét trước khi quyết định.",
           "detailedAnalysisVi": "Hành động trước."
@@ -347,7 +403,11 @@
         "baseVerb": "install",
         "textAfter": " the tools before you asked me to.",
         "correctAnswer": "had installed",
-        "options": ["installed", "had installed", "have installed"],
+        "options": [
+          "installed",
+          "had installed",
+          "have installed"
+        ],
         "explanation": {
           "ruleVi": "Đã cài trước khi được yêu cầu (asked).",
           "detailedAnalysisVi": "Hoàn tất trước."
@@ -361,7 +421,11 @@
         "baseVerb": "contact",
         "textAfter": " the client before the issue escalated.",
         "correctAnswer": "had contacted",
-        "options": ["contacted", "had contacted", "has contacted"],
+        "options": [
+          "contacted",
+          "had contacted",
+          "has contacted"
+        ],
         "explanation": {
           "ruleVi": "Liên hệ trước khi vấn đề trở nên nghiêm trọng (escalated).",
           "detailedAnalysisVi": "Hành động xảy ra trước."
@@ -375,7 +439,11 @@
         "baseVerb": "run",
         "textAfter": " all tests prior to the release.",
         "correctAnswer": "had run",
-        "options": ["ran", "had run", "have run"],
+        "options": [
+          "ran",
+          "had run",
+          "have run"
+        ],
         "explanation": {
           "ruleVi": "Chạy test trước release.",
           "detailedAnalysisVi": "run là động từ bất quy tắc (run - ran - run). Quá khứ hoàn thành là had run."
@@ -389,7 +457,11 @@
         "baseVerb": "schedule",
         "textAfter": " the meeting before he canceled it.",
         "correctAnswer": "had scheduled",
-        "options": ["scheduled", "had scheduled", "schedule"],
+        "options": [
+          "scheduled",
+          "had scheduled",
+          "schedule"
+        ],
         "explanation": {
           "ruleVi": "Lập lịch trước khi bị hủy (canceled).",
           "detailedAnalysisVi": "Hành động hoàn tất trước."
@@ -403,7 +475,11 @@
         "baseVerb": "write",
         "textAfter": " the docs before leaving the office.",
         "correctAnswer": "had written",
-        "options": ["wrote", "had written", "has written"],
+        "options": [
+          "wrote",
+          "had written",
+          "has written"
+        ],
         "explanation": {
           "ruleVi": "Viết tài liệu trước khi rời đi.",
           "detailedAnalysisVi": "write -> wrote -> written. Sử dụng had written."
@@ -417,7 +493,11 @@
         "baseVerb": "analyze",
         "textAfter": " the data.",
         "correctAnswer": "had analyzed",
-        "options": ["analyzed", "had analyzed", "have analyzed"],
+        "options": [
+          "analyzed",
+          "had analyzed",
+          "have analyzed"
+        ],
         "explanation": {
           "ruleVi": "Phân tích trước khi họp (met).",
           "detailedAnalysisVi": "By the time + quá khứ -> quá khứ hoàn thành."
@@ -428,12 +508,29 @@
       {
         "id": "past-perfect-err-1",
         "scenarioVi": "Review email 1",
-        "tokens": ["I", "have", "deployed", "the", "app", "before", "he", "arrived"],
+        "tokens": [
+          "I",
+          "have",
+          "deployed",
+          "the",
+          "app",
+          "before",
+          "he",
+          "arrived"
+        ],
         "errorTokenIndex": 1,
         "correctToken": "had",
         "options": [
-          {"value": "have", "label": "have", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "I had deployed the app before he arrived",
         "vietnameseMeaning": "Tôi đã triển khai ứng dụng trước khi anh ấy đến.",
@@ -445,12 +542,29 @@
       {
         "id": "past-perfect-err-2",
         "scenarioVi": "Review email 2",
-        "tokens": ["She", "has", "finished", "the", "report", "before", "the", "meeting"],
+        "tokens": [
+          "She",
+          "has",
+          "finished",
+          "the",
+          "report",
+          "before",
+          "the",
+          "meeting"
+        ],
         "errorTokenIndex": 1,
         "correctToken": "had",
         "options": [
-          {"value": "has", "label": "has", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "She had finished the report before the meeting",
         "vietnameseMeaning": "Cô ấy đã hoàn thành báo cáo trước cuộc họp.",
@@ -462,12 +576,29 @@
       {
         "id": "past-perfect-err-3",
         "scenarioVi": "Review email 3",
-        "tokens": ["They", "had", "fix", "the", "bug", "before", "the", "demo"],
+        "tokens": [
+          "They",
+          "had",
+          "fix",
+          "the",
+          "bug",
+          "before",
+          "the",
+          "demo"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "fixed",
         "options": [
-          {"value": "fix", "label": "fix", "isCorrect": false},
-          {"value": "fixed", "label": "fixed", "isCorrect": true}
+          {
+            "value": "fix",
+            "label": "fix",
+            "isCorrect": false
+          },
+          {
+            "value": "fixed",
+            "label": "fixed",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "They had fixed the bug before the demo",
         "vietnameseMeaning": "Họ đã sửa lỗi trước buổi demo.",
@@ -479,12 +610,28 @@
       {
         "id": "past-perfect-err-4",
         "scenarioVi": "Review email 4",
-        "tokens": ["He", "had", "wrote", "the", "code", "before", "leaving"],
+        "tokens": [
+          "He",
+          "had",
+          "wrote",
+          "the",
+          "code",
+          "before",
+          "leaving"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "written",
         "options": [
-          {"value": "wrote", "label": "wrote", "isCorrect": false},
-          {"value": "written", "label": "written", "isCorrect": true}
+          {
+            "value": "wrote",
+            "label": "wrote",
+            "isCorrect": false
+          },
+          {
+            "value": "written",
+            "label": "written",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "He had written the code before leaving",
         "vietnameseMeaning": "Anh ấy đã viết mã trước khi rời đi.",
@@ -496,12 +643,29 @@
       {
         "id": "past-perfect-err-5",
         "scenarioVi": "Review email 5",
-        "tokens": ["We", "have", "backup", "the", "data", "before", "the", "outage"],
+        "tokens": [
+          "We",
+          "have",
+          "backup",
+          "the",
+          "data",
+          "before",
+          "the",
+          "outage"
+        ],
         "errorTokenIndex": 1,
         "correctToken": "had",
         "options": [
-          {"value": "have", "label": "have", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "We had backed up the data before the outage",
         "vietnameseMeaning": "Chúng tôi đã sao lưu dữ liệu trước sự cố.",
@@ -513,12 +677,28 @@
       {
         "id": "past-perfect-err-6",
         "scenarioVi": "Review email 6",
-        "tokens": ["The", "client", "had", "approve", "the", "budget", "yesterday"],
+        "tokens": [
+          "The",
+          "client",
+          "had",
+          "approve",
+          "the",
+          "budget",
+          "yesterday"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "approved",
         "options": [
-          {"value": "approve", "label": "approve", "isCorrect": false},
-          {"value": "approved", "label": "approved", "isCorrect": true}
+          {
+            "value": "approve",
+            "label": "approve",
+            "isCorrect": false
+          },
+          {
+            "value": "approved",
+            "label": "approved",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "The client had approved the budget yesterday",
         "vietnameseMeaning": "Khách hàng đã phê duyệt ngân sách hôm qua.",
@@ -530,12 +710,29 @@
       {
         "id": "past-perfect-err-7",
         "scenarioVi": "Review email 7",
-        "tokens": ["I", "had", "never", "use", "this", "tool", "before", "yesterday"],
+        "tokens": [
+          "I",
+          "had",
+          "never",
+          "use",
+          "this",
+          "tool",
+          "before",
+          "yesterday"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "used",
         "options": [
-          {"value": "use", "label": "use", "isCorrect": false},
-          {"value": "used", "label": "used", "isCorrect": true}
+          {
+            "value": "use",
+            "label": "use",
+            "isCorrect": false
+          },
+          {
+            "value": "used",
+            "label": "used",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "I had never used this tool before yesterday",
         "vietnameseMeaning": "Tôi chưa từng dùng công cụ này trước ngày hôm qua.",
@@ -547,12 +744,28 @@
       {
         "id": "past-perfect-err-8",
         "scenarioVi": "Review email 8",
-        "tokens": ["They", "had", "already", "leave", "when", "I", "arrived"],
+        "tokens": [
+          "They",
+          "had",
+          "already",
+          "leave",
+          "when",
+          "I",
+          "arrived"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "left",
         "options": [
-          {"value": "leave", "label": "leave", "isCorrect": false},
-          {"value": "left", "label": "left", "isCorrect": true}
+          {
+            "value": "leave",
+            "label": "leave",
+            "isCorrect": false
+          },
+          {
+            "value": "left",
+            "label": "left",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "They had already left when I arrived",
         "vietnameseMeaning": "Họ đã rời đi khi tôi đến.",
@@ -564,12 +777,28 @@
       {
         "id": "past-perfect-err-9",
         "scenarioVi": "Review email 9",
-        "tokens": ["By", "2020", "she", "has", "become", "a", "manager"],
+        "tokens": [
+          "By",
+          "2020",
+          "she",
+          "has",
+          "become",
+          "a",
+          "manager"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "had",
         "options": [
-          {"value": "has", "label": "has", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "By 2020 she had become a manager",
         "vietnameseMeaning": "Tính đến năm 2020, cô ấy đã trở thành quản lý.",
@@ -581,12 +810,28 @@
       {
         "id": "past-perfect-err-10",
         "scenarioVi": "Review email 10",
-        "tokens": ["The", "server", "had", "crash", "before", "the", "update"],
+        "tokens": [
+          "The",
+          "server",
+          "had",
+          "crash",
+          "before",
+          "the",
+          "update"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "crashed",
         "options": [
-          {"value": "crash", "label": "crash", "isCorrect": false},
-          {"value": "crashed", "label": "crashed", "isCorrect": true}
+          {
+            "value": "crash",
+            "label": "crash",
+            "isCorrect": false
+          },
+          {
+            "value": "crashed",
+            "label": "crashed",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "The server had crashed before the update",
         "vietnameseMeaning": "Máy chủ đã sập trước đợt cập nhật.",
@@ -598,12 +843,27 @@
       {
         "id": "past-perfect-err-11",
         "scenarioVi": "Review email 11",
-        "tokens": ["We", "had", "send", "the", "email", "already"],
+        "tokens": [
+          "We",
+          "had",
+          "send",
+          "the",
+          "email",
+          "already"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "sent",
         "options": [
-          {"value": "send", "label": "send", "isCorrect": false},
-          {"value": "sent", "label": "sent", "isCorrect": true}
+          {
+            "value": "send",
+            "label": "send",
+            "isCorrect": false
+          },
+          {
+            "value": "sent",
+            "label": "sent",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "We had sent the email already",
         "vietnameseMeaning": "Chúng tôi đã gửi email rồi.",
@@ -615,12 +875,31 @@
       {
         "id": "past-perfect-err-12",
         "scenarioVi": "Review email 12",
-        "tokens": ["He", "has", "completed", "the", "task", "before", "the", "deadline", "last", "week"],
+        "tokens": [
+          "He",
+          "has",
+          "completed",
+          "the",
+          "task",
+          "before",
+          "the",
+          "deadline",
+          "last",
+          "week"
+        ],
         "errorTokenIndex": 1,
         "correctToken": "had",
         "options": [
-          {"value": "has", "label": "has", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "He had completed the task before the deadline last week",
         "vietnameseMeaning": "Anh ấy đã hoàn thành công việc trước hạn chót tuần trước.",
@@ -632,12 +911,30 @@
       {
         "id": "past-perfect-err-13",
         "scenarioVi": "Review email 13",
-        "tokens": ["They", "had", "run", "out", "of", "budget", "before", "Q3", "ended"],
+        "tokens": [
+          "They",
+          "had",
+          "run",
+          "out",
+          "of",
+          "budget",
+          "before",
+          "Q3",
+          "ended"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "run",
         "options": [
-          {"value": "ran", "label": "ran", "isCorrect": false},
-          {"value": "run", "label": "run", "isCorrect": true}
+          {
+            "value": "ran",
+            "label": "ran",
+            "isCorrect": false
+          },
+          {
+            "value": "run",
+            "label": "run",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "They had run out of budget before Q3 ended",
         "vietnameseMeaning": "Họ đã hết ngân sách trước khi quý 3 kết thúc.",
@@ -649,12 +946,30 @@
       {
         "id": "past-perfect-err-14",
         "scenarioVi": "Review email 14",
-        "tokens": ["I", "had", "see", "the", "error", "before", "you", "reported", "it"],
+        "tokens": [
+          "I",
+          "had",
+          "see",
+          "the",
+          "error",
+          "before",
+          "you",
+          "reported",
+          "it"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "seen",
         "options": [
-          {"value": "see", "label": "see", "isCorrect": false},
-          {"value": "seen", "label": "seen", "isCorrect": true}
+          {
+            "value": "see",
+            "label": "see",
+            "isCorrect": false
+          },
+          {
+            "value": "seen",
+            "label": "seen",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "I had seen the error before you reported it",
         "vietnameseMeaning": "Tôi đã thấy lỗi trước khi bạn báo cáo.",
@@ -666,12 +981,30 @@
       {
         "id": "past-perfect-err-15",
         "scenarioVi": "Review email 15",
-        "tokens": ["She", "had", "spoke", "to", "the", "manager", "before", "the", "meeting"],
+        "tokens": [
+          "She",
+          "had",
+          "spoke",
+          "to",
+          "the",
+          "manager",
+          "before",
+          "the",
+          "meeting"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "spoken",
         "options": [
-          {"value": "spoke", "label": "spoke", "isCorrect": false},
-          {"value": "spoken", "label": "spoken", "isCorrect": true}
+          {
+            "value": "spoke",
+            "label": "spoke",
+            "isCorrect": false
+          },
+          {
+            "value": "spoken",
+            "label": "spoken",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "She had spoken to the manager before the meeting",
         "vietnameseMeaning": "Cô ấy đã nói chuyện với quản lý trước buổi họp.",
@@ -683,12 +1016,30 @@
       {
         "id": "past-perfect-err-16",
         "scenarioVi": "Review email 16",
-        "tokens": ["We", "have", "merged", "the", "PR", "before", "the", "build", "failed"],
+        "tokens": [
+          "We",
+          "have",
+          "merged",
+          "the",
+          "PR",
+          "before",
+          "the",
+          "build",
+          "failed"
+        ],
         "errorTokenIndex": 1,
         "correctToken": "had",
         "options": [
-          {"value": "have", "label": "have", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "We had merged the PR before the build failed",
         "vietnameseMeaning": "Chúng tôi đã merge PR trước khi build thất bại.",
@@ -700,12 +1051,30 @@
       {
         "id": "past-perfect-err-17",
         "scenarioVi": "Review email 17",
-        "tokens": ["He", "had", "pay", "the", "invoice", "before", "it", "was", "due"],
+        "tokens": [
+          "He",
+          "had",
+          "pay",
+          "the",
+          "invoice",
+          "before",
+          "it",
+          "was",
+          "due"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "paid",
         "options": [
-          {"value": "pay", "label": "pay", "isCorrect": false},
-          {"value": "paid", "label": "paid", "isCorrect": true}
+          {
+            "value": "pay",
+            "label": "pay",
+            "isCorrect": false
+          },
+          {
+            "value": "paid",
+            "label": "paid",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "He had paid the invoice before it was due",
         "vietnameseMeaning": "Anh ấy đã thanh toán hóa đơn trước hạn.",
@@ -717,12 +1086,28 @@
       {
         "id": "past-perfect-err-18",
         "scenarioVi": "Review email 18",
-        "tokens": ["The", "meeting", "had", "began", "before", "I", "arrived"],
+        "tokens": [
+          "The",
+          "meeting",
+          "had",
+          "began",
+          "before",
+          "I",
+          "arrived"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "begun",
         "options": [
-          {"value": "began", "label": "began", "isCorrect": false},
-          {"value": "begun", "label": "begun", "isCorrect": true}
+          {
+            "value": "began",
+            "label": "began",
+            "isCorrect": false
+          },
+          {
+            "value": "begun",
+            "label": "begun",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "The meeting had begun before I arrived",
         "vietnameseMeaning": "Cuộc họp đã bắt đầu trước khi tôi đến.",
@@ -734,12 +1119,30 @@
       {
         "id": "past-perfect-err-19",
         "scenarioVi": "Review email 19",
-        "tokens": ["I", "had", "choose", "the", "framework", "before", "the", "project", "started"],
+        "tokens": [
+          "I",
+          "had",
+          "choose",
+          "the",
+          "framework",
+          "before",
+          "the",
+          "project",
+          "started"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "chosen",
         "options": [
-          {"value": "choose", "label": "choose", "isCorrect": false},
-          {"value": "chosen", "label": "chosen", "isCorrect": true}
+          {
+            "value": "choose",
+            "label": "choose",
+            "isCorrect": false
+          },
+          {
+            "value": "chosen",
+            "label": "chosen",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "I had chosen the framework before the project started",
         "vietnameseMeaning": "Tôi đã chọn framework trước khi dự án bắt đầu.",
@@ -751,12 +1154,29 @@
       {
         "id": "past-perfect-err-20",
         "scenarioVi": "Review email 20",
-        "tokens": ["They", "had", "build", "the", "app", "before", "the", "deadline"],
+        "tokens": [
+          "They",
+          "had",
+          "build",
+          "the",
+          "app",
+          "before",
+          "the",
+          "deadline"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "built",
         "options": [
-          {"value": "build", "label": "build", "isCorrect": false},
-          {"value": "built", "label": "built", "isCorrect": true}
+          {
+            "value": "build",
+            "label": "build",
+            "isCorrect": false
+          },
+          {
+            "value": "built",
+            "label": "built",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "They had built the app before the deadline",
         "vietnameseMeaning": "Họ đã xây dựng ứng dụng trước hạn chót.",
@@ -772,283 +1192,695 @@
         "scenarioVi": "Đã sửa xong trước khi sếp hỏi",
         "vietnameseMeaning": "Họ đã sửa lỗi trước khi sếp hỏi.",
         "scrambledTokens": [
-          {"id": "t1", "text": "They"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "fixed"},
-          {"id": "t4", "text": "the bug"}
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "fixed"
+          },
+          {
+            "id": "t4",
+            "text": "the bug"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "They",
+          "had",
+          "fixed",
+          "the bug"
+        ],
         "fullSentenceEn": "They had fixed the bug",
-        "grammarTip": {"titleVi": "Cấu trúc cơ bản", "tipVi": "S + had + V3/ed + O"}
+        "grammarTip": {
+          "titleVi": "Cấu trúc cơ bản",
+          "tipVi": "S + had + V3/ed + O"
+        }
       },
       {
         "id": "past-perfect-sb-2",
         "scenarioVi": "Đã gửi email",
         "vietnameseMeaning": "Tôi đã gửi email rồi.",
         "scrambledTokens": [
-          {"id": "t1", "text": "I"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "sent"},
-          {"id": "t4", "text": "the email"},
-          {"id": "t5", "text": "already"}
+          {
+            "id": "t1",
+            "text": "I"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "sent"
+          },
+          {
+            "id": "t4",
+            "text": "the email"
+          },
+          {
+            "id": "t5",
+            "text": "already"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t5", "t3", "t4"],
+        "correctTokenOrder": [
+          "I",
+          "had",
+          "already",
+          "sent",
+          "the email"
+        ],
         "fullSentenceEn": "I had already sent the email",
-        "grammarTip": {"titleVi": "Vị trí already", "tipVi": "Already thường đứng giữa had và V3."}
+        "grammarTip": {
+          "titleVi": "Vị trí already",
+          "tipVi": "Already thường đứng giữa had và V3."
+        }
       },
       {
         "id": "past-perfect-sb-3",
         "scenarioVi": "Đã triển khai hệ thống",
         "vietnameseMeaning": "Chúng tôi đã triển khai hệ thống trước thứ Sáu.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "deployed"},
-          {"id": "t4", "text": "the system"},
-          {"id": "t5", "text": "before Friday"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "deployed"
+          },
+          {
+            "id": "t4",
+            "text": "the system"
+          },
+          {
+            "id": "t5",
+            "text": "before Friday"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4", "t5"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "deployed",
+          "the system",
+          "before Friday"
+        ],
         "fullSentenceEn": "We had deployed the system before Friday",
-        "grammarTip": {"titleVi": "Before + mốc thời gian", "tipVi": "Before + mốc thời gian -> dùng Past Perfect."}
+        "grammarTip": {
+          "titleVi": "Before + mốc thời gian",
+          "tipVi": "Before + mốc thời gian -> dùng Past Perfect."
+        }
       },
       {
         "id": "past-perfect-sb-4",
         "scenarioVi": "Khách hàng đã ký",
         "vietnameseMeaning": "Khách hàng đã ký hợp đồng.",
         "scrambledTokens": [
-          {"id": "t1", "text": "The client"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "signed"},
-          {"id": "t4", "text": "the contract"}
+          {
+            "id": "t1",
+            "text": "The client"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "signed"
+          },
+          {
+            "id": "t4",
+            "text": "the contract"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "The client",
+          "had",
+          "signed",
+          "the contract"
+        ],
         "fullSentenceEn": "The client had signed the contract",
-        "grammarTip": {"titleVi": "Cấu trúc cơ bản", "tipVi": "S + had + V3/ed + O"}
+        "grammarTip": {
+          "titleVi": "Cấu trúc cơ bản",
+          "tipVi": "S + had + V3/ed + O"
+        }
       },
       {
         "id": "past-perfect-sb-5",
         "scenarioVi": "Đã xóa file",
         "vietnameseMeaning": "Anh ấy đã xóa file.",
         "scrambledTokens": [
-          {"id": "t1", "text": "He"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "deleted"},
-          {"id": "t4", "text": "the file"}
+          {
+            "id": "t1",
+            "text": "He"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "deleted"
+          },
+          {
+            "id": "t4",
+            "text": "the file"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "He",
+          "had",
+          "deleted",
+          "the file"
+        ],
         "fullSentenceEn": "He had deleted the file",
-        "grammarTip": {"titleVi": "Động từ theo quy tắc", "tipVi": "Delete -> deleted"}
+        "grammarTip": {
+          "titleVi": "Động từ theo quy tắc",
+          "tipVi": "Delete -> deleted"
+        }
       },
       {
         "id": "past-perfect-sb-6",
         "scenarioVi": "Đã viết tài liệu",
         "vietnameseMeaning": "Cô ấy đã viết tài liệu.",
         "scrambledTokens": [
-          {"id": "t1", "text": "She"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "written"},
-          {"id": "t4", "text": "the docs"}
+          {
+            "id": "t1",
+            "text": "She"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "written"
+          },
+          {
+            "id": "t4",
+            "text": "the docs"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "She",
+          "had",
+          "written",
+          "the docs"
+        ],
         "fullSentenceEn": "She had written the docs",
-        "grammarTip": {"titleVi": "Động từ bất quy tắc", "tipVi": "Write -> written"}
+        "grammarTip": {
+          "titleVi": "Động từ bất quy tắc",
+          "tipVi": "Write -> written"
+        }
       },
       {
         "id": "past-perfect-sb-7",
         "scenarioVi": "Chưa hoàn thành",
         "vietnameseMeaning": "Họ vẫn chưa hoàn thành việc kiểm thử.",
         "scrambledTokens": [
-          {"id": "t1", "text": "They"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "not"},
-          {"id": "t4", "text": "finished"},
-          {"id": "t5", "text": "testing"}
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "not"
+          },
+          {
+            "id": "t4",
+            "text": "finished"
+          },
+          {
+            "id": "t5",
+            "text": "testing"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4", "t5"],
+        "correctTokenOrder": [
+          "They",
+          "had",
+          "not",
+          "finished",
+          "testing"
+        ],
         "fullSentenceEn": "They had not finished testing",
-        "grammarTip": {"titleVi": "Phủ định", "tipVi": "S + had not + V3/ed"}
+        "grammarTip": {
+          "titleVi": "Phủ định",
+          "tipVi": "S + had not + V3/ed"
+        }
       },
       {
         "id": "past-perfect-sb-8",
         "scenarioVi": "Máy chủ sập",
         "vietnameseMeaning": "Máy chủ đã bị sập.",
         "scrambledTokens": [
-          {"id": "t1", "text": "The server"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "crashed"}
+          {
+            "id": "t1",
+            "text": "The server"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "crashed"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3"],
+        "correctTokenOrder": [
+          "The server",
+          "had",
+          "crashed"
+        ],
         "fullSentenceEn": "The server had crashed",
-        "grammarTip": {"titleVi": "Nội động từ", "tipVi": "Crashed không cần tân ngữ."}
+        "grammarTip": {
+          "titleVi": "Nội động từ",
+          "tipVi": "Crashed không cần tân ngữ."
+        }
       },
       {
         "id": "past-perfect-sb-9",
         "scenarioVi": "Đã backup",
         "vietnameseMeaning": "Chúng tôi đã backup dữ liệu.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "backed up"},
-          {"id": "t4", "text": "the data"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "backed up"
+          },
+          {
+            "id": "t4",
+            "text": "the data"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "backed up",
+          "the data"
+        ],
         "fullSentenceEn": "We had backed up the data",
-        "grammarTip": {"titleVi": "Phrasal verb", "tipVi": "Back up -> backed up."}
+        "grammarTip": {
+          "titleVi": "Phrasal verb",
+          "tipVi": "Back up -> backed up."
+        }
       },
       {
         "id": "past-perfect-sb-10",
         "scenarioVi": "Đã cập nhật",
         "vietnameseMeaning": "Hệ thống đã được cập nhật.",
         "scrambledTokens": [
-          {"id": "t1", "text": "The system"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "been"},
-          {"id": "t4", "text": "updated"}
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "been"
+          },
+          {
+            "id": "t4",
+            "text": "updated"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "The system",
+          "had",
+          "been",
+          "updated"
+        ],
         "fullSentenceEn": "The system had been updated",
-        "grammarTip": {"titleVi": "Bị động", "tipVi": "S + had been + V3/ed"}
+        "grammarTip": {
+          "titleVi": "Bị động",
+          "tipVi": "S + had been + V3/ed"
+        }
       },
       {
         "id": "past-perfect-sb-11",
         "scenarioVi": "Chưa từng dùng",
         "vietnameseMeaning": "Tôi chưa từng dùng API này trước đây.",
         "scrambledTokens": [
-          {"id": "t1", "text": "I"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "never"},
-          {"id": "t4", "text": "used"},
-          {"id": "t5", "text": "this API"}
+          {
+            "id": "t1",
+            "text": "I"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "never"
+          },
+          {
+            "id": "t4",
+            "text": "used"
+          },
+          {
+            "id": "t5",
+            "text": "this API"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4", "t5"],
+        "correctTokenOrder": [
+          "I",
+          "had",
+          "never",
+          "used",
+          "this API"
+        ],
         "fullSentenceEn": "I had never used this API",
-        "grammarTip": {"titleVi": "Trạng từ never", "tipVi": "Never đứng giữa had và V3."}
+        "grammarTip": {
+          "titleVi": "Trạng từ never",
+          "tipVi": "Never đứng giữa had và V3."
+        }
       },
       {
         "id": "past-perfect-sb-12",
         "scenarioVi": "Đã rời đi",
         "vietnameseMeaning": "Cô ấy vừa mới rời đi.",
         "scrambledTokens": [
-          {"id": "t1", "text": "She"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "just"},
-          {"id": "t4", "text": "left"}
+          {
+            "id": "t1",
+            "text": "She"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "just"
+          },
+          {
+            "id": "t4",
+            "text": "left"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "She",
+          "had",
+          "just",
+          "left"
+        ],
         "fullSentenceEn": "She had just left",
-        "grammarTip": {"titleVi": "Trạng từ just", "tipVi": "Just nhấn mạnh hành động vừa mới xảy ra."}
+        "grammarTip": {
+          "titleVi": "Trạng từ just",
+          "tipVi": "Just nhấn mạnh hành động vừa mới xảy ra."
+        }
       },
       {
         "id": "past-perfect-sb-13",
         "scenarioVi": "Đã chốt thiết kế",
         "vietnameseMeaning": "Họ đã hoàn tất thiết kế.",
         "scrambledTokens": [
-          {"id": "t1", "text": "They"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "finalized"},
-          {"id": "t4", "text": "the design"}
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "finalized"
+          },
+          {
+            "id": "t4",
+            "text": "the design"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "They",
+          "had",
+          "finalized",
+          "the design"
+        ],
         "fullSentenceEn": "They had finalized the design",
-        "grammarTip": {"titleVi": "Cấu trúc cơ bản", "tipVi": "S + had + V3/ed + O"}
+        "grammarTip": {
+          "titleVi": "Cấu trúc cơ bản",
+          "tipVi": "S + had + V3/ed + O"
+        }
       },
       {
         "id": "past-perfect-sb-14",
         "scenarioVi": "Đã xem xét mã nguồn",
         "vietnameseMeaning": "Anh ấy đã review code.",
         "scrambledTokens": [
-          {"id": "t1", "text": "He"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "reviewed"},
-          {"id": "t4", "text": "the code"}
+          {
+            "id": "t1",
+            "text": "He"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "reviewed"
+          },
+          {
+            "id": "t4",
+            "text": "the code"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "He",
+          "had",
+          "reviewed",
+          "the code"
+        ],
         "fullSentenceEn": "He had reviewed the code",
-        "grammarTip": {"titleVi": "Động từ theo quy tắc", "tipVi": "Review -> reviewed"}
+        "grammarTip": {
+          "titleVi": "Động từ theo quy tắc",
+          "tipVi": "Review -> reviewed"
+        }
       },
       {
         "id": "past-perfect-sb-15",
         "scenarioVi": "Đã phỏng vấn",
         "vietnameseMeaning": "Chúng tôi đã phỏng vấn anh ấy.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "interviewed"},
-          {"id": "t4", "text": "him"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "interviewed"
+          },
+          {
+            "id": "t4",
+            "text": "him"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "interviewed",
+          "him"
+        ],
         "fullSentenceEn": "We had interviewed him",
-        "grammarTip": {"titleVi": "Tân ngữ", "tipVi": "Him làm tân ngữ sau động từ."}
+        "grammarTip": {
+          "titleVi": "Tân ngữ",
+          "tipVi": "Him làm tân ngữ sau động từ."
+        }
       },
       {
         "id": "past-perfect-sb-16",
         "scenarioVi": "Đã chuẩn bị trước",
         "vietnameseMeaning": "Tôi đã chuẩn bị mọi thứ.",
         "scrambledTokens": [
-          {"id": "t1", "text": "I"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "prepared"},
-          {"id": "t4", "text": "everything"}
+          {
+            "id": "t1",
+            "text": "I"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "prepared"
+          },
+          {
+            "id": "t4",
+            "text": "everything"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "I",
+          "had",
+          "prepared",
+          "everything"
+        ],
         "fullSentenceEn": "I had prepared everything",
-        "grammarTip": {"titleVi": "Đại từ bất định", "tipVi": "Everything dùng làm tân ngữ."}
+        "grammarTip": {
+          "titleVi": "Đại từ bất định",
+          "tipVi": "Everything dùng làm tân ngữ."
+        }
       },
       {
         "id": "past-perfect-sb-17",
         "scenarioVi": "Đã báo cáo sếp",
         "vietnameseMeaning": "Cô ấy đã báo cáo với sếp.",
         "scrambledTokens": [
-          {"id": "t1", "text": "She"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "reported"},
-          {"id": "t4", "text": "to the boss"}
+          {
+            "id": "t1",
+            "text": "She"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "reported"
+          },
+          {
+            "id": "t4",
+            "text": "to the boss"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "She",
+          "had",
+          "reported",
+          "to the boss"
+        ],
         "fullSentenceEn": "She had reported to the boss",
-        "grammarTip": {"titleVi": "Giới từ", "tipVi": "Report to sb."}
+        "grammarTip": {
+          "titleVi": "Giới từ",
+          "tipVi": "Report to sb."
+        }
       },
       {
         "id": "past-perfect-sb-18",
         "scenarioVi": "Chưa hoàn tất",
         "vietnameseMeaning": "Chúng tôi chưa hoàn tất thanh toán.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "not"},
-          {"id": "t4", "text": "completed"},
-          {"id": "t5", "text": "the payment"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "not"
+          },
+          {
+            "id": "t4",
+            "text": "completed"
+          },
+          {
+            "id": "t5",
+            "text": "the payment"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4", "t5"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "not",
+          "completed",
+          "the payment"
+        ],
         "fullSentenceEn": "We had not completed the payment",
-        "grammarTip": {"titleVi": "Phủ định", "tipVi": "Had not = hadn't."}
+        "grammarTip": {
+          "titleVi": "Phủ định",
+          "tipVi": "Had not = hadn't."
+        }
       },
       {
         "id": "past-perfect-sb-19",
         "scenarioVi": "Đã giải quyết xung đột",
         "vietnameseMeaning": "Họ đã giải quyết xung đột mã nguồn.",
         "scrambledTokens": [
-          {"id": "t1", "text": "They"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "resolved"},
-          {"id": "t4", "text": "the merge conflict"}
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "resolved"
+          },
+          {
+            "id": "t4",
+            "text": "the merge conflict"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "They",
+          "had",
+          "resolved",
+          "the merge conflict"
+        ],
         "fullSentenceEn": "They had resolved the merge conflict",
-        "grammarTip": {"titleVi": "Từ vựng IT", "tipVi": "Merge conflict là xung đột khi gộp mã."}
+        "grammarTip": {
+          "titleVi": "Từ vựng IT",
+          "tipVi": "Merge conflict là xung đột khi gộp mã."
+        }
       },
       {
         "id": "past-perfect-sb-20",
         "scenarioVi": "Đã chạy bài kiểm thử",
         "vietnameseMeaning": "Bài kiểm thử đã vượt qua.",
         "scrambledTokens": [
-          {"id": "t1", "text": "The tests"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "passed"}
+          {
+            "id": "t1",
+            "text": "The tests"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "passed"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3"],
+        "correctTokenOrder": [
+          "The tests",
+          "had",
+          "passed"
+        ],
         "fullSentenceEn": "The tests had passed",
-        "grammarTip": {"titleVi": "Cấu trúc cơ bản", "tipVi": "S + had + V3/ed"}
+        "grammarTip": {
+          "titleVi": "Cấu trúc cơ bản",
+          "tipVi": "S + had + V3/ed"
+        }
       }
     ],
     "devOpsChallenge": [
@@ -1061,7 +1893,11 @@
         "baseVerb": "backup",
         "textAfter": " the database before the outage.",
         "correctAnswer": "had backed up",
-        "options": ["backed up", "had backed up", "have backed up"],
+        "options": [
+          "backed up",
+          "had backed up",
+          "have backed up"
+        ],
         "explanation": {
           "ruleVi": "Hành động backup xảy ra trước sự cố.",
           "detailedAnalysisVi": "Dùng Past Perfect để nhấn mạnh tính hoàn tất trước một thời điểm quá khứ."
@@ -1076,7 +1912,11 @@
         "baseVerb": "restart",
         "textAfter": " the pod before you asked.",
         "correctAnswer": "had restarted",
-        "options": ["restarted", "had restarted", "have restarted"],
+        "options": [
+          "restarted",
+          "had restarted",
+          "have restarted"
+        ],
         "explanation": {
           "ruleVi": "Đã khởi động lại trước khi được yêu cầu.",
           "detailedAnalysisVi": "Past Perfect."
@@ -1091,7 +1931,11 @@
         "baseVerb": "trigger",
         "textAfter": " before the CPU spiked.",
         "correctAnswer": "had triggered",
-        "options": ["triggered", "had triggered", "has triggered"],
+        "options": [
+          "triggered",
+          "had triggered",
+          "has triggered"
+        ],
         "explanation": {
           "ruleVi": "Trigger xảy ra trước khi spike.",
           "detailedAnalysisVi": "Past Perfect cho sự kiện trước."
@@ -1106,7 +1950,11 @@
         "baseVerb": "clear",
         "textAfter": " the cache before deploying.",
         "correctAnswer": "had cleared",
-        "options": ["cleared", "had cleared", "clears"],
+        "options": [
+          "cleared",
+          "had cleared",
+          "clears"
+        ],
         "explanation": {
           "ruleVi": "Clear cache trước khi deploy.",
           "detailedAnalysisVi": "Hành động trước."
@@ -1121,7 +1969,11 @@
         "baseVerb": "configure",
         "textAfter": " the pipeline by Monday.",
         "correctAnswer": "had configured",
-        "options": ["configured", "had configured", "were configuring"],
+        "options": [
+          "configured",
+          "had configured",
+          "were configuring"
+        ],
         "explanation": {
           "ruleVi": "Hoàn tất trước thứ Hai.",
           "detailedAnalysisVi": "By + mốc quá khứ."
@@ -1131,12 +1983,28 @@
         "id": "past-perfect-devops-6",
         "challengeType": "errorHunting",
         "scenarioVi": "Lỗi PR deployment",
-        "tokens": ["The", "pipeline", "has", "failed", "before", "I", "checked"],
+        "tokens": [
+          "The",
+          "pipeline",
+          "has",
+          "failed",
+          "before",
+          "I",
+          "checked"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "had",
         "options": [
-          {"value": "has", "label": "has", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "has",
+            "label": "has",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "The pipeline had failed before I checked",
         "vietnameseMeaning": "Pipeline đã thất bại trước khi tôi kiểm tra.",
@@ -1149,12 +2017,27 @@
         "id": "past-perfect-devops-7",
         "challengeType": "errorHunting",
         "scenarioVi": "Lỗi log file",
-        "tokens": ["I", "had", "delete", "the", "logs", "already"],
+        "tokens": [
+          "I",
+          "had",
+          "delete",
+          "the",
+          "logs",
+          "already"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "deleted",
         "options": [
-          {"value": "delete", "label": "delete", "isCorrect": false},
-          {"value": "deleted", "label": "deleted", "isCorrect": true}
+          {
+            "value": "delete",
+            "label": "delete",
+            "isCorrect": false
+          },
+          {
+            "value": "deleted",
+            "label": "deleted",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "I had deleted the logs already",
         "vietnameseMeaning": "Tôi đã xóa log rồi.",
@@ -1167,12 +2050,30 @@
         "id": "past-perfect-devops-8",
         "challengeType": "errorHunting",
         "scenarioVi": "Lỗi migrate DB",
-        "tokens": ["We", "had", "run", "the", "migration", "before", "the", "traffic", "spiked"],
+        "tokens": [
+          "We",
+          "had",
+          "run",
+          "the",
+          "migration",
+          "before",
+          "the",
+          "traffic",
+          "spiked"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "run",
         "options": [
-          {"value": "ran", "label": "ran", "isCorrect": false},
-          {"value": "run", "label": "run", "isCorrect": true}
+          {
+            "value": "ran",
+            "label": "ran",
+            "isCorrect": false
+          },
+          {
+            "value": "run",
+            "label": "run",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "We had run the migration before the traffic spiked",
         "vietnameseMeaning": "Chúng tôi đã chạy migration trước khi traffic tăng vọt.",
@@ -1185,12 +2086,27 @@
         "id": "past-perfect-devops-9",
         "challengeType": "errorHunting",
         "scenarioVi": "Lỗi docker container",
-        "tokens": ["The", "container", "have", "crashed", "before", "restarting"],
+        "tokens": [
+          "The",
+          "container",
+          "have",
+          "crashed",
+          "before",
+          "restarting"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "had",
         "options": [
-          {"value": "have", "label": "have", "isCorrect": false},
-          {"value": "had", "label": "had", "isCorrect": true}
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": false
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "The container had crashed before restarting",
         "vietnameseMeaning": "Container đã sập trước khi khởi động lại.",
@@ -1203,12 +2119,28 @@
         "id": "past-perfect-devops-10",
         "challengeType": "errorHunting",
         "scenarioVi": "Lỗi cấp quyền AWS",
-        "tokens": ["I", "had", "give", "him", "admin", "access", "yesterday"],
+        "tokens": [
+          "I",
+          "had",
+          "give",
+          "him",
+          "admin",
+          "access",
+          "yesterday"
+        ],
         "errorTokenIndex": 2,
         "correctToken": "given",
         "options": [
-          {"value": "give", "label": "give", "isCorrect": false},
-          {"value": "given", "label": "given", "isCorrect": true}
+          {
+            "value": "give",
+            "label": "give",
+            "isCorrect": false
+          },
+          {
+            "value": "given",
+            "label": "given",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "I had given him admin access yesterday",
         "vietnameseMeaning": "Tôi đã cấp quyền admin cho anh ấy hôm qua.",
@@ -1223,14 +2155,34 @@
         "scenarioVi": "Đã rollback",
         "vietnameseMeaning": "Chúng tôi đã rollback phiên bản.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "rolled back"},
-          {"id": "t4", "text": "the release"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "rolled back"
+          },
+          {
+            "id": "t4",
+            "text": "the release"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "rolled back",
+          "the release"
+        ],
         "fullSentenceEn": "We had rolled back the release",
-        "grammarTip": {"titleVi": "Rollback", "tipVi": "Roll back -> rolled back."}
+        "grammarTip": {
+          "titleVi": "Rollback",
+          "tipVi": "Roll back -> rolled back."
+        }
       },
       {
         "id": "past-perfect-devops-12",
@@ -1238,14 +2190,34 @@
         "scenarioVi": "Đã giám sát",
         "vietnameseMeaning": "Hệ thống giám sát đã cảnh báo chúng tôi.",
         "scrambledTokens": [
-          {"id": "t1", "text": "The monitor"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "alerted"},
-          {"id": "t4", "text": "us"}
+          {
+            "id": "t1",
+            "text": "The monitor"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "alerted"
+          },
+          {
+            "id": "t4",
+            "text": "us"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "The monitor",
+          "had",
+          "alerted",
+          "us"
+        ],
         "fullSentenceEn": "The monitor had alerted us",
-        "grammarTip": {"titleVi": "Alert", "tipVi": "Alerted."}
+        "grammarTip": {
+          "titleVi": "Alert",
+          "tipVi": "Alerted."
+        }
       },
       {
         "id": "past-perfect-devops-13",
@@ -1253,14 +2225,34 @@
         "scenarioVi": "Đã sửa file config",
         "vietnameseMeaning": "Tôi đã sửa file config.",
         "scrambledTokens": [
-          {"id": "t1", "text": "I"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "updated"},
-          {"id": "t4", "text": "the config file"}
+          {
+            "id": "t1",
+            "text": "I"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "updated"
+          },
+          {
+            "id": "t4",
+            "text": "the config file"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "I",
+          "had",
+          "updated",
+          "the config file"
+        ],
         "fullSentenceEn": "I had updated the config file",
-        "grammarTip": {"titleVi": "Update", "tipVi": "Updated."}
+        "grammarTip": {
+          "titleVi": "Update",
+          "tipVi": "Updated."
+        }
       },
       {
         "id": "past-perfect-devops-14",
@@ -1268,14 +2260,34 @@
         "scenarioVi": "Đã clone repo",
         "vietnameseMeaning": "Anh ấy đã clone repo.",
         "scrambledTokens": [
-          {"id": "t1", "text": "He"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "cloned"},
-          {"id": "t4", "text": "the repo"}
+          {
+            "id": "t1",
+            "text": "He"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "cloned"
+          },
+          {
+            "id": "t4",
+            "text": "the repo"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "He",
+          "had",
+          "cloned",
+          "the repo"
+        ],
         "fullSentenceEn": "He had cloned the repo",
-        "grammarTip": {"titleVi": "Clone", "tipVi": "Cloned."}
+        "grammarTip": {
+          "titleVi": "Clone",
+          "tipVi": "Cloned."
+        }
       },
       {
         "id": "past-perfect-devops-15",
@@ -1283,14 +2295,34 @@
         "scenarioVi": "Đã vá lỗi bảo mật",
         "vietnameseMeaning": "Chúng tôi đã vá lỗi bảo mật.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "patched"},
-          {"id": "t4", "text": "the vulnerability"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "patched"
+          },
+          {
+            "id": "t4",
+            "text": "the vulnerability"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "patched",
+          "the vulnerability"
+        ],
         "fullSentenceEn": "We had patched the vulnerability",
-        "grammarTip": {"titleVi": "Patch", "tipVi": "Patched."}
+        "grammarTip": {
+          "titleVi": "Patch",
+          "tipVi": "Patched."
+        }
       },
       {
         "id": "past-perfect-devops-16",
@@ -1301,7 +2333,11 @@
         "baseVerb": "create",
         "textAfter": " the IAM user before he asked.",
         "correctAnswer": "had created",
-        "options": ["created", "had created", "has created"],
+        "options": [
+          "created",
+          "had created",
+          "has created"
+        ],
         "explanation": {
           "ruleVi": "Tạo xong trước khi hỏi.",
           "detailedAnalysisVi": "Past perfect."
@@ -1316,7 +2352,11 @@
         "baseVerb": "push",
         "textAfter": " the Docker image to the registry.",
         "correctAnswer": "had pushed",
-        "options": ["pushed", "had pushed", "have pushed"],
+        "options": [
+          "pushed",
+          "had pushed",
+          "have pushed"
+        ],
         "explanation": {
           "ruleVi": "Đã hoàn thành hành động đẩy.",
           "detailedAnalysisVi": "Past perfect."
@@ -1326,12 +2366,29 @@
         "id": "past-perfect-devops-18",
         "challengeType": "errorHunting",
         "scenarioVi": "Lỗi cron job",
-        "tokens": ["The", "cronjob", "had", "ran", "before", "I", "stopped", "it"],
+        "tokens": [
+          "The",
+          "cronjob",
+          "had",
+          "ran",
+          "before",
+          "I",
+          "stopped",
+          "it"
+        ],
         "errorTokenIndex": 3,
         "correctToken": "run",
         "options": [
-          {"value": "ran", "label": "ran", "isCorrect": false},
-          {"value": "run", "label": "run", "isCorrect": true}
+          {
+            "value": "ran",
+            "label": "ran",
+            "isCorrect": false
+          },
+          {
+            "value": "run",
+            "label": "run",
+            "isCorrect": true
+          }
         ],
         "fullCorrectSentence": "The cronjob had run before I stopped it",
         "vietnameseMeaning": "Cronjob đã chạy trước khi tôi dừng nó.",
@@ -1346,14 +2403,34 @@
         "scenarioVi": "Đã scale hệ thống",
         "vietnameseMeaning": "Chúng tôi đã mở rộng cụm máy chủ.",
         "scrambledTokens": [
-          {"id": "t1", "text": "We"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "scaled up"},
-          {"id": "t4", "text": "the cluster"}
+          {
+            "id": "t1",
+            "text": "We"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "scaled up"
+          },
+          {
+            "id": "t4",
+            "text": "the cluster"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "We",
+          "had",
+          "scaled up",
+          "the cluster"
+        ],
         "fullSentenceEn": "We had scaled up the cluster",
-        "grammarTip": {"titleVi": "Scale up", "tipVi": "Mở rộng hệ thống."}
+        "grammarTip": {
+          "titleVi": "Scale up",
+          "tipVi": "Mở rộng hệ thống."
+        }
       },
       {
         "id": "past-perfect-devops-20",
@@ -1361,14 +2438,34 @@
         "scenarioVi": "Đã flush redis",
         "vietnameseMeaning": "Anh ấy đã flush Redis.",
         "scrambledTokens": [
-          {"id": "t1", "text": "He"},
-          {"id": "t2", "text": "had"},
-          {"id": "t3", "text": "flushed"},
-          {"id": "t4", "text": "the Redis cache"}
+          {
+            "id": "t1",
+            "text": "He"
+          },
+          {
+            "id": "t2",
+            "text": "had"
+          },
+          {
+            "id": "t3",
+            "text": "flushed"
+          },
+          {
+            "id": "t4",
+            "text": "the Redis cache"
+          }
         ],
-        "correctTokenOrder": ["t1", "t2", "t3", "t4"],
+        "correctTokenOrder": [
+          "He",
+          "had",
+          "flushed",
+          "the Redis cache"
+        ],
         "fullSentenceEn": "He had flushed the Redis cache",
-        "grammarTip": {"titleVi": "Flush", "tipVi": "Làm sạch bộ nhớ đệm."}
+        "grammarTip": {
+          "titleVi": "Flush",
+          "tipVi": "Làm sạch bộ nhớ đệm."
+        }
       }
     ]
   }

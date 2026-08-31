@@ -6,7 +6,7 @@ import { FlashcardStack } from '@/components/game/FlashcardStack';
 import { DragDropBoard } from '@/components/game/DragDropBoard';
 import { QuizEngine } from '@/components/game/QuizEngine';
 import { TenseLessonContainer } from '@/components/tenses/TenseLessonContainer';
-import presentSimpleData from '@/data/tenses/present-simple.json';
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 import type { TenseModuleData } from '@/types/tenses';
 
 vi.mock('next/navigation', () => ({

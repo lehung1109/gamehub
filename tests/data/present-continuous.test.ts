@@ -16,7 +16,7 @@ describe('present-continuous data', () => {
     expect(presentContinuous.quickRules.length).toBeGreaterThan(0);
   });
 
-  it('should have exactly 10 challenges combined', () => {
+  it('should have exactly 80 challenges combined', () => {
     expect(presentContinuous.challenges).toBeDefined();
     
     const conjugationCount = presentContinuous.challenges.conjugation?.length || 0;
@@ -26,6 +26,6 @@ describe('present-continuous data', () => {
     
     const totalChallenges = conjugationCount + errorHuntingCount + sentenceBuildingCount + devOpsChallengeCount;
     
-    expect(totalChallenges).toBe(10);
+    expect(totalChallenges).toBe(80);
   });
 });

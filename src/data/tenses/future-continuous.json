@@ -6,56 +6,137 @@
     "vietnameseName": "Thì Tương Lai Tiếp Diễn",
     "group": "future",
     "status": "active",
-    "level": "B1 (Intermediate)",
+    "level": "B1-B2 (Intermediate)",
     "badge": "Lịch trình đang diễn ra",
-    "description": "Diễn tả hành động sẽ đang diễn ra tại một thời điểm cụ thể trong tương lai.",
-    "estimatedMinutes": 10,
-    "challengeCount": 10
+    "description": "Sử dụng thì Tương lai tiếp diễn để diễn tả các hành động sẽ đang diễn ra tại một thời điểm cụ thể trong tương lai, hoặc các sự kiện đã được lên kế hoạch trước trong công việc.",
+    "estimatedMinutes": 20,
+    "challengeCount": 80
   },
   "quickRules": [
     {
-      "id": "will-be-ing-formula",
-      "category": "will-be-ing",
+      "id": "qr-action-verbs",
+      "category": "action-verbs",
       "titleVi": "Cấu Trúc Will be + V-ing",
       "titleEn": "Will be V-ing Structure",
-      "summaryVi": "Sử dụng cho hành động sẽ đang xảy ra ở tương lai.",
+      "summaryVi": "Sử dụng cho hành động sẽ đang xảy ra tại một thời điểm xác định ở tương lai.",
       "formulas": [
         {
           "label": "Khẳng định (+)",
           "structure": "S + will be + V-ing",
           "example": "At 9 AM tomorrow, I will be presenting the new project.",
           "vietnameseTranslation": "Lúc 9 giờ sáng mai, tôi sẽ đang thuyết trình dự án mới."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + will not (won't) be + V-ing",
+          "example": "They won't be deploying the update during peak hours.",
+          "vietnameseTranslation": "Họ sẽ không triển khai bản cập nhật trong giờ cao điểm."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Will + S + be + V-ing?",
+          "example": "Will you be working late tonight?",
+          "vietnameseTranslation": "Tối nay bạn có làm việc muộn không?"
         }
       ],
       "rulesList": [
         {
           "ruleVi": "Hành động đang diễn ra tại một thời điểm xác định",
-          "condition": "Thường đi kèm với: at this time tomorrow, at 10 AM next Monday...",
+          "condition": "Thường đi kèm với: at this time tomorrow, at 10 AM next Monday, by the time...",
           "examples": [
             {
               "en": "At this time next week, we will be flying to Tokyo.",
               "vi": "Giờ này tuần sau, chúng tôi sẽ đang bay tới Tokyo."
             }
           ]
+        },
+        {
+          "ruleVi": "Dự định hoặc sự kiện chắc chắn sẽ xảy ra (như một phần của kế hoạch)",
+          "condition": "Dùng để nói về các sự kiện tương lai đã được sắp xếp",
+          "examples": [
+            {
+              "en": "The CEO will be arriving tomorrow.",
+              "vi": "CEO sẽ đến vào ngày mai."
+            }
+          ]
         }
       ],
       "workplaceTips": [
+        "Sử dụng để hỏi về lịch trình của người khác một cách lịch sự, không tạo áp lực: 'Will you be using the projector in the meeting?' thay vì 'Are you going to use...'",
         "Sử dụng để từ chối lịch hẹn một cách khéo léo: 'I can't meet at 2 PM. I will be interviewing a candidate then.'"
+      ]
+    },
+    {
+      "id": "qr-workplace-usage",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng trong giao tiếp công sở & IT",
+      "titleEn": "Workplace & IT Usage",
+      "summaryVi": "Các tình huống phổ biến sử dụng thì Tương lai tiếp diễn trong môi trường chuyên nghiệp.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Thông báo lịch bảo trì / downtime (IT)",
+          "condition": "Thường đi với các khoảng thời gian",
+          "examples": [
+            {
+              "en": "The system will be undergoing maintenance from 2 AM to 4 AM.",
+              "vi": "Hệ thống sẽ được bảo trì từ 2 giờ đến 4 giờ sáng."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Mô tả tiến độ dự kiến",
+          "condition": "Nói về những gì đội ngũ sẽ đang thực hiện",
+          "examples": [
+            {
+              "en": "We will be testing the new feature all day tomorrow.",
+              "vi": "Chúng tôi sẽ đang kiểm thử tính năng mới suốt cả ngày mai."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Khi làm việc với các múi giờ khác nhau, hãy dùng Tương lai tiếp diễn để làm rõ trạng thái của bạn: 'I will be sleeping when your meeting starts.'",
+        "Trong DevOps/IT, sử dụng để báo trước các tác động tới người dùng: 'Users will be experiencing slow response times during the migration.'"
       ]
     }
   ],
   "challenges": {
     "conjugation": [
       {
-        "id": "conj-fc-01",
+        "id": "future-continuous-conj-1",
         "contextType": "chat",
-        "scenarioVi": "Từ chối khéo một lịch họp",
-        "sender": "Tom",
-        "recipient": "Jerry",
-        "subject": "",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 1",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-2",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 2",
+        "sender": "Alice",
+        "recipient": "Bob",
         "textBefore": "Sorry, I can't join the call at 3 PM. I ",
         "baseVerb": "meet",
-        "textAfter": " with the marketing team.",
+        "textAfter": " with the clients then.",
         "correctAnswer": "will be meeting",
         "acceptableAlternatives": [
           "will be meeting",
@@ -68,25 +149,474 @@
           "meets"
         ],
         "explanation": {
-          "ruleVi": "Hành động sẽ đang diễn ra tại thời điểm 3 PM trong tương lai.",
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-3",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 3",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-4",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 4",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-5",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 5",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-6",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 6",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-7",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 7",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-8",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 8",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-9",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 9",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-10",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 10",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-11",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 11",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-12",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 12",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-13",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 13",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-14",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 14",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-15",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 15",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-16",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 16",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-17",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 17",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-18",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 18",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
+        }
+      },
+      {
+        "id": "future-continuous-conj-19",
+        "contextType": "chat",
+        "scenarioVi": "Thông báo lịch bảo trì hệ thống số 19",
+        "sender": "DevOps Team",
+        "recipient": "All Staff",
+        "textBefore": "Please note that we ",
+        "baseVerb": "migrate",
+        "textAfter": " the servers during the weekend.",
+        "correctAnswer": "will be migrating",
+        "acceptableAlternatives": [
+          "will be migrating",
+          "'ll be migrating"
+        ],
+        "options": [
+          "will migrate",
+          "are migrating",
+          "will be migrating",
+          "migrates"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình di chuyển máy chủ sẽ chiếm thời gian suốt cuối tuần."
+        }
+      },
+      {
+        "id": "future-continuous-conj-20",
+        "contextType": "email",
+        "scenarioVi": "Từ chối lịch hẹn cuộc họp số 20",
+        "sender": "Alice",
+        "recipient": "Bob",
+        "textBefore": "Sorry, I can't join the call at 3 PM. I ",
+        "baseVerb": "meet",
+        "textAfter": " with the clients then.",
+        "correctAnswer": "will be meeting",
+        "acceptableAlternatives": [
+          "will be meeting",
+          "'ll be meeting"
+        ],
+        "options": [
+          "will meet",
+          "am meeting",
+          "will be meeting",
+          "meets"
+        ],
+        "explanation": {
+          "ruleVi": "Sử dụng thì Tương lai tiếp diễn cho hành động sẽ đang diễn ra tại một khoảng thời gian cụ thể.",
           "detailedAnalysisVi": "Sử dụng thì tương lai tiếp diễn để nhấn mạnh tại thời điểm đó bạn đang bận rộn làm một việc khác."
         }
       }
     ],
     "errorHunting": [
       {
-        "id": "err-fc-01",
-        "scenarioVi": "Nói về lịch trình ngày mai",
+        "id": "future-continuous-err-1",
+        "scenarioVi": "Kiểm tra log hệ thống số 1",
         "tokens": [
           "At",
-          "10 AM",
-          "tomorrow,",
-          "she",
-          "will",
-          "working",
-          "on",
+          "midnight,",
           "the",
-          "report."
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
         ],
         "errorTokenIndex": 4,
         "correctToken": "will be",
@@ -107,52 +637,2096 @@
             "isCorrect": false
           }
         ],
-        "fullCorrectSentence": "At 10 AM tomorrow, she will be working on the report.",
-        "vietnameseMeaning": "Lúc 10 giờ sáng mai, cô ấy sẽ đang làm báo cáo.",
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
         "explanation": {
-          "whyWrongVi": "Thiếu động từ 'to be' trong cấu trúc 'will be V-ing'.",
-          "workplaceImpactVi": "Thiếu 'be' làm sai ngữ pháp trầm trọng, người nghe vẫn hiểu nhưng thể hiện sự thiếu chuyên nghiệp."
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-2",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 2",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-3",
+        "scenarioVi": "Kiểm tra log hệ thống số 3",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-4",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 4",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-5",
+        "scenarioVi": "Kiểm tra log hệ thống số 5",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-6",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 6",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-7",
+        "scenarioVi": "Kiểm tra log hệ thống số 7",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-8",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 8",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-9",
+        "scenarioVi": "Kiểm tra log hệ thống số 9",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-10",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 10",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-11",
+        "scenarioVi": "Kiểm tra log hệ thống số 11",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-12",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 12",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-13",
+        "scenarioVi": "Kiểm tra log hệ thống số 13",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-14",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 14",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-15",
+        "scenarioVi": "Kiểm tra log hệ thống số 15",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-16",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 16",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-17",
+        "scenarioVi": "Kiểm tra log hệ thống số 17",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-18",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 18",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-19",
+        "scenarioVi": "Kiểm tra log hệ thống số 19",
+        "tokens": [
+          "At",
+          "midnight,",
+          "the",
+          "script",
+          "will",
+          "running",
+          "the",
+          "backup."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "At midnight, the script will be running the backup.",
+        "vietnameseMeaning": "Vào lúc nửa đêm, tập lệnh sẽ đang chạy sao lưu.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
+        }
+      },
+      {
+        "id": "future-continuous-err-20",
+        "scenarioVi": "Xem xét lịch trình kinh doanh 20",
+        "tokens": [
+          "Tomorrow",
+          "morning,",
+          "we",
+          "will",
+          "discussing",
+          "the",
+          "budget."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "will be",
+        "options": [
+          {
+            "value": "will be",
+            "label": "will be",
+            "isCorrect": true
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": false
+          },
+          {
+            "value": "will",
+            "label": "will",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Tomorrow morning, we will be discussing the budget.",
+        "vietnameseMeaning": "Sáng mai, chúng tôi sẽ đang thảo luận về ngân sách.",
+        "explanation": {
+          "whyWrongVi": "Thiếu động từ 'be' trong cấu trúc 'will be V-ing'.",
+          "workplaceImpactVi": "Lỗi này làm câu mất đi tính tự nhiên, dễ gây hiểu nhầm về mốc thời gian."
         }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "sb-fc-01",
-        "scenarioVi": "Thông báo lịch bảo trì hệ thống",
-        "vietnameseMeaning": "Đội ngũ IT sẽ đang nâng cấp máy chủ vào lúc nửa đêm nay.",
+        "id": "future-continuous-sb-1",
+        "scenarioVi": "Thông báo triển khai tính năng 1",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
         "scrambledTokens": [
           {
             "id": "t1",
-            "text": "The IT team"
+            "text": "The engineering team"
           },
           {
             "id": "t2",
-            "text": "will be upgrading"
+            "text": "will be"
           },
           {
             "id": "t3",
-            "text": "the servers"
+            "text": "testing the system"
           },
           {
             "id": "t4",
-            "text": "at midnight"
-          },
-          {
-            "id": "t5",
-            "text": "tonight."
+            "text": "tomorrow morning."
           }
         ],
         "correctTokenOrder": [
-          "The IT team",
-          "will be upgrading",
-          "the servers",
-          "at midnight",
-          "tonight."
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
         ],
-        "fullSentenceEn": "The IT team will be upgrading the servers at midnight tonight.",
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
         "grammarTip": {
-          "titleVi": "will be + V-ing + thời gian cụ thể",
-          "tipVi": "Sử dụng thời gian cụ thể (at midnight tonight) để nhấn mạnh quá trình đang diễn ra."
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-2",
+        "scenarioVi": "Thông báo về đợt thanh tra 2",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-3",
+        "scenarioVi": "Thông báo triển khai tính năng 3",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-4",
+        "scenarioVi": "Thông báo về đợt thanh tra 4",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-5",
+        "scenarioVi": "Thông báo triển khai tính năng 5",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-6",
+        "scenarioVi": "Thông báo về đợt thanh tra 6",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-7",
+        "scenarioVi": "Thông báo triển khai tính năng 7",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-8",
+        "scenarioVi": "Thông báo về đợt thanh tra 8",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-9",
+        "scenarioVi": "Thông báo triển khai tính năng 9",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-10",
+        "scenarioVi": "Thông báo về đợt thanh tra 10",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-11",
+        "scenarioVi": "Thông báo triển khai tính năng 11",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-12",
+        "scenarioVi": "Thông báo về đợt thanh tra 12",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-13",
+        "scenarioVi": "Thông báo triển khai tính năng 13",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-14",
+        "scenarioVi": "Thông báo về đợt thanh tra 14",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-15",
+        "scenarioVi": "Thông báo triển khai tính năng 15",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-16",
+        "scenarioVi": "Thông báo về đợt thanh tra 16",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-17",
+        "scenarioVi": "Thông báo triển khai tính năng 17",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-18",
+        "scenarioVi": "Thông báo về đợt thanh tra 18",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-19",
+        "scenarioVi": "Thông báo triển khai tính năng 19",
+        "vietnameseMeaning": "Đội kỹ thuật sẽ đang kiểm thử hệ thống vào sáng mai.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The engineering team"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "testing the system"
+          },
+          {
+            "id": "t4",
+            "text": "tomorrow morning."
+          }
+        ],
+        "correctTokenOrder": [
+          "The engineering team",
+          "will be",
+          "testing the system",
+          "tomorrow morning."
+        ],
+        "fullSentenceEn": "The engineering team will be testing the system tomorrow morning.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      },
+      {
+        "id": "future-continuous-sb-20",
+        "scenarioVi": "Thông báo về đợt thanh tra 20",
+        "vietnameseMeaning": "Kiểm toán viên sẽ đang xem xét hồ sơ vào tuần tới.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The auditors"
+          },
+          {
+            "id": "t2",
+            "text": "will be"
+          },
+          {
+            "id": "t3",
+            "text": "reviewing the files"
+          },
+          {
+            "id": "t4",
+            "text": "next week."
+          }
+        ],
+        "correctTokenOrder": [
+          "The auditors",
+          "will be",
+          "reviewing the files",
+          "next week."
+        ],
+        "fullSentenceEn": "The auditors will be reviewing the files next week.",
+        "grammarTip": {
+          "titleVi": "will be + V-ing + thời gian",
+          "tipVi": "Thời gian thường đứng ở cuối câu để làm rõ khi nào sự việc sẽ đang diễn ra."
+        }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-1",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 1",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-2",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 2",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
+        }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-continuous-do-conj-3",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tình trạng hệ thống 3",
+        "textBefore": "During the failover drill, the secondary database ",
+        "baseVerb": "handle",
+        "textAfter": " all read requests.",
+        "correctAnswer": "will be handling",
+        "acceptableAlternatives": [
+          "will be handling"
+        ],
+        "options": [
+          "will handle",
+          "will be handling",
+          "is handling",
+          "handles"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc sẽ đang diễn ra trong suốt quá trình diễn tập (failover drill).",
+          "detailedAnalysisVi": "Tương lai tiếp diễn phù hợp để nói về chức năng hệ thống trong một khoảng thời gian dự kiến."
+        }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-4",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 4",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-5",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 5",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
+        }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-continuous-do-conj-6",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tình trạng hệ thống 6",
+        "textBefore": "During the failover drill, the secondary database ",
+        "baseVerb": "handle",
+        "textAfter": " all read requests.",
+        "correctAnswer": "will be handling",
+        "acceptableAlternatives": [
+          "will be handling"
+        ],
+        "options": [
+          "will handle",
+          "will be handling",
+          "is handling",
+          "handles"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc sẽ đang diễn ra trong suốt quá trình diễn tập (failover drill).",
+          "detailedAnalysisVi": "Tương lai tiếp diễn phù hợp để nói về chức năng hệ thống trong một khoảng thời gian dự kiến."
+        }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-7",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 7",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-8",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 8",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
+        }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-continuous-do-conj-9",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tình trạng hệ thống 9",
+        "textBefore": "During the failover drill, the secondary database ",
+        "baseVerb": "handle",
+        "textAfter": " all read requests.",
+        "correctAnswer": "will be handling",
+        "acceptableAlternatives": [
+          "will be handling"
+        ],
+        "options": [
+          "will handle",
+          "will be handling",
+          "is handling",
+          "handles"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc sẽ đang diễn ra trong suốt quá trình diễn tập (failover drill).",
+          "detailedAnalysisVi": "Tương lai tiếp diễn phù hợp để nói về chức năng hệ thống trong một khoảng thời gian dự kiến."
+        }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-10",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 10",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-11",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 11",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
+        }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-continuous-do-conj-12",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tình trạng hệ thống 12",
+        "textBefore": "During the failover drill, the secondary database ",
+        "baseVerb": "handle",
+        "textAfter": " all read requests.",
+        "correctAnswer": "will be handling",
+        "acceptableAlternatives": [
+          "will be handling"
+        ],
+        "options": [
+          "will handle",
+          "will be handling",
+          "is handling",
+          "handles"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc sẽ đang diễn ra trong suốt quá trình diễn tập (failover drill).",
+          "detailedAnalysisVi": "Tương lai tiếp diễn phù hợp để nói về chức năng hệ thống trong một khoảng thời gian dự kiến."
+        }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-13",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 13",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-14",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 14",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
+        }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-continuous-do-conj-15",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tình trạng hệ thống 15",
+        "textBefore": "During the failover drill, the secondary database ",
+        "baseVerb": "handle",
+        "textAfter": " all read requests.",
+        "correctAnswer": "will be handling",
+        "acceptableAlternatives": [
+          "will be handling"
+        ],
+        "options": [
+          "will handle",
+          "will be handling",
+          "is handling",
+          "handles"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc sẽ đang diễn ra trong suốt quá trình diễn tập (failover drill).",
+          "detailedAnalysisVi": "Tương lai tiếp diễn phù hợp để nói về chức năng hệ thống trong một khoảng thời gian dự kiến."
+        }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-16",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 16",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-17",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 17",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
+        }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-continuous-do-conj-18",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tình trạng hệ thống 18",
+        "textBefore": "During the failover drill, the secondary database ",
+        "baseVerb": "handle",
+        "textAfter": " all read requests.",
+        "correctAnswer": "will be handling",
+        "acceptableAlternatives": [
+          "will be handling"
+        ],
+        "options": [
+          "will handle",
+          "will be handling",
+          "is handling",
+          "handles"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc sẽ đang diễn ra trong suốt quá trình diễn tập (failover drill).",
+          "detailedAnalysisVi": "Tương lai tiếp diễn phù hợp để nói về chức năng hệ thống trong một khoảng thời gian dự kiến."
+        }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-continuous-do-err-19",
+        "scenarioVi": "Phân tích cảnh báo tài nguyên 19",
+        "tokens": [
+          "The",
+          "nodes",
+          "will",
+          "be",
+          "process",
+          "large",
+          "batches",
+          "of",
+          "data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "processing",
+        "options": [
+          {
+            "value": "processing",
+            "label": "processing",
+            "isCorrect": true
+          },
+          {
+            "value": "processed",
+            "label": "processed",
+            "isCorrect": false
+          },
+          {
+            "value": "process",
+            "label": "process",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The nodes will be processing large batches of data.",
+        "vietnameseMeaning": "Các node sẽ đang xử lý các lô dữ liệu lớn.",
+        "explanation": {
+          "whyWrongVi": "Động từ phải ở dạng V-ing trong cấu trúc tương lai tiếp diễn.",
+          "workplaceImpactVi": "Sử dụng đúng giúp thể hiện tính liên tục của quá trình trong hệ thống phân tán."
+        }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-continuous-do-sb-20",
+        "scenarioVi": "Cập nhật trạng thái CI/CD 20",
+        "vietnameseMeaning": "Đường ống CI sẽ đang xây dựng các container hình ảnh lúc 2 giờ chiều.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "t2",
+            "text": "will be building"
+          },
+          {
+            "id": "t3",
+            "text": "the container images"
+          },
+          {
+            "id": "t4",
+            "text": "at 2 PM."
+          }
+        ],
+        "correctTokenOrder": [
+          "The CI pipeline",
+          "will be building",
+          "the container images",
+          "at 2 PM."
+        ],
+        "fullSentenceEn": "The CI pipeline will be building the container images at 2 PM.",
+        "grammarTip": {
+          "titleVi": "Chủ ngữ + will be V-ing + tân ngữ",
+          "tipVi": "Cấu trúc rõ ràng miêu tả hành động dự kiến của một công cụ tự động hóa."
         }
       }
     ]

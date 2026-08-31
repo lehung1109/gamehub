@@ -9,7 +9,7 @@ import { ConjugationStage } from '@/components/tenses/stages/ConjugationStage';
 import { ErrorHunterStage } from '@/components/tenses/stages/ErrorHunterStage';
 import { SentenceBuilderStage } from '@/components/tenses/stages/SentenceBuilderStage';
 import { StudentSessionProvider } from '@/contexts/StudentSessionContext';
-import presentSimpleData from '@/data/tenses/present-simple.json';
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 import type { ConjugationItem, ErrorHunterItem, SentenceBuilderItem } from '@/types/tenses';
 
 vi.mock("@/hooks/useSessionQuestions", () => ({

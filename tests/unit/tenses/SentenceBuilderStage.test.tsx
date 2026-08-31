@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { SentenceBuilderStage } from "@/components/tenses/stages/SentenceBuilderStage";
 import { SentenceBuilderItem } from "@/types/tenses";
-import presentSimpleData from "@/data/tenses/present-simple.json";
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 
 vi.mock("@/hooks/useSessionQuestions", () => ({
   useSessionQuestions: vi.fn((items, count) => items.slice(0, count))

@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { GrammarRuleCard } from "@/types/tenses";
-import presentSimpleData from "@/data/tenses/present-simple.json";
+import presentSimpleData from "@/data/tenses/mock-present-simple.json";
 
 const mockRules: GrammarRuleCard[] = presentSimpleData.quickRules as GrammarRuleCard[];
 
