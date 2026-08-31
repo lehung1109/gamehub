@@ -6,60 +6,392 @@
     "vietnameseName": "Thì Tương Lai Hoàn Thành Tiếp Diễn",
     "group": "future",
     "status": "active",
-    "level": "C1 (Advanced)",
-    "badge": "Nhấn mạnh khoảng thời gian",
-    "description": "Diễn tả một hành động sẽ đang xảy ra liên tục cho đến một thời điểm trong tương lai.",
-    "estimatedMinutes": 10,
-    "challengeCount": 10
+    "level": "C1-C2 (Advanced)",
+    "badge": "Nhấn mạnh quá trình liên tục",
+    "description": "Nhấn mạnh khoảng thời gian kéo dài liên tục của một hành động, tính đến một thời điểm xác định trong tương lai. Thường dùng trong báo cáo tiến độ, dự báo tài nguyên và đánh giá hiệu suất.",
+    "estimatedMinutes": 45,
+    "challengeCount": 80
   },
   "quickRules": [
     {
-      "id": "will-have-been-ing-formula",
-      "category": "will-have-been-ing",
-      "titleVi": "Cấu Trúc Will have been + V-ing",
-      "titleEn": "Will have been V-ing Structure",
-      "summaryVi": "Dùng để nhấn mạnh khoảng thời gian kéo dài liên tục của hành động tính đến thời điểm tương lai.",
+      "id": "qr-to-be",
+      "category": "to-be",
+      "titleVi": "Không dùng với Động từ Trạng thái",
+      "titleEn": "No Stative Verbs",
+      "summaryVi": "Thì tiếp diễn không dùng với các động từ chỉ trạng thái (nhận thức, sở hữu, cảm xúc) như be, know, have. Thay vào đó, dùng Tương lai Hoàn thành.",
       "formulas": [
         {
-          "label": "Khẳng định (+)",
-          "structure": "S + will have been + V-ing",
-          "example": "By next month, I will have been working here for 5 years.",
-          "vietnameseTranslation": "Tính đến tháng sau, tôi sẽ làm việc ở đây được tròn 5 năm."
+          "label": "Sai",
+          "structure": "S + will have been + being/knowing + ...",
+          "example": "By next year, I will have been knowing him for 5 years. (Sai)",
+          "vietnameseTranslation": "Tính đến năm sau, tôi sẽ biết anh ấy được 5 năm."
+        },
+        {
+          "label": "Đúng",
+          "structure": "S + will have + PII + ...",
+          "example": "By next year, I will have known him for 5 years. (Đúng)",
+          "vietnameseTranslation": "Tính đến năm sau, tôi sẽ biết anh ấy được 5 năm."
         }
       ],
       "rulesList": [
         {
-          "ruleVi": "Dấu hiệu nhận biết",
-          "condition": "by + mốc thời gian tương lai, for + khoảng thời gian.",
+          "ruleVi": "Chuyển sang Thì Tương lai hoàn thành",
+          "condition": "Khi gặp động từ trạng thái",
           "examples": [
             {
-              "en": "By 5 PM, she will have been typing for 3 hours.",
-              "vi": "Tính đến 5 giờ chiều, cô ấy sẽ đánh máy được 3 tiếng."
+              "en": "We will have had this server for a decade by 2028.",
+              "vi": "Chúng ta sẽ sở hữu máy chủ này được một thập kỷ tính đến 2028."
             }
           ]
         }
       ],
       "workplaceTips": [
-        "Thường dùng trong các dịp kỷ niệm (anniversaries), đánh giá thâm niên hoặc báo cáo những quá trình làm việc dài hạn."
+        "Trong IT/Kinh doanh, tránh dùng 'will have been being', hãy dùng 'will have been'."
+      ]
+    },
+    {
+      "id": "qr-action-verbs",
+      "category": "action-verbs",
+      "titleVi": "Cấu trúc với Động từ Hành động",
+      "titleEn": "Structure with Action Verbs",
+      "summaryVi": "Dùng để nhấn mạnh quá trình liên tục của một hành động kéo dài đến một thời điểm tương lai.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will have been + V-ing",
+          "example": "By December, we will have been developing this app for a year.",
+          "vietnameseTranslation": "Đến tháng 12, chúng ta sẽ đang phát triển ứng dụng này được 1 năm."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + won't have been + V-ing",
+          "example": "They won't have been testing the system for long when it launches.",
+          "vietnameseTranslation": "Họ sẽ chưa kiểm thử hệ thống được lâu khi nó ra mắt."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Will + S + have been + V-ing?",
+          "example": "Will you have been working here for 10 years by next month?",
+          "vietnameseTranslation": "Bạn sẽ làm việc ở đây được 10 năm vào tháng tới phải không?"
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Dấu hiệu nhận biết",
+          "condition": "by + mốc thời gian, for + khoảng thời gian",
+          "examples": [
+            {
+              "en": "By 5 PM, the script will have been running for 3 hours.",
+              "vi": "Đến 5 giờ chiều, script này sẽ chạy được 3 tiếng."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Rất hữu ích khi báo cáo tiến độ kéo dài liên tục (long-running operations)."
+      ]
+    },
+    {
+      "id": "qr-spelling",
+      "category": "spelling-rules",
+      "titleVi": "Quy tắc thêm đuôi -ing",
+      "titleEn": "Spelling rules for -ing",
+      "summaryVi": "Các quy tắc chung khi thêm đuôi -ing vào động từ.",
+      "formulas": [
+        {
+          "label": "Quy tắc chung",
+          "structure": "V + ing",
+          "example": "deploy -> deploying, monitor -> monitoring",
+          "vietnameseTranslation": "triển khai -> đang triển khai, giám sát -> đang giám sát"
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Động từ tận cùng là 'e'",
+          "condition": "Bỏ 'e' rồi thêm '-ing'",
+          "examples": [
+            {
+              "en": "code -> coding, update -> updating",
+              "vi": "lập trình, cập nhật"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Động từ tận cùng là 1 nguyên âm + 1 phụ âm",
+          "condition": "Nhân đôi phụ âm cuối",
+          "examples": [
+            {
+              "en": "commit -> committing, debug -> debugging",
+              "vi": "lưu mã nguồn, sửa lỗi"
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Lưu ý các từ IT thường dùng: configuring, troubleshooting, formatting."
+      ]
+    },
+    {
+      "id": "qr-adverbs",
+      "category": "adverbs-frequency",
+      "titleVi": "Trạng từ chỉ thời gian",
+      "titleEn": "Time Expressions",
+      "summaryVi": "Các cụm từ thời gian đặc trưng.",
+      "formulas": [
+        {
+          "label": "Cấu trúc thời gian",
+          "structure": "By + [thời điểm tương lai] + for + [khoảng thời gian]",
+          "example": "By tomorrow, the pipeline will have been compiling for 24 hours.",
+          "vietnameseTranslation": "Tính đến ngày mai, pipeline sẽ biên dịch được 24 tiếng."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Các trạng từ phổ biến",
+          "condition": "Dùng với by the end of, by the time",
+          "examples": [
+            {
+              "en": "By the time the manager arrives, we will have been fixing the bug for hours.",
+              "vi": "Đến lúc quản lý đến, chúng tôi sẽ sửa lỗi này được vài tiếng rồi."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Sử dụng để ước tính hoặc hứa hẹn về deadline và tiến độ dự án."
+      ]
+    },
+    {
+      "id": "qr-workplace",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng trong Công việc",
+      "titleEn": "Workplace Usage",
+      "summaryVi": "Sử dụng thì Tương lai hoàn thành tiếp diễn để báo cáo, dự đoán và nhấn mạnh sự cống hiến.",
+      "formulas": [
+        {
+          "label": "Đánh giá thâm niên",
+          "structure": "S + will have been + working/serving + for + time",
+          "example": "By Q4, she will have been leading the DevOps team for 3 years.",
+          "vietnameseTranslation": "Tính đến quý 4, cô ấy sẽ dẫn dắt đội DevOps được 3 năm."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Báo cáo sự cố kéo dài",
+          "condition": "Nhấn mạnh tác động của một sự cố liên tục",
+          "examples": [
+            {
+              "en": "By midnight, the database will have been leaking data for a whole day.",
+              "vi": "Đến nửa đêm, cơ sở dữ liệu sẽ rò rỉ dữ liệu tròn một ngày."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Dùng để tạo ấn tượng mạnh mẽ về sự kiên trì hoặc mức độ nghiêm trọng của một quá trình dài."
       ]
     }
   ],
   "challenges": {
     "conjugation": [
       {
-        "id": "conj-fpc-01",
-        "contextType": "chat",
-        "scenarioVi": "Kỷ niệm thâm niên làm việc",
-        "sender": "HR",
-        "recipient": "Employee",
-        "subject": "",
-        "textBefore": "By December 1st, you ",
-        "baseVerb": "work",
-        "textAfter": " in our company for exactly 10 years.",
-        "correctAnswer": "will have been working",
-        "acceptableAlternatives": [
-          "will have been working"
+        "id": "future-perfect-cont-conj-1",
+        "contextType": "meeting",
+        "scenarioVi": "Báo cáo tiến độ IT 1",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
         ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-2",
+        "contextType": "routine",
+        "scenarioVi": "Báo cáo tiến độ IT 2",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-3",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tiến độ IT 3",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-4",
+        "contextType": "chat",
+        "scenarioVi": "Báo cáo tiến độ IT 4",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-5",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo tiến độ IT 5",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-6",
+        "contextType": "meeting",
+        "scenarioVi": "Báo cáo tiến độ IT 6",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-7",
+        "contextType": "routine",
+        "scenarioVi": "Báo cáo tiến độ IT 7",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-8",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo tiến độ IT 8",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-9",
+        "contextType": "chat",
+        "scenarioVi": "Báo cáo tiến độ IT 9",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-10",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo tiến độ IT 10",
+        "textBefore": "By 5 PM, the script ",
+        "baseVerb": "run",
+        "textAfter": " for exactly 10 hours.",
+        "correctAnswer": "will have been running",
+        "options": [
+          "will run",
+          "will be running",
+          "will have been running",
+          "runs"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-11",
+        "contextType": "meeting",
+        "scenarioVi": "Báo cáo kinh doanh 11",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
         "options": [
           "will work",
           "have been working",
@@ -67,28 +399,200 @@
           "will have worked"
         ],
         "explanation": {
-          "ruleVi": "Dấu hiệu 'By December 1st' kết hợp với 'for exactly 10 years' đòi hỏi dùng Thì tương lai hoàn thành tiếp diễn (hoặc hoàn thành) để nhấn mạnh khoảng thời gian.",
-          "detailedAnalysisVi": "Hành động work mang tính liên tục nên ưu tiên dùng will have been working."
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-12",
+        "contextType": "routine",
+        "scenarioVi": "Báo cáo kinh doanh 12",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-13",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo kinh doanh 13",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-14",
+        "contextType": "chat",
+        "scenarioVi": "Báo cáo kinh doanh 14",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-15",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo kinh doanh 15",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-16",
+        "contextType": "meeting",
+        "scenarioVi": "Báo cáo kinh doanh 16",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-17",
+        "contextType": "routine",
+        "scenarioVi": "Báo cáo kinh doanh 17",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-18",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo kinh doanh 18",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-19",
+        "contextType": "chat",
+        "scenarioVi": "Báo cáo kinh doanh 19",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-conj-20",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo kinh doanh 20",
+        "textBefore": "By next month, our team ",
+        "baseVerb": "work",
+        "textAfter": " on this project for a year.",
+        "correctAnswer": "will have been working",
+        "options": [
+          "will work",
+          "have been working",
+          "will have been working",
+          "will have worked"
+        ],
+        "explanation": {
+          "ruleVi": "By + thời gian tương lai + for + khoảng thời gian -> dùng Tương lai hoàn thành tiếp diễn.",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình liên tục của hành động cho tới thời điểm trong tương lai."
         }
       }
     ],
     "errorHunting": [
       {
-        "id": "err-fpc-01",
-        "scenarioVi": "Đánh giá quá trình đàm phán",
+        "id": "future-perfect-cont-err-1",
+        "scenarioVi": "Kiểm tra log hệ thống 1",
         "tokens": [
           "By",
           "tomorrow,",
-          "they",
+          "the",
+          "server",
           "will",
           "have",
           "be",
-          "negotiating",
+          "running",
           "for",
-          "two",
-          "weeks."
+          "a",
+          "week."
         ],
-        "errorTokenIndex": 5,
+        "errorTokenIndex": 6,
         "correctToken": "been",
         "options": [
           {
@@ -102,52 +606,2140 @@
             "isCorrect": false
           }
         ],
-        "fullCorrectSentence": "By tomorrow, they will have been negotiating for two weeks.",
-        "vietnameseMeaning": "Tính đến ngày mai, họ sẽ đàm phán được hai tuần rồi.",
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
         "explanation": {
-          "whyWrongVi": "Cấu trúc chuẩn là 'will have been V-ing', không phải 'will have be'.",
-          "workplaceImpactVi": "Lỗi sử dụng thì hiếm gặp này dễ bị bỏ qua, nhưng sửa đúng sẽ thể hiện sự xuất sắc về ngữ pháp."
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-2",
+        "scenarioVi": "Kiểm tra log hệ thống 2",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-3",
+        "scenarioVi": "Kiểm tra log hệ thống 3",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-4",
+        "scenarioVi": "Kiểm tra log hệ thống 4",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-5",
+        "scenarioVi": "Kiểm tra log hệ thống 5",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-6",
+        "scenarioVi": "Kiểm tra log hệ thống 6",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-7",
+        "scenarioVi": "Kiểm tra log hệ thống 7",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-8",
+        "scenarioVi": "Kiểm tra log hệ thống 8",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-9",
+        "scenarioVi": "Kiểm tra log hệ thống 9",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-10",
+        "scenarioVi": "Kiểm tra log hệ thống 10",
+        "tokens": [
+          "By",
+          "tomorrow,",
+          "the",
+          "server",
+          "will",
+          "have",
+          "be",
+          "running",
+          "for",
+          "a",
+          "week."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tomorrow, the server will have been running for a week.",
+        "vietnameseMeaning": "Tính đến ngày mai, máy chủ sẽ chạy được 1 tuần.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-11",
+        "scenarioVi": "Rà soát hợp đồng 11",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-12",
+        "scenarioVi": "Rà soát hợp đồng 12",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-13",
+        "scenarioVi": "Rà soát hợp đồng 13",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-14",
+        "scenarioVi": "Rà soát hợp đồng 14",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-15",
+        "scenarioVi": "Rà soát hợp đồng 15",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-16",
+        "scenarioVi": "Rà soát hợp đồng 16",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-17",
+        "scenarioVi": "Rà soát hợp đồng 17",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-18",
+        "scenarioVi": "Rà soát hợp đồng 18",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-19",
+        "scenarioVi": "Rà soát hợp đồng 19",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
+        }
+      },
+      {
+        "id": "future-perfect-cont-err-20",
+        "scenarioVi": "Rà soát hợp đồng 20",
+        "tokens": [
+          "By",
+          "Friday,",
+          "she",
+          "will",
+          "have",
+          "be",
+          "negotiating",
+          "for",
+          "three",
+          "days."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, she will have been negotiating for three days.",
+        "vietnameseMeaning": "Tính đến thứ Sáu, cô ấy sẽ đàm phán được ba ngày.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc đúng là 'will have been V-ing'. 'have be' là sai ngữ pháp.",
+          "workplaceImpactVi": "Sử dụng sai cấu trúc thì phức tạp sẽ làm giảm sự chuyên nghiệp trong văn bản học thuật."
         }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "sb-fpc-01",
-        "scenarioVi": "Kể về kinh nghiệm quản lý dự án",
-        "vietnameseMeaning": "Đến năm sau, cô ấy sẽ quản lý dự án này được 3 năm.",
+        "id": "future-perfect-cont-sb-1",
+        "scenarioVi": "Giải trình downtime 1",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
         "scrambledTokens": [
           {
             "id": "t1",
-            "text": "By next year,"
+            "text": "By midnight,"
           },
           {
             "id": "t2",
-            "text": "she"
+            "text": "the system"
           },
           {
             "id": "t3",
-            "text": "will have been managing"
+            "text": "will have been undergoing"
           },
           {
             "id": "t4",
-            "text": "this project"
+            "text": "maintenance"
           },
           {
             "id": "t5",
-            "text": "for 3 years."
+            "text": "for 5 hours."
           }
         ],
         "correctTokenOrder": [
-          "By next year,",
-          "she",
-          "will have been managing",
-          "this project",
-          "for 3 years."
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
         ],
-        "fullSentenceEn": "By next year, she will have been managing this project for 3 years.",
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
         "grammarTip": {
           "titleVi": "By time, S + will have been V-ing + for time",
           "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-2",
+        "scenarioVi": "Giải trình downtime 2",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-3",
+        "scenarioVi": "Giải trình downtime 3",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-4",
+        "scenarioVi": "Giải trình downtime 4",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-5",
+        "scenarioVi": "Giải trình downtime 5",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-6",
+        "scenarioVi": "Giải trình downtime 6",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-7",
+        "scenarioVi": "Giải trình downtime 7",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-8",
+        "scenarioVi": "Giải trình downtime 8",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-9",
+        "scenarioVi": "Giải trình downtime 9",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-10",
+        "scenarioVi": "Giải trình downtime 10",
+        "vietnameseMeaning": "Đến nửa đêm, hệ thống sẽ bảo trì được 5 tiếng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By midnight,"
+          },
+          {
+            "id": "t2",
+            "text": "the system"
+          },
+          {
+            "id": "t3",
+            "text": "will have been undergoing"
+          },
+          {
+            "id": "t4",
+            "text": "maintenance"
+          },
+          {
+            "id": "t5",
+            "text": "for 5 hours."
+          }
+        ],
+        "correctTokenOrder": [
+          "By midnight,",
+          "the system",
+          "will have been undergoing",
+          "maintenance",
+          "for 5 hours."
+        ],
+        "fullSentenceEn": "By midnight, the system will have been undergoing maintenance for 5 hours.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-11",
+        "scenarioVi": "Lên kế hoạch dự án 11",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-12",
+        "scenarioVi": "Lên kế hoạch dự án 12",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-13",
+        "scenarioVi": "Lên kế hoạch dự án 13",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-14",
+        "scenarioVi": "Lên kế hoạch dự án 14",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-15",
+        "scenarioVi": "Lên kế hoạch dự án 15",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-16",
+        "scenarioVi": "Lên kế hoạch dự án 16",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-17",
+        "scenarioVi": "Lên kế hoạch dự án 17",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-18",
+        "scenarioVi": "Lên kế hoạch dự án 18",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-19",
+        "scenarioVi": "Lên kế hoạch dự án 19",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-cont-sb-20",
+        "scenarioVi": "Lên kế hoạch dự án 20",
+        "vietnameseMeaning": "Đến cuối năm, họ sẽ nghiên cứu thị trường này được 2 năm.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the end of the year,"
+          },
+          {
+            "id": "t2",
+            "text": "they"
+          },
+          {
+            "id": "t3",
+            "text": "will have been researching"
+          },
+          {
+            "id": "t4",
+            "text": "this market"
+          },
+          {
+            "id": "t5",
+            "text": "for 2 years."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the end of the year,",
+          "they",
+          "will have been researching",
+          "this market",
+          "for 2 years."
+        ],
+        "fullSentenceEn": "By the end of the year, they will have been researching this market for 2 years.",
+        "grammarTip": {
+          "titleVi": "By time, S + will have been V-ing + for time",
+          "tipVi": "Cấu trúc nhấn mạnh độ dài thời gian liên tục tính tới mốc tương lai."
+        }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "id": "future-perfect-cont-dev-1",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 1",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-2",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 2",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-3",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Alert 3",
+        "textBefore": "By 3 AM, the migration script ",
+        "baseVerb": "execute",
+        "textAfter": " for 12 hours straight.",
+        "correctAnswer": "will have been executing",
+        "options": [
+          "will execute",
+          "will have executed",
+          "will be executing",
+          "will have been executing"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu for 12 hours straight yêu cầu thì tiếp diễn.",
+          "detailedAnalysisVi": "Tương lai hoàn thành tiếp diễn phù hợp nhất để mô tả quá trình liên tục chưa kết thúc."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-4",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 4",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-5",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 5",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-6",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Alert 6",
+        "textBefore": "By 3 AM, the migration script ",
+        "baseVerb": "execute",
+        "textAfter": " for 12 hours straight.",
+        "correctAnswer": "will have been executing",
+        "options": [
+          "will execute",
+          "will have executed",
+          "will be executing",
+          "will have been executing"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu for 12 hours straight yêu cầu thì tiếp diễn.",
+          "detailedAnalysisVi": "Tương lai hoàn thành tiếp diễn phù hợp nhất để mô tả quá trình liên tục chưa kết thúc."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-7",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 7",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-8",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 8",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-9",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Alert 9",
+        "textBefore": "By 3 AM, the migration script ",
+        "baseVerb": "execute",
+        "textAfter": " for 12 hours straight.",
+        "correctAnswer": "will have been executing",
+        "options": [
+          "will execute",
+          "will have executed",
+          "will be executing",
+          "will have been executing"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu for 12 hours straight yêu cầu thì tiếp diễn.",
+          "detailedAnalysisVi": "Tương lai hoàn thành tiếp diễn phù hợp nhất để mô tả quá trình liên tục chưa kết thúc."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-10",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 10",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-11",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 11",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-12",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Alert 12",
+        "textBefore": "By 3 AM, the migration script ",
+        "baseVerb": "execute",
+        "textAfter": " for 12 hours straight.",
+        "correctAnswer": "will have been executing",
+        "options": [
+          "will execute",
+          "will have executed",
+          "will be executing",
+          "will have been executing"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu for 12 hours straight yêu cầu thì tiếp diễn.",
+          "detailedAnalysisVi": "Tương lai hoàn thành tiếp diễn phù hợp nhất để mô tả quá trình liên tục chưa kết thúc."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-13",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 13",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-14",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 14",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-15",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Alert 15",
+        "textBefore": "By 3 AM, the migration script ",
+        "baseVerb": "execute",
+        "textAfter": " for 12 hours straight.",
+        "correctAnswer": "will have been executing",
+        "options": [
+          "will execute",
+          "will have executed",
+          "will be executing",
+          "will have been executing"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu for 12 hours straight yêu cầu thì tiếp diễn.",
+          "detailedAnalysisVi": "Tương lai hoàn thành tiếp diễn phù hợp nhất để mô tả quá trình liên tục chưa kết thúc."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-16",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 16",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-17",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 17",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-18",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Alert 18",
+        "textBefore": "By 3 AM, the migration script ",
+        "baseVerb": "execute",
+        "textAfter": " for 12 hours straight.",
+        "correctAnswer": "will have been executing",
+        "options": [
+          "will execute",
+          "will have executed",
+          "will be executing",
+          "will have been executing"
+        ],
+        "explanation": {
+          "ruleVi": "Dấu hiệu for 12 hours straight yêu cầu thì tiếp diễn.",
+          "detailedAnalysisVi": "Tương lai hoàn thành tiếp diễn phù hợp nhất để mô tả quá trình liên tục chưa kết thúc."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-19",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review Logs 19",
+        "tokens": [
+          "By",
+          "tonight,",
+          "the",
+          "container",
+          "will",
+          "have",
+          "be",
+          "restarting",
+          "continuously."
+        ],
+        "errorTokenIndex": 6,
+        "correctToken": "been",
+        "options": [
+          {
+            "value": "been",
+            "label": "been",
+            "isCorrect": true
+          },
+          {
+            "value": "being",
+            "label": "being",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By tonight, the container will have been restarting continuously.",
+        "vietnameseMeaning": "Đến tối nay, container sẽ khởi động lại liên tục.",
+        "explanation": {
+          "whyWrongVi": "Lỗi chính tả 'have be'.",
+          "workplaceImpactVi": "Làm sai ngữ pháp khi chat báo sự cố."
+        }
+      },
+      {
+        "id": "future-perfect-cont-dev-20",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Deployment Plan 20",
+        "vietnameseMeaning": "Đến lúc bạn thức dậy, pipeline sẽ chạy được một lúc rồi.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "By the time"
+          },
+          {
+            "id": "t2",
+            "text": "you wake up,"
+          },
+          {
+            "id": "t3",
+            "text": "the pipeline"
+          },
+          {
+            "id": "t4",
+            "text": "will have been running"
+          },
+          {
+            "id": "t5",
+            "text": "for a while."
+          }
+        ],
+        "correctTokenOrder": [
+          "By the time",
+          "you wake up,",
+          "the pipeline",
+          "will have been running",
+          "for a while."
+        ],
+        "fullSentenceEn": "By the time you wake up, the pipeline will have been running for a while.",
+        "grammarTip": {
+          "titleVi": "By the time + S + V(hiện tại), S + will have been V-ing",
+          "tipVi": "Mệnh đề thời gian dùng hiện tại đơn, mệnh đề chính dùng tương lai hoàn thành tiếp diễn."
         }
       }
     ]

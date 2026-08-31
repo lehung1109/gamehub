@@ -8,177 +8,709 @@
     "status": "active",
     "level": "A1-A2 (Beginner)",
     "badge": "Dành cho người đi làm",
-    "description": "Diễn tả hành động đang xảy ra tại thời điểm nói hoặc một dự án/kế hoạch mang tính tạm thời.",
-    "estimatedMinutes": 10,
-    "challengeCount": 10
+    "description": "Diễn tả hành động đang diễn ra tại thời điểm nói, các kế hoạch tạm thời trong công việc, hoặc những dự định chắc chắn trong tương lai gần.",
+    "estimatedMinutes": 20,
+    "challengeCount": 80
   },
   "quickRules": [
     {
-      "id": "pc-formula",
-      "category": "action-verbs",
-      "titleVi": "Cấu Trúc Khẳng Định / Phủ Định / Nghi Vấn",
-      "titleEn": "Formulas (Affirmative / Negative / Interrogative)",
-      "summaryVi": "Dùng am / is / are + V-ing để diễn tả hành động đang diễn ra.",
+      "id": "pc-to-be",
+      "category": "to-be",
+      "titleVi": "Trợ Động Từ To-Be",
+      "titleEn": "To-Be Auxiliary Verbs",
+      "summaryVi": "Sử dụng đúng am/is/are theo chủ ngữ.",
       "formulas": [
         {
-          "label": "Khẳng định (+)",
-          "structure": "S + am / is / are + V-ing",
-          "example": "We are deploying the new feature now.",
-          "vietnameseTranslation": "Chúng tôi đang triển khai tính năng mới ngay bây giờ."
+          "label": "Ngôi thứ nhất",
+          "structure": "I + am + V-ing",
+          "example": "I am writing code.",
+          "vietnameseTranslation": "Tôi đang viết mã."
         },
         {
-          "label": "Phủ định (-)",
-          "structure": "S + am / is / are + not + V-ing",
-          "example": "He is not working on that project currently.",
-          "vietnameseTranslation": "Hiện tại anh ấy không làm việc trong dự án đó."
+          "label": "Số ít",
+          "structure": "He/She/It + is + V-ing",
+          "example": "She is presenting.",
+          "vietnameseTranslation": "Cô ấy đang thuyết trình."
         },
         {
-          "label": "Nghi vấn (?)",
-          "structure": "Am / Is / Are + S + V-ing?",
-          "example": "Are you attending the town hall meeting?",
-          "vietnameseTranslation": "Bạn có tham dự cuộc họp toàn công ty không?"
+          "label": "Số nhiều",
+          "structure": "You/We/They + are + V-ing",
+          "example": "We are deploying.",
+          "vietnameseTranslation": "Chúng tôi đang triển khai."
         }
       ],
       "workplaceTips": [
-        "Sử dụng kèm các trạng từ chỉ thời gian như: right now, at the moment, currently."
+        "Chú ý viết tắt trong email không trang trọng (I'm, He's, We're)."
       ]
     },
     {
-      "id": "pc-usage",
+      "id": "pc-action-verbs",
+      "category": "action-verbs",
+      "titleVi": "Động Từ Hành Động",
+      "titleEn": "Action Verbs",
+      "summaryVi": "Cấu trúc Khẳng định, Phủ định và Nghi vấn.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + am/is/are + V-ing",
+          "example": "I am monitoring the server.",
+          "vietnameseTranslation": "Tôi đang giám sát máy chủ."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + am/is/are + not + V-ing",
+          "example": "He is not attending the meeting.",
+          "vietnameseTranslation": "Anh ấy không tham gia cuộc họp."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Am/Is/Are + S + V-ing?",
+          "example": "Are they fixing the bug?",
+          "vietnameseTranslation": "Họ có đang sửa lỗi không?"
+        }
+      ],
+      "workplaceTips": [
+        "Không dùng tiếp diễn với các động từ chỉ nhận thức, cảm giác (know, understand, want...)."
+      ]
+    },
+    {
+      "id": "pc-spelling-rules",
+      "category": "spelling-rules",
+      "titleVi": "Quy Tắc Thêm -ing",
+      "titleEn": "Spelling Rules for -ing",
+      "summaryVi": "Cách biến đổi động từ khi thêm đuôi -ing.",
+      "rulesList": [
+        {
+          "ruleVi": "Thêm trực tiếp -ing",
+          "condition": "Hầu hết các động từ",
+          "examples": [
+            {
+              "en": "work -> working",
+              "vi": "làm việc"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Bỏ e thêm -ing",
+          "condition": "Động từ tận cùng là e",
+          "examples": [
+            {
+              "en": "write -> writing",
+              "vi": "viết"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Nhân đôi phụ âm cuối",
+          "condition": "Động từ 1 âm tiết, tận cùng 1 nguyên âm + 1 phụ âm",
+          "examples": [
+            {
+              "en": "run -> running",
+              "vi": "chạy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pc-adverbs",
+      "category": "adverbs-frequency",
+      "titleVi": "Trạng Từ Chỉ Thời Gian",
+      "titleEn": "Time Expressions",
+      "summaryVi": "Dấu hiệu nhận biết thì hiện tại tiếp diễn.",
+      "rulesList": [
+        {
+          "ruleVi": "Hiện tại",
+          "condition": "Ngay lúc nói",
+          "examples": [
+            {
+              "en": "now, right now, at the moment",
+              "vi": "bây giờ, ngay lúc này"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Tạm thời",
+          "condition": "Khoảng thời gian ngắn",
+          "examples": [
+            {
+              "en": "currently, this week",
+              "vi": "hiện tại, tuần này"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pc-workplace-usage",
       "category": "workplace-usage",
       "titleVi": "Cách Dùng Trong Công Sở",
       "titleEn": "Workplace Usage",
       "summaryVi": "Các trường hợp sử dụng thì Hiện Tại Tiếp Diễn phổ biến.",
       "rulesList": [
         {
-          "ruleVi": "Hành động đang diễn ra lúc nói",
-          "condition": "Đang xảy ra lúc giao tiếp",
+          "ruleVi": "Hành động đang diễn ra",
+          "condition": "Xảy ra lúc nói",
           "examples": [
             {
-              "en": "I am writing the monthly report right now.",
-              "vi": "Tôi đang viết báo cáo tháng ngay lúc này."
+              "en": "I am checking the logs.",
+              "vi": "Tôi đang kiểm tra nhật ký hệ thống."
             }
           ]
         },
         {
-          "ruleVi": "Tình trạng tạm thời",
-          "condition": "Chỉ kéo dài trong khoảng thời gian ngắn",
+          "ruleVi": "Kế hoạch tạm thời",
+          "condition": "Không phải thường xuyên",
           "examples": [
             {
-              "en": "She is covering for John while he is on leave.",
-              "vi": "Cô ấy đang làm thay việc cho John trong khi anh ấy nghỉ phép."
-            }
-          ]
-        },
-        {
-          "ruleVi": "Dự định trong tương lai gần",
-          "condition": "Kế hoạch đã được lên lịch sẵn",
-          "examples": [
-            {
-              "en": "We are launching the product next week.",
-              "vi": "Chúng tôi sẽ ra mắt sản phẩm vào tuần tới."
+              "en": "She is covering for John.",
+              "vi": "Cô ấy đang làm thay John."
             }
           ]
         }
+      ],
+      "workplaceTips": [
+        "Rất hữu ích khi báo cáo trạng thái trong các cuộc họp Daily Stand-up."
       ]
     }
   ],
   "challenges": {
     "conjugation": [
       {
-        "id": "pc-conj-1",
+        "id": "present-continuous-conj-1",
         "contextType": "chat",
-        "scenarioVi": "Đang trao đổi về việc fix bug lúc này",
-        "sender": "Dev 1",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
         "recipient": "Team",
-        "textBefore": "I ",
-        "baseVerb": "investigate",
-        "textAfter": " the server timeout issue at the moment.",
-        "correctAnswer": "am investigating",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
         "acceptableAlternatives": [
-          "AM INVESTIGATING",
-          "'m investigating"
+          "ARE DEPLOYING"
         ],
         "options": [
-          "investigate",
-          "am investigating",
-          "investigating",
-          "is investigating"
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
         ],
         "explanation": {
-          "ruleVi": "Với chủ ngữ I và có cụm at the moment, ta dùng am + V-ing.",
-          "detailedAnalysisVi": "Hành động đang xảy ra lúc nói nên chia am investigating."
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
         }
       },
       {
-        "id": "pc-conj-2",
+        "id": "present-continuous-conj-2",
         "contextType": "email",
-        "scenarioVi": "Báo cáo tiến độ cho khách hàng",
-        "sender": "PM",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
         "recipient": "Client",
-        "textBefore": "Currently, our design team ",
-        "baseVerb": "finalize",
-        "textAfter": " the user interface mockups.",
-        "correctAnswer": "is finalizing",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
         "acceptableAlternatives": [
-          "IS FINALIZING"
+          "IS REVIEWING"
         ],
         "options": [
-          "finalizes",
-          "are finalizing",
-          "is finalizing",
-          "finalizing"
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
         ],
         "explanation": {
-          "ruleVi": "Chủ ngữ our design team (số ít tập hợp) và từ currently đòi hỏi is + V-ing.",
-          "detailedAnalysisVi": "Nhóm thiết kế đang trong quá trình hoàn thiện giao diện."
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
         }
       },
       {
-        "id": "pc-conj-3",
-        "contextType": "routine",
-        "scenarioVi": "Nói về một lịch trình tạm thời",
-        "sender": "HR",
-        "recipient": "Staff",
-        "textBefore": "This week, we ",
-        "baseVerb": "not use",
-        "textAfter": " the main conference room due to renovations.",
-        "correctAnswer": "are not using",
+        "id": "present-continuous-conj-3",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
         "acceptableAlternatives": [
-          "ARE NOT USING",
-          "aren't using"
+          "ARE DEPLOYING"
         ],
         "options": [
-          "do not use",
-          "are not using",
-          "is not using",
-          "not using"
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
         ],
         "explanation": {
-          "ruleVi": "Sự việc tạm thời trong tuần này (This week) -> dùng thì hiện tại tiếp diễn.",
-          "detailedAnalysisVi": "We đi với are + not + V-ing."
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-4",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-5",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-6",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-7",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-8",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-9",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-10",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-11",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-12",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-13",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-14",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-15",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-16",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-17",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-18",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-19",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ kỹ thuật",
+        "sender": "Dev",
+        "recipient": "Team",
+        "textBefore": "Right now, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the new microservices.",
+        "correctAnswer": "are deploying",
+        "acceptableAlternatives": [
+          "ARE DEPLOYING"
+        ],
+        "options": [
+          "deploy",
+          "are deploying",
+          "deploying",
+          "is deploying"
+        ],
+        "explanation": {
+          "ruleVi": "We đi với are + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
+        }
+      },
+      {
+        "id": "present-continuous-conj-20",
+        "contextType": "email",
+        "scenarioVi": "Báo cáo công việc văn phòng",
+        "sender": "Manager",
+        "recipient": "Client",
+        "textBefore": "Currently, she ",
+        "baseVerb": "review",
+        "textAfter": " the quarterly report.",
+        "correctAnswer": "is reviewing",
+        "acceptableAlternatives": [
+          "IS REVIEWING"
+        ],
+        "options": [
+          "reviews",
+          "are reviewing",
+          "is reviewing",
+          "reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "She đi với is + V-ing.",
+          "detailedAnalysisVi": "Hành động đang diễn ra tại thời điểm báo cáo."
         }
       }
     ],
     "errorHunting": [
       {
-        "id": "pc-err-1",
-        "scenarioVi": "Trình bày tiến độ dự án",
+        "id": "present-continuous-err-1",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
         "tokens": [
           "The",
-          "developers",
-          "is",
-          "fixing",
-          "the",
-          "bugs",
+          "system",
+          "are",
+          "crashing",
           "now."
         ],
         "errorTokenIndex": 2,
-        "correctToken": "are",
+        "correctToken": "is",
         "options": [
           {
             "value": "The",
             "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-2",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
             "isCorrect": false
           },
           {
@@ -187,208 +719,681 @@
             "isCorrect": true
           },
           {
-            "value": "fixing",
-            "label": "fixing",
-            "isCorrect": false
-          },
-          {
-            "value": "now.",
-            "label": "now.",
+            "value": "waiting",
+            "label": "waiting",
             "isCorrect": false
           }
         ],
-        "fullCorrectSentence": "The developers are fixing the bugs now.",
-        "vietnameseMeaning": "Các lập trình viên hiện đang sửa lỗi.",
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
         "explanation": {
-          "whyWrongVi": "Chủ ngữ the developers số nhiều nên không dùng is.",
-          "workplaceImpactVi": "Sai ngữ pháp cơ bản có thể làm giảm tính chuyên nghiệp trong văn phong email."
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
         }
       },
       {
-        "id": "pc-err-2",
-        "scenarioVi": "Hỏi đồng nghiệp về dự án họ đang tham gia",
+        "id": "present-continuous-err-3",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
         "tokens": [
-          "Are",
-          "you",
-          "work",
-          "on",
-          "the",
-          "new",
-          "feature?"
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
         ],
         "errorTokenIndex": 2,
-        "correctToken": "working",
+        "correctToken": "is",
         "options": [
           {
-            "value": "Are",
-            "label": "Are",
+            "value": "The",
+            "label": "The",
             "isCorrect": false
           },
           {
-            "value": "work",
-            "label": "work",
+            "value": "are",
+            "label": "are",
             "isCorrect": true
           },
           {
-            "value": "the",
-            "label": "the",
-            "isCorrect": false
-          },
-          {
-            "value": "feature?",
-            "label": "feature?",
+            "value": "crashing",
+            "label": "crashing",
             "isCorrect": false
           }
         ],
-        "fullCorrectSentence": "Are you working on the new feature?",
-        "vietnameseMeaning": "Bạn có đang làm tính năng mới không?",
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
         "explanation": {
-          "whyWrongVi": "Câu nghi vấn hiện tại tiếp diễn yêu cầu V-ing, không phải V nguyên thể.",
-          "workplaceImpactVi": "Gây nhầm lẫn về thì và trạng thái của hành động."
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
         }
       },
       {
-        "id": "pc-err-3",
-        "scenarioVi": "Giải thích với sếp lý do chậm trễ",
+        "id": "present-continuous-err-4",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
         "tokens": [
           "I",
-          "am",
-          "wait",
+          "is",
+          "waiting",
           "for",
-          "the",
-          "client",
-          "approval."
+          "your",
+          "reply."
         ],
         "errorTokenIndex": 2,
-        "correctToken": "waiting",
+        "correctToken": "am",
         "options": [
           {
-            "value": "am",
-            "label": "am",
+            "value": "I",
+            "label": "I",
             "isCorrect": false
           },
           {
-            "value": "wait",
-            "label": "wait",
+            "value": "is",
+            "label": "is",
             "isCorrect": true
           },
           {
-            "value": "for",
-            "label": "for",
-            "isCorrect": false
-          },
-          {
-            "value": "approval.",
-            "label": "approval.",
+            "value": "waiting",
+            "label": "waiting",
             "isCorrect": false
           }
         ],
-        "fullCorrectSentence": "I am waiting for the client approval.",
-        "vietnameseMeaning": "Tôi đang chờ sự phê duyệt của khách hàng.",
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
         "explanation": {
-          "whyWrongVi": "Sau am phải dùng V-ing để diễn tả hành động đang diễn ra.",
-          "workplaceImpactVi": "Mất điểm chuyên nghiệp khi giải trình tiến độ."
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-5",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-6",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-7",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-8",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-9",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-10",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-11",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-12",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-13",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-14",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-15",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-16",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-17",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-18",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-19",
+        "scenarioVi": "Lỗi sai khi báo cáo bug",
+        "tokens": [
+          "The",
+          "system",
+          "are",
+          "crashing",
+          "now."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "is",
+        "options": [
+          {
+            "value": "The",
+            "label": "The",
+            "isCorrect": false
+          },
+          {
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
+          },
+          {
+            "value": "crashing",
+            "label": "crashing",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "The system is crashing now.",
+        "vietnameseMeaning": "Hệ thống đang bị sập bây giờ.",
+        "explanation": {
+          "whyWrongVi": "System là số ít nên dùng is.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
+        }
+      },
+      {
+        "id": "present-continuous-err-20",
+        "scenarioVi": "Lỗi sai khi viết email cho đối tác",
+        "tokens": [
+          "I",
+          "is",
+          "waiting",
+          "for",
+          "your",
+          "reply."
+        ],
+        "errorTokenIndex": 2,
+        "correctToken": "am",
+        "options": [
+          {
+            "value": "I",
+            "label": "I",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "waiting",
+            "label": "waiting",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "I am waiting for your reply.",
+        "vietnameseMeaning": "Tôi đang chờ phản hồi của bạn.",
+        "explanation": {
+          "whyWrongVi": "I đi với am.",
+          "workplaceImpactVi": "Sai ngữ pháp cơ bản làm giảm độ chuyên nghiệp."
         }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "pc-sb-1",
-        "scenarioVi": "Thông báo về lịch nghỉ phép tạm thời của nhân sự",
-        "vietnameseMeaning": "Cô ấy đang làm thay cho người quản lý hôm nay.",
-        "scrambledTokens": [
-          {
-            "id": "1",
-            "text": "She"
-          },
-          {
-            "id": "2",
-            "text": "is"
-          },
-          {
-            "id": "3",
-            "text": "covering"
-          },
-          {
-            "id": "4",
-            "text": "for"
-          },
-          {
-            "id": "5",
-            "text": "the"
-          },
-          {
-            "id": "6",
-            "text": "manager"
-          },
-          {
-            "id": "7",
-            "text": "today."
-          }
-        ],
-        "correctTokenOrder": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7"
-        ],
-        "fullSentenceEn": "She is covering for the manager today.",
-        "grammarTip": {
-          "titleVi": "Cover for someone",
-          "tipVi": "Cụm từ cover for mang ý nghĩa làm thay việc cho ai đó tạm thời."
-        }
-      },
-      {
-        "id": "pc-sb-2",
-        "scenarioVi": "Hỏi về việc triển khai hệ thống mới",
-        "vietnameseMeaning": "Họ có đang cập nhật cơ sở dữ liệu bây giờ không?",
-        "scrambledTokens": [
-          {
-            "id": "1",
-            "text": "Are"
-          },
-          {
-            "id": "2",
-            "text": "they"
-          },
-          {
-            "id": "3",
-            "text": "updating"
-          },
-          {
-            "id": "4",
-            "text": "the"
-          },
-          {
-            "id": "5",
-            "text": "database"
-          },
-          {
-            "id": "6",
-            "text": "now?"
-          }
-        ],
-        "correctTokenOrder": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ],
-        "fullSentenceEn": "Are they updating the database now?",
-        "grammarTip": {
-          "titleVi": "Câu nghi vấn hiện tại tiếp diễn",
-          "tipVi": "Đưa to be lên trước chủ ngữ: Are + S + V-ing?"
-        }
-      },
-      {
-        "id": "pc-sb-3",
-        "scenarioVi": "Đang tiến hành họp khẩn cấp",
-        "vietnameseMeaning": "Chúng tôi đang thảo luận về vấn đề đó.",
+        "id": "present-continuous-sb-1",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
         "scrambledTokens": [
           {
             "id": "1",
@@ -400,15 +1405,15 @@
           },
           {
             "id": "3",
-            "text": "discussing"
+            "text": "migrating"
           },
           {
             "id": "4",
-            "text": "that"
+            "text": "the"
           },
           {
             "id": "5",
-            "text": "issue."
+            "text": "database."
           }
         ],
         "correctTokenOrder": [
@@ -418,37 +1423,1464 @@
           "4",
           "5"
         ],
-        "fullSentenceEn": "We are discussing that issue.",
+        "fullSentenceEn": "We are migrating the database.",
         "grammarTip": {
-          "titleVi": "Discuss vs Discuss about",
-          "tipVi": "Lưu ý: dùng discuss something chứ không dùng discuss about something."
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-2",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-3",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-4",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-5",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-6",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-7",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-8",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-9",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-10",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-11",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-12",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-13",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-14",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-15",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-16",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-17",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-18",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-19",
+        "scenarioVi": "Giải thích việc bảo trì",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "We"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "migrating"
+          },
+          {
+            "id": "4",
+            "text": "the"
+          },
+          {
+            "id": "5",
+            "text": "database."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "We are migrating the database.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
+        }
+      },
+      {
+        "id": "present-continuous-sb-20",
+        "scenarioVi": "Thông báo về thay đổi nhân sự tạm thời",
+        "vietnameseMeaning": "Họ đang phỏng vấn ứng viên mới.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "are"
+          },
+          {
+            "id": "3",
+            "text": "interviewing"
+          },
+          {
+            "id": "4",
+            "text": "new"
+          },
+          {
+            "id": "5",
+            "text": "candidates."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "fullSentenceEn": "They are interviewing new candidates.",
+        "grammarTip": {
+          "titleVi": "S + am/is/are + V-ing",
+          "tipVi": "Cấu trúc cơ bản của thì hiện tại tiếp diễn."
         }
       }
     ],
     "devOpsChallenge": [
       {
-        "id": "pc-dev-1",
+        "id": "present-continuous-dev-1",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Kiểm tra trạng thái server",
-        "sender": "SysAdmin",
-        "recipient": "DevOps Team",
-        "textBefore": "The server ",
-        "baseVerb": "experience",
-        "textAfter": " high traffic right now.",
-        "correctAnswer": "is experiencing",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
         "acceptableAlternatives": [
-          "IS EXPERIENCING"
+          "IS RUNNING"
         ],
         "options": [
-          "experiences",
-          "is experiencing",
-          "experiencing",
-          "are experiencing"
+          "runs",
+          "is running",
+          "are running",
+          "running"
         ],
         "explanation": {
-          "ruleVi": "Sự cố đang xảy ra lúc này (right now) nên chia ở thì hiện tại tiếp diễn.",
-          "detailedAnalysisVi": "The server số ít + is + V-ing."
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-2",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
+        }
+      },
+      {
+        "id": "present-continuous-dev-3",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cập nhật tình trạng pipeline",
+        "vietnameseMeaning": "Pipeline đang xây dựng các file tĩnh.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The"
+          },
+          {
+            "id": "2",
+            "text": "pipeline"
+          },
+          {
+            "id": "3",
+            "text": "is"
+          },
+          {
+            "id": "4",
+            "text": "building"
+          },
+          {
+            "id": "5",
+            "text": "static"
+          },
+          {
+            "id": "6",
+            "text": "files."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "The pipeline is building static files.",
+        "grammarTip": {
+          "titleVi": "Trạng thái Pipeline",
+          "tipVi": "Dùng thì tiếp diễn cho tiến trình đang chạy."
+        }
+      },
+      {
+        "id": "present-continuous-dev-4",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
+        }
+      },
+      {
+        "id": "present-continuous-dev-5",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
+        "acceptableAlternatives": [
+          "IS RUNNING"
+        ],
+        "options": [
+          "runs",
+          "is running",
+          "are running",
+          "running"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-6",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cập nhật tình trạng pipeline",
+        "vietnameseMeaning": "Pipeline đang xây dựng các file tĩnh.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The"
+          },
+          {
+            "id": "2",
+            "text": "pipeline"
+          },
+          {
+            "id": "3",
+            "text": "is"
+          },
+          {
+            "id": "4",
+            "text": "building"
+          },
+          {
+            "id": "5",
+            "text": "static"
+          },
+          {
+            "id": "6",
+            "text": "files."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "The pipeline is building static files.",
+        "grammarTip": {
+          "titleVi": "Trạng thái Pipeline",
+          "tipVi": "Dùng thì tiếp diễn cho tiến trình đang chạy."
+        }
+      },
+      {
+        "id": "present-continuous-dev-7",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
+        "acceptableAlternatives": [
+          "IS RUNNING"
+        ],
+        "options": [
+          "runs",
+          "is running",
+          "are running",
+          "running"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-8",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
+        }
+      },
+      {
+        "id": "present-continuous-dev-9",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cập nhật tình trạng pipeline",
+        "vietnameseMeaning": "Pipeline đang xây dựng các file tĩnh.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The"
+          },
+          {
+            "id": "2",
+            "text": "pipeline"
+          },
+          {
+            "id": "3",
+            "text": "is"
+          },
+          {
+            "id": "4",
+            "text": "building"
+          },
+          {
+            "id": "5",
+            "text": "static"
+          },
+          {
+            "id": "6",
+            "text": "files."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "The pipeline is building static files.",
+        "grammarTip": {
+          "titleVi": "Trạng thái Pipeline",
+          "tipVi": "Dùng thì tiếp diễn cho tiến trình đang chạy."
+        }
+      },
+      {
+        "id": "present-continuous-dev-10",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
+        }
+      },
+      {
+        "id": "present-continuous-dev-11",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
+        "acceptableAlternatives": [
+          "IS RUNNING"
+        ],
+        "options": [
+          "runs",
+          "is running",
+          "are running",
+          "running"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-12",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cập nhật tình trạng pipeline",
+        "vietnameseMeaning": "Pipeline đang xây dựng các file tĩnh.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The"
+          },
+          {
+            "id": "2",
+            "text": "pipeline"
+          },
+          {
+            "id": "3",
+            "text": "is"
+          },
+          {
+            "id": "4",
+            "text": "building"
+          },
+          {
+            "id": "5",
+            "text": "static"
+          },
+          {
+            "id": "6",
+            "text": "files."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "The pipeline is building static files.",
+        "grammarTip": {
+          "titleVi": "Trạng thái Pipeline",
+          "tipVi": "Dùng thì tiếp diễn cho tiến trình đang chạy."
+        }
+      },
+      {
+        "id": "present-continuous-dev-13",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
+        "acceptableAlternatives": [
+          "IS RUNNING"
+        ],
+        "options": [
+          "runs",
+          "is running",
+          "are running",
+          "running"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-14",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
+        }
+      },
+      {
+        "id": "present-continuous-dev-15",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cập nhật tình trạng pipeline",
+        "vietnameseMeaning": "Pipeline đang xây dựng các file tĩnh.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The"
+          },
+          {
+            "id": "2",
+            "text": "pipeline"
+          },
+          {
+            "id": "3",
+            "text": "is"
+          },
+          {
+            "id": "4",
+            "text": "building"
+          },
+          {
+            "id": "5",
+            "text": "static"
+          },
+          {
+            "id": "6",
+            "text": "files."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "The pipeline is building static files.",
+        "grammarTip": {
+          "titleVi": "Trạng thái Pipeline",
+          "tipVi": "Dùng thì tiếp diễn cho tiến trình đang chạy."
+        }
+      },
+      {
+        "id": "present-continuous-dev-16",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
+        }
+      },
+      {
+        "id": "present-continuous-dev-17",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
+        "acceptableAlternatives": [
+          "IS RUNNING"
+        ],
+        "options": [
+          "runs",
+          "is running",
+          "are running",
+          "running"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-18",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cập nhật tình trạng pipeline",
+        "vietnameseMeaning": "Pipeline đang xây dựng các file tĩnh.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The"
+          },
+          {
+            "id": "2",
+            "text": "pipeline"
+          },
+          {
+            "id": "3",
+            "text": "is"
+          },
+          {
+            "id": "4",
+            "text": "building"
+          },
+          {
+            "id": "5",
+            "text": "static"
+          },
+          {
+            "id": "6",
+            "text": "files."
+          }
+        ],
+        "correctTokenOrder": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "fullSentenceEn": "The pipeline is building static files.",
+        "grammarTip": {
+          "titleVi": "Trạng thái Pipeline",
+          "tipVi": "Dùng thì tiếp diễn cho tiến trình đang chạy."
+        }
+      },
+      {
+        "id": "present-continuous-dev-19",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Cảnh báo tài nguyên hệ thống",
+        "sender": "Monitor",
+        "recipient": "DevOps",
+        "textBefore": "The CPU ",
+        "baseVerb": "run",
+        "textAfter": " at 100% capacity right now.",
+        "correctAnswer": "is running",
+        "acceptableAlternatives": [
+          "IS RUNNING"
+        ],
+        "options": [
+          "runs",
+          "is running",
+          "are running",
+          "running"
+        ],
+        "explanation": {
+          "ruleVi": "Sự việc đang diễn ra.",
+          "detailedAnalysisVi": "Nhân đôi phụ âm cuối của run -> running."
+        }
+      },
+      {
+        "id": "present-continuous-dev-20",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Review code",
+        "tokens": [
+          "Why",
+          "is",
+          "you",
+          "using",
+          "that",
+          "library?"
+        ],
+        "errorTokenIndex": 1,
+        "correctToken": "are",
+        "options": [
+          {
+            "value": "Why",
+            "label": "Why",
+            "isCorrect": false
+          },
+          {
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
+          },
+          {
+            "value": "using",
+            "label": "using",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "Why are you using that library?",
+        "vietnameseMeaning": "Tại sao bạn lại đang dùng thư viện đó?",
+        "explanation": {
+          "whyWrongVi": "You đi với are.",
+          "workplaceImpactVi": "Tránh lỗi giao tiếp cơ bản."
         }
       }
     ]

@@ -6,86 +6,679 @@
     "vietnameseName": "Thì Tương Lai Hoàn Thành",
     "group": "future",
     "status": "active",
-    "level": "B2 (Upper Intermediate)",
+    "level": "B1-B2 (Intermediate)",
     "badge": "Deadline hoàn thành",
-    "description": "Diễn tả hành động sẽ hoàn thành trước một thời điểm hoặc sự kiện trong tương lai.",
-    "estimatedMinutes": 10,
-    "challengeCount": 10
+    "description": "Hoàn thiện tiếng Anh giao tiếp: Làm chủ cách diễn tả một hành động sẽ được hoàn thành trước một thời điểm hoặc sự kiện cụ thể trong tương lai, dùng trong báo cáo tiến độ và cam kết deadline.",
+    "estimatedMinutes": 30,
+    "challengeCount": 80
   },
   "quickRules": [
     {
-      "id": "will-have-pp-formula",
-      "category": "will-have-pp",
-      "titleVi": "Cấu Trúc Will have + V3/ed",
-      "titleEn": "Will have P.P Structure",
-      "summaryVi": "Dùng để nhấn mạnh deadline: trước thời điểm đó việc đã xong.",
+      "id": "fp-to-be",
+      "category": "to-be",
+      "titleVi": "Tương lai hoàn thành với To-be",
+      "titleEn": "Future Perfect with To-be",
+      "summaryVi": "Sử dụng 'will have been' để diễn tả trạng thái sẽ kéo dài đến một thời điểm trong tương lai.",
       "formulas": [
         {
           "label": "Khẳng định (+)",
-          "structure": "S + will have + V3/ed",
-          "example": "I will have finished the report by Friday.",
-          "vietnameseTranslation": "Tôi sẽ hoàn thành xong báo cáo trước thứ Sáu."
+          "structure": "S + will have been + Noun/Adj",
+          "example": "By next month, I will have been a manager for a year.",
+          "vietnameseTranslation": "Tính đến tháng sau, tôi sẽ làm quản lý được một năm."
         }
       ],
       "rulesList": [
         {
-          "ruleVi": "Hoàn thành trước một thời điểm",
-          "condition": "Dấu hiệu nhận biết: by + mốc thời gian (by tomorrow, by the end of this year...).",
+          "ruleVi": "Nhấn mạnh khoảng thời gian đến mốc tương lai",
+          "condition": "Thường đi kèm với 'by' hoặc 'by the time'",
           "examples": [
             {
-              "en": "By next month, we will have launched the new feature.",
-              "vi": "Trước tháng sau, chúng ta sẽ ra mắt xong tính năng mới."
+              "en": "By 2025, we will have been operational for 10 years.",
+              "vi": "Tới năm 2025, chúng ta sẽ hoạt động được 10 năm."
             }
           ]
         }
       ],
       "workplaceTips": [
-        "Rất hữu ích khi báo cáo tiến độ và hứa hẹn deadline: 'By the time you arrive, I will have prepared everything.'"
+        "Dùng để nhấn mạnh kinh nghiệm hoặc thâm niên dự kiến tại một thời điểm tương lai."
+      ]
+    },
+    {
+      "id": "fp-action-verbs",
+      "category": "action-verbs",
+      "titleVi": "Động từ thường (Action Verbs)",
+      "titleEn": "Action Verbs in Future Perfect",
+      "summaryVi": "Cấu trúc 'will have + V3/ed' cho các hành động.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will have + V3/ed",
+          "example": "We will have deployed the app by Friday.",
+          "vietnameseTranslation": "Chúng tôi sẽ triển khai xong ứng dụng trước thứ Sáu."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Hành động hoàn tất trước mốc tương lai",
+          "condition": "Có các cụm từ chỉ hạn chót",
+          "examples": [
+            {
+              "en": "They will have fixed the bug by tomorrow morning.",
+              "vi": "Họ sẽ sửa xong lỗi trước sáng mai."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Thích hợp khi cam kết deadline giao hàng, hoàn thành task."
+      ]
+    },
+    {
+      "id": "fp-spelling-rules",
+      "category": "spelling-rules",
+      "titleVi": "Quy tắc chính tả Phân từ 2",
+      "titleEn": "Past Participle Spelling",
+      "summaryVi": "Động từ có quy tắc thêm -ed, bất quy tắc học thuộc.",
+      "formulas": [
+        {
+          "label": "Quy tắc chung",
+          "structure": "V + ed / V3",
+          "example": "finish -> finished, write -> written",
+          "vietnameseTranslation": "kết thúc -> đã kết thúc, viết -> đã viết"
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Động từ bất quy tắc phổ biến",
+          "condition": "Gặp thường xuyên trong IT/Business",
+          "examples": [
+            {
+              "en": "build -> built, send -> sent",
+              "vi": "xây dựng -> đã xây, gửi -> đã gửi"
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Hãy cẩn thận với 'send' và 'sent' trong email."
+      ]
+    },
+    {
+      "id": "fp-adverbs-frequency",
+      "category": "adverbs-frequency",
+      "titleVi": "Trạng từ thời gian chỉ Deadline",
+      "titleEn": "Time Expressions",
+      "summaryVi": "Các trạng từ phổ biến đi kèm.",
+      "formulas": [
+        {
+          "label": "Trạng từ",
+          "structure": "By + [thời điểm], By the time + [S + V(hiện tại)]",
+          "example": "By next week, by the time you arrive...",
+          "vietnameseTranslation": "Trước tuần sau, trước lúc bạn đến..."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Vị trí của trạng từ",
+          "condition": "Thường đứng đầu hoặc cuối câu",
+          "examples": [
+            {
+              "en": "By 5 PM, the test will have finished.",
+              "vi": "Trước 5 giờ chiều, bài kiểm tra sẽ kết thúc."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Luôn dùng hiện tại đơn sau 'by the time' trong ngữ cảnh tương lai."
+      ]
+    },
+    {
+      "id": "fp-workplace-usage",
+      "category": "workplace-usage",
+      "titleVi": "Sử dụng trong công sở",
+      "titleEn": "Workplace Application",
+      "summaryVi": "Báo cáo tiến độ và lập kế hoạch.",
+      "formulas": [
+        {
+          "label": "Báo cáo",
+          "structure": "I will have [action] by [deadline]",
+          "example": "I will have sent the report by noon.",
+          "vietnameseTranslation": "Tôi sẽ gửi báo cáo xong trước buổi trưa."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Đảm bảo với khách hàng",
+          "condition": "Dùng để tạo sự tin tưởng",
+          "examples": [
+            {
+              "en": "We will have resolved the issue before the meeting.",
+              "vi": "Chúng tôi sẽ giải quyết xong vấn đề trước cuộc họp."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Giúp thể hiện sự chuyên nghiệp và cam kết rõ ràng về thời gian."
       ]
     }
   ],
   "challenges": {
     "conjugation": [
       {
-        "id": "conj-fp-01",
+        "id": "future-perfect-conj-1",
         "contextType": "email",
-        "scenarioVi": "Xác nhận deadline giao hàng",
-        "sender": "Supplier",
-        "recipient": "Client",
-        "subject": "",
-        "textBefore": "By the end of this week, we ",
-        "baseVerb": "ship",
-        "textAfter": " all your orders.",
-        "correctAnswer": "will have shipped",
+        "scenarioVi": "Cập nhật tiến độ IT 1",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "finish",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have finished",
         "acceptableAlternatives": [
-          "will have shipped"
+          "will have finished"
         ],
         "options": [
-          "will ship",
-          "have shipped",
-          "will have shipped",
-          "will be shipping"
+          "will finish",
+          "have finished",
+          "will have finished",
+          "will be finishing"
         ],
         "explanation": {
-          "ruleVi": "Dấu hiệu 'By the end of this week' yêu cầu dùng Tương lai hoàn thành.",
-          "detailedAnalysisVi": "Để diễn đạt rằng việc gửi hàng sẽ được hoàn tất TRƯỚC cuối tuần."
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-2",
+        "contextType": "meeting",
+        "scenarioVi": "Cam kết deadline văn phòng 2",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have deployed",
+        "acceptableAlternatives": [
+          "will have deployed"
+        ],
+        "options": [
+          "will deploy",
+          "have deployed",
+          "will have deployed",
+          "will be deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-3",
+        "contextType": "routine",
+        "scenarioVi": "Cập nhật tiến độ IT 3",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "complete",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have completed",
+        "acceptableAlternatives": [
+          "will have completed"
+        ],
+        "options": [
+          "will complete",
+          "have completed",
+          "will have completed",
+          "will be completeing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-4",
+        "contextType": "report",
+        "scenarioVi": "Cam kết deadline văn phòng 4",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "send",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have sent",
+        "acceptableAlternatives": [
+          "will have sent"
+        ],
+        "options": [
+          "will send",
+          "have sent",
+          "will have sent",
+          "will be sending"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-5",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ IT 5",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "review",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have reviewed",
+        "acceptableAlternatives": [
+          "will have reviewed"
+        ],
+        "options": [
+          "will review",
+          "have reviewed",
+          "will have reviewed",
+          "will be reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-6",
+        "contextType": "email",
+        "scenarioVi": "Cam kết deadline văn phòng 6",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "resolve",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have resolved",
+        "acceptableAlternatives": [
+          "will have resolved"
+        ],
+        "options": [
+          "will resolve",
+          "have resolved",
+          "will have resolved",
+          "will be resolveing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-7",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ IT 7",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "update",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have updated",
+        "acceptableAlternatives": [
+          "will have updated"
+        ],
+        "options": [
+          "will update",
+          "have updated",
+          "will have updated",
+          "will be updateing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-8",
+        "contextType": "routine",
+        "scenarioVi": "Cam kết deadline văn phòng 8",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "sign",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have signed",
+        "acceptableAlternatives": [
+          "will have signed"
+        ],
+        "options": [
+          "will sign",
+          "have signed",
+          "will have signed",
+          "will be signing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-9",
+        "contextType": "report",
+        "scenarioVi": "Cập nhật tiến độ IT 9",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "prepare",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have prepared",
+        "acceptableAlternatives": [
+          "will have prepared"
+        ],
+        "options": [
+          "will prepare",
+          "have prepared",
+          "will have prepared",
+          "will be prepareing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-10",
+        "contextType": "chat",
+        "scenarioVi": "Cam kết deadline văn phòng 10",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "merge",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have merged",
+        "acceptableAlternatives": [
+          "will have merged"
+        ],
+        "options": [
+          "will merge",
+          "have merged",
+          "will have merged",
+          "will be mergeing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-11",
+        "contextType": "email",
+        "scenarioVi": "Cập nhật tiến độ IT 11",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "finish",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have finished",
+        "acceptableAlternatives": [
+          "will have finished"
+        ],
+        "options": [
+          "will finish",
+          "have finished",
+          "will have finished",
+          "will be finishing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-12",
+        "contextType": "meeting",
+        "scenarioVi": "Cam kết deadline văn phòng 12",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "deploy",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have deployed",
+        "acceptableAlternatives": [
+          "will have deployed"
+        ],
+        "options": [
+          "will deploy",
+          "have deployed",
+          "will have deployed",
+          "will be deploying"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-13",
+        "contextType": "routine",
+        "scenarioVi": "Cập nhật tiến độ IT 13",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "complete",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have completed",
+        "acceptableAlternatives": [
+          "will have completed"
+        ],
+        "options": [
+          "will complete",
+          "have completed",
+          "will have completed",
+          "will be completeing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-14",
+        "contextType": "report",
+        "scenarioVi": "Cam kết deadline văn phòng 14",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "send",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have sent",
+        "acceptableAlternatives": [
+          "will have sent"
+        ],
+        "options": [
+          "will send",
+          "have sent",
+          "will have sent",
+          "will be sending"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-15",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tiến độ IT 15",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "review",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have reviewed",
+        "acceptableAlternatives": [
+          "will have reviewed"
+        ],
+        "options": [
+          "will review",
+          "have reviewed",
+          "will have reviewed",
+          "will be reviewing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-16",
+        "contextType": "email",
+        "scenarioVi": "Cam kết deadline văn phòng 16",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "resolve",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have resolved",
+        "acceptableAlternatives": [
+          "will have resolved"
+        ],
+        "options": [
+          "will resolve",
+          "have resolved",
+          "will have resolved",
+          "will be resolveing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-17",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ IT 17",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "update",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have updated",
+        "acceptableAlternatives": [
+          "will have updated"
+        ],
+        "options": [
+          "will update",
+          "have updated",
+          "will have updated",
+          "will be updateing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-18",
+        "contextType": "routine",
+        "scenarioVi": "Cam kết deadline văn phòng 18",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "sign",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have signed",
+        "acceptableAlternatives": [
+          "will have signed"
+        ],
+        "options": [
+          "will sign",
+          "have signed",
+          "will have signed",
+          "will be signing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-19",
+        "contextType": "report",
+        "scenarioVi": "Cập nhật tiến độ IT 19",
+        "sender": "Dev",
+        "recipient": "QA",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "prepare",
+        "textAfter": " the code to production.",
+        "correctAnswer": "will have prepared",
+        "acceptableAlternatives": [
+          "will have prepared"
+        ],
+        "options": [
+          "will prepare",
+          "have prepared",
+          "will have prepared",
+          "will be prepareing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
+        }
+      },
+      {
+        "id": "future-perfect-conj-20",
+        "contextType": "chat",
+        "scenarioVi": "Cam kết deadline văn phòng 20",
+        "sender": "Manager",
+        "recipient": "Client",
+        "subject": "Update",
+        "textBefore": "By tomorrow, we ",
+        "baseVerb": "merge",
+        "textAfter": " the final documents.",
+        "correctAnswer": "will have merged",
+        "acceptableAlternatives": [
+          "will have merged"
+        ],
+        "options": [
+          "will merge",
+          "have merged",
+          "will have merged",
+          "will be mergeing"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng will have + V3/ed với 'By tomorrow'",
+          "detailedAnalysisVi": "Diễn tả hành động sẽ hoàn tất trước ngày mai."
         }
       }
     ],
     "errorHunting": [
       {
-        "id": "err-fp-01",
-        "scenarioVi": "Báo cáo tiến độ hoàn thành KPI",
+        "id": "future-perfect-err-1",
+        "scenarioVi": "Review code lỗi 1",
         "tokens": [
           "By",
-          "December,",
-          "we",
+          "Friday,",
+          "they",
           "will",
           "has",
-          "achieved",
-          "our",
-          "sales",
-          "target."
+          "finished",
+          "the server."
         ],
         "errorTokenIndex": 4,
         "correctToken": "have",
@@ -101,27 +694,752 @@
             "isCorrect": false
           }
         ],
-        "fullCorrectSentence": "By December, we will have achieved our sales target.",
-        "vietnameseMeaning": "Trước tháng 12, chúng ta sẽ hoàn thành chỉ tiêu doanh thu.",
+        "fullCorrectSentence": "By Friday, they will have finished the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
         "explanation": {
-          "whyWrongVi": "Luôn dùng 'have' sau 'will', không phân biệt chủ ngữ.",
-          "workplaceImpactVi": "Lỗi 'will has' là lỗi cơ bản nghiêm trọng."
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-2",
+        "scenarioVi": "Kiểm tra email 2",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "deployed",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have deployed the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-3",
+        "scenarioVi": "Review code lỗi 3",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "completed",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have completed the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-4",
+        "scenarioVi": "Kiểm tra email 4",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "sent",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have sent the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-5",
+        "scenarioVi": "Review code lỗi 5",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "reviewed",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have reviewed the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-6",
+        "scenarioVi": "Kiểm tra email 6",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "resolved",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have resolved the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-7",
+        "scenarioVi": "Review code lỗi 7",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "updated",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have updated the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-8",
+        "scenarioVi": "Kiểm tra email 8",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "signed",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have signed the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-9",
+        "scenarioVi": "Review code lỗi 9",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "prepared",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have prepared the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-10",
+        "scenarioVi": "Kiểm tra email 10",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "merged",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have merged the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-11",
+        "scenarioVi": "Review code lỗi 11",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "finished",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have finished the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-12",
+        "scenarioVi": "Kiểm tra email 12",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "deployed",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have deployed the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-13",
+        "scenarioVi": "Review code lỗi 13",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "completed",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have completed the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-14",
+        "scenarioVi": "Kiểm tra email 14",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "sent",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have sent the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-15",
+        "scenarioVi": "Review code lỗi 15",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "reviewed",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have reviewed the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-16",
+        "scenarioVi": "Kiểm tra email 16",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "resolved",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have resolved the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-17",
+        "scenarioVi": "Review code lỗi 17",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "updated",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have updated the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-18",
+        "scenarioVi": "Kiểm tra email 18",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "signed",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have signed the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-19",
+        "scenarioVi": "Review code lỗi 19",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "prepared",
+          "the server."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have prepared the server.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong máy chủ.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
+        }
+      },
+      {
+        "id": "future-perfect-err-20",
+        "scenarioVi": "Kiểm tra email 20",
+        "tokens": [
+          "By",
+          "Friday,",
+          "they",
+          "will",
+          "has",
+          "merged",
+          "the report."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By Friday, they will have merged the report.",
+        "vietnameseMeaning": "Trước thứ Sáu, họ sẽ hoàn thành xong báo cáo.",
+        "explanation": {
+          "whyWrongVi": "Phải dùng 'have' sau 'will'.",
+          "workplaceImpactVi": "Sai cơ bản, gây thiếu chuyên nghiệp."
         }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "sb-fp-01",
-        "scenarioVi": "Cập nhật tiến độ dự án",
-        "vietnameseMeaning": "Họ sẽ ký xong hợp đồng trước thứ Sáu.",
+        "id": "future-perfect-sb-1",
+        "scenarioVi": "Lập kế hoạch sprint 1",
+        "vietnameseMeaning": "Họ sẽ hoàn thành xong trước cuối tháng.",
         "scrambledTokens": [
           {
             "id": "t1",
             "text": "They"
           },
           {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
             "id": "t2",
-            "text": "will have signed"
+            "text": "will have finished"
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have finished",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have finished the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-2",
+        "scenarioVi": "Lên lịch họp 2",
+        "vietnameseMeaning": "Họ sẽ triển khai xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t2",
+            "text": "will have deployed"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have deployed",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have deployed the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-3",
+        "scenarioVi": "Lập kế hoạch sprint 3",
+        "vietnameseMeaning": "Họ sẽ hoàn thiện xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t2",
+            "text": "will have completed"
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have completed",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have completed the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-4",
+        "scenarioVi": "Lên lịch họp 4",
+        "vietnameseMeaning": "Họ sẽ gửi xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "will have sent"
           },
           {
             "id": "t3",
@@ -129,19 +1447,1178 @@
           },
           {
             "id": "t4",
-            "text": "by Friday."
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have sent",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have sent the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-5",
+        "scenarioVi": "Lập kế hoạch sprint 5",
+        "vietnameseMeaning": "Họ sẽ đánh giá xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t2",
+            "text": "will have reviewed"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have reviewed",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have reviewed the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-6",
+        "scenarioVi": "Lên lịch họp 6",
+        "vietnameseMeaning": "Họ sẽ giải quyết xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "will have resolved"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have resolved",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have resolved the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-7",
+        "scenarioVi": "Lập kế hoạch sprint 7",
+        "vietnameseMeaning": "Họ sẽ cập nhật xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t2",
+            "text": "will have updated"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have updated",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have updated the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-8",
+        "scenarioVi": "Lên lịch họp 8",
+        "vietnameseMeaning": "Họ sẽ ký xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t2",
+            "text": "will have signed"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
           }
         ],
         "correctTokenOrder": [
           "They",
           "will have signed",
           "the contract",
-          "by Friday."
+          "by the end of the month."
         ],
-        "fullSentenceEn": "They will have signed the contract by Friday.",
+        "fullSentenceEn": "They will have signed the contract by the end of the month.",
         "grammarTip": {
-          "titleVi": "will have + V3/ed + by time",
-          "tipVi": "Cấu trúc tiêu chuẩn để nói về deadline hoàn tất."
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-9",
+        "scenarioVi": "Lập kế hoạch sprint 9",
+        "vietnameseMeaning": "Họ sẽ chuẩn bị xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t2",
+            "text": "will have prepared"
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have prepared",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have prepared the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-10",
+        "scenarioVi": "Lên lịch họp 10",
+        "vietnameseMeaning": "Họ sẽ gộp xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "will have merged"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have merged",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have merged the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-11",
+        "scenarioVi": "Lập kế hoạch sprint 11",
+        "vietnameseMeaning": "Họ sẽ hoàn thành xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t2",
+            "text": "will have finished"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have finished",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have finished the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-12",
+        "scenarioVi": "Lên lịch họp 12",
+        "vietnameseMeaning": "Họ sẽ triển khai xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "will have deployed"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have deployed",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have deployed the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-13",
+        "scenarioVi": "Lập kế hoạch sprint 13",
+        "vietnameseMeaning": "Họ sẽ hoàn thiện xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t2",
+            "text": "will have completed"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have completed",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have completed the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-14",
+        "scenarioVi": "Lên lịch họp 14",
+        "vietnameseMeaning": "Họ sẽ gửi xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t2",
+            "text": "will have sent"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have sent",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have sent the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-15",
+        "scenarioVi": "Lập kế hoạch sprint 15",
+        "vietnameseMeaning": "Họ sẽ đánh giá xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t2",
+            "text": "will have reviewed"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have reviewed",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have reviewed the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-16",
+        "scenarioVi": "Lên lịch họp 16",
+        "vietnameseMeaning": "Họ sẽ giải quyết xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t2",
+            "text": "will have resolved"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have resolved",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have resolved the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-17",
+        "scenarioVi": "Lập kế hoạch sprint 17",
+        "vietnameseMeaning": "Họ sẽ cập nhật xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t3",
+            "text": "the database"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t2",
+            "text": "will have updated"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have updated",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have updated the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-18",
+        "scenarioVi": "Lên lịch họp 18",
+        "vietnameseMeaning": "Họ sẽ ký xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "will have signed"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have signed",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have signed the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-19",
+        "scenarioVi": "Lập kế hoạch sprint 19",
+        "vietnameseMeaning": "Họ sẽ chuẩn bị xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t2",
+            "text": "will have prepared"
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t3",
+            "text": "the database"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have prepared",
+          "the database",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have prepared the database by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-sb-20",
+        "scenarioVi": "Lên lịch họp 20",
+        "vietnameseMeaning": "Họ sẽ gộp xong trước cuối tháng.",
+        "scrambledTokens": [
+          {
+            "id": "t4",
+            "text": "by the end of the month."
+          },
+          {
+            "id": "t1",
+            "text": "They"
+          },
+          {
+            "id": "t3",
+            "text": "the contract"
+          },
+          {
+            "id": "t2",
+            "text": "will have merged"
+          }
+        ],
+        "correctTokenOrder": [
+          "They",
+          "will have merged",
+          "the contract",
+          "by the end of the month."
+        ],
+        "fullSentenceEn": "They will have merged the contract by the end of the month.",
+        "grammarTip": {
+          "titleVi": "will have + V3",
+          "tipVi": "Cấu trúc cho hành động hoàn thành trước một thời điểm tương lai."
+        }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "id": "future-perfect-devops-1",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 1",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "finish",
+        "textAfter": " the build.",
+        "correctAnswer": "will have finished",
+        "acceptableAlternatives": [
+          "will have finished"
+        ],
+        "options": [
+          "will finish",
+          "will have finished",
+          "has finished",
+          "had finished"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-2",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 2",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
+        }
+      },
+      {
+        "id": "future-perfect-devops-3",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình auto-scaling 3",
+        "vietnameseMeaning": "Hệ thống sẽ hoàn tất việc mở rộng trước khi tải tăng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "will have scaled"
+          },
+          {
+            "id": "t3",
+            "text": "before"
+          },
+          {
+            "id": "t4",
+            "text": "the traffic spikes."
+          }
+        ],
+        "correctTokenOrder": [
+          "The system",
+          "will have scaled",
+          "before",
+          "the traffic spikes."
+        ],
+        "fullSentenceEn": "The system will have scaled before the traffic spikes.",
+        "grammarTip": {
+          "titleVi": "will have scaled before + clause",
+          "tipVi": "Hành động hoàn tất trước một sự kiện trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-devops-4",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 4",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "send",
+        "textAfter": " the build.",
+        "correctAnswer": "will have sent",
+        "acceptableAlternatives": [
+          "will have sent"
+        ],
+        "options": [
+          "will send",
+          "will have sent",
+          "has sent",
+          "had sent"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-5",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 5",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
+        }
+      },
+      {
+        "id": "future-perfect-devops-6",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình auto-scaling 6",
+        "vietnameseMeaning": "Hệ thống sẽ hoàn tất việc mở rộng trước khi tải tăng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "will have scaled"
+          },
+          {
+            "id": "t3",
+            "text": "before"
+          },
+          {
+            "id": "t4",
+            "text": "the traffic spikes."
+          }
+        ],
+        "correctTokenOrder": [
+          "The system",
+          "will have scaled",
+          "before",
+          "the traffic spikes."
+        ],
+        "fullSentenceEn": "The system will have scaled before the traffic spikes.",
+        "grammarTip": {
+          "titleVi": "will have scaled before + clause",
+          "tipVi": "Hành động hoàn tất trước một sự kiện trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-devops-7",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 7",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "update",
+        "textAfter": " the build.",
+        "correctAnswer": "will have updated",
+        "acceptableAlternatives": [
+          "will have updated"
+        ],
+        "options": [
+          "will update",
+          "will have updated",
+          "has updated",
+          "had updated"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-8",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 8",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
+        }
+      },
+      {
+        "id": "future-perfect-devops-9",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình auto-scaling 9",
+        "vietnameseMeaning": "Hệ thống sẽ hoàn tất việc mở rộng trước khi tải tăng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "will have scaled"
+          },
+          {
+            "id": "t3",
+            "text": "before"
+          },
+          {
+            "id": "t4",
+            "text": "the traffic spikes."
+          }
+        ],
+        "correctTokenOrder": [
+          "The system",
+          "will have scaled",
+          "before",
+          "the traffic spikes."
+        ],
+        "fullSentenceEn": "The system will have scaled before the traffic spikes.",
+        "grammarTip": {
+          "titleVi": "will have scaled before + clause",
+          "tipVi": "Hành động hoàn tất trước một sự kiện trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-devops-10",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 10",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "merge",
+        "textAfter": " the build.",
+        "correctAnswer": "will have merged",
+        "acceptableAlternatives": [
+          "will have merged"
+        ],
+        "options": [
+          "will merge",
+          "will have merged",
+          "has merged",
+          "had merged"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-11",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 11",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
+        }
+      },
+      {
+        "id": "future-perfect-devops-12",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình auto-scaling 12",
+        "vietnameseMeaning": "Hệ thống sẽ hoàn tất việc mở rộng trước khi tải tăng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "will have scaled"
+          },
+          {
+            "id": "t3",
+            "text": "before"
+          },
+          {
+            "id": "t4",
+            "text": "the traffic spikes."
+          }
+        ],
+        "correctTokenOrder": [
+          "The system",
+          "will have scaled",
+          "before",
+          "the traffic spikes."
+        ],
+        "fullSentenceEn": "The system will have scaled before the traffic spikes.",
+        "grammarTip": {
+          "titleVi": "will have scaled before + clause",
+          "tipVi": "Hành động hoàn tất trước một sự kiện trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-devops-13",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 13",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "complete",
+        "textAfter": " the build.",
+        "correctAnswer": "will have completed",
+        "acceptableAlternatives": [
+          "will have completed"
+        ],
+        "options": [
+          "will complete",
+          "will have completed",
+          "has completed",
+          "had completed"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-14",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 14",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
+        }
+      },
+      {
+        "id": "future-perfect-devops-15",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình auto-scaling 15",
+        "vietnameseMeaning": "Hệ thống sẽ hoàn tất việc mở rộng trước khi tải tăng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "will have scaled"
+          },
+          {
+            "id": "t3",
+            "text": "before"
+          },
+          {
+            "id": "t4",
+            "text": "the traffic spikes."
+          }
+        ],
+        "correctTokenOrder": [
+          "The system",
+          "will have scaled",
+          "before",
+          "the traffic spikes."
+        ],
+        "fullSentenceEn": "The system will have scaled before the traffic spikes.",
+        "grammarTip": {
+          "titleVi": "will have scaled before + clause",
+          "tipVi": "Hành động hoàn tất trước một sự kiện trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-devops-16",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 16",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "resolve",
+        "textAfter": " the build.",
+        "correctAnswer": "will have resolved",
+        "acceptableAlternatives": [
+          "will have resolved"
+        ],
+        "options": [
+          "will resolve",
+          "will have resolved",
+          "has resolved",
+          "had resolved"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-17",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 17",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
+        }
+      },
+      {
+        "id": "future-perfect-devops-18",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình auto-scaling 18",
+        "vietnameseMeaning": "Hệ thống sẽ hoàn tất việc mở rộng trước khi tải tăng.",
+        "scrambledTokens": [
+          {
+            "id": "t1",
+            "text": "The system"
+          },
+          {
+            "id": "t2",
+            "text": "will have scaled"
+          },
+          {
+            "id": "t3",
+            "text": "before"
+          },
+          {
+            "id": "t4",
+            "text": "the traffic spikes."
+          }
+        ],
+        "correctTokenOrder": [
+          "The system",
+          "will have scaled",
+          "before",
+          "the traffic spikes."
+        ],
+        "fullSentenceEn": "The system will have scaled before the traffic spikes.",
+        "grammarTip": {
+          "titleVi": "will have scaled before + clause",
+          "tipVi": "Hành động hoàn tất trước một sự kiện trong tương lai."
+        }
+      },
+      {
+        "id": "future-perfect-devops-19",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps update 19",
+        "textBefore": "By 5 PM, the CI/CD pipeline ",
+        "baseVerb": "prepare",
+        "textAfter": " the build.",
+        "correctAnswer": "will have prepared",
+        "acceptableAlternatives": [
+          "will have prepared"
+        ],
+        "options": [
+          "will prepare",
+          "will have prepared",
+          "has prepared",
+          "had prepared"
+        ],
+        "explanation": {
+          "ruleVi": "Dùng tương lai hoàn thành cho deadline",
+          "detailedAnalysisVi": "Pipeline sẽ chạy xong trước 5 giờ."
+        }
+      },
+      {
+        "id": "future-perfect-devops-20",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Fix DevOps script 20",
+        "tokens": [
+          "By",
+          "midnight,",
+          "we",
+          "will",
+          "has",
+          "migrated",
+          "the data."
+        ],
+        "errorTokenIndex": 4,
+        "correctToken": "have",
+        "options": [
+          {
+            "value": "have",
+            "label": "have",
+            "isCorrect": true
+          },
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          }
+        ],
+        "fullCorrectSentence": "By midnight, we will have migrated the data.",
+        "vietnameseMeaning": "Trước nửa đêm, chúng ta sẽ di chuyển xong dữ liệu.",
+        "explanation": {
+          "whyWrongVi": "will đi với have nguyên thể.",
+          "workplaceImpactVi": "Tránh lỗi syntax trong giao tiếp."
         }
       }
     ]

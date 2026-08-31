@@ -8,215 +8,1235 @@
     "status": "active",
     "level": "A1-A2 (Beginner)",
     "badge": "Kế hoạch & Dự đoán",
-    "description": "Diễn tả quyết định tức thời, dự đoán không có căn cứ, và lời hứa hẹn trong công việc.",
-    "estimatedMinutes": 10,
-    "challengeCount": 10
+    "description": "Thì tương lai đơn (Future Simple) diễn đạt các quyết định tức thời, dự đoán cá nhân, hoặc các cam kết và thỏa thuận trong môi trường công sở.",
+    "estimatedMinutes": 20,
+    "challengeCount": 80
   },
   "quickRules": [
     {
-      "id": "will-formula",
-      "category": "will",
-      "titleVi": "Cấu Trúc Will",
-      "titleEn": "Will Structure",
-      "summaryVi": "Dùng để đưa ra quyết định ngay tại thời điểm nói, lời hứa, hoặc dự đoán.",
+      "id": "fs-to-be",
+      "category": "to-be",
+      "titleVi": "Động từ To-be",
+      "titleEn": "To-be Verbs",
+      "summaryVi": "Sử dụng will be cho trạng thái hoặc vị trí trong tương lai.",
       "formulas": [
         {
           "label": "Khẳng định (+)",
-          "structure": "S + will + V-infinitive",
-          "example": "I will send the report by 5 PM.",
-          "vietnameseTranslation": "Tôi sẽ gửi báo cáo trước 5 giờ chiều."
+          "structure": "S + will be + N/Adj",
+          "example": "The server will be ready.",
+          "vietnameseTranslation": "Máy chủ sẽ sẵn sàng."
         },
         {
           "label": "Phủ định (-)",
-          "structure": "S + will not (won't) + V-infinitive",
-          "example": "We won't launch the product this month.",
-          "vietnameseTranslation": "Chúng tôi sẽ không ra mắt sản phẩm trong tháng này."
+          "structure": "S + will not (won't) be + N/Adj",
+          "example": "The API won't be available.",
+          "vietnameseTranslation": "API sẽ không khả dụng."
         },
         {
           "label": "Nghi vấn (?)",
-          "structure": "Will + S + V-infinitive?",
-          "example": "Will you attend the conference tomorrow?",
-          "vietnameseTranslation": "Bạn có tham dự hội nghị ngày mai không?"
+          "structure": "Will + S + be + N/Adj?",
+          "example": "Will the system be online?",
+          "vietnameseTranslation": "Hệ thống sẽ trực tuyến chứ?"
         }
       ],
       "rulesList": [
         {
-          "ruleVi": "Quyết định tức thời",
-          "condition": "Sử dụng khi quyết định một việc ngay lúc đang nói.",
+          "ruleVi": "Chỉ trạng thái",
+          "condition": "Nói về trạng thái sắp tới",
           "examples": [
             {
-              "en": "I am thirsty. I will get some water.",
-              "vi": "Tôi khát nước. Tôi sẽ đi lấy nước."
-            }
-          ]
-        },
-        {
-          "ruleVi": "Dự đoán (không có căn cứ chắc chắn)",
-          "condition": "Sử dụng với các từ: think, believe, suppose, perhaps, probably.",
-          "examples": [
-            {
-              "en": "I think the client will accept our proposal.",
-              "vi": "Tôi nghĩ khách hàng sẽ chấp nhận đề xuất của chúng ta."
-            }
-          ]
-        },
-        {
-          "ruleVi": "Lời hứa, lời đề nghị",
-          "condition": "Sử dụng khi hứa hẹn hoặc đề nghị giúp đỡ.",
-          "examples": [
-            {
-              "en": "Don't worry, I won't tell anyone.",
-              "vi": "Đừng lo, tôi sẽ không nói với ai đâu."
+              "en": "I will be out of office.",
+              "vi": "Tôi sẽ vắng mặt ở văn phòng."
             }
           ]
         }
       ],
       "workplaceTips": [
-        "Trong email giao dịch, 'I will' thường được dùng để cam kết hành động: 'I will check and revert to you shortly.'",
-        "Có thể viết tắt: I will -> I'll, We will -> We'll, Will not -> won't."
+        "Sử dụng 'will be' trong email thông báo nghỉ phép."
+      ]
+    },
+    {
+      "id": "fs-action-verbs",
+      "category": "action-verbs",
+      "titleVi": "Động từ thường",
+      "titleEn": "Action Verbs",
+      "summaryVi": "Diễn tả một hành động sẽ thực hiện.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + will + V",
+          "example": "We will deploy tomorrow.",
+          "vietnameseTranslation": "Chúng tôi sẽ triển khai ngày mai."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + won't + V",
+          "example": "They won't approve it.",
+          "vietnameseTranslation": "Họ sẽ không phê duyệt nó."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Quyết định tức thời",
+          "condition": "Quyết định ngay lúc nói",
+          "examples": [
+            {
+              "en": "I will check the logs now.",
+              "vi": "Tôi sẽ kiểm tra log ngay."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Rất phổ biến khi phân công công việc (action items)."
+      ]
+    },
+    {
+      "id": "fs-spelling",
+      "category": "spelling-rules",
+      "titleVi": "Quy tắc viết tắt",
+      "titleEn": "Contractions",
+      "summaryVi": "Viết tắt của will trong tiếng Anh.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Viết tắt khẳng định",
+          "condition": "Sử dụng 'll",
+          "examples": [
+            {
+              "en": "I'll send the report.",
+              "vi": "Tôi sẽ gửi báo cáo."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Viết tắt phủ định",
+          "condition": "Sử dụng won't",
+          "examples": [
+            {
+              "en": "We won't fail.",
+              "vi": "Chúng ta sẽ không thất bại."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Nên dùng dạng đầy đủ (will not) trong hợp đồng hoặc tài liệu chính thức."
+      ]
+    },
+    {
+      "id": "fs-adverbs",
+      "category": "adverbs-frequency",
+      "titleVi": "Trạng từ mức độ",
+      "titleEn": "Adverbs of Certainty",
+      "summaryVi": "Thêm trạng từ để chỉ độ chắc chắn.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Vị trí",
+          "condition": "Giữa will và động từ",
+          "examples": [
+            {
+              "en": "We will probably delay.",
+              "vi": "Chúng ta có lẽ sẽ trì hoãn."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Dùng 'definitely' để khẳng định mạnh mẽ với khách hàng."
+      ]
+    },
+    {
+      "id": "fs-workplace",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng công sở",
+      "titleEn": "Workplace Usage",
+      "summaryVi": "Dùng trong các tình huống văn phòng.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Lời hứa",
+          "condition": "Đảm bảo thực hiện",
+          "examples": [
+            {
+              "en": "I will finish by 5 PM.",
+              "vi": "Tôi sẽ hoàn thành trước 5 giờ chiều."
+            }
+          ]
+        }
+      ],
+      "workplaceTips": [
+        "Là thì quan trọng nhất để xây dựng uy tín qua các cam kết."
       ]
     }
   ],
   "challenges": {
     "conjugation": [
       {
-        "id": "conj-fs-01",
+        "id": "future-simple-conj-1",
         "contextType": "email",
-        "scenarioVi": "Cam kết thời gian gửi tài liệu cho đối tác",
-        "sender": "Anna <anna@company.com>",
-        "recipient": "Client <client@corp.com>",
-        "subject": "Project Documentation",
+        "scenarioVi": "Cam kết triển khai máy chủ",
         "textBefore": "I ",
-        "baseVerb": "send",
-        "textAfter": " the updated documents to you by tomorrow morning.",
-        "correctAnswer": "will send",
-        "acceptableAlternatives": [
-          "'ll send",
-          "will send"
-        ],
-        "options": [
-          "send",
-          "will send",
-          "sending",
-          "am send"
-        ],
-        "explanation": {
-          "ruleVi": "Cam kết/lời hứa trong công việc thường dùng 'will + V'.",
-          "detailedAnalysisVi": "Người viết đang hứa sẽ gửi tài liệu vào sáng mai, nên dùng thì tương lai đơn với 'will'."
-        }
+        "baseVerb": "deploy",
+        "textAfter": " the new server tonight.",
+        "correctAnswer": "will deploy",
+        "options": ["deploy", "will deploy", "deploying", "am deploy"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Cam kết thực hiện hành động." }
       },
       {
-        "id": "conj-fs-02",
+        "id": "future-simple-conj-2",
         "contextType": "chat",
-        "scenarioVi": "Đưa ra quyết định tức thời trong cuộc họp",
-        "sender": "Manager",
-        "recipient": "Team",
-        "subject": "",
-        "textBefore": "We don't have enough time to discuss this now. We ",
-        "baseVerb": "continue",
-        "textAfter": " this topic in the next meeting.",
-        "correctAnswer": "will continue",
-        "acceptableAlternatives": [
-          "'ll continue",
-          "will continue"
-        ],
-        "options": [
-          "continue",
-          "will continue",
-          "are continuing",
-          "continues"
-        ],
-        "explanation": {
-          "ruleVi": "Quyết định tức thời ngay tại thời điểm nói.",
-          "detailedAnalysisVi": "Vì thời gian đã hết, người quản lý quyết định dời chủ đề sang cuộc họp sau, dùng 'will continue'."
-        }
+        "scenarioVi": "Khởi động lại cơ sở dữ liệu",
+        "textBefore": "We ",
+        "baseVerb": "restart",
+        "textAfter": " the database.",
+        "correctAnswer": "will restart",
+        "options": ["restarts", "will restart", "restarted", "will restarting"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Quyết định tức thời." }
+      },
+      {
+        "id": "future-simple-conj-3",
+        "contextType": "meeting",
+        "scenarioVi": "Đẩy mã nguồn",
+        "textBefore": "The team ",
+        "baseVerb": "push",
+        "textAfter": " the code soon.",
+        "correctAnswer": "will push",
+        "options": ["push", "pushing", "will push", "will pushes"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Dự định tương lai." }
+      },
+      {
+        "id": "future-simple-conj-4",
+        "contextType": "report",
+        "scenarioVi": "Kiểm tra ứng dụng",
+        "textBefore": "QA ",
+        "baseVerb": "test",
+        "textAfter": " the application tomorrow.",
+        "correctAnswer": "will test",
+        "options": ["test", "will test", "tests", "is test"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Kế hoạch tương lai." }
+      },
+      {
+        "id": "future-simple-conj-5",
+        "contextType": "routine",
+        "scenarioVi": "Mở rộng hạ tầng",
+        "textBefore": "We ",
+        "baseVerb": "scale",
+        "textAfter": " the infrastructure next month.",
+        "correctAnswer": "will scale",
+        "options": ["scale", "will scale", "scaling", "scaled"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Hành động sắp tới." }
+      },
+      {
+        "id": "future-simple-conj-6",
+        "contextType": "chat",
+        "scenarioVi": "Sửa lỗi",
+        "textBefore": "I ",
+        "baseVerb": "debug",
+        "textAfter": " the issue now.",
+        "correctAnswer": "will debug",
+        "options": ["debug", "debugging", "will debug", "am debug"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Quyết định tức thời." }
+      },
+      {
+        "id": "future-simple-conj-7",
+        "contextType": "email",
+        "scenarioVi": "Đánh giá Pull Request",
+        "textBefore": "She ",
+        "baseVerb": "review",
+        "textAfter": " the PR.",
+        "correctAnswer": "will review",
+        "options": ["reviews", "will review", "review", "reviewing"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Hành động tương lai." }
+      },
+      {
+        "id": "future-simple-conj-8",
+        "contextType": "meeting",
+        "scenarioVi": "Tối ưu hiệu suất",
+        "textBefore": "They ",
+        "baseVerb": "optimize",
+        "textAfter": " the performance.",
+        "correctAnswer": "will optimize",
+        "options": ["optimizes", "optimized", "will optimize", "will optimizing"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Lời hứa trong công việc." }
+      },
+      {
+        "id": "future-simple-conj-9",
+        "contextType": "routine",
+        "scenarioVi": "Sao lưu dữ liệu",
+        "textBefore": "The script ",
+        "baseVerb": "backup",
+        "textAfter": " data at midnight.",
+        "correctAnswer": "will backup",
+        "options": ["backup", "backups", "will backup", "will backed up"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Lịch trình." }
+      },
+      {
+        "id": "future-simple-conj-10",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật tường lửa",
+        "textBefore": "Admin ",
+        "baseVerb": "update",
+        "textAfter": " the firewall rules.",
+        "correctAnswer": "will update",
+        "options": ["updates", "will update", "updating", "update"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Hành động sắp tới." }
+      },
+      {
+        "id": "future-simple-conj-11",
+        "contextType": "email",
+        "scenarioVi": "Gửi email",
+        "textBefore": "I ",
+        "baseVerb": "send",
+        "textAfter": " the email shortly.",
+        "correctAnswer": "will send",
+        "options": ["send", "sending", "will send", "sends"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Cam kết." }
+      },
+      {
+        "id": "future-simple-conj-12",
+        "contextType": "meeting",
+        "scenarioVi": "Gọi cho khách hàng",
+        "textBefore": "We ",
+        "baseVerb": "call",
+        "textAfter": " the client.",
+        "correctAnswer": "will call",
+        "options": ["call", "calls", "will call", "calling"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Hành động tương lai." }
+      },
+      {
+        "id": "future-simple-conj-13",
+        "contextType": "chat",
+        "scenarioVi": "Ký hợp đồng",
+        "textBefore": "They ",
+        "baseVerb": "sign",
+        "textAfter": " the contract.",
+        "correctAnswer": "will sign",
+        "options": ["sign", "will sign", "signing", "signs"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Sự kiện sắp diễn ra." }
+      },
+      {
+        "id": "future-simple-conj-14",
+        "contextType": "report",
+        "scenarioVi": "Trình bày đề xuất",
+        "textBefore": "He ",
+        "baseVerb": "present",
+        "textAfter": " the proposal.",
+        "correctAnswer": "will present",
+        "options": ["presents", "will present", "presenting", "present"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Kế hoạch." }
+      },
+      {
+        "id": "future-simple-conj-15",
+        "contextType": "routine",
+        "scenarioVi": "Thảo luận ngân sách",
+        "textBefore": "The board ",
+        "baseVerb": "discuss",
+        "textAfter": " the budget.",
+        "correctAnswer": "will discuss",
+        "options": ["discuss", "will discuss", "discusses", "discussing"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Lịch trình cuộc họp." }
+      },
+      {
+        "id": "future-simple-conj-16",
+        "contextType": "email",
+        "scenarioVi": "Ra mắt sản phẩm",
+        "textBefore": "We ",
+        "baseVerb": "launch",
+        "textAfter": " the product in Q3.",
+        "correctAnswer": "will launch",
+        "options": ["launch", "will launch", "launching", "launches"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Kế hoạch dài hạn." }
+      },
+      {
+        "id": "future-simple-conj-17",
+        "contextType": "chat",
+        "scenarioVi": "Phê duyệt yêu cầu",
+        "textBefore": "Manager ",
+        "baseVerb": "approve",
+        "textAfter": " your request.",
+        "correctAnswer": "will approve",
+        "options": ["approves", "will approve", "approve", "approving"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Sự việc chắc chắn xảy ra." }
+      },
+      {
+        "id": "future-simple-conj-18",
+        "contextType": "meeting",
+        "scenarioVi": "Chốt lịch trình",
+        "textBefore": "I ",
+        "baseVerb": "finalize",
+        "textAfter": " the schedule.",
+        "correctAnswer": "will finalize",
+        "options": ["finalize", "finalizes", "will finalize", "finalizing"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Hứa hẹn." }
+      },
+      {
+        "id": "future-simple-conj-19",
+        "contextType": "routine",
+        "scenarioVi": "Tổ chức cuộc họp",
+        "textBefore": "HR ",
+        "baseVerb": "organize",
+        "textAfter": " the meeting.",
+        "correctAnswer": "will organize",
+        "options": ["organize", "organizes", "will organize", "organizing"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Kế hoạch sắp tới." }
+      },
+      {
+        "id": "future-simple-conj-20",
+        "contextType": "email",
+        "scenarioVi": "Chuẩn bị tài liệu",
+        "textBefore": "She ",
+        "baseVerb": "prepare",
+        "textAfter": " the documents.",
+        "correctAnswer": "will prepare",
+        "options": ["prepares", "will prepare", "prepare", "preparing"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Phân công công việc." }
       }
     ],
     "errorHunting": [
       {
-        "id": "err-fs-01",
-        "scenarioVi": "Dự đoán về doanh thu quý tới",
-        "tokens": [
-          "I",
-          "think",
-          "our",
-          "sales",
-          "will",
-          "increases",
-          "next",
-          "quarter."
-        ],
-        "errorTokenIndex": 5,
-        "correctToken": "increase",
+        "id": "future-simple-err-1",
+        "scenarioVi": "Sửa lỗi triển khai",
+        "tokens": ["I", "will", "deployed", "the", "update."],
+        "errorTokenIndex": 2,
+        "correctToken": "deploy",
         "options": [
-          {
-            "value": "increase",
-            "label": "increase",
-            "isCorrect": true
-          },
-          {
-            "value": "increasing",
-            "label": "increasing",
-            "isCorrect": false
-          },
-          {
-            "value": "to increase",
-            "label": "to increase",
-            "isCorrect": false
-          },
-          {
-            "value": "increases",
-            "label": "increases",
-            "isCorrect": false
-          }
+          { "value": "deploy", "label": "deploy", "isCorrect": true },
+          { "value": "deploying", "label": "deploying", "isCorrect": false }
         ],
-        "fullCorrectSentence": "I think our sales will increase next quarter.",
-        "vietnameseMeaning": "Tôi nghĩ doanh thu của chúng ta sẽ tăng vào quý tới.",
-        "explanation": {
-          "whyWrongVi": "Sau 'will' động từ phải ở dạng nguyên mẫu không 'to'.",
-          "workplaceImpactVi": "Lỗi thêm 's/es' sau 'will' là lỗi sai cơ bản thường gặp, làm giảm mức độ thành thạo ngôn ngữ trong mắt đối tác."
-        }
+        "fullCorrectSentence": "I will deploy the update.",
+        "vietnameseMeaning": "Tôi sẽ triển khai bản cập nhật.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai ngữ pháp cơ bản." }
+      },
+      {
+        "id": "future-simple-err-2",
+        "scenarioVi": "Lỗi khởi động lại",
+        "tokens": ["He", "will", "restarts", "the", "server."],
+        "errorTokenIndex": 2,
+        "correctToken": "restart",
+        "options": [
+          { "value": "restart", "label": "restart", "isCorrect": true },
+          { "value": "restarting", "label": "restarting", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "He will restart the server.",
+        "vietnameseMeaning": "Anh ấy sẽ khởi động lại máy chủ.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai chia động từ." }
+      },
+      {
+        "id": "future-simple-err-3",
+        "scenarioVi": "Lỗi đẩy mã",
+        "tokens": ["They", "will", "to", "push", "code."],
+        "errorTokenIndex": 2,
+        "correctToken": "push",
+        "options": [
+          { "value": "push", "label": "push", "isCorrect": true },
+          { "value": "pushes", "label": "pushes", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "They will push code.",
+        "vietnameseMeaning": "Họ sẽ đẩy mã nguồn.",
+        "explanation": { "whyWrongVi": "Will không đi với to V.", "workplaceImpactVi": "Làm câu lủng củng." }
+      },
+      {
+        "id": "future-simple-err-4",
+        "scenarioVi": "Lỗi kiểm tra",
+        "tokens": ["We", "will", "testing", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "test",
+        "options": [
+          { "value": "test", "label": "test", "isCorrect": true },
+          { "value": "tests", "label": "tests", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will test it.",
+        "vietnameseMeaning": "Chúng tôi sẽ kiểm tra nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi thì tương lai." }
+      },
+      {
+        "id": "future-simple-err-5",
+        "scenarioVi": "Lỗi mở rộng",
+        "tokens": ["The", "team", "will", "scales", "up."],
+        "errorTokenIndex": 3,
+        "correctToken": "scale",
+        "options": [
+          { "value": "scale", "label": "scale", "isCorrect": true },
+          { "value": "scaling", "label": "scaling", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "The team will scale up.",
+        "vietnameseMeaning": "Đội ngũ sẽ mở rộng quy mô.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai cơ bản." }
+      },
+      {
+        "id": "future-simple-err-6",
+        "scenarioVi": "Lỗi gỡ lỗi",
+        "tokens": ["I", "will", "debugged", "the", "error."],
+        "errorTokenIndex": 2,
+        "correctToken": "debug",
+        "options": [
+          { "value": "debug", "label": "debug", "isCorrect": true },
+          { "value": "debugging", "label": "debugging", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "I will debug the error.",
+        "vietnameseMeaning": "Tôi sẽ gỡ lỗi.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Gây hiểu lầm về thì." }
+      },
+      {
+        "id": "future-simple-err-7",
+        "scenarioVi": "Lỗi đánh giá",
+        "tokens": ["She", "will", "reviews", "code."],
+        "errorTokenIndex": 2,
+        "correctToken": "review",
+        "options": [
+          { "value": "review", "label": "review", "isCorrect": true },
+          { "value": "reviewing", "label": "reviewing", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "She will review code.",
+        "vietnameseMeaning": "Cô ấy sẽ xem xét mã.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai ngôi thứ 3." }
+      },
+      {
+        "id": "future-simple-err-8",
+        "scenarioVi": "Lỗi tối ưu",
+        "tokens": ["We", "will", "optimizing", "the", "app."],
+        "errorTokenIndex": 2,
+        "correctToken": "optimize",
+        "options": [
+          { "value": "optimize", "label": "optimize", "isCorrect": true },
+          { "value": "optimizes", "label": "optimizes", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will optimize the app.",
+        "vietnameseMeaning": "Chúng tôi sẽ tối ưu hóa ứng dụng.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai cấu trúc V-ing." }
+      },
+      {
+        "id": "future-simple-err-9",
+        "scenarioVi": "Lỗi sao lưu",
+        "tokens": ["System", "will", "backups", "data."],
+        "errorTokenIndex": 2,
+        "correctToken": "backup",
+        "options": [
+          { "value": "backup", "label": "backup", "isCorrect": true },
+          { "value": "backing", "label": "backing", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "System will backup data.",
+        "vietnameseMeaning": "Hệ thống sẽ sao lưu dữ liệu.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai cơ bản." }
+      },
+      {
+        "id": "future-simple-err-10",
+        "scenarioVi": "Lỗi cập nhật",
+        "tokens": ["They", "will", "updated", "soon."],
+        "errorTokenIndex": 2,
+        "correctToken": "update",
+        "options": [
+          { "value": "update", "label": "update", "isCorrect": true },
+          { "value": "updates", "label": "updates", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "They will update soon.",
+        "vietnameseMeaning": "Họ sẽ cập nhật sớm.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi thì." }
+      },
+      {
+        "id": "future-simple-err-11",
+        "scenarioVi": "Lỗi gửi email",
+        "tokens": ["I", "will", "sent", "it", "tomorrow."],
+        "errorTokenIndex": 2,
+        "correctToken": "send",
+        "options": [
+          { "value": "send", "label": "send", "isCorrect": true },
+          { "value": "sending", "label": "sending", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "I will send it tomorrow.",
+        "vietnameseMeaning": "Tôi sẽ gửi nó ngày mai.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai dạng động từ." }
+      },
+      {
+        "id": "future-simple-err-12",
+        "scenarioVi": "Lỗi gọi điện",
+        "tokens": ["He", "will", "calls", "you."],
+        "errorTokenIndex": 2,
+        "correctToken": "call",
+        "options": [
+          { "value": "call", "label": "call", "isCorrect": true },
+          { "value": "calling", "label": "calling", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "He will call you.",
+        "vietnameseMeaning": "Anh ấy sẽ gọi bạn.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai ngôi." }
+      },
+      {
+        "id": "future-simple-err-13",
+        "scenarioVi": "Lỗi ký kết",
+        "tokens": ["We", "will", "signing", "the", "deal."],
+        "errorTokenIndex": 2,
+        "correctToken": "sign",
+        "options": [
+          { "value": "sign", "label": "sign", "isCorrect": true },
+          { "value": "signs", "label": "signs", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will sign the deal.",
+        "vietnameseMeaning": "Chúng tôi sẽ ký thỏa thuận.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi cơ bản." }
+      },
+      {
+        "id": "future-simple-err-14",
+        "scenarioVi": "Lỗi thuyết trình",
+        "tokens": ["She", "will", "presented", "the", "idea."],
+        "errorTokenIndex": 2,
+        "correctToken": "present",
+        "options": [
+          { "value": "present", "label": "present", "isCorrect": true },
+          { "value": "presents", "label": "presents", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "She will present the idea.",
+        "vietnameseMeaning": "Cô ấy sẽ trình bày ý tưởng.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai thì." }
+      },
+      {
+        "id": "future-simple-err-15",
+        "scenarioVi": "Lỗi thảo luận",
+        "tokens": ["They", "will", "to", "discuss", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "discuss",
+        "options": [
+          { "value": "discuss", "label": "discuss", "isCorrect": true },
+          { "value": "discusses", "label": "discusses", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "They will discuss it.",
+        "vietnameseMeaning": "Họ sẽ thảo luận nó.",
+        "explanation": { "whyWrongVi": "Will không đi với to.", "workplaceImpactVi": "Sai cấu trúc." }
+      },
+      {
+        "id": "future-simple-err-16",
+        "scenarioVi": "Lỗi ra mắt",
+        "tokens": ["We", "will", "launched", "in", "May."],
+        "errorTokenIndex": 2,
+        "correctToken": "launch",
+        "options": [
+          { "value": "launch", "label": "launch", "isCorrect": true },
+          { "value": "launching", "label": "launching", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will launch in May.",
+        "vietnameseMeaning": "Chúng tôi sẽ ra mắt vào tháng 5.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi cơ bản." }
+      },
+      {
+        "id": "future-simple-err-17",
+        "scenarioVi": "Lỗi phê duyệt",
+        "tokens": ["Manager", "will", "approves", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "approve",
+        "options": [
+          { "value": "approve", "label": "approve", "isCorrect": true },
+          { "value": "approving", "label": "approving", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Manager will approve it.",
+        "vietnameseMeaning": "Quản lý sẽ phê duyệt nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai ngôi." }
+      },
+      {
+        "id": "future-simple-err-18",
+        "scenarioVi": "Lỗi chốt lịch",
+        "tokens": ["I", "will", "finalizing", "the", "date."],
+        "errorTokenIndex": 2,
+        "correctToken": "finalize",
+        "options": [
+          { "value": "finalize", "label": "finalize", "isCorrect": true },
+          { "value": "finalizes", "label": "finalizes", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "I will finalize the date.",
+        "vietnameseMeaning": "Tôi sẽ chốt ngày.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi V-ing." }
+      },
+      {
+        "id": "future-simple-err-19",
+        "scenarioVi": "Lỗi tổ chức",
+        "tokens": ["We", "will", "organized", "a", "party."],
+        "errorTokenIndex": 2,
+        "correctToken": "organize",
+        "options": [
+          { "value": "organize", "label": "organize", "isCorrect": true },
+          { "value": "organizing", "label": "organizing", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will organize a party.",
+        "vietnameseMeaning": "Chúng tôi sẽ tổ chức tiệc.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi thì." }
+      },
+      {
+        "id": "future-simple-err-20",
+        "scenarioVi": "Lỗi chuẩn bị",
+        "tokens": ["She", "will", "prepares", "slides."],
+        "errorTokenIndex": 2,
+        "correctToken": "prepare",
+        "options": [
+          { "value": "prepare", "label": "prepare", "isCorrect": true },
+          { "value": "preparing", "label": "preparing", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "She will prepare slides.",
+        "vietnameseMeaning": "Cô ấy sẽ chuẩn bị slide.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi cơ bản." }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "sb-fs-01",
-        "scenarioVi": "Sắp xếp một cuộc hẹn qua email",
-        "vietnameseMeaning": "Tôi sẽ gọi cho bạn vào thứ Sáu tới để thảo luận chi tiết.",
+        "id": "future-simple-sb-1",
+        "scenarioVi": "Hệ thống khởi động",
+        "vietnameseMeaning": "Hệ thống sẽ khởi động lại vào lúc nửa đêm.",
         "scrambledTokens": [
-          {
-            "id": "tok-3",
-            "text": "you"
-          },
-          {
-            "id": "tok-1",
-            "text": "I will"
-          },
-          {
-            "id": "tok-5",
-            "text": "to discuss the details."
-          },
-          {
-            "id": "tok-2",
-            "text": "call"
-          },
-          {
-            "id": "tok-4",
-            "text": "next Friday"
-          }
+          { "id": "t1", "text": "The system" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "reboot" },
+          { "id": "t4", "text": "at midnight." }
         ],
-        "correctTokenOrder": [
-          "I will",
-          "call",
-          "you",
-          "next Friday",
-          "to discuss the details."
+        "correctTokenOrder": ["The system", "will", "reboot", "at midnight."],
+        "fullSentenceEn": "The system will reboot at midnight.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-2",
+        "scenarioVi": "Di chuyển cơ sở dữ liệu",
+        "vietnameseMeaning": "Chúng tôi sẽ di chuyển cơ sở dữ liệu.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "We" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "migrate" },
+          { "id": "t4", "text": "the database." }
         ],
-        "fullSentenceEn": "I will call you next Friday to discuss the details.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc S + will + V + O",
-          "tipVi": "Theo sau 'will' là động từ nguyên mẫu 'call' rồi đến tân ngữ 'you' và trạng từ chỉ thời gian 'next Friday'."
-        }
+        "correctTokenOrder": ["We", "will", "migrate", "the database."],
+        "fullSentenceEn": "We will migrate the database.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-3",
+        "scenarioVi": "Xóa bộ nhớ đệm",
+        "vietnameseMeaning": "Tập lệnh sẽ xóa bộ nhớ đệm.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The script" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "clear" },
+          { "id": "t4", "text": "the cache." }
+        ],
+        "correctTokenOrder": ["The script", "will", "clear", "the cache."],
+        "fullSentenceEn": "The script will clear the cache.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-4",
+        "scenarioVi": "Sửa lỗi phần mềm",
+        "vietnameseMeaning": "Lập trình viên sẽ sửa lỗi.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The developer" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "fix" },
+          { "id": "t4", "text": "the bug." }
+        ],
+        "correctTokenOrder": ["The developer", "will", "fix", "the bug."],
+        "fullSentenceEn": "The developer will fix the bug.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-5",
+        "scenarioVi": "Cấu hình bộ định tuyến",
+        "vietnameseMeaning": "Tôi sẽ cấu hình bộ định tuyến.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "configure" },
+          { "id": "t4", "text": "the router." }
+        ],
+        "correctTokenOrder": ["I", "will", "configure", "the router."],
+        "fullSentenceEn": "I will configure the router.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-6",
+        "scenarioVi": "Xử lý tải",
+        "vietnameseMeaning": "Máy chủ sẽ xử lý tải trọng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The server" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "handle" },
+          { "id": "t4", "text": "the load." }
+        ],
+        "correctTokenOrder": ["The server", "will", "handle", "the load."],
+        "fullSentenceEn": "The server will handle the load.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-7",
+        "scenarioVi": "Giám sát lưu lượng",
+        "vietnameseMeaning": "Chúng tôi sẽ giám sát lưu lượng mạng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "We" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "monitor" },
+          { "id": "t4", "text": "the traffic." }
+        ],
+        "correctTokenOrder": ["We", "will", "monitor", "the traffic."],
+        "fullSentenceEn": "We will monitor the traffic.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-8",
+        "scenarioVi": "Xây dựng ứng dụng",
+        "vietnameseMeaning": "Pipeline sẽ xây dựng ứng dụng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The pipeline" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "build" },
+          { "id": "t4", "text": "the app." }
+        ],
+        "correctTokenOrder": ["The pipeline", "will", "build", "the app."],
+        "fullSentenceEn": "The pipeline will build the app.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-9",
+        "scenarioVi": "Cài đặt thư viện",
+        "vietnameseMeaning": "Tôi sẽ cài đặt các phụ thuộc.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "install" },
+          { "id": "t4", "text": "the dependency." }
+        ],
+        "correctTokenOrder": ["I", "will", "install", "the dependency."],
+        "fullSentenceEn": "I will install the dependency.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-10",
+        "scenarioVi": "Vá lỗ hổng",
+        "vietnameseMeaning": "Họ sẽ vá lỗ hổng bảo mật.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "They" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "patch" },
+          { "id": "t4", "text": "the vulnerability." }
+        ],
+        "correctTokenOrder": ["They", "will", "patch", "the vulnerability."],
+        "fullSentenceEn": "They will patch the vulnerability.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-11",
+        "scenarioVi": "Duyệt ngân sách",
+        "vietnameseMeaning": "Quản lý sẽ phê duyệt ngân sách.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The manager" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "approve" },
+          { "id": "t4", "text": "the budget." }
+        ],
+        "correctTokenOrder": ["The manager", "will", "approve", "the budget."],
+        "fullSentenceEn": "The manager will approve the budget.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-12",
+        "scenarioVi": "Khởi chạy chiến dịch",
+        "vietnameseMeaning": "Chúng tôi sẽ khởi chạy chiến dịch.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "We" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "launch" },
+          { "id": "t4", "text": "the campaign." }
+        ],
+        "correctTokenOrder": ["We", "will", "launch", "the campaign."],
+        "fullSentenceEn": "We will launch the campaign.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-13",
+        "scenarioVi": "Soạn hợp đồng",
+        "vietnameseMeaning": "Tôi sẽ soạn thảo hợp đồng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "draft" },
+          { "id": "t4", "text": "the contract." }
+        ],
+        "correctTokenOrder": ["I", "will", "draft", "the contract."],
+        "fullSentenceEn": "I will draft the contract.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-14",
+        "scenarioVi": "Trình bày chiến lược",
+        "vietnameseMeaning": "Cô ấy sẽ trình bày chiến lược.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "She" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "present" },
+          { "id": "t4", "text": "the strategy." }
+        ],
+        "correctTokenOrder": ["She", "will", "present", "the strategy."],
+        "fullSentenceEn": "She will present the strategy.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-15",
+        "scenarioVi": "Ký thỏa thuận",
+        "vietnameseMeaning": "Họ sẽ ký thỏa thuận.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "They" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "sign" },
+          { "id": "t4", "text": "the agreement." }
+        ],
+        "correctTokenOrder": ["They", "will", "sign", "the agreement."],
+        "fullSentenceEn": "They will sign the agreement.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-16",
+        "scenarioVi": "Liên hệ đối tác",
+        "vietnameseMeaning": "Tôi sẽ liên hệ với nhà cung cấp.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "contact" },
+          { "id": "t4", "text": "the vendor." }
+        ],
+        "correctTokenOrder": ["I", "will", "contact", "the vendor."],
+        "fullSentenceEn": "I will contact the vendor.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-17",
+        "scenarioVi": "Xem xét chính sách",
+        "vietnameseMeaning": "Chúng tôi sẽ xem xét chính sách.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "We" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "review" },
+          { "id": "t4", "text": "the policy." }
+        ],
+        "correctTokenOrder": ["We", "will", "review", "the policy."],
+        "fullSentenceEn": "We will review the policy.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-18",
+        "scenarioVi": "Gửi hóa đơn",
+        "vietnameseMeaning": "Anh ấy sẽ gửi hóa đơn.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "He" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "send" },
+          { "id": "t4", "text": "the invoice." }
+        ],
+        "correctTokenOrder": ["He", "will", "send", "the invoice."],
+        "fullSentenceEn": "He will send the invoice.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-19",
+        "scenarioVi": "Thảo luận kế hoạch",
+        "vietnameseMeaning": "Đội ngũ sẽ thảo luận kế hoạch.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The team" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "discuss" },
+          { "id": "t4", "text": "the plan." }
+        ],
+        "correctTokenOrder": ["The team", "will", "discuss", "the plan."],
+        "fullSentenceEn": "The team will discuss the plan.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "id": "future-simple-sb-20",
+        "scenarioVi": "Tổ chức sự kiện",
+        "vietnameseMeaning": "Tôi sẽ tổ chức sự kiện.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "organize" },
+          { "id": "t4", "text": "the event." }
+        ],
+        "correctTokenOrder": ["I", "will", "organize", "the event."],
+        "fullSentenceEn": "I will organize the event.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      }
+    ],
+    "devOpsChallenge": [
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-1",
+        "contextType": "email",
+        "scenarioVi": "Cung cấp tài nguyên",
+        "textBefore": "I ",
+        "baseVerb": "provision",
+        "textAfter": " the resources.",
+        "correctAnswer": "will provision",
+        "options": ["provision", "will provision", "provisioning", "provisions"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Cung cấp tài nguyên hạ tầng." }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-2",
+        "contextType": "chat",
+        "scenarioVi": "Cấu hình CI/CD",
+        "textBefore": "We ",
+        "baseVerb": "configure",
+        "textAfter": " the pipeline.",
+        "correctAnswer": "will configure",
+        "options": ["configures", "will configure", "configuring", "configured"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Thiết lập tự động hóa." }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-3",
+        "contextType": "meeting",
+        "scenarioVi": "Theo dõi log",
+        "textBefore": "They ",
+        "baseVerb": "monitor",
+        "textAfter": " the logs.",
+        "correctAnswer": "will monitor",
+        "options": ["monitor", "will monitor", "monitoring", "monitors"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Giám sát hệ thống." }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-4",
+        "contextType": "routine",
+        "scenarioVi": "Lên lịch phỏng vấn",
+        "textBefore": "HR ",
+        "baseVerb": "schedule",
+        "textAfter": " the interview.",
+        "correctAnswer": "will schedule",
+        "options": ["schedule", "will schedule", "schedules", "scheduling"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Công việc văn phòng." }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-5",
+        "contextType": "email",
+        "scenarioVi": "Viết email nháp",
+        "textBefore": "I ",
+        "baseVerb": "draft",
+        "textAfter": " the email.",
+        "correctAnswer": "will draft",
+        "options": ["draft", "will draft", "drafting", "drafts"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Soạn thảo tài liệu." }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-6",
+        "contextType": "report",
+        "scenarioVi": "Phân tích dữ liệu",
+        "textBefore": "We ",
+        "baseVerb": "analyze",
+        "textAfter": " the data.",
+        "correctAnswer": "will analyze",
+        "options": ["analyze", "will analyze", "analyzing", "analyzes"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Công việc chuyên môn." }
+      },
+      {
+        "challengeType": "conjugation",
+        "id": "future-simple-devops-7",
+        "contextType": "chat",
+        "scenarioVi": "Cập nhật CRM",
+        "textBefore": "She ",
+        "baseVerb": "update",
+        "textAfter": " the CRM.",
+        "correctAnswer": "will update",
+        "options": ["updates", "will update", "updating", "update"],
+        "explanation": { "ruleVi": "Will + V", "detailedAnalysisVi": "Cập nhật hệ thống." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-8",
+        "scenarioVi": "Cung cấp tài nguyên",
+        "tokens": ["I", "will", "to", "provision", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "provision",
+        "options": [
+          { "value": "provision", "label": "provision", "isCorrect": true },
+          { "value": "provisions", "label": "provisions", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "I will provision it.",
+        "vietnameseMeaning": "Tôi sẽ cung cấp nó.",
+        "explanation": { "whyWrongVi": "Will không đi với to.", "workplaceImpactVi": "Lỗi cơ bản." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-9",
+        "scenarioVi": "Cấu hình hệ thống",
+        "tokens": ["We", "will", "configuring", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "configure",
+        "options": [
+          { "value": "configure", "label": "configure", "isCorrect": true },
+          { "value": "configures", "label": "configures", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will configure it.",
+        "vietnameseMeaning": "Chúng tôi sẽ cấu hình nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi ngữ pháp." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-10",
+        "scenarioVi": "Giám sát hệ thống",
+        "tokens": ["They", "will", "monitors", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "monitor",
+        "options": [
+          { "value": "monitor", "label": "monitor", "isCorrect": true },
+          { "value": "monitoring", "label": "monitoring", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "They will monitor it.",
+        "vietnameseMeaning": "Họ sẽ giám sát nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi thì." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-11",
+        "scenarioVi": "Lên lịch họp",
+        "tokens": ["She", "will", "scheduling", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "schedule",
+        "options": [
+          { "value": "schedule", "label": "schedule", "isCorrect": true },
+          { "value": "schedules", "label": "schedules", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "She will schedule it.",
+        "vietnameseMeaning": "Cô ấy sẽ lên lịch nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai cơ bản." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-12",
+        "scenarioVi": "Viết nháp",
+        "tokens": ["I", "will", "drafted", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "draft",
+        "options": [
+          { "value": "draft", "label": "draft", "isCorrect": true },
+          { "value": "drafting", "label": "drafting", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "I will draft it.",
+        "vietnameseMeaning": "Tôi sẽ soạn nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi chia động từ." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-13",
+        "scenarioVi": "Phân tích dữ liệu",
+        "tokens": ["We", "will", "analyzes", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "analyze",
+        "options": [
+          { "value": "analyze", "label": "analyze", "isCorrect": true },
+          { "value": "analyzing", "label": "analyzing", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We will analyze it.",
+        "vietnameseMeaning": "Chúng tôi sẽ phân tích nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Lỗi V-s." }
+      },
+      {
+        "challengeType": "errorHunting",
+        "id": "future-simple-devops-14",
+        "scenarioVi": "Cập nhật hệ thống",
+        "tokens": ["He", "will", "updating", "it."],
+        "errorTokenIndex": 2,
+        "correctToken": "update",
+        "options": [
+          { "value": "update", "label": "update", "isCorrect": true },
+          { "value": "updates", "label": "updates", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "He will update it.",
+        "vietnameseMeaning": "Anh ấy sẽ cập nhật nó.",
+        "explanation": { "whyWrongVi": "Will + V nguyên mẫu.", "workplaceImpactVi": "Sai dạng V-ing." }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-simple-devops-15",
+        "scenarioVi": "Cấp phát tài nguyên",
+        "vietnameseMeaning": "Tôi sẽ cấp phát tài nguyên.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "provision" },
+          { "id": "t4", "text": "the resources." }
+        ],
+        "correctTokenOrder": ["I", "will", "provision", "the resources."],
+        "fullSentenceEn": "I will provision the resources.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-simple-devops-16",
+        "scenarioVi": "Cấu hình mạng",
+        "vietnameseMeaning": "Công cụ sẽ cấu hình mạng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "The tool" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "configure" },
+          { "id": "t4", "text": "the network." }
+        ],
+        "correctTokenOrder": ["The tool", "will", "configure", "the network."],
+        "fullSentenceEn": "The tool will configure the network.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-simple-devops-17",
+        "scenarioVi": "Theo dõi máy chủ",
+        "vietnameseMeaning": "Chúng tôi sẽ theo dõi máy chủ.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "We" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "monitor" },
+          { "id": "t4", "text": "the server." }
+        ],
+        "correctTokenOrder": ["We", "will", "monitor", "the server."],
+        "fullSentenceEn": "We will monitor the server.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-simple-devops-18",
+        "scenarioVi": "Lên lịch phỏng vấn",
+        "vietnameseMeaning": "Tôi sẽ lên lịch phỏng vấn.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "schedule" },
+          { "id": "t4", "text": "the interview." }
+        ],
+        "correctTokenOrder": ["I", "will", "schedule", "the interview."],
+        "fullSentenceEn": "I will schedule the interview.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-simple-devops-19",
+        "scenarioVi": "Soạn email",
+        "vietnameseMeaning": "Cô ấy sẽ soạn email.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "She" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "draft" },
+          { "id": "t4", "text": "the email." }
+        ],
+        "correctTokenOrder": ["She", "will", "draft", "the email."],
+        "fullSentenceEn": "She will draft the email.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
+      },
+      {
+        "challengeType": "sentenceBuilding",
+        "id": "future-simple-devops-20",
+        "scenarioVi": "Phân tích bán hàng",
+        "vietnameseMeaning": "Họ sẽ phân tích dữ liệu bán hàng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "They" },
+          { "id": "t2", "text": "will" },
+          { "id": "t3", "text": "analyze" },
+          { "id": "t4", "text": "the sales data." }
+        ],
+        "correctTokenOrder": ["They", "will", "analyze", "the sales data."],
+        "fullSentenceEn": "They will analyze the sales data.",
+        "grammarTip": { "titleVi": "Cấu trúc Will", "tipVi": "S + will + V" }
       }
     ]
   }

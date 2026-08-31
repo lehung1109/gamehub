@@ -8,3018 +8,1260 @@
     "status": "active",
     "level": "B1-B2 (Intermediate)",
     "badge": "Dự án & Kinh nghiệm",
-    "description": "Báo cáo tiến độ, kết quả công việc và kinh nghiệm tích lũy đến thời điểm hiện tại.",
-    "estimatedMinutes": 15,
-    "challengeCount": 20
+    "description": "Làm chủ thì Hiện tại hoàn thành để tự tin báo cáo tiến độ dự án, trình bày kinh nghiệm làm việc và xử lý tình huống thực tế trong môi trường doanh nghiệp & IT.",
+    "estimatedMinutes": 30,
+    "challengeCount": 80
   },
   "quickRules": [
     {
-      "id": "pp-formula",
-      "category": "workplace-usage",
-      "titleVi": "Công thức Hiện Tại Hoàn Thành",
-      "titleEn": "Present Perfect Formula",
-      "summaryVi": "Dùng để báo cáo tiến độ dự án, kinh nghiệm làm việc hoặc kết quả của một hành động trong quá khứ có ảnh hưởng tới hiện tại.",
+      "id": "pp-to-be",
+      "category": "to-be",
+      "titleVi": "Động từ To-be",
+      "titleEn": "To-be Verbs",
+      "summaryVi": "Sử dụng 'have been / has been' để chỉ trạng thái bắt đầu từ quá khứ và còn tiếp diễn.",
       "formulas": [
         {
           "label": "Khẳng định (+)",
-          "structure": "S + have / has + V3/ed",
-          "example": "I have finished the deployment.",
-          "vietnameseTranslation": "Tôi đã hoàn thành việc triển khai."
-        },
-        {
-          "label": "Phủ định (-)",
-          "structure": "S + have / has + not + V3/ed",
-          "example": "We haven't received the client's feedback yet.",
-          "vietnameseTranslation": "Chúng tôi vẫn chưa nhận được phản hồi của khách hàng."
-        },
-        {
-          "label": "Nghi vấn (?)",
-          "structure": "Have / Has + S + V3/ed?",
-          "example": "Have you reviewed my pull request?",
-          "vietnameseTranslation": "Bạn đã review pull request của tôi chưa?"
+          "structure": "S + have/has + been + N/Adj",
+          "example": "The server has been down since morning.",
+          "vietnameseTranslation": "Máy chủ đã ngừng hoạt động từ sáng nay."
         }
       ],
       "rulesList": [
         {
-          "ruleVi": "Dấu hiệu nhận biết thường gặp trong công việc",
-          "condition": "Already, yet, just, recently, so far, since, for",
+          "ruleVi": "Dùng với 'since' và 'for'",
+          "condition": "Chỉ thời gian kéo dài",
           "examples": [
-            {
-              "en": "I have already sent the email.",
-              "vi": "Tôi đã gửi email rồi."
-            },
-            {
-              "en": "We have worked on this project for 3 months.",
-              "vi": "Chúng tôi đã làm dự án này được 3 tháng."
-            }
+            { "en": "I have been here for 2 hours.", "vi": "Tôi đã ở đây được 2 giờ." }
           ]
         }
-      ]
+      ],
+      "workplaceTips": ["Sử dụng để giải thích trạng thái hệ thống hoặc tiến độ dự án."]
+    },
+    {
+      "id": "pp-action",
+      "category": "action-verbs",
+      "titleVi": "Động từ thường",
+      "titleEn": "Action Verbs",
+      "summaryVi": "Diễn tả hành động vừa hoàn thành, hoặc có kết quả ảnh hưởng đến hiện tại.",
+      "formulas": [
+        {
+          "label": "Khẳng định",
+          "structure": "S + have/has + V3/ed",
+          "example": "I have deployed the app.",
+          "vietnameseTranslation": "Tôi đã triển khai ứng dụng."
+        }
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "V3/ed (Quá khứ phân từ)",
+          "condition": "Phải thuộc bảng động từ bất quy tắc hoặc thêm -ed",
+          "examples": [
+            { "en": "She has written the report.", "vi": "Cô ấy đã viết báo cáo." }
+          ]
+        }
+      ],
+      "workplaceTips": ["Tuyệt vời cho các buổi Daily Stand-up: 'I have completed...'"]
+    },
+    {
+      "id": "pp-spelling",
+      "category": "spelling-rules",
+      "titleVi": "Quy tắc chính tả",
+      "titleEn": "Spelling Rules for -ed",
+      "summaryVi": "Cách thêm đuôi -ed vào động từ có quy tắc.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Động từ kết thúc bằng 'e'",
+          "condition": "Chỉ thêm 'd'",
+          "examples": [
+            { "en": "update -> updated", "vi": "cập nhật" }
+          ]
+        },
+        {
+          "ruleVi": "Phụ âm + y",
+          "condition": "Đổi 'y' thành 'i' rồi thêm 'ed'",
+          "examples": [
+            { "en": "apply -> applied", "vi": "áp dụng/ứng tuyển" }
+          ]
+        }
+      ],
+      "workplaceTips": ["Chú ý các từ hay dùng: configured, deployed, verified."]
+    },
+    {
+      "id": "pp-adverbs",
+      "category": "adverbs-frequency",
+      "titleVi": "Trạng từ nhận biết",
+      "titleEn": "Time Markers",
+      "summaryVi": "Các trạng từ thường đi kèm: just, already, yet, recently.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Just / Already",
+          "condition": "Đứng giữa have/has và V3/ed",
+          "examples": [
+            { "en": "I have just sent it.", "vi": "Tôi vừa mới gửi nó." }
+          ]
+        },
+        {
+          "ruleVi": "Yet",
+          "condition": "Đứng cuối câu phủ định/nghi vấn",
+          "examples": [
+            { "en": "Has he replied yet?", "vi": "Anh ấy đã phản hồi chưa?" }
+          ]
+        }
+      ],
+      "workplaceTips": ["Dùng 'already' để báo tin tốt lành (đã xong trước dự kiến)."]
+    },
+    {
+      "id": "pp-workplace",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng công sở",
+      "titleEn": "Workplace Applications",
+      "summaryVi": "Thì Hiện tại hoàn thành cực kỳ phổ biến trong giao tiếp công sở.",
+      "formulas": [],
+      "rulesList": [
+        {
+          "ruleVi": "Hỏi kinh nghiệm (Phỏng vấn)",
+          "condition": "Dùng 'Have you ever...?'",
+          "examples": [
+            { "en": "Have you ever managed a team?", "vi": "Bạn đã từng quản lý nhóm chưa?" }
+          ]
+        },
+        {
+          "ruleVi": "Cập nhật sự cố (IT)",
+          "condition": "Sự việc vừa xảy ra",
+          "examples": [
+            { "en": "The system has crashed.", "vi": "Hệ thống vừa bị sập." }
+          ]
+        }
+      ],
+      "workplaceTips": ["Kết hợp với Present Perfect Continuous khi muốn nhấn mạnh quá trình."]
     }
   ],
   "challenges": {
     "conjugation": [
       {
-        "id": "pp-conj-01",
-        "contextType": "email",
-        "scenarioVi": "Tôi đã hoàn thành báo cáo tài chính Q3.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "id": "present-perfect-conj-1",
+        "contextType": "chat",
+        "scenarioVi": "Tôi đã triển khai code lên production.",
         "textBefore": "I ",
-        "baseVerb": "finish",
-        "textAfter": " the Q3 financial report.",
-        "correctAnswer": "have finished",
-        "acceptableAlternatives": [
-          "HAVE FINISHED",
-          "have finished"
-        ],
-        "options": [
-          "have finished",
-          "has finish",
-          "has finished",
-          "have finish"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (finished).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-02",
-        "contextType": "email",
-        "scenarioVi": "Chúng tôi đã triển khai tính năng mới lên production.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "We ",
         "baseVerb": "deploy",
-        "textAfter": " the new feature to production.",
+        "textAfter": " the code to production.",
         "correctAnswer": "have deployed",
-        "acceptableAlternatives": [
-          "HAVE DEPLOYED",
-          "have deployed"
-        ],
-        "options": [
-          "have deploy",
-          "have deployed",
-          "has deployed",
-          "has deploy"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'We' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (deployed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "acceptableAlternatives": ["have deployed", "HAVE DEPLOYED"],
+        "options": ["have deployed", "has deployed", "have deploy", "has deploy"],
+        "explanation": { "ruleVi": "Chủ ngữ I đi với have + V3/ed", "detailedAnalysisVi": "deploy là động từ có quy tắc, thêm -ed." }
       },
       {
-        "id": "pp-conj-03",
+        "id": "present-perfect-conj-2",
         "contextType": "email",
-        "scenarioVi": "Cô ấy vẫn chưa review pull request.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "scenarioVi": "Cô ấy đã sửa lỗi bảo mật.",
         "textBefore": "She ",
-        "baseVerb": "not review",
-        "textAfter": " the pull request yet.",
-        "correctAnswer": "hasn't reviewed",
-        "acceptableAlternatives": [
-          "HASN'T REVIEWED",
-          "hasn't reviewed"
-        ],
-        "options": [
-          "haven't review",
-          "hasn't reviewed",
-          "haven't reviewed",
-          "hasn't review"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'She' đi với trợ động từ 'hasn't' và động từ chính ở dạng phân từ 2 (reviewed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-04",
-        "contextType": "email",
-        "scenarioVi": "Quản lý đã phê duyệt đề xuất ngân sách của chúng ta.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "The manager ",
-        "baseVerb": "approve",
-        "textAfter": " our budget proposal.",
-        "correctAnswer": "has approved",
-        "acceptableAlternatives": [
-          "HAS APPROVED",
-          "has approved"
-        ],
-        "options": [
-          "has approved",
-          "have approved",
-          "have approve",
-          "has approve"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'The manager' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (approved).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-05",
-        "contextType": "email",
-        "scenarioVi": "Họ đã sửa lỗi nghiêm trọng trong hệ thống đăng nhập.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "They ",
         "baseVerb": "fix",
-        "textAfter": " the critical bug in the login system.",
-        "correctAnswer": "have fixed",
-        "acceptableAlternatives": [
-          "HAVE FIXED",
-          "have fixed"
-        ],
-        "options": [
-          "has fixed",
-          "has fix",
-          "have fix",
-          "have fixed"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'They' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (fixed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "textAfter": " the security vulnerability.",
+        "correctAnswer": "has fixed",
+        "acceptableAlternatives": ["has fixed"],
+        "options": ["have fixed", "has fixed", "has fix", "have fix"],
+        "explanation": { "ruleVi": "She + has + V3/ed", "detailedAnalysisVi": "fix thêm -ed thành fixed." }
       },
       {
-        "id": "pp-conj-06",
-        "contextType": "email",
-        "scenarioVi": "Tôi vẫn chưa nhận được bất kỳ phản hồi nào từ khách hàng.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "I ",
-        "baseVerb": "not receive",
-        "textAfter": " any feedback from the client.",
-        "correctAnswer": "haven't received",
-        "acceptableAlternatives": [
-          "HAVEN'T RECEIVED",
-          "haven't received"
-        ],
-        "options": [
-          "hasn't received",
-          "hasn't receive",
-          "haven't received",
-          "haven't receive"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'haven't' và động từ chính ở dạng phân từ 2 (received).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-07",
-        "contextType": "email",
-        "scenarioVi": "Anh ấy đã cập nhật tài liệu dự án.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "He ",
+        "id": "present-perfect-conj-3",
+        "contextType": "routine",
+        "scenarioVi": "Chúng tôi đã cập nhật cơ sở dữ liệu.",
+        "textBefore": "We ",
         "baseVerb": "update",
-        "textAfter": " the project documentation.",
-        "correctAnswer": "has updated",
-        "acceptableAlternatives": [
-          "HAS UPDATED",
-          "has updated"
-        ],
-        "options": [
-          "have update",
-          "have updated",
-          "has update",
-          "has updated"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'He' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (updated).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "textAfter": " the database.",
+        "correctAnswer": "have updated",
+        "acceptableAlternatives": ["have updated"],
+        "options": ["has updated", "have updated", "have update", "has update"],
+        "explanation": { "ruleVi": "We + have + V3/ed", "detailedAnalysisVi": "update thêm -d." }
       },
       {
-        "id": "pp-conj-08",
-        "contextType": "email",
-        "scenarioVi": "Chúng tôi đã lên lịch một cuộc họp với các bên liên quan.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "We ",
-        "baseVerb": "schedule",
-        "textAfter": " a meeting with the stakeholders.",
-        "correctAnswer": "have scheduled",
-        "acceptableAlternatives": [
-          "HAVE SCHEDULED",
-          "have scheduled"
-        ],
-        "options": [
-          "has schedule",
-          "have scheduled",
-          "have schedule",
-          "has scheduled"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'We' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (scheduled).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "id": "present-perfect-conj-4",
+        "contextType": "meeting",
+        "scenarioVi": "Khách hàng đã chấp thuận thiết kế.",
+        "textBefore": "The client ",
+        "baseVerb": "approve",
+        "textAfter": " the design.",
+        "correctAnswer": "has approved",
+        "acceptableAlternatives": ["has approved"],
+        "options": ["have approved", "has approve", "has approved", "have approve"],
+        "explanation": { "ruleVi": "Client (số ít) + has + V3/ed", "detailedAnalysisVi": "approve thêm -d." }
       },
       {
-        "id": "pp-conj-09",
-        "contextType": "email",
-        "scenarioVi": "Đội ngũ hỗ trợ IT đã giải quyết sự cố mạng.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "The IT support team ",
-        "baseVerb": "resolve",
-        "textAfter": " the network issue.",
-        "correctAnswer": "has resolved",
-        "acceptableAlternatives": [
-          "HAS RESOLVED",
-          "has resolved"
-        ],
-        "options": [
-          "has resolved",
-          "have resolved",
-          "have resolve",
-          "has resolve"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'The IT support team' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (resolved).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "id": "present-perfect-conj-5",
+        "contextType": "chat",
+        "scenarioVi": "Họ vẫn chưa hoàn thành việc kiểm thử.",
+        "textBefore": "They ",
+        "baseVerb": "not finish",
+        "textAfter": " testing yet.",
+        "correctAnswer": "haven't finished",
+        "acceptableAlternatives": ["haven't finished", "have not finished"],
+        "options": ["hasn't finished", "haven't finished", "haven't finish", "hasn't finish"],
+        "explanation": { "ruleVi": "They + haven't + V3/ed", "detailedAnalysisVi": "Câu phủ định dùng haven't." }
       },
       {
-        "id": "pp-conj-10",
+        "id": "present-perfect-conj-6",
         "contextType": "email",
-        "scenarioVi": "Tôi đã nộp bảng chấm công tuần này.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "scenarioVi": "Tôi đã gửi báo cáo hàng tuần.",
         "textBefore": "I ",
-        "baseVerb": "submit",
-        "textAfter": " my timesheet for this week.",
-        "correctAnswer": "have submitted",
-        "acceptableAlternatives": [
-          "HAVE SUBMITTED",
-          "have submitted"
-        ],
-        "options": [
-          "has submit",
-          "has submitted",
-          "have submit",
-          "have submitted"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (submitted).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "baseVerb": "send",
+        "textAfter": " the weekly report.",
+        "correctAnswer": "have sent",
+        "acceptableAlternatives": ["have sent"],
+        "options": ["have send", "has sent", "have sent", "has send"],
+        "explanation": { "ruleVi": "I + have + V3", "detailedAnalysisVi": "send đổi thành sent (bất quy tắc)." }
       },
       {
-        "id": "pp-conj-11",
-        "contextType": "email",
-        "scenarioVi": "Đội marketing đã tung ra chiến dịch mới.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "The marketing team ",
-        "baseVerb": "launch",
-        "textAfter": " the new campaign.",
-        "correctAnswer": "has launched",
-        "acceptableAlternatives": [
-          "HAS LAUNCHED",
-          "has launched"
-        ],
-        "options": [
-          "has launch",
-          "has launched",
-          "have launched",
-          "have launch"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'The marketing team' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (launched).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "id": "present-perfect-conj-7",
+        "contextType": "report",
+        "scenarioVi": "Đội ngũ đã giải quyết sự cố.",
+        "textBefore": "The team ",
+        "baseVerb": "resolve",
+        "textAfter": " the issue.",
+        "correctAnswer": "has resolved",
+        "acceptableAlternatives": ["has resolved", "have resolved"],
+        "options": ["has resolved", "have resolve", "has resolve", "have resolving"],
+        "explanation": { "ruleVi": "Team (danh từ tập hợp) + has/have + V3/ed", "detailedAnalysisVi": "Thường dùng has ở Mỹ." }
       },
       {
-        "id": "pp-conj-12",
+        "id": "present-perfect-conj-8",
+        "contextType": "chat",
+        "scenarioVi": "Bạn đã commit thay đổi chưa?",
+        "textBefore": "",
+        "baseVerb": "you commit",
+        "textAfter": " the changes?",
+        "correctAnswer": "Have you committed",
+        "acceptableAlternatives": ["Have you committed"],
+        "options": ["Has you committed", "Have you commit", "Have you committed", "Has you commit"],
+        "explanation": { "ruleVi": "Have + you + V3/ed?", "detailedAnalysisVi": "Gấp đôi phụ âm 't' trước khi thêm -ed." }
+      },
+      {
+        "id": "present-perfect-conj-9",
+        "contextType": "meeting",
+        "scenarioVi": "Dự án đã tiêu tốn quá nhiều ngân sách.",
+        "textBefore": "The project ",
+        "baseVerb": "consume",
+        "textAfter": " too much budget.",
+        "correctAnswer": "has consumed",
+        "acceptableAlternatives": ["has consumed"],
+        "options": ["have consumed", "has consumed", "has consume", "have consume"],
+        "explanation": { "ruleVi": "Project (số ít) + has + V3/ed", "detailedAnalysisVi": "consume thêm -d." }
+      },
+      {
+        "id": "present-perfect-conj-10",
         "contextType": "email",
-        "scenarioVi": "Chúng tôi đã kiểm thử kỹ lưỡng các API endpoints.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "scenarioVi": "Quản lý đã ký tài liệu.",
+        "textBefore": "The manager ",
+        "baseVerb": "sign",
+        "textAfter": " the document.",
+        "correctAnswer": "has signed",
+        "acceptableAlternatives": ["has signed"],
+        "options": ["has signed", "have signed", "has sign", "have sign"],
+        "explanation": { "ruleVi": "Manager (số ít) + has + V3/ed", "detailedAnalysisVi": "sign thêm -ed." }
+      },
+      {
+        "id": "present-perfect-conj-11",
+        "contextType": "chat",
+        "scenarioVi": "API đã ngừng phản hồi.",
+        "textBefore": "The API ",
+        "baseVerb": "stop",
+        "textAfter": " responding.",
+        "correctAnswer": "has stopped",
+        "acceptableAlternatives": ["has stopped"],
+        "options": ["have stopped", "has stopped", "has stop", "have stop"],
+        "explanation": { "ruleVi": "API (số ít) + has + V3/ed", "detailedAnalysisVi": "stop gấp đôi chữ p." }
+      },
+      {
+        "id": "present-perfect-conj-12",
+        "contextType": "routine",
+        "scenarioVi": "Tôi đã khởi động lại các container.",
+        "textBefore": "I ",
+        "baseVerb": "restart",
+        "textAfter": " the containers.",
+        "correctAnswer": "have restarted",
+        "acceptableAlternatives": ["have restarted"],
+        "options": ["have restarted", "has restarted", "have restart", "has restart"],
+        "explanation": { "ruleVi": "I + have + V3/ed", "detailedAnalysisVi": "restart thêm -ed." }
+      },
+      {
+        "id": "present-perfect-conj-13",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi chưa nhận được phản hồi của bạn.",
         "textBefore": "We ",
-        "baseVerb": "test",
-        "textAfter": " the API endpoints thoroughly.",
-        "correctAnswer": "have tested",
-        "acceptableAlternatives": [
-          "HAVE TESTED",
-          "have tested"
-        ],
-        "options": [
-          "have tested",
-          "has test",
-          "have test",
-          "has tested"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'We' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (tested).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "baseVerb": "not receive",
+        "textAfter": " your feedback yet.",
+        "correctAnswer": "haven't received",
+        "acceptableAlternatives": ["have not received", "haven't received"],
+        "options": ["haven't received", "hasn't received", "haven't receive", "hasn't receive"],
+        "explanation": { "ruleVi": "We + haven't + V3/ed", "detailedAnalysisVi": "Phủ định đi với have not." }
       },
       {
-        "id": "pp-conj-13",
+        "id": "present-perfect-conj-14",
+        "contextType": "meeting",
+        "scenarioVi": "CEO đã công bố kế hoạch mới.",
+        "textBefore": "The CEO ",
+        "baseVerb": "announce",
+        "textAfter": " the new plan.",
+        "correctAnswer": "has announced",
+        "acceptableAlternatives": ["has announced"],
+        "options": ["has announced", "have announced", "has announce", "have announce"],
+        "explanation": { "ruleVi": "CEO (số ít) + has + V3/ed", "detailedAnalysisVi": "announce thêm -d." }
+      },
+      {
+        "id": "present-perfect-conj-15",
+        "contextType": "chat",
+        "scenarioVi": "Ai đó đã xóa nhánh master!",
+        "textBefore": "Someone ",
+        "baseVerb": "delete",
+        "textAfter": " the master branch!",
+        "correctAnswer": "has deleted",
+        "acceptableAlternatives": ["has deleted"],
+        "options": ["have deleted", "has deleted", "has delete", "have delete"],
+        "explanation": { "ruleVi": "Someone (đại từ bất định) + has + V3/ed", "detailedAnalysisVi": "Luôn chia số ít." }
+      },
+      {
+        "id": "present-perfect-conj-16",
+        "contextType": "report",
+        "scenarioVi": "Hệ thống đã chạy ổn định được 3 tuần.",
+        "textBefore": "The system ",
+        "baseVerb": "run",
+        "textAfter": " smoothly for 3 weeks.",
+        "correctAnswer": "has run",
+        "acceptableAlternatives": ["has run"],
+        "options": ["has ran", "has run", "have run", "have ran"],
+        "explanation": { "ruleVi": "System (số ít) + has + V3", "detailedAnalysisVi": "run -> ran -> run." }
+      },
+      {
+        "id": "present-perfect-conj-17",
         "contextType": "email",
-        "scenarioVi": "Phòng nhân sự đã tuyển ba lập trình viên cấp cao mới.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "scenarioVi": "Phòng HR đã tuyển được 3 nhân sự mới.",
         "textBefore": "HR ",
         "baseVerb": "hire",
-        "textAfter": " three new senior developers.",
+        "textAfter": " 3 new employees.",
         "correctAnswer": "has hired",
-        "acceptableAlternatives": [
-          "HAS HIRED",
-          "has hired"
-        ],
-        "options": [
-          "has hired",
-          "have hired",
-          "have hire",
-          "has hire"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'HR' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (hired).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "acceptableAlternatives": ["has hired"],
+        "options": ["have hired", "has hired", "has hire", "have hire"],
+        "explanation": { "ruleVi": "HR (phòng ban) + has + V3/ed", "detailedAnalysisVi": "hire thêm -d." }
       },
       {
-        "id": "pp-conj-14",
-        "contextType": "email",
-        "scenarioVi": "Tôi đã merge nhánh tính năng vào main.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "id": "present-perfect-conj-18",
+        "contextType": "chat",
+        "scenarioVi": "Tôi đã clone repository về máy.",
         "textBefore": "I ",
-        "baseVerb": "merge",
-        "textAfter": " the feature branch into main.",
-        "correctAnswer": "have merged",
-        "acceptableAlternatives": [
-          "HAVE MERGED",
-          "have merged"
-        ],
-        "options": [
-          "have merge",
-          "has merge",
-          "have merged",
-          "has merged"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (merged).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "baseVerb": "clone",
+        "textAfter": " the repository locally.",
+        "correctAnswer": "have cloned",
+        "acceptableAlternatives": ["have cloned"],
+        "options": ["have cloned", "has cloned", "have clone", "has clone"],
+        "explanation": { "ruleVi": "I + have + V3/ed", "detailedAnalysisVi": "clone thêm -d." }
       },
       {
-        "id": "pp-conj-15",
-        "contextType": "email",
-        "scenarioVi": "Quản trị viên hệ thống đã nâng cấp các máy chủ cơ sở dữ liệu.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "The sysadmin ",
-        "baseVerb": "upgrade",
-        "textAfter": " the database servers.",
-        "correctAnswer": "has upgraded",
-        "acceptableAlternatives": [
-          "HAS UPGRADED",
-          "has upgraded"
-        ],
-        "options": [
-          "has upgraded",
-          "has upgrade",
-          "have upgrade",
-          "have upgraded"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'The sysadmin' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (upgraded).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "id": "present-perfect-conj-19",
+        "contextType": "routine",
+        "scenarioVi": "Các developer đã tối ưu hóa truy vấn SQL.",
+        "textBefore": "The developers ",
+        "baseVerb": "optimize",
+        "textAfter": " the SQL queries.",
+        "correctAnswer": "have optimized",
+        "acceptableAlternatives": ["have optimized"],
+        "options": ["has optimized", "have optimized", "have optimize", "has optimize"],
+        "explanation": { "ruleVi": "Developers (số nhiều) + have + V3/ed", "detailedAnalysisVi": "optimize thêm -d." }
       },
       {
-        "id": "pp-conj-16",
+        "id": "present-perfect-conj-20",
         "contextType": "email",
-        "scenarioVi": "Nhà cung cấp vẫn chưa phản hồi yêu cầu của chúng tôi.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "The vendor ",
-        "baseVerb": "not respond",
-        "textAfter": " to our inquiry.",
-        "correctAnswer": "hasn't responded",
-        "acceptableAlternatives": [
-          "HASN'T RESPONDED",
-          "hasn't responded"
-        ],
-        "options": [
-          "hasn't responded",
-          "hasn't respond",
-          "haven't respond",
-          "haven't responded"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'The vendor' đi với trợ động từ 'hasn't' và động từ chính ở dạng phân từ 2 (responded).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-17",
-        "contextType": "email",
-        "scenarioVi": "Chúng tôi đã hoàn thành sprint đầu tiên một cách thành công.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "scenarioVi": "Chúng tôi đã lên lịch họp vào ngày mai.",
         "textBefore": "We ",
-        "baseVerb": "complete",
-        "textAfter": " the first sprint successfully.",
-        "correctAnswer": "have completed",
-        "acceptableAlternatives": [
-          "HAVE COMPLETED",
-          "have completed"
-        ],
-        "options": [
-          "have completed",
-          "has complete",
-          "have complete",
-          "has completed"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'We' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (completed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-18",
-        "contextType": "email",
-        "scenarioVi": "Tôi đã cài đặt các dependencies phần mềm được yêu cầu.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "I ",
-        "baseVerb": "install",
-        "textAfter": " the required software dependencies.",
-        "correctAnswer": "have installed",
-        "acceptableAlternatives": [
-          "HAVE INSTALLED",
-          "have installed"
-        ],
-        "options": [
-          "has installed",
-          "have installed",
-          "have install",
-          "has install"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (installed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-19",
-        "contextType": "email",
-        "scenarioVi": "Họ đã migrate dữ liệu cũ sang hệ thống mới.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "They ",
-        "baseVerb": "migrate",
-        "textAfter": " the legacy data to the new system.",
-        "correctAnswer": "have migrated",
-        "acceptableAlternatives": [
-          "HAVE MIGRATED",
-          "have migrated"
-        ],
-        "options": [
-          "has migrated",
-          "has migrate",
-          "have migrated",
-          "have migrate"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'They' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (migrated).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
-      },
-      {
-        "id": "pp-conj-20",
-        "contextType": "email",
-        "scenarioVi": "Cô ấy đã tạo một ticket Jira mới cho vấn đề này.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "She ",
-        "baseVerb": "create",
-        "textAfter": " a new Jira ticket for the issue.",
-        "correctAnswer": "has created",
-        "acceptableAlternatives": [
-          "HAS CREATED",
-          "has created"
-        ],
-        "options": [
-          "have created",
-          "has create",
-          "have create",
-          "has created"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'She' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (created).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        }
+        "baseVerb": "schedule",
+        "textAfter": " a meeting for tomorrow.",
+        "correctAnswer": "have scheduled",
+        "acceptableAlternatives": ["have scheduled"],
+        "options": ["have scheduled", "has scheduled", "have schedule", "has schedule"],
+        "explanation": { "ruleVi": "We + have + V3/ed", "detailedAnalysisVi": "schedule thêm -d." }
       }
     ],
     "errorHunting": [
       {
-        "id": "pp-err-01",
-        "scenarioVi": "Tôi đã hoàn thành báo cáo.",
-        "tokens": [
-          "I",
-          "has",
-          "finished",
-          "the",
-          "report."
-        ],
+        "id": "present-perfect-err-1",
+        "scenarioVi": "Tôi đã hoàn thành cấu hình mạng.",
+        "tokens": ["I", "has", "configured", "the", "network."],
         "errorTokenIndex": 1,
         "correctToken": "have",
         "options": [
-          {
-            "value": "have",
-            "label": "have",
-            "isCorrect": true
-          },
-          {
-            "value": "having",
-            "label": "having",
-            "isCorrect": false
-          },
-          {
-            "value": "has",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
+          { "value": "have", "label": "have", "isCorrect": true },
+          { "value": "having", "label": "having", "isCorrect": false },
+          { "value": "has", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "I have finished the report.",
-        "vietnameseMeaning": "Tôi đã hoàn thành báo cáo.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'have' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "I have configured the network.",
+        "vietnameseMeaning": "Tôi đã hoàn thành cấu hình mạng.",
+        "explanation": { "whyWrongVi": "Chủ ngữ I phải đi với have.", "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm độ chuyên nghiệp." }
       },
       {
-        "id": "pp-err-02",
-        "scenarioVi": "Chúng tôi đã triển khai tính năng mới.",
-        "tokens": [
-          "We",
-          "have",
-          "deploy",
-          "the",
-          "new",
-          "feature."
-        ],
-        "errorTokenIndex": 2,
-        "correctToken": "deployed",
-        "options": [
-          {
-            "value": "deployed",
-            "label": "deployed",
-            "isCorrect": true
-          },
-          {
-            "value": "deploy",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "deploying",
-            "label": "deploying",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "We have deployed the new feature.",
-        "vietnameseMeaning": "Chúng tôi đã triển khai tính năng mới.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-03",
-        "scenarioVi": "Cô ấy đã review code.",
-        "tokens": [
-          "She",
-          "have",
-          "reviewed",
-          "the",
-          "code."
-        ],
+        "id": "present-perfect-err-2",
+        "scenarioVi": "Cô ấy đã chuẩn bị tài liệu thuyết trình.",
+        "tokens": ["She", "have", "prepared", "the", "slides."],
         "errorTokenIndex": 1,
         "correctToken": "has",
         "options": [
-          {
-            "value": "have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "has",
-            "label": "has",
-            "isCorrect": true
-          }
+          { "value": "has", "label": "has", "isCorrect": true },
+          { "value": "have", "label": "Giữ nguyên", "isCorrect": false },
+          { "value": "having", "label": "having", "isCorrect": false }
         ],
-        "fullCorrectSentence": "She has reviewed the code.",
-        "vietnameseMeaning": "Cô ấy đã review code.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "She has prepared the slides.",
+        "vietnameseMeaning": "Cô ấy đã chuẩn bị tài liệu thuyết trình.",
+        "explanation": { "whyWrongVi": "Chủ ngữ She số ít phải đi với has.", "workplaceImpactVi": "Gây ấn tượng thiếu cẩn thận." }
       },
       {
-        "id": "pp-err-04",
-        "scenarioVi": "Họ vẫn chưa sửa lỗi.",
-        "tokens": [
-          "They",
-          "hasn't",
-          "fixed",
-          "the",
-          "bug."
+        "id": "present-perfect-err-3",
+        "scenarioVi": "Họ đã chuyển dữ liệu sang cloud.",
+        "tokens": ["They", "have", "migrate", "data", "to cloud."],
+        "errorTokenIndex": 2,
+        "correctToken": "migrated",
+        "options": [
+          { "value": "migrated", "label": "migrated", "isCorrect": true },
+          { "value": "migrating", "label": "migrating", "isCorrect": false },
+          { "value": "migrate", "label": "Giữ nguyên", "isCorrect": false }
         ],
+        "fullCorrectSentence": "They have migrated data to cloud.",
+        "vietnameseMeaning": "Họ đã chuyển dữ liệu sang cloud.",
+        "explanation": { "whyWrongVi": "Sau have phải là động từ V3/ed.", "workplaceImpactVi": "Sai cấu trúc thì." }
+      },
+      {
+        "id": "present-perfect-err-4",
+        "scenarioVi": "Hệ thống đã ngừng hoạt động.",
+        "tokens": ["System", "have", "crashed", "recently."],
+        "errorTokenIndex": 1,
+        "correctToken": "has",
+        "options": [
+          { "value": "has", "label": "has", "isCorrect": true },
+          { "value": "having", "label": "having", "isCorrect": false },
+          { "value": "have", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "System has crashed recently.",
+        "vietnameseMeaning": "Hệ thống đã ngừng hoạt động.",
+        "explanation": { "whyWrongVi": "System là số ít, dùng has.", "workplaceImpactVi": "Thông báo khẩn cần chính xác." }
+      },
+      {
+        "id": "present-perfect-err-5",
+        "scenarioVi": "Chúng tôi chưa gửi hóa đơn.",
+        "tokens": ["We", "hasn't", "sent", "the", "invoice."],
         "errorTokenIndex": 1,
         "correctToken": "haven't",
         "options": [
-          {
-            "value": "haven't",
-            "label": "haven't",
-            "isCorrect": true
-          },
-          {
-            "value": "hasn't",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          }
+          { "value": "haven't", "label": "haven't", "isCorrect": true },
+          { "value": "hasn't", "label": "Giữ nguyên", "isCorrect": false },
+          { "value": "not have", "label": "not have", "isCorrect": false }
         ],
-        "fullCorrectSentence": "They haven't fixed the bug.",
-        "vietnameseMeaning": "Họ vẫn chưa sửa lỗi.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'haven't' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "We haven't sent the invoice.",
+        "vietnameseMeaning": "Chúng tôi chưa gửi hóa đơn.",
+        "explanation": { "whyWrongVi": "We đi với haven't.", "workplaceImpactVi": "Việc liên quan tài chính cần rõ ràng." }
       },
       {
-        "id": "pp-err-05",
-        "scenarioVi": "Quản lý đã phê duyệt ngân sách.",
-        "tokens": [
-          "The",
-          "manager",
-          "have",
-          "approved",
-          "the",
-          "budget."
-        ],
+        "id": "present-perfect-err-6",
+        "scenarioVi": "Anh ấy đã xem xét các bản log.",
+        "tokens": ["He", "has", "review", "the", "logs."],
         "errorTokenIndex": 2,
-        "correctToken": "has",
+        "correctToken": "reviewed",
         "options": [
-          {
-            "value": "has",
-            "label": "has",
-            "isCorrect": true
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
+          { "value": "reviewed", "label": "reviewed", "isCorrect": true },
+          { "value": "reviewing", "label": "reviewing", "isCorrect": false },
+          { "value": "review", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "The manager has approved the budget.",
-        "vietnameseMeaning": "Quản lý đã phê duyệt ngân sách.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "He has reviewed the logs.",
+        "vietnameseMeaning": "Anh ấy đã xem xét các bản log.",
+        "explanation": { "whyWrongVi": "V3/ed của review là reviewed.", "workplaceImpactVi": "Mô tả công việc chưa chính xác." }
       },
       {
-        "id": "pp-err-06",
-        "scenarioVi": "Anh ấy đã gửi email chưa?",
-        "tokens": [
-          "Have",
-          "he",
-          "sent",
-          "the",
-          "email?"
-        ],
-        "errorTokenIndex": 0,
-        "correctToken": "Has",
-        "options": [
-          {
-            "value": "Have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "Has",
-            "label": "Has",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "Has he sent the email?",
-        "vietnameseMeaning": "Anh ấy đã gửi email chưa?",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-07",
-        "scenarioVi": "Tôi đã nhận được phản hồi.",
-        "tokens": [
-          "I",
-          "have",
-          "receive",
-          "the",
-          "feedback."
-        ],
+        "id": "present-perfect-err-7",
+        "scenarioVi": "Tôi đã tìm thấy một giải pháp.",
+        "tokens": ["I", "have", "find", "a", "solution."],
         "errorTokenIndex": 2,
-        "correctToken": "received",
+        "correctToken": "found",
         "options": [
-          {
-            "value": "receive",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "received",
-            "label": "received",
-            "isCorrect": true
-          },
-          {
-            "value": "receiveing",
-            "label": "receiveing",
-            "isCorrect": false
-          }
+          { "value": "found", "label": "found", "isCorrect": true },
+          { "value": "finded", "label": "finded", "isCorrect": false },
+          { "value": "find", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "I have received the feedback.",
-        "vietnameseMeaning": "Tôi đã nhận được phản hồi.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "I have found a solution.",
+        "vietnameseMeaning": "Tôi đã tìm thấy một giải pháp.",
+        "explanation": { "whyWrongVi": "Find là bất quy tắc, V3 là found.", "workplaceImpactVi": "Sử dụng sai động từ bất quy tắc." }
       },
       {
-        "id": "pp-err-08",
-        "scenarioVi": "Chúng tôi vẫn chưa lên lịch họp.",
-        "tokens": [
-          "We",
-          "haven't",
-          "schedule",
-          "the",
-          "meeting",
-          "yet."
-        ],
-        "errorTokenIndex": 2,
-        "correctToken": "scheduled",
-        "options": [
-          {
-            "value": "schedule",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "scheduleing",
-            "label": "scheduleing",
-            "isCorrect": false
-          },
-          {
-            "value": "scheduled",
-            "label": "scheduled",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "We haven't scheduled the meeting yet.",
-        "vietnameseMeaning": "Chúng tôi vẫn chưa lên lịch họp.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-09",
-        "scenarioVi": "Hệ thống lại vừa bị sập.",
-        "tokens": [
-          "The",
-          "system",
-          "has",
-          "crash",
-          "again."
-        ],
-        "errorTokenIndex": 3,
-        "correctToken": "crashed",
-        "options": [
-          {
-            "value": "crash",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
-          },
-          {
-            "value": "crashed",
-            "label": "crashed",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "The system has crashed again.",
-        "vietnameseMeaning": "Hệ thống lại vừa bị sập.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-10",
-        "scenarioVi": "Phòng nhân sự đã tuyển một lập trình viên mới.",
-        "tokens": [
-          "HR",
-          "have",
-          "hired",
-          "a",
-          "new",
-          "developer."
-        ],
-        "errorTokenIndex": 1,
-        "correctToken": "has",
-        "options": [
-          {
-            "value": "have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "has",
-            "label": "has",
-            "isCorrect": true
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "HR has hired a new developer.",
-        "vietnameseMeaning": "Phòng nhân sự đã tuyển một lập trình viên mới.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-11",
-        "scenarioVi": "Các khách hàng đã phản hồi chưa?",
-        "tokens": [
-          "Has",
-          "the",
-          "clients",
-          "responded?"
-        ],
+        "id": "present-perfect-err-8",
+        "scenarioVi": "Bạn đã nói chuyện với khách hàng chưa?",
+        "tokens": ["Has", "you", "spoken", "to", "the client?"],
         "errorTokenIndex": 0,
         "correctToken": "Have",
         "options": [
-          {
-            "value": "Have",
-            "label": "Have",
-            "isCorrect": true
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "Has",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
+          { "value": "Have", "label": "Have", "isCorrect": true },
+          { "value": "Do", "label": "Do", "isCorrect": false },
+          { "value": "Has", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "Have the clients responded?",
-        "vietnameseMeaning": "Các khách hàng đã phản hồi chưa?",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Have' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "Have you spoken to the client?",
+        "vietnameseMeaning": "Bạn đã nói chuyện với khách hàng chưa?",
+        "explanation": { "whyWrongVi": "You đi với Have trong câu hỏi.", "workplaceImpactVi": "Hỏi thông tin công việc cần chuẩn xác." }
       },
       {
-        "id": "pp-err-12",
-        "scenarioVi": "Tôi chưa merge nhánh.",
-        "tokens": [
-          "I",
-          "hasn't",
-          "merged",
-          "the",
-          "branch."
-        ],
+        "id": "present-perfect-err-9",
+        "scenarioVi": "Dự án đã bắt đầu.",
+        "tokens": ["The project", "have", "begun", "already."],
         "errorTokenIndex": 1,
-        "correctToken": "haven't",
+        "correctToken": "has",
         "options": [
-          {
-            "value": "haven't",
-            "label": "haven't",
-            "isCorrect": true
-          },
-          {
-            "value": "hasn't",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          }
+          { "value": "has", "label": "has", "isCorrect": true },
+          { "value": "have", "label": "Giữ nguyên", "isCorrect": false },
+          { "value": "is", "label": "is", "isCorrect": false }
         ],
-        "fullCorrectSentence": "I haven't merged the branch.",
-        "vietnameseMeaning": "Tôi chưa merge nhánh.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'haven't' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "The project has begun already.",
+        "vietnameseMeaning": "Dự án đã bắt đầu.",
+        "explanation": { "whyWrongVi": "Project số ít dùng has.", "workplaceImpactVi": "Báo cáo tiến độ sai ngữ pháp." }
       },
       {
-        "id": "pp-err-13",
-        "scenarioVi": "Cô ấy đã cập nhật tài liệu.",
-        "tokens": [
-          "She",
-          "has",
-          "update",
-          "the",
-          "documentation."
-        ],
+        "id": "present-perfect-err-10",
+        "scenarioVi": "Các developer đã build xong module.",
+        "tokens": ["Developers", "have", "build", "the", "module."],
         "errorTokenIndex": 2,
-        "correctToken": "updated",
+        "correctToken": "built",
         "options": [
-          {
-            "value": "updateing",
-            "label": "updateing",
-            "isCorrect": false
-          },
-          {
-            "value": "updated",
-            "label": "updated",
-            "isCorrect": true
-          },
-          {
-            "value": "update",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
+          { "value": "built", "label": "built", "isCorrect": true },
+          { "value": "builded", "label": "builded", "isCorrect": false },
+          { "value": "build", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "She has updated the documentation.",
-        "vietnameseMeaning": "Cô ấy đã cập nhật tài liệu.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "Developers have built the module.",
+        "vietnameseMeaning": "Các developer đã build xong module.",
+        "explanation": { "whyWrongVi": "Build (V3) là built.", "workplaceImpactVi": "Thuật ngữ IT kết hợp ngữ pháp sai." }
       },
       {
-        "id": "pp-err-14",
-        "scenarioVi": "Họ đã kiểm thử ứng dụng.",
-        "tokens": [
-          "They",
-          "have",
-          "test",
-          "the",
-          "application."
+        "id": "present-perfect-err-11",
+        "scenarioVi": "Tôi vừa trả lời email đó.",
+        "tokens": ["I", "have", "just", "reply", "that email."],
+        "errorTokenIndex": 3,
+        "correctToken": "replied",
+        "options": [
+          { "value": "replied", "label": "replied", "isCorrect": true },
+          { "value": "replyed", "label": "replyed", "isCorrect": false },
+          { "value": "reply", "label": "Giữ nguyên", "isCorrect": false }
         ],
+        "fullCorrectSentence": "I have just replied that email.",
+        "vietnameseMeaning": "Tôi vừa trả lời email đó.",
+        "explanation": { "whyWrongVi": "Reply tận cùng là y đổi thành i thêm ed.", "workplaceImpactVi": "Lỗi chính tả phổ biến." }
+      },
+      {
+        "id": "present-perfect-err-12",
+        "scenarioVi": "Họ đã cài đặt phần mềm mới chưa?",
+        "tokens": ["Have", "they", "install", "the", "new software?"],
         "errorTokenIndex": 2,
-        "correctToken": "tested",
+        "correctToken": "installed",
         "options": [
-          {
-            "value": "test",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "testing",
-            "label": "testing",
-            "isCorrect": false
-          },
-          {
-            "value": "tested",
-            "label": "tested",
-            "isCorrect": true
-          }
+          { "value": "installed", "label": "installed", "isCorrect": true },
+          { "value": "installing", "label": "installing", "isCorrect": false },
+          { "value": "install", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "They have tested the application.",
-        "vietnameseMeaning": "Họ đã kiểm thử ứng dụng.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "Have they installed the new software?",
+        "vietnameseMeaning": "Họ đã cài đặt phần mềm mới chưa?",
+        "explanation": { "whyWrongVi": "Câu hỏi thì HTHT dùng V3/ed.", "workplaceImpactVi": "Thiếu hậu tố ed ở động từ." }
       },
       {
-        "id": "pp-err-15",
-        "scenarioVi": "Chúng tôi đã hoàn thành sprint.",
-        "tokens": [
-          "We",
-          "has",
-          "completed",
-          "the",
-          "sprint."
+        "id": "present-perfect-err-13",
+        "scenarioVi": "Chúng tôi đã thảo luận vấn đề này.",
+        "tokens": ["We", "have", "discuss", "this", "issue."],
+        "errorTokenIndex": 2,
+        "correctToken": "discussed",
+        "options": [
+          { "value": "discussed", "label": "discussed", "isCorrect": true },
+          { "value": "discussing", "label": "discussing", "isCorrect": false },
+          { "value": "discuss", "label": "Giữ nguyên", "isCorrect": false }
         ],
+        "fullCorrectSentence": "We have discussed this issue.",
+        "vietnameseMeaning": "Chúng tôi đã thảo luận vấn đề này.",
+        "explanation": { "whyWrongVi": "Discuss cần thêm -ed.", "workplaceImpactVi": "Lỗi cơ bản trong văn bản trang trọng." }
+      },
+      {
+        "id": "present-perfect-err-14",
+        "scenarioVi": "Giám đốc chưa đưa ra quyết định.",
+        "tokens": ["Director", "haven't", "made", "a", "decision."],
+        "errorTokenIndex": 1,
+        "correctToken": "hasn't",
+        "options": [
+          { "value": "hasn't", "label": "hasn't", "isCorrect": true },
+          { "value": "don't", "label": "don't", "isCorrect": false },
+          { "value": "haven't", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Director hasn't made a decision.",
+        "vietnameseMeaning": "Giám đốc chưa đưa ra quyết định.",
+        "explanation": { "whyWrongVi": "Director số ít dùng hasn't.", "workplaceImpactVi": "Giao tiếp về cấp quản lý cần đúng ngữ pháp." }
+      },
+      {
+        "id": "present-perfect-err-15",
+        "scenarioVi": "Giao diện đã thay đổi rất nhiều.",
+        "tokens": ["The UI", "has", "change", "a", "lot."],
+        "errorTokenIndex": 2,
+        "correctToken": "changed",
+        "options": [
+          { "value": "changed", "label": "changed", "isCorrect": true },
+          { "value": "changing", "label": "changing", "isCorrect": false },
+          { "value": "change", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "The UI has changed a lot.",
+        "vietnameseMeaning": "Giao diện đã thay đổi rất nhiều.",
+        "explanation": { "whyWrongVi": "Change tận cùng bằng e, thêm d.", "workplaceImpactVi": "Diễn đạt quá trình thay đổi cần V3." }
+      },
+      {
+        "id": "present-perfect-err-16",
+        "scenarioVi": "Tôi đã viết kịch bản test.",
+        "tokens": ["I", "have", "writed", "the", "test scripts."],
+        "errorTokenIndex": 2,
+        "correctToken": "written",
+        "options": [
+          { "value": "written", "label": "written", "isCorrect": true },
+          { "value": "wrote", "label": "wrote", "isCorrect": false },
+          { "value": "writed", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "I have written the test scripts.",
+        "vietnameseMeaning": "Tôi đã viết kịch bản test.",
+        "explanation": { "whyWrongVi": "Write là bất quy tắc, V3 là written.", "workplaceImpactVi": "Sử dụng sai dạng V3 của động từ phổ biến." }
+      },
+      {
+        "id": "present-perfect-err-17",
+        "scenarioVi": "Anh ấy đã hoàn tất quá trình onboarding.",
+        "tokens": ["He", "has", "complete", "the", "onboarding."],
+        "errorTokenIndex": 2,
+        "correctToken": "completed",
+        "options": [
+          { "value": "completed", "label": "completed", "isCorrect": true },
+          { "value": "completing", "label": "completing", "isCorrect": false },
+          { "value": "complete", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "He has completed the onboarding.",
+        "vietnameseMeaning": "Anh ấy đã hoàn tất quá trình onboarding.",
+        "explanation": { "whyWrongVi": "Complete thêm -d.", "workplaceImpactVi": "Thiếu -d gây cảm giác không chuyên nghiệp." }
+      },
+      {
+        "id": "present-perfect-err-18",
+        "scenarioVi": "Các nhà phân tích đã kiểm tra dữ liệu.",
+        "tokens": ["Analysts", "has", "checked", "the", "data."],
         "errorTokenIndex": 1,
         "correctToken": "have",
         "options": [
-          {
-            "value": "has",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "having",
-            "label": "having",
-            "isCorrect": false
-          },
-          {
-            "value": "have",
-            "label": "have",
-            "isCorrect": true
-          }
+          { "value": "have", "label": "have", "isCorrect": true },
+          { "value": "are", "label": "are", "isCorrect": false },
+          { "value": "has", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "We have completed the sprint.",
-        "vietnameseMeaning": "Chúng tôi đã hoàn thành sprint.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'have' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "Analysts have checked the data.",
+        "vietnameseMeaning": "Các nhà phân tích đã kiểm tra dữ liệu.",
+        "explanation": { "whyWrongVi": "Analysts số nhiều dùng have.", "workplaceImpactVi": "Sai hòa hợp chủ ngữ và động từ." }
       },
       {
-        "id": "pp-err-16",
-        "scenarioVi": "Máy chủ đã bị rớt mạng.",
-        "tokens": [
-          "The",
-          "server",
-          "have",
-          "gone",
-          "offline."
-        ],
-        "errorTokenIndex": 2,
+        "id": "present-perfect-err-19",
+        "scenarioVi": "Trang web đã sập 3 lần hôm nay.",
+        "tokens": ["The site", "have", "gone", "down 3 times today."],
+        "errorTokenIndex": 1,
         "correctToken": "has",
         "options": [
-          {
-            "value": "have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "has",
-            "label": "has",
-            "isCorrect": true
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          }
+          { "value": "has", "label": "has", "isCorrect": true },
+          { "value": "is", "label": "is", "isCorrect": false },
+          { "value": "have", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "The server has gone offline.",
-        "vietnameseMeaning": "Máy chủ đã bị rớt mạng.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "The site has gone down 3 times today.",
+        "vietnameseMeaning": "Trang web đã sập 3 lần hôm nay.",
+        "explanation": { "whyWrongVi": "Site số ít dùng has.", "workplaceImpactVi": "Báo cáo sự cố cần chuyên nghiệp." }
       },
       {
-        "id": "pp-err-17",
-        "scenarioVi": "Tôi vừa mới tạo ticket.",
-        "tokens": [
-          "I",
-          "have",
-          "just",
-          "create",
-          "the",
-          "ticket."
-        ],
-        "errorTokenIndex": 3,
-        "correctToken": "created",
+        "id": "present-perfect-err-20",
+        "scenarioVi": "Tôi đã trình bày kế hoạch.",
+        "tokens": ["I", "have", "present", "the", "plan."],
+        "errorTokenIndex": 2,
+        "correctToken": "presented",
         "options": [
-          {
-            "value": "create",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "created",
-            "label": "created",
-            "isCorrect": true
-          },
-          {
-            "value": "createing",
-            "label": "createing",
-            "isCorrect": false
-          }
+          { "value": "presented", "label": "presented", "isCorrect": true },
+          { "value": "presenting", "label": "presenting", "isCorrect": false },
+          { "value": "present", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "I have just created the ticket.",
-        "vietnameseMeaning": "Tôi vừa mới tạo ticket.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-18",
-        "scenarioVi": "Team đã giải quyết sự cố chưa?",
-        "tokens": [
-          "Have",
-          "the",
-          "team",
-          "resolve",
-          "the",
-          "issue?"
-        ],
-        "errorTokenIndex": 3,
-        "correctToken": "resolved",
-        "options": [
-          {
-            "value": "resolveing",
-            "label": "resolveing",
-            "isCorrect": false
-          },
-          {
-            "value": "resolve",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "resolved",
-            "label": "resolved",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "Have the team resolved the issue?",
-        "vietnameseMeaning": "Team đã giải quyết sự cố chưa?",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-19",
-        "scenarioVi": "Team đã giải quyết sự cố.",
-        "tokens": [
-          "The",
-          "team",
-          "has",
-          "resolve",
-          "the",
-          "issue."
-        ],
-        "errorTokenIndex": 3,
-        "correctToken": "resolved",
-        "options": [
-          {
-            "value": "resolveing",
-            "label": "resolveing",
-            "isCorrect": false
-          },
-          {
-            "value": "resolved",
-            "label": "resolved",
-            "isCorrect": true
-          },
-          {
-            "value": "resolve",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "The team has resolved the issue.",
-        "vietnameseMeaning": "Team đã giải quyết sự cố.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
-      },
-      {
-        "id": "pp-err-20",
-        "scenarioVi": "Bạn đã review bản thiết kế chưa?",
-        "tokens": [
-          "Has",
-          "you",
-          "reviewed",
-          "the",
-          "design?"
-        ],
-        "errorTokenIndex": 0,
-        "correctToken": "Have",
-        "options": [
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "Has",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "Have",
-            "label": "Have",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "Have you reviewed the design?",
-        "vietnameseMeaning": "Bạn đã review bản thiết kế chưa?",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Have' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        }
+        "fullCorrectSentence": "I have presented the plan.",
+        "vietnameseMeaning": "Tôi đã trình bày kế hoạch.",
+        "explanation": { "whyWrongVi": "Present thêm -ed.", "workplaceImpactVi": "Động từ phải chia ở V3/ed." }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "pp-sb-01",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Tôi đã hoàn thành bài thuyết trình.",
+        "id": "present-perfect-sb-1",
+        "scenarioVi": "Tôi đã hoàn thành task của mình.",
+        "vietnameseMeaning": "Tôi đã hoàn thành task của mình.",
         "scrambledTokens": [
-          {
-            "id": "t2",
-            "text": "finished"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t0",
-            "text": "I"
-          },
-          {
-            "id": "t4",
-            "text": "presentation."
-          }
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "have" },
+          { "id": "t3", "text": "my tasks." },
+          { "id": "t4", "text": "finished" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4"
-        ],
-        "fullSentenceEn": "I have finished the presentation.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t2", "t4", "t3"],
+        "fullSentenceEn": "I have finished my tasks.",
+        "grammarTip": { "titleVi": "Cấu trúc cơ bản", "tipVi": "S + have + V3 + Object" }
       },
       {
-        "id": "pp-sb-02",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Cô ấy đã rời khỏi văn phòng rồi.",
+        "id": "present-perfect-sb-2",
+        "scenarioVi": "Chúng tôi vừa mới triển khai server.",
+        "vietnameseMeaning": "Chúng tôi vừa mới triển khai server.",
         "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "She"
-          },
-          {
-            "id": "t1",
-            "text": "has"
-          },
-          {
-            "id": "t2",
-            "text": "already"
-          },
-          {
-            "id": "t3",
-            "text": "left"
-          },
-          {
-            "id": "t4",
-            "text": "the"
-          },
-          {
-            "id": "t5",
-            "text": "office."
-          }
+          { "id": "t1", "text": "deployed" },
+          { "id": "t2", "text": "have just" },
+          { "id": "t3", "text": "the server." },
+          { "id": "t4", "text": "We" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5"
-        ],
-        "fullSentenceEn": "She has already left the office.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t4", "t2", "t1", "t3"],
+        "fullSentenceEn": "We have just deployed the server.",
+        "grammarTip": { "titleVi": "Vị trí của 'just'", "tipVi": "'just' đứng giữa have và V3." }
       },
       {
-        "id": "pp-sb-03",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Chúng tôi vừa mới ra mắt ứng dụng mới.",
+        "id": "present-perfect-sb-3",
+        "scenarioVi": "Anh ấy chưa gửi báo cáo.",
+        "vietnameseMeaning": "Anh ấy chưa gửi báo cáo.",
         "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "We"
-          },
-          {
-            "id": "t3",
-            "text": "launched"
-          },
-          {
-            "id": "t4",
-            "text": "the"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t2",
-            "text": "just"
-          },
-          {
-            "id": "t5",
-            "text": "new"
-          },
-          {
-            "id": "t6",
-            "text": "app."
-          }
+          { "id": "t1", "text": "sent" },
+          { "id": "t2", "text": "the report" },
+          { "id": "t3", "text": "hasn't" },
+          { "id": "t4", "text": "He" },
+          { "id": "t5", "text": "yet." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "We have just launched the new app.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t4", "t3", "t1", "t2", "t5"],
+        "fullSentenceEn": "He hasn't sent the report yet.",
+        "grammarTip": { "titleVi": "Dùng 'yet' trong câu phủ định", "tipVi": "'yet' thường đứng cuối câu phủ định." }
       },
       {
-        "id": "pp-sb-04",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Họ chưa phản hồi email của chúng ta.",
+        "id": "present-perfect-sb-4",
+        "scenarioVi": "Họ đã liên hệ với nhà cung cấp chưa?",
+        "vietnameseMeaning": "Họ đã liên hệ với nhà cung cấp chưa?",
         "scrambledTokens": [
-          {
-            "id": "t3",
-            "text": "responded"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t5",
-            "text": "our"
-          },
-          {
-            "id": "t4",
-            "text": "to"
-          },
-          {
-            "id": "t2",
-            "text": "not"
-          },
-          {
-            "id": "t0",
-            "text": "They"
-          },
-          {
-            "id": "t6",
-            "text": "email."
-          }
+          { "id": "t1", "text": "Have" },
+          { "id": "t2", "text": "they" },
+          { "id": "t3", "text": "the vendor?" },
+          { "id": "t4", "text": "contacted" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "They have not responded to our email.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t2", "t4", "t3"],
+        "fullSentenceEn": "Have they contacted the vendor?",
+        "grammarTip": { "titleVi": "Câu hỏi đảo trợ động từ", "tipVi": "Đảo Have lên trước chủ ngữ." }
       },
       {
-        "id": "pp-sb-05",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Bạn đã xem báo cáo doanh số mới nhất chưa?",
+        "id": "present-perfect-sb-5",
+        "scenarioVi": "Khách hàng đã chấp thuận ngân sách.",
+        "vietnameseMeaning": "Khách hàng đã chấp thuận ngân sách.",
         "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "Have"
-          },
-          {
-            "id": "t2",
-            "text": "seen"
-          },
-          {
-            "id": "t5",
-            "text": "sales"
-          },
-          {
-            "id": "t1",
-            "text": "you"
-          },
-          {
-            "id": "t4",
-            "text": "latest"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t6",
-            "text": "report?"
-          }
+          { "id": "t1", "text": "The client" },
+          { "id": "t2", "text": "approved" },
+          { "id": "t3", "text": "has" },
+          { "id": "t4", "text": "the budget." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "Have you seen the latest sales report?",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t3", "t2", "t4"],
+        "fullSentenceEn": "The client has approved the budget.",
+        "grammarTip": { "titleVi": "Chủ ngữ số ít", "tipVi": "Khách hàng số ít đi với has." }
       },
       {
-        "id": "pp-sb-06",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Máy chủ đã bị sập từ sáng.",
+        "id": "present-perfect-sb-6",
+        "scenarioVi": "Tôi đã tìm ra nguyên nhân của lỗi.",
+        "vietnameseMeaning": "Tôi đã tìm ra nguyên nhân của lỗi.",
         "scrambledTokens": [
-          {
-            "id": "t4",
-            "text": "down"
-          },
-          {
-            "id": "t5",
-            "text": "since"
-          },
-          {
-            "id": "t1",
-            "text": "server"
-          },
-          {
-            "id": "t0",
-            "text": "The"
-          },
-          {
-            "id": "t2",
-            "text": "has"
-          },
-          {
-            "id": "t3",
-            "text": "been"
-          },
-          {
-            "id": "t6",
-            "text": "morning."
-          }
+          { "id": "t1", "text": "found" },
+          { "id": "t2", "text": "I" },
+          { "id": "t3", "text": "have" },
+          { "id": "t4", "text": "the root cause." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "The server has been down since morning.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t2", "t3", "t1", "t4"],
+        "fullSentenceEn": "I have found the root cause.",
+        "grammarTip": { "titleVi": "Động từ bất quy tắc", "tipVi": "find chuyển thành found." }
       },
       {
-        "id": "pp-sb-07",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Tôi đã làm việc ở đây được 5 năm.",
+        "id": "present-perfect-sb-7",
+        "scenarioVi": "Đội ngũ đã nỗ lực làm việc cật lực.",
+        "vietnameseMeaning": "Đội ngũ đã nỗ lực làm việc cật lực.",
         "scrambledTokens": [
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t2",
-            "text": "worked"
-          },
-          {
-            "id": "t4",
-            "text": "for"
-          },
-          {
-            "id": "t5",
-            "text": "five"
-          },
-          {
-            "id": "t3",
-            "text": "here"
-          },
-          {
-            "id": "t6",
-            "text": "years."
-          },
-          {
-            "id": "t0",
-            "text": "I"
-          }
+          { "id": "t1", "text": "worked" },
+          { "id": "t2", "text": "The team" },
+          { "id": "t3", "text": "has" },
+          { "id": "t4", "text": "hard." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "I have worked here for five years.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t2", "t3", "t1", "t4"],
+        "fullSentenceEn": "The team has worked hard.",
+        "grammarTip": { "titleVi": "Danh từ tập hợp", "tipVi": "Team chia động từ số ít 'has'." }
       },
       {
-        "id": "pp-sb-08",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Anh ấy đã nộp đề xuất dự án chưa?",
+        "id": "present-perfect-sb-8",
+        "scenarioVi": "Tôi vẫn chưa cấp quyền truy cập.",
+        "vietnameseMeaning": "Tôi vẫn chưa cấp quyền truy cập.",
         "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "Has"
-          },
-          {
-            "id": "t1",
-            "text": "he"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t5",
-            "text": "proposal?"
-          },
-          {
-            "id": "t4",
-            "text": "project"
-          },
-          {
-            "id": "t2",
-            "text": "submitted"
-          }
+          { "id": "t1", "text": "I" },
+          { "id": "t2", "text": "haven't" },
+          { "id": "t3", "text": "access" },
+          { "id": "t4", "text": "granted" },
+          { "id": "t5", "text": "yet." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5"
-        ],
-        "fullSentenceEn": "Has he submitted the project proposal?",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t2", "t4", "t3", "t5"],
+        "fullSentenceEn": "I haven't granted access yet.",
+        "grammarTip": { "titleVi": "Sử dụng 'yet'", "tipVi": "Trong IT, cấp quyền (grant) đi với V3 là granted." }
       },
       {
-        "id": "pp-sb-09",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Chúng tôi đã migrate cơ sở dữ liệu thành công.",
+        "id": "present-perfect-sb-9",
+        "scenarioVi": "Họ đã dời lịch cuộc họp.",
+        "vietnameseMeaning": "Họ đã dời lịch cuộc họp.",
         "scrambledTokens": [
-          {
-            "id": "t4",
-            "text": "the"
-          },
-          {
-            "id": "t0",
-            "text": "We"
-          },
-          {
-            "id": "t5",
-            "text": "database."
-          },
-          {
-            "id": "t3",
-            "text": "migrated"
-          },
-          {
-            "id": "t2",
-            "text": "successfully"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          }
+          { "id": "t1", "text": "rescheduled" },
+          { "id": "t2", "text": "have" },
+          { "id": "t3", "text": "They" },
+          { "id": "t4", "text": "the meeting." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5"
-        ],
-        "fullSentenceEn": "We have successfully migrated the database.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t3", "t2", "t1", "t4"],
+        "fullSentenceEn": "They have rescheduled the meeting.",
+        "grammarTip": { "titleVi": "Tiền tố 're-'", "tipVi": "reschedule + ed = rescheduled." }
       },
       {
-        "id": "pp-sb-10",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Khách hàng đã đồng ý với các điều khoản mới.",
+        "id": "present-perfect-sb-10",
+        "scenarioVi": "Người dùng đã báo cáo nhiều lỗi.",
+        "vietnameseMeaning": "Người dùng đã báo cáo nhiều lỗi.",
         "scrambledTokens": [
-          {
-            "id": "t2",
-            "text": "has"
-          },
-          {
-            "id": "t0",
-            "text": "The"
-          },
-          {
-            "id": "t7",
-            "text": "terms."
-          },
-          {
-            "id": "t1",
-            "text": "client"
-          },
-          {
-            "id": "t6",
-            "text": "new"
-          },
-          {
-            "id": "t4",
-            "text": "to"
-          },
-          {
-            "id": "t5",
-            "text": "the"
-          },
-          {
-            "id": "t3",
-            "text": "agreed"
-          }
+          { "id": "t1", "text": "Users" },
+          { "id": "t2", "text": "have" },
+          { "id": "t3", "text": "multiple bugs." },
+          { "id": "t4", "text": "reported" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6",
-          "t7"
-        ],
-        "fullSentenceEn": "The client has agreed to the new terms.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t2", "t4", "t3"],
+        "fullSentenceEn": "Users have reported multiple bugs.",
+        "grammarTip": { "titleVi": "Chủ ngữ số nhiều", "tipVi": "Users đi với have." }
       },
       {
-        "id": "pp-sb-11",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Tôi chưa bao giờ sử dụng framework này trước đây.",
+        "id": "present-perfect-sb-11",
+        "scenarioVi": "Chúng tôi đã cập nhật chính sách bảo mật.",
+        "vietnameseMeaning": "Chúng tôi đã cập nhật chính sách bảo mật.",
         "scrambledTokens": [
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t3",
-            "text": "used"
-          },
-          {
-            "id": "t0",
-            "text": "I"
-          },
-          {
-            "id": "t6",
-            "text": "before."
-          },
-          {
-            "id": "t5",
-            "text": "framework"
-          },
-          {
-            "id": "t4",
-            "text": "this"
-          },
-          {
-            "id": "t2",
-            "text": "never"
-          }
+          { "id": "t1", "text": "updated" },
+          { "id": "t2", "text": "the privacy policy." },
+          { "id": "t3", "text": "We" },
+          { "id": "t4", "text": "have" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "I have never used this framework before.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t3", "t4", "t1", "t2"],
+        "fullSentenceEn": "We have updated the privacy policy.",
+        "grammarTip": { "titleVi": "Động từ quy tắc", "tipVi": "update thêm d." }
       },
       {
-        "id": "pp-sb-12",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Gần đây họ đã cập nhật chính sách công ty.",
+        "id": "present-perfect-sb-12",
+        "scenarioVi": "Bạn đã kiểm tra logs chưa?",
+        "vietnameseMeaning": "Bạn đã kiểm tra logs chưa?",
         "scrambledTokens": [
-          {
-            "id": "t5",
-            "text": "policies"
-          },
-          {
-            "id": "t0",
-            "text": "They"
-          },
-          {
-            "id": "t6",
-            "text": "recently."
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t2",
-            "text": "updated"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t4",
-            "text": "company"
-          }
+          { "id": "t1", "text": "the logs?" },
+          { "id": "t2", "text": "checked" },
+          { "id": "t3", "text": "Have" },
+          { "id": "t4", "text": "you" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "They have updated the company policies recently.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t3", "t4", "t2", "t1"],
+        "fullSentenceEn": "Have you checked the logs?",
+        "grammarTip": { "titleVi": "Câu hỏi IT", "tipVi": "Have you + V3/ed là mẫu câu phổ biến để xác nhận." }
       },
       {
-        "id": "pp-sb-13",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Team của chúng ta đã đạt được tất cả mục tiêu của sprint.",
+        "id": "present-perfect-sb-13",
+        "scenarioVi": "Cô ấy đã rời văn phòng.",
+        "vietnameseMeaning": "Cô ấy đã rời văn phòng.",
         "scrambledTokens": [
-          {
-            "id": "t3",
-            "text": "achieved"
-          },
-          {
-            "id": "t6",
-            "text": "sprint"
-          },
-          {
-            "id": "t1",
-            "text": "team"
-          },
-          {
-            "id": "t7",
-            "text": "goals."
-          },
-          {
-            "id": "t0",
-            "text": "Our"
-          },
-          {
-            "id": "t4",
-            "text": "all"
-          },
-          {
-            "id": "t2",
-            "text": "has"
-          },
-          {
-            "id": "t5",
-            "text": "the"
-          }
+          { "id": "t1", "text": "left" },
+          { "id": "t2", "text": "She" },
+          { "id": "t3", "text": "has" },
+          { "id": "t4", "text": "the office." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6",
-          "t7"
-        ],
-        "fullSentenceEn": "Our team has achieved all the sprint goals.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t2", "t3", "t1", "t4"],
+        "fullSentenceEn": "She has left the office.",
+        "grammarTip": { "titleVi": "Động từ bất quy tắc", "tipVi": "leave -> left -> left." }
       },
       {
-        "id": "pp-sb-14",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Chúng ta đã nhận được phản hồi nào chưa?",
+        "id": "present-perfect-sb-14",
+        "scenarioVi": "Tôi đã thiết lập môi trường test.",
+        "vietnameseMeaning": "Tôi đã thiết lập môi trường test.",
         "scrambledTokens": [
-          {
-            "id": "t5",
-            "text": "yet?"
-          },
-          {
-            "id": "t1",
-            "text": "we"
-          },
-          {
-            "id": "t0",
-            "text": "Have"
-          },
-          {
-            "id": "t4",
-            "text": "feedback"
-          },
-          {
-            "id": "t2",
-            "text": "received"
-          },
-          {
-            "id": "t3",
-            "text": "any"
-          }
+          { "id": "t1", "text": "set up" },
+          { "id": "t2", "text": "have" },
+          { "id": "t3", "text": "the test environment." },
+          { "id": "t4", "text": "I" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5"
-        ],
-        "fullSentenceEn": "Have we received any feedback yet?",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t4", "t2", "t1", "t3"],
+        "fullSentenceEn": "I have set up the test environment.",
+        "grammarTip": { "titleVi": "Động từ không đổi", "tipVi": "set -> set -> set." }
       },
       {
-        "id": "pp-sb-15",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Cô ấy đã là một người hướng dẫn tuyệt vời đối với tôi.",
+        "id": "present-perfect-sb-15",
+        "scenarioVi": "Dự án chưa đạt được mục tiêu.",
+        "vietnameseMeaning": "Dự án chưa đạt được mục tiêu.",
         "scrambledTokens": [
-          {
-            "id": "t1",
-            "text": "has"
-          },
-          {
-            "id": "t0",
-            "text": "She"
-          },
-          {
-            "id": "t5",
-            "text": "mentor"
-          },
-          {
-            "id": "t7",
-            "text": "me."
-          },
-          {
-            "id": "t2",
-            "text": "been"
-          },
-          {
-            "id": "t3",
-            "text": "a"
-          },
-          {
-            "id": "t4",
-            "text": "great"
-          },
-          {
-            "id": "t6",
-            "text": "to"
-          }
+          { "id": "t1", "text": "its goals" },
+          { "id": "t2", "text": "The project" },
+          { "id": "t3", "text": "yet." },
+          { "id": "t4", "text": "achieved" },
+          { "id": "t5", "text": "hasn't" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6",
-          "t7"
-        ],
-        "fullSentenceEn": "She has been a great mentor to me.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t2", "t5", "t4", "t1", "t3"],
+        "fullSentenceEn": "The project hasn't achieved its goals yet.",
+        "grammarTip": { "titleVi": "Phủ định số ít", "tipVi": "hasn't + V3/ed + yet." }
       },
       {
-        "id": "pp-sb-16",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Tôi đã review tất cả các pull request.",
+        "id": "present-perfect-sb-16",
+        "scenarioVi": "Họ đã tích hợp API.",
+        "vietnameseMeaning": "Họ đã tích hợp API.",
         "scrambledTokens": [
-          {
-            "id": "t5",
-            "text": "pull"
-          },
-          {
-            "id": "t2",
-            "text": "reviewed"
-          },
-          {
-            "id": "t6",
-            "text": "requests."
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t3",
-            "text": "all"
-          },
-          {
-            "id": "t0",
-            "text": "I"
-          },
-          {
-            "id": "t4",
-            "text": "the"
-          }
+          { "id": "t1", "text": "the API." },
+          { "id": "t2", "text": "integrated" },
+          { "id": "t3", "text": "have" },
+          { "id": "t4", "text": "They" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "I have reviewed all the pull requests.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t4", "t3", "t2", "t1"],
+        "fullSentenceEn": "They have integrated the API.",
+        "grammarTip": { "titleVi": "Từ vựng kỹ thuật", "tipVi": "integrate thêm d." }
       },
       {
-        "id": "pp-sb-17",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Chiến dịch marketing đã tạo ra nhiều khách hàng tiềm năng.",
+        "id": "present-perfect-sb-17",
+        "scenarioVi": "Tôi đã giải quyết conflict git.",
+        "vietnameseMeaning": "Tôi đã giải quyết conflict git.",
         "scrambledTokens": [
-          {
-            "id": "t1",
-            "text": "marketing"
-          },
-          {
-            "id": "t3",
-            "text": "has"
-          },
-          {
-            "id": "t5",
-            "text": "many"
-          },
-          {
-            "id": "t6",
-            "text": "leads."
-          },
-          {
-            "id": "t0",
-            "text": "The"
-          },
-          {
-            "id": "t4",
-            "text": "generated"
-          },
-          {
-            "id": "t2",
-            "text": "campaign"
-          }
+          { "id": "t1", "text": "resolved" },
+          { "id": "t2", "text": "the git conflict." },
+          { "id": "t3", "text": "have" },
+          { "id": "t4", "text": "I" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "The marketing campaign has generated many leads.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t4", "t3", "t1", "t2"],
+        "fullSentenceEn": "I have resolved the git conflict.",
+        "grammarTip": { "titleVi": "", "tipVi": "" }
       },
       {
-        "id": "pp-sb-18",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Chúng tôi vẫn chưa kiểm thử cổng thanh toán.",
+        "id": "present-perfect-sb-18",
+        "scenarioVi": "Trưởng phòng đã đọc bản tóm tắt.",
+        "vietnameseMeaning": "Trưởng phòng đã đọc bản tóm tắt.",
         "scrambledTokens": [
-          {
-            "id": "t6",
-            "text": "gateway"
-          },
-          {
-            "id": "t4",
-            "text": "the"
-          },
-          {
-            "id": "t5",
-            "text": "payment"
-          },
-          {
-            "id": "t0",
-            "text": "We"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t3",
-            "text": "tested"
-          },
-          {
-            "id": "t2",
-            "text": "not"
-          },
-          {
-            "id": "t7",
-            "text": "yet."
-          }
+          { "id": "t1", "text": "The manager" },
+          { "id": "t2", "text": "read" },
+          { "id": "t3", "text": "the summary." },
+          { "id": "t4", "text": "has" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6",
-          "t7"
-        ],
-        "fullSentenceEn": "We have not tested the payment gateway yet.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t4", "t2", "t3"],
+        "fullSentenceEn": "The manager has read the summary.",
+        "grammarTip": { "titleVi": "Cách phát âm V3", "tipVi": "read (V3) viết giống nhưng đọc là /red/." }
       },
       {
-        "id": "pp-sb-19",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Anh ấy đã sửa lỗi trong module xác thực.",
+        "id": "present-perfect-sb-19",
+        "scenarioVi": "Hệ thống cơ sở dữ liệu đã bị khóa.",
+        "vietnameseMeaning": "Hệ thống cơ sở dữ liệu đã bị khóa.",
         "scrambledTokens": [
-          {
-            "id": "t2",
-            "text": "fixed"
-          },
-          {
-            "id": "t7",
-            "text": "authentication"
-          },
-          {
-            "id": "t8",
-            "text": "module."
-          },
-          {
-            "id": "t5",
-            "text": "in"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t1",
-            "text": "has"
-          },
-          {
-            "id": "t0",
-            "text": "He"
-          },
-          {
-            "id": "t4",
-            "text": "bug"
-          },
-          {
-            "id": "t6",
-            "text": "the"
-          }
+          { "id": "t1", "text": "has" },
+          { "id": "t2", "text": "The database" },
+          { "id": "t3", "text": "locked." },
+          { "id": "t4", "text": "been" }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6",
-          "t7",
-          "t8"
-        ],
-        "fullSentenceEn": "He has fixed the bug in the authentication module.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t2", "t1", "t4", "t3"],
+        "fullSentenceEn": "The database has been locked.",
+        "grammarTip": { "titleVi": "Bị động", "tipVi": "has + been + V3/ed." }
       },
       {
-        "id": "pp-sb-20",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Bạn đã cài đặt phần mềm được yêu cầu chưa?",
+        "id": "present-perfect-sb-20",
+        "scenarioVi": "Chúng tôi đã thảo luận về tính năng này.",
+        "vietnameseMeaning": "Chúng tôi đã thảo luận về tính năng này.",
         "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "Have"
-          },
-          {
-            "id": "t2",
-            "text": "installed"
-          },
-          {
-            "id": "t5",
-            "text": "software?"
-          },
-          {
-            "id": "t4",
-            "text": "required"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t1",
-            "text": "you"
-          }
+          { "id": "t1", "text": "We" },
+          { "id": "t2", "text": "discussed" },
+          { "id": "t3", "text": "have" },
+          { "id": "t4", "text": "this feature." }
         ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5"
-        ],
-        "fullSentenceEn": "Have you installed the required software?",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        }
+        "correctTokenOrder": ["t1", "t3", "t2", "t4"],
+        "fullSentenceEn": "We have discussed this feature.",
+        "grammarTip": { "titleVi": "Discuss không đi với about", "tipVi": "discuss something, không dùng discuss about." }
       }
     ],
     "devOpsChallenge": [
       {
-        "id": "pp-do-conj-01",
-        "contextType": "email",
-        "scenarioVi": "Tôi đã hoàn thành báo cáo tài chính Q3.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "id": "present-perfect-devops-1",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "DevOps Engineer báo cáo rằng đã tạo các container Docker.",
         "textBefore": "I ",
-        "baseVerb": "finish",
-        "textAfter": " the Q3 financial report.",
-        "correctAnswer": "have finished",
-        "acceptableAlternatives": [
-          "HAVE FINISHED",
-          "have finished"
-        ],
-        "options": [
-          "have finished",
-          "has finish",
-          "has finished",
-          "have finish"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (finished).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
+        "baseVerb": "build",
+        "textAfter": " the Docker images.",
+        "correctAnswer": "have built",
+        "acceptableAlternatives": ["have built"],
+        "options": ["have build", "has built", "have built", "has build"],
+        "explanation": { "ruleVi": "I + have + built (V3 của build)", "detailedAnalysisVi": "Dùng thì HTHT để báo cáo kết quả hiện tại." }
       },
       {
-        "id": "pp-do-conj-02",
+        "id": "present-perfect-devops-2",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Hệ thống CI/CD đã tự động triển khai app.",
+        "tokens": ["CI/CD", "have", "deployed", "the", "app."],
+        "errorTokenIndex": 1,
+        "correctToken": "has",
+        "options": [
+          { "value": "has", "label": "has", "isCorrect": true },
+          { "value": "have", "label": "Giữ nguyên", "isCorrect": false },
+          { "value": "having", "label": "having", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "CI/CD has deployed the app.",
+        "vietnameseMeaning": "Hệ thống CI/CD đã tự động triển khai app.",
+        "explanation": { "whyWrongVi": "CI/CD là danh từ số ít nên dùng has.", "workplaceImpactVi": "Giao tiếp chuẩn chỉ trong tài liệu." }
+      },
+      {
+        "id": "present-perfect-devops-3",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Chúng tôi đã quy mô hóa (scale) các nodes trên Kubernetes.",
+        "vietnameseMeaning": "Chúng tôi đã quy mô hóa các nodes trên Kubernetes.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "have" },
+          { "id": "t2", "text": "We" },
+          { "id": "t3", "text": "the Kubernetes nodes." },
+          { "id": "t4", "text": "scaled" }
+        ],
+        "correctTokenOrder": ["t2", "t1", "t4", "t3"],
+        "fullSentenceEn": "We have scaled the Kubernetes nodes.",
+        "grammarTip": { "titleVi": "Scale + ed", "tipVi": "Từ chuyên ngành scale thêm d." }
+      },
+      {
+        "id": "present-perfect-devops-4",
+        "challengeType": "conjugation",
         "contextType": "email",
-        "scenarioVi": "Chúng tôi đã triển khai tính năng mới lên production.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "scenarioVi": "Khách hàng đã gia hạn hợp đồng.",
+        "textBefore": "The client ",
+        "baseVerb": "renew",
+        "textAfter": " the contract.",
+        "correctAnswer": "has renewed",
+        "acceptableAlternatives": ["has renewed"],
+        "options": ["have renewed", "has renewed", "has renew", "have renew"],
+        "explanation": { "ruleVi": "Client số ít dùng has", "detailedAnalysisVi": "Renew thêm ed." }
+      },
+      {
+        "id": "present-perfect-devops-5",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Hệ thống giám sát (Monitoring) đã phát hiện lỗi.",
+        "tokens": ["Monitoring", "has", "detect", "an", "error."],
+        "errorTokenIndex": 2,
+        "correctToken": "detected",
+        "options": [
+          { "value": "detected", "label": "detected", "isCorrect": true },
+          { "value": "detecting", "label": "detecting", "isCorrect": false },
+          { "value": "detect", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Monitoring has detected an error.",
+        "vietnameseMeaning": "Hệ thống giám sát đã phát hiện lỗi.",
+        "explanation": { "whyWrongVi": "Detect thêm -ed.", "workplaceImpactVi": "Mô tả trạng thái hệ thống cần chính xác." }
+      },
+      {
+        "id": "present-perfect-devops-6",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Tài liệu API chưa được cập nhật.",
+        "vietnameseMeaning": "Tài liệu API chưa được cập nhật.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "hasn't" },
+          { "id": "t2", "text": "The API doc" },
+          { "id": "t3", "text": "updated." },
+          { "id": "t4", "text": "been" }
+        ],
+        "correctTokenOrder": ["t2", "t1", "t4", "t3"],
+        "fullSentenceEn": "The API doc hasn't been updated.",
+        "grammarTip": { "titleVi": "Bị động", "tipVi": "hasn't + been + V3." }
+      },
+      {
+        "id": "present-perfect-devops-7",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Tôi đã đẩy mã nguồn lên nhánh chính.",
+        "textBefore": "I ",
+        "baseVerb": "push",
+        "textAfter": " the code to main.",
+        "correctAnswer": "have pushed",
+        "acceptableAlternatives": ["have pushed"],
+        "options": ["has pushed", "have pushed", "have push", "has push"],
+        "explanation": { "ruleVi": "I + have + V3", "detailedAnalysisVi": "push thêm ed." }
+      },
+      {
+        "id": "present-perfect-devops-8",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Pipeline đã chạy thành công chưa?",
+        "tokens": ["Has", "the pipeline", "ran", "successfully?"],
+        "errorTokenIndex": 2,
+        "correctToken": "run",
+        "options": [
+          { "value": "run", "label": "run", "isCorrect": true },
+          { "value": "running", "label": "running", "isCorrect": false },
+          { "value": "ran", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Has the pipeline run successfully?",
+        "vietnameseMeaning": "Pipeline đã chạy thành công chưa?",
+        "explanation": { "whyWrongVi": "V3 của run là run.", "workplaceImpactVi": "Câu hỏi check trạng thái rất phổ biến." }
+      },
+      {
+        "id": "present-perfect-devops-9",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Giám đốc dự án đã phân công task.",
+        "vietnameseMeaning": "Giám đốc dự án đã phân công task.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "assigned" },
+          { "id": "t2", "text": "has" },
+          { "id": "t3", "text": "the tasks." },
+          { "id": "t4", "text": "The PM" }
+        ],
+        "correctTokenOrder": ["t4", "t2", "t1", "t3"],
+        "fullSentenceEn": "The PM has assigned the tasks.",
+        "grammarTip": { "titleVi": "PM", "tipVi": "PM (Project Manager) là danh từ số ít." }
+      },
+      {
+        "id": "present-perfect-devops-10",
+        "challengeType": "conjugation",
+        "contextType": "email",
+        "scenarioVi": "Chúng tôi đã cấu hình lại firewall.",
         "textBefore": "We ",
-        "baseVerb": "deploy",
-        "textAfter": " the new feature to production.",
-        "correctAnswer": "have deployed",
-        "acceptableAlternatives": [
-          "HAVE DEPLOYED",
-          "have deployed"
-        ],
-        "options": [
-          "have deploy",
-          "have deployed",
-          "has deployed",
-          "has deploy"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'We' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (deployed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
+        "baseVerb": "reconfigure",
+        "textAfter": " the firewall.",
+        "correctAnswer": "have reconfigured",
+        "acceptableAlternatives": ["have reconfigured"],
+        "options": ["have reconfigured", "has reconfigured", "have reconfigure", "has reconfigure"],
+        "explanation": { "ruleVi": "We + have", "detailedAnalysisVi": "reconfigure thêm d." }
       },
       {
-        "id": "pp-do-conj-03",
-        "contextType": "email",
-        "scenarioVi": "Cô ấy vẫn chưa review pull request.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "She ",
-        "baseVerb": "not review",
-        "textAfter": " the pull request yet.",
-        "correctAnswer": "hasn't reviewed",
-        "acceptableAlternatives": [
-          "HASN'T REVIEWED",
-          "hasn't reviewed"
-        ],
+        "id": "present-perfect-devops-11",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Anh ấy chưa nộp báo cáo chi phí.",
+        "tokens": ["He", "haven't", "submitted", "the", "expense report."],
+        "errorTokenIndex": 1,
+        "correctToken": "hasn't",
         "options": [
-          "haven't review",
-          "hasn't reviewed",
-          "haven't reviewed",
-          "hasn't review"
+          { "value": "hasn't", "label": "hasn't", "isCorrect": true },
+          { "value": "don't", "label": "don't", "isCorrect": false },
+          { "value": "haven't", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'She' đi với trợ động từ 'hasn't' và động từ chính ở dạng phân từ 2 (reviewed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
+        "fullCorrectSentence": "He hasn't submitted the expense report.",
+        "vietnameseMeaning": "Anh ấy chưa nộp báo cáo chi phí.",
+        "explanation": { "whyWrongVi": "He số ít dùng hasn't.", "workplaceImpactVi": "Giao tiếp về quy trình văn phòng cần chuẩn." }
       },
       {
-        "id": "pp-do-conj-04",
+        "id": "present-perfect-devops-12",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Tôi đã sao lưu cơ sở dữ liệu.",
+        "vietnameseMeaning": "Tôi đã sao lưu cơ sở dữ liệu.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "backed up" },
+          { "id": "t2", "text": "I" },
+          { "id": "t3", "text": "have" },
+          { "id": "t4", "text": "the database." }
+        ],
+        "correctTokenOrder": ["t2", "t3", "t1", "t4"],
+        "fullSentenceEn": "I have backed up the database.",
+        "grammarTip": { "titleVi": "Phrasal verb", "tipVi": "back up chuyển thành backed up." }
+      },
+      {
+        "id": "present-perfect-devops-13",
+        "challengeType": "conjugation",
+        "contextType": "chat",
+        "scenarioVi": "Chứng chỉ SSL đã hết hạn.",
+        "textBefore": "The SSL certificate ",
+        "baseVerb": "expire",
+        "textAfter": ".",
+        "correctAnswer": "has expired",
+        "acceptableAlternatives": ["has expired"],
+        "options": ["has expired", "have expired", "have expire", "has expire"],
+        "explanation": { "ruleVi": "Certificate số ít", "detailedAnalysisVi": "expire thêm d." }
+      },
+      {
+        "id": "present-perfect-devops-14",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Chúng tôi đã cấp phép bản quyền phần mềm.",
+        "tokens": ["We", "have", "license", "the", "software."],
+        "errorTokenIndex": 2,
+        "correctToken": "licensed",
+        "options": [
+          { "value": "licensed", "label": "licensed", "isCorrect": true },
+          { "value": "licensing", "label": "licensing", "isCorrect": false },
+          { "value": "license", "label": "Giữ nguyên", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We have licensed the software.",
+        "vietnameseMeaning": "Chúng tôi đã cấp phép bản quyền phần mềm.",
+        "explanation": { "whyWrongVi": "License là động từ quy tắc, thêm d.", "workplaceImpactVi": "Mất tính chuyên nghiệp trong giao dịch." }
+      },
+      {
+        "id": "present-perfect-devops-15",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Mật khẩu đã được thay đổi.",
+        "vietnameseMeaning": "Mật khẩu đã được thay đổi.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "changed." },
+          { "id": "t2", "text": "has" },
+          { "id": "t3", "text": "been" },
+          { "id": "t4", "text": "The password" }
+        ],
+        "correctTokenOrder": ["t4", "t2", "t3", "t1"],
+        "fullSentenceEn": "The password has been changed.",
+        "grammarTip": { "titleVi": "Bị động", "tipVi": "has been + V3/ed." }
+      },
+      {
+        "id": "present-perfect-devops-16",
+        "challengeType": "conjugation",
         "contextType": "email",
-        "scenarioVi": "Quản lý đã phê duyệt đề xuất ngân sách của chúng ta.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "The manager ",
+        "scenarioVi": "Phòng kế toán đã phê duyệt các khoản chi.",
+        "textBefore": "Accounting ",
         "baseVerb": "approve",
-        "textAfter": " our budget proposal.",
+        "textAfter": " the expenses.",
         "correctAnswer": "has approved",
-        "acceptableAlternatives": [
-          "HAS APPROVED",
-          "has approved"
-        ],
-        "options": [
-          "has approved",
-          "have approved",
-          "have approve",
-          "has approve"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'The manager' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (approved).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
+        "acceptableAlternatives": ["has approved"],
+        "options": ["has approved", "have approved", "have approve", "has approve"],
+        "explanation": { "ruleVi": "Phòng ban coi như số ít", "detailedAnalysisVi": "approve thêm d." }
       },
       {
-        "id": "pp-do-conj-05",
-        "contextType": "email",
-        "scenarioVi": "Họ đã sửa lỗi nghiêm trọng trong hệ thống đăng nhập.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "They ",
-        "baseVerb": "fix",
-        "textAfter": " the critical bug in the login system.",
-        "correctAnswer": "have fixed",
-        "acceptableAlternatives": [
-          "HAVE FIXED",
-          "have fixed"
-        ],
+        "id": "present-perfect-devops-17",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Bộ cân bằng tải đã phân phối lưu lượng.",
+        "tokens": ["The load balancer", "have", "distributed", "the", "traffic."],
+        "errorTokenIndex": 1,
+        "correctToken": "has",
         "options": [
-          "has fixed",
-          "has fix",
-          "have fix",
-          "have fixed"
+          { "value": "has", "label": "has", "isCorrect": true },
+          { "value": "is", "label": "is", "isCorrect": false },
+          { "value": "have", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'They' đi với trợ động từ 'have' và động từ chính ở dạng phân từ 2 (fixed).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
+        "fullCorrectSentence": "The load balancer has distributed the traffic.",
+        "vietnameseMeaning": "Bộ cân bằng tải đã phân phối lưu lượng.",
+        "explanation": { "whyWrongVi": "Load balancer số ít dùng has.", "workplaceImpactVi": "Mô tả hệ thống sai ngữ pháp." }
       },
       {
-        "id": "pp-do-conj-06",
-        "contextType": "email",
-        "scenarioVi": "Tôi vẫn chưa nhận được bất kỳ phản hồi nào từ khách hàng.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
+        "id": "present-perfect-devops-18",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Tôi đã giải quyết các lỗ hổng.",
+        "vietnameseMeaning": "Tôi đã giải quyết các lỗ hổng.",
+        "scrambledTokens": [
+          { "id": "t1", "text": "have" },
+          { "id": "t2", "text": "patched" },
+          { "id": "t3", "text": "the vulnerabilities." },
+          { "id": "t4", "text": "I" }
+        ],
+        "correctTokenOrder": ["t4", "t1", "t2", "t3"],
+        "fullSentenceEn": "I have patched the vulnerabilities.",
+        "grammarTip": { "titleVi": "Patch", "tipVi": "patch (vá lỗi) thêm ed thành patched." }
+      },
+      {
+        "id": "present-perfect-devops-19",
+        "challengeType": "conjugation",
+        "contextType": "routine",
+        "scenarioVi": "Tôi đã dọn dẹp các branch cũ.",
         "textBefore": "I ",
-        "baseVerb": "not receive",
-        "textAfter": " any feedback from the client.",
-        "correctAnswer": "haven't received",
-        "acceptableAlternatives": [
-          "HAVEN'T RECEIVED",
-          "haven't received"
-        ],
-        "options": [
-          "hasn't received",
-          "hasn't receive",
-          "haven't received",
-          "haven't receive"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'I' đi với trợ động từ 'haven't' và động từ chính ở dạng phân từ 2 (received).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
+        "baseVerb": "clean",
+        "textAfter": " up the stale branches.",
+        "correctAnswer": "have cleaned",
+        "acceptableAlternatives": ["have cleaned"],
+        "options": ["have cleaned", "has cleaned", "have clean", "has clean"],
+        "explanation": { "ruleVi": "I + have", "detailedAnalysisVi": "clean thêm ed." }
       },
       {
-        "id": "pp-do-conj-07",
-        "contextType": "email",
-        "scenarioVi": "Anh ấy đã cập nhật tài liệu dự án.",
-        "sender": "employee@company.com",
-        "recipient": "team@company.com",
-        "subject": "Project Update",
-        "textBefore": "He ",
-        "baseVerb": "update",
-        "textAfter": " the project documentation.",
-        "correctAnswer": "has updated",
-        "acceptableAlternatives": [
-          "HAS UPDATED",
-          "has updated"
-        ],
-        "options": [
-          "have update",
-          "have updated",
-          "has update",
-          "has updated"
-        ],
-        "explanation": {
-          "ruleVi": "Chủ ngữ 'He' đi với trợ động từ 'has' và động từ chính ở dạng phân từ 2 (updated).",
-          "detailedAnalysisVi": "Trong thì Hiện Tại Hoàn Thành, ta dùng have/has + V3/ed để diễn tả hành động đã hoàn thành."
-        },
-        "challengeType": "conjugation"
-      },
-      {
-        "id": "pp-do-err-01",
-        "scenarioVi": "Tôi đã hoàn thành báo cáo.",
-        "tokens": [
-          "I",
-          "has",
-          "finished",
-          "the",
-          "report."
-        ],
-        "errorTokenIndex": 1,
-        "correctToken": "have",
-        "options": [
-          {
-            "value": "have",
-            "label": "have",
-            "isCorrect": true
-          },
-          {
-            "value": "having",
-            "label": "having",
-            "isCorrect": false
-          },
-          {
-            "value": "has",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "I have finished the report.",
-        "vietnameseMeaning": "Tôi đã hoàn thành báo cáo.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'have' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-err-02",
-        "scenarioVi": "Chúng tôi đã triển khai tính năng mới.",
-        "tokens": [
-          "We",
-          "have",
-          "deploy",
-          "the",
-          "new",
-          "feature."
-        ],
+        "id": "present-perfect-devops-20",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Nhóm hỗ trợ chưa trả lời ticket.",
+        "tokens": ["The support team", "hasn't", "reply", "to the ticket."],
         "errorTokenIndex": 2,
-        "correctToken": "deployed",
+        "correctToken": "replied",
         "options": [
-          {
-            "value": "deployed",
-            "label": "deployed",
-            "isCorrect": true
-          },
-          {
-            "value": "deploy",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "deploying",
-            "label": "deploying",
-            "isCorrect": false
-          }
+          { "value": "replied", "label": "replied", "isCorrect": true },
+          { "value": "replying", "label": "replying", "isCorrect": false },
+          { "value": "reply", "label": "Giữ nguyên", "isCorrect": false }
         ],
-        "fullCorrectSentence": "We have deployed the new feature.",
-        "vietnameseMeaning": "Chúng tôi đã triển khai tính năng mới.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-err-03",
-        "scenarioVi": "Cô ấy đã review code.",
-        "tokens": [
-          "She",
-          "have",
-          "reviewed",
-          "the",
-          "code."
-        ],
-        "errorTokenIndex": 1,
-        "correctToken": "has",
-        "options": [
-          {
-            "value": "have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "has",
-            "label": "has",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "She has reviewed the code.",
-        "vietnameseMeaning": "Cô ấy đã review code.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-err-04",
-        "scenarioVi": "Họ vẫn chưa sửa lỗi.",
-        "tokens": [
-          "They",
-          "hasn't",
-          "fixed",
-          "the",
-          "bug."
-        ],
-        "errorTokenIndex": 1,
-        "correctToken": "haven't",
-        "options": [
-          {
-            "value": "haven't",
-            "label": "haven't",
-            "isCorrect": true
-          },
-          {
-            "value": "hasn't",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "They haven't fixed the bug.",
-        "vietnameseMeaning": "Họ vẫn chưa sửa lỗi.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'haven't' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-err-05",
-        "scenarioVi": "Quản lý đã phê duyệt ngân sách.",
-        "tokens": [
-          "The",
-          "manager",
-          "have",
-          "approved",
-          "the",
-          "budget."
-        ],
-        "errorTokenIndex": 2,
-        "correctToken": "has",
-        "options": [
-          {
-            "value": "has",
-            "label": "has",
-            "isCorrect": true
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "The manager has approved the budget.",
-        "vietnameseMeaning": "Quản lý đã phê duyệt ngân sách.",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-err-06",
-        "scenarioVi": "Anh ấy đã gửi email chưa?",
-        "tokens": [
-          "Have",
-          "he",
-          "sent",
-          "the",
-          "email?"
-        ],
-        "errorTokenIndex": 0,
-        "correctToken": "Has",
-        "options": [
-          {
-            "value": "Have",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "had",
-            "label": "had",
-            "isCorrect": false
-          },
-          {
-            "value": "Has",
-            "label": "Has",
-            "isCorrect": true
-          }
-        ],
-        "fullCorrectSentence": "Has he sent the email?",
-        "vietnameseMeaning": "Anh ấy đã gửi email chưa?",
-        "explanation": {
-          "whyWrongVi": "Sai trợ động từ. Phải dùng 'Has' phù hợp với chủ ngữ.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-err-07",
-        "scenarioVi": "Tôi đã nhận được phản hồi.",
-        "tokens": [
-          "I",
-          "have",
-          "receive",
-          "the",
-          "feedback."
-        ],
-        "errorTokenIndex": 2,
-        "correctToken": "received",
-        "options": [
-          {
-            "value": "receive",
-            "label": "Giữ nguyên",
-            "isCorrect": false
-          },
-          {
-            "value": "received",
-            "label": "received",
-            "isCorrect": true
-          },
-          {
-            "value": "receiveing",
-            "label": "receiveing",
-            "isCorrect": false
-          }
-        ],
-        "fullCorrectSentence": "I have received the feedback.",
-        "vietnameseMeaning": "Tôi đã nhận được phản hồi.",
-        "explanation": {
-          "whyWrongVi": "Động từ chính phải ở dạng phân từ 2 (V3/ed) sau have/has.",
-          "workplaceImpactVi": "Viết sai ngữ pháp có thể khiến người đọc hiểu lầm về việc hành động đã thực sự hoàn thành hay chưa."
-        },
-        "challengeType": "errorHunting"
-      },
-      {
-        "id": "pp-do-sb-01",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Tôi đã hoàn thành bài thuyết trình.",
-        "scrambledTokens": [
-          {
-            "id": "t2",
-            "text": "finished"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t0",
-            "text": "I"
-          },
-          {
-            "id": "t4",
-            "text": "presentation."
-          }
-        ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4"
-        ],
-        "fullSentenceEn": "I have finished the presentation.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        },
-        "challengeType": "sentenceBuilding"
-      },
-      {
-        "id": "pp-do-sb-02",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Cô ấy đã rời khỏi văn phòng rồi.",
-        "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "She"
-          },
-          {
-            "id": "t1",
-            "text": "has"
-          },
-          {
-            "id": "t2",
-            "text": "already"
-          },
-          {
-            "id": "t3",
-            "text": "left"
-          },
-          {
-            "id": "t4",
-            "text": "the"
-          },
-          {
-            "id": "t5",
-            "text": "office."
-          }
-        ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5"
-        ],
-        "fullSentenceEn": "She has already left the office.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        },
-        "challengeType": "sentenceBuilding"
-      },
-      {
-        "id": "pp-do-sb-03",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Chúng tôi vừa mới ra mắt ứng dụng mới.",
-        "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "We"
-          },
-          {
-            "id": "t3",
-            "text": "launched"
-          },
-          {
-            "id": "t4",
-            "text": "the"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t2",
-            "text": "just"
-          },
-          {
-            "id": "t5",
-            "text": "new"
-          },
-          {
-            "id": "t6",
-            "text": "app."
-          }
-        ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "We have just launched the new app.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        },
-        "challengeType": "sentenceBuilding"
-      },
-      {
-        "id": "pp-do-sb-04",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Họ chưa phản hồi email của chúng ta.",
-        "scrambledTokens": [
-          {
-            "id": "t3",
-            "text": "responded"
-          },
-          {
-            "id": "t1",
-            "text": "have"
-          },
-          {
-            "id": "t5",
-            "text": "our"
-          },
-          {
-            "id": "t4",
-            "text": "to"
-          },
-          {
-            "id": "t2",
-            "text": "not"
-          },
-          {
-            "id": "t0",
-            "text": "They"
-          },
-          {
-            "id": "t6",
-            "text": "email."
-          }
-        ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "They have not responded to our email.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        },
-        "challengeType": "sentenceBuilding"
-      },
-      {
-        "id": "pp-do-sb-05",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Bạn đã xem báo cáo doanh số mới nhất chưa?",
-        "scrambledTokens": [
-          {
-            "id": "t0",
-            "text": "Have"
-          },
-          {
-            "id": "t2",
-            "text": "seen"
-          },
-          {
-            "id": "t5",
-            "text": "sales"
-          },
-          {
-            "id": "t1",
-            "text": "you"
-          },
-          {
-            "id": "t4",
-            "text": "latest"
-          },
-          {
-            "id": "t3",
-            "text": "the"
-          },
-          {
-            "id": "t6",
-            "text": "report?"
-          }
-        ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "Have you seen the latest sales report?",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        },
-        "challengeType": "sentenceBuilding"
-      },
-      {
-        "id": "pp-do-sb-06",
-        "scenarioVi": "Sắp xếp lại câu đúng ngữ pháp",
-        "vietnameseMeaning": "Máy chủ đã bị sập từ sáng.",
-        "scrambledTokens": [
-          {
-            "id": "t4",
-            "text": "down"
-          },
-          {
-            "id": "t5",
-            "text": "since"
-          },
-          {
-            "id": "t1",
-            "text": "server"
-          },
-          {
-            "id": "t0",
-            "text": "The"
-          },
-          {
-            "id": "t2",
-            "text": "has"
-          },
-          {
-            "id": "t3",
-            "text": "been"
-          },
-          {
-            "id": "t6",
-            "text": "morning."
-          }
-        ],
-        "correctTokenOrder": [
-          "t0",
-          "t1",
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t6"
-        ],
-        "fullSentenceEn": "The server has been down since morning.",
-        "grammarTip": {
-          "titleVi": "Cấu trúc Hiện Tại Hoàn Thành",
-          "tipVi": "Nhớ đặt have/has trước động từ phân từ 2 (V3/ed)."
-        },
-        "challengeType": "sentenceBuilding"
+        "fullCorrectSentence": "The support team hasn't replied to the ticket.",
+        "vietnameseMeaning": "Nhóm hỗ trợ chưa trả lời ticket.",
+        "explanation": { "whyWrongVi": "Reply đổi y thành i thêm ed.", "workplaceImpactVi": "Lỗi chính tả căn bản." }
       }
     ]
   }
