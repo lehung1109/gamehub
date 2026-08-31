@@ -67,6 +67,100 @@
       ]
     },
     {
+      "id": "qr-spelling-ing",
+      "category": "spelling-rules",
+      "titleVi": "Cách thêm -ing",
+      "titleEn": "Spelling Rules for -ing",
+      "summaryVi": "Quy tắc thêm đuôi -ing vào động từ.",
+      "rulesList": [
+        {
+          "ruleVi": "Thêm trực tiếp",
+          "condition": "Hầu hết các động từ",
+          "examples": [
+            {
+              "en": "deploy -> deploying",
+              "vi": "đang triển khai"
+            },
+            {
+              "en": "monitor -> monitoring",
+              "vi": "đang giám sát"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Bỏ 'e' thêm 'ing'",
+          "condition": "Động từ tận cùng bằng 'e'",
+          "examples": [
+            {
+              "en": "update -> updating",
+              "vi": "đang cập nhật"
+            },
+            {
+              "en": "code -> coding",
+              "vi": "đang lập trình"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Nhân đôi phụ âm cuối",
+          "condition": "Động từ 1 âm tiết kết thúc bằng 1 nguyên âm + 1 phụ âm",
+          "examples": [
+            {
+              "en": "run -> running",
+              "vi": "đang chạy"
+            },
+            {
+              "en": "plan -> planning",
+              "vi": "đang lên kế hoạch"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Đổi 'ie' thành 'y' rồi thêm 'ing'",
+          "condition": "Động từ tận cùng bằng 'ie'",
+          "examples": [
+            {
+              "en": "lie -> lying",
+              "vi": "nói dối / nằm"
+            },
+            {
+              "en": "tie -> tying",
+              "vi": "buộc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-signals",
+      "category": "adverbs-frequency",
+      "titleVi": "Dấu hiệu nhận biết",
+      "titleEn": "Time Expressions",
+      "summaryVi": "Các cụm từ thời gian thường đi kèm với Tương lai tiếp diễn.",
+      "rulesList": [
+        {
+          "ruleVi": "Thời gian cụ thể trong tương lai",
+          "condition": "at this time + thời gian tương lai",
+          "examples": [
+            {
+              "en": "at this time tomorrow",
+              "vi": "vào thời điểm này ngày mai"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Giới hạn thời gian",
+          "condition": "from ... to ...",
+          "examples": [
+            {
+              "en": "from 2 PM to 4 PM next Monday",
+              "vi": "từ 2 giờ đến 4 giờ chiều thứ Hai tới"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "qr-workplace-usage",
       "category": "workplace-usage",
       "titleVi": "Ứng dụng trong giao tiếp công sở & IT",

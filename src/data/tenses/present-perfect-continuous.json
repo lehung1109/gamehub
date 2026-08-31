@@ -72,6 +72,64 @@
       "workplaceTips": [
         "Bỏ e thêm -ing (write -> writing).",
         "Gấp đôi phụ âm cuối nếu từ 1 âm tiết kết thúc bằng 1 nguyên âm + 1 phụ âm (run -> running)."
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Thêm trực tiếp",
+          "condition": "Hầu hết các động từ",
+          "examples": [
+            {
+              "en": "deploy -> deploying",
+              "vi": "đang triển khai"
+            },
+            {
+              "en": "monitor -> monitoring",
+              "vi": "đang giám sát"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Bỏ 'e' thêm 'ing'",
+          "condition": "Động từ tận cùng bằng 'e'",
+          "examples": [
+            {
+              "en": "update -> updating",
+              "vi": "đang cập nhật"
+            },
+            {
+              "en": "code -> coding",
+              "vi": "đang lập trình"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Nhân đôi phụ âm cuối",
+          "condition": "Động từ 1 âm tiết kết thúc bằng 1 nguyên âm + 1 phụ âm",
+          "examples": [
+            {
+              "en": "run -> running",
+              "vi": "đang chạy"
+            },
+            {
+              "en": "plan -> planning",
+              "vi": "đang lên kế hoạch"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Đổi 'ie' thành 'y' rồi thêm 'ing'",
+          "condition": "Động từ tận cùng bằng 'ie'",
+          "examples": [
+            {
+              "en": "lie -> lying",
+              "vi": "nói dối / nằm"
+            },
+            {
+              "en": "tie -> tying",
+              "vi": "buộc"
+            }
+          ]
+        }
       ]
     },
     {
