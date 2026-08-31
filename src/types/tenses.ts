@@ -34,7 +34,8 @@ export interface RuleFormula {
 
 export interface GrammarRuleCard {
   id: string;
-  category: "to-be" | "action-verbs" | "spelling-rules" | "adverbs-frequency" | "workplace-usage";
+  category: string;
+  categoryLabel?: string;
   titleVi: string;
   titleEn: string;
   summaryVi: string;

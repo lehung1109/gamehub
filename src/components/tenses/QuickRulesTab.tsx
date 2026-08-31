@@ -85,14 +85,15 @@ export function QuickRulesTab({
     );
   }
 
-  const categories = [
-    { id: "all", label: "Tất cả" },
-    { id: "to-be", label: "Động từ To Be" },
-    { id: "action-verbs", label: "Động từ thường" },
-    { id: "spelling-rules", label: "Quy tắc -s/-es" },
-    { id: "adverbs-frequency", label: "Trạng từ tần suất" },
-    { id: "workplace-usage", label: "Ứng dụng công sở" },
-  ];
+  const categories = rules.reduce((acc, rule) => {
+    if (!acc.find((c) => c.id === rule.category)) {
+      acc.push({
+        id: rule.category,
+        label: rule.categoryLabel || rule.titleVi,
+      });
+    }
+    return acc;
+  }, [{ id: "all", label: "Tất cả" }] as { id: string; label: string }[]);
 
   const filteredRules = selectedCategory === "all"
     ? rules

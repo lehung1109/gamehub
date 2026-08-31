@@ -41,7 +41,8 @@
       ],
       "workplaceTips": [
         "Dùng 'I am responsible for...' để giới thiệu vai trò."
-      ]
+      ],
+      "categoryLabel": "Động từ To Be"
     },
     {
       "id": "action-verbs-formula",
@@ -71,7 +72,8 @@
       ],
       "workplaceTips": [
         "Dùng trong mô tả công việc (JD)."
-      ]
+      ],
+      "categoryLabel": "Động từ thường"
     },
     {
       "id": "spelling-rules-formula",
@@ -94,7 +96,8 @@
       ],
       "workplaceTips": [
         "Lưu ý các từ đặc biệt như goes, does, fixes."
-      ]
+      ],
+      "categoryLabel": "Quy tắc -s/-es"
     },
     {
       "id": "adverbs-frequency-formula",
@@ -117,7 +120,8 @@
       ],
       "workplaceTips": [
         "Dùng để báo cáo thói quen."
-      ]
+      ],
+      "categoryLabel": "Trạng từ tần suất"
     },
     {
       "id": "workplace-usage-formula",
@@ -140,7 +144,8 @@
       ],
       "workplaceTips": [
         "Rất phổ biến trong email và quy trình."
-      ]
+      ],
+      "categoryLabel": "Ứng dụng công sở"
     }
   ],
   "challenges": {
