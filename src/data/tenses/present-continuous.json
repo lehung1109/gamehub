@@ -672,19 +672,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -709,19 +704,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -745,19 +735,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -782,19 +767,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -818,19 +798,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -855,19 +830,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -891,19 +861,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -928,19 +893,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -964,19 +924,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -1001,19 +956,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -1037,19 +987,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -1074,19 +1019,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -1110,19 +1050,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -1147,19 +1082,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -1183,19 +1113,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -1220,19 +1145,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -1256,19 +1176,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -1293,19 +1208,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -1329,19 +1239,14 @@
         "correctToken": "is",
         "options": [
           {
-            "value": "The",
-            "label": "The",
-            "isCorrect": false
-          },
-          {
             "value": "are",
             "label": "are",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "crashing",
-            "label": "crashing",
-            "isCorrect": false
+            "value": "is",
+            "label": "is",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "The system is crashing now.",
@@ -1366,19 +1271,14 @@
         "correctToken": "am",
         "options": [
           {
-            "value": "I",
-            "label": "I",
-            "isCorrect": false
-          },
-          {
-            "value": "is",
-            "label": "is",
-            "isCorrect": true
-          },
-          {
             "value": "waiting",
             "label": "waiting",
             "isCorrect": false
+          },
+          {
+            "value": "am",
+            "label": "am",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "I am waiting for your reply.",
@@ -2213,19 +2113,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
@@ -2296,19 +2191,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
@@ -2429,19 +2319,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
@@ -2512,19 +2397,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
@@ -2645,19 +2525,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
@@ -2728,19 +2603,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
@@ -2861,19 +2731,14 @@
         "correctToken": "are",
         "options": [
           {
-            "value": "Why",
-            "label": "Why",
-            "isCorrect": false
-          },
-          {
             "value": "is",
             "label": "is",
-            "isCorrect": true
+            "isCorrect": false
           },
           {
-            "value": "using",
-            "label": "using",
-            "isCorrect": false
+            "value": "are",
+            "label": "are",
+            "isCorrect": true
           }
         ],
         "fullCorrectSentence": "Why are you using that library?",
