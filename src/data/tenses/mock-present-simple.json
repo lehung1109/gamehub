@@ -62,7 +62,8 @@
       "workplaceTips": [
         "Dùng 'I am responsible for...' để giới thiệu vai trò công việc trong phỏng vấn và email.",
         "Dùng 'Is everything on track?' để hỏi thăm tiến độ dự án với đồng nghiệp."
-      ]
+      ],
+      "categoryLabel": "Động từ To Be"
     },
     {
       "id": "action-verbs-formula",
@@ -125,7 +126,8 @@
       "workplaceTips": [
         "Lưu ý: Khi đã dùng trợ động từ 'does / does not', động từ chính BẮT BUỘC trở về dạng nguyên mẫu không chia.",
         "Thường dùng trong mô tả công việc (Job Descriptions) và thư ngỏ hợp tác (Proposals)."
-      ]
+      ],
+      "categoryLabel": "Động từ thường"
     },
     {
       "id": "spelling-rules-card",
@@ -200,7 +202,8 @@
       ],
       "workplaceTips": [
         "Mẹo ghi nhớ các đuôi thêm -es: 'O - S - Ch - X - Sh - Z' (Ông Sáu Chạy Xe Sh Zui)."
-      ]
+      ],
+      "categoryLabel": "Quy tắc -s/-es"
     },
     {
       "id": "adverbs-frequency-card",
@@ -250,7 +253,8 @@
       ],
       "workplaceTips": [
         "Mức độ tần suất công sở: Always (100%) > Usually (90%) > Frequently / Regularly (80%) > Often (70%) > Sometimes (50%) > Rarely / Seldom (10%) > Never (0%)."
-      ]
+      ],
+      "categoryLabel": "Trạng từ tần suất"
     },
     {
       "id": "workplace-usage-card",
@@ -302,7 +306,8 @@
       ],
       "workplaceTips": [
         "Viết email chuyên nghiệp: Bắt đầu bằng 'I am writing to...' hoặc 'Our team provides...' luôn chuẩn xác với thì Hiện Tại Đơn."
-      ]
+      ],
+      "categoryLabel": "Ứng dụng công sở"
     }
   ],
   "challenges": {
