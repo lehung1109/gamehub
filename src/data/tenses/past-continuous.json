@@ -6,29 +6,122 @@
     "vietnameseName": "Thì Quá Khứ Tiếp Diễn",
     "group": "past",
     "status": "active",
-    "level": "A1-A2 (Beginner)",
-    "description": "Mô tả thì quá khứ.",
-    "estimatedMinutes": 10,
+    "level": "B1-B2 (Intermediate)",
+    "description": "Dùng để diễn tả một hành động đang diễn ra tại một thời điểm xác định trong quá khứ, hoặc hai hành động xảy ra song song.",
+    "estimatedMinutes": 20,
     "challengeCount": 80
   },
   "quickRules": [
     {
       "id": "qr-1",
-      "category": "action-verbs",
-      "titleVi": "Động từ thường",
-      "titleEn": "Action Verbs",
-      "summaryVi": "Sử dụng trong quá khứ.",
+      "category": "to-be",
+      "titleVi": "Động từ To-be",
+      "titleEn": "To-be Verbs",
+      "summaryVi": "Was / Were + V-ing",
+      "formulas": [
+        {
+          "label": "Khẳng định",
+          "structure": "S + was/were + V-ing",
+          "example": "I was working at 8 PM.",
+          "vietnameseTranslation": "Tôi đang làm việc lúc 8 giờ tối."
+        },
+        {
+          "label": "Phủ định",
+          "structure": "S + was/were + not + V-ing",
+          "example": "They were not (weren't) responding.",
+          "vietnameseTranslation": "Họ đang không phản hồi."
+        },
+        {
+          "label": "Nghi vấn",
+          "structure": "Was/Were + S + V-ing?",
+          "example": "Were you checking the logs?",
+          "vietnameseTranslation": "Bạn có đang kiểm tra log không?"
+        }
+      ],
       "rulesList": [
         {
-          "ruleVi": "Thêm ed",
-          "condition": "Hầu hết",
+          "ruleVi": "Sử dụng was",
+          "condition": "I, He, She, It, Danh từ số ít",
           "examples": [
             {
-              "en": "I worked",
-              "vi": "Tôi đã làm"
+              "en": "The server was running.",
+              "vi": "Máy chủ đang chạy."
+            }
+          ]
+        },
+        {
+          "ruleVi": "Sử dụng were",
+          "condition": "You, We, They, Danh từ số nhiều",
+          "examples": [
+            {
+              "en": "The developers were fixing bugs.",
+              "vi": "Các lập trình viên đang sửa lỗi."
             }
           ]
         }
+      ]
+    },
+    {
+      "id": "qr-2",
+      "category": "action-verbs",
+      "titleVi": "Cách thêm -ing",
+      "titleEn": "Spelling Rules for -ing",
+      "summaryVi": "Quy tắc thêm đuôi -ing vào động từ.",
+      "rulesList": [
+        {
+          "ruleVi": "Thêm trực tiếp",
+          "condition": "Hầu hết các động từ",
+          "examples": [
+            {
+              "en": "deploying",
+              "vi": "đang triển khai"
+            },
+            {
+              "en": "monitoring",
+              "vi": "đang giám sát"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Bỏ 'e' thêm 'ing'",
+          "condition": "Động từ tận cùng bằng 'e'",
+          "examples": [
+            {
+              "en": "update -> updating",
+              "vi": "đang cập nhật"
+            },
+            {
+              "en": "code -> coding",
+              "vi": "đang lập trình"
+            }
+          ]
+        },
+        {
+          "ruleVi": "Nhân đôi phụ âm cuối",
+          "condition": "Động từ 1 âm tiết kết thúc bằng 1 nguyên âm + 1 phụ âm",
+          "examples": [
+            {
+              "en": "run -> running",
+              "vi": "đang chạy"
+            },
+            {
+              "en": "stop -> stopping",
+              "vi": "đang dừng"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-3",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng công sở",
+      "titleEn": "Workplace Usage",
+      "summaryVi": "Cách dùng Thì Quá Khứ Tiếp Diễn trong môi trường làm việc.",
+      "workplaceTips": [
+        "Dùng để giải thích lý do chậm trễ: 'I was debugging a critical issue when you called.'",
+        "Dùng để mô tả bối cảnh cho một sự kiện khác: 'While we were migrating the database, the power went out.'",
+        "Làm cho câu hỏi lịch sự hơn: 'I was wondering if you could help me with this PR.'"
       ]
     }
   ],
@@ -37,361 +130,381 @@
       {
         "id": "past-continuous-conj-1",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 1",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 1",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-2",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 2",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 2",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-3",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 3",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 3",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-4",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 4",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 4",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-5",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 5",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 5",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-6",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 6",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 6",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-7",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 7",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 7",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-8",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 8",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 8",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-9",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 9",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 9",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-10",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 10",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 10",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-11",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 11",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 11",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-12",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 12",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 12",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-13",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 13",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 13",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-14",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 14",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 14",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-15",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 15",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 15",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-16",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 16",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 16",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-17",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 17",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 17",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-18",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 18",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 18",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-19",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 19",
-        "textBefore": "I ",
+        "scenarioVi": "Giải trình lỗi hệ thống 19",
+        "textBefore": "When the system crashed, I ",
         "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "textAfter": " the new release.",
+        "correctAnswer": "was deploying",
         "options": [
-          "deploy",
+          "was deploying",
+          "were deploying",
           "deployed",
-          "deploying"
+          "am deploying"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'was' với chủ ngữ 'I' và V-ing cho hành động đang diễn ra.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       },
       {
         "id": "past-continuous-conj-20",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 20",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "contextType": "meeting",
+        "scenarioVi": "Cập nhật tiến độ dự án 20",
+        "textBefore": "At 9 AM yesterday, the team ",
+        "baseVerb": "discuss",
+        "textAfter": " the Q3 budget.",
+        "correctAnswer": "were discussing",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "was discussing",
+          "were discussing",
+          "discussed",
+          "are discussing"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Dùng 'were' với chủ ngữ số nhiều (the team) và V-ing.",
+          "detailedAnalysisVi": "Hành động đang xảy ra tại một thời điểm xác định trong quá khứ."
         }
       }
     ],
@@ -400,1784 +513,2355 @@
         "id": "past-continuous-err-1",
         "scenarioVi": "Review code lỗi 1",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-2",
-        "scenarioVi": "Review code lỗi 2",
+        "scenarioVi": "Soát lỗi email 2",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-3",
         "scenarioVi": "Review code lỗi 3",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-4",
-        "scenarioVi": "Review code lỗi 4",
+        "scenarioVi": "Soát lỗi email 4",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-5",
         "scenarioVi": "Review code lỗi 5",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-6",
-        "scenarioVi": "Review code lỗi 6",
+        "scenarioVi": "Soát lỗi email 6",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-7",
         "scenarioVi": "Review code lỗi 7",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-8",
-        "scenarioVi": "Review code lỗi 8",
+        "scenarioVi": "Soát lỗi email 8",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-9",
         "scenarioVi": "Review code lỗi 9",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-10",
-        "scenarioVi": "Review code lỗi 10",
+        "scenarioVi": "Soát lỗi email 10",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-11",
         "scenarioVi": "Review code lỗi 11",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-12",
-        "scenarioVi": "Review code lỗi 12",
+        "scenarioVi": "Soát lỗi email 12",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-13",
         "scenarioVi": "Review code lỗi 13",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-14",
-        "scenarioVi": "Review code lỗi 14",
+        "scenarioVi": "Soát lỗi email 14",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-15",
         "scenarioVi": "Review code lỗi 15",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-16",
-        "scenarioVi": "Review code lỗi 16",
+        "scenarioVi": "Soát lỗi email 16",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-17",
         "scenarioVi": "Review code lỗi 17",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-18",
-        "scenarioVi": "Review code lỗi 18",
+        "scenarioVi": "Soát lỗi email 18",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-19",
         "scenarioVi": "Review code lỗi 19",
         "tokens": [
-          "I",
-          "deploy",
+          "We",
+          "was",
+          "migrating",
           "the",
-          "server",
-          "yesterday"
+          "database",
+          "at",
+          "midnight."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "were",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "were",
+            "label": "were",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "We were migrating the database at midnight.",
+        "vietnameseMeaning": "Chúng tôi đang di chuyển cơ sở dữ liệu lúc nửa đêm.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'We' đi với 'were', không phải 'was'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       },
       {
         "id": "past-continuous-err-20",
-        "scenarioVi": "Review code lỗi 20",
+        "scenarioVi": "Soát lỗi email 20",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "were",
+          "preparing",
           "the",
-          "server",
-          "yesterday"
+          "presentation",
+          "when",
+          "I",
+          "called."
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "was",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "were",
+            "label": "were",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "was",
+            "label": "was",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She was preparing the presentation when I called.",
+        "vietnameseMeaning": "Cô ấy đang chuẩn bị bài thuyết trình khi tôi gọi.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Chủ ngữ 'She' đi với 'was', không phải 'were'.",
+          "workplaceImpactVi": "Lỗi chia động từ to-be cơ bản."
         }
       }
     ],
     "sentenceBuilding": [
       {
         "id": "past-continuous-sb-1",
-        "scenarioVi": "Dịch câu hỏi 1",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 1",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-2",
-        "scenarioVi": "Dịch câu hỏi 2",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 2",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-3",
-        "scenarioVi": "Dịch câu hỏi 3",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 3",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-4",
-        "scenarioVi": "Dịch câu hỏi 4",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 4",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-5",
-        "scenarioVi": "Dịch câu hỏi 5",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 5",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-6",
-        "scenarioVi": "Dịch câu hỏi 6",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 6",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-7",
-        "scenarioVi": "Dịch câu hỏi 7",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 7",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-8",
-        "scenarioVi": "Dịch câu hỏi 8",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 8",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-9",
-        "scenarioVi": "Dịch câu hỏi 9",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 9",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-10",
-        "scenarioVi": "Dịch câu hỏi 10",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 10",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-11",
-        "scenarioVi": "Dịch câu hỏi 11",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 11",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-12",
-        "scenarioVi": "Dịch câu hỏi 12",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 12",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-13",
-        "scenarioVi": "Dịch câu hỏi 13",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 13",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-14",
-        "scenarioVi": "Dịch câu hỏi 14",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 14",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-15",
-        "scenarioVi": "Dịch câu hỏi 15",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 15",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-16",
-        "scenarioVi": "Dịch câu hỏi 16",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 16",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-17",
-        "scenarioVi": "Dịch câu hỏi 17",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 17",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-18",
-        "scenarioVi": "Dịch câu hỏi 18",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 18",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-19",
-        "scenarioVi": "Dịch câu hỏi 19",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Mô tả sự cố 19",
+        "vietnameseMeaning": "Tôi đang theo dõi các máy chủ khi lỗi xảy ra.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
-          },
-          {
-            "id": "t2",
+            "id": "1",
             "text": "I"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "2",
+            "text": "when"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "3",
+            "text": "occurred."
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "the servers"
+          },
+          {
+            "id": "6",
+            "text": "monitoring"
+          },
+          {
+            "id": "7",
+            "text": "the error"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "4",
+          "6",
+          "5",
+          "2",
+          "7",
+          "3"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "I was monitoring the servers when the error occurred.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       },
       {
         "id": "past-continuous-sb-20",
-        "scenarioVi": "Dịch câu hỏi 20",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "scenarioVi": "Báo cáo cuộc họp 20",
+        "vietnameseMeaning": "Họ đang đàm phán hợp đồng vào sáng hôm qua.",
         "scrambledTokens": [
           {
-            "id": "t1",
+            "id": "1",
+            "text": "They"
+          },
+          {
+            "id": "2",
+            "text": "contract"
+          },
+          {
+            "id": "3",
+            "text": "were"
+          },
+          {
+            "id": "4",
             "text": "yesterday"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "5",
+            "text": "negotiating"
           },
           {
-            "id": "t3",
-            "text": "sent"
-          },
-          {
-            "id": "t4",
+            "id": "6",
             "text": "the"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "7",
+            "text": "morning."
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "1",
+          "3",
+          "5",
+          "6",
+          "2",
+          "4",
+          "7"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They were negotiating the contract yesterday morning.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Hành động đang diễn ra",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn kết hợp với Quá khứ đơn (mệnh đề when) để mô tả hành động đang diễn ra thì có hành động khác xen vào."
         }
       }
     ],
     "devOpsChallenge": [
       {
-        "id": "past-continuous-do-1",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 1",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-1",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 1",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-2",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 2",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-2",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 2",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       },
       {
-        "id": "past-continuous-do-3",
+        "id": "past-continuous-devops-3",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 3",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Log server 3",
+        "textBefore": "The backup script ",
+        "baseVerb": "run",
+        "textAfter": " when the system restarted.",
+        "correctAnswer": "was running",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "was running",
+          "were running",
+          "ran",
+          "runs"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Chủ ngữ số ít (script) + was + V-ing.",
+          "detailedAnalysisVi": "Mô tả một tiến trình đang chạy ngầm trong hệ thống tại thời điểm đó."
         }
       },
       {
-        "id": "past-continuous-do-4",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 4",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-4",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 4",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-5",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 5",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-5",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 5",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       },
       {
-        "id": "past-continuous-do-6",
+        "id": "past-continuous-devops-6",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 6",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Log server 6",
+        "textBefore": "The backup script ",
+        "baseVerb": "run",
+        "textAfter": " when the system restarted.",
+        "correctAnswer": "was running",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "was running",
+          "were running",
+          "ran",
+          "runs"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Chủ ngữ số ít (script) + was + V-ing.",
+          "detailedAnalysisVi": "Mô tả một tiến trình đang chạy ngầm trong hệ thống tại thời điểm đó."
         }
       },
       {
-        "id": "past-continuous-do-7",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 7",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-7",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 7",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-8",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 8",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-8",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 8",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       },
       {
-        "id": "past-continuous-do-9",
+        "id": "past-continuous-devops-9",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 9",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Log server 9",
+        "textBefore": "The backup script ",
+        "baseVerb": "run",
+        "textAfter": " when the system restarted.",
+        "correctAnswer": "was running",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "was running",
+          "were running",
+          "ran",
+          "runs"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Chủ ngữ số ít (script) + was + V-ing.",
+          "detailedAnalysisVi": "Mô tả một tiến trình đang chạy ngầm trong hệ thống tại thời điểm đó."
         }
       },
       {
-        "id": "past-continuous-do-10",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 10",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-10",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 10",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-11",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 11",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-11",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 11",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       },
       {
-        "id": "past-continuous-do-12",
+        "id": "past-continuous-devops-12",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 12",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Log server 12",
+        "textBefore": "The backup script ",
+        "baseVerb": "run",
+        "textAfter": " when the system restarted.",
+        "correctAnswer": "was running",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "was running",
+          "were running",
+          "ran",
+          "runs"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Chủ ngữ số ít (script) + was + V-ing.",
+          "detailedAnalysisVi": "Mô tả một tiến trình đang chạy ngầm trong hệ thống tại thời điểm đó."
         }
       },
       {
-        "id": "past-continuous-do-13",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 13",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-13",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 13",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-14",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 14",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-14",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 14",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       },
       {
-        "id": "past-continuous-do-15",
+        "id": "past-continuous-devops-15",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 15",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Log server 15",
+        "textBefore": "The backup script ",
+        "baseVerb": "run",
+        "textAfter": " when the system restarted.",
+        "correctAnswer": "was running",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "was running",
+          "were running",
+          "ran",
+          "runs"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Chủ ngữ số ít (script) + was + V-ing.",
+          "detailedAnalysisVi": "Mô tả một tiến trình đang chạy ngầm trong hệ thống tại thời điểm đó."
         }
       },
       {
-        "id": "past-continuous-do-16",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 16",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-16",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 16",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-17",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 17",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-17",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 17",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       },
       {
-        "id": "past-continuous-do-18",
+        "id": "past-continuous-devops-18",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 18",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Log server 18",
+        "textBefore": "The backup script ",
+        "baseVerb": "run",
+        "textAfter": " when the system restarted.",
+        "correctAnswer": "was running",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "was running",
+          "were running",
+          "ran",
+          "runs"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Chủ ngữ số ít (script) + was + V-ing.",
+          "detailedAnalysisVi": "Mô tả một tiến trình đang chạy ngầm trong hệ thống tại thời điểm đó."
         }
       },
       {
-        "id": "past-continuous-do-19",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 19",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-19",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Phân tích Incident 19",
+        "tokens": [
+          "The",
+          "nodes",
+          "was",
+          "syncing",
+          "data",
+          "slowly."
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "were",
+        "options": [
+          {
+            "value": "was",
+            "label": "was",
+            "isCorrect": false
+          },
+          {
+            "value": "were",
+            "label": "were",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The nodes were syncing data slowly.",
+        "vietnameseMeaning": "Các node đang đồng bộ dữ liệu một cách chậm chạp.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "'Nodes' là số nhiều nên phải dùng 'were'.",
+          "workplaceImpactVi": "Viết sai ngữ pháp trong báo cáo incident."
         }
       },
       {
-        "id": "past-continuous-do-20",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 20",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-continuous-devops-20",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Cấu hình CI/CD 20",
+        "vietnameseMeaning": "Đường ống CI đang xây dựng image thì nó thất bại.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "The CI pipeline"
+          },
+          {
+            "id": "2",
+            "text": "building"
+          },
+          {
+            "id": "3",
+            "text": "when"
+          },
+          {
+            "id": "4",
+            "text": "was"
+          },
+          {
+            "id": "5",
+            "text": "failed."
+          },
+          {
+            "id": "6",
+            "text": "the image"
+          },
+          {
+            "id": "7",
+            "text": "it"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "1",
+          "4",
+          "2",
+          "6",
+          "3",
+          "7",
+          "5"
+        ],
+        "fullSentenceEn": "The CI pipeline was building the image when it failed.",
+        "grammarTip": {
+          "titleVi": "Mô tả tiến trình CI",
+          "tipVi": "Sử dụng Quá khứ tiếp diễn cho tiến trình mất thời gian như 'building image'."
         }
       }
     ]

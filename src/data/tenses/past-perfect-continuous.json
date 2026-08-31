@@ -6,26 +6,92 @@
     "vietnameseName": "Thì Quá Khứ Hoàn Thành Tiếp Diễn",
     "group": "past",
     "status": "active",
-    "level": "A1-A2 (Beginner)",
-    "description": "Mô tả thì quá khứ.",
-    "estimatedMinutes": 10,
+    "level": "B1-B2 (Intermediate)",
+    "description": "Sử dụng để nhấn mạnh khoảng thời gian của một hành động đã diễn ra liên tục cho tới một thời điểm hoặc một hành động khác trong quá khứ.",
+    "estimatedMinutes": 15,
     "challengeCount": 80
   },
   "quickRules": [
     {
       "id": "qr-1",
       "category": "action-verbs",
-      "titleVi": "Động từ thường",
-      "titleEn": "Action Verbs",
-      "summaryVi": "Sử dụng trong quá khứ.",
+      "titleVi": "Cấu trúc chung",
+      "titleEn": "General Structure",
+      "summaryVi": "Sử dụng had been + V-ing cho tất cả các ngôi.",
+      "formulas": [
+        {
+          "label": "Khẳng định (+)",
+          "structure": "S + had been + V-ing",
+          "example": "We had been debugging for hours before we found the root cause.",
+          "vietnameseTranslation": "Chúng tôi đã debug trong nhiều giờ trước khi tìm ra nguyên nhân gốc rễ."
+        },
+        {
+          "label": "Phủ định (-)",
+          "structure": "S + hadn't been + V-ing",
+          "example": "They hadn't been using the new system properly until the training.",
+          "vietnameseTranslation": "Họ đã không sử dụng hệ thống mới đúng cách cho đến khi có buổi đào tạo."
+        },
+        {
+          "label": "Nghi vấn (?)",
+          "structure": "Had + S + been + V-ing?",
+          "example": "Had she been working on that report before the meeting?",
+          "vietnameseTranslation": "Cô ấy có đang làm báo cáo đó trước cuộc họp không?"
+        }
+      ],
       "rulesList": [
         {
-          "ruleVi": "Thêm ed",
-          "condition": "Hầu hết",
+          "ruleVi": "Nhấn mạnh tính liên tục của hành động kéo dài đến một thời điểm trong quá khứ.",
+          "condition": "Dùng với for, since, how long...",
           "examples": [
             {
-              "en": "I worked",
-              "vi": "Tôi đã làm"
+              "en": "I had been waiting for 30 minutes when he arrived.",
+              "vi": "Tôi đã đợi được 30 phút thì anh ấy đến."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-2",
+      "category": "workplace-usage",
+      "titleVi": "Ứng dụng nơi công sở",
+      "titleEn": "Workplace Usage",
+      "summaryVi": "Giải thích nguyên nhân của một kết quả trong quá khứ hoặc báo cáo thời gian đã bỏ ra cho một dự án trước khi có sự cố.",
+      "workplaceTips": [
+        "Sử dụng trong các buổi họp post-mortem (rút kinh nghiệm) để giải thích tình trạng hệ thống hoặc công việc trước khi sự cố xảy ra.",
+        "Thường đi kèm với các từ chỉ nguyên nhân kết quả như because."
+      ],
+      "rulesList": [
+        {
+          "ruleVi": "Nguyên nhân của một kết quả trong quá khứ",
+          "condition": "Hành động kéo dài gây ra kết quả có thể thấy được.",
+          "examples": [
+            {
+              "en": "The server crashed because it had been processing too many requests.",
+              "vi": "Máy chủ bị sập vì nó đã và đang xử lý quá nhiều yêu cầu."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qr-3",
+      "category": "spelling-rules",
+      "titleVi": "Quy tắc thêm -ing",
+      "titleEn": "Spelling Rules for -ing",
+      "summaryVi": "Cách thêm đuôi -ing vào động từ (tương tự các thì tiếp diễn khác).",
+      "rulesList": [
+        {
+          "ruleVi": "Bỏ e rồi thêm ing",
+          "condition": "Động từ tận cùng bằng 1 chữ e (trừ ee, oe, ye)",
+          "examples": [
+            {
+              "en": "update -> updating",
+              "vi": "cập nhật"
+            },
+            {
+              "en": "write -> writing",
+              "vi": "viết"
             }
           ]
         }
@@ -35,2149 +101,2483 @@
   "challenges": {
     "conjugation": [
       {
-        "id": "past-perfect-continuous-conj-1",
+        "id": "past-perfect-cont-conj-1",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 1",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-2",
+        "id": "past-perfect-cont-conj-2",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 2",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-3",
+        "id": "past-perfect-cont-conj-3",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 3",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-4",
+        "id": "past-perfect-cont-conj-4",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 4",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-5",
+        "id": "past-perfect-cont-conj-5",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 5",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-6",
+        "id": "past-perfect-cont-conj-6",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 6",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-7",
+        "id": "past-perfect-cont-conj-7",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 7",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-8",
+        "id": "past-perfect-cont-conj-8",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 8",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-9",
+        "id": "past-perfect-cont-conj-9",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 9",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-10",
+        "id": "past-perfect-cont-conj-10",
         "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 10",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "scenarioVi": "Giải thích lý do sập hệ thống (IT)",
+        "textBefore": "The database failed because it ",
+        "baseVerb": "run",
+        "textAfter": " out of memory for hours.",
+        "correctAnswer": "had been running",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been running",
+          "was running",
+          "had run"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Hành động xảy ra và kéo dài liên tục trước một thời điểm quá khứ (database failed)."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-11",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 11",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-11",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-12",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 12",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-12",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-13",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 13",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-13",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-14",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 14",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-14",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-15",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 15",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-15",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-16",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 16",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-16",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-17",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 17",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-17",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-18",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 18",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-18",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-19",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 19",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-19",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       },
       {
-        "id": "past-perfect-continuous-conj-20",
-        "contextType": "email",
-        "scenarioVi": "Email báo cáo tiến độ 20",
-        "textBefore": "I ",
-        "baseVerb": "deploy",
-        "textAfter": " the server yesterday.",
-        "correctAnswer": "deployed",
+        "id": "past-perfect-cont-conj-20",
+        "contextType": "report",
+        "scenarioVi": "Báo cáo dự án (Business)",
+        "textBefore": "We ",
+        "baseVerb": "negotiate",
+        "textAfter": " with the client for months before they signed.",
+        "correctAnswer": "had been negotiating",
         "options": [
-          "deploy",
-          "deployed",
-          "deploying"
+          "had been negotiating",
+          "had negotiated",
+          "were negotiating"
         ],
         "explanation": {
-          "ruleVi": "Quá khứ đơn.",
-          "detailedAnalysisVi": "Sử dụng cho hành động đã kết thúc."
+          "ruleVi": "Quá khứ hoàn thành tiếp diễn nhấn mạnh khoảng thời gian.",
+          "detailedAnalysisVi": "Hành động thương lượng diễn ra liên tục trước khi họ ký hợp đồng."
         }
       }
     ],
     "errorHunting": [
       {
-        "id": "past-perfect-continuous-err-1",
-        "scenarioVi": "Review code lỗi 1",
+        "id": "past-perfect-cont-err-1",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-2",
-        "scenarioVi": "Review code lỗi 2",
+        "id": "past-perfect-cont-err-2",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-3",
-        "scenarioVi": "Review code lỗi 3",
+        "id": "past-perfect-cont-err-3",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-4",
-        "scenarioVi": "Review code lỗi 4",
+        "id": "past-perfect-cont-err-4",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-5",
-        "scenarioVi": "Review code lỗi 5",
+        "id": "past-perfect-cont-err-5",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-6",
-        "scenarioVi": "Review code lỗi 6",
+        "id": "past-perfect-cont-err-6",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-7",
-        "scenarioVi": "Review code lỗi 7",
+        "id": "past-perfect-cont-err-7",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-8",
-        "scenarioVi": "Review code lỗi 8",
+        "id": "past-perfect-cont-err-8",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-9",
-        "scenarioVi": "Review code lỗi 9",
+        "id": "past-perfect-cont-err-9",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-10",
-        "scenarioVi": "Review code lỗi 10",
+        "id": "past-perfect-cont-err-10",
+        "scenarioVi": "Kiểm tra log sự cố",
         "tokens": [
-          "I",
-          "deploy",
-          "the",
-          "server",
-          "yesterday"
+          "The",
+          "API",
+          "has",
+          "been",
+          "failing",
+          "before",
+          "we",
+          "restarted",
+          "it"
         ],
-        "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "errorTokenIndex": 2,
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "has",
+            "label": "has",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "The API had been failing before we restarted it",
+        "vietnameseMeaning": "API đã và đang bị lỗi trước khi chúng tôi khởi động lại nó.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Phải dùng had cho sự việc diễn ra trước hành động trong quá khứ.",
+          "workplaceImpactVi": "Sai thì sẽ làm sai lệch trình tự thời gian báo cáo sự cố."
         }
       },
       {
-        "id": "past-perfect-continuous-err-11",
-        "scenarioVi": "Review code lỗi 11",
+        "id": "past-perfect-cont-err-11",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-12",
-        "scenarioVi": "Review code lỗi 12",
+        "id": "past-perfect-cont-err-12",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-13",
-        "scenarioVi": "Review code lỗi 13",
+        "id": "past-perfect-cont-err-13",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-14",
-        "scenarioVi": "Review code lỗi 14",
+        "id": "past-perfect-cont-err-14",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-15",
-        "scenarioVi": "Review code lỗi 15",
+        "id": "past-perfect-cont-err-15",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-16",
-        "scenarioVi": "Review code lỗi 16",
+        "id": "past-perfect-cont-err-16",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-17",
-        "scenarioVi": "Review code lỗi 17",
+        "id": "past-perfect-cont-err-17",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-18",
-        "scenarioVi": "Review code lỗi 18",
+        "id": "past-perfect-cont-err-18",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-19",
-        "scenarioVi": "Review code lỗi 19",
+        "id": "past-perfect-cont-err-19",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       },
       {
-        "id": "past-perfect-continuous-err-20",
-        "scenarioVi": "Review code lỗi 20",
+        "id": "past-perfect-cont-err-20",
+        "scenarioVi": "Email giải trình khách hàng",
         "tokens": [
-          "I",
-          "deploy",
+          "She",
+          "was",
+          "been",
+          "waiting",
+          "for",
           "the",
-          "server",
-          "yesterday"
+          "approval"
         ],
         "errorTokenIndex": 1,
-        "correctToken": "deployed",
+        "correctToken": "had",
         "options": [
           {
-            "value": "deploy",
-            "label": "deploy",
+            "value": "was",
+            "label": "was",
             "isCorrect": false
           },
           {
-            "value": "deployed",
-            "label": "deployed",
+            "value": "had",
+            "label": "had",
             "isCorrect": true
           }
         ],
-        "fullCorrectSentence": "I deployed the server yesterday",
-        "vietnameseMeaning": "Tôi đã triển khai máy chủ hôm qua.",
+        "fullCorrectSentence": "She had been waiting for the approval",
+        "vietnameseMeaning": "Cô ấy đã và đang chờ phê duyệt.",
         "explanation": {
-          "whyWrongVi": "Động từ phải chia ở quá khứ.",
-          "workplaceImpactVi": "Câu sai ngữ pháp gây hiểu lầm thời gian."
+          "whyWrongVi": "Cấu trúc đúng là had been + V-ing, không phải was been.",
+          "workplaceImpactVi": "Lỗi ngữ pháp cơ bản làm giảm tính chuyên nghiệp."
         }
       }
     ],
     "sentenceBuilding": [
       {
-        "id": "past-perfect-continuous-sb-1",
-        "scenarioVi": "Dịch câu hỏi 1",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-1",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-2",
-        "scenarioVi": "Dịch câu hỏi 2",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-2",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-3",
-        "scenarioVi": "Dịch câu hỏi 3",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-3",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-4",
-        "scenarioVi": "Dịch câu hỏi 4",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-4",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-5",
-        "scenarioVi": "Dịch câu hỏi 5",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-5",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-6",
-        "scenarioVi": "Dịch câu hỏi 6",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-6",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-7",
-        "scenarioVi": "Dịch câu hỏi 7",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-7",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-8",
-        "scenarioVi": "Dịch câu hỏi 8",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-8",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-9",
-        "scenarioVi": "Dịch câu hỏi 9",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-9",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-10",
-        "scenarioVi": "Dịch câu hỏi 10",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-10",
+        "scenarioVi": "Trình bày lý do trễ deadline deploy",
+        "vietnameseMeaning": "Họ đã và đang sửa lỗi cả đêm trước khi phát hành.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "before"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "the release"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "all night"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been fixing"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "bugs"
+          },
+          {
+            "id": "6",
+            "text": "They"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "6",
+          "4",
+          "5",
+          "3",
+          "1",
+          "2"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "They had been fixing bugs all night before the release.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Trình tự sự kiện",
+          "tipVi": "Mệnh đề quá khứ hoàn thành tiếp diễn đứng trước từ nối before."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-11",
-        "scenarioVi": "Dịch câu hỏi 11",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-11",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-12",
-        "scenarioVi": "Dịch câu hỏi 12",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-12",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-13",
-        "scenarioVi": "Dịch câu hỏi 13",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-13",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-14",
-        "scenarioVi": "Dịch câu hỏi 14",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-14",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-15",
-        "scenarioVi": "Dịch câu hỏi 15",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-15",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-16",
-        "scenarioVi": "Dịch câu hỏi 16",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-16",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-17",
-        "scenarioVi": "Dịch câu hỏi 17",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-17",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-18",
-        "scenarioVi": "Dịch câu hỏi 18",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-18",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-19",
-        "scenarioVi": "Dịch câu hỏi 19",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-19",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       },
       {
-        "id": "past-perfect-continuous-sb-20",
-        "scenarioVi": "Dịch câu hỏi 20",
-        "vietnameseMeaning": "Tôi đã gửi báo cáo hôm qua.",
+        "id": "past-perfect-cont-sent-20",
+        "scenarioVi": "Kể về sự chuẩn bị cho chiến dịch",
+        "vietnameseMeaning": "Nhóm marketing đã nghiên cứu thị trường trong 3 tháng.",
         "scrambledTokens": [
           {
-            "id": "t1",
-            "text": "yesterday"
+            "id": "1",
+            "text": "for 3 months"
           },
           {
-            "id": "t2",
-            "text": "I"
+            "id": "2",
+            "text": "researching"
           },
           {
-            "id": "t3",
-            "text": "sent"
+            "id": "3",
+            "text": "The marketing team"
           },
           {
-            "id": "t4",
-            "text": "the"
+            "id": "4",
+            "text": "had been"
           },
           {
-            "id": "t5",
-            "text": "report"
+            "id": "5",
+            "text": "the market"
           }
         ],
         "correctTokenOrder": [
-          "t2",
-          "t3",
-          "t4",
-          "t5",
-          "t1"
+          "3",
+          "4",
+          "2",
+          "5",
+          "1"
         ],
-        "fullSentenceEn": "I sent the report yesterday",
+        "fullSentenceEn": "The marketing team had been researching the market for 3 months.",
         "grammarTip": {
-          "titleVi": "Trạng từ thời gian",
-          "tipVi": "Thường đặt cuối câu."
+          "titleVi": "Khoảng thời gian",
+          "tipVi": "Sử dụng for + khoảng thời gian."
         }
       }
     ],
     "devOpsChallenge": [
       {
-        "id": "past-perfect-continuous-do-1",
+        "id": "past-perfect-cont-devops-1",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 1",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-2",
+        "id": "past-perfect-cont-devops-2",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 2",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-3",
+        "id": "past-perfect-cont-devops-3",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 3",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-4",
+        "id": "past-perfect-cont-devops-4",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 4",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-5",
+        "id": "past-perfect-cont-devops-5",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 5",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-6",
+        "id": "past-perfect-cont-devops-6",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 6",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-7",
+        "id": "past-perfect-cont-devops-7",
         "challengeType": "conjugation",
         "contextType": "chat",
-        "scenarioVi": "Slack chat 7",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
+        "scenarioVi": "Chat trên Slack về vấn đề memory leak",
+        "textBefore": "The pod ",
+        "baseVerb": "consume",
+        "textAfter": " too much CPU before it was killed.",
+        "correctAnswer": "had been consuming",
         "options": [
-          "fail",
-          "failed",
-          "failing"
+          "had been consuming",
+          "has been consuming",
+          "was consumed"
         ],
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "ruleVi": "Qúa khứ hoàn thành tiếp diễn",
+          "detailedAnalysisVi": "Nhấn mạnh quá trình tiêu thụ CPU kéo dài trước khi bị hệ thống kill."
         }
       },
       {
-        "id": "past-perfect-continuous-do-8",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 8",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-8",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-9",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 9",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-9",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-10",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 10",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-10",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-11",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 11",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-11",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-12",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 12",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-12",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-13",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 13",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-13",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-14",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 14",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-14",
+        "challengeType": "errorHunting",
+        "scenarioVi": "Đọc log phân tích RCA",
+        "tokens": [
+          "The",
+          "worker",
+          "had",
+          "processing",
+          "the",
+          "queue"
         ],
+        "errorTokenIndex": 2,
+        "correctToken": "had been",
+        "options": [
+          {
+            "value": "had",
+            "label": "had",
+            "isCorrect": false
+          },
+          {
+            "value": "had been",
+            "label": "had been",
+            "isCorrect": true
+          }
+        ],
+        "fullCorrectSentence": "The worker had been processing the queue",
+        "vietnameseMeaning": "Worker đã và đang xử lý hàng đợi.",
         "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+          "whyWrongVi": "Thiếu been trong cấu trúc hoàn thành tiếp diễn.",
+          "workplaceImpactVi": "Sai cấu trúc ngữ pháp."
         }
       },
       {
-        "id": "past-perfect-continuous-do-15",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 15",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-15",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Viết ticket Jira về CI/CD",
+        "vietnameseMeaning": "Pipeline đã thất bại trong nhiều giờ trước khi tôi nhận thấy.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "failing"
+          },
+          {
+            "id": "2",
+            "text": "for hours"
+          },
+          {
+            "id": "3",
+            "text": "before I noticed"
+          },
+          {
+            "id": "4",
+            "text": "The pipeline"
+          },
+          {
+            "id": "5",
+            "text": "had been"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "4",
+          "5",
+          "1",
+          "2",
+          "3"
+        ],
+        "fullSentenceEn": "The pipeline had been failing for hours before I noticed.",
+        "grammarTip": {
+          "titleVi": "Hành động liên tục",
+          "tipVi": "Mô tả trạng thái lỗi liên tục của CI pipeline."
         }
       },
       {
-        "id": "past-perfect-continuous-do-16",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 16",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-16",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Viết ticket Jira về CI/CD",
+        "vietnameseMeaning": "Pipeline đã thất bại trong nhiều giờ trước khi tôi nhận thấy.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "failing"
+          },
+          {
+            "id": "2",
+            "text": "for hours"
+          },
+          {
+            "id": "3",
+            "text": "before I noticed"
+          },
+          {
+            "id": "4",
+            "text": "The pipeline"
+          },
+          {
+            "id": "5",
+            "text": "had been"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "4",
+          "5",
+          "1",
+          "2",
+          "3"
+        ],
+        "fullSentenceEn": "The pipeline had been failing for hours before I noticed.",
+        "grammarTip": {
+          "titleVi": "Hành động liên tục",
+          "tipVi": "Mô tả trạng thái lỗi liên tục của CI pipeline."
         }
       },
       {
-        "id": "past-perfect-continuous-do-17",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 17",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-17",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Viết ticket Jira về CI/CD",
+        "vietnameseMeaning": "Pipeline đã thất bại trong nhiều giờ trước khi tôi nhận thấy.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "failing"
+          },
+          {
+            "id": "2",
+            "text": "for hours"
+          },
+          {
+            "id": "3",
+            "text": "before I noticed"
+          },
+          {
+            "id": "4",
+            "text": "The pipeline"
+          },
+          {
+            "id": "5",
+            "text": "had been"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "4",
+          "5",
+          "1",
+          "2",
+          "3"
+        ],
+        "fullSentenceEn": "The pipeline had been failing for hours before I noticed.",
+        "grammarTip": {
+          "titleVi": "Hành động liên tục",
+          "tipVi": "Mô tả trạng thái lỗi liên tục của CI pipeline."
         }
       },
       {
-        "id": "past-perfect-continuous-do-18",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 18",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-18",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Viết ticket Jira về CI/CD",
+        "vietnameseMeaning": "Pipeline đã thất bại trong nhiều giờ trước khi tôi nhận thấy.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "failing"
+          },
+          {
+            "id": "2",
+            "text": "for hours"
+          },
+          {
+            "id": "3",
+            "text": "before I noticed"
+          },
+          {
+            "id": "4",
+            "text": "The pipeline"
+          },
+          {
+            "id": "5",
+            "text": "had been"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "4",
+          "5",
+          "1",
+          "2",
+          "3"
+        ],
+        "fullSentenceEn": "The pipeline had been failing for hours before I noticed.",
+        "grammarTip": {
+          "titleVi": "Hành động liên tục",
+          "tipVi": "Mô tả trạng thái lỗi liên tục của CI pipeline."
         }
       },
       {
-        "id": "past-perfect-continuous-do-19",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 19",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-19",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Viết ticket Jira về CI/CD",
+        "vietnameseMeaning": "Pipeline đã thất bại trong nhiều giờ trước khi tôi nhận thấy.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "failing"
+          },
+          {
+            "id": "2",
+            "text": "for hours"
+          },
+          {
+            "id": "3",
+            "text": "before I noticed"
+          },
+          {
+            "id": "4",
+            "text": "The pipeline"
+          },
+          {
+            "id": "5",
+            "text": "had been"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "4",
+          "5",
+          "1",
+          "2",
+          "3"
+        ],
+        "fullSentenceEn": "The pipeline had been failing for hours before I noticed.",
+        "grammarTip": {
+          "titleVi": "Hành động liên tục",
+          "tipVi": "Mô tả trạng thái lỗi liên tục của CI pipeline."
         }
       },
       {
-        "id": "past-perfect-continuous-do-20",
-        "challengeType": "conjugation",
-        "contextType": "chat",
-        "scenarioVi": "Slack chat 20",
-        "textBefore": "The pipeline ",
-        "baseVerb": "fail",
-        "textAfter": " last night.",
-        "correctAnswer": "failed",
-        "options": [
-          "fail",
-          "failed",
-          "failing"
+        "id": "past-perfect-cont-devops-20",
+        "challengeType": "sentenceBuilding",
+        "scenarioVi": "Viết ticket Jira về CI/CD",
+        "vietnameseMeaning": "Pipeline đã thất bại trong nhiều giờ trước khi tôi nhận thấy.",
+        "scrambledTokens": [
+          {
+            "id": "1",
+            "text": "failing"
+          },
+          {
+            "id": "2",
+            "text": "for hours"
+          },
+          {
+            "id": "3",
+            "text": "before I noticed"
+          },
+          {
+            "id": "4",
+            "text": "The pipeline"
+          },
+          {
+            "id": "5",
+            "text": "had been"
+          }
         ],
-        "explanation": {
-          "ruleVi": "Sự kiện trong quá khứ.",
-          "detailedAnalysisVi": "Last night là dấu hiệu."
+        "correctTokenOrder": [
+          "4",
+          "5",
+          "1",
+          "2",
+          "3"
+        ],
+        "fullSentenceEn": "The pipeline had been failing for hours before I noticed.",
+        "grammarTip": {
+          "titleVi": "Hành động liên tục",
+          "tipVi": "Mô tả trạng thái lỗi liên tục của CI pipeline."
         }
       }
     ]
