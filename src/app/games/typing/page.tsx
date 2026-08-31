@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useTypingGame } from '@/hooks/useTypingGame';
 import { parseTenseDataToTypingQuestions } from '@/lib/typingParser';
 import presentSimpleData from '@/data/tenses/present-simple.json';
@@ -14,15 +14,18 @@ import { useGameConfig } from '@/hooks/useGameConfig';
 import { TypingSettings } from '@/types/config';
 
 function TypingGameContent() {
-  const { settings, isLoading, isPreview } = useGameConfig<TypingSettings>('typing');
+  const { isLoading } = useGameConfig<TypingSettings>('typing');
+  const [questions, setQuestions] = React.useState<ReturnType<typeof parseTenseDataToTypingQuestions>>([]);
 
-  const questions = useMemo(() => {
+  React.useEffect(() => {
     // In a full app, we would load the tenses based on settings.topics
     // For now we just load present-simple as the base data to satisfy User Story 1
     const allQuestions = parseTenseDataToTypingQuestions(presentSimpleData);
     // shuffle and take first 10 for a session
-    return allQuestions.sort(() => Math.random() - 0.5).slice(0, 10);
-  }, [settings]);
+    const shuffled = [...allQuestions].sort(() => Math.random() - 0.5).slice(0, 10);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setQuestions(shuffled);
+  }, []);
 
   const {
     state,
