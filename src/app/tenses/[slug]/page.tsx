@@ -3,6 +3,12 @@ import { Metadata } from "next";
 import tensesCatalog from "@/data/tenses/index.json";
 import presentSimpleData from "@/data/tenses/present-simple.json";
 import presentContinuousData from "@/data/tenses/present-continuous.json";
+import presentPerfectData from "@/data/tenses/present-perfect.json";
+import presentPerfectContinuousData from "@/data/tenses/present-perfect-continuous.json";
+import pastSimpleData from "@/data/tenses/past-simple.json";
+import pastContinuousData from "@/data/tenses/past-continuous.json";
+import pastPerfectData from "@/data/tenses/past-perfect.json";
+import pastPerfectContinuousData from "@/data/tenses/past-perfect-continuous.json";
 import futureSimpleData from "@/data/tenses/future-simple.json";
 import futureContinuousData from "@/data/tenses/future-continuous.json";
 import futurePerfectData from "@/data/tenses/future-perfect.json";
@@ -17,6 +23,12 @@ interface PageProps {
 const TENSE_DATA_MAP: Record<string, unknown> = {
   "present-simple": presentSimpleData,
   "present-continuous": presentContinuousData,
+  "present-perfect": presentPerfectData,
+  "present-perfect-continuous": presentPerfectContinuousData,
+  "past-simple": pastSimpleData,
+  "past-continuous": pastContinuousData,
+  "past-perfect": pastPerfectData,
+  "past-perfect-continuous": pastPerfectContinuousData,
   "future-simple": futureSimpleData,
   "future-continuous": futureContinuousData,
   "future-perfect": futurePerfectData,
