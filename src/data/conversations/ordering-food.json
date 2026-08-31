@@ -1,0 +1,45 @@
+{
+  "id": "ordering-food",
+  "titleVi": "Gọi món ở nhà hàng",
+  "titleEn": "Ordering Food at a Restaurant",
+  "description": "Thực hành gọi món tại một nhà hàng Mỹ",
+  "difficulty": 1,
+  "turns": [
+    {
+      "id": "t1",
+      "characterName": "Waiter",
+      "message": "Hello, are you ready to order?",
+      "options": [
+        {
+          "id": "o1-1",
+          "text": "Yes, I would like a burger.",
+          "isCorrect": true
+        },
+        {
+          "id": "o1-2",
+          "text": "I am fine.",
+          "isCorrect": false,
+          "feedback": "This doesn't answer the question about ordering food."
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "characterName": "Waiter",
+      "message": "Great choice. Would you like fries with that?",
+      "options": [
+        {
+          "id": "o2-1",
+          "text": "Yes, please.",
+          "isCorrect": true
+        },
+        {
+          "id": "o2-2",
+          "text": "No, I am burger.",
+          "isCorrect": false,
+          "feedback": "Grammatically incorrect."
+        }
+      ]
+    }
+  ]
+}

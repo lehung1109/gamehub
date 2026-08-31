@@ -36,6 +36,19 @@ export interface SentencesSettings {
   showVietnamese: boolean
 }
 
+export interface ReadingSettings {
+  difficulty?: number
+}
+
+export interface TypingSettings {
+  topics?: string[]
+}
+
+export interface RoleplaySettings {
+  difficulty?: number
+  autoSpeak?: boolean
+}
+
 export interface GameSettingsMap {
   flashcard: FlashcardSettings
   alphabet: AlphabetSettings
@@ -43,6 +56,9 @@ export interface GameSettingsMap {
   spelling: SpellingSettings
   'numbers-colors': NumbersColorsSettings
   sentences: SentencesSettings
+  reading: ReadingSettings
+  typing: TypingSettings
+  roleplay: RoleplaySettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -54,6 +70,9 @@ export type AnyGameSettings =
   | SpellingSettings
   | NumbersColorsSettings
   | SentencesSettings
+  | ReadingSettings
+  | TypingSettings
+  | RoleplaySettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -62,6 +81,9 @@ export type GameSettings =
   | { gameId: 'spelling'; settings: SpellingSettings }
   | { gameId: 'numbers-colors'; settings: NumbersColorsSettings }
   | { gameId: 'sentences'; settings: SentencesSettings }
+  | { gameId: 'reading'; settings: ReadingSettings }
+  | { gameId: 'typing'; settings: TypingSettings }
+  | { gameId: 'roleplay'; settings: RoleplaySettings }
 
 export interface PreviewPayload {
   gameId: GameId

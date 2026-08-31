@@ -1,0 +1,61 @@
+{
+  "id": "a-day-at-the-park",
+  "title": "A Day at the Park",
+  "difficulty": 1,
+  "passageText": "Yesterday, Sarah went to the park. It was a sunny and beautiful day. She brought a small basket with sandwiches and apples. First, she walked around the large lake. She saw many ducks swimming in the water. She threw some bread to the ducks, and they quacked happily. After that, she found a big oak tree and sat under its shade to eat her lunch. While she was eating, a small squirrel approached her. Sarah gave it a piece of apple. The squirrel took the apple quickly and ran up the tree. It was a very peaceful afternoon.",
+  "vocabulary": [
+    {
+      "word": "basket",
+      "definition": "a container used to hold or carry things",
+      "translationVi": "cái rổ/giỏ"
+    },
+    {
+      "word": "approached",
+      "definition": "came near to someone or something",
+      "translationVi": "tiến lại gần"
+    },
+    {
+      "word": "peaceful",
+      "definition": "quiet and calm; without worry or disturbance",
+      "translationVi": "yên bình"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "questionText": "What did Sarah bring in her basket?",
+      "options": [
+        "Bread and water",
+        "Sandwiches and apples",
+        "Ducks and squirrels",
+        "Books and pens"
+      ],
+      "correctOptionIndex": 1,
+      "explanation": "The text states: 'She brought a small basket with sandwiches and apples.'"
+    },
+    {
+      "id": "q2",
+      "questionText": "What did Sarah do first when she arrived at the park?",
+      "options": [
+        "She sat under a tree",
+        "She fed the squirrel",
+        "She walked around the lake",
+        "She ate her sandwiches"
+      ],
+      "correctOptionIndex": 2,
+      "explanation": "The text states: 'First, she walked around the large lake.'"
+    },
+    {
+      "id": "q3",
+      "questionText": "Why did the squirrel run up the tree?",
+      "options": [
+        "Because it was scared of Sarah",
+        "Because it wanted to eat the apple there",
+        "Because Sarah chased it",
+        "The text doesn't explain why, but says it took the apple and ran up the tree"
+      ],
+      "correctOptionIndex": 3,
+      "explanation": "The text just says 'The squirrel took the apple quickly and ran up the tree.' It doesn't explicitly state the reason."
+    }
+  ]
+}

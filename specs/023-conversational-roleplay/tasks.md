@@ -4,7 +4,7 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directories for roleplay game: `src/app/games/roleplay/`, `src/components/roleplay/`, `src/data/conversations/`
+- [x] T001 Create project directories for roleplay game: `src/app/games/roleplay/`, `src/components/roleplay/`, `src/data/conversations/`
 
 ---
 
@@ -12,10 +12,10 @@
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-- [ ] T002 [P] Create `ConversationScenario` and `DialogueTurn` interfaces in `src/types/roleplay.ts`
-- [ ] T003 [P] Create `RoleplayGameState` interface in `src/types/roleplay.ts`
-- [ ] T004 Create initial mock data file in `src/data/conversations/ordering-food.json` based on the data model
-- [ ] T005 Update `src/types/config.ts` to include `roleplay` in `GameSettingsMap` if necessary
+- [x] T002 [P] Create `ConversationScenario` and `DialogueTurn` interfaces in `src/types/roleplay.ts`
+- [x] T003 [P] Create `RoleplayGameState` interface in `src/types/roleplay.ts`
+- [x] T004 Create initial mock data file in `src/data/conversations/ordering-food.json` based on the data model
+- [x] T005 Update `src/types/config.ts` to include `roleplay` in `GameSettingsMap` if necessary
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -29,11 +29,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T006 [P] [US1] Create basic layout and routing in `src/app/games/roleplay/page.tsx`
-- [ ] T007 [P] [US1] Create `ChatBubble` component in `src/components/roleplay/ChatBubble.tsx`
-- [ ] T008 [P] [US1] Create `ResponseChoices` component in `src/components/roleplay/ResponseChoices.tsx`
-- [ ] T009 [US1] Create custom hook `useRoleplayGame` in `src/hooks/useRoleplayGame.ts` to manage game state (turns, score, validation)
-- [ ] T010 [US1] Integrate state hook and UI components in `src/app/games/roleplay/page.tsx` to handle the full chat flow
+- [x] T006 [P] [US1] Create basic layout and routing in `src/app/games/roleplay/page.tsx`
+- [x] T007 [P] [US1] Create `ChatBubble` component in `src/components/roleplay/ChatBubble.tsx`
+- [x] T008 [P] [US1] Create `ResponseChoices` component in `src/components/roleplay/ResponseChoices.tsx`
+- [x] T009 [US1] Create custom hook `useRoleplayGame` in `src/hooks/useRoleplayGame.ts` to manage game state (turns, score, validation)
+- [x] T010 [US1] Integrate state hook and UI components in `src/app/games/roleplay/page.tsx` to handle the full chat flow
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 

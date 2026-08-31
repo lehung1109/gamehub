@@ -4,7 +4,7 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directories for typing game: `src/app/games/typing/`, `src/components/typing/`
+- [x] T001 Create project directories for typing game: `src/app/games/typing/`, `src/components/typing/`
 
 ---
 
@@ -12,9 +12,9 @@
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
-- [ ] T002 [P] Create `FillBlankQuestion` and `TypingGameState` interfaces in `src/types/typing.ts`
-- [ ] T003 [P] Implement utility function to parse existing tense JSON into `FillBlankQuestion` format in `src/lib/typingParser.ts`
-- [ ] T004 Update `src/types/config.ts` to include `typing` in `GameSettingsMap` if necessary
+- [x] T002 [P] Create `FillBlankQuestion` and `TypingGameState` interfaces in `src/types/typing.ts`
+- [x] T003 [P] Implement utility function to parse existing tense JSON into `FillBlankQuestion` format in `src/lib/typingParser.ts`
+- [x] T004 Update `src/types/config.ts` to include `typing` in `GameSettingsMap` if necessary
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -28,11 +28,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T005 [P] [US1] Create basic layout and routing in `src/app/games/typing/page.tsx`
-- [ ] T006 [P] [US1] Create `SentenceWithInput` component in `src/components/typing/SentenceWithInput.tsx` (ensure proper mobile keyboard attributes: autoCapitalize="none", etc.)
-- [ ] T007 [P] [US1] Implement `validateAnswer` utility in `src/lib/validation.ts`
-- [ ] T008 [US1] Create custom hook `useTypingGame` in `src/hooks/useTypingGame.ts` to manage state (current question, user input, score, validation)
-- [ ] T009 [US1] Integrate state hook and UI components in `src/app/games/typing/page.tsx` to handle the full interaction flow
+- [x] T005 [P] [US1] Create basic layout and routing in `src/app/games/typing/page.tsx`
+- [x] T006 [P] [US1] Create `SentenceWithInput` component in `src/components/typing/SentenceWithInput.tsx` (ensure proper mobile keyboard attributes: autoCapitalize="none", etc.)
+- [x] T007 [P] [US1] Implement `validateAnswer` utility in `src/lib/validation.ts`
+- [x] T008 [US1] Create custom hook `useTypingGame` in `src/hooks/useTypingGame.ts` to manage state (current question, user input, score, validation)
+- [x] T009 [US1] Integrate state hook and UI components in `src/app/games/typing/page.tsx` to handle the full interaction flow
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -46,9 +46,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T010 [P] [US2] Create `HintBadge` component in `src/components/typing/HintBadge.tsx`
-- [ ] T011 [US2] Update `SentenceWithInput.tsx` to conditionally render `HintBadge` next to or under the input field based on the question data
-- [ ] T012 [US2] Update parser in `src/lib/typingParser.ts` to correctly extract hints from the existing tense JSON format if needed
+- [x] T010 [P] [US2] Create `HintBadge` component in `src/components/typing/HintBadge.tsx`
+- [x] T011 [US2] Update `SentenceWithInput.tsx` to conditionally render `HintBadge` next to or under the input field based on the question data
+- [x] T012 [US2] Update parser in `src/lib/typingParser.ts` to correctly extract hints from the existing tense JSON format if needed
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -58,9 +58,9 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T013 [P] Add visual animations for correct/incorrect answers (green/red flash) in `SentenceWithInput.tsx`
-- [ ] T014 [P] Update UI to handle completed scenario (Score Screen) in `src/app/games/typing/page.tsx`
-- [ ] T015 Run quickstart.md validation
+- [x] T013 [P] Add visual animations for correct/incorrect answers (green/red flash) in `SentenceWithInput.tsx`
+- [x] T014 [P] Update UI to handle completed scenario (Score Screen) in `src/app/games/typing/page.tsx`
+- [x] T015 Run quickstart.md validation
 
 ---
 
