@@ -8,6 +8,8 @@ import type {
   SpellingSettings,
   NumbersColorsSettings,
   SentencesSettings,
+  ReadingSettings,
+  TypingSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -19,6 +21,8 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'spelling',
   'numbers-colors',
   'sentences',
+  'reading',
+  'typing',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -55,6 +59,12 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
     categories: [],
     sentenceCount: 0,
     showVietnamese: true,
+  },
+  reading: {
+    difficulty: 1,
+  },
+  typing: {
+    topics: [],
   },
 }
 
@@ -161,6 +171,20 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const showVietnamese = obj.showVietnamese !== undefined ? Boolean(obj.showVietnamese) : true
 
       const validated: SentencesSettings = { categories, sentenceCount, showVietnamese }
+      return { valid: true, data: validated }
+    }
+
+    case 'reading': {
+      const difficulty = sanitizeInt(obj.difficulty, 1, 1, 10)
+      const validated: ReadingSettings = { difficulty }
+      return { valid: true, data: validated }
+    }
+
+    case 'typing': {
+      const topics = Array.isArray(obj.topics)
+        ? obj.topics.filter((t): t is string => typeof t === 'string')
+        : []
+      const validated: TypingSettings = { topics }
       return { valid: true, data: validated }
     }
 

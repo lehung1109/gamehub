@@ -47,10 +47,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T011 [P] [US2] Create or extract an audio playback utility in `src/lib/speech.ts` (if not already existing from flashcard game)
-- [ ] T012 [US2] Update `ChatBubble.tsx` to include an audio playback icon that triggers the TTS engine
-- [ ] T013 [US2] Update `useRoleplayGame` state to handle auto-speak settings if configured
-- [ ] T014 [US2] Ensure speech synthesis works across different message turns without overlapping
+- [x] T011 [P] [US2] Create or extract an audio playback utility in `src/lib/speech.ts` (if not already existing from flashcard game)
+- [x] T012 [US2] Update `ChatBubble.tsx` to include an audio playback icon that triggers the TTS engine
+- [x] T013 [US2] Update `useRoleplayGame` state to handle auto-speak settings if configured
+- [x] T014 [US2] Ensure speech synthesis works across different message turns without overlapping
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -60,9 +60,9 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T015 [P] Add Framer Motion animations to `ChatBubble.tsx` for smooth message appearance
-- [ ] T016 [P] Update UI to handle completed scenario (Score Screen) in `src/app/games/roleplay/page.tsx`
-- [ ] T017 Run quickstart.md validation
+- [x] T015 [P] Add Framer Motion animations to `ChatBubble.tsx` for smooth message appearance
+- [x] T016 [P] Update UI to handle completed scenario (Score Screen) in `src/app/games/roleplay/page.tsx`
+- [x] T017 Run quickstart.md validation
 
 ---
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Volume2 } from 'lucide-react'
 import { useSpeech } from '@/hooks/useSpeech'
+import { motion } from 'framer-motion'
 
 export interface ChatBubbleProps {
   text: string
@@ -14,7 +15,12 @@ export function ChatBubble({ text, sender, characterName, audioText }: ChatBubbl
   const { speak, isSpeaking, isSupported } = useSpeech()
 
   return (
-    <div className={`flex flex-col mb-4 ${isLearner ? 'items-end' : 'items-start'}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className={`flex flex-col mb-4 ${isLearner ? 'items-end' : 'items-start'}`}
+    >
       {!isLearner && characterName && (
         <span className="text-sm text-gray-500 mb-1 ml-2">{characterName}</span>
       )}
@@ -47,6 +53,6 @@ export function ChatBubble({ text, sender, characterName, audioText }: ChatBubbl
           </button>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

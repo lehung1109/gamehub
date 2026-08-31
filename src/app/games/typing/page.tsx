@@ -14,7 +14,7 @@ import { useGameConfig } from '@/hooks/useGameConfig';
 import { TypingSettings } from '@/types/config';
 
 export default function TypingGamePage() {
-  const { settings, isLoading, isPreview } = useGameConfig<TypingSettings>();
+  const { settings, isLoading, isPreview } = useGameConfig<TypingSettings>('typing');
 
   const questions = useMemo(() => {
     // In a full app, we would load the tenses based on settings.topics

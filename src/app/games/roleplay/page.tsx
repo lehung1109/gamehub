@@ -4,13 +4,22 @@ import React from 'react'
 import { ChatBubble } from '@/components/roleplay/ChatBubble'
 import { ResponseChoices } from '@/components/roleplay/ResponseChoices'
 import { useRoleplayGame } from '@/hooks/useRoleplayGame'
+import { useSpeech } from '@/hooks/useSpeech'
+import { useGameConfig } from '@/hooks/useGameConfig'
 import orderingFoodData from '@/data/conversations/ordering-food.json'
 import { ConversationScenario } from '@/types/roleplay'
+import { RoleplaySettings } from '@/types/config'
 
 const scenario = orderingFoodData as ConversationScenario
 
 export default function RoleplayGamePage() {
-  const { gameState, startGame, handleSelectOption, currentTurn, resetGame } = useRoleplayGame(scenario)
+  const { settings } = useGameConfig<RoleplaySettings>('roleplay')
+  const { speak } = useSpeech()
+  
+  const { gameState, startGame, handleSelectOption, currentTurn, resetGame } = useRoleplayGame(scenario, {
+    autoSpeak: settings?.autoSpeak ?? true,
+    speak,
+  })
 
   if (gameState.status === 'intro') {
     return (
