@@ -64,10 +64,10 @@
 **Independent Test**: Complete a game with `classCode` and `studentName` active, verify payload with `gameType: 'memory-match'`, stars, and elapsed time sent to `/api/track`.
 
 ### Implementation for User Story 2
-- [ ] T020 [P] [US2] Unit Test (TDD): Add unit test in `tests/unit/hooks/useMemoryGame.test.ts` verifying progress tracking payload generation for `/api/track`
-- [ ] T021 [US2] Integrate `useGameTracking` in `src/app/games/memory-match/page.tsx` to automatically dispatch session results on game completion when `classCode` and `studentName` exist, with graceful fallback in standalone mode
-- [ ] T022 [US2] Dedicated subagent execution for Phase 4 review, spec compliance verification, eslint check, and iterative bug hunt loop
-- [ ] T023 [US2] Phase 4 review loop & commit: `feat(memory-match): integrate student progress tracking for classroom sessions`
+- [x] T020 [P] [US2] Unit Test (TDD): Add unit test in `tests/unit/hooks/useMemoryGame.test.ts` verifying progress tracking payload generation for `/api/track`
+- [x] T021 [US2] Integrate `useGameTracking` in `src/app/games/memory-match/page.tsx` to automatically dispatch session results on game completion when `classCode` and `studentName` exist, with graceful fallback in standalone mode
+- [x] T022 [US2] Dedicated subagent execution for Phase 4 review, spec compliance verification, eslint check, and iterative bug hunt loop
+- [x] T023 [US2] Phase 4 review loop & commit: `feat(memory-match): integrate student progress tracking for classroom sessions`
 
 **Checkpoint**: User Stories 1 AND 2 are fully functional and testable independently.
 

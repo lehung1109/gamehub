@@ -32,6 +32,8 @@ export function MemoryCard({
       role="button"
       aria-label={ariaLabel}
       aria-disabled={disabled}
+      data-word-id={card.wordId}
+      data-card-type={card.type}
       onClick={() => {
         if (!disabled) {
           onClick()

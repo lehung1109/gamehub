@@ -23,15 +23,17 @@ vi.mock('@/hooks/useGameConfig', () => ({
   }),
 }))
 
+const mockSubmitSession = vi.fn().mockResolvedValue(true)
 vi.mock('@/hooks/use-game-tracking', () => ({
-  useGameTracking: () => ({
-    isTracking: false,
-    isAnonymous: true,
+  useGameTracking: (params: unknown) => ({
+    isTracking: true,
+    isAnonymous: false,
     session: null,
     details: [],
     recordQuestion: vi.fn(),
-    submitSession: vi.fn().mockResolvedValue(true),
+    submitSession: mockSubmitSession,
     resetSession: vi.fn(),
+    params,
   }),
 }))
 
@@ -95,5 +97,74 @@ describe('Memory Match Game Page (src/app/games/memory-match/page.tsx)', () => {
         btn.getAttribute('aria-label')?.includes('Thẻ chữ')
     )
     expect(flippedCard).toBeDefined()
+  })
+
+  it('dispatches session results via useGameTracking upon completing the game', () => {
+    render(<MemoryMatchPage />)
+
+    // Select 4 pairs for faster completion test
+    const btn4 = screen.getByRole('button', { name: /4 cặp/i })
+    fireEvent.click(btn4)
+
+    // Gather all unique wordIds from cards
+    const cardButtons = screen.getAllByRole('button', { name: /Thẻ úp/i })
+    const wordIdSet = new Set<string>()
+    cardButtons.forEach((btn) => {
+      const wId = btn.getAttribute('data-word-id')
+      if (wId) wordIdSet.add(wId)
+    })
+
+    // Match all pairs one by one
+    wordIdSet.forEach((wordId) => {
+      const pair = screen
+        .getAllByRole('button')
+        .filter((btn) => btn.getAttribute('data-word-id') === wordId)
+      expect(pair).toHaveLength(2)
+      fireEvent.click(pair[0])
+      fireEvent.click(pair[1])
+    })
+
+    // Verification: celebration dialog should be shown and submitSession called
+    expect(mockSubmitSession).toHaveBeenCalledTimes(1)
+    expect(mockSubmitSession).toHaveBeenCalledWith(
+      expect.objectContaining({
+        score: expect.any(Number),
+        totalQuestions: 4,
+        details: expect.arrayContaining([
+          expect.objectContaining({
+            isCorrect: true,
+            attempts: 4,
+          }),
+        ]),
+      })
+    )
+  })
+
+  it('displays celebration modal gracefully when playing standalone (anonymous)', () => {
+    mockSubmitSession.mockResolvedValueOnce(false)
+    render(<MemoryMatchPage />)
+
+    const btn4 = screen.getByRole('button', { name: /4 cặp/i })
+    fireEvent.click(btn4)
+
+    const cardButtons = screen.getAllByRole('button', { name: /Thẻ úp/i })
+    const wordIdSet = new Set<string>()
+    cardButtons.forEach((btn) => {
+      const wId = btn.getAttribute('data-word-id')
+      if (wId) wordIdSet.add(wId)
+    })
+
+    wordIdSet.forEach((wordId) => {
+      const pair = screen
+        .getAllByRole('button')
+        .filter((btn) => btn.getAttribute('data-word-id') === wordId)
+      fireEvent.click(pair[0])
+      fireEvent.click(pair[1])
+    })
+
+    expect(
+      screen.getByRole('heading', { level: 2, name: /Hoàn Thành Xuất Sắc!/i })
+    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Chơi lại ván mới/i })).toBeInTheDocument()
   })
 })

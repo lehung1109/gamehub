@@ -198,4 +198,30 @@ describe('useMemoryGame hook (TDD)', () => {
       })
     )
   })
+
+  it('generates completion payload suitable for /api/track progress tracking', () => {
+    const onComplete = vi.fn()
+    const { result } = renderHook(() =>
+      useMemoryGame({ words: mockWords.slice(0, 4), pairCount: 4, onComplete })
+    )
+
+    const uniqueWordIds = Array.from(new Set(result.current.cards.map((c) => c.wordId)))
+    uniqueWordIds.forEach((wordId) => {
+      const pairIndices = result.current.cards
+        .map((c, i) => (c.wordId === wordId ? i : -1))
+        .filter((i) => i !== -1)
+      act(() => {
+        result.current.handleCardClick(pairIndices[0])
+        result.current.handleCardClick(pairIndices[1])
+      })
+    })
+
+    expect(onComplete).toHaveBeenCalledTimes(1)
+    const payload = onComplete.mock.calls[0][0]
+    expect(payload).toEqual({
+      flips: 4,
+      stars: 3,
+      elapsedSeconds: expect.any(Number),
+    })
+  })
 })
