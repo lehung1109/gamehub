@@ -41,17 +41,17 @@
 **Independent Test**: Load `/games/memory-match`, select topic "Animals" and 6 pairs, flip cards to find all pairs, hear English audio, verify star rating and play again with new words.
 
 ### Tests for User Story 1 (TDD - Write First)
-- [ ] T011 [P] [US1] Unit Test (TDD): Create failing unit test `tests/unit/hooks/useMemoryGame.test.ts` verifying deck generation, card shuffling, match detection, 1000ms mismatch delay, click lock during mismatch, audio replay on matched cards without flip increment, and proportional star calculation (3 stars: ≤ N+2, 2 stars: N+3 to 2N, 1 star: > 2N)
-- [ ] T012 [P] [US1] Unit Test (TDD): Create failing unit test `tests/unit/components/MemoryCard.test.tsx` verifying card face-down/face-up rendering, CSS 3D transform flip classes (`perspective`, `rotate-y-180`), click handler invocation, and audio replay triggers
+- [x] T011 [P] [US1] Unit Test (TDD): Create failing unit test `tests/unit/hooks/useMemoryGame.test.ts` verifying deck generation, card shuffling, match detection, 1000ms mismatch delay, click lock during mismatch, audio replay on matched cards without flip increment, and proportional star calculation (3 stars: ≤ N+2, 2 stars: N+3 to 2N, 1 star: > 2N)
+- [x] T012 [P] [US1] Unit Test (TDD): Create failing unit test `tests/unit/components/MemoryCard.test.tsx` verifying card face-down/face-up rendering, CSS 3D transform flip classes (`perspective`, `rotate-y-180`), click handler invocation, and audio replay triggers
 
 ### Implementation for User Story 1
-- [ ] T013 [US1] Implement `src/hooks/useMemoryGame.ts` managing active session state (`cards`, `flippedIndices`, `matchedWordIds`, `flips`, `isLocked`, `elapsedSeconds`, `stars`) and make `tests/unit/hooks/useMemoryGame.test.ts` pass
-- [ ] T014 [P] [US1] Implement `src/components/game/MemoryCard.tsx` with responsive dimensions (≥ 72px touch targets) and Tailwind CSS 3D flip animation to make `tests/unit/components/MemoryCard.test.tsx` pass
-- [ ] T015 [P] [US1] Implement `src/components/game/MemoryBoard.tsx` rendering responsive grid layout (2x4 for 8 cards, 3x4 for 12 cards, 4x4 for 16 cards)
-- [ ] T016 [US1] Implement `src/app/games/memory-match/page.tsx` integrating topic selector, pair count selector (4, 6, 8), `useSpeech`, win celebration modal with star rating, confetti, "Chơi lại" (bốc từ mới), and "Đổi chủ đề"
-- [ ] T017 [US1] E2E Test (Playwright): Create `tests/e2e/memory-match.spec.ts` covering end-to-end user journey: navigation from home, selecting topic, flipping cards, audio playback verification, and completing game
-- [ ] T018 [US1] Dedicated subagent execution for Phase 3 review, spec compliance verification, eslint check, and iterative bug hunt loop
-- [ ] T019 [US1] Phase 3 review loop & commit: `feat(memory-match): implement core gameplay, board, card flip animation, and unit/e2e tests`
+- [x] T013 [US1] Implement `src/hooks/useMemoryGame.ts` managing active session state (`cards`, `flippedIndices`, `matchedWordIds`, `flips`, `isLocked`, `elapsedSeconds`, `stars`) and make `tests/unit/hooks/useMemoryGame.test.ts` pass
+- [x] T014 [P] [US1] Implement `src/components/game/MemoryCard.tsx` with responsive dimensions (≥ 72px touch targets) and Tailwind CSS 3D flip animation to make `tests/unit/components/MemoryCard.test.tsx` pass
+- [x] T015 [P] [US1] Implement `src/components/game/MemoryBoard.tsx` rendering responsive grid layout (2x4 for 8 cards, 3x4 for 12 cards, 4x4 for 16 cards)
+- [x] T016 [US1] Implement `src/app/games/memory-match/page.tsx` integrating topic selector, pair count selector (4, 6, 8), `useSpeech`, win celebration modal with star rating, confetti, "Chơi lại" (bốc từ mới), and "Đổi chủ đề"
+- [x] T017 [US1] E2E Test (Playwright): Create `tests/e2e/memory-match.spec.ts` covering end-to-end user journey: navigation from home, selecting topic, flipping cards, audio playback verification, and completing game
+- [x] T018 [US1] Dedicated subagent execution for Phase 3 review, spec compliance verification, eslint check, and iterative bug hunt loop
+- [x] T019 [US1] Phase 3 review loop & commit: `feat(memory-match): implement core gameplay, board, card flip animation, and unit/e2e tests`
 
 **Checkpoint**: User Story 1 (MVP) is fully functional and testable independently.
 
