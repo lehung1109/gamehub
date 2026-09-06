@@ -10,10 +10,10 @@
 
 **Purpose**: Initialize feature workspace, directory structure, and isolate environment.
 
-- [ ] T001 Create git worktree or verify workspace isolation for feature branch `026-memory-match-game`
-- [ ] T002 [P] Create directory structure for memory match components: `src/app/games/memory-match/`, `src/components/game/`, `src/components/config/`
-- [ ] T003 Dedicated subagent execution to verify Phase 1 setup and workspace isolation
-- [ ] T004 Phase 1 review loop & commit: `chore(setup): initialize memory-match game workspace and directories`
+- [x] T001 Create git worktree or verify workspace isolation for feature branch `026-memory-match-game`
+- [x] T002 [P] Create directory structure for memory match components: `src/app/games/memory-match/`, `src/components/game/`, `src/components/config/`
+- [x] T003 Dedicated subagent execution to verify Phase 1 setup and workspace isolation
+- [x] T004 Phase 1 review loop & commit: `chore(setup): initialize memory-match game workspace and directories`
 
 **Checkpoint**: Workspace and directory scaffolding ready.
 
@@ -23,12 +23,12 @@
 
 **Purpose**: Core types, validation schemas, and game registry required by all user stories.
 
-- [ ] T005 [P] Create Memory Match TypeScript models (`MemoryCard`, `MemoryGameState`, `MemoryMatchSettings`) in `src/types/memory-match.ts` and re-export in `src/types/index.ts`
-- [ ] T006 [P] Update `src/types/config.ts` to register `memory-match` in `GameSettingsMap` and `GameId`
-- [ ] T007 [P] Update `src/lib/game-config-schema.ts` to add `memoryMatchSettingsSchema` with validation for `topics`, `pairCount` (4, 6, 8), `autoSpeak`, `showTimer`, and implement `getDefaultSettings('memory-match')`
-- [ ] T008 Add Memory Match game entry to `src/data/games.json` with id `memory-match`, slug `memory-match`, titleVi `Lật thẻ tìm cặp`, titleEn `Memory Match`, emoji `🧠`, route `/games/memory-match`, and priority 7
-- [ ] T009 Dedicated subagent execution to verify Phase 2 typecheck (`npx tsc --noEmit`) and lint (`npm run lint`)
-- [ ] T010 Phase 2 review loop & commit: `feat(memory-match): add foundational data types, schema, and game catalog entry`
+- [x] T005 [P] Create Memory Match TypeScript models (`MemoryCard`, `MemoryGameState`, `MemoryMatchSettings`) in `src/types/memory-match.ts` and re-export in `src/types/index.ts`
+- [x] T006 [P] Update `src/types/config.ts` to register `memory-match` in `GameSettingsMap` and `GameId`
+- [x] T007 [P] Update `src/lib/game-config-schema.ts` to add `memoryMatchSettingsSchema` with validation for `topics`, `pairCount` (4, 6, 8), `autoSpeak`, `showTimer`, and implement `getDefaultSettings('memory-match')`
+- [x] T008 Add Memory Match game entry to `src/data/games.json` with id `memory-match`, slug `memory-match`, titleVi `Lật thẻ tìm cặp`, titleEn `Memory Match`, emoji `🧠`, route `/games/memory-match`, and priority 7
+- [x] T009 Dedicated subagent execution to verify Phase 2 typecheck (`npx tsc --noEmit`) and lint (`npm run lint`)
+- [x] T010 Phase 2 review loop & commit: `feat(memory-match): add foundational data types, schema, and game catalog entry`
 
 **Checkpoint**: Foundation ready - User Story implementation can proceed in parallel.
 

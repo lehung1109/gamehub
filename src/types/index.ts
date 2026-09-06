@@ -57,3 +57,6 @@ export interface Sentence {
   emoji: string;
   category: string;
 }
+
+export * from './memory-match';
+

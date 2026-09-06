@@ -9,13 +9,14 @@ import {
 
 describe('Game Config Schema', () => {
   it('identifies valid and invalid game IDs', () => {
-    expect(VALID_GAME_IDS).toHaveLength(9)
+    expect(VALID_GAME_IDS).toHaveLength(10)
     expect(isValidGameId('flashcard')).toBe(true)
     expect(isValidGameId('alphabet')).toBe(true)
     expect(isValidGameId('listening')).toBe(true)
     expect(isValidGameId('spelling')).toBe(true)
     expect(isValidGameId('numbers-colors')).toBe(true)
     expect(isValidGameId('sentences')).toBe(true)
+    expect(isValidGameId('memory-match')).toBe(true)
     expect(isValidGameId('unknown-game')).toBe(false)
     expect(isValidGameId('')).toBe(false)
   })
@@ -37,6 +38,13 @@ describe('Game Config Schema', () => {
       numberRange: [1, 20],
       includeColors: true,
       mode: 'learn',
+    })
+
+    expect(getDefaultSettings('memory-match')).toEqual({
+      topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
+      pairCount: 6,
+      autoSpeak: true,
+      showTimer: true,
     })
   })
 
@@ -156,6 +164,31 @@ describe('Game Config Schema', () => {
         categories: ['daily-actions', 'school'],
         sentenceCount: 10,
         showVietnamese: false,
+      })
+    })
+
+    it('validates memory-match settings with defaults and sanitizes inputs', () => {
+      const res = validateGameSettings('memory-match', {
+        topics: ['animals', 999, 'fruits'],
+        pairCount: 8,
+        autoSpeak: false,
+        showTimer: false,
+      })
+      expect(res.valid).toBe(true)
+      expect(res.data).toEqual({
+        topics: ['animals', 'fruits'],
+        pairCount: 8,
+        autoSpeak: false,
+        showTimer: false,
+      })
+
+      const resDefault = validateGameSettings('memory-match', {})
+      expect(resDefault.valid).toBe(true)
+      expect(resDefault.data).toEqual({
+        topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
+        pairCount: 6,
+        autoSpeak: true,
+        showTimer: true,
       })
     })
   })

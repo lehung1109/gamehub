@@ -11,6 +11,7 @@ import type {
   ReadingSettings,
   TypingSettings,
   RoleplaySettings,
+  MemoryMatchSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -25,6 +26,7 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'reading',
   'typing',
   'roleplay',
+  'memory-match',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -72,7 +74,14 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
     difficulty: 1,
     autoSpeak: true,
   },
+  'memory-match': {
+    topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
+    pairCount: 6,
+    autoSpeak: true,
+    showTimer: true,
+  },
 }
+
 
 export function getDefaultSettings<T extends GameId>(gameId: T): GameSettingsMap[T] {
   return { ...DEFAULT_SETTINGS[gameId] } as GameSettingsMap[T]
@@ -201,7 +210,21 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       return { valid: true, data: validated }
     }
 
+    case 'memory-match': {
+      const topics = Array.isArray(obj.topics)
+        ? obj.topics.filter((t): t is string => typeof t === 'string')
+        : ['animals', 'fruits', 'family', 'school', 'body-parts']
+      const pairCountRaw = sanitizeInt(obj.pairCount, 6, 4, 8)
+      const pairCount: 4 | 6 | 8 = pairCountRaw === 4 || pairCountRaw === 8 ? pairCountRaw : 6
+      const autoSpeak = obj.autoSpeak !== undefined ? Boolean(obj.autoSpeak) : true
+      const showTimer = obj.showTimer !== undefined ? Boolean(obj.showTimer) : true
+
+      const validated: MemoryMatchSettings = { topics, pairCount, autoSpeak, showTimer }
+      return { valid: true, data: validated }
+    }
+
     default:
       return { valid: false, error: `Unhandled game: ${gameId}` }
   }
 }
+
