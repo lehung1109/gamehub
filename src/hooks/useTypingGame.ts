@@ -48,12 +48,23 @@ export function useTypingGame(questions: FillBlankQuestion[]) {
     });
   }, [questions.length]);
 
+  const resetGame = useCallback(() => {
+    setState({
+      currentIndex: 0,
+      score: 0,
+      status: 'playing',
+      userInput: '',
+      isCorrect: null,
+    });
+  }, []);
+
   return {
     state,
     currentQuestion,
     handleInputChange,
     handleSubmit,
     handleNext,
+    resetGame,
     totalQuestions: questions.length,
   };
 }

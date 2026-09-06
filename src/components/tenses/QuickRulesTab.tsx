@@ -89,7 +89,7 @@ export function QuickRulesTab({
     if (!acc.find((c) => c.id === rule.category)) {
       acc.push({
         id: rule.category,
-        label: rule.categoryLabel || rule.titleVi,
+        label: rule.categoryLabel || rule.category || rule.titleVi,
       });
     }
     return acc;

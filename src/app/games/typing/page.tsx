@@ -28,6 +28,7 @@ function TypingGameContent() {
     handleInputChange,
     handleSubmit,
     handleNext,
+    resetGame,
     totalQuestions,
   } = useTypingGame(questions);
 
@@ -55,7 +56,7 @@ function TypingGameContent() {
           <p className="text-xl mb-6">
             Your score: {state.score} / {totalQuestions}
           </p>
-          <Button onClick={() => window.location.reload()} size="lg">
+          <Button onClick={resetGame} size="lg" className="cursor-pointer">
             Play Again
           </Button>
         </Card>

@@ -140,4 +140,29 @@ describe("Tenses Schema & Data Integrity Tests", () => {
       });
     });
   });
+
+  describe("All 12 Tenses Datasets (src/data/tenses/*.json)", () => {
+    const tensesSlugs = [
+      "future-continuous",
+      "future-perfect-continuous",
+      "future-perfect",
+      "future-simple",
+      "past-continuous",
+      "past-perfect-continuous",
+      "past-perfect",
+      "past-simple",
+      "present-continuous",
+      "present-perfect-continuous",
+      "present-perfect",
+      "present-simple",
+    ];
+
+    it.each(tensesSlugs)("validates entire %s dataset via validateTenseModuleData", async (slug) => {
+      const moduleData = await import(`@/data/tenses/${slug}.json`);
+      const res = validateTenseModuleData(moduleData.default || moduleData);
+      expect(res.valid, `Module ${slug} errors: ${res.errors.join("; ")}`).toBe(true);
+      expect(res.errors).toHaveLength(0);
+    });
+  });
 });
+

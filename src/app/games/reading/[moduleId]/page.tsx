@@ -7,6 +7,7 @@ import { useReadingGame } from '@/hooks/useReadingGame';
 import { PassageText } from '@/components/reading/PassageText';
 import { QuestionList } from '@/components/reading/QuestionList';
 import { Button } from '@/components/ui/button';
+import { BackButton } from '@/components/custom/BackButton';
 
 // Mock fetching function
 async function fetchModule(id: string): Promise<ReadingModule | null> {
@@ -46,7 +47,7 @@ export default function ReadingGamePage() {
     return <div className="p-8 text-center">Module not found</div>;
   }
 
-  return <ReadingGame moduleData={moduleData} onExit={() => router.push('/games')} />;
+  return <ReadingGame moduleData={moduleData} onExit={() => router.push('/')} />;
 }
 
 function ReadingGame({ moduleData, onExit }: { moduleData: ReadingModule, onExit: () => void }) {
@@ -71,8 +72,11 @@ function ReadingGame({ moduleData, onExit }: { moduleData: ReadingModule, onExit
   }
 
   return (
-    <div className="container mx-auto p-4 max-w-6xl h-[calc(100vh-4rem)]">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+    <div className="container mx-auto p-4 max-w-6xl space-y-4">
+      <div className="flex items-center justify-between">
+        <BackButton href="/" label="Về trang chủ" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[calc(100vh-8rem)]">
         {/* Left Column: Passage Text (Scrollable) */}
         <div className="bg-card rounded-xl shadow-sm border overflow-y-auto p-6 md:p-8 h-[40vh] md:h-full">
           <PassageText title={moduleData.title} text={moduleData.passageText} vocabulary={moduleData.vocabulary} />
