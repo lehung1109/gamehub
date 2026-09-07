@@ -53,4 +53,28 @@ test.describe('Memory Match Game E2E Flows', () => {
     await backBtn.click()
     await expect(page).toHaveURL('/')
   })
+
+  test('supports teacher preview mode with custom settings', async ({ page }) => {
+    const { encodePreviewSettings } = await import('../../src/lib/preview')
+    const previewParam = encodePreviewSettings('memory-match', {
+      topics: ['fruits'],
+      pairCount: 4,
+      autoSpeak: true,
+      showTimer: false,
+    })
+
+    await page.goto(`/games/memory-match?preview=${previewParam}`)
+
+    // Preview banner should be visible
+    const previewBanner = page.getByRole('status', { name: /Chế độ xem trước/i })
+    await expect(previewBanner).toBeVisible()
+
+    // 4 pairs should be loaded (8 cards)
+    const cards = page.getByRole('button', { name: /Thẻ úp/i })
+    await expect(cards).toHaveCount(8)
+
+    // Only 'Trái cây' should be available
+    await expect(page.getByRole('button', { name: /Trái cây/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: /Động vật/i })).not.toBeVisible()
+  })
 })

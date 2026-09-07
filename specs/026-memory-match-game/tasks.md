@@ -80,15 +80,15 @@
 **Independent Test**: Navigate to `/admin/configs/new`, select Memory Match, configure parameters, click "Xem trước" to verify live board preview at `/games/memory-match?preview=...`, and save config.
 
 ### Tests for User Story 3 (TDD - Write First)
-- [ ] T024 [P] [US3] Unit Test (TDD): Create failing unit test `tests/unit/components/MemoryMatchConfigForm.test.tsx` verifying form inputs for topic selection, pair count (4, 6, 8), autoSpeak toggle, showTimer toggle, and preview action
+- [x] T024 [P] [US3] Unit Test (TDD): Create failing unit test `tests/unit/components/MemoryMatchConfigForm.test.tsx` verifying form inputs for topic selection, pair count (4, 6, 8), autoSpeak toggle, showTimer toggle, and preview action
 
 ### Implementation for User Story 3
-- [ ] T025 [US3] Implement `src/components/config/MemoryMatchConfigForm.tsx` with topic multi-select, pair count selector (4, 6, 8), audio toggle, timer toggle, and PreviewButton integration to make `tests/unit/components/MemoryMatchConfigForm.test.tsx` pass
-- [ ] T026 [US3] Register `MemoryMatchConfigForm` in `src/components/config/ConfigCreateForm.tsx` and `src/components/config/ConfigEditForm.tsx` switch blocks for gameId `'memory-match'`
-- [ ] T027 [US3] Integrate `useGameConfig` and `PreviewBanner` in `src/app/games/memory-match/page.tsx` to load teacher config (`?config=...`) and handle live preview (`?preview=...`)
-- [ ] T028 [US3] E2E Test: Extend `tests/e2e/memory-match.spec.ts` to cover teacher config creation and preview mode workflow
-- [ ] T029 [US3] Dedicated subagent execution for Phase 5 review, spec compliance verification, eslint check, and iterative bug hunt loop
-- [ ] T030 [US3] Phase 5 review loop & commit: `feat(memory-match): implement teacher admin configuration and live preview mode`
+- [x] T025 [US3] Implement `src/components/config/MemoryMatchConfigForm.tsx` with topic multi-select, pair count selector (4, 6, 8), audio toggle, timer toggle, and PreviewButton integration to make `tests/unit/components/MemoryMatchConfigForm.test.tsx` pass
+- [x] T026 [US3] Register `MemoryMatchConfigForm` in `src/components/config/ConfigCreateForm.tsx` and `src/components/config/ConfigEditForm.tsx` switch blocks for gameId `'memory-match'`
+- [x] T027 [US3] Integrate `useGameConfig` and `PreviewBanner` in `src/app/games/memory-match/page.tsx` to load teacher config (`?config=...`) and handle live preview (`?preview=...`)
+- [x] T028 [US3] E2E Test: Extend `tests/e2e/memory-match.spec.ts` to cover teacher config creation and preview mode workflow
+- [x] T029 [US3] Dedicated subagent execution for Phase 5 review, spec compliance verification, eslint check, and iterative bug hunt loop
+- [x] T030 [US3] Phase 5 review loop & commit: `feat(memory-match): implement teacher admin configuration and live preview mode`
 
 **Checkpoint**: All user stories (P1, P2, P3) are fully functional and testable independently.
 

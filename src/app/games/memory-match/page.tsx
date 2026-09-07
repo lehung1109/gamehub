@@ -65,7 +65,7 @@ function formatTime(seconds: number): string {
 
 function MemoryMatchGameContent() {
   const { isSupported: isSpeechSupported, speak } = useSpeech()
-  const { configId, configName, settings } = useGameConfig<MemoryMatchSettings>('memory-match')
+  const { configId, configName, settings, isPreview } = useGameConfig<MemoryMatchSettings>('memory-match')
 
   // Filter allowed topics by config if configured
   const availableTopics = useMemo(() => {
@@ -181,8 +181,11 @@ function MemoryMatchGameContent() {
 
         {/* Banners */}
         <SpeechUnsupportedBanner show={!isSpeechSupported} />
-        <PreviewBanner />
-        {configName && <ConfigBanner configName={configName} />}
+        {isPreview ? (
+          <PreviewBanner />
+        ) : (
+          configName && <ConfigBanner configName={configName} />
+        )}
 
         {/* Header & Controls */}
         <Card className="p-4 sm:p-6 bg-card rounded-3xl border shadow-sm">

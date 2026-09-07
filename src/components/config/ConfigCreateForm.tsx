@@ -17,6 +17,7 @@ import { ListeningConfigForm } from './ListeningConfigForm'
 import { SpellingConfigForm } from './SpellingConfigForm'
 import { NumbersColorsConfigForm } from './NumbersColorsConfigForm'
 import { SentencesConfigForm } from './SentencesConfigForm'
+import { MemoryMatchConfigForm } from './MemoryMatchConfigForm'
 import { PreviewButton } from './PreviewButton'
 import { ArrowLeft, Save, Loader2, AlertCircle } from 'lucide-react'
 
@@ -77,6 +78,14 @@ export function ConfigCreateForm({ game }: Props) {
       case 'sentences':
         return (
           <SentencesConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'memory-match':
+        return (
+          <MemoryMatchConfigForm
             settings={settings as never}
             onChange={setSettings}
             disabled={isPending}

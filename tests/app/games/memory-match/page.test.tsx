@@ -12,15 +12,17 @@ vi.mock('@/hooks/useSpeech', () => ({
   }),
 }))
 
+let mockGameConfigResult = {
+  config: null as unknown,
+  settings: null as unknown,
+  configId: null as string | null,
+  configName: null as string | null,
+  isLoading: false,
+  isPreview: false,
+}
+
 vi.mock('@/hooks/useGameConfig', () => ({
-  useGameConfig: () => ({
-    config: null,
-    settings: null,
-    configId: null,
-    configName: null,
-    isLoading: false,
-    isPreview: false,
-  }),
+  useGameConfig: () => mockGameConfigResult,
 }))
 
 const mockSubmitSession = vi.fn().mockResolvedValue(true)
@@ -40,6 +42,14 @@ vi.mock('@/hooks/use-game-tracking', () => ({
 describe('Memory Match Game Page (src/app/games/memory-match/page.tsx)', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mockGameConfigResult = {
+      config: null,
+      settings: null,
+      configId: null,
+      configName: null,
+      isLoading: false,
+      isPreview: false,
+    }
   })
 
   it('renders page header, back button, live stats, and board', () => {
@@ -166,5 +176,62 @@ describe('Memory Match Game Page (src/app/games/memory-match/page.tsx)', () => {
       screen.getByRole('heading', { level: 2, name: /Hoàn Thành Xuất Sắc!/i })
     ).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Chơi lại ván mới/i })).toBeInTheDocument()
+  })
+
+  it('displays PreviewBanner when isPreview is true', () => {
+    mockGameConfigResult = {
+      config: null,
+      settings: { topics: ['animals'], pairCount: 4, autoSpeak: true, showTimer: true },
+      configId: null,
+      configName: null,
+      isLoading: false,
+      isPreview: true,
+    }
+
+    render(<MemoryMatchPage />)
+    expect(
+      screen.getByRole('status', { name: /Chế độ xem trước: Cấu hình chưa được lưu/i })
+    ).toBeInTheDocument()
+  })
+
+  it('renders ConfigBanner and applies teacher configuration settings', () => {
+    mockGameConfigResult = {
+      config: {
+        id: 'cfg-123',
+        teacher_id: 't-1',
+        game_id: 'memory-match',
+        name: 'Bài tập tuần 1 - Lớp 2A',
+        settings: {
+          topics: ['fruits'],
+          pairCount: 4,
+          autoSpeak: false,
+          showTimer: false,
+        },
+        created_at: '',
+        updated_at: '',
+      },
+      settings: {
+        topics: ['fruits'],
+        pairCount: 4,
+        autoSpeak: false,
+        showTimer: false,
+      },
+      configId: 'cfg-123',
+      configName: 'Bài tập tuần 1 - Lớp 2A',
+      isLoading: false,
+      isPreview: false,
+    }
+
+    render(<MemoryMatchPage />)
+
+    // Config banner should show the teacher config name
+    expect(screen.getByText(/Bài tập tuần 1 - Lớp 2A/i)).toBeInTheDocument()
+
+    // 4 pairs should be rendered by default from config
+    expect(screen.getByText(/0\/4 cặp/i)).toBeInTheDocument()
+
+    // Only 'fruits' topic should be present in available topics
+    expect(screen.getByRole('button', { name: /Trái cây/i })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Động vật/i })).not.toBeInTheDocument()
   })
 })
