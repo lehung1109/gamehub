@@ -10,10 +10,10 @@
 
 **Purpose**: Initialize feature workspace, directory structure, and isolate environment.
 
-- [ ] T001 Create git worktree or verify workspace isolation for feature branch `027-word-search-game`
-- [ ] T002 [P] Create directory structure for word search components: `src/app/games/word-search/`, `src/components/game/`, `src/components/config/`
-- [ ] T003 Dedicated subagent execution to verify Phase 1 setup and workspace isolation
-- [ ] T004 Phase 1 review loop & commit: `chore(setup): initialize word-search game workspace and directories`
+- [x] T001 Create git worktree or verify workspace isolation for feature branch `027-word-search-game`
+- [x] T002 [P] Create directory structure for word search components: `src/app/games/word-search/`, `src/components/game/`, `src/components/config/`
+- [x] T003 Dedicated subagent execution to verify Phase 1 setup and workspace isolation
+- [x] T004 Phase 1 review loop & commit: `chore(setup): initialize word-search game workspace and directories`
 
 **Checkpoint**: Workspace and directory scaffolding ready.
 
@@ -23,12 +23,12 @@
 
 **Purpose**: Core types, validation schemas, and game registry required by all user stories.
 
-- [ ] T005 [P] Create Word Search domain models (`Coordinate`, `WordSearchCell`, `WordSearchTargetWord`, `WordSearchGameState`, `WordSearchSettings`) in `src/types/word-search.ts` and re-export in `src/types/index.ts`
-- [ ] T006 [P] Update `src/types/config.ts` to register `word-search` in `GameSettingsMap` and `GameId`
-- [ ] T007 [P] Update `src/lib/game-config-schema.ts` to add `wordSearchSettingsSchema` with validation for `topics`, `wordCount` (4, 5, 6), `enableHints`, `autoSpeak`, `showTimer`, and implement `getDefaultSettings('word-search')`
-- [ ] T008 [P] Add Word Search game catalog entry to `src/data/games.json` with id `word-search`, slug `word-search`, titleVi `Săn tìm từ vựng`, titleEn `Word Search`, description `Tìm và quét các từ tiếng Anh ẩn giấu trên lưới chữ cái`, emoji `🔍`, route `/games/word-search`, and priority 8
-- [ ] T009 Dedicated subagent execution to verify Phase 2 typecheck (`npx tsc --noEmit`) and lint (`npm run lint`)
-- [ ] T010 Phase 2 review loop & commit: `feat(word-search): add foundational data types, schema, and game catalog entry`
+- [x] T005 [P] Create Word Search domain models (`Coordinate`, `WordSearchCell`, `WordSearchTargetWord`, `WordSearchGameState`, `WordSearchSettings`) in `src/types/word-search.ts` and re-export in `src/types/index.ts`
+- [x] T006 [P] Update `src/types/config.ts` to register `word-search` in `GameSettingsMap` and `GameId`
+- [x] T007 [P] Update `src/lib/game-config-schema.ts` to add `wordSearchSettingsSchema` with validation for `topics`, `wordCount` (4, 5, 6), `enableHints`, `autoSpeak`, `showTimer`, and implement `getDefaultSettings('word-search')`
+- [x] T008 [P] Add Word Search game catalog entry to `src/data/games.json` with id `word-search`, slug `word-search`, titleVi `Săn tìm từ vựng`, titleEn `Word Search`, description `Tìm và quét các từ tiếng Anh ẩn giấu trên lưới chữ cái`, emoji `🔍`, route `/games/word-search`, and priority 8
+- [x] T009 Dedicated subagent execution to verify Phase 2 typecheck (`npx tsc --noEmit`) and lint (`npm run lint`)
+- [x] T010 Phase 2 review loop & commit: `feat(word-search): add foundational data types, schema, and game catalog entry`
 
 **Checkpoint**: Foundation ready - User Story implementation can proceed in parallel.
 

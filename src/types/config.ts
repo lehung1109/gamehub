@@ -56,6 +56,14 @@ export interface MemoryMatchSettings {
   showTimer: boolean
 }
 
+export interface WordSearchSettings {
+  topics: string[]
+  wordCount: 4 | 5 | 6
+  enableHints: boolean
+  autoSpeak: boolean
+  showTimer: boolean
+}
+
 export interface GameSettingsMap {
   flashcard: FlashcardSettings
   alphabet: AlphabetSettings
@@ -67,6 +75,7 @@ export interface GameSettingsMap {
   typing: TypingSettings
   roleplay: RoleplaySettings
   'memory-match': MemoryMatchSettings
+  'word-search': WordSearchSettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -82,6 +91,7 @@ export type AnyGameSettings =
   | TypingSettings
   | RoleplaySettings
   | MemoryMatchSettings
+  | WordSearchSettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -94,6 +104,7 @@ export type GameSettings =
   | { gameId: 'typing'; settings: TypingSettings }
   | { gameId: 'roleplay'; settings: RoleplaySettings }
   | { gameId: 'memory-match'; settings: MemoryMatchSettings }
+  | { gameId: 'word-search'; settings: WordSearchSettings }
 
 
 export interface PreviewPayload {
