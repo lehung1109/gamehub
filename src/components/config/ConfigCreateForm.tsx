@@ -18,6 +18,7 @@ import { SpellingConfigForm } from './SpellingConfigForm'
 import { NumbersColorsConfigForm } from './NumbersColorsConfigForm'
 import { SentencesConfigForm } from './SentencesConfigForm'
 import { MemoryMatchConfigForm } from './MemoryMatchConfigForm'
+import { WordSearchConfigForm } from './WordSearchConfigForm'
 import { PreviewButton } from './PreviewButton'
 import { ArrowLeft, Save, Loader2, AlertCircle } from 'lucide-react'
 
@@ -86,6 +87,14 @@ export function ConfigCreateForm({ game }: Props) {
       case 'memory-match':
         return (
           <MemoryMatchConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'word-search':
+        return (
+          <WordSearchConfigForm
             settings={settings as never}
             onChange={setSettings}
             disabled={isPending}

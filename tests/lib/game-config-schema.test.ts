@@ -9,7 +9,7 @@ import {
 
 describe('Game Config Schema', () => {
   it('identifies valid and invalid game IDs', () => {
-    expect(VALID_GAME_IDS).toHaveLength(10)
+    expect(VALID_GAME_IDS).toHaveLength(11)
     expect(isValidGameId('flashcard')).toBe(true)
     expect(isValidGameId('alphabet')).toBe(true)
     expect(isValidGameId('listening')).toBe(true)
@@ -17,6 +17,7 @@ describe('Game Config Schema', () => {
     expect(isValidGameId('numbers-colors')).toBe(true)
     expect(isValidGameId('sentences')).toBe(true)
     expect(isValidGameId('memory-match')).toBe(true)
+    expect(isValidGameId('word-search')).toBe(true)
     expect(isValidGameId('unknown-game')).toBe(false)
     expect(isValidGameId('')).toBe(false)
   })
@@ -43,6 +44,14 @@ describe('Game Config Schema', () => {
     expect(getDefaultSettings('memory-match')).toEqual({
       topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
       pairCount: 6,
+      autoSpeak: true,
+      showTimer: true,
+    })
+
+    expect(getDefaultSettings('word-search')).toEqual({
+      topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
+      wordCount: 5,
+      enableHints: true,
       autoSpeak: true,
       showTimer: true,
     })
@@ -187,6 +196,34 @@ describe('Game Config Schema', () => {
       expect(resDefault.data).toEqual({
         topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
         pairCount: 6,
+        autoSpeak: true,
+        showTimer: true,
+      })
+    })
+
+    it('validates word-search settings with defaults and sanitizes inputs', () => {
+      const res = validateGameSettings('word-search', {
+        topics: ['animals', 123, 'fruits'],
+        wordCount: 6,
+        enableHints: false,
+        autoSpeak: false,
+        showTimer: false,
+      })
+      expect(res.valid).toBe(true)
+      expect(res.data).toEqual({
+        topics: ['animals', 'fruits'],
+        wordCount: 6,
+        enableHints: false,
+        autoSpeak: false,
+        showTimer: false,
+      })
+
+      const resDefault = validateGameSettings('word-search', {})
+      expect(resDefault.valid).toBe(true)
+      expect(resDefault.data).toEqual({
+        topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
+        wordCount: 5,
+        enableHints: true,
         autoSpeak: true,
         showTimer: true,
       })
