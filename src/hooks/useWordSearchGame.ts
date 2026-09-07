@@ -3,13 +3,14 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import type { Word } from '@/types'
 import type {
   Coordinate,
-  WordSearchCell,
   WordSearchTargetWord,
 } from '@/types/word-search'
 import {
   generateWordSearchGrid,
   getCellsBetween,
   isValidSelectionPath,
+  hashString,
+  type WordSearchGridResult,
 } from '@/lib/word-search-generator'
 
 export interface UseWordSearchGameOptions {
@@ -38,23 +39,22 @@ export function calculateWordSearchStars(hintCount: number): 1 | 2 | 3 {
 export function useWordSearchGame({
   words,
   wordCount = 5,
+  topicId,
   onWordFound,
   onGameComplete,
 }: UseWordSearchGameOptions) {
-  const [grid, setGrid] = useState<WordSearchCell[][]>(() => {
-    const { grid: initialGrid } = generateWordSearchGrid(words, {
-      wordCount,
-      gridSize: 8,
-    })
-    return initialGrid
-  })
-  const [targetWords, setTargetWords] = useState<WordSearchTargetWord[]>(() => {
-    const { targetWords: initialTargets } = generateWordSearchGrid(words, {
-      wordCount,
-      gridSize: 8,
-    })
-    return initialTargets
-  })
+  const [{ grid, targetWords }, setPuzzleState] = useState<WordSearchGridResult>(
+    () => {
+      const initialSeed = hashString(
+        `${topicId || 'default'}-${wordCount}-${words[0]?.id || ''}`
+      )
+      return generateWordSearchGrid(words, {
+        wordCount,
+        gridSize: 8,
+        seed: initialSeed,
+      })
+    }
+  )
   const [status, setStatus] = useState<'idle' | 'playing' | 'completed'>('idle')
   const [selectedCoordinates, setSelectedCoordinates] = useState<Coordinate[]>([])
   const [startCoordinate, setStartCoordinate] = useState<Coordinate | null>(null)
@@ -62,9 +62,12 @@ export function useWordSearchGame({
   const [hintCount, setHintCount] = useState(0)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
 
-  const isDraggingRef = useRef(false)
+  const isPointerDownRef = useRef(false)
+  const hasDraggedRef = useRef(false)
+  const dragStartRef = useRef<Coordinate | null>(null)
+  const tapStartRef = useRef<Coordinate | null>(null)
+  const lastPointerUpTimeRef = useRef(0)
   const justFinishedDragRef = useRef(false)
-  const startCoordinateRef = useRef<Coordinate | null>(null)
   const selectedCoordinatesRef = useRef<Coordinate[]>([])
   const targetWordsRef = useRef<WordSearchTargetWord[]>(targetWords)
   const hintTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -77,28 +80,49 @@ export function useWordSearchGame({
   const restartGame = useCallback(
     (customWords?: Word[]) => {
       const activeWordList = customWords || words
-      const { grid: newGrid, targetWords: newTargets } = generateWordSearchGrid(
-        activeWordList,
-        { wordCount, gridSize: 8 }
-      )
-      setGrid(newGrid)
-      setTargetWords(newTargets)
-      targetWordsRef.current = newTargets
+      const newPuzzle = generateWordSearchGrid(activeWordList, {
+        wordCount,
+        gridSize: 8,
+      })
+      setPuzzleState(newPuzzle)
+      targetWordsRef.current = newPuzzle.targetWords
       setStatus('idle')
       setSelectedCoordinates([])
       setStartCoordinate(null)
-      startCoordinateRef.current = null
+      tapStartRef.current = null
+      dragStartRef.current = null
       selectedCoordinatesRef.current = []
       setHintedCoordinate(null)
       setHintCount(0)
       setElapsedSeconds(0)
-      isDraggingRef.current = false
+      isPointerDownRef.current = false
+      hasDraggedRef.current = false
+      justFinishedDragRef.current = false
       if (hintTimeoutRef.current) {
         clearTimeout(hintTimeoutRef.current)
       }
     },
     [words, wordCount]
   )
+
+  // Automatically reset board when topicId, wordCount, or words list change
+  const prevTopicRef = useRef(topicId)
+  const prevCountRef = useRef(wordCount)
+  const prevWordsKeyRef = useRef(words.map((w) => w.id).join(','))
+
+  useEffect(() => {
+    const wordsKey = words.map((w) => w.id).join(',')
+    if (
+      prevTopicRef.current !== topicId ||
+      prevCountRef.current !== wordCount ||
+      prevWordsKeyRef.current !== wordsKey
+    ) {
+      prevTopicRef.current = topicId
+      prevCountRef.current = wordCount
+      prevWordsKeyRef.current = wordsKey
+      restartGame()
+    }
+  }, [topicId, wordCount, words, restartGame])
 
   useEffect(() => {
     return () => {
@@ -141,16 +165,13 @@ export function useWordSearchGame({
 
       if (matchedWord) {
         const foundWord = matchedWord
-        // Update target words state
         const updatedTargets = currentTargets.map((tw) =>
           tw.id === foundWord.id ? { ...tw, isFound: true } : tw
         )
-        setTargetWords(updatedTargets)
         targetWordsRef.current = updatedTargets
 
-        // Update grid cells with matched color
-        setGrid((prevGrid) =>
-          prevGrid.map((row) =>
+        setPuzzleState((prev) => {
+          const updatedGrid = prev.grid.map((row) =>
             row.map((cell) => {
               const isCellInMatchedWord = foundWord.coordinates.some(
                 (c) => c.row === cell.row && c.col === cell.col
@@ -166,7 +187,8 @@ export function useWordSearchGame({
               return cell
             })
           )
-        )
+          return { grid: updatedGrid, targetWords: updatedTargets }
+        })
 
         onWordFound?.(foundWord)
 
@@ -188,47 +210,99 @@ export function useWordSearchGame({
     [onWordFound, onGameComplete, hintCount, elapsedSeconds]
   )
 
-  // Pointer drag event handlers
+  // Pointer drag & tap event handlers
   const handleCellPointerDown = useCallback((row: number, col: number) => {
-    isDraggingRef.current = true
+    isPointerDownRef.current = true
+    hasDraggedRef.current = false
+    const coord = { row, col }
+    dragStartRef.current = coord
     setStatus((prev) => (prev === 'idle' ? 'playing' : prev))
-    const start = { row, col }
-    startCoordinateRef.current = start
-    selectedCoordinatesRef.current = [start]
-    setStartCoordinate(start)
-    setSelectedCoordinates([start])
+    if (!tapStartRef.current) {
+      selectedCoordinatesRef.current = [coord]
+      setSelectedCoordinates([coord])
+      setStartCoordinate(coord)
+    }
   }, [])
 
   const handleCellPointerEnter = useCallback(
     (row: number, col: number) => {
-      if (!isDraggingRef.current || !startCoordinateRef.current) return
-      if (isValidSelectionPath(startCoordinateRef.current, { row, col })) {
-        const path = getCellsBetween(startCoordinateRef.current, { row, col })
+      if (!isPointerDownRef.current || !dragStartRef.current) return
+      const start = dragStartRef.current
+      if (start.row === row && start.col === col) return
+
+      hasDraggedRef.current = true
+      tapStartRef.current = null
+
+      if (isValidSelectionPath(start, { row, col })) {
+        const path = getCellsBetween(start, { row, col })
         selectedCoordinatesRef.current = path
         setSelectedCoordinates(path)
+        setStartCoordinate(start)
       }
     },
     []
   )
 
   const handleCellPointerUp = useCallback(() => {
-    if (!isDraggingRef.current) return
-    isDraggingRef.current = false
-    const coordsToEvaluate = selectedCoordinatesRef.current
-    if (coordsToEvaluate.length > 1) {
+    if (!isPointerDownRef.current) return
+    isPointerDownRef.current = false
+    lastPointerUpTimeRef.current = Date.now()
+
+    if (hasDraggedRef.current) {
       justFinishedDragRef.current = true
+      const coordsToEvaluate = selectedCoordinatesRef.current
+      evaluateSelection(coordsToEvaluate)
+      dragStartRef.current = null
+      hasDraggedRef.current = false
+      selectedCoordinatesRef.current = []
+      setSelectedCoordinates([])
+      setStartCoordinate(null)
+    } else if (dragStartRef.current) {
+      // Tap on single cell
+      const cell = dragStartRef.current
+      dragStartRef.current = null
+      hasDraggedRef.current = false
+
+      if (!tapStartRef.current) {
+        // First tap
+        tapStartRef.current = cell
+        setStartCoordinate(cell)
+        selectedCoordinatesRef.current = [cell]
+        setSelectedCoordinates([cell])
+      } else if (
+        tapStartRef.current.row === cell.row &&
+        tapStartRef.current.col === cell.col
+      ) {
+        // Tapped same cell again -> toggle off
+        tapStartRef.current = null
+        setStartCoordinate(null)
+        selectedCoordinatesRef.current = []
+        setSelectedCoordinates([])
+      } else {
+        // Second tap on a different cell
+        const start = tapStartRef.current
+        if (isValidSelectionPath(start, cell)) {
+          const path = getCellsBetween(start, cell)
+          evaluateSelection(path)
+          tapStartRef.current = null
+          setStartCoordinate(null)
+          selectedCoordinatesRef.current = []
+          setSelectedCoordinates([])
+        } else {
+          // Invalid path -> switch tap selection to this new cell
+          tapStartRef.current = cell
+          setStartCoordinate(cell)
+          selectedCoordinatesRef.current = [cell]
+          setSelectedCoordinates([cell])
+        }
+      }
     }
-    evaluateSelection(coordsToEvaluate)
-    startCoordinateRef.current = null
-    selectedCoordinatesRef.current = []
-    setSelectedCoordinates([])
-    setStartCoordinate(null)
   }, [evaluateSelection])
 
   // Global window pointerup listener to handle releasing mouse outside the board
   useEffect(() => {
     const handleGlobalPointerUp = () => {
-      if (isDraggingRef.current) {
+      if (isPointerDownRef.current) {
         handleCellPointerUp()
       }
     }
@@ -238,35 +312,49 @@ export function useWordSearchGame({
     }
   }, [handleCellPointerUp])
 
-  // Two-tap click handler
+  // Two-tap click handler (primarily for keyboard navigation Enter/Space)
   const handleCellClick = useCallback(
     (row: number, col: number) => {
-      // Avoid immediately selecting end cell if a drag just completed
+      // Ignore click event if pointer interaction just handled it
+      if (Date.now() - lastPointerUpTimeRef.current < 300) {
+        return
+      }
       if (justFinishedDragRef.current) {
         justFinishedDragRef.current = false
         return
       }
 
       setStatus((prev) => (prev === 'idle' ? 'playing' : prev))
+      const cell = { row, col }
 
-      if (!startCoordinateRef.current) {
-        // First tap
-        const start = { row, col }
-        startCoordinateRef.current = start
-        selectedCoordinatesRef.current = [start]
-        setStartCoordinate(start)
-        setSelectedCoordinates([start])
-      } else {
-        // Second tap
-        const endCoord = { row, col }
-        if (isValidSelectionPath(startCoordinateRef.current, endCoord)) {
-          const path = getCellsBetween(startCoordinateRef.current, endCoord)
-          evaluateSelection(path)
-        }
-        startCoordinateRef.current = null
-        selectedCoordinatesRef.current = []
+      if (!tapStartRef.current) {
+        tapStartRef.current = cell
+        setStartCoordinate(cell)
+        selectedCoordinatesRef.current = [cell]
+        setSelectedCoordinates([cell])
+      } else if (
+        tapStartRef.current.row === cell.row &&
+        tapStartRef.current.col === cell.col
+      ) {
+        tapStartRef.current = null
         setStartCoordinate(null)
+        selectedCoordinatesRef.current = []
         setSelectedCoordinates([])
+      } else {
+        const start = tapStartRef.current
+        if (isValidSelectionPath(start, cell)) {
+          const path = getCellsBetween(start, cell)
+          evaluateSelection(path)
+          tapStartRef.current = null
+          setStartCoordinate(null)
+          selectedCoordinatesRef.current = []
+          setSelectedCoordinates([])
+        } else {
+          tapStartRef.current = cell
+          setStartCoordinate(cell)
+          selectedCoordinatesRef.current = [cell]
+          setSelectedCoordinates([cell])
+        }
       }
     },
     [evaluateSelection]

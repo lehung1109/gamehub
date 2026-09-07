@@ -49,9 +49,29 @@ interface PlacedWordInfo {
   coordinates: Coordinate[]
 }
 
+function createRng(seed?: number): () => number {
+  if (seed === undefined) return Math.random
+  let a = seed >>> 0
+  return function () {
+    let t = (a += 0x6d2b79f5)
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+export function hashString(str: string): number {
+  let hash = 5381
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 33) ^ str.charCodeAt(i)
+  }
+  return hash >>> 0
+}
+
 function tryPlaceWordsOnGrid(
   words: Word[],
-  gridSize: number
+  gridSize: number,
+  rng: () => number
 ): PlacedWordInfo[] | null {
   const charGrid: (string | null)[][] = Array.from({ length: gridSize }, () =>
     Array(gridSize).fill(null)
@@ -118,7 +138,7 @@ function tryPlaceWordsOnGrid(
       return null // placement failed, retry whole grid
     }
 
-    const chosen = validPlacements[Math.floor(Math.random() * validPlacements.length)]
+    const chosen = validPlacements[Math.floor(rng() * validPlacements.length)]
     for (let i = 0; i < wordLen; i++) {
       const coord = chosen.coords[i]
       charGrid[coord.row][coord.col] = cleanWord[i]
@@ -137,8 +157,8 @@ function tryPlaceWordsOnGrid(
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-function getRandomLetter(): string {
-  return ALPHABET[Math.floor(Math.random() * ALPHABET.length)]
+function getRandomLetter(rng: () => number): string {
+  return ALPHABET[Math.floor(rng() * ALPHABET.length)]
 }
 
 export interface WordSearchGridResult {
@@ -151,10 +171,12 @@ export function generateWordSearchGrid(
   options?: {
     wordCount?: number
     gridSize?: number
+    seed?: number
   }
 ): WordSearchGridResult {
   const gridSize = options?.gridSize ?? 8
   const wordCount = options?.wordCount ?? 5
+  const rng = createRng(options?.seed)
 
   // Filter words fitting inside grid
   const eligibleWords = words.filter((w) => {
@@ -162,7 +184,12 @@ export function generateWordSearchGrid(
     return clean.length >= 3 && clean.length <= gridSize
   })
 
-  const shuffledWords = [...eligibleWords].sort(() => Math.random() - 0.5)
+  // Deterministic or pseudo-random shuffle
+  const shuffledWords = [...eligibleWords]
+  for (let i = shuffledWords.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1))
+    ;[shuffledWords[i], shuffledWords[j]] = [shuffledWords[j], shuffledWords[i]]
+  }
   const selectedWords = shuffledWords.slice(0, wordCount)
 
   let placedWords: PlacedWordInfo[] | null = null
@@ -171,7 +198,7 @@ export function generateWordSearchGrid(
 
   while (attempts < maxAttempts) {
     attempts++
-    placedWords = tryPlaceWordsOnGrid(selectedWords, gridSize)
+    placedWords = tryPlaceWordsOnGrid(selectedWords, gridSize, rng)
     if (placedWords && placedWords.length === selectedWords.length) {
       break
     }
@@ -191,7 +218,7 @@ export function generateWordSearchGrid(
         id: `cell-r${r}-c${c}`,
         row: r,
         col: c,
-        letter: getRandomLetter(),
+        letter: getRandomLetter(rng),
         isSelected: false,
         isHinted: false,
         matchedColors: [],

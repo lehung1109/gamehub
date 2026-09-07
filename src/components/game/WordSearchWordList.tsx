@@ -18,6 +18,7 @@ export function WordSearchWordList({
   return (
     <div
       aria-label="Danh sách từ mục tiêu cần tìm"
+      suppressHydrationWarning
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-1 gap-2 sm:gap-2.5 w-full"
     >
       {words.map((word) => {
@@ -27,6 +28,7 @@ export function WordSearchWordList({
           <div
             key={word.id}
             data-testid={`target-word-${word.english.toLowerCase()}`}
+            suppressHydrationWarning
             style={
               isFound
                 ? {
@@ -43,7 +45,11 @@ export function WordSearchWordList({
             )}
           >
             <div className="flex items-center gap-2 sm:gap-2.5 overflow-hidden">
-              <span className="text-xl sm:text-2xl select-none" aria-hidden="true">
+              <span
+                className="text-xl sm:text-2xl select-none"
+                aria-hidden="true"
+                suppressHydrationWarning
+              >
                 {word.emoji}
               </span>
               <div className="min-w-0">

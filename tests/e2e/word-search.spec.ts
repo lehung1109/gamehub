@@ -104,9 +104,10 @@ test.describe('Word Search Game E2E Flows', () => {
 
     await page.goto('/games/word-search')
 
-    const cell00 = page.getByTestId('cell-r0-c0')
-    const cell01 = page.getByTestId('cell-r0-c1')
-    const cell02 = page.getByTestId('cell-r0-c2')
+    const grid = page.getByRole('grid')
+    const cell00 = grid.getByTestId('cell-r0-c0')
+    const cell01 = grid.getByTestId('cell-r0-c1')
+    const cell02 = grid.getByTestId('cell-r0-c2')
 
     await expect(cell00).toBeVisible()
     await cell00.hover()
@@ -126,4 +127,30 @@ test.describe('Word Search Game E2E Flows', () => {
     )
     expect(criticalErrors).toEqual([])
   })
+
+  test('supports two-tap cell selection on PC and mobile', async ({ page }) => {
+    await page.goto('/games/word-search')
+
+    const grid = page.getByRole('grid')
+    const cell00 = grid.getByTestId('cell-r0-c0')
+    const cell01 = grid.getByTestId('cell-r0-c1')
+
+    await expect(cell00).toBeVisible()
+
+    // Tap first cell
+    await cell00.click()
+    await expect(cell00).toHaveClass(/bg-amber-300/)
+
+    // Tap same cell to deselect
+    await cell00.click()
+    await expect(cell00).not.toHaveClass(/bg-amber-300/)
+
+    // Tap first cell again
+    await cell00.click()
+    await expect(cell00).toHaveClass(/bg-amber-300/)
+
+    // Tap adjacent cell in same row (second tap)
+    await cell01.click()
+  })
 })
+

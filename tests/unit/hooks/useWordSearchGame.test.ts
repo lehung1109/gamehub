@@ -186,4 +186,76 @@ describe('useWordSearchGame hook', () => {
       stars: 3,
     })
   })
+
+  it('ensures all target words match the exact letters placed in the grid on initial mount', () => {
+    const largeWordPool: Word[] = [
+      ...mockWords,
+      { id: '6', english: 'Lion', phonetic: '/ˈlaɪ.ən/', vietnamese: 'Sư tử', emoji: '🦁', topicId: 'animals' },
+      { id: '7', english: 'Tiger', phonetic: '/ˈtaɪ.ɡər/', vietnamese: 'Con hổ', emoji: '🐯', topicId: 'animals' },
+      { id: '8', english: 'Bear', phonetic: '/beər/', vietnamese: 'Con gấu', emoji: '🐻', topicId: 'animals' },
+      { id: '9', english: 'Frog', phonetic: '/frɒɡ/', vietnamese: 'Con ếch', emoji: '🐸', topicId: 'animals' },
+      { id: '10', english: 'Wolf', phonetic: '/wʊlf/', vietnamese: 'Chó sói', emoji: '🐺', topicId: 'animals' },
+    ]
+
+    const { result } = renderHook(() =>
+      useWordSearchGame({ words: largeWordPool, wordCount: 5, topicId: 'animals' })
+    )
+
+    expect(result.current.targetWords).toHaveLength(5)
+    for (const target of result.current.targetWords) {
+      const spelledFromGrid = target.coordinates
+        .map((c) => result.current.grid[c.row][c.col].letter)
+        .join('')
+      expect(spelledFromGrid).toBe(target.english.toUpperCase())
+    }
+  })
+
+  it('supports two-tap selection via pointer events (tap first cell, then tap last cell)', () => {
+    const { result } = renderHook(() =>
+      useWordSearchGame({ words: mockWords, wordCount: 5, topicId: 'animals' })
+    )
+
+    const target = result.current.targetWords[0]
+    const first = target.coordinates[0]
+    const last = target.coordinates[target.coordinates.length - 1]
+
+    // Tap first cell (pointer down and up on first cell without dragging)
+    act(() => {
+      result.current.handleCellPointerDown(first.row, first.col)
+      result.current.handleCellPointerUp()
+      result.current.handleCellClick(first.row, first.col)
+    })
+    expect(result.current.selectedCoordinates).toEqual([first])
+
+    // Tap last cell (pointer down and up on last cell without dragging)
+    act(() => {
+      result.current.handleCellPointerDown(last.row, last.col)
+      result.current.handleCellPointerUp()
+      result.current.handleCellClick(last.row, last.col)
+    })
+
+    expect(result.current.targetWords[0].isFound).toBe(true)
+  })
+
+  it('resets and generates a new board when topicId or wordCount changes', () => {
+    const currentTopic = 'animals'
+    let currentCount: 4 | 5 | 6 = 5
+
+    const { result, rerender } = renderHook(() =>
+      useWordSearchGame({
+        words: mockWords,
+        wordCount: currentCount,
+        topicId: currentTopic,
+      })
+    )
+
+    const initialTargets = result.current.targetWords
+    expect(initialTargets).toHaveLength(5)
+
+    currentCount = 4
+    rerender()
+
+    expect(result.current.targetWords).toHaveLength(4)
+  })
 })
+
