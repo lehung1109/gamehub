@@ -12,6 +12,7 @@ import type {
   TypingSettings,
   RoleplaySettings,
   MemoryMatchSettings,
+  WordSearchSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -27,6 +28,7 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'typing',
   'roleplay',
   'memory-match',
+  'word-search',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -77,6 +79,13 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
   'memory-match': {
     topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
     pairCount: 6,
+    autoSpeak: true,
+    showTimer: true,
+  },
+  'word-search': {
+    topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
+    wordCount: 5,
+    enableHints: true,
     autoSpeak: true,
     showTimer: true,
   },
@@ -220,6 +229,20 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const showTimer = obj.showTimer !== undefined ? Boolean(obj.showTimer) : true
 
       const validated: MemoryMatchSettings = { topics, pairCount, autoSpeak, showTimer }
+      return { valid: true, data: validated }
+    }
+
+    case 'word-search': {
+      const topics = Array.isArray(obj.topics)
+        ? obj.topics.filter((t): t is string => typeof t === 'string')
+        : ['animals', 'fruits', 'family', 'school', 'body-parts']
+      const wordCountRaw = sanitizeInt(obj.wordCount, 5, 4, 6)
+      const wordCount: 4 | 5 | 6 = wordCountRaw === 4 || wordCountRaw === 6 ? wordCountRaw : 5
+      const enableHints = obj.enableHints !== undefined ? Boolean(obj.enableHints) : true
+      const autoSpeak = obj.autoSpeak !== undefined ? Boolean(obj.autoSpeak) : true
+      const showTimer = obj.showTimer !== undefined ? Boolean(obj.showTimer) : true
+
+      const validated: WordSearchSettings = { topics, wordCount, enableHints, autoSpeak, showTimer }
       return { valid: true, data: validated }
     }
 

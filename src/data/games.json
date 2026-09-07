@@ -68,6 +68,16 @@
     "emoji": "🧠",
     "route": "/games/memory-match",
     "priority": 7
+  },
+  {
+    "id": "word-search",
+    "slug": "word-search",
+    "titleVi": "Săn tìm từ vựng",
+    "titleEn": "Word Search",
+    "description": "Tìm và quét các từ tiếng Anh ẩn giấu trên lưới chữ cái",
+    "emoji": "🔍",
+    "route": "/games/word-search",
+    "priority": 8
   }
 ]
 
