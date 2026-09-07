@@ -1,8 +1,8 @@
 <!--
   Sync Impact Report
-  Version change: 2.1.0 → 2.1.1 (PATCH — added eslint verification to the Iterative Review & Bug Hunt Subagent Loop)
+  Version change: 2.1.1 → 2.1.2 (PATCH — refined Task Generation Standards to apply specification quality at the phase level within tasks rather than individual micro-tasks, and reordered the item)
   Modified principles:
-    - Principle VI: Task Generation Standards (updated Iterative Review & Bug Hunt Subagent Loop to include eslint verification)
+    - Principle VI: Task Generation Standards (reordered Phase-Level Specification Quality to item 1, clarified that specification requirements apply to phases within tasks rather than individual micro-tasks)
   Added sections: (none)
   Removed sections: (none)
   Follow-up TODOs: none
@@ -74,22 +74,40 @@ This is non-negotiable.
 ### VI. Task Generation Standards
 
 The `speckit-tasks` agent skill MUST follow rigorous planning and phase-level
-decomposition standards when generating `tasks.md`. The generated tasks MUST
-incorporate the following requirements:
+decomposition standards when generating `tasks.md`. The generated phases and tasks
+MUST incorporate the following requirements:
 
-1. **Phase 1 Worktree Creation**:
+1. **Phase-Level Specification Quality**:
+   - The spec (`spec.md`) and plan (`plan.md`) MUST both be read before
+     generating tasks; partial context generation is prohibited.
+   - Phases within the task breakdown MUST be ordered by dependency;
+     referencing unbuilt upstream dependencies without declaring them first
+     is prohibited.
+   - Specification quality requirements MUST apply at the phase level within
+     tasks rather than to individual micro-tasks.
+   - Every phase MUST specify exact file paths for all files to be created or
+     modified (vague references are prohibited).
+   - Every phase MUST include complete code, detailed pseudocode, or explicit
+     technical guidance, not vague high-level summaries.
+   - Every phase MUST include explicit verification steps (exact test commands,
+     expected outputs, or acceptance criteria).
+   - All phase workflow requirements (worktree creation in Phase 1, subagent
+     execution, TDD steps, iterative review subagent loop, phase-end commit,
+     and the final feature-level review phase) MUST be explicitly listed as
+     actionable checklist items in `tasks.md`.
+2. **Phase 1 Worktree Creation**:
    - Phase 1 MUST prioritize creating a new git worktree for workspace isolation
      before starting implementation tasks.
    - It MUST ask the user to confirm the creation of the new worktree, defaulting
      to creating a new one.
-2. **Dedicated Subagent Execution per Phase**:
+3. **Dedicated Subagent Execution per Phase**:
    - Each phase MUST be executed within a dedicated subagent session to maintain
      clean context boundaries and isolated task execution.
-3. **Mandatory Test-Driven Development (TDD)**:
+4. **Mandatory Test-Driven Development (TDD)**:
    - Implementation tasks within each phase MUST strictly follow TDD
      (Red-Green-Refactor): write a failing test first, verify failure, implement
      minimal code to make it pass, and refactor while maintaining green tests.
-4. **Iterative Review & Bug Hunt Subagent Loop**:
+5. **Iterative Review & Bug Hunt Subagent Loop**:
    - At the end of each phase, a dedicated subagent MUST be spawned to conduct
      thorough code review, spec compliance verification, verify eslint, and bug hunting.
    - If any bugs or discrepancies are found, they MUST be resolved immediately.
@@ -97,11 +115,11 @@ incorporate the following requirements:
      to re-evaluate and hunt for remaining bugs.
    - This cycle (Review Subagent → Fix Bugs → Re-review Subagent) MUST repeat
      iteratively until zero bugs remain.
-5. **Phase-End Commit**:
+6. **Phase-End Commit**:
    - Once all tasks in the phase are verified and the review loop confirms zero
      bugs, all phase changes MUST be committed with a descriptive conventional
      commit message.
-6. **Final Feature-Level Review Phase**:
+7. **Final Feature-Level Review Phase**:
    - The final phase in `tasks.md` MUST be dedicated entirely to a holistic,
      feature-level review encompassing all previous phases.
    - A subagent MUST be spawned to conduct a comprehensive bug hunt and
@@ -110,21 +128,6 @@ incorporate the following requirements:
      repeating this cycle until zero bugs remain across the entire feature.
    - Once the final review loop confirms zero bugs, a final comprehensive commit
      MUST be made to finalize the feature implementation.
-7. **Task Specification Quality**:
-   - Every task MUST specify exact file paths for all files to be created or
-     modified (vague references are prohibited).
-   - Every task MUST include complete code or detailed pseudocode, not high-level
-     summaries.
-   - Every task MUST include explicit verification steps (exact test commands,
-     expected outputs, or acceptance criteria).
-   - Tasks MUST be ordered by dependency; referencing unbuilt upstream
-     dependencies without declaring them first is prohibited.
-   - The spec (`spec.md`) and plan (`plan.md`) MUST both be read before
-     generating tasks; partial context generation is prohibited.
-   - All phase workflow requirements (worktree creation in Phase 1, subagent
-     execution, TDD steps, iterative review subagent loop, phase-end commit,
-     and the final feature-level review phase) MUST be explicitly listed as
-     actionable checklist items in `tasks.md`.
 
 ## Technology Stack
 
@@ -199,4 +202,4 @@ GameHub project.
 - The `speckit-tasks` and implementation agents MUST verify that Principle VI
   is satisfied when creating and executing task lists
 
-**Version**: 2.1.1 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-08-30
+**Version**: 2.1.2 | **Ratified**: 2026-08-21 | **Last Amended**: 2026-09-07
