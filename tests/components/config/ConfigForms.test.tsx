@@ -155,4 +155,37 @@ describe('Game Config Forms', () => {
 
     vi.unstubAllGlobals()
   })
+
+  it('renders ConfigCreateForm for memory-match and supports preview button', () => {
+    const mockWindowOpen = vi.fn()
+    vi.stubGlobal('open', mockWindowOpen)
+
+    const mockMemoryMatchGame: Game = {
+      id: 'memory-match',
+      titleVi: 'Lật Thẻ Tìm Cặp',
+      titleEn: 'Memory Match',
+      slug: 'memory-match',
+      route: '/games/memory-match',
+      emoji: '🧠',
+      description: 'Trò chơi lật thẻ tìm cặp từ vựng tiếng Anh.',
+      priority: 7,
+    }
+
+    render(<ConfigCreateForm game={mockMemoryMatchGame} />)
+
+    expect(
+      screen.getByText(/tạo cấu hình mới: lật thẻ tìm cặp/i)
+    ).toBeInTheDocument()
+    expect(screen.getByLabelText(/6 cặp/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/tự động phát âm/i)).toBeChecked()
+
+    const previewBtn = screen.getByRole('button', { name: /chơi thử/i })
+    expect(previewBtn).toBeInTheDocument()
+
+    fireEvent.click(previewBtn)
+    expect(mockWindowOpen).toHaveBeenCalledTimes(1)
+    expect(mockWindowOpen.mock.calls[0][0]).toMatch(/^\/games\/memory-match\?preview=/)
+
+    vi.unstubAllGlobals()
+  })
 })

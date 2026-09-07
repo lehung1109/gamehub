@@ -49,6 +49,13 @@ export interface RoleplaySettings {
   autoSpeak?: boolean
 }
 
+export interface MemoryMatchSettings {
+  topics: string[]
+  pairCount: 4 | 6 | 8
+  autoSpeak: boolean
+  showTimer: boolean
+}
+
 export interface GameSettingsMap {
   flashcard: FlashcardSettings
   alphabet: AlphabetSettings
@@ -59,6 +66,7 @@ export interface GameSettingsMap {
   reading: ReadingSettings
   typing: TypingSettings
   roleplay: RoleplaySettings
+  'memory-match': MemoryMatchSettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -73,6 +81,7 @@ export type AnyGameSettings =
   | ReadingSettings
   | TypingSettings
   | RoleplaySettings
+  | MemoryMatchSettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -84,6 +93,8 @@ export type GameSettings =
   | { gameId: 'reading'; settings: ReadingSettings }
   | { gameId: 'typing'; settings: TypingSettings }
   | { gameId: 'roleplay'; settings: RoleplaySettings }
+  | { gameId: 'memory-match'; settings: MemoryMatchSettings }
+
 
 export interface PreviewPayload {
   gameId: GameId
