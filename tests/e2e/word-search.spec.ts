@@ -94,4 +94,36 @@ test.describe('Word Search Game E2E Flows', () => {
     const wordItems = page.locator('[data-testid^="target-word-"]')
     await expect(wordItems).toHaveCount(4)
   })
+
+  test('allows dragging with mouse across cells to select a word on PC', async ({ page }) => {
+    const errors: string[] = []
+    page.on('pageerror', (err) => errors.push(err.message))
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') errors.push(msg.text())
+    })
+
+    await page.goto('/games/word-search')
+
+    const cell00 = page.getByTestId('cell-r0-c0')
+    const cell01 = page.getByTestId('cell-r0-c1')
+    const cell02 = page.getByTestId('cell-r0-c2')
+
+    await expect(cell00).toBeVisible()
+    await cell00.hover()
+    await page.mouse.down()
+    await cell01.hover()
+    await cell02.hover()
+
+    // Check if cell00, cell01, cell02 are highlighted while mouse is down
+    await expect(cell00).toHaveClass(/bg-amber-300/)
+    await expect(cell01).toHaveClass(/bg-amber-300/)
+    await expect(cell02).toHaveClass(/bg-amber-300/)
+
+    await page.mouse.up()
+
+    const criticalErrors = errors.filter(
+      (e) => !e.includes('Hydration failed') && !e.includes('hydration')
+    )
+    expect(criticalErrors).toEqual([])
+  })
 })

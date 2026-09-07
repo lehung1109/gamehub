@@ -153,7 +153,6 @@ function WordSearchGameContent({
   const {
     grid,
     targetWords,
-    hintedCoordinate,
     hintCount,
     elapsedSeconds,
     stars,
@@ -335,14 +334,7 @@ function WordSearchGameContent({
           {/* Word Search 8x8 Board */}
           <div className="lg:col-span-8 flex justify-center">
             <WordSearchBoard
-              grid={grid.map((rowCells) =>
-                rowCells.map((cell) => ({
-                  ...cell,
-                  isHinted:
-                    hintedCoordinate?.row === cell.row &&
-                    hintedCoordinate?.col === cell.col,
-                }))
-              )}
+              grid={grid}
               disabled={isCompleted}
               onCellPointerDown={handleCellPointerDown}
               onCellPointerEnter={handleCellPointerEnter}

@@ -27,8 +27,22 @@ export function WordSearchBoard({
     <Card
       role="grid"
       aria-label="Bảng ô chữ săn tìm từ vựng 8x8"
+      suppressHydrationWarning
       onPointerUp={onCellPointerUp}
-      className="p-3 sm:p-5 bg-card/90 backdrop-blur-xs border-2 border-border shadow-sm rounded-3xl overflow-hidden max-w-full inline-block mx-auto touch-none"
+      onPointerMove={(e) => {
+        if (disabled) return
+        // Support dragging smoothly across cells on both mouse and touch devices
+        const target = document.elementFromPoint(e.clientX, e.clientY)
+        const cellBtn = target?.closest?.('[data-row][data-col]')
+        if (cellBtn) {
+          const r = Number(cellBtn.getAttribute('data-row'))
+          const c = Number(cellBtn.getAttribute('data-col'))
+          if (!Number.isNaN(r) && !Number.isNaN(c)) {
+            onCellPointerEnter(r, c)
+          }
+        }
+      }}
+      className="p-3 sm:p-5 bg-card/90 backdrop-blur-xs border-2 border-border shadow-sm rounded-3xl overflow-hidden max-w-full inline-block mx-auto touch-none select-none"
     >
       <div className="grid grid-cols-8 gap-1.5 sm:gap-2.5">
         {grid.map((rowCells, r) =>

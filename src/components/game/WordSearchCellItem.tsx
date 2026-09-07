@@ -50,12 +50,19 @@ export function WordSearchCellItem({
       type="button"
       role="gridcell"
       data-testid={`cell-r${cell.row}-c${cell.col}`}
+      data-row={cell.row}
+      data-col={cell.col}
+      aria-selected={cell.isSelected}
+      suppressHydrationWarning
       aria-label={`Chữ cái ${cell.letter} tại hàng ${cell.row + 1}, cột ${cell.col + 1}`}
       disabled={disabled}
       onPointerDown={(e) => {
         if (disabled) return
-        // Prevent default touch gestures (like scroll/zoom) while dragging
-        e.currentTarget.releasePointerCapture?.(e.pointerId)
+        // Prevent default browser drag / text selection gestures while dragging
+        e.preventDefault()
+        if (e.currentTarget.hasPointerCapture?.(e.pointerId)) {
+          e.currentTarget.releasePointerCapture(e.pointerId)
+        }
         onPointerDown()
       }}
       onPointerEnter={() => {

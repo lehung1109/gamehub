@@ -1,5 +1,5 @@
 // src/hooks/useWordSearchGame.ts
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import type { Word } from '@/types'
 import type {
   Coordinate,
@@ -63,6 +63,7 @@ export function useWordSearchGame({
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
 
   const isDraggingRef = useRef(false)
+  const justFinishedDragRef = useRef(false)
   const startCoordinateRef = useRef<Coordinate | null>(null)
   const selectedCoordinatesRef = useRef<Coordinate[]>([])
   const targetWordsRef = useRef<WordSearchTargetWord[]>(targetWords)
@@ -214,6 +215,9 @@ export function useWordSearchGame({
     if (!isDraggingRef.current) return
     isDraggingRef.current = false
     const coordsToEvaluate = selectedCoordinatesRef.current
+    if (coordsToEvaluate.length > 1) {
+      justFinishedDragRef.current = true
+    }
     evaluateSelection(coordsToEvaluate)
     startCoordinateRef.current = null
     selectedCoordinatesRef.current = []
@@ -221,9 +225,28 @@ export function useWordSearchGame({
     setStartCoordinate(null)
   }, [evaluateSelection])
 
+  // Global window pointerup listener to handle releasing mouse outside the board
+  useEffect(() => {
+    const handleGlobalPointerUp = () => {
+      if (isDraggingRef.current) {
+        handleCellPointerUp()
+      }
+    }
+    window.addEventListener('pointerup', handleGlobalPointerUp)
+    return () => {
+      window.removeEventListener('pointerup', handleGlobalPointerUp)
+    }
+  }, [handleCellPointerUp])
+
   // Two-tap click handler
   const handleCellClick = useCallback(
     (row: number, col: number) => {
+      // Avoid immediately selecting end cell if a drag just completed
+      if (justFinishedDragRef.current) {
+        justFinishedDragRef.current = false
+        return
+      }
+
       setStatus((prev) => (prev === 'idle' ? 'playing' : prev))
 
       if (!startCoordinateRef.current) {
@@ -274,8 +297,24 @@ export function useWordSearchGame({
   const isCompleted = status === 'completed' || (targetWords.length > 0 && remainingCount === 0)
   const stars = calculateWordSearchStars(hintCount)
 
+  // Dynamically attach isSelected and isHinted to grid cells
+  const displayGrid = useMemo(() => {
+    const selectedLookup = new Set(
+      selectedCoordinates.map((c) => `${c.row},${c.col}`)
+    )
+    return grid.map((row) =>
+      row.map((cell) => ({
+        ...cell,
+        isSelected: selectedLookup.has(`${cell.row},${cell.col}`),
+        isHinted:
+          hintedCoordinate?.row === cell.row &&
+          hintedCoordinate?.col === cell.col,
+      }))
+    )
+  }, [grid, selectedCoordinates, hintedCoordinate])
+
   return {
-    grid,
+    grid: displayGrid,
     targetWords,
     status,
     selectedCoordinates,
