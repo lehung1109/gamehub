@@ -1,6 +1,15 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Memory Match Game E2E Flows', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      window.sessionStorage.setItem(
+        'gamehub_student_session',
+        JSON.stringify({ isAnonymous: true })
+      )
+    })
+  })
+
   test('navigates from homepage to memory match game', async ({ page }) => {
     await page.goto('/')
 

@@ -63,9 +63,20 @@ function formatTime(seconds: number): string {
   return `${mins}:${secs.toString().padStart(2, '0')}`
 }
 
-function MemoryMatchGameContent() {
+interface MemoryMatchGameContentProps {
+  configId: string | null
+  configName: string | null
+  settings: MemoryMatchSettings | null
+  isPreview: boolean
+}
+
+function MemoryMatchGameContent({
+  configId,
+  configName,
+  settings,
+  isPreview,
+}: MemoryMatchGameContentProps) {
   const { isSupported: isSpeechSupported, speak } = useSpeech()
-  const { configId, configName, settings, isPreview } = useGameConfig<MemoryMatchSettings>('memory-match')
 
   // Filter allowed topics by config if configured
   const availableTopics = useMemo(() => {
@@ -85,6 +96,7 @@ function MemoryMatchGameContent() {
     }
     return 6
   })
+
 
   // Hook for student progress tracking
   const { submitSession } = useGameTracking({
@@ -368,6 +380,29 @@ function MemoryMatchGameContent() {
   )
 }
 
+function MemoryMatchConfigLoader() {
+  const { configId, configName, settings, isPreview, isLoading } =
+    useGameConfig<MemoryMatchSettings>('memory-match')
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-8 text-center text-muted-foreground font-medium">
+        Đang tải trò chơi Lật thẻ tìm cặp...
+      </div>
+    )
+  }
+
+  return (
+    <MemoryMatchGameContent
+      key={configId || (isPreview ? 'preview' : 'default')}
+      configId={configId}
+      configName={configName}
+      settings={settings}
+      isPreview={isPreview}
+    />
+  )
+}
+
 export default function MemoryMatchPage() {
   return (
     <Suspense
@@ -377,7 +412,7 @@ export default function MemoryMatchPage() {
         </div>
       }
     >
-      <MemoryMatchGameContent />
+      <MemoryMatchConfigLoader />
     </Suspense>
   )
 }

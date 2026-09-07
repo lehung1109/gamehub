@@ -93,12 +93,17 @@ export function useMemoryGame({
   const timerRef = useRef<NodeJS.Timeout | null>(null)
   const mismatchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isTimerStartedRef = useRef(false)
+  const elapsedSecondsRef = useRef(0)
   const onCompleteRef = useRef(onComplete)
   const onSpeakRef = useRef(onSpeak)
 
   useEffect(() => {
     cardsRef.current = cards
   }, [cards])
+
+  useEffect(() => {
+    elapsedSecondsRef.current = elapsedSeconds
+  }, [elapsedSeconds])
 
   useEffect(() => {
     onCompleteRef.current = onComplete
@@ -108,18 +113,20 @@ export function useMemoryGame({
   // Clean up timers on unmount
   useEffect(() => {
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
-      if (mismatchTimeoutRef.current) clearTimeout(mismatchTimeoutRef.current)
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+        timerRef.current = null
+      }
+      if (mismatchTimeoutRef.current) {
+        clearTimeout(mismatchTimeoutRef.current)
+        mismatchTimeoutRef.current = null
+      }
     }
   }, [])
 
-  // Timer runner
+  // Stop timer on game completion or unmount
   useEffect(() => {
-    if (isTimerStartedRef.current && !isCompleted) {
-      timerRef.current = setInterval(() => {
-        setElapsedSeconds((prev) => prev + 1)
-      }, 1000)
-    } else if (isCompleted && timerRef.current) {
+    if (isCompleted && timerRef.current) {
       clearInterval(timerRef.current)
       timerRef.current = null
     }
@@ -134,8 +141,14 @@ export function useMemoryGame({
 
   const restartGame = useCallback(
     (newWords?: Word[], countOverride?: number) => {
-      if (timerRef.current) clearInterval(timerRef.current)
-      if (mismatchTimeoutRef.current) clearTimeout(mismatchTimeoutRef.current)
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+        timerRef.current = null
+      }
+      if (mismatchTimeoutRef.current) {
+        clearTimeout(mismatchTimeoutRef.current)
+        mismatchTimeoutRef.current = null
+      }
       isTimerStartedRef.current = false
 
       const effectivePairCount = countOverride ?? pairCount
@@ -153,6 +166,7 @@ export function useMemoryGame({
       setIsCompleted(false)
       isCompletedRef.current = false
       setElapsedSeconds(0)
+      elapsedSecondsRef.current = 0
     },
     [words, pairCount]
   )
@@ -185,6 +199,7 @@ export function useMemoryGame({
       // Start timer on first card interaction
       if (!isTimerStartedRef.current) {
         isTimerStartedRef.current = true
+        if (timerRef.current) clearInterval(timerRef.current)
         timerRef.current = setInterval(() => {
           setElapsedSeconds((prev) => prev + 1)
         }, 1000)
@@ -242,18 +257,19 @@ export function useMemoryGame({
           onSpeakRef.current?.(card.english)
 
           // Check win condition
-          if (newMatched.length === pairCount) {
+          const totalPairs = Math.floor(cardsRef.current.length / 2)
+          if (newMatched.length === totalPairs) {
             isCompletedRef.current = true
             setIsCompleted(true)
             if (timerRef.current) {
               clearInterval(timerRef.current)
               timerRef.current = null
             }
-            const finalStars = calculateStars(nextFlips, pairCount)
+            const finalStars = calculateStars(nextFlips, totalPairs)
             onCompleteRef.current?.({
               flips: nextFlips,
               stars: finalStars,
-              elapsedSeconds,
+              elapsedSeconds: elapsedSecondsRef.current,
             })
           }
         } else {
@@ -285,10 +301,11 @@ export function useMemoryGame({
         }
       }
     },
-    [autoSpeak, pairCount, elapsedSeconds]
+    [autoSpeak]
   )
 
-  const stars = calculateStars(flips, pairCount)
+  const currentTotalPairs = cards.length > 0 ? Math.floor(cards.length / 2) : pairCount
+  const stars = calculateStars(flips, currentTotalPairs)
 
   return {
     cards,

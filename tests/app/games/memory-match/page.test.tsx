@@ -234,4 +234,18 @@ describe('Memory Match Game Page (src/app/games/memory-match/page.tsx)', () => {
     expect(screen.getByRole('button', { name: /Trái cây/i })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /Động vật/i })).not.toBeInTheDocument()
   })
+
+  it('renders loading state while configuration is being fetched', () => {
+    mockGameConfigResult = {
+      config: null,
+      settings: null,
+      configId: 'cfg-loading',
+      configName: null,
+      isLoading: true,
+      isPreview: false,
+    }
+
+    render(<MemoryMatchPage />)
+    expect(screen.getByText(/Đang tải trò chơi Lật thẻ tìm cặp/i)).toBeInTheDocument()
+  })
 })

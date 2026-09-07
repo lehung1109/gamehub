@@ -98,12 +98,12 @@
 
 **Purpose**: Project-wide verification, lint, typecheck, accessibility checks, and final commit.
 
-- [ ] T031 Run complete unit test suite: `npm run test:run`
-- [ ] T032 Run complete end-to-end test suite: `npm run test:e2e`
-- [ ] T033 Run static analysis quality gates: `npm run lint` and `npx tsc --noEmit`
-- [ ] T034 Execute manual verification scenarios in `specs/026-memory-match-game/quickstart.md`
-- [ ] T035 Dedicated final review subagent execution for holistic bug hunt across all implemented code
-- [ ] T036 Final feature-level review commit: `chore(memory-match): finalize memory match game feature and verification`
+- [x] T031 Run complete unit test suite: `npm run test:run`
+- [x] T032 Run complete end-to-end test suite: `npm run test:e2e`
+- [x] T033 Run static analysis quality gates: `npm run lint` and `npx tsc --noEmit`
+- [x] T034 Execute manual verification scenarios in `specs/026-memory-match-game/quickstart.md`
+- [x] T035 Dedicated final review subagent execution for holistic bug hunt across all implemented code
+- [x] T036 Final feature-level review commit: `chore(memory-match): finalize memory match game feature and verification`
 
 ---
 
