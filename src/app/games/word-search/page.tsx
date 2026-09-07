@@ -25,7 +25,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
 } from '@/components/ui/dialog'
 import { useSpeech } from '@/hooks/useSpeech'
 import { useGameConfig } from '@/hooks/useGameConfig'
@@ -100,6 +99,7 @@ function WordSearchGameContent({
   })
 
   const [showTopicSelector, setShowTopicSelector] = useState(false)
+  const [isDismissed, setIsDismissed] = useState(false)
 
   // Hook for student progress tracking
   const { submitSession } = useGameTracking({
@@ -178,6 +178,14 @@ function WordSearchGameContent({
     onGameComplete: handleGameComplete,
   })
 
+  const handleRestart = useCallback(
+    (customWords?: Word[]) => {
+      setIsDismissed(false)
+      restartGame(customWords)
+    },
+    [restartGame]
+  )
+
   const currentTopic = allTopics.find((t) => t.id === selectedTopicId)
 
   return (
@@ -226,7 +234,7 @@ function WordSearchGameContent({
               type="button"
               size="sm"
               variant="outline"
-              onClick={() => restartGame()}
+              onClick={() => handleRestart()}
               className="size-7 sm:size-8 p-0 rounded-full"
               title="Chơi lại ván mới"
             >
@@ -239,6 +247,45 @@ function WordSearchGameContent({
         {isPreview && <PreviewBanner />}
         {!isPreview && configName && <ConfigBanner configName={configName} />}
         <SpeechUnsupportedBanner show={!isSpeechSupported} />
+
+        {/* Victory Banner (shown when celebration modal is dismissed) */}
+        {isCompleted && isDismissed && (
+          <div className="bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-300 dark:border-emerald-800 p-4 rounded-3xl flex flex-wrap items-center justify-between gap-3 shadow-xs animate-in fade-in-50 duration-200">
+            <div className="flex items-center gap-3">
+              <div className="size-10 rounded-2xl bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center text-xl shadow-inner">
+                🎉
+              </div>
+              <div>
+                <h3 className="text-sm font-black text-emerald-950 dark:text-emerald-100">
+                  Bé đã tìm thấy tất cả {targetWords.length} từ vựng!
+                </h3>
+                <p className="text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                  Thời gian: {formatTime(elapsedSeconds)} • Đạt {stars} ⭐
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                onClick={() => setIsDismissed(false)}
+                className="rounded-xl text-xs font-bold border-emerald-300 hover:bg-emerald-100 dark:border-emerald-700"
+              >
+                Xem tổng kết
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                onClick={() => handleRestart()}
+                className="rounded-xl text-xs font-black bg-emerald-600 hover:bg-emerald-500 text-white shadow-xs gap-1.5"
+              >
+                <Sparkles className="size-3.5" />
+                <span>Chơi ván mới</span>
+              </Button>
+            </div>
+          </div>
+        )}
 
         {/* Header Title & Topic Switcher */}
         <div className="bg-card p-4 sm:p-5 rounded-3xl border shadow-xs flex flex-wrap items-center justify-between gap-3">
@@ -289,6 +336,7 @@ function WordSearchGameContent({
                     onClick={() => {
                       setSelectedTopicId(topic.id)
                       setShowTopicSelector(false)
+                      setIsDismissed(false)
                     }}
                     className={cn(
                       'flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs sm:text-sm font-bold border transition-all',
@@ -313,7 +361,10 @@ function WordSearchGameContent({
                   <button
                     key={num}
                     type="button"
-                    onClick={() => setWordCount(num)}
+                    onClick={() => {
+                      setWordCount(num)
+                      setIsDismissed(false)
+                    }}
                     className={cn(
                       'px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all',
                       wordCount === num
@@ -358,16 +409,26 @@ function WordSearchGameContent({
         </div>
 
         {/* Completion Celebration Modal */}
-        <Dialog open={isCompleted} onOpenChange={() => {}}>
-          <DialogContent className="sm:max-w-md text-center rounded-3xl p-6 sm:p-8">
-            <DialogHeader className="items-center space-y-3">
-              <div className="size-16 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-3xl shadow-inner animate-bounce">
+        <Dialog
+          open={isCompleted && !isDismissed}
+          onOpenChange={(open) => {
+            if (!open) {
+              setIsDismissed(true)
+            }
+          }}
+        >
+          <DialogContent
+            showCloseButton={true}
+            className="sm:max-w-md w-full max-h-[90vh] overflow-y-auto overflow-x-hidden text-center rounded-3xl p-6 sm:p-7 border-2 border-border shadow-2xl space-y-4"
+          >
+            <DialogHeader className="items-center space-y-2">
+              <div className="size-16 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-3xl shadow-inner animate-bounce mb-1">
                 🎉
               </div>
-              <DialogTitle className="text-2xl font-black text-foreground">
+              <DialogTitle className="text-2xl sm:text-3xl font-black text-foreground">
                 Bé Thật Tuyệt Vời!
               </DialogTitle>
-              <DialogDescription className="text-sm font-medium text-muted-foreground">
+              <DialogDescription className="text-xs sm:text-sm font-medium text-muted-foreground max-w-xs mx-auto">
                 Bé đã tìm thấy tất cả {targetWords.length} từ vựng tiếng Anh trong chủ đề{' '}
                 <span className="font-bold text-foreground">
                   {currentTopic?.nameVi || selectedTopicId}
@@ -377,13 +438,13 @@ function WordSearchGameContent({
             </DialogHeader>
 
             {/* Stars & Stats Box */}
-            <div className="my-4 py-4 px-6 bg-accent/40 rounded-3xl border border-border/80 space-y-3">
-              <div className="flex justify-center items-center gap-1.5">
+            <div className="py-3 px-5 bg-accent/40 rounded-2xl border border-border/80 space-y-2.5">
+              <div className="flex justify-center items-center gap-2">
                 {[1, 2, 3].map((starNum) => (
                   <Star
                     key={starNum}
                     className={cn(
-                      'size-8 transition-transform duration-300',
+                      'size-8 sm:size-9 transition-transform duration-300',
                       starNum <= stars
                         ? 'text-amber-400 fill-amber-400 scale-110 drop-shadow-md'
                         : 'text-slate-300 dark:text-slate-700'
@@ -392,15 +453,15 @@ function WordSearchGameContent({
                 ))}
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-xs font-bold pt-2 border-t border-border/60">
+              <div className="grid grid-cols-2 gap-2 text-xs font-bold pt-2 border-t border-border/60">
                 <div>
-                  <span className="text-muted-foreground block">Thời gian</span>
+                  <span className="text-muted-foreground block text-xs">Thời gian</span>
                   <span className="text-sm text-foreground font-mono">
                     {formatTime(elapsedSeconds)}
                   </span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground block">Gợi ý đã dùng</span>
+                  <span className="text-muted-foreground block text-xs">Gợi ý đã dùng</span>
                   <span className="text-sm text-foreground font-mono">
                     {hintCount} lần
                   </span>
@@ -408,27 +469,27 @@ function WordSearchGameContent({
               </div>
             </div>
 
-            <DialogFooter className="flex-col sm:flex-row gap-2 pt-2">
+            <div className="flex flex-col sm:flex-row items-center gap-2.5 pt-2 w-full">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => {
                   setShowTopicSelector(true)
-                  restartGame()
+                  handleRestart()
                 }}
-                className="w-full rounded-2xl font-bold"
+                className="w-full sm:flex-1 rounded-2xl font-bold h-11 border-border/80 hover:bg-accent"
               >
                 Đổi chủ đề khác
               </Button>
               <Button
                 type="button"
-                onClick={() => restartGame()}
-                className="w-full rounded-2xl font-black bg-emerald-600 hover:bg-emerald-500 text-white shadow-md gap-1.5"
+                onClick={() => handleRestart()}
+                className="w-full sm:flex-1 rounded-2xl font-black bg-emerald-600 hover:bg-emerald-500 text-white shadow-md gap-2 h-11"
               >
                 <Sparkles className="size-4" />
                 <span>Chơi lại ván mới</span>
               </Button>
-            </DialogFooter>
+            </div>
           </DialogContent>
         </Dialog>
       </div>
