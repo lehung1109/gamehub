@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Numbers & Colors Game Flow", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
   test("loads Numbers & Colors game from homepage, navigates numbers and colors tabs", async ({
     page,
   }) => {
@@ -87,7 +91,7 @@ test.describe("Numbers & Colors Game Flow", () => {
 
     // Answer 10 questions
     for (let i = 1; i <= 10; i++) {
-      await expect(page.getByText(new RegExp(`Câu ${i} \\/ 10`, "i"))).toBeVisible({
+      await expect(page.getByText(new RegExp(`Câu ${i} \\/ 10`, "i")).first()).toBeVisible({
         timeout: 5000,
       });
 

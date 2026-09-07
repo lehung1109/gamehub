@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
+
   test("US1: navigates from homepage banner to 12-Tenses Hub and opens Present Simple lesson", async ({
     page,
   }) => {
@@ -111,15 +116,15 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(rulesTab).toHaveAttribute("aria-selected", "true");
 
     // 3. Verify all 5 rule cards are present
-    await expect(page.getByText("Động Từ To Be (Am / Is / Are)")).toBeVisible();
-    await expect(page.getByText("Động Từ Thường (Action Verbs)")).toBeVisible();
-    await expect(page.getByText("Quy Tắc Thêm Đuôi -s / -es")).toBeVisible();
-    await expect(page.getByText("Trạng Từ Chỉ Tần Suất & Vị Trí Trong Câu")).toBeVisible();
-    await expect(page.getByText("4 Tình Huống Công Sở Điển Hình")).toBeVisible();
+    await expect(page.getByText("Động Từ To Be (Am / Is / Are)", { exact: true })).toBeVisible();
+    await expect(page.getByText("Động Từ Thường", { exact: true })).toBeVisible();
+    await expect(page.getByText("Quy tắc chính tả", { exact: true })).toBeVisible();
+    await expect(page.getByText("Trạng từ chỉ tần suất", { exact: true })).toBeVisible();
+    await expect(page.getByText("Sử dụng tại nơi làm việc", { exact: true })).toBeVisible();
 
     // 4. Verify workplace tips callout
     await expect(
-      page.getByText(/Dùng 'I am responsible for\.\.\.' để giới thiệu vai trò công việc/i)
+      page.getByText(/Dùng 'I am responsible for\.\.\.' để giới thiệu vai trò/i)
     ).toBeVisible();
 
     // 5. Test Category Filter
@@ -127,15 +132,15 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await spellingFilterBtn.click();
 
     // Only Spelling Rules card should be visible
-    await expect(page.getByText("Quy Tắc Thêm Đuôi -s / -es")).toBeVisible();
-    await expect(page.getByText("Động Từ To Be (Am / Is / Are)")).not.toBeVisible();
-    await expect(page.getByText("4 Tình Huống Công Sở Điển Hình")).not.toBeVisible();
+    await expect(page.getByText("Quy tắc chính tả", { exact: true })).toBeVisible();
+    await expect(page.getByText("Động Từ To Be (Am / Is / Are)", { exact: true })).not.toBeVisible();
+    await expect(page.getByText("Sử dụng tại nơi làm việc", { exact: true })).not.toBeVisible();
 
     // Click "Tất cả" to restore
     const allFilterBtn = page.getByRole("button", { name: /tất cả/i });
     await allFilterBtn.click();
-    await expect(page.getByText("Động Từ To Be (Am / Is / Are)")).toBeVisible();
-    await expect(page.getByText("4 Tình Huống Công Sở Điển Hình")).toBeVisible();
+    await expect(page.getByText("Động Từ To Be (Am / Is / Are)", { exact: true })).toBeVisible();
+    await expect(page.getByText("Sử dụng tại nơi làm việc", { exact: true })).toBeVisible();
 
     // 6. Test Audio Pronunciation button
     const speakButtons = page.getByRole("button", { name: /phát âm:/i });
@@ -158,20 +163,30 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
   test("US3: completes Stage 1 (Conjugation) with multiple-choice, direct typing, audio, instant feedback, and storage saving", async ({
     page,
   }) => {
-    // 1. Open Present Simple lesson page
-    await page.goto("/tenses/present-simple");
-
-    // Seed sessionStorage to ensure deterministic order of questions for this test
-    await page.evaluate(() => {
+    // Seed sessionStorage before navigation to ensure deterministic order of questions
+    await page.addInitScript(() => {
       sessionStorage.setItem(
-        'gamehub-session-present-simple-conjugation',
-        JSON.stringify(["conj-01", "conj-02", "conj-03", "conj-04", "conj-05", "conj-06", "conj-07", "conj-08", "conj-09", "conj-10"])
+        "gamehub-session-present-simple-conjugation",
+        JSON.stringify([
+          "present-simple-conj-1",
+          "present-simple-conj-2",
+          "present-simple-conj-3",
+          "present-simple-conj-4",
+          "present-simple-conj-5",
+          "present-simple-conj-6",
+          "present-simple-conj-7",
+          "present-simple-conj-8",
+          "present-simple-conj-9",
+          "present-simple-conj-10",
+        ])
       );
     });
 
+    // 1. Open Present Simple lesson page
+    await page.goto("/tenses/present-simple");
+
     // 2. Go to Practice tab
     const practiceTab = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
-
     await practiceTab.click();
 
     // 3. Enter Stage 1
@@ -182,13 +197,13 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 4. Verify Stage 1 UI
     await expect(page.getByText(/chặng 1 • chia động từ/i)).toBeVisible();
     await expect(page.getByText(/câu 1 \/ 10/i)).toBeVisible();
-    await expect(page.getByText(/Email thông báo lịch họp định kỳ/i)).toBeVisible();
-    await expect(page.getByText(/Weekly Sprint Planning Meeting/i)).toBeVisible();
+    await expect(page.getByText(/Kỹ thuật \/ IT/i).first()).toBeVisible();
+    await expect(page.getByText(/The pipeline/i)).toBeVisible();
 
     // 5. Test Multiple-Choice Selection on Q1
-    const optionMeets = page.getByRole("button", { name: "meets", exact: true });
-    await expect(optionMeets).toBeVisible();
-    await optionMeets.click();
+    const optionDeploys = page.getByRole("button", { name: "deploys", exact: true });
+    await expect(optionDeploys).toBeVisible();
+    await optionDeploys.click();
 
     const submitBtn = page.getByRole("button", { name: /kiểm tra đáp án/i });
     await expect(submitBtn).toBeEnabled();
@@ -197,7 +212,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 6. Verify Instant Feedback and Grammar Explanation
     await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
     await expect(page.getByText(/Quy tắc áp dụng:/i)).toBeVisible();
-    await expect(page.getByText(/Chủ ngữ 'Our team'/i)).toBeVisible();
+    await expect(page.getByText(/The pipeline/i).first()).toBeVisible();
 
     // 7. Test Speech button
     const audioBtn = page.getByRole("button", { name: /nghe phát âm/i });
@@ -211,43 +226,43 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
 
     // 9. Test Direct Typing & Enter key on Q2
     await expect(page.getByText(/câu 2 \/ 10/i)).toBeVisible();
-    await expect(page.getByText(/Welcome our new Marketing Manager/i)).toBeVisible();
+    await expect(page.getByText(/Webpack/i).first()).toBeVisible();
 
     const textInput = page.getByPlaceholder(/nhập dạng đúng của động từ/i);
     await expect(textInput).toBeVisible();
-    await textInput.fill("manages");
+    await textInput.fill("compiles");
     await textInput.press("Enter");
 
     await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
-    await expect(page.getByText("Ms. Lan", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText(/Webpack/i).first()).toBeVisible();
 
     // 10. Test Incorrect Answer feedback on Q3
     await page.getByRole("button", { name: /câu tiếp theo/i }).click();
     await expect(page.getByText(/câu 3 \/ 10/i)).toBeVisible();
 
-    // Select incorrect choice "do not send"
-    await page.getByRole("button", { name: "do not send", exact: true }).click();
+    // Select incorrect choice "crash"
+    await page.getByRole("button", { name: "crash", exact: true }).first().click();
     await page.getByRole("button", { name: /kiểm tra đáp án/i }).click();
 
     await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
     await expect(page.getByText(/đáp án đúng:/i)).toBeVisible();
-    await expect(page.getByText(/does not send/i).first()).toBeVisible();
+    await expect(page.getByText(/crashes/i).first()).toBeVisible();
 
-    // 11. Loop through remaining questions (Q4 to Q8)
+    // 11. Loop through remaining questions (Q4 to Q10)
     const answers = [
-      "verifies",           // Q4
-      "does the CEO arrive",// Q5
-      "deliver",            // Q6
-      "have",               // Q7
-      "does not exceed",    // Q8
-      "reviews",            // Q9
-      "hold",               // Q10
+      "review",           // Q4
+      "push",             // Q5
+      "fetches",          // Q6
+      "does not support", // Q7
+      "run",              // Q8
+      "monitors",         // Q9
+      "caches",           // Q10
     ];
 
     for (let i = 0; i < answers.length; i++) {
       await page.getByRole("button", { name: /câu tiếp theo/i }).click();
       const currentAns = answers[i];
-      const optBtn = page.getByRole("button", { name: currentAns, exact: true });
+      const optBtn = page.getByRole("button", { name: currentAns, exact: true }).first();
       if (await optBtn.isVisible()) {
         await optBtn.click();
       } else {
@@ -282,20 +297,27 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
   test("US4: completes Stage 2 (Error Hunter) with token clicking, non-error hints, replacement selection, workplace impact feedback, and storage saving", async ({
     page,
   }) => {
-    // 1. Navigate to /tenses/present-simple
-    await page.goto("/tenses/present-simple");
-
-    // Seed sessionStorage to ensure deterministic order of questions for this test
-    await page.evaluate(() => {
+    // Seed sessionStorage before navigation to ensure deterministic order of questions
+    await page.addInitScript(() => {
       sessionStorage.setItem(
-        'gamehub-session-present-simple-errorHunting',
-        JSON.stringify(["err-01", "err-02", "err-03", "err-04", "err-05", "err-06", "err-07", "err-08", "err-09", "err-10"])
-      );
-      sessionStorage.setItem(
-        'gamehub-session-present-simple-sentenceBuilding',
-        JSON.stringify(["sb-01", "sb-02", "sb-03", "sb-04", "sb-05", "sb-06", "sb-07", "sb-08", "sb-09", "sb-10"])
+        "gamehub-session-present-simple-errorHunting",
+        JSON.stringify([
+          "present-simple-eh-1",
+          "present-simple-eh-2",
+          "present-simple-eh-3",
+          "present-simple-eh-4",
+          "present-simple-eh-5",
+          "present-simple-eh-6",
+          "present-simple-eh-7",
+          "present-simple-eh-8",
+          "present-simple-eh-9",
+          "present-simple-eh-10",
+        ])
       );
     });
+
+    // 1. Navigate to /tenses/present-simple
+    await page.goto("/tenses/present-simple");
 
     // 2. Go to Practice tab
     const practiceTab = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
@@ -309,30 +331,29 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 4. Verify Stage 2 UI & Q1
     await expect(page.getByText(/chặng 2 • săn lỗi sai văn phòng/i)).toBeVisible();
     await expect(page.getByText(/câu 1 \/ 10/i)).toBeVisible();
-    await expect(page.getByText(/Trao đổi ý kiến về đề xuất của khách hàng/i)).toBeVisible();
-    await expect(page.getByText(/Cô ấy không đồng ý với đề xuất mới của khách hàng/i)).toBeVisible();
+    await expect(page.getByText(/Ngữ cảnh lập trình/i).first()).toBeVisible();
 
-    // 5. Click a non-error token ("She") -> verify helper notice (Acceptance Scenario 4)
-    const tokenShe = page.getByRole("button", { name: "She", exact: true });
-    await expect(tokenShe).toBeVisible();
-    await tokenShe.click();
+    // 5. Click a non-error token ("The") -> verify helper notice
+    const tokenThe = page.getByRole("button", { name: "The", exact: true });
+    await expect(tokenThe).toBeVisible();
+    await tokenThe.click();
     await expect(
-      page.getByText(/vị trí này không có lỗi|từ "she" đã đúng ngữ pháp/i)
+      page.getByText(/vị trí này không có lỗi|từ "the" đã đúng ngữ pháp/i)
     ).toBeVisible();
 
     // Submit button is disabled because no error token / replacement chosen
     const submitBtn = page.getByRole("button", { name: /xác nhận sửa lỗi/i });
     await expect(submitBtn).toBeDisabled();
 
-    // 6. Click the error token ("don't") -> verify step 2 options appear
-    const tokenDont = page.getByRole("button", { name: "don't", exact: true });
-    await expect(tokenDont).toBeVisible();
-    await tokenDont.click();
+    // 6. Click the error token ("deploy") -> verify step 2 options appear
+    const tokenDeploy = page.getByRole("button", { name: "deploy", exact: true });
+    await expect(tokenDeploy).toBeVisible();
+    await tokenDeploy.click();
 
     await expect(page.getByText(/chọn phương án sửa đúng/i)).toBeVisible();
-    const optDoesnt = page.getByRole("button", { name: "doesn't", exact: true });
-    await expect(optDoesnt).toBeVisible();
-    await optDoesnt.click();
+    const optDeploys = page.getByRole("button", { name: "deploys", exact: true });
+    await expect(optDeploys).toBeVisible();
+    await optDeploys.click();
 
     await expect(submitBtn).toBeEnabled();
     await submitBtn.click();
@@ -341,7 +362,7 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
     await expect(page.getByText(/Phân tích lỗi sai:/i)).toBeVisible();
     await expect(page.getByText(/Tác động công sở:/i)).toBeVisible();
-    await expect(page.getByText("She doesn't agree with the client's new proposal.")).toBeVisible();
+    await expect(page.getByText("The CI/CD pipeline deploys to production every night.")).toBeVisible();
 
     const audioBtn = page.getByRole("button", { name: /nghe phát âm câu chuẩn/i });
     await expect(audioBtn).toBeVisible();
@@ -352,39 +373,39 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(nextBtn).toBeVisible();
     await nextBtn.click();
 
-    // 9. Q2: CEO always attend -> "attends"
+    // 9. Q2: Our database is crash -> crashes
     await expect(page.getByText(/câu 2 \/ 10/i)).toBeVisible();
-    await page.getByRole("button", { name: "attend", exact: true }).click();
-    await page.getByRole("button", { name: "attends", exact: true }).click();
+    await page.getByRole("button", { name: "is crash", exact: true }).click();
+    await page.getByRole("button", { name: "crashes", exact: true }).click();
     await page.getByRole("button", { name: /xác nhận sửa lỗi/i }).click();
     await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
 
-    // 10. Q3: Test incorrect replacement choice (Error token "provide", choose "is provide")
+    // 10. Q3: Test incorrect replacement choice (Error token "don't", choose incorrect "don't")
     await page.getByRole("button", { name: /câu tiếp theo/i }).click();
     await expect(page.getByText(/câu 3 \/ 10/i)).toBeVisible();
-    await page.getByRole("button", { name: "provide", exact: true }).click();
-    await page.getByRole("button", { name: "is provide", exact: true }).click();
+    await page.getByRole("button", { name: "don't", exact: true }).first().click();
+    await page.getByRole("button", { name: "don't", exact: true }).last().click();
     await page.getByRole("button", { name: /xác nhận sửa lỗi/i }).click();
 
     await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
     await expect(page.getByText(/sửa đúng là:/i)).toBeVisible();
-    await expect(page.getByText(/provides/i).first()).toBeVisible();
+    await expect(page.getByText(/doesn't/i).first()).toBeVisible();
 
-    // 11. Loop through remaining questions Q4 to Q6
+    // 11. Loop through remaining questions Q4 to Q10
     const errorStages = [
-      { errorToken: "do", correctReplacement: "does" },       // Q4
-      { errorToken: "teach", correctReplacement: "teaches" }, // Q5
-      { errorToken: "make", correctReplacement: "makes" },    // Q6
-      { errorToken: "needs", correctReplacement: "need" },    // Q7
-      { errorToken: "has", correctReplacement: "have" },      // Q8
-      { errorToken: "verifys", correctReplacement: "verifies" }, // Q9
-      { errorToken: "do", correctReplacement: "does" },       // Q10
+      { errorToken: "compile", correctReplacement: "compiles" },           // Q4
+      { errorToken: "saving", correctReplacement: "saves" },               // Q5
+      { errorToken: "are run", correctReplacement: "run" },               // Q6
+      { errorToken: "doesn't works", correctReplacement: "doesn't work" }, // Q7
+      { errorToken: "fix", correctReplacement: "fixes" },                 // Q8
+      { errorToken: "throws", correctReplacement: "throw" },               // Q9
+      { errorToken: "store", correctReplacement: "stores" },               // Q10
     ];
 
     for (let i = 0; i < errorStages.length; i++) {
       await page.getByRole("button", { name: /câu tiếp theo/i }).click();
       const { errorToken, correctReplacement } = errorStages[i];
-      await page.getByRole("button", { name: errorToken, exact: true }).click();
+      await page.getByRole("button", { name: errorToken, exact: true }).first().click();
       await page.getByRole("button", { name: correctReplacement, exact: true }).click();
       await page.getByRole("button", { name: /xác nhận sửa lỗi/i }).click();
       await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
@@ -414,16 +435,27 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
   test("US5: completes Stage 3 (Sentence Builder) with tap-to-place, tap-to-remove, reset, audio pronunciation, grammar tips, and storage saving", async ({
     page,
   }) => {
-    // 1. Navigate to /tenses/present-simple
-    await page.goto("/tenses/present-simple");
-
-    // Seed sessionStorage to ensure deterministic order of questions for this test
-    await page.evaluate(() => {
+    // Seed sessionStorage before navigation to ensure deterministic order of questions
+    await page.addInitScript(() => {
       sessionStorage.setItem(
-        'gamehub-session-present-simple-sentenceBuilding',
-        JSON.stringify(["sb-01", "sb-02", "sb-03", "sb-04", "sb-05", "sb-06", "sb-07", "sb-08", "sb-09", "sb-10"])
+        "gamehub-session-present-simple-sentenceBuilding",
+        JSON.stringify([
+          "present-simple-sb-1",
+          "present-simple-sb-2",
+          "present-simple-sb-3",
+          "present-simple-sb-4",
+          "present-simple-sb-5",
+          "present-simple-sb-6",
+          "present-simple-sb-7",
+          "present-simple-sb-8",
+          "present-simple-sb-9",
+          "present-simple-sb-10",
+        ])
       );
     });
+
+    // 1. Navigate to /tenses/present-simple
+    await page.goto("/tenses/present-simple");
 
     // 2. Go to Practice tab
     const practiceTab = page.getByRole("tab", { name: /luyện tập \d+ chặng/i });
@@ -437,10 +469,8 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 4. Verify Stage 3 UI & Q1
     await expect(page.getByText(/chặng 3 • ghép câu lịch trình & giao tiếp/i)).toBeVisible();
     await expect(page.getByText(/câu 1 \/ 10/i)).toBeVisible();
-    await expect(page.getByText(/Lịch trình họp giao ban đầu tuần của công ty/i)).toBeVisible();
-    await expect(
-      page.getByText(/Công ty chúng tôi luôn tổ chức buổi họp toàn thể vào sáng thứ Hai/i)
-    ).toBeVisible();
+    await expect(page.getByText(/Tình huống lập trình/i)).toBeVisible();
+    await expect(page.getByText(/Sắp xếp lại câu/i)).toBeVisible();
 
     // Verify initial placeholder
     await expect(page.getByText(/chạm hoặc kéo thả các từ bên dưới vào đây/i)).toBeVisible();
@@ -450,17 +480,17 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await expect(submitBtn).toBeDisabled();
 
     // 5. Test Tap-to-Place tokens
-    await page.getByRole("button", { name: /thêm "our company"/i }).click();
-    await page.getByRole("button", { name: /thêm "always"/i }).click();
+    await page.getByRole("button", { name: /thêm "The"/i }).first().click();
+    await page.getByRole("button", { name: /thêm "system"/i }).first().click();
 
     // Verify placeholder disappears and placed tokens are visible
     await expect(page.getByText(/chạm hoặc kéo thả các từ bên dưới vào đây/i)).not.toBeVisible();
-    await expect(page.getByRole("button", { name: /xóa "our company"/i })).toBeVisible();
-    await expect(page.getByRole("button", { name: /xóa "always"/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /xóa "The"/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: /xóa "system"/i })).toBeVisible();
 
     // 6. Test Tap-to-Remove token
-    await page.getByRole("button", { name: /xóa "always"/i }).click();
-    await expect(page.getByRole("button", { name: /thêm "always"/i })).toBeVisible();
+    await page.getByRole("button", { name: /xóa "system"/i }).click();
+    await expect(page.getByRole("button", { name: /thêm "system"/i })).toBeVisible();
 
     // 7. Test "Đặt lại câu" (Reset button)
     const resetBtn = page.getByRole("button", { name: /đặt lại câu/i });
@@ -471,11 +501,11 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
 
     // 8. Place tokens in correct order for Q1
     const q1Tokens = [
-      "Our company",
-      "always",
-      "holds",
-      "an all-hands meeting",
-      "on Monday morning.",
+      "The",
+      "system",
+      "generates",
+      "logs",
+      "automatically.",
     ];
     for (const tok of q1Tokens) {
       await page.getByRole("button", { name: new RegExp(`thêm "${tok}"`, "i") }).click();
@@ -487,9 +517,9 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     // 9. Verify positive feedback, full sentence, grammar tips, and audio button
     await expect(page.getByText(/chính xác! \(\+10 điểm\)/i)).toBeVisible();
     await expect(
-      page.getByText("Our company always holds an all-hands meeting on Monday morning.")
+      page.getByText("The system generates logs automatically.")
     ).toBeVisible();
-    await expect(page.getByText(/Mẹo ngữ pháp \(Vị trí trạng từ chỉ tần suất\):/i)).toBeVisible();
+    await expect(page.getByText(/Mẹo ngữ pháp \(Cấu trúc câu\):/i)).toBeVisible();
 
     const audioBtn = page.getByRole("button", { name: /nghe phát âm câu chuẩn/i });
     await expect(audioBtn).toBeVisible();
@@ -502,85 +532,35 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
 
     // 11. Test Incorrect Answer order on Q2
     await expect(page.getByText(/câu 2 \/ 10/i)).toBeVisible();
-    await page.getByRole("button", { name: /thêm "before the interview\."/i }).click();
-    await page.getByRole("button", { name: /thêm "candidate resumes"/i }).click();
+    await page.getByRole("button", { name: /thêm "daily\."/i }).click();
+    await page.getByRole("button", { name: /thêm "tests"/i }).click();
     await page.getByRole("button", { name: /kiểm tra câu/i }).click();
 
     await expect(page.getByText(/chưa chính xác/i)).toBeVisible();
     await expect(page.getByText(/câu chuẩn xác là:/i)).toBeVisible();
     await expect(
-      page.getByText("The HR manager regularly reviews candidate resumes before the interview.")
+      page.getByText("Developers write unit tests daily.")
     ).toBeVisible();
-    await expect(page.getByText(/Mẹo ngữ pháp \(Chủ ngữ số ít và trạng từ\):/i)).toBeVisible();
+    await expect(page.getByText(/Mẹo ngữ pháp \(Cấu trúc câu\):/i)).toBeVisible();
 
-    // 12. Loop through remaining questions Q3 to Q6 with correct answers
+    // 12. Loop through remaining questions Q3 to Q10 with correct answers
     const sentenceStages = [
       // Q3
-      [
-        "We",
-        "usually",
-        "send",
-        "the project progress report",
-        "to the client",
-        "on Friday.",
-      ],
+      ["Our", "server", "handles", "thousands", "of", "requests."],
       // Q4
-      [
-        "The IT support team",
-        "never",
-        "ignores",
-        "urgent requests",
-        "from customers.",
-      ],
+      ["Does", "this", "API", "return", "JSON", "data?"],
       // Q5
-      [
-        "The project director",
-        "rarely",
-        "approves",
-        "plans",
-        "without a clear budget estimate.",
-      ],
+      ["The", "database", "does", "not", "store", "passwords", "in", "plain", "text."],
       // Q6
-      [
-        "The branch office",
-        "opens",
-        "at 8:00 AM",
-        "and closes",
-        "at 6:00 PM",
-        "every day.",
-      ],
+      ["We", "use", "Git", "for", "version", "control."],
       // Q7
-      [
-        "Do", "you",
-        "usually", "check",
-        "work", "emails",
-        "on", "the",
-        "weekend?"
-      ],
+      ["This", "function", "takes", "two", "arguments."],
       // Q8
-      [
-        "This", "system",
-        "does", "not",
-        "automatically", "update",
-        "user", "data",
-        "every", "day."
-      ],
+      ["A", "load", "balancer", "distributes", "traffic", "evenly."],
       // Q9
-      [
-        "They", "are",
-        "a", "very",
-        "reliable", "partner",
-        "in", "the",
-        "software", "industry."
-      ],
+      ["The", "cache", "expires", "after", "one", "hour."],
       // Q10
-      [
-        "Is", "the",
-        "current", "budget",
-        "sufficient", "for",
-        "the", "new",
-        "marketing", "campaign?"
-      ]
+      ["Security", "tools", "scan", "the", "codebase", "regularly."],
     ];
 
     for (let i = 0; i < sentenceStages.length; i++) {
@@ -600,7 +580,6 @@ test.describe("Workplace English Tense Practice - User Story 1 & 2 Flows", () =>
     await finishStage3Btn.click();
 
     // Click "Quay lại danh sách" on Stage Result UI
-    // Note: since this is the last stage, it auto redirects to completion dashboard!
     const backToListBtn3 = page.getByRole("button", { name: /về danh sách chặng/i });
     await expect(backToListBtn3).toBeVisible();
     await backToListBtn3.click();

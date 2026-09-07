@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Spelling Game E2E Flow (/games/spelling)", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
   test("loads Spelling Game page, verifies header, navigation, and word prompt controls", async ({
     page,
   }) => {

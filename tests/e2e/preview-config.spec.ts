@@ -1,8 +1,12 @@
 // tests/e2e/preview-config.spec.ts
 import { test, expect } from '@playwright/test'
 import { encodePreviewSettings } from '../../src/lib/preview'
+import { mockAnonymousStudent } from './helpers/auth-helper'
 
 test.describe('Preview Game Configuration (E2E Suite)', () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
   test.describe('Universal Support: All 6 Games Preview Direct Launch', () => {
     test('1. Flashcard: applies topic filtering, navigates to sub-topic preserving preview, and respects wordLimit', async ({
       page,

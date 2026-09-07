@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("GameHub Home Navigation", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
+
   test("renders home page and navigates to games", async ({ page }) => {
     await page.goto("/");
 

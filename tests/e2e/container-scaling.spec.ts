@@ -8,7 +8,7 @@ import {
 } from './helpers/viewport-helper';
 
 test.describe('Root Container Scaling across Viewports', () => {
-  const containerSelector = '[data-testid="root-layout-container"]';
+  const containerSelector = '[data-testid="app-container"]';
 
   test('scales container proportionally up to 1800px on large viewports', async ({ page }) => {
     // 1. At 1024px viewport width (lg)

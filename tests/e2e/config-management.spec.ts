@@ -1,5 +1,6 @@
 // tests/e2e/config-management.spec.ts
 import { test, expect } from '@playwright/test'
+import { mockAnonymousStudent } from './helpers/auth-helper'
 
 test.describe('Game Configuration Management (User Story 2 & 3)', () => {
   test.describe('Route Protection & Authentication Redirects', () => {
@@ -33,6 +34,10 @@ test.describe('Game Configuration Management (User Story 2 & 3)', () => {
   })
 
   test.describe('Public Accessibility & Fallback Behavior', () => {
+    test.beforeEach(async ({ page }) => {
+      await mockAnonymousStudent(page);
+    });
+
     test('public user can access all games without authentication', async ({ page }) => {
       await page.goto('/games/flashcard')
       await expect(page).toHaveURL('/games/flashcard')

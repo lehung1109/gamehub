@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Listening Game E2E Flow (/games/listening)", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
+
   test("loads Listening Game page, verifies header, navigation, and audio replay controls", async ({
     page,
   }) => {
@@ -79,7 +84,7 @@ test.describe("Listening Game E2E Flow (/games/listening)", () => {
 
     // Play through all 10 questions
     for (let i = 1; i <= 10; i++) {
-      await expect(page.getByText(new RegExp(`Câu ${i} \\/ 10`, "i"))).toBeVisible({
+      await expect(page.getByText(new RegExp(`Câu ${i} \\/ 10`, "i")).first()).toBeVisible({
         timeout: 5000,
       });
 
@@ -104,6 +109,6 @@ test.describe("Listening Game E2E Flow (/games/listening)", () => {
     await playAgainBtn.click();
 
     // Game restarts at Question 1
-    await expect(page.getByText(/Câu 1 \/ 10/i)).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText(/Câu 1 \/ 10/i).first()).toBeVisible({ timeout: 5000 });
   });
 });
