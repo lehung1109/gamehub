@@ -54,7 +54,14 @@ export const HeroCard: React.FC<HeroCardProps> = ({
             {hp} / {maxHp}
           </span>
         </div>
-        <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
+        <div
+          role="progressbar"
+          aria-label="Hero Health"
+          aria-valuenow={hp}
+          aria-valuemin={0}
+          aria-valuemax={maxHp}
+          className="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700"
+        >
           <div
             className="h-full bg-gradient-to-r from-rose-500 to-red-500 rounded-full transition-all duration-500"
             style={{ width: `${hpPercent}%` }}
@@ -70,14 +77,21 @@ export const HeroCard: React.FC<HeroCardProps> = ({
           </span>
           <span className="text-slate-300">{energy} / 100</span>
         </div>
-        <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
+        <div
+          role="progressbar"
+          aria-label="Hero Energy"
+          aria-valuenow={energy}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700"
+        >
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               energy >= 100
                 ? "bg-gradient-to-r from-amber-400 to-yellow-300 shadow-md shadow-amber-400/50 animate-pulse"
                 : "bg-gradient-to-r from-amber-600 to-amber-400"
             }`}
-            style={{ width: `${energy}%` }}
+            style={{ width: `${Math.max(0, Math.min(100, energy))}%` }}
           />
         </div>
       </div>

@@ -14,7 +14,11 @@ export const FloatingCombatText: React.FC<FloatingCombatTextProps> = ({ feedback
   if (!feedback) return null;
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none text-center animate-bounce">
+    <div
+      role="status"
+      aria-live="polite"
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none text-center animate-bounce"
+    >
       <div
         className={`px-5 py-2.5 rounded-2xl font-black text-xl md:text-2xl shadow-2xl border ${
           feedback.isCorrect
