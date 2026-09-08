@@ -55,14 +55,14 @@ export default function GrammarDetectivePage() {
     lastFeedback,
   } = useGrammarDetective(allCases);
 
-  // Submit session tracking when a case is solved
+  // Submit session tracking when a case is solved or goes cold
   React.useEffect(() => {
     if (
       status === 'solved' &&
       currentCase &&
-      trackedCaseRef.current !== `${currentCase.id}-${elapsedSeconds}`
+      trackedCaseRef.current !== `${currentCase.id}-${elapsedSeconds}-solved`
     ) {
-      trackedCaseRef.current = `${currentCase.id}-${elapsedSeconds}`;
+      trackedCaseRef.current = `${currentCase.id}-${elapsedSeconds}-solved`;
       submitSession({
         score: starsEarned,
         totalQuestions: currentCase.errors.length,
@@ -75,8 +75,35 @@ export default function GrammarDetectivePage() {
           },
         ],
       });
+    } else if (
+      status === 'cold' &&
+      currentCase &&
+      trackedCaseRef.current !== `${currentCase.id}-${elapsedSeconds}-cold`
+    ) {
+      trackedCaseRef.current = `${currentCase.id}-${elapsedSeconds}-cold`;
+      submitSession({
+        score: 0,
+        totalQuestions: currentCase.errors.length,
+        details: [
+          {
+            prompt: `Đình chỉ vụ án "${currentCase.title}" (${currentCase.titleVi}) - Giải được ${solvedErrorIds.length}/${currentCase.errors.length} lỗi, phạm ${mistakes} lỗi, thời gian ${elapsedSeconds}s`,
+            isCorrect: false,
+            timeTakenMs: elapsedSeconds * 1000,
+            attempts: mistakes,
+          },
+        ],
+      });
     }
-  }, [status, currentCase, starsEarned, credibility, elapsedSeconds, mistakes, submitSession]);
+  }, [
+    status,
+    currentCase,
+    starsEarned,
+    credibility,
+    elapsedSeconds,
+    mistakes,
+    solvedErrorIds.length,
+    submitSession,
+  ]);
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-5xl space-y-6">

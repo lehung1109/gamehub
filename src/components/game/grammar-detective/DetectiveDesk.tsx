@@ -39,6 +39,8 @@ export const DetectiveDesk: React.FC<DetectiveDeskProps> = ({
   onSpeak,
 }) => {
   const IconComponent = categoryIcons[caseFile.category] || Mail;
+  const currentDocumentText =
+    tokens.length > 0 ? tokens.map((t) => t.text).join('') : caseFile.documentText;
 
   return (
     <Card className="relative w-full max-w-4xl mx-auto overflow-hidden border-2 shadow-xl bg-card text-card-foreground">
@@ -67,7 +69,7 @@ export const DetectiveDesk: React.FC<DetectiveDeskProps> = ({
           type="button"
           variant="outline"
           size="sm"
-          onClick={() => onSpeak(caseFile.documentText)}
+          onClick={() => onSpeak(currentDocumentText)}
           className="gap-1.5 text-xs font-semibold"
           aria-label="Nghe đọc toàn bộ văn bản"
         >

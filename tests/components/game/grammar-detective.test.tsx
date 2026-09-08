@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CaseColdModal } from '@/components/game/grammar-detective/CaseColdModal';
 import { DossierSelector } from '@/components/game/grammar-detective/DossierSelector';
+import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk';
 import type { CaseFile } from '@/types/grammar-detective';
 
 const sampleCase: CaseFile = {
@@ -73,5 +74,56 @@ describe('DossierSelector component', () => {
     fireEvent.click(resetBtn);
 
     expect(screen.getByText('Test Case Title')).toBeInTheDocument();
+  });
+});
+
+describe('DetectiveDesk component', () => {
+  it('calls onSpeak with corrected document text instead of raw text', () => {
+    const onSpeak = vi.fn();
+    const onTokenTap = vi.fn();
+    const tokens = [
+      { id: 't-0', text: 'We ', isWord: true, errorId: null, isCorrected: false },
+      { id: 't-1', text: 'have', isWord: true, errorId: 'err-1', isCorrected: true },
+      { id: 't-2', text: ' problem.', isWord: false, errorId: null, isCorrected: false },
+    ];
+
+    render(
+      <DetectiveDesk
+        caseFile={sampleCase}
+        tokens={tokens}
+        highlighterActive={true}
+        onTokenTap={onTokenTap}
+        onSpeak={onSpeak}
+      />
+    );
+
+    const speakBtn = screen.getByRole('button', { name: /Nghe đọc toàn bộ văn bản/i });
+    fireEvent.click(speakBtn);
+
+    expect(onSpeak).toHaveBeenCalledWith('We have problem.');
+  });
+
+  it('calls onTokenTap when a word token is tapped', () => {
+    const onSpeak = vi.fn();
+    const onTokenTap = vi.fn();
+    const tokens = [
+      { id: 't-0', text: 'We', isWord: true, errorId: null, isCorrected: false },
+      { id: 't-1', text: 'has', isWord: true, errorId: 'err-1', isCorrected: false },
+    ];
+
+    render(
+      <DetectiveDesk
+        caseFile={sampleCase}
+        tokens={tokens}
+        highlighterActive={true}
+        onTokenTap={onTokenTap}
+        onSpeak={onSpeak}
+      />
+    );
+
+    const tokenBtn = screen.getByRole('button', { name: 'has' });
+    fireEvent.click(tokenBtn);
+
+    expect(onTokenTap).toHaveBeenCalledWith('t-1');
   });
 });
