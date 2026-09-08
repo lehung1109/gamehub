@@ -17,7 +17,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
 }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (disabled) return;
+      if (disabled || e.repeat) return;
       if (e.key === "1") onSelectSkill("ATTACK");
       if (e.key === "2") onSelectSkill("SHIELD");
       if (e.key === "3" && heroEnergy >= 100) onSelectSkill("ULTIMATE");
@@ -38,6 +38,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
         <button
           type="button"
           disabled={disabled}
+          aria-keyshortcuts="1"
           onClick={() => onSelectSkill("ATTACK")}
           className="group relative flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-slate-800 to-slate-800/80 hover:from-amber-600/30 hover:to-amber-500/20 border border-slate-700 hover:border-amber-500/50 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-left"
         >
@@ -57,6 +58,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
         <button
           type="button"
           disabled={disabled}
+          aria-keyshortcuts="2"
           onClick={() => onSelectSkill("SHIELD")}
           className="group relative flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-slate-800 to-slate-800/80 hover:from-sky-600/30 hover:to-sky-500/20 border border-slate-700 hover:border-sky-500/50 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-left"
         >
@@ -76,6 +78,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
         <button
           type="button"
           disabled={disabled || heroEnergy < 100}
+          aria-keyshortcuts="3"
           onClick={() => onSelectSkill("ULTIMATE")}
           className={`group relative flex items-center gap-3 p-4 rounded-2xl border transition-all text-left ${
             heroEnergy >= 100

@@ -14,6 +14,8 @@ export const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
 }) => {
   return (
     <div
+      role="status"
+      aria-live="polite"
       className={`p-4 rounded-2xl border mb-4 flex items-start gap-3 animate-in fade-in duration-200 ${
         isCorrect
           ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
