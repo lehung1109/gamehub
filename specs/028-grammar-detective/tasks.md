@@ -38,15 +38,15 @@
 
 **Independent Test**: Load the first case, toggle highlighter, tap "deploy", select "deployed", verify in-place text replacement and audio playback.
 
-- [ ] T014 Dedicated Subagent: Initialize Phase 3 subagent context.
-- [ ] T015 [P] [US1] TDD Red: Write unit tests for core state transitions and token tapping in `src/app/games/grammar-detective/__tests__/useGrammarDetective.test.ts`.
-- [ ] T016 [US1] TDD Green: Implement core state machine hook in `src/hooks/useGrammarDetective.ts` (token tap, deduction modal open, option selection, in-place token replacement).
-- [ ] T017 [P] [US1] Implement Detective Desk document viewer with token-level highlighting in `src/components/game/grammar-detective/DetectiveDesk.tsx`.
-- [ ] T018 [P] [US1] Implement Deduction Card modal with multiple-choice options, bilingual explanations, and Web Speech audio button in `src/components/game/grammar-detective/DeductionCard.tsx`.
-- [ ] T019 [US1] Assemble MVP container page with highlighter toggle and audio playback in `src/app/games/grammar-detective/page.tsx`.
-- [ ] T020 [US1] Verification: Run unit tests `npx vitest run src/app/games/grammar-detective/__tests__/` and verify MVP interactive loop.
-- [ ] T021 Phase 3 Review Subagent: Spawn review subagent to inspect touch targets, text selection suppression (`select-none`), and error handling.
-- [ ] T022 Phase 3 Commit: Commit MVP implementation with `feat(grammar-detective): implement core detective desk, token highlighter, and deduction card`.
+- [x] T014 Dedicated Subagent: Initialize Phase 3 subagent context.
+- [x] T015 [P] [US1] TDD Red: Write unit tests for core state transitions and token tapping in `src/app/games/grammar-detective/__tests__/useGrammarDetective.test.ts`.
+- [x] T016 [US1] TDD Green: Implement core state machine hook in `src/hooks/useGrammarDetective.ts` (token tap, deduction modal open, option selection, in-place token replacement).
+- [x] T017 [P] [US1] Implement Detective Desk document viewer with token-level highlighting in `src/components/game/grammar-detective/DetectiveDesk.tsx`.
+- [x] T018 [P] [US1] Implement Deduction Card modal with multiple-choice options, bilingual explanations, and Web Speech audio button in `src/components/game/grammar-detective/DeductionCard.tsx`.
+- [x] T019 [US1] Assemble MVP container page with highlighter toggle and audio playback in `src/app/games/grammar-detective/page.tsx`.
+- [x] T020 [US1] Verification: Run unit tests `npx vitest run src/app/games/grammar-detective/__tests__/` and verify MVP interactive loop.
+- [x] T021 Phase 3 Review Subagent: Spawn review subagent to inspect touch targets, text selection suppression (`select-none`), and error handling.
+- [x] T022 Phase 3 Commit: Commit MVP implementation with `feat(grammar-detective): implement core detective desk, token highlighter, and deduction card`.
 
 ---
 
