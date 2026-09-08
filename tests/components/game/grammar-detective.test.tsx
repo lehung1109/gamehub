@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { CaseColdModal } from '@/components/game/grammar-detective/CaseColdModal';
 import { DossierSelector } from '@/components/game/grammar-detective/DossierSelector';
 import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk';
+import { DeductionCard } from '@/components/game/grammar-detective/DeductionCard';
 import type { CaseFile } from '@/types/grammar-detective';
 
 const sampleCase: CaseFile = {
@@ -127,3 +128,63 @@ describe('DetectiveDesk component', () => {
     expect(onTokenTap).toHaveBeenCalledWith('t-1');
   });
 });
+
+describe('CaseColdModal in Endless Mode', () => {
+  it('renders streak recap and tailored endless replay button', () => {
+    render(
+      <CaseColdModal
+        isOpen={true}
+        caseFile={sampleCase}
+        mistakes={3}
+        solvedCount={0}
+        unsolvedErrors={sampleCase.errors}
+        mode="endless"
+        streak={5}
+        highestStreak={7}
+        onRetry={vi.fn()}
+        onReturnToDossier={vi.fn()}
+      />
+    );
+
+    expect(screen.getByText(/Chuỗi vô tận:/i)).toBeInTheDocument();
+    expect(screen.getByText(/5 vụ/i)).toBeInTheDocument();
+    expect(screen.getByText(/Kỷ lục:/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Chơi lại vòng vô tận/i })).toBeInTheDocument();
+  });
+});
+
+describe('DeductionCard component', () => {
+  it('disables previously attempted wrong options and prevents duplicate penalties', () => {
+    const onSelectOption = vi.fn();
+    const errorWithTwoOptions = {
+      ...sampleCase.errors[0],
+      options: [
+        { id: 'o1', text: 'have', isCorrect: true, feedbackEn: '', feedbackVi: '' },
+        { id: 'o2', text: 'had', isCorrect: false, feedbackEn: '', feedbackVi: '' },
+      ],
+    };
+
+    render(
+      <DeductionCard
+        activeError={errorWithTwoOptions}
+        isOpen={true}
+        attemptedOptionIds={['o2']}
+        onSelectOption={onSelectOption}
+        onClose={vi.fn()}
+        onSpeak={vi.fn()}
+      />
+    );
+
+    const wrongBtn = screen.getByRole('button', { name: /had/i });
+    expect(wrongBtn).toBeDisabled();
+
+    fireEvent.click(wrongBtn);
+    expect(onSelectOption).not.toHaveBeenCalled();
+
+    const correctBtn = screen.getByRole('button', { name: /have/i });
+    expect(correctBtn).not.toBeDisabled();
+    fireEvent.click(correctBtn);
+    expect(onSelectOption).toHaveBeenCalledWith('o1');
+  });
+});
+

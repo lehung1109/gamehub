@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils';
 interface DeductionCardProps {
   activeError: CaseError | null;
   isOpen: boolean;
+  attemptedOptionIds?: string[];
   onSelectOption: (optionId: string) => boolean;
   onClose: () => void;
   onSpeak: (text: string) => void;
@@ -35,6 +36,7 @@ const errorCategoryLabels = {
 export const DeductionCard: React.FC<DeductionCardProps> = ({
   activeError,
   isOpen,
+  attemptedOptionIds = [],
   onSelectOption,
   onClose,
   onSpeak,
@@ -46,6 +48,7 @@ export const DeductionCard: React.FC<DeductionCardProps> = ({
 
   const handleOptionClick = (optionId: string) => {
     if (lastAttemptResult) return;
+    if (attemptedOptionIds.includes(optionId)) return;
     setSelectedOptionId(optionId);
     const isCorrect = onSelectOption(optionId);
     setLastAttemptResult(isCorrect);
@@ -97,16 +100,29 @@ export const DeductionCard: React.FC<DeductionCardProps> = ({
           {/* Options List */}
           <div className="space-y-2">
             {activeError.options.map((option, idx) => {
-              const isChosen = selectedOptionId === option.id;
+              const isWrong = attemptedOptionIds.includes(option.id);
+              const isCorrectChosen =
+                (selectedOptionId === option.id || lastAttemptResult === true) &&
+                option.isCorrect &&
+                selectedOptionId === option.id;
+              const isSelectedWrong = selectedOptionId === option.id && !option.isCorrect;
+              const isFailed = isWrong || isSelectedWrong;
+              const isDisabled =
+                isFailed || (lastAttemptResult === true && selectedOptionId !== option.id);
+
               return (
                 <Button
                   key={option.id}
                   type="button"
-                  variant={isChosen ? (option.isCorrect ? 'default' : 'destructive') : 'outline'}
+                  variant={isCorrectChosen ? 'default' : isFailed ? 'destructive' : 'outline'}
+                  disabled={isDisabled}
                   className={cn(
                     'w-full justify-start text-left h-auto py-2.5 px-3.5 transition-all duration-150',
                     'border-2 text-sm font-medium',
-                    !isChosen && 'hover:bg-accent hover:border-primary/50'
+                    !isCorrectChosen && !isFailed && 'hover:bg-accent hover:border-primary/50',
+                    isCorrectChosen &&
+                      'bg-emerald-600 hover:bg-emerald-600 text-white border-emerald-600',
+                    isFailed && 'opacity-70 cursor-not-allowed'
                   )}
                   onClick={() => handleOptionClick(option.id)}
                 >
@@ -114,10 +130,10 @@ export const DeductionCard: React.FC<DeductionCardProps> = ({
                     {String.fromCharCode(65 + idx)}
                   </span>
                   <span className="flex-1 font-semibold">{option.text}</span>
-                  {isChosen && option.isCorrect && (
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 ml-2" />
+                  {isCorrectChosen && (
+                    <CheckCircle2 className="w-5 h-5 text-emerald-200 shrink-0 ml-2" />
                   )}
-                  {isChosen && !option.isCorrect && (
+                  {isFailed && (
                     <XCircle className="w-5 h-5 text-white shrink-0 ml-2" />
                   )}
                 </Button>

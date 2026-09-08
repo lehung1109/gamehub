@@ -63,6 +63,8 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
   });
   const [lastFeedback, setLastFeedback] = useState<DetectiveFeedback | null>(null);
   const [mode, setMode] = useState<'case' | 'endless'>('case');
+  const [attemptedOptionIds, setAttemptedOptionIds] = useState<string[]>([]);
+  const [tappedInnocentTokenIds, setTappedInnocentTokenIds] = useState<string[]>([]);
 
   const [completedCaseIds, setCompletedCaseIds] = useState<string[]>(() => {
     if (typeof window === 'undefined') return [];
@@ -129,6 +131,9 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
       setMistakes(0);
       setElapsedSeconds(0);
       setStarsEarned(0);
+      setStreak(0);
+      setAttemptedOptionIds([]);
+      setTappedInnocentTokenIds([]);
       setStartTime(Date.now());
       setLastFeedback(null);
       setMode('case');
@@ -192,15 +197,22 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
       }
 
       // False alarm (tapping innocent word)
+      if (tappedInnocentTokenIds.includes(tokenId)) {
+        setLastFeedback({
+          type: 'resolved',
+          messageEn: `You already verified "${token.text}". It is grammatically sound.`,
+          messageVi: `Bạn đã kiểm tra từ "${token.text}" rồi. Từ này dùng đúng ngữ pháp.`,
+        });
+        return;
+      }
+
+      setTappedInnocentTokenIds((prev) => [...prev, tokenId]);
       const nextCred = credibility - 1;
       setMistakes((prev) => prev + 1);
       setCredibility(nextCred);
 
       if (nextCred <= 0) {
         setStatus('cold');
-        if (mode === 'endless') {
-          setStreak(0);
-        }
         setLastFeedback({
           type: 'false_alarm',
           messageEn: 'Case Cold: Detective Credibility exhausted!',
@@ -214,12 +226,21 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
         });
       }
     },
-    [status, tokens, solvedErrorIds, currentCase, credibility, highlighterActive, mode]
+    [
+      status,
+      tokens,
+      solvedErrorIds,
+      currentCase,
+      credibility,
+      highlighterActive,
+      tappedInnocentTokenIds,
+    ]
   );
 
   const submitDeduction = useCallback(
     (optionId: string): boolean => {
       if (!activeError || !currentCase) return false;
+      if (attemptedOptionIds.includes(optionId)) return false;
 
       const selectedOption = activeError.options.find((opt) => opt.id === optionId);
       if (!selectedOption) return false;
@@ -275,6 +296,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
         return true;
       } else {
         // Wrong option selected
+        setAttemptedOptionIds((prev) => [...prev, optionId]);
         const nextCred = credibility - 1;
         setMistakes((prev) => prev + 1);
         setCredibility(nextCred);
@@ -282,9 +304,6 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
         if (nextCred <= 0) {
           setStatus('cold');
           setActiveError(null);
-          if (mode === 'endless') {
-            setStreak(0);
-          }
           setLastFeedback({
             type: 'wrong_option',
             messageEn: 'Case Cold: Detective Credibility exhausted!',
@@ -310,6 +329,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
       highestStreak,
       completedCaseIds,
       saveProgress,
+      attemptedOptionIds,
     ]
   );
 
@@ -327,7 +347,11 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     setActiveError(null);
     setMistakes(0);
     setElapsedSeconds(0);
+    setStarsEarned(0);
     setStreak(0);
+    setAttemptedOptionIds([]);
+    setTappedInnocentTokenIds([]);
+    setStartTime(Date.now());
     setLastFeedback(null);
     setStatus('investigating');
   }, [initialCases]);
@@ -349,6 +373,10 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     setActiveError(null);
     setMistakes(0);
     setElapsedSeconds(0);
+    setStarsEarned(0);
+    setAttemptedOptionIds([]);
+    setTappedInnocentTokenIds([]);
+    setStartTime(Date.now());
     setLastFeedback(null);
     setStatus('investigating');
   }, [initialCases, currentCase]);
@@ -375,6 +403,11 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     setTokens([]);
     setLastFeedback(null);
     setMode('case');
+    setElapsedSeconds(0);
+    setStarsEarned(0);
+    setStreak(0);
+    setAttemptedOptionIds([]);
+    setTappedInnocentTokenIds([]);
   }, []);
 
   const userRank = calculateRankTier(completedCaseIds.length);
@@ -387,6 +420,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     maxCredibility,
     solvedErrorIds,
     activeError,
+    attemptedOptionIds,
     status,
     highlighterActive,
     mistakes,

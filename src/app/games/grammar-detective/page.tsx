@@ -4,7 +4,7 @@
 import React from 'react';
 import casesData from '@/data/grammar-detective.json';
 import type { CaseFile } from '@/types/grammar-detective';
-import { useGrammarDetective } from '@/hooks/useGrammarDetective';
+import { useGrammarDetective, isTierUnlocked } from '@/hooks/useGrammarDetective';
 import { useSpeech } from '@/hooks/useSpeech';
 import { useGameTracking } from '@/hooks/use-game-tracking';
 import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk';
@@ -34,6 +34,7 @@ export default function GrammarDetectivePage() {
     maxCredibility,
     solvedErrorIds,
     activeError,
+    attemptedOptionIds,
     status,
     highlighterActive,
     mistakes,
@@ -81,12 +82,13 @@ export default function GrammarDetectivePage() {
       trackedCaseRef.current !== `${currentCase.id}-${elapsedSeconds}-cold`
     ) {
       trackedCaseRef.current = `${currentCase.id}-${elapsedSeconds}-cold`;
+      const modeSuffix = mode === 'endless' ? ` [Vô tận - Chuỗi ${streak}]` : '';
       submitSession({
         score: 0,
         totalQuestions: currentCase.errors.length,
         details: [
           {
-            prompt: `Đình chỉ vụ án "${currentCase.title}" (${currentCase.titleVi}) - Giải được ${solvedErrorIds.length}/${currentCase.errors.length} lỗi, phạm ${mistakes} lỗi, thời gian ${elapsedSeconds}s`,
+            prompt: `Đình chỉ vụ án "${currentCase.title}" (${currentCase.titleVi})${modeSuffix} - Giải được ${solvedErrorIds.length}/${currentCase.errors.length} lỗi, phạm ${mistakes} lỗi, thời gian ${elapsedSeconds}s`,
             isCorrect: false,
             timeTakenMs: elapsedSeconds * 1000,
             attempts: mistakes,
@@ -103,6 +105,8 @@ export default function GrammarDetectivePage() {
     mistakes,
     solvedErrorIds.length,
     submitSession,
+    mode,
+    streak,
   ]);
 
   return (
@@ -258,6 +262,7 @@ export default function GrammarDetectivePage() {
         key={activeError?.id ?? 'deduction-card'}
         activeError={activeError}
         isOpen={status === 'deducing' && activeError !== null}
+        attemptedOptionIds={attemptedOptionIds}
         onSelectOption={submitDeduction}
         onClose={closeDeduction}
         onSpeak={speak}
@@ -274,10 +279,24 @@ export default function GrammarDetectivePage() {
         onNextCase={() => {
           if (mode === 'endless') {
             nextEndlessRound();
-          } else {
-            const currentIndex = allCases.findIndex((c) => c.id === currentCase?.id);
-            const nextIndex = (currentIndex + 1) % allCases.length;
-            selectCase(allCases[nextIndex].id);
+          } else if (currentCase) {
+            const solvedCount = completedCaseIds.includes(currentCase.id)
+              ? completedCaseIds.length
+              : completedCaseIds.length + 1;
+            const unlockedCases = allCases.filter((c) => isTierUnlocked(c.rankTier, solvedCount));
+            const nextUncompleted = unlockedCases.find(
+              (c) => !completedCaseIds.includes(c.id) && c.id !== currentCase.id
+            );
+            if (nextUncompleted) {
+              selectCase(nextUncompleted.id);
+            } else {
+              const currentUnlockedIndex = unlockedCases.findIndex((c) => c.id === currentCase.id);
+              const nextIndex =
+                currentUnlockedIndex >= 0
+                  ? (currentUnlockedIndex + 1) % unlockedCases.length
+                  : 0;
+              selectCase(unlockedCases[nextIndex].id);
+            }
           }
         }}
         onRetry={retryCase}
@@ -290,7 +309,10 @@ export default function GrammarDetectivePage() {
         caseFile={currentCase}
         mistakes={mistakes}
         solvedCount={solvedErrorIds.length}
-        unsolvedErrors={currentCase.errors.filter((e) => !solvedErrorIds.includes(e.id))}
+        unsolvedErrors={currentCase?.errors.filter((e) => !solvedErrorIds.includes(e.id)) ?? []}
+        mode={mode}
+        streak={streak}
+        highestStreak={highestStreak}
         onRetry={retryCase}
         onReturnToDossier={returnToDossier}
       />

@@ -21,6 +21,9 @@ interface CaseColdModalProps {
   mistakes: number;
   solvedCount: number;
   unsolvedErrors?: CaseError[];
+  mode?: 'case' | 'endless';
+  streak?: number;
+  highestStreak?: number;
   onRetry: () => void;
   onReturnToDossier: () => void;
 }
@@ -31,6 +34,9 @@ export const CaseColdModal: React.FC<CaseColdModalProps> = ({
   mistakes,
   solvedCount,
   unsolvedErrors = [],
+  mode = 'case',
+  streak = 0,
+  highestStreak = 0,
   onRetry,
   onReturnToDossier,
 }) => {
@@ -54,6 +60,15 @@ export const CaseColdModal: React.FC<CaseColdModalProps> = ({
           <div className="p-2.5 rounded-lg bg-muted/60 border text-xs text-muted-foreground">
             Tiến độ đã đạt: <strong className="text-foreground">{solvedCount}/{caseFile.errors.length} manh mối</strong>
           </div>
+
+          {mode === 'endless' && (
+            <div className="flex flex-wrap items-center justify-center gap-2.5 p-2 rounded-lg bg-orange-500/10 border border-orange-500/20 text-xs font-semibold text-orange-800 dark:text-orange-300">
+              <span>🔥 Chuỗi vô tận: <strong>{streak} vụ</strong></span>
+              {highestStreak > 0 && (
+                <span>• Kỷ lục: <strong>{highestStreak}</strong></span>
+              )}
+            </div>
+          )}
         </DialogHeader>
 
         {/* Undiscovered clues recap */}
@@ -112,7 +127,7 @@ export const CaseColdModal: React.FC<CaseColdModalProps> = ({
             className="gap-1.5 font-bold text-xs flex-1 bg-rose-600 hover:bg-rose-700 text-white"
           >
             <RotateCcw className="w-4 h-4" />
-            <span>Điều tra lại từ đầu</span>
+            <span>{mode === 'endless' ? 'Chơi lại vòng vô tận 🔥' : 'Điều tra lại từ đầu'}</span>
           </Button>
         </DialogFooter>
       </DialogContent>
