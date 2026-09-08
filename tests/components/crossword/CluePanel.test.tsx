@@ -88,7 +88,7 @@ describe("CluePanel Component", () => {
     expect(handleSelect).not.toHaveBeenCalled();
   });
 
-  it("highlights the active word clue item", () => {
+  it("highlights the active word clue item and sets aria-selected", () => {
     render(
       <CluePanel
         words={mockWords}
@@ -97,11 +97,17 @@ describe("CluePanel Component", () => {
       />
     );
 
-    const tigerItem = screen.getByText("Con hổ dũng mãnh").closest(".cursor-pointer");
+    const tigerItem = screen.getByText("Con hổ dũng mãnh").closest(".group");
     expect(tigerItem?.className).toContain("border-amber-500/50");
 
-    const rabbitItem = screen.getByText("Con thỏ trắng").closest(".cursor-pointer");
+    const rabbitItem = screen.getByText("Con thỏ trắng").closest(".group");
     expect(rabbitItem?.className).not.toContain("border-amber-500/50");
+
+    const tigerBtn = screen.getByRole("button", { name: /Từ 1: Con hổ/i });
+    expect(tigerBtn).toHaveAttribute("aria-selected", "true");
+
+    const rabbitBtn = screen.getByRole("button", { name: /Từ 2: Con thỏ/i });
+    expect(rabbitBtn).toHaveAttribute("aria-selected", "false");
   });
 });
 

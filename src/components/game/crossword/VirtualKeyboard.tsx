@@ -24,7 +24,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
   direction,
 }) => {
   return (
-    <div className="w-full max-w-lg bg-slate-900/90 backdrop-blur border border-slate-800 rounded-3xl p-3 shadow-xl flex flex-col gap-1.5 select-none">
+    <div className="w-full max-w-lg bg-slate-900/90 backdrop-blur border border-slate-800 rounded-3xl p-3 shadow-xl flex flex-col gap-1.5 select-none touch-manipulation">
       {KEYBOARD_ROWS.map((row, rIdx) => (
         <div key={rIdx} className="flex justify-center gap-1 md:gap-1.5">
           {rIdx === 2 && (
