@@ -113,32 +113,6 @@ describe('Endless Audit Mode & Streak Tracking', () => {
     expect(result.current.lastFeedback?.messageVi).toContain('chế độ đọc');
   });
 
-  it('prevents double-tap penalty on the same innocent word', () => {
-    const { result } = renderHook(() => useGrammarDetective(mockCases));
-
-    act(() => {
-      result.current.selectCase('case-endless-1');
-    });
-
-    const innocent = result.current.tokens.find((t) => t.text === 'Fix');
-    expect(innocent).toBeDefined();
-
-    // First tap: credibility drops from 3 to 2
-    act(() => {
-      result.current.tapToken(innocent!.id);
-    });
-    expect(result.current.credibility).toBe(2);
-    expect(result.current.mistakes).toBe(1);
-
-    // Second tap on the same innocent word: should NOT drop credibility again
-    act(() => {
-      result.current.tapToken(innocent!.id);
-    });
-    expect(result.current.credibility).toBe(2);
-    expect(result.current.mistakes).toBe(1);
-    expect(result.current.lastFeedback?.messageVi).toContain('Bạn đã kiểm tra từ');
-  });
-
   it('prevents repeated penalty for submitting the same wrong option', () => {
     const multiOptionCase: CaseFile = {
       ...mockCases[0],
