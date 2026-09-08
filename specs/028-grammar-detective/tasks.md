@@ -74,14 +74,14 @@
 
 **Independent Test**: Complete 3 Intern cases, verify Junior tier unlocks, and check that progress persists across page reloads.
 
-- [ ] T032 Dedicated Subagent: Initialize Phase 5 subagent context.
-- [ ] T033 [P] [US3] TDD Red: Add unit tests for rank unlock logic (Intern -> Junior -> Senior -> Chief) and local progress persistence in `src/app/games/grammar-detective/__tests__/progression.test.ts`.
-- [ ] T034 [US3] TDD Green: Implement progression and rank unlock logic in `src/hooks/useGrammarDetective.ts` with `localStorage` key `gamehub_grammar_detective_v1`.
-- [ ] T035 [P] [US3] Implement Dossier Selector component with category filters and rank badges in `src/components/game/grammar-detective/DossierSelector.tsx`.
-- [ ] T036 [US3] Integrate dossier selection view and case switching into `src/app/games/grammar-detective/page.tsx`.
-- [ ] T037 [US3] Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/` to verify rank progression and dossier filtering.
-- [ ] T038 Phase 5 Review Subagent: Spawn review subagent for progression state persistence and responsive drawer/tab layout.
-- [ ] T039 Phase 5 Commit: Commit progression system with `feat(grammar-detective): implement dossier browser and detective rank tiers`.
+- [x] T032 Dedicated Subagent: Initialize Phase 5 subagent context.
+- [x] T033 [P] [US3] TDD Red: Add unit tests for rank unlock logic (Intern -> Junior -> Senior -> Chief) and local progress persistence in `src/app/games/grammar-detective/__tests__/progression.test.ts`.
+- [x] T034 [US3] TDD Green: Implement progression and rank unlock logic in `src/hooks/useGrammarDetective.ts` with `localStorage` key `gamehub_grammar_detective_v1`.
+- [x] T035 [P] [US3] Implement Dossier Selector component with category filters and rank badges in `src/components/game/grammar-detective/DossierSelector.tsx`.
+- [x] T036 [US3] Integrate dossier selection view and case switching into `src/app/games/grammar-detective/page.tsx`.
+- [x] T037 [US3] Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/` to verify rank progression and dossier filtering.
+- [x] T038 Phase 5 Review Subagent: Spawn review subagent for progression state persistence and responsive drawer/tab layout.
+- [x] T039 Phase 5 Commit: Commit progression system with `feat(grammar-detective): implement dossier browser and detective rank tiers`.
 
 ---
 

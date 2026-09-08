@@ -24,6 +24,14 @@ export function calculateRankTier(solvedCount: number): RankTier {
   return 'intern';
 }
 
+export function isTierUnlocked(tier: RankTier, solvedCount: number): boolean {
+  if (tier === 'intern') return true;
+  if (tier === 'junior') return solvedCount >= 3;
+  if (tier === 'senior') return solvedCount >= 6;
+  if (tier === 'chief') return solvedCount >= 9;
+  return false;
+}
+
 export function useGrammarDetective(initialCases: CaseFile[]) {
   const [currentCase, setCurrentCase] = useState<CaseFile | null>(null);
   const [tokens, setTokens] = useState<TextToken[]>([]);

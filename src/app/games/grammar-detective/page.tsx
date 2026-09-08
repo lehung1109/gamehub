@@ -1,7 +1,7 @@
 // src/app/games/grammar-detective/page.tsx
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import casesData from '@/data/grammar-detective.json';
 import type { CaseFile } from '@/types/grammar-detective';
 import { useGrammarDetective } from '@/hooks/useGrammarDetective';
@@ -10,10 +10,11 @@ import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk
 import { DeductionCard } from '@/components/game/grammar-detective/DeductionCard';
 import { CaseSolvedModal } from '@/components/game/grammar-detective/CaseSolvedModal';
 import { CaseColdModal } from '@/components/game/grammar-detective/CaseColdModal';
+import { DossierSelector } from '@/components/game/grammar-detective/DossierSelector';
 import { BackButton } from '@/components/custom/BackButton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Highlighter, Heart, Search, RotateCcw } from 'lucide-react';
+import { Highlighter, Heart, Search, RotateCcw, FolderOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const allCases = casesData as unknown as CaseFile[];
@@ -33,6 +34,8 @@ export default function GrammarDetectivePage() {
     mistakes,
     elapsedSeconds,
     starsEarned,
+    userRank,
+    completedCaseIds,
     selectCase,
     toggleHighlighter,
     tapToken,
@@ -42,13 +45,6 @@ export default function GrammarDetectivePage() {
     returnToDossier,
     lastFeedback,
   } = useGrammarDetective(allCases);
-
-  // Auto-select first case if in selecting mode (MVP entry)
-  useEffect(() => {
-    if (status === 'selecting' && allCases.length > 0) {
-      selectCase(allCases[0].id);
-    }
-  }, [status, selectCase]);
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-5xl space-y-6">
@@ -70,89 +66,91 @@ export default function GrammarDetectivePage() {
         </div>
 
         {/* Credibility and Solved Progress */}
-        <div className="flex items-center gap-3 bg-muted/60 p-2.5 rounded-xl border">
-          {/* Credibility Lives */}
-          <div className="flex items-center gap-1">
-            <span className="text-xs font-bold text-muted-foreground mr-1">Uy tín:</span>
-            {Array.from({ length: maxCredibility }).map((_, i) => (
-              <Heart
-                key={i}
-                className={cn(
-                  'w-5 h-5 transition-all duration-200',
-                  i < credibility
-                    ? 'text-rose-500 fill-rose-500 scale-100'
-                    : 'text-muted-foreground/30 scale-90'
-                )}
-              />
-            ))}
-          </div>
+        {status !== 'selecting' && currentCase && (
+          <div className="flex items-center gap-3 bg-muted/60 p-2.5 rounded-xl border">
+            {/* Credibility Lives */}
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-bold text-muted-foreground mr-1">Uy tín:</span>
+              {Array.from({ length: maxCredibility }).map((_, i) => (
+                <Heart
+                  key={i}
+                  className={cn(
+                    'w-5 h-5 transition-all duration-200',
+                    i < credibility
+                      ? 'text-rose-500 fill-rose-500 scale-100'
+                      : 'text-muted-foreground/30 scale-90'
+                  )}
+                />
+              ))}
+            </div>
 
-          <div className="h-4 w-px bg-border mx-1" />
+            <div className="h-4 w-px bg-border mx-1" />
 
-          {/* Solved Count */}
-          {currentCase && (
+            {/* Solved Count */}
             <div className="flex items-center gap-1.5 text-xs font-semibold text-foreground">
               <Search className="w-4 h-4 text-primary" />
               <span>
                 Phá án: {solvedErrorIds.length}/{currentCase.errors.length}
               </span>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
-      {/* Investigation Controls Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-card p-3.5 rounded-xl border shadow-xs">
-        <div className="flex items-center gap-2.5">
-          <Button
-            type="button"
-            variant={highlighterActive ? 'default' : 'outline'}
-            size="sm"
-            onClick={toggleHighlighter}
-            className={cn(
-              'gap-2 font-bold transition-all duration-200',
-              highlighterActive &&
-                'bg-yellow-400 hover:bg-yellow-500 text-yellow-950 border-yellow-500 shadow-md ring-2 ring-yellow-400/50'
-            )}
-          >
-            <Highlighter className="w-4 h-4" />
-            <span>{highlighterActive ? 'Bút dạ quang: ĐANG BẬT' : 'Bật bút dạ quang'}</span>
-          </Button>
+      {/* Dossier Selection Screen */}
+      {status === 'selecting' && (
+        <DossierSelector
+          cases={allCases}
+          completedCaseIds={completedCaseIds}
+          userRank={userRank}
+          onSelectCase={selectCase}
+        />
+      )}
 
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={retryCase}
-            className="gap-1.5 text-xs text-muted-foreground hover:text-foreground"
-          >
-            <RotateCcw className="w-4 h-4" />
-            <span>Làm lại vụ này</span>
-          </Button>
-        </div>
+      {/* Active Investigation Interface */}
+      {status !== 'selecting' && currentCase && (
+        <>
+          {/* Investigation Controls Toolbar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-card p-3.5 rounded-xl border shadow-xs">
+            <div className="flex items-center gap-2.5">
+              <Button
+                type="button"
+                variant={highlighterActive ? 'default' : 'outline'}
+                size="sm"
+                onClick={toggleHighlighter}
+                className={cn(
+                  'gap-2 font-bold transition-all duration-200',
+                  highlighterActive &&
+                    'bg-yellow-400 hover:bg-yellow-500 text-yellow-950 border-yellow-500 shadow-md ring-2 ring-yellow-400/50'
+                )}
+              >
+                <Highlighter className="w-4 h-4" />
+                <span>{highlighterActive ? 'Bút dạ quang: ĐANG BẬT' : 'Bật bút dạ quang'}</span>
+              </Button>
 
-        {/* Case selector quick buttons */}
-        <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0">
-          <span className="text-xs font-semibold text-muted-foreground mr-1 hidden sm:inline">
-            Hồ sơ:
-          </span>
-          {allCases.slice(0, 4).map((c, index) => (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={retryCase}
+                className="gap-1.5 text-xs text-muted-foreground hover:text-foreground"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>Làm lại vụ này</span>
+              </Button>
+            </div>
+
             <Button
-              key={c.id}
               type="button"
-              variant={currentCase?.id === c.id ? 'secondary' : 'ghost'}
+              variant="outline"
               size="sm"
-              onClick={() => selectCase(c.id)}
-              className={cn(
-                'text-xs font-bold h-8 px-2.5',
-                currentCase?.id === c.id && 'border border-primary/40 bg-accent'
-              )}
+              onClick={returnToDossier}
+              className="gap-1.5 text-xs font-bold"
             >
-              Case #{index + 1}
+              <FolderOpen className="w-4 h-4 text-primary" />
+              <span>📁 Danh mục hồ sơ vụ án</span>
             </Button>
-          ))}
-        </div>
-      </div>
+          </div>
 
       {/* Feedback Toast Notification Banner */}
       {lastFeedback && (
@@ -219,6 +217,8 @@ export default function GrammarDetectivePage() {
         onRetry={retryCase}
         onReturnToDossier={returnToDossier}
       />
+        </>
+      )}
     </div>
   );
 }
