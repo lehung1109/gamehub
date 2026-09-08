@@ -56,15 +56,15 @@
 
 **Independent Test**: Tap 3 innocent words to reduce Credibility to 0 and verify Case Cold dialog; conversely solve all errors with 3 Credibility and verify Case Solved dialog with 3 stars.
 
-- [ ] T023 Dedicated Subagent: Initialize Phase 4 subagent context.
-- [ ] T024 [P] [US2] TDD Red: Add unit tests for credibility depletion, false alarm detection, and star rating calculation in `src/app/games/grammar-detective/__tests__/credibility.test.ts`.
-- [ ] T025 [US2] TDD Green: Update `src/hooks/useGrammarDetective.ts` with Credibility mechanics (3 hearts, false alarm toast feedback, case over state).
-- [ ] T026 [P] [US2] Implement Case Solved victory modal with star rating, elapsed time, and rule recap in `src/components/game/grammar-detective/CaseSolvedModal.tsx`.
-- [ ] T027 [P] [US2] Implement Case Cold debriefing dialog with missed clues analysis and retry action in `src/components/game/grammar-detective/CaseColdModal.tsx`.
-- [ ] T028 [US2] Integrate credibility meter, toast notifications, and modals into `src/app/games/grammar-detective/page.tsx`.
-- [ ] T029 [US2] Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/` and verify all tests pass.
-- [ ] T030 Phase 4 Review Subagent: Spawn review subagent to verify game-over edge cases and non-blocking toast animations.
-- [ ] T031 Phase 4 Commit: Commit credibility & modal features with `feat(grammar-detective): add credibility lives system and case debriefing modals`.
+- [x] T023 Dedicated Subagent: Initialize Phase 4 subagent context.
+- [x] T024 [P] [US2] TDD Red: Add unit tests for credibility depletion, false alarm detection, and star rating calculation in `src/app/games/grammar-detective/__tests__/credibility.test.ts`.
+- [x] T025 [US2] TDD Green: Update `src/hooks/useGrammarDetective.ts` with Credibility mechanics (3 hearts, false alarm toast feedback, case over state).
+- [x] T026 [P] [US2] Implement Case Solved victory modal with star rating, elapsed time, and rule recap in `src/components/game/grammar-detective/CaseSolvedModal.tsx`.
+- [x] T027 [P] [US2] Implement Case Cold debriefing dialog with missed clues analysis and retry action in `src/components/game/grammar-detective/CaseColdModal.tsx`.
+- [x] T028 [US2] Integrate credibility meter, toast notifications, and modals into `src/app/games/grammar-detective/page.tsx`.
+- [x] T029 [US2] Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/` and verify all tests pass.
+- [x] T030 Phase 4 Review Subagent: Spawn review subagent to verify game-over edge cases and non-blocking toast animations.
+- [x] T031 Phase 4 Commit: Commit credibility & modal features with `feat(grammar-detective): add credibility lives system and case debriefing modals`.
 
 ---
 

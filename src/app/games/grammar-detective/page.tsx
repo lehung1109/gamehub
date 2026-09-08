@@ -8,11 +8,12 @@ import { useGrammarDetective } from '@/hooks/useGrammarDetective';
 import { useSpeech } from '@/hooks/useSpeech';
 import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk';
 import { DeductionCard } from '@/components/game/grammar-detective/DeductionCard';
+import { CaseSolvedModal } from '@/components/game/grammar-detective/CaseSolvedModal';
+import { CaseColdModal } from '@/components/game/grammar-detective/CaseColdModal';
 import { BackButton } from '@/components/custom/BackButton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
-import { Highlighter, Heart, Search, CheckCircle2, RotateCcw } from 'lucide-react';
+import { Highlighter, Heart, Search, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const allCases = casesData as unknown as CaseFile[];
@@ -29,12 +30,16 @@ export default function GrammarDetectivePage() {
     activeError,
     status,
     highlighterActive,
+    mistakes,
+    elapsedSeconds,
+    starsEarned,
     selectCase,
     toggleHighlighter,
     tapToken,
     submitDeduction,
     closeDeduction,
     retryCase,
+    returnToDossier,
     lastFeedback,
   } = useGrammarDetective(allCases);
 
@@ -189,48 +194,31 @@ export default function GrammarDetectivePage() {
         onSpeak={speak}
       />
 
-      {/* Case Solved Simple Banner (Detailed modal added in Phase 4) */}
-      {status === 'solved' && (
-        <Card className="p-6 border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-center space-y-3">
-          <div className="flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-lg">
-            <CheckCircle2 className="w-6 h-6" />
-            <span>Vụ án đã được phá giải hoàn toàn!</span>
-          </div>
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            Bạn đã sửa toàn bộ lỗi trong tài liệu này một cách xuất sắc.
-          </p>
-          <div className="flex justify-center gap-2 pt-2">
-            <Button
-              type="button"
-              onClick={() => {
-                const nextIndex =
-                  (allCases.findIndex((c) => c.id === currentCase?.id) + 1) % allCases.length;
-                selectCase(allCases[nextIndex].id);
-              }}
-              className="font-bold"
-            >
-              Hồ sơ vụ án tiếp theo ➔
-            </Button>
-          </div>
-        </Card>
-      )}
+      {/* Case Solved Victory Modal */}
+      <CaseSolvedModal
+        isOpen={status === 'solved'}
+        caseFile={currentCase}
+        starsEarned={starsEarned}
+        credibility={credibility}
+        elapsedSeconds={elapsedSeconds}
+        onNextCase={() => {
+          const currentIndex = allCases.findIndex((c) => c.id === currentCase?.id);
+          const nextIndex = (currentIndex + 1) % allCases.length;
+          selectCase(allCases[nextIndex].id);
+        }}
+        onRetry={retryCase}
+        onReturnToDossier={returnToDossier}
+      />
 
-      {/* Case Cold Simple Banner (Detailed modal added in Phase 4) */}
-      {status === 'cold' && (
-        <Card className="p-6 border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-center space-y-3">
-          <div className="text-rose-600 dark:text-rose-400 font-bold text-lg">
-            ⚠️ Vụ án bị đình chỉ (Case Cold)
-          </div>
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            Uy tín điều tra của bạn đã cạn kiệt. Hãy xem lại ngữ pháp và thử điều tra lại từ đầu!
-          </p>
-          <div className="flex justify-center gap-2 pt-2">
-            <Button type="button" variant="destructive" onClick={retryCase} className="font-bold">
-              Điều tra lại vụ án này
-            </Button>
-          </div>
-        </Card>
-      )}
+      {/* Case Cold Failure Modal */}
+      <CaseColdModal
+        isOpen={status === 'cold'}
+        caseFile={currentCase}
+        mistakes={mistakes}
+        solvedCount={solvedErrorIds.length}
+        onRetry={retryCase}
+        onReturnToDossier={returnToDossier}
+      />
     </div>
   );
 }
