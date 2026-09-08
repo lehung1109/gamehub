@@ -23,7 +23,9 @@ interface DossierSelectorProps {
   cases: CaseFile[];
   completedCaseIds: string[];
   userRank: RankTier;
+  highestStreak?: number;
   onSelectCase: (caseId: string) => void;
+  onStartEndless?: () => void;
 }
 
 const rankTierInfo: Record<
@@ -67,7 +69,9 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
   cases,
   completedCaseIds,
   userRank,
+  highestStreak = 0,
   onSelectCase,
+  onStartEndless,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<ContextCategory | 'all'>('all');
   const [activeTier, setActiveTier] = useState<RankTier>('intern');
@@ -105,11 +109,27 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-yellow-500" />
-            <span className="text-sm font-bold text-foreground">
-              Cấp bậc: {rankTierInfo[userRank].titleVi}
-            </span>
+          <div className="flex flex-wrap items-center gap-3">
+            {onStartEndless && (
+              <Button
+                type="button"
+                variant="default"
+                onClick={onStartEndless}
+                className="bg-orange-600 hover:bg-orange-700 text-white font-bold gap-2 text-xs shadow-md"
+              >
+                <span>🔥 Thử thách Vô tận</span>
+                {highestStreak > 0 && (
+                  <Badge variant="secondary" className="text-xs bg-white/20 text-white font-bold">
+                    Kỷ lục: {highestStreak}
+                  </Badge>
+                )}
+              </Button>
+            )}
+
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card border text-xs font-bold text-foreground">
+              <Award className="w-4 h-4 text-yellow-500" />
+              <span>Cấp bậc: {rankTierInfo[userRank].titleVi}</span>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -137,12 +157,12 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xl">{tier.emoji}</span>
                 {!isUnlocked ? (
-                  <Badge variant="secondary" className="text-[10px] gap-1 px-1.5 py-0 text-muted-foreground">
+                  <Badge variant="secondary" className="text-xs gap-1 px-1.5 py-0 text-muted-foreground">
                     <Lock className="w-2.5 h-2.5" />
                     <span>Cần {tier.minSolved} vụ</span>
                   </Badge>
                 ) : (
-                  <Badge variant="outline" className="text-[10px] px-1.5 py-0 text-emerald-600 dark:text-emerald-400">
+                  <Badge variant="outline" className="text-xs px-1.5 py-0 text-emerald-600 dark:text-emerald-400">
                     Mở khóa
                   </Badge>
                 )}
@@ -195,13 +215,13 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
             >
               <CardHeader className="p-4 pb-2 space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <Badge variant="outline" className="text-[10px] uppercase font-bold gap-1">
+                  <Badge variant="outline" className="text-xs uppercase font-bold gap-1">
                     <IconComp className="w-3 h-3 text-primary" />
                     <span>{caseItem.category}</span>
                   </Badge>
 
                   {isCompleted && (
-                    <Badge variant="default" className="text-[10px] gap-1 bg-emerald-600 hover:bg-emerald-600 text-white font-bold">
+                    <Badge variant="default" className="text-xs gap-1 bg-emerald-600 hover:bg-emerald-600 text-white font-bold">
                       <CheckCircle2 className="w-3 h-3" />
                       <span>Đã phá án</span>
                     </Badge>

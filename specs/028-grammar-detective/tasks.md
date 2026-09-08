@@ -106,13 +106,13 @@
 
 **Purpose**: Integration with student tracking, automated Playwright E2E browser tests, and accessibility audit.
 
-- [ ] T048 Dedicated Subagent: Initialize Phase 7 subagent context.
-- [ ] T049 [P] Integrate `useGameTracking("grammar-detective")` in `src/app/games/grammar-detective/page.tsx` for classroom session recording.
-- [ ] T050 [P] Write comprehensive Playwright E2E test suite in `tests/grammar-detective.spec.ts` covering full game loop on Desktop and Mobile viewports.
-- [ ] T051 Execute Playwright test suite with `npx playwright test tests/grammar-detective.spec.ts` and verify 100% pass.
-- [ ] T052 Execute full regression gates: `npm run lint`, `npx tsc --noEmit`, and `npm run test:run`.
-- [ ] T053 Phase 7 Review Subagent: Verify code cleanliness, accessibility attributes (ARIA), and documentation alignment with `quickstart.md`.
-- [ ] T054 Phase 7 Commit: Commit polish & E2E tests with `test(grammar-detective): add playwright e2e tests and session tracking`.
+- [x] T048 Dedicated Subagent: Initialize Phase 7 subagent context.
+- [x] T049 [P] Integrate `useGameTracking("grammar-detective")` in `src/app/games/grammar-detective/page.tsx` for classroom session recording.
+- [x] T050 [P] Write comprehensive Playwright E2E test suite in `tests/grammar-detective.spec.ts` covering full game loop on Desktop and Mobile viewports.
+- [x] T051 Execute Playwright test suite with `npx playwright test tests/grammar-detective.spec.ts` and verify 100% pass.
+- [x] T052 Execute full regression gates: `npm run lint`, `npx tsc --noEmit`, and `npm run test:run`.
+- [x] T053 Phase 7 Review Subagent: Verify code cleanliness, accessibility attributes (ARIA), and documentation alignment with `quickstart.md`.
+- [x] T054 Phase 7 Commit: Commit polish & E2E tests with `test(grammar-detective): add playwright e2e tests and session tracking`.
 
 ---
 
@@ -120,11 +120,11 @@
 
 **Purpose**: Holistic multi-phase review and final verification per Constitution Principle VI (items 7 & 8).
 
-- [ ] T055 Dedicated Subagent: Initialize Phase 8 holistic review subagent context.
-- [ ] T056 Run comprehensive bug hunt across the entire Grammar Detective feature (`npm run build`, full unit tests, full linting, Playwright E2E).
-- [ ] T057 Fix any discovered edge-case bugs, styling quirks, or UI discrepancies.
-- [ ] T058 Re-run review subagent iteratively until zero bugs remain.
-- [ ] T059 Make final comprehensive commit finalizing feature 028: `feat(grammar-detective): finalize grammar detective game`.
+- [x] T055 Dedicated Subagent: Initialize Phase 8 holistic review subagent context.
+- [x] T056 Run comprehensive bug hunt across the entire Grammar Detective feature (`npm run build`, full unit tests, full linting, Playwright E2E).
+- [x] T057 Fix any discovered edge-case bugs, styling quirks, or UI discrepancies.
+- [x] T058 Re-run review subagent iteratively until zero bugs remain.
+- [x] T059 Make final comprehensive commit finalizing feature 028: `feat(grammar-detective): finalize grammar detective game`.
 
 ---
 

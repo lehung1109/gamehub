@@ -12,14 +12,14 @@ describe("HomePage (src/app/page.tsx)", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders all 8 game cards sorted strictly by priority order in the DOM", () => {
+  it("renders all game cards sorted strictly by priority order in the DOM", () => {
     render(<HomePage />);
 
     const mainRegion = screen.getByRole("main", { name: /danh sách trò chơi/i });
     const gameLinks = within(mainRegion).getAllByRole("link");
-    expect(gameLinks.length).toBe(8);
+    expect(gameLinks.length).toBe(games.length);
 
-    // Verify all 8 games are present in strict priority order
+    // Verify all games are present in strict priority order
     const sortedGames = [...games].sort((a, b) => a.priority - b.priority);
     const expectedRoutes = sortedGames.map((g) => g.route);
     const actualRoutes = gameLinks.map((link) => link.getAttribute("href"));
@@ -42,7 +42,7 @@ describe("HomePage (src/app/page.tsx)", () => {
     expect(loginLink).toHaveAttribute("href", "/login");
   });
 
-  it("links to all 8 game routes correctly and accessibly", () => {
+  it("links to all game routes correctly and accessibly", () => {
     render(<HomePage />);
 
     games.forEach((game) => {

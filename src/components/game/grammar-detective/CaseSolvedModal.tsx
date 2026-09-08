@@ -100,7 +100,7 @@ export const CaseSolvedModal: React.FC<CaseSolvedModalProps> = ({
               >
                 <div className="flex items-center justify-between gap-2 font-bold text-foreground">
                   <span className="flex items-center gap-1.5">
-                    <Badge variant="outline" className="text-[10px] px-1.5 py-0">
+                    <Badge variant="outline" className="text-xs px-1.5 py-0">
                       #{idx + 1}
                     </Badge>
                     <span className="line-through text-rose-500">{err.targetWord}</span>
@@ -109,7 +109,7 @@ export const CaseSolvedModal: React.FC<CaseSolvedModalProps> = ({
                       {err.options.find((o) => o.isCorrect)?.text}
                     </span>
                   </span>
-                  <Badge variant="secondary" className="text-[10px]">
+                  <Badge variant="secondary" className="text-xs">
                     {err.errorType}
                   </Badge>
                 </div>

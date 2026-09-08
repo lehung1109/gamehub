@@ -6,6 +6,7 @@ import casesData from '@/data/grammar-detective.json';
 import type { CaseFile } from '@/types/grammar-detective';
 import { useGrammarDetective } from '@/hooks/useGrammarDetective';
 import { useSpeech } from '@/hooks/useSpeech';
+import { useGameTracking } from '@/hooks/use-game-tracking';
 import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk';
 import { DeductionCard } from '@/components/game/grammar-detective/DeductionCard';
 import { CaseSolvedModal } from '@/components/game/grammar-detective/CaseSolvedModal';
@@ -22,6 +23,8 @@ const allCases = casesData as unknown as CaseFile[];
 
 export default function GrammarDetectivePage() {
   const { speak } = useSpeech();
+  const { submitSession } = useGameTracking({ gameType: 'grammar-detective' });
+  const trackedCaseRef = React.useRef<string | null>(null);
 
   const {
     mode,
@@ -51,6 +54,29 @@ export default function GrammarDetectivePage() {
     returnToDossier,
     lastFeedback,
   } = useGrammarDetective(allCases);
+
+  // Submit session tracking when a case is solved
+  React.useEffect(() => {
+    if (
+      status === 'solved' &&
+      currentCase &&
+      trackedCaseRef.current !== `${currentCase.id}-${elapsedSeconds}`
+    ) {
+      trackedCaseRef.current = `${currentCase.id}-${elapsedSeconds}`;
+      submitSession({
+        score: starsEarned,
+        totalQuestions: currentCase.errors.length,
+        details: [
+          {
+            prompt: `Phá án "${currentCase.title}" (${currentCase.titleVi}) - Đạt ${starsEarned} sao, còn ${credibility}/3 uy tín, thời gian ${elapsedSeconds}s`,
+            isCorrect: true,
+            timeTakenMs: elapsedSeconds * 1000,
+            attempts: mistakes,
+          },
+        ],
+      });
+    }
+  }, [status, currentCase, starsEarned, credibility, elapsedSeconds, mistakes, submitSession]);
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-5xl space-y-6">
@@ -202,6 +228,7 @@ export default function GrammarDetectivePage() {
 
       {/* Deduction Card Modal */}
       <DeductionCard
+        key={activeError?.id ?? 'deduction-card'}
         activeError={activeError}
         isOpen={status === 'deducing' && activeError !== null}
         onSelectOption={submitDeduction}

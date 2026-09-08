@@ -254,11 +254,8 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
               saveProgress(updatedCompleted);
             }
           }
-        } else {
-          setStatus('investigating');
+          setActiveError(null);
         }
-
-        setActiveError(null);
         return true;
       } else {
         // Wrong option selected
