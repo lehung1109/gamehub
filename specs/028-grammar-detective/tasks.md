@@ -91,14 +91,14 @@
 
 **Independent Test**: Launch Endless mode, resolve 3 consecutive snippets, verify streak increments to 3 and high score updates.
 
-- [ ] T040 Dedicated Subagent: Initialize Phase 6 subagent context.
-- [ ] T041 [P] [US4] TDD Red: Add unit tests for Endless mode round generation and streak tracking in `src/app/games/grammar-detective/__tests__/endless.test.ts`.
-- [ ] T042 [US4] TDD Green: Implement Endless streak mechanics and randomized snippet generator in `src/hooks/useGrammarDetective.ts`.
-- [ ] T043 [P] [US4] Implement Endless Audit HUD banner with current streak and highest streak in `src/components/game/grammar-detective/EndlessAuditHeader.tsx`.
-- [ ] T044 [US4] Integrate Endless mode toggle and seamless next-round transitions into `src/app/games/grammar-detective/page.tsx`.
-- [ ] T045 [US4] Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/` to verify Endless mode logic.
-- [ ] T046 Phase 6 Review Subagent: Spawn review subagent to check memory leaks and endless round re-rendering.
-- [ ] T047 Phase 6 Commit: Commit Endless mode with `feat(grammar-detective): add endless audit mode and streak multiplier`.
+- [x] T040 Dedicated Subagent: Initialize Phase 6 subagent context.
+- [x] T041 [P] [US4] TDD Red: Add unit tests for Endless mode round generation and streak tracking in `src/app/games/grammar-detective/__tests__/endless.test.ts`.
+- [x] T042 [US4] TDD Green: Implement Endless streak mechanics and randomized snippet generator in `src/hooks/useGrammarDetective.ts`.
+- [x] T043 [P] [US4] Implement Endless Audit HUD banner with current streak and highest streak in `src/components/game/grammar-detective/EndlessAuditHeader.tsx`.
+- [x] T044 [US4] Integrate Endless mode toggle and seamless next-round transitions into `src/app/games/grammar-detective/page.tsx`.
+- [x] T045 [US4] Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/` to verify Endless mode logic.
+- [x] T046 Phase 6 Review Subagent: Spawn review subagent to check memory leaks and endless round re-rendering.
+- [x] T047 Phase 6 Commit: Commit Endless mode with `feat(grammar-detective): add endless audit mode and streak multiplier`.
 
 ---
 

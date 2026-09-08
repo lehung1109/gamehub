@@ -45,7 +45,8 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState<number>(0);
   const [starsEarned, setStarsEarned] = useState<number>(0);
-  const [streak, setStreak] = useState<number>(() => {
+  const [streak, setStreak] = useState<number>(0);
+  const [highestStreak, setHighestStreak] = useState<number>(() => {
     if (typeof window === 'undefined') return 0;
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -238,11 +239,20 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
           setStarsEarned(stars);
           setStatus('solved');
 
-          // Save completed case
-          if (!completedCaseIds.includes(currentCase.id)) {
-            const updatedCompleted = [...completedCaseIds, currentCase.id];
-            setCompletedCaseIds(updatedCompleted);
-            saveProgress(updatedCompleted);
+          if (mode === 'endless') {
+            const nextStreak = streak + 1;
+            setStreak(nextStreak);
+            if (nextStreak > highestStreak) {
+              setHighestStreak(nextStreak);
+              saveProgress(completedCaseIds, nextStreak);
+            }
+          } else {
+            // Save completed case in case mode
+            if (!completedCaseIds.includes(currentCase.id)) {
+              const updatedCompleted = [...completedCaseIds, currentCase.id];
+              setCompletedCaseIds(updatedCompleted);
+              saveProgress(updatedCompleted);
+            }
           }
         } else {
           setStatus('investigating');
@@ -274,8 +284,54 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
         return false;
       }
     },
-    [activeError, currentCase, solvedErrorIds, credibility, completedCaseIds, saveProgress]
+    [
+      activeError,
+      currentCase,
+      solvedErrorIds,
+      credibility,
+      mode,
+      streak,
+      highestStreak,
+      completedCaseIds,
+      saveProgress,
+    ]
   );
+
+  const startEndless = useCallback(() => {
+    if (initialCases.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * initialCases.length);
+    const chosen = initialCases[randomIndex];
+    const newTokens = tokenizeCaseDocument(chosen.documentText, chosen.errors);
+
+    setMode('endless');
+    setCurrentCase(chosen);
+    setTokens(newTokens);
+    setCredibility(3);
+    setSolvedErrorIds([]);
+    setActiveError(null);
+    setMistakes(0);
+    setElapsedSeconds(0);
+    setStreak(0);
+    setLastFeedback(null);
+    setStatus('investigating');
+  }, [initialCases]);
+
+  const nextEndlessRound = useCallback(() => {
+    if (initialCases.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * initialCases.length);
+    const chosen = initialCases[randomIndex];
+    const newTokens = tokenizeCaseDocument(chosen.documentText, chosen.errors);
+
+    setCurrentCase(chosen);
+    setTokens(newTokens);
+    setCredibility(3);
+    setSolvedErrorIds([]);
+    setActiveError(null);
+    setMistakes(0);
+    setElapsedSeconds(0);
+    setLastFeedback(null);
+    setStatus('investigating');
+  }, [initialCases]);
 
   const closeDeduction = useCallback(() => {
     setActiveError(null);
@@ -296,6 +352,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     setActiveError(null);
     setTokens([]);
     setLastFeedback(null);
+    setMode('case');
   }, []);
 
   const userRank = calculateRankTier(completedCaseIds.length);
@@ -317,9 +374,12 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     userRank,
     completedCaseIds,
     streak,
+    highestStreak,
     setStreak,
     lastFeedback,
     selectCase,
+    startEndless,
+    nextEndlessRound,
     toggleHighlighter,
     tapToken,
     submitDeduction,

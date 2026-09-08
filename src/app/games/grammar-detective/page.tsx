@@ -11,6 +11,7 @@ import { DeductionCard } from '@/components/game/grammar-detective/DeductionCard
 import { CaseSolvedModal } from '@/components/game/grammar-detective/CaseSolvedModal';
 import { CaseColdModal } from '@/components/game/grammar-detective/CaseColdModal';
 import { DossierSelector } from '@/components/game/grammar-detective/DossierSelector';
+import { EndlessAuditHeader } from '@/components/game/grammar-detective/EndlessAuditHeader';
 import { BackButton } from '@/components/custom/BackButton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -23,6 +24,7 @@ export default function GrammarDetectivePage() {
   const { speak } = useSpeech();
 
   const {
+    mode,
     currentCase,
     tokens,
     credibility,
@@ -36,7 +38,11 @@ export default function GrammarDetectivePage() {
     starsEarned,
     userRank,
     completedCaseIds,
+    streak,
+    highestStreak,
     selectCase,
+    startEndless,
+    nextEndlessRound,
     toggleHighlighter,
     tapToken,
     submitDeduction,
@@ -103,13 +109,24 @@ export default function GrammarDetectivePage() {
           cases={allCases}
           completedCaseIds={completedCaseIds}
           userRank={userRank}
+          highestStreak={highestStreak}
           onSelectCase={selectCase}
+          onStartEndless={startEndless}
         />
       )}
 
       {/* Active Investigation Interface */}
       {status !== 'selecting' && currentCase && (
         <>
+          {/* Endless Mode Banner Header */}
+          {mode === 'endless' && (
+            <EndlessAuditHeader
+              streak={streak}
+              highestStreak={highestStreak}
+              onExitEndless={returnToDossier}
+            />
+          )}
+
           {/* Investigation Controls Toolbar */}
           <div className="flex flex-wrap items-center justify-between gap-3 bg-card p-3.5 rounded-xl border shadow-xs">
             <div className="flex items-center gap-2.5">
@@ -200,9 +217,13 @@ export default function GrammarDetectivePage() {
         credibility={credibility}
         elapsedSeconds={elapsedSeconds}
         onNextCase={() => {
-          const currentIndex = allCases.findIndex((c) => c.id === currentCase?.id);
-          const nextIndex = (currentIndex + 1) % allCases.length;
-          selectCase(allCases[nextIndex].id);
+          if (mode === 'endless') {
+            nextEndlessRound();
+          } else {
+            const currentIndex = allCases.findIndex((c) => c.id === currentCase?.id);
+            const nextIndex = (currentIndex + 1) % allCases.length;
+            selectCase(allCases[nextIndex].id);
+          }
         }}
         onRetry={retryCase}
         onReturnToDossier={returnToDossier}
