@@ -98,6 +98,16 @@
     "emoji": "⚔️",
     "route": "/games/vocab-defense",
     "priority": 10
+  },
+  {
+    "id": "crossword",
+    "slug": "crossword",
+    "titleVi": "Giải đố Ô chữ",
+    "titleEn": "Crossword Master",
+    "description": "Giải đố các ô chữ tiếng Anh đan xen theo chủ đề với gợi ý ngữ cảnh và phát âm audio",
+    "emoji": "🧩",
+    "route": "/games/crossword",
+    "priority": 11
   }
 ]
 
