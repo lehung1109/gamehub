@@ -81,6 +81,7 @@ export function useBattleEngine() {
   const comboStreakRef = useRef(0);
   const monsterHpRef = useRef(STAGE_MONSTERS[0].maxHp);
   const currentWaveIndexRef = useRef(0);
+  const turnTimerRef = useRef(20);
 
   const clearTurnTimer = () => {
     if (timerRef.current) {
@@ -102,8 +103,10 @@ export function useBattleEngine() {
   };
 
   const skipIntro = useCallback(() => {
+    if (battleStateRef.current !== "STAGE_INTRO") return;
     battleStateRef.current = "PLAYER_TURN";
     setBattleState("PLAYER_TURN");
+    turnTimerRef.current = 20;
     setTurnTimer(20);
   }, []);
 
@@ -234,7 +237,9 @@ export function useBattleEngine() {
       const isBossEnraged =
         isBoss &&
         monsterHpRef.current < (STAGE_MONSTERS[currentWaveIndexRef.current]?.maxHp || 180) * 0.3;
-      setTurnTimer(isBossEnraged ? 15 : 20);
+      const timerVal = isBossEnraged ? 15 : 20;
+      turnTimerRef.current = timerVal;
+      setTurnTimer(timerVal);
     },
     []
   );
@@ -250,7 +255,14 @@ export function useBattleEngine() {
   );
 
   const consumePotion = useCallback(() => {
-    if (potionsLeft <= 0 || heroHpRef.current >= maxHeroHp) return;
+    if (
+      potionsLeft <= 0 ||
+      heroHpRef.current <= 0 ||
+      heroHpRef.current >= maxHeroHp ||
+      battleStateRef.current === "DEFEAT"
+    ) {
+      return;
+    }
     setPotionsLeft((prev) => prev - 1);
     heroHpRef.current = Math.min(maxHeroHp, heroHpRef.current + 40);
     setHeroHp(heroHpRef.current);
@@ -266,6 +278,7 @@ export function useBattleEngine() {
     currentWaveIndexRef.current = 0;
     battleStateRef.current = "STAGE_INTRO";
     activeChallengeRef.current = null;
+    turnTimerRef.current = 20;
 
     setHeroHp(100);
     setHeroEnergy(0);
@@ -286,14 +299,12 @@ export function useBattleEngine() {
   useEffect(() => {
     if (battleState === "CHALLENGE_ACTIVE") {
       timerRef.current = setInterval(() => {
-        setTurnTimer((prev) => {
-          if (prev <= 1) {
-            clearTurnTimer();
-            resolveTurnOutcome(false, "Timeout");
-            return 0;
-          }
-          return prev - 1;
-        });
+        turnTimerRef.current -= 1;
+        setTurnTimer(turnTimerRef.current);
+        if (turnTimerRef.current <= 0) {
+          clearTurnTimer();
+          resolveTurnOutcome(false, "Timeout");
+        }
       }, 1000);
     }
     return () => clearTurnTimer();

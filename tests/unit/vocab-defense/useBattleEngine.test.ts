@@ -360,4 +360,57 @@ describe("useBattleEngine Hook", () => {
     expect(result.current.comboStreak).toBe(0);
     expect(result.current.currentWaveIndex).toBe(0);
   });
+
+  it("triggers VICTORY state when the final wave boss is defeated", () => {
+    const { result } = renderHook(() => useBattleEngine());
+    act(() => {
+      result.current.skipIntro();
+    });
+
+    // Advance through waves 0, 1, 2, 3 by defeating each monster
+    for (let wave = 0; wave < 4; wave++) {
+      while (result.current.currentMonsterHp > 0 && result.current.battleState === "PLAYER_TURN") {
+        act(() => {
+          result.current.selectSkill("ATTACK");
+        });
+        act(() => {
+          result.current.submitAnswer(result.current.activeChallenge!.correctIndex);
+        });
+        act(() => {
+          vi.advanceTimersByTime(2000);
+        });
+      }
+
+      if (wave < 3) {
+        // Wait for wave transition (1500ms)
+        expect(result.current.battleState).toBe("WAVE_TRANSITION");
+        act(() => {
+          vi.advanceTimersByTime(1500);
+        });
+        expect(result.current.battleState).toBe("PLAYER_TURN");
+      }
+    }
+
+    expect(result.current.battleState).toBe("VICTORY");
+  });
+
+  it("guards consumePotion and skipIntro against invalid states", () => {
+    const { result } = renderHook(() => useBattleEngine());
+    // HP is full (100/100)
+    act(() => {
+      result.current.consumePotion();
+    });
+    expect(result.current.potionsLeft).toBe(1);
+
+    act(() => {
+      result.current.skipIntro();
+    });
+    expect(result.current.battleState).toBe("PLAYER_TURN");
+
+    // Calling skipIntro again when already in PLAYER_TURN should do nothing
+    act(() => {
+      result.current.skipIntro();
+    });
+    expect(result.current.battleState).toBe("PLAYER_TURN");
+  });
 });
