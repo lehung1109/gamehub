@@ -21,14 +21,14 @@
 
 **Purpose**: Core data models, static case library, and deterministic token segmentation engine.
 
-- [ ] T006 Dedicated Subagent: Initialize Phase 2 subagent context.
-- [ ] T007 [P] Define TypeScript interfaces in `src/types/grammar-detective.ts` (`CaseFile`, `CaseError`, `ErrorOption`, `TextToken`, `DetectiveSession`, `DetectiveRank`, `GameStatus`).
-- [ ] T008 [P] Author 12 authentic case files across 4 rank tiers with bilingual explanations in `src/data/grammar-detective.json`.
-- [ ] T009 [P] TDD Red: Write failing unit tests for regex word tokenization and error mapping in `src/app/games/grammar-detective/__tests__/tokenizer.test.ts`.
-- [ ] T010 TDD Green: Implement `tokenizeCaseDocument` pure function in `src/lib/grammar-detective-tokenizer.ts`.
-- [ ] T011 TDD Refactor & Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/tokenizer.test.ts` and verify all tests pass.
-- [ ] T012 Phase 2 Review Subagent: Spawn review subagent for data validity, schema adherence, and zero lint errors.
-- [ ] T013 Phase 2 Commit: Commit foundational data & tokenizer with `feat(grammar-detective): add data model, dataset, and tokenizer engine`.
+- [x] T006 Dedicated Subagent: Initialize Phase 2 subagent context.
+- [x] T007 [P] Define TypeScript interfaces in `src/types/grammar-detective.ts` (`CaseFile`, `CaseError`, `ErrorOption`, `TextToken`, `DetectiveSession`, `DetectiveRank`, `GameStatus`).
+- [x] T008 [P] Author 12 authentic case files across 4 rank tiers with bilingual explanations in `src/data/grammar-detective.json`.
+- [x] T009 [P] TDD Red: Write failing unit tests for regex word tokenization and error mapping in `src/app/games/grammar-detective/__tests__/tokenizer.test.ts`.
+- [x] T010 TDD Green: Implement `tokenizeCaseDocument` pure function in `src/lib/grammar-detective-tokenizer.ts`.
+- [x] T011 TDD Refactor & Verification: Run `npx vitest run src/app/games/grammar-detective/__tests__/tokenizer.test.ts` and verify all tests pass.
+- [x] T012 Phase 2 Review Subagent: Spawn review subagent for data validity, schema adherence, and zero lint errors.
+- [x] T013 Phase 2 Commit: Commit foundational data & tokenizer with `feat(grammar-detective): add data model, dataset, and tokenizer engine`.
 
 ---
 
