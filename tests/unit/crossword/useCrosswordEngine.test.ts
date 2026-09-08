@@ -91,6 +91,60 @@ describe("useCrosswordEngine Hook", () => {
     expect(result.current.direction).toBe(initialDir);
   });
 
+  it("selects unblocked cell and re-selecting intersection cell toggles direction", () => {
+    const { result } = renderHook(() => useCrosswordEngine("animals"));
+
+    let intersectCell: { row: number; col: number } | null = null;
+    let normalCell: { row: number; col: number } | null = null;
+
+    for (let r = 0; r < result.current.board.rows; r++) {
+      for (let c = 0; c < result.current.board.cols; c++) {
+        const cell = result.current.board.grid[r][c];
+        if (!cell.isBlocked) {
+          if (cell.acrossWordId && cell.downWordId && !intersectCell) {
+            intersectCell = { row: r, col: c };
+          } else if (
+            !normalCell &&
+            (r !== result.current.selectedCell.row || c !== result.current.selectedCell.col)
+          ) {
+            normalCell = { row: r, col: c };
+          }
+        }
+      }
+    }
+
+    // 1. Selecting an unblocked cell updates selectedCell
+    expect(normalCell).not.toBeNull();
+    act(() => {
+      result.current.selectCell(normalCell!.row, normalCell!.col);
+    });
+    expect(result.current.selectedCell).toEqual(normalCell);
+
+    // 2. Selecting a blocked cell does nothing
+    const currentSelected = { ...result.current.selectedCell };
+    act(() => {
+      result.current.selectCell(0, 0);
+    });
+    if (result.current.board.grid[0][0].isBlocked) {
+      expect(result.current.selectedCell).toEqual(currentSelected);
+    }
+
+    // 3. Re-selecting an intersection cell toggles direction
+    if (intersectCell) {
+      act(() => {
+        result.current.selectCell(intersectCell!.row, intersectCell!.col);
+      });
+      expect(result.current.selectedCell).toEqual(intersectCell);
+      const dirBefore = result.current.direction;
+
+      act(() => {
+        result.current.selectCell(intersectCell!.row, intersectCell!.col);
+      });
+      const expectedDir = dirBefore === "across" ? "down" : "across";
+      expect(result.current.direction).toBe(expectedDir);
+    }
+  });
+
   it("selects clue and updates selectedCell and direction", () => {
     const { result } = renderHook(() => useCrosswordEngine("animals"));
     const secondWord = result.current.board.words[1];
@@ -149,6 +203,40 @@ describe("useCrosswordEngine Hook", () => {
     }
   });
 
+  it("guards against duplicate revealWord calls without applying penalty twice", () => {
+    const { result } = renderHook(() => useCrosswordEngine("animals"));
+    const word = result.current.board.words[0];
+
+    act(() => {
+      result.current.revealWord(word);
+    });
+    expect(result.current.score).toBe(-30);
+    expect(result.current.wordsRevealed).toBe(1);
+
+    // Calling revealWord again for the same word must do nothing
+    act(() => {
+      result.current.revealWord(word);
+    });
+    expect(result.current.score).toBe(-30);
+    expect(result.current.wordsRevealed).toBe(1);
+  });
+
+  it("updates isSolved and isRevealed in board.words", () => {
+    const { result } = renderHook(() => useCrosswordEngine("animals"));
+    const firstWord = result.current.board.words[0];
+
+    expect(firstWord.isSolved).toBe(false);
+    expect(firstWord.isRevealed).toBe(false);
+
+    act(() => {
+      result.current.revealWord(firstWord);
+    });
+
+    const updatedWord = result.current.board.words.find((w) => w.id === firstWord.id);
+    expect(updatedWord?.isSolved).toBe(true);
+    expect(updatedWord?.isRevealed).toBe(true);
+  });
+
   it("increments elapsed time every second while game is active", () => {
     const { result } = renderHook(() => useCrosswordEngine("animals"));
     expect(result.current.elapsedSeconds).toBe(0);
@@ -196,7 +284,7 @@ describe("useCrosswordEngine Hook", () => {
     expect(result.current.board.topicId).toBe("fruits");
   });
 
-  it("detects completion when all cells are correctly filled and stops timer", () => {
+  it("detects completion when all cells are correctly filled, marks words solved, and stops timer", () => {
     const { result } = renderHook(() => useCrosswordEngine("animals"));
     const totalWords = result.current.board.words.length;
 
@@ -208,6 +296,11 @@ describe("useCrosswordEngine Hook", () => {
     }
 
     expect(result.current.isComplete).toBe(true);
+    // Every word in board.words should be marked isSolved
+    for (const word of result.current.board.words) {
+      expect(word.isSolved).toBe(true);
+    }
+
     // Score should include completion bonus: totalWords * 100 minus revealWord penalties
     expect(result.current.score).toBe(totalWords * 100 - totalWords * 30);
 
@@ -217,5 +310,15 @@ describe("useCrosswordEngine Hook", () => {
     });
     // Timer should stop after completion
     expect(result.current.elapsedSeconds).toBe(elapsed);
+
+    // revealLetter and revealWord should be guarded when isComplete is true
+    const currentScore = result.current.score;
+    const currentHints = result.current.hintsUsed;
+    act(() => {
+      result.current.revealLetter();
+      result.current.revealWord();
+    });
+    expect(result.current.score).toBe(currentScore);
+    expect(result.current.hintsUsed).toBe(currentHints);
   });
 });
