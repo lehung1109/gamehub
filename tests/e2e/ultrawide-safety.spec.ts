@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { VIEWPORT_ULTRAWIDE, getComputedWidth } from './helpers/viewport-helper';
 
 test.describe('Ultra-wide Monitor Safety (3440px & 3840px cap)', () => {
-  const containerSelector = '[data-testid="root-layout-container"]';
+  const containerSelector = '[data-testid="app-container"]';
 
   test('caps content width at 1800px on ultrawide viewports without horizontal overflow', async ({ page }) => {
     // Test 3440px

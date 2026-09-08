@@ -1,7 +1,11 @@
 // tests/e2e/share-link.spec.ts
 import { test, expect } from '@playwright/test'
+import { mockAnonymousStudent } from './helpers/auth-helper'
 
 test.describe('Share Link Access Flow (User Story 4)', () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
   test('public user opening invalid share slug sees friendly not-found page with home link', async ({
     page,
   }) => {

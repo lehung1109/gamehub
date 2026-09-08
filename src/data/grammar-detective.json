@@ -1,0 +1,902 @@
+[
+  {
+    "id": "case-intern-1",
+    "title": "Urgent Release Deployment",
+    "titleVi": "Báo cáo phát hành phiên bản khẩn cấp",
+    "category": "email",
+    "rankTier": "intern",
+    "sender": "alex.dev@gamehub.io",
+    "recipient": "engineering-all@gamehub.io",
+    "subject": "Urgent: Deployment status update",
+    "documentText": "Hi team, yesterday we deploy the new version to production. Everyone need to check their dashboards.",
+    "errors": [
+      {
+        "id": "err-i1-1",
+        "targetWord": "deploy",
+        "tokenIndex": 4,
+        "errorType": "tense",
+        "options": [
+          {
+            "id": "opt-i1-1a",
+            "text": "deployed",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Yesterday' signals simple past tense.",
+            "feedbackVi": "Chính xác! Trạng từ 'yesterday' yêu cầu thì quá khứ đơn."
+          },
+          {
+            "id": "opt-i1-1b",
+            "text": "deploying",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. Continuous tense needs an auxiliary verb like 'were'.",
+            "feedbackVi": "Sai. Dạng V-ing cần trợ động từ (ví dụ: were deploying)."
+          },
+          {
+            "id": "opt-i1-1c",
+            "text": "deploys",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. 'We' is plural and 'yesterday' is in the past.",
+            "feedbackVi": "Sai. Chủ ngữ 'we' không đi với s/es và câu ở quá khứ."
+          }
+        ],
+        "explanationEn": "Use past tense 'deployed' because the action occurred yesterday.",
+        "explanationVi": "Sử dụng thì quá khứ đơn 'deployed' vì hành động đã xảy ra vào 'yesterday'."
+      },
+      {
+        "id": "err-i1-2",
+        "targetWord": "need",
+        "tokenIndex": 11,
+        "errorType": "tense",
+        "options": [
+          {
+            "id": "opt-i1-2a",
+            "text": "needs",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Indefinite pronoun 'Everyone' takes a singular verb.",
+            "feedbackVi": "Chính xác! Đại từ bất định 'Everyone' luôn đi với động từ số ít."
+          },
+          {
+            "id": "opt-i1-2b",
+            "text": "needing",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. 'Need' is a stative verb rarely used in continuous form.",
+            "feedbackVi": "Sai. 'Need' là động từ chỉ trạng thái, hiếm khi dùng ở dạng tiếp diễn."
+          },
+          {
+            "id": "opt-i1-2c",
+            "text": "needed",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. The check is required right now in the present.",
+            "feedbackVi": "Sai. Yêu cầu kiểm tra là cho hiện tại/ngay bây giờ."
+          }
+        ],
+        "explanationEn": "'Everyone' is grammatically singular and requires 'needs'.",
+        "explanationVi": "Chủ ngữ đại từ bất định 'Everyone' tính là số ít nên động từ phải thêm 's' thành 'needs'."
+      }
+    ]
+  },
+  {
+    "id": "case-intern-2",
+    "title": "Meeting Reschedule Notice",
+    "titleVi": "Thông báo dời lịch họp nhóm",
+    "category": "chat",
+    "rankTier": "intern",
+    "sender": "sarah.pm@gamehub.io",
+    "recipient": "squad-chat",
+    "subject": "Sprint retrospective adjustment",
+    "documentText": "Hi folks, our sprint retro meet is moved. We will discuss at Friday afternoon.",
+    "errors": [
+      {
+        "id": "err-i2-1",
+        "targetWord": "meet",
+        "tokenIndex": 5,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-i2-1a",
+            "text": "meeting",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Use the noun 'meeting' rather than the base verb 'meet'.",
+            "feedbackVi": "Chính xác! Cần danh từ 'meeting' làm chủ ngữ thay vì động từ 'meet'."
+          },
+          {
+            "id": "opt-i2-1b",
+            "text": "meets",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. 'Meets' is a verb, not the desired noun.",
+            "feedbackVi": "Sai. 'Meets' là động từ chia số ít, không phải danh từ buổi họp."
+          },
+          {
+            "id": "opt-i2-1c",
+            "text": "met",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. 'Met' is past tense verb form.",
+            "feedbackVi": "Sai. 'Met' là quá khứ của động từ meet."
+          }
+        ],
+        "explanationEn": "Use the noun 'meeting' as the subject noun phrase.",
+        "explanationVi": "Dùng danh từ 'meeting' trong cụm 'retro meeting' (buổi họp retro)."
+      },
+      {
+        "id": "err-i2-2",
+        "targetWord": "at",
+        "tokenIndex": 11,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-i2-2a",
+            "text": "on",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Use preposition 'on' before specific days of the week.",
+            "feedbackVi": "Chính xác! Dùng giới từ 'on' trước các ngày trong tuần (on Friday)."
+          },
+          {
+            "id": "opt-i2-2b",
+            "text": "in",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. 'In' is used for months, years, or seasons.",
+            "feedbackVi": "Sai. 'In' dùng cho tháng, năm hoặc mùa."
+          },
+          {
+            "id": "opt-i2-2c",
+            "text": "by",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. 'By' indicates a deadline, not the meeting day.",
+            "feedbackVi": "Sai. 'By' chỉ hạn chót, không phải thời điểm diễn ra buổi họp."
+          }
+        ],
+        "explanationEn": "Days of the week take the preposition 'on' (on Friday).",
+        "explanationVi": "Các thứ trong tuần đi với giới từ 'on' (on Friday afternoon)."
+      }
+    ]
+  },
+  {
+    "id": "case-intern-3",
+    "title": "Welcome New Teammate",
+    "titleVi": "Chào đón thành viên mới gia nhập",
+    "category": "social",
+    "rankTier": "intern",
+    "sender": "hr@gamehub.io",
+    "recipient": "all-staff",
+    "subject": "Warm welcome to Linh!",
+    "documentText": "Please welcome Linh, who join our design department today. Send warm greetings for her!",
+    "errors": [
+      {
+        "id": "err-i3-1",
+        "targetWord": "join",
+        "tokenIndex": 4,
+        "errorType": "tense",
+        "options": [
+          {
+            "id": "opt-i3-1a",
+            "text": "joined",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Linh already completed joining earlier today.",
+            "feedbackVi": "Chính xác! Linh đã gia nhập công ty (hành động đã hoàn thành)."
+          },
+          {
+            "id": "opt-i3-1b",
+            "text": "joins",
+            "isCorrect": false,
+            "feedbackEn": "Acceptable in headline style, but 'joined' is standard in announcement body.",
+            "feedbackVi": "Dạng quá khứ 'joined' là tự nhiên và chính xác nhất trong email chào đón."
+          },
+          {
+            "id": "opt-i3-1c",
+            "text": "joining",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect without an auxiliary verb.",
+            "feedbackVi": "Sai vì thiếu trợ động từ."
+          }
+        ],
+        "explanationEn": "'Joined' correctly expresses that she has officially become part of the team.",
+        "explanationVi": "Dùng 'joined' để diễn đạt việc thành viên mới đã chính thức gia nhập."
+      },
+      {
+        "id": "err-i3-2",
+        "targetWord": "for",
+        "tokenIndex": 12,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-i3-2a",
+            "text": "to",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Send greetings 'to' someone.",
+            "feedbackVi": "Chính xác! Cấu trúc đúng là 'send greetings to somebody'."
+          },
+          {
+            "id": "opt-i3-2b",
+            "text": "at",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition with greetings.",
+            "feedbackVi": "Sai giới từ khi đi kèm lời chào."
+          },
+          {
+            "id": "opt-i3-2c",
+            "text": "with",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ trong cụm này."
+          }
+        ],
+        "explanationEn": "We send wishes or greetings 'to' a recipient.",
+        "explanationVi": "Gửi lời chào/chúc đến ai đó dùng giới từ 'to' (send greetings to her)."
+      }
+    ]
+  },
+  {
+    "id": "case-junior-1",
+    "title": "Production Incident Report",
+    "titleVi": "Báo cáo sự cố hệ thống dịch vụ",
+    "category": "incident",
+    "rankTier": "junior",
+    "sender": "ops-lead@gamehub.io",
+    "recipient": "incident-response@gamehub.io",
+    "subject": "Incident #402 Post-Mortem Brief",
+    "documentText": "The database server crash unexpectedly at midnight. Our on-call engineers arrive quickly to restore service.",
+    "errors": [
+      {
+        "id": "err-j1-1",
+        "targetWord": "crash",
+        "tokenIndex": 3,
+        "errorType": "tense",
+        "options": [
+          {
+            "id": "opt-j1-1a",
+            "text": "crashed",
+            "isCorrect": true,
+            "feedbackEn": "Correct! The incident occurred in the past at midnight.",
+            "feedbackVi": "Chính xác! Sự cố đã xảy ra vào nửa đêm nên dùng thì quá khứ đơn."
+          },
+          {
+            "id": "opt-j1-1b",
+            "text": "crashing",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect participle without auxiliary.",
+            "feedbackVi": "Sai vì thiếu trợ động từ."
+          },
+          {
+            "id": "opt-j1-1c",
+            "text": "crashes",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect present tense for a past incident.",
+            "feedbackVi": "Sai thì hiện tại cho sự cố đã qua."
+          }
+        ],
+        "explanationEn": "Incident post-mortems narrate past events using simple past 'crashed'.",
+        "explanationVi": "Báo cáo sự cố kể lại các mốc thời gian đã qua nên dùng quá khứ đơn 'crashed'."
+      },
+      {
+        "id": "err-j1-2",
+        "targetWord": "arrive",
+        "tokenIndex": 11,
+        "errorType": "tense",
+        "options": [
+          {
+            "id": "opt-j1-2a",
+            "text": "arrived",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Matches the past narrative tense.",
+            "feedbackVi": "Chính xác! Đồng nhất với thì quá khứ của sự kiện."
+          },
+          {
+            "id": "opt-j1-2b",
+            "text": "arrives",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect subject-verb number and tense.",
+            "feedbackVi": "Sai chủ ngữ số nhiều và sai thì."
+          },
+          {
+            "id": "opt-j1-2c",
+            "text": "arriving",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect verb form.",
+            "feedbackVi": "Sai dạng động từ."
+          }
+        ],
+        "explanationEn": "Maintain tense consistency: 'arrived' matches the past event.",
+        "explanationVi": "Giữ tính nhất quán về thì trong văn bản tường thuật: 'arrived'."
+      }
+    ]
+  },
+  {
+    "id": "case-junior-2",
+    "title": "Daily Standup Blocker",
+    "titleVi": "Báo cáo trở ngại trong buổi họp Standup",
+    "category": "chat",
+    "rankTier": "junior",
+    "sender": "david.backend@gamehub.io",
+    "recipient": "core-engineers",
+    "subject": "Blocker on auth migration",
+    "documentText": "I did a big mistake while configuring the Redis cache. Can someone help me fixing this issue?",
+    "errors": [
+      {
+        "id": "err-j2-1",
+        "targetWord": "did",
+        "tokenIndex": 1,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-j2-1a",
+            "text": "made",
+            "isCorrect": true,
+            "feedbackEn": "Correct! The natural English collocation is 'make a mistake'.",
+            "feedbackVi": "Chính xác! Cụm từ chuẩn trong tiếng Anh luôn là 'make a mistake'."
+          },
+          {
+            "id": "opt-j2-1b",
+            "text": "created",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect collocation with mistake.",
+            "feedbackVi": "Không dùng 'created' đi kèm mistake."
+          },
+          {
+            "id": "opt-j2-1c",
+            "text": "took",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect verb choice.",
+            "feedbackVi": "Không đi cùng mistake."
+          }
+        ],
+        "explanationEn": "The standard English collocation is 'make a mistake' (past: 'made a mistake').",
+        "explanationVi": "Collocation chuẩn là 'make a mistake' (quá khứ: 'made a mistake'), không dùng 'do a mistake'."
+      },
+      {
+        "id": "err-j2-2",
+        "targetWord": "fixing",
+        "tokenIndex": 14,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-j2-2a",
+            "text": "fix",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Verb pattern: 'help someone (to) do something'.",
+            "feedbackVi": "Chính xác! Cấu trúc chuẩn là 'help someone do something' (động từ nguyên mẫu)."
+          },
+          {
+            "id": "opt-j2-2b",
+            "text": "fixed",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect past tense following help object.",
+            "feedbackVi": "Sai thì sau tân ngữ của help."
+          },
+          {
+            "id": "opt-j2-2c",
+            "text": "to fixing",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect combination.",
+            "feedbackVi": "Sai ngữ pháp."
+          }
+        ],
+        "explanationEn": "The verb 'help' is followed by a bare infinitive or 'to + infinitive' (help me fix).",
+        "explanationVi": "Động từ 'help' đi với nguyên thể không to hoặc có to: 'help me fix', không dùng V-ing."
+      }
+    ]
+  },
+  {
+    "id": "case-junior-3",
+    "title": "Client Feature Discussion",
+    "titleVi": "Thảo luận tính năng cùng khách hàng",
+    "category": "email",
+    "rankTier": "junior",
+    "sender": "elena.consultant@gamehub.io",
+    "recipient": "client-success@partner.com",
+    "subject": "Summary of today's discovery call",
+    "documentText": "We discuss about the roadmap during our call. The client is very interested for our API solution.",
+    "errors": [
+      {
+        "id": "err-j3-1",
+        "targetWord": "about",
+        "tokenIndex": 2,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-j3-1a",
+            "text": "the",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Discuss' is transitive and does not take 'about'.",
+            "feedbackVi": "Chính xác! Động từ 'discuss' là ngoại động từ, đi thẳng tới tân ngữ không có 'about'."
+          },
+          {
+            "id": "opt-j3-1b",
+            "text": "on",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          },
+          {
+            "id": "opt-j3-1c",
+            "text": "with",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          }
+        ],
+        "explanationEn": "'Discuss' is a transitive verb that takes a direct object without 'about' (e.g. 'discuss the roadmap').",
+        "explanationVi": "'Discuss' là ngoại động từ tác động trực tiếp lên tân ngữ: 'discuss the roadmap' (không dùng discuss about)."
+      },
+      {
+        "id": "err-j3-2",
+        "targetWord": "for",
+        "tokenIndex": 13,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-j3-2a",
+            "text": "in",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Adjective 'interested' takes preposition 'in'.",
+            "feedbackVi": "Chính xác! Tính từ 'interested' luôn đi kèm giới từ 'in' (interested in)."
+          },
+          {
+            "id": "opt-j3-2b",
+            "text": "with",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          },
+          {
+            "id": "opt-j3-2c",
+            "text": "about",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          }
+        ],
+        "explanationEn": "The correct preposition phrase is 'interested in something'.",
+        "explanationVi": "Tính từ chỉ sự quan tâm/hứng thú là 'interested in', không dùng 'interested for'."
+      }
+    ]
+  },
+  {
+    "id": "case-senior-1",
+    "title": "Security Audit Findings",
+    "titleVi": "Kết quả kiểm toán an ninh mạng",
+    "category": "incident",
+    "rankTier": "senior",
+    "sender": "ciso@gamehub.io",
+    "recipient": "security-council@gamehub.io",
+    "subject": "Q3 Vulnerability Scan Review",
+    "documentText": "All microservices must comply to ISO guidelines. This vulnerability has a major affect on user sessions.",
+    "errors": [
+      {
+        "id": "err-s1-1",
+        "targetWord": "to",
+        "tokenIndex": 4,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-s1-1a",
+            "text": "with",
+            "isCorrect": true,
+            "feedbackEn": "Correct! The standard preposition is 'comply with'.",
+            "feedbackVi": "Chính xác! Cụm từ chuẩn là 'comply with' (tuân thủ theo)."
+          },
+          {
+            "id": "opt-s1-1b",
+            "text": "for",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          },
+          {
+            "id": "opt-s1-1c",
+            "text": "at",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          }
+        ],
+        "explanationEn": "The verb 'comply' pairs with 'with' (comply with regulations).",
+        "explanationVi": "Động từ 'comply' đi cùng giới từ 'with' (comply with ISO guidelines)."
+      },
+      {
+        "id": "err-s1-2",
+        "targetWord": "affect",
+        "tokenIndex": 12,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-s1-2a",
+            "text": "effect",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Effect' is the noun meaning impact/result.",
+            "feedbackVi": "Chính xác! 'Effect' là danh từ chỉ kết quả/sự ảnh hưởng ('have an effect on')."
+          },
+          {
+            "id": "opt-s1-2b",
+            "text": "effective",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect adjective form.",
+            "feedbackVi": "Sai vì đây là tính từ."
+          },
+          {
+            "id": "opt-s1-2c",
+            "text": "affection",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect noun meaning fond feeling.",
+            "feedbackVi": "Sai nghĩa (affection là tình cảm)."
+          }
+        ],
+        "explanationEn": "'Affect' is typically a verb, while 'effect' is the noun needed here in 'have a major effect on'.",
+        "explanationVi": "'Affect' là động từ gây ảnh hưởng; trong cấu trúc 'have a ... on', ta cần danh từ 'effect'."
+      }
+    ]
+  },
+  {
+    "id": "case-senior-2",
+    "title": "Contract Negotiation Query",
+    "titleVi": "Trao đổi điều khoản hợp đồng đối tác",
+    "category": "email",
+    "rankTier": "senior",
+    "sender": "partnerships@gamehub.io",
+    "recipient": "legal-team@partner.com",
+    "subject": "Vendor agreement review terms",
+    "documentText": "I want you to send the signed copy today. We look forward to hear from you soon.",
+    "errors": [
+      {
+        "id": "err-s2-1",
+        "targetWord": "want",
+        "tokenIndex": 1,
+        "errorType": "politeness",
+        "options": [
+          {
+            "id": "opt-s2-1a",
+            "text": "would appreciate if you could",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Professional workplace correspondence uses polite indirect requests.",
+            "feedbackVi": "Chính xác! Email giao dịch kinh doanh đòi hỏi cấu trúc nhờ vả lịch sự, trang trọng."
+          },
+          {
+            "id": "opt-s2-1b",
+            "text": "tell",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect. Still too blunt and commanding.",
+            "feedbackVi": "Vẫn mang tính mệnh lệnh thiếu lịch sự."
+          },
+          {
+            "id": "opt-s2-1c",
+            "text": "order",
+            "isCorrect": false,
+            "feedbackEn": "Inappropriate commanding tone.",
+            "feedbackVi": "Giọng điệu ra lệnh không phù hợp."
+          }
+        ],
+        "explanationEn": "In business writing, 'I want you to...' sounds overly aggressive. Use 'I would appreciate if you could...' or 'Could you please...'.",
+        "explanationVi": "Trong giao tiếp công sở, 'I want you to' quá cộc lốc và thô lỗ. Hãy dùng 'I would appreciate if you could' để thể hiện sự chuyên nghiệp."
+      },
+      {
+        "id": "err-s2-2",
+        "targetWord": "hear",
+        "tokenIndex": 13,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-s2-2a",
+            "text": "hearing",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Look forward to' is followed by a gerund (-ing).",
+            "feedbackVi": "Chính xác! Sau cụm 'look forward to' luôn là V-ing ('hearing')."
+          },
+          {
+            "id": "opt-s2-2b",
+            "text": "heard",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect past form.",
+            "feedbackVi": "Sai dạng quá khứ."
+          },
+          {
+            "id": "opt-s2-2c",
+            "text": "be heard",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect passive meaning.",
+            "feedbackVi": "Sai thể bị động."
+          }
+        ],
+        "explanationEn": "In the idiom 'look forward to', 'to' is a preposition, requiring the gerund form 'hearing'.",
+        "explanationVi": "Trong cụm 'look forward to', 'to' là giới từ nên động từ theo sau bắt buộc ở dạng V-ing: 'hearing'."
+      }
+    ]
+  },
+  {
+    "id": "case-senior-3",
+    "title": "Server Migration Schedule",
+    "titleVi": "Kế hoạch di chuyển máy chủ hạ tầng",
+    "category": "incident",
+    "rankTier": "senior",
+    "sender": "infra-architect@gamehub.io",
+    "recipient": "devops-leads",
+    "subject": "Migration maintenance window",
+    "documentText": "Our DevOps engineer is responsible of the cloud migration. He has worked here since five years.",
+    "errors": [
+      {
+        "id": "err-s3-1",
+        "targetWord": "of",
+        "tokenIndex": 5,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-s3-1a",
+            "text": "for",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Responsible' takes preposition 'for'.",
+            "feedbackVi": "Chính xác! Tính từ 'responsible' đi với giới từ 'for' (responsible for)."
+          },
+          {
+            "id": "opt-s3-1b",
+            "text": "with",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          },
+          {
+            "id": "opt-s3-1c",
+            "text": "about",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          }
+        ],
+        "explanationEn": "The correct phrase is 'responsible for something'.",
+        "explanationVi": "Chịu trách nhiệm về điều gì dùng 'responsible for', không dùng 'responsible of'."
+      },
+      {
+        "id": "err-s3-2",
+        "targetWord": "since",
+        "tokenIndex": 13,
+        "errorType": "preposition",
+        "options": [
+          {
+            "id": "opt-s3-2a",
+            "text": "for",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Use 'for' with a duration of time (five years).",
+            "feedbackVi": "Chính xác! Dùng 'for' với khoảng thời gian đo lường (for five years)."
+          },
+          {
+            "id": "opt-s3-2b",
+            "text": "during",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Không dùng during cho khoảng thời gian với hiện tại hoàn thành."
+          },
+          {
+            "id": "opt-s3-2c",
+            "text": "in",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect preposition.",
+            "feedbackVi": "Sai giới từ."
+          }
+        ],
+        "explanationEn": "Use 'for' for a duration of time (for five years), whereas 'since' marks a specific starting point in time.",
+        "explanationVi": "Dùng 'for' cho khoảng thời gian (for five years); 'since' chỉ dùng cho mốc thời gian (since 2021)."
+      }
+    ]
+  },
+  {
+    "id": "case-chief-1",
+    "title": "Executive Board Briefing",
+    "titleVi": "Báo cáo chiến lược Hội đồng Quản trị",
+    "category": "email",
+    "rankTier": "chief",
+    "sender": "ceo@gamehub.io",
+    "recipient": "board-of-directors@gamehub.io",
+    "subject": "Annual strategic performance recap",
+    "documentText": "Our department worked hardly to exceed quarterly goals. Despite the team was small, output remained exceptional.",
+    "errors": [
+      {
+        "id": "err-c1-1",
+        "targetWord": "hardly",
+        "tokenIndex": 3,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-c1-1a",
+            "text": "hard",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Work hard' means work with high effort. 'Hardly' means scarcely/almost not.",
+            "feedbackVi": "Chính xác! 'Work hard' là làm việc chăm chỉ. 'Hardly' mang nghĩa phủ định (hầu như không)."
+          },
+          {
+            "id": "opt-c1-1b",
+            "text": "harder",
+            "isCorrect": false,
+            "feedbackEn": "Comparative not needed here.",
+            "feedbackVi": "Không có đối tượng so sánh hơn."
+          },
+          {
+            "id": "opt-c1-1c",
+            "text": "hardest",
+            "isCorrect": false,
+            "feedbackEn": "Superlative needs 'the'.",
+            "feedbackVi": "Dạng so sánh nhất thiếu 'the'."
+          }
+        ],
+        "explanationEn": "'Hardly' means 'almost not'. To express diligence, use the adverb 'hard'.",
+        "explanationVi": "'Hardly' có nghĩa là 'hầu như không'. Muốn diễn tả làm việc nỗ lực, chăm chỉ phải dùng trạng từ 'hard' (work hard)."
+      },
+      {
+        "id": "err-c1-2",
+        "targetWord": "Despite",
+        "tokenIndex": 8,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-c1-2a",
+            "text": "Although",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Although' introduces a full clause (subject + verb: the team was small).",
+            "feedbackVi": "Chính xác! 'Although' đi với một mệnh đề đầy đủ (the team was small)."
+          },
+          {
+            "id": "opt-c1-2b",
+            "text": "In spite",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect without 'of' and cannot take a clause directly.",
+            "feedbackVi": "Thiếu 'of' và in spite of chỉ đi với danh từ/V-ing."
+          },
+          {
+            "id": "opt-c1-2c",
+            "text": "However",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect transition punctuation and syntax.",
+            "feedbackVi": "Không thể đóng vai trò liên từ nối mệnh đề trực tiếp như vậy."
+          }
+        ],
+        "explanationEn": "'Despite' must be followed by a noun phrase or gerund. For a clause with subject and verb, use 'Although'.",
+        "explanationVi": "'Despite' chỉ đi với cụm danh từ hoặc V-ing. Để nối một mệnh đề có chủ ngữ và động từ, ta phải dùng liên từ 'Although'."
+      }
+    ]
+  },
+  {
+    "id": "case-chief-2",
+    "title": "Post-Mortem Action Items",
+    "titleVi": "Kế hoạch hành động sau sự cố trọng yếu",
+    "category": "incident",
+    "rankTier": "chief",
+    "sender": "cto@gamehub.io",
+    "recipient": "engineering-all@gamehub.io",
+    "subject": "Platform resilience initiatives",
+    "documentText": "We must focus on prevent downtime during black-swan events. The committee suggested to test backups weekly.",
+    "errors": [
+      {
+        "id": "err-c2-1",
+        "targetWord": "prevent",
+        "tokenIndex": 4,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-c2-1a",
+            "text": "preventing",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Preposition 'on' must be followed by a gerund (-ing).",
+            "feedbackVi": "Chính xác! Giới từ 'on' sau động từ focus bắt buộc đi với V-ing (focus on preventing)."
+          },
+          {
+            "id": "opt-c2-1b",
+            "text": "prevented",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect past form after preposition.",
+            "feedbackVi": "Sai dạng quá khứ sau giới từ."
+          },
+          {
+            "id": "opt-c2-1c",
+            "text": "prevention",
+            "isCorrect": false,
+            "feedbackEn": "Needs an object; gerund 'preventing downtime' is standard.",
+            "feedbackVi": "'Prevention' là danh từ đơn lẻ, ở đây cần V-ing mang theo tân ngữ 'downtime'."
+          }
+        ],
+        "explanationEn": "Prepositions must be followed by a noun or gerund form (focus on preventing).",
+        "explanationVi": "Sau giới từ (ở đây là 'on'), động từ phải chuyển thành danh động từ V-ing: 'focus on preventing'."
+      },
+      {
+        "id": "err-c2-2",
+        "targetWord": "to test",
+        "tokenIndex": 13,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-c2-2a",
+            "text": "testing",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Suggest' takes a gerund (-ing) or a 'that' subjunctive clause.",
+            "feedbackVi": "Chính xác! Động từ 'suggest' đi với V-ing (suggest testing) hoặc 'that' clause, không đi với 'to V'."
+          },
+          {
+            "id": "opt-c2-2b",
+            "text": "tested",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect verb form.",
+            "feedbackVi": "Sai dạng động từ."
+          },
+          {
+            "id": "opt-c2-2c",
+            "text": "for testing",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect verb complement pattern.",
+            "feedbackVi": "Không đúng cấu trúc ngữ pháp với suggest."
+          }
+        ],
+        "explanationEn": "'Suggest' is never followed by 'to + infinitive'. Use 'suggest + V-ing' (suggested testing backups).",
+        "explanationVi": "Động từ 'suggest' không bao giờ đi với 'to + verb'. Cấu trúc đúng là 'suggest + V-ing' (suggested testing)."
+      }
+    ]
+  },
+  {
+    "id": "case-chief-3",
+    "title": "Keynote Conference Invite",
+    "titleVi": "Thư mời diễn giả Hội thảo Công nghệ",
+    "category": "social",
+    "rankTier": "chief",
+    "sender": "organizers@globaltech.org",
+    "recipient": "hung.le@gamehub.io",
+    "subject": "Invitation to keynote TechCon 2026",
+    "documentText": "We would be extreme honor if you accepted our invitation. We hope to listen your thoughts on AI.",
+    "errors": [
+      {
+        "id": "err-c3-1",
+        "targetWord": "honor",
+        "tokenIndex": 4,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-c3-1a",
+            "text": "honored",
+            "isCorrect": true,
+            "feedbackEn": "Correct! Passive participle adjective: 'be honored'.",
+            "feedbackVi": "Chính xác! Dạng tính từ bị động: 'be extremely honored' (cảm thấy vinh hạnh)."
+          },
+          {
+            "id": "opt-c3-1b",
+            "text": "honoring",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect active participle.",
+            "feedbackVi": "Sai nghĩa chủ động."
+          },
+          {
+            "id": "opt-c3-1c",
+            "text": "honorable",
+            "isCorrect": false,
+            "feedbackEn": "Honorable describes reputable conduct, not personal feeling of gratitude.",
+            "feedbackVi": "'Honorable' chỉ danh dự/đáng kính, không phải cảm giác được vinh dự."
+          }
+        ],
+        "explanationEn": "The expression is 'we would be honored' (feeling grateful and privileged).",
+        "explanationVi": "Thành ngữ giao tiếp trang trọng là 'be honored' (vô cùng vinh hạnh được làm gì)."
+      },
+      {
+        "id": "err-c3-2",
+        "targetWord": "listen",
+        "tokenIndex": 13,
+        "errorType": "collocation",
+        "options": [
+          {
+            "id": "opt-c3-2a",
+            "text": "hear",
+            "isCorrect": true,
+            "feedbackEn": "Correct! 'Hear your thoughts' is the natural phrase ('listen' requires 'to').",
+            "feedbackVi": "Chính xác! Cụm từ tự nhiên là 'hear your thoughts' (lắng nghe chia sẻ/suy nghĩ của bạn)."
+          },
+          {
+            "id": "opt-c3-2b",
+            "text": "hearing",
+            "isCorrect": false,
+            "feedbackEn": "Incorrect infinitive form after 'hope to'.",
+            "feedbackVi": "Sau 'hope to' cần động từ nguyên mẫu."
+          },
+          {
+            "id": "opt-c3-2c",
+            "text": "listen to",
+            "isCorrect": false,
+            "feedbackEn": "Grammatically possible, but 'hear your thoughts' is far more natural in business invitations.",
+            "feedbackVi": "'Hear your thoughts' là thành ngữ công sở tự nhiên và chuẩn xác nhất."
+          }
+        ],
+        "explanationEn": "'Listen' requires 'to' before an object. 'Hear your thoughts' is standard and idiomatic.",
+        "explanationVi": "'Listen' là nội động từ bắt buộc có 'to' (listen to). Trong thư mời trang trọng, người bản xứ luôn dùng 'hear your thoughts'."
+      }
+    ]
+  }
+]

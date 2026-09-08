@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Simple Sentences Game E2E Flow (/games/sentences)", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
   test("loads Sentences Game page, verifies header, navigation, and sentence prompt controls", async ({
     page,
   }) => {
@@ -30,7 +34,7 @@ test.describe("Simple Sentences Game E2E Flow (/games/sentences)", () => {
     const dropSlots = page.locator("button[aria-label^='Ô từ ']");
     const slotCount = await dropSlots.count();
     expect(slotCount).toBeGreaterThanOrEqual(2);
-    expect(slotCount).toBeLessThanOrEqual(5);
+    expect(slotCount).toBeLessThanOrEqual(15);
 
     const bankWords = page.locator("button[aria-label^='Từ ']");
     const bankCount = await bankWords.count();

@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Flashcard Game Flow", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
+
   test("selects topic, flips card, and navigates", async ({ page }) => {
     await page.goto("/games/flashcard");
 

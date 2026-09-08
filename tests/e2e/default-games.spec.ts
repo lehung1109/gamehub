@@ -1,6 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("US5 - Student Default Game Experience (Zero Auth / Full Content)", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
   test("Homepage displays all 6 games without requiring login or showing admin controls", async ({
     page,
   }) => {

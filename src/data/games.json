@@ -78,6 +78,16 @@
     "emoji": "🔍",
     "route": "/games/word-search",
     "priority": 8
+  },
+  {
+    "id": "grammar-detective",
+    "slug": "grammar-detective",
+    "titleVi": "Thám tử sửa lỗi",
+    "titleEn": "Grammar Detective",
+    "description": "Soi và sửa lỗi ngữ pháp trong email và tin nhắn công sở",
+    "emoji": "🕵️",
+    "route": "/games/grammar-detective",
+    "priority": 9
   }
 ]
 

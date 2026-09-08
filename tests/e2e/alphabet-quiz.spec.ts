@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { mockAnonymousStudent } from "./helpers/auth-helper";
 
 test.describe("Alphabet & Phonics Quiz Flow", () => {
+  test.beforeEach(async ({ page }) => {
+    await mockAnonymousStudent(page);
+  });
+
   test("loads Alphabet page, switches to Quiz mode, answers questions without crashing or shifting layout", async ({
     page,
   }) => {
@@ -19,12 +24,13 @@ test.describe("Alphabet & Phonics Quiz Flow", () => {
     await expect(page.getByText(/Câu 1 \/ 10/i)).toBeVisible({ timeout: 10000 });
     await expect(page.getByText(/Bé hãy nghe và chọn chữ cái đúng nhé!/i)).toBeVisible();
 
-    // Get the initial viewport scroll state
-    const initialScrollY = await page.evaluate(() => window.scrollY);
-
-    // Find and click the first option button
+    // Find and scroll first option button into view
     const firstOption = page.locator("button:has(span.tracking-wider)").first();
     await expect(firstOption).toBeVisible();
+    await firstOption.scrollIntoViewIfNeeded();
+
+    // Get the initial viewport scroll state
+    const initialScrollY = await page.evaluate(() => window.scrollY);
     await firstOption.click();
 
     // Check feedback overlay is shown
