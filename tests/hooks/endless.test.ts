@@ -61,4 +61,55 @@ describe('Endless Audit Mode & Streak Tracking', () => {
     expect(result.current.status).toBe('solved');
     expect(result.current.streak).toBe(1);
   });
+
+  it('resets streak to 0 and stays in endless mode on retry', () => {
+    const { result } = renderHook(() => useGrammarDetective(mockCases));
+
+    act(() => {
+      result.current.startEndless();
+    });
+
+    const target = result.current.tokens.find((t) => t.text === 'this');
+    act(() => {
+      result.current.tapToken(target!.id);
+    });
+    act(() => {
+      result.current.submitDeduction('opt-c1');
+    });
+
+    expect(result.current.streak).toBe(1);
+
+    // Now retry in endless mode
+    act(() => {
+      result.current.retryCase();
+    });
+
+    expect(result.current.mode).toBe('endless');
+    expect(result.current.streak).toBe(0);
+    expect(result.current.status).toBe('investigating');
+  });
+
+  it('protects credibility when highlighter is inactive (reading mode)', () => {
+    const { result } = renderHook(() => useGrammarDetective(mockCases));
+
+    act(() => {
+      result.current.selectCase('case-endless-1');
+    });
+
+    expect(result.current.highlighterActive).toBe(true);
+    act(() => {
+      result.current.toggleHighlighter();
+    });
+    expect(result.current.highlighterActive).toBe(false);
+
+    // Tapping innocent word when highlighter is off should not deduct credibility
+    const innocent = result.current.tokens.find((t) => t.text === 'Fix');
+    act(() => {
+      result.current.tapToken(innocent!.id);
+    });
+
+    expect(result.current.credibility).toBe(3);
+    expect(result.current.mistakes).toBe(0);
+    expect(result.current.lastFeedback?.messageVi).toContain('chế độ đọc');
+  });
 });

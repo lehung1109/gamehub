@@ -22,6 +22,7 @@ interface CaseSolvedModalProps {
   starsEarned: number;
   credibility: number;
   elapsedSeconds: number;
+  mode?: 'case' | 'endless';
   onNextCase: () => void;
   onRetry: () => void;
   onReturnToDossier: () => void;
@@ -33,6 +34,7 @@ export const CaseSolvedModal: React.FC<CaseSolvedModalProps> = ({
   starsEarned,
   credibility,
   elapsedSeconds,
+  mode = 'case',
   onNextCase,
   onRetry,
   onReturnToDossier,
@@ -139,7 +141,7 @@ export const CaseSolvedModal: React.FC<CaseSolvedModalProps> = ({
             onClick={onNextCase}
             className="gap-1.5 font-bold text-xs flex-1"
           >
-            <span>Vụ án tiếp theo</span>
+            <span>{mode === 'endless' ? 'Vòng vô tận tiếp theo 🔥' : 'Vụ án tiếp theo'}</span>
             <ArrowRight className="w-4 h-4" />
           </Button>
         </DialogFooter>

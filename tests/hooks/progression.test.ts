@@ -1,6 +1,7 @@
 // tests/hooks/progression.test.ts
 import { describe, it, expect } from 'vitest';
-import { calculateRankTier, isTierUnlocked } from '@/hooks/useGrammarDetective';
+import { renderHook, act } from '@testing-library/react';
+import { calculateRankTier, isTierUnlocked, useGrammarDetective } from '@/hooks/useGrammarDetective';
 
 describe('Detective Rank & Progression Logic', () => {
   it('calculates rank tiers correctly based on solved case counts', () => {
@@ -33,5 +34,60 @@ describe('Detective Rank & Progression Logic', () => {
 
     // 9 cases solved
     expect(isTierUnlocked('chief', 9)).toBe(true);
+  });
+
+  it('preserves highestStreak in localStorage when solving regular cases', () => {
+    // Seed localStorage with an existing record
+    window.localStorage.setItem(
+      'gamehub_grammar_detective_v1',
+      JSON.stringify({ completedCaseIds: [], highestStreak: 15 })
+    );
+
+    const mockCase = {
+      id: 'reg-1',
+      title: 'Reg Case',
+      titleVi: 'Vụ án',
+      category: 'email' as const,
+      rankTier: 'intern' as const,
+      sender: 'a@test.com',
+      recipient: 'b@test.com',
+      subject: 'Test',
+      documentText: 'I test.',
+      errors: [
+        {
+          id: 'e1',
+          targetWord: 'test',
+          tokenIndex: 1,
+          errorType: 'tense' as const,
+          options: [{ id: 'o1', text: 'tested', isCorrect: true, feedbackEn: '', feedbackVi: '' }],
+          explanationEn: 'ok',
+          explanationVi: 'ok',
+        },
+      ],
+    };
+
+    const { result } = renderHook(() => useGrammarDetective([mockCase]));
+
+    expect(result.current.highestStreak).toBe(15);
+
+    act(() => {
+      result.current.selectCase('reg-1');
+    });
+
+    const target = result.current.tokens.find((t) => t.text === 'test');
+    act(() => {
+      result.current.tapToken(target!.id);
+    });
+    act(() => {
+      result.current.submitDeduction('o1');
+    });
+
+    expect(result.current.status).toBe('solved');
+    expect(result.current.highestStreak).toBe(15);
+
+    // Verify localStorage still has highestStreak 15
+    const stored = JSON.parse(window.localStorage.getItem('gamehub_grammar_detective_v1') || '{}');
+    expect(stored.highestStreak).toBe(15);
+    expect(stored.completedCaseIds).toContain('reg-1');
   });
 });

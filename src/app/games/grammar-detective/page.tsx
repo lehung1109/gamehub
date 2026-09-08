@@ -243,6 +243,7 @@ export default function GrammarDetectivePage() {
         starsEarned={starsEarned}
         credibility={credibility}
         elapsedSeconds={elapsedSeconds}
+        mode={mode}
         onNextCase={() => {
           if (mode === 'endless') {
             nextEndlessRound();
@@ -262,6 +263,7 @@ export default function GrammarDetectivePage() {
         caseFile={currentCase}
         mistakes={mistakes}
         solvedCount={solvedErrorIds.length}
+        unsolvedErrors={currentCase.errors.filter((e) => !solvedErrorIds.includes(e.id))}
         onRetry={retryCase}
         onReturnToDossier={returnToDossier}
       />

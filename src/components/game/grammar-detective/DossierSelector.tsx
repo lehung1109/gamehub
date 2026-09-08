@@ -74,7 +74,7 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
   onStartEndless,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<ContextCategory | 'all'>('all');
-  const [activeTier, setActiveTier] = useState<RankTier>('intern');
+  const [activeTier, setActiveTier] = useState<RankTier>(() => userRank);
 
   const filteredCases = cases.filter((c) => {
     const matchesTier = c.rankTier === activeTier;
@@ -200,7 +200,24 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
 
       {/* Case Dossier Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredCases.map((caseItem) => {
+        {filteredCases.length === 0 ? (
+          <div className="col-span-full text-center py-12 border-2 border-dashed rounded-xl bg-card/40 space-y-2">
+            <p className="text-sm font-semibold text-foreground">Không có vụ án nào phù hợp với bộ lọc</p>
+            <p className="text-xs text-muted-foreground">
+              Hãy thử chọn chủ đề khác hoặc bấm nút bên dưới để xem toàn bộ vụ án
+            </p>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setSelectedCategory('all')}
+              className="text-xs mt-2"
+            >
+              Xem tất cả vụ án
+            </Button>
+          </div>
+        ) : (
+          filteredCases.map((caseItem) => {
           const isCompleted = completedCaseIds.includes(caseItem.id);
           const isUnlocked = isTierUnlocked(caseItem.rankTier, solvedCount);
           const IconComp = categoryIcons[caseItem.category] || Mail;
@@ -270,7 +287,7 @@ export const DossierSelector: React.FC<DossierSelectorProps> = ({
               </CardContent>
             </Card>
           );
-        })}
+        }))}
       </div>
     </div>
   );

@@ -82,20 +82,23 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Save progress when completedCaseIds change
-  const saveProgress = useCallback((newCompletedIds: string[], currentStreakVal?: number) => {
-    if (typeof window === 'undefined') return;
-    try {
-      window.localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({
-          completedCaseIds: newCompletedIds,
-          highestStreak: currentStreakVal ?? streak,
-        })
-      );
-    } catch {
-      // Ignore localStorage write errors
-    }
-  }, [streak]);
+  const saveProgress = useCallback(
+    (newCompletedIds: string[], newHighestStreakVal?: number) => {
+      if (typeof window === 'undefined') return;
+      try {
+        window.localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({
+            completedCaseIds: newCompletedIds,
+            highestStreak: newHighestStreakVal ?? highestStreak,
+          })
+        );
+      } catch {
+        // Ignore localStorage write errors
+      }
+    },
+    [highestStreak]
+  );
 
   // Elapsed timer loop during investigation
   useEffect(() => {
@@ -148,6 +151,16 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
       const token = tokens[tokenIndex];
       if (!token.isWord) return;
 
+      // In reading mode (highlighter off), tapping does not deduct credibility
+      if (!highlighterActive) {
+        setLastFeedback({
+          type: 'resolved',
+          messageEn: 'Reading mode active. Turn ON Highlighter to mark suspect clues.',
+          messageVi: 'Đang ở chế độ đọc. Bật bút dạ quang để quét lỗi.',
+        });
+        return;
+      }
+
       // Already corrected
       if (token.isCorrected) {
         setLastFeedback({
@@ -185,6 +198,9 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
 
       if (nextCred <= 0) {
         setStatus('cold');
+        if (mode === 'endless') {
+          setStreak(0);
+        }
         setLastFeedback({
           type: 'false_alarm',
           messageEn: 'Case Cold: Detective Credibility exhausted!',
@@ -198,7 +214,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
         });
       }
     },
-    [status, tokens, solvedErrorIds, currentCase, credibility]
+    [status, tokens, solvedErrorIds, currentCase, credibility, highlighterActive, mode]
   );
 
   const submitDeduction = useCallback(
@@ -251,7 +267,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
             if (!completedCaseIds.includes(currentCase.id)) {
               const updatedCompleted = [...completedCaseIds, currentCase.id];
               setCompletedCaseIds(updatedCompleted);
-              saveProgress(updatedCompleted);
+              saveProgress(updatedCompleted, highestStreak);
             }
           }
           setActiveError(null);
@@ -266,6 +282,9 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
         if (nextCred <= 0) {
           setStatus('cold');
           setActiveError(null);
+          if (mode === 'endless') {
+            setStreak(0);
+          }
           setLastFeedback({
             type: 'wrong_option',
             messageEn: 'Case Cold: Detective Credibility exhausted!',
@@ -315,8 +334,12 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
 
   const nextEndlessRound = useCallback(() => {
     if (initialCases.length === 0) return;
-    const randomIndex = Math.floor(Math.random() * initialCases.length);
-    const chosen = initialCases[randomIndex];
+    let pool = initialCases;
+    if (currentCase && initialCases.length > 1) {
+      pool = initialCases.filter((c) => c.id !== currentCase.id);
+    }
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    const chosen = pool[randomIndex];
     const newTokens = tokenizeCaseDocument(chosen.documentText, chosen.errors);
 
     setCurrentCase(chosen);
@@ -328,7 +351,7 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
     setElapsedSeconds(0);
     setLastFeedback(null);
     setStatus('investigating');
-  }, [initialCases]);
+  }, [initialCases, currentCase]);
 
   const closeDeduction = useCallback(() => {
     setActiveError(null);
@@ -338,10 +361,12 @@ export function useGrammarDetective(initialCases: CaseFile[]) {
   }, [status]);
 
   const retryCase = useCallback(() => {
-    if (currentCase) {
+    if (mode === 'endless') {
+      startEndless();
+    } else if (currentCase) {
       selectCase(currentCase.id);
     }
-  }, [currentCase, selectCase]);
+  }, [mode, currentCase, selectCase, startEndless]);
 
   const returnToDossier = useCallback(() => {
     setStatus('selecting');
