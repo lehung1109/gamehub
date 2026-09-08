@@ -47,6 +47,7 @@ export default function CrosswordPage() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isComplete) return;
+      if ((e.target as HTMLElement)?.tagName === "SELECT") return;
       if (/^[a-zA-Z]$/.test(e.key)) {
         typeLetter(e.key);
       } else if (e.key === "Backspace") {
