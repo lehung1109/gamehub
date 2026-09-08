@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { MissedQuestionReview } from "@/types/vocab-defense";
 import { Trophy, Skull, Star, RotateCcw, Volume2, BookOpen } from "lucide-react";
 
@@ -21,6 +21,14 @@ export const BattleReviewModal: React.FC<BattleReviewModalProps> = ({
   missedQuestions,
   onPlayAgain,
 }) => {
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const playAudio = (word: string) => {
@@ -34,7 +42,12 @@ export const BattleReviewModal: React.FC<BattleReviewModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col items-center text-center max-h-[90vh] overflow-y-auto">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="review-modal-title"
+        className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col items-center text-center max-h-[90vh] overflow-y-auto"
+      >
         <div
           className={`w-20 h-20 rounded-3xl flex items-center justify-center mb-4 shadow-xl ${
             isVictory
@@ -45,7 +58,7 @@ export const BattleReviewModal: React.FC<BattleReviewModalProps> = ({
           {isVictory ? <Trophy className="w-10 h-10" /> : <Skull className="w-10 h-10" />}
         </div>
 
-        <h2 className="text-2xl md:text-3xl font-black text-white">
+        <h2 id="review-modal-title" className="text-2xl md:text-3xl font-black text-white">
           {isVictory ? "VICTORY!" : "DEFEAT"}
         </h2>
         <p className="text-slate-400 text-sm mt-1">
@@ -91,7 +104,7 @@ export const BattleReviewModal: React.FC<BattleReviewModalProps> = ({
             <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
               {missedQuestions.map((item, idx) => (
                 <div
-                  key={idx}
+                  key={item.question.id ? `${item.question.id}-${idx}` : idx}
                   className="p-3 rounded-xl bg-slate-800/40 border border-slate-700/60 text-xs"
                 >
                   <div className="flex items-center justify-between font-bold text-white mb-1">
