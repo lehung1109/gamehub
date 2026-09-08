@@ -17,6 +17,14 @@ describe("Crossword Generator Engine", () => {
     const numbers = board.words.map((w) => w.number);
     expect(numbers.length).toBe(board.words.length);
     expect(Math.min(...numbers)).toBe(1);
+    // Verify monotonic non-decreasing order
+    for (let i = 1; i < numbers.length; i++) {
+      expect(numbers[i]).toBeGreaterThanOrEqual(numbers[i - 1]);
+    }
+    // Verify matching starting cell has the clueNumber set
+    for (const word of board.words) {
+      expect(board.grid[word.startRow][word.startCol].clueNumber).toBe(word.number);
+    }
   });
 
   it("guarantees intersecting cells share the exact same character", () => {

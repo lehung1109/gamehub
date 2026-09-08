@@ -103,15 +103,49 @@ function generateSingleBoard(topicId = "animals", targetWordCount = 5): Crosswor
 
         // Collision & spacing check
         let valid = true;
-        for (let i = 0; i < candidateStr.length; i++) {
-          const r = targetDir === "down" ? candidateStartRow + i : candidateStartRow;
-          const c = targetDir === "across" ? candidateStartCol + i : candidateStartCol;
-          const cell = grid[r][c];
 
-          // Can overlap ONLY if the character matches
-          if (!cell.isBlocked && cell.char !== candidateStr[i]) {
+        // Boundary spacing: cells immediately before and after must not be unblocked letters
+        if (targetDir === "across") {
+          const beforeCol = candidateStartCol - 1;
+          const afterCol = candidateStartCol + candidateStr.length;
+          if (beforeCol >= 0 && !grid[candidateStartRow][beforeCol].isBlocked) {
             valid = false;
-            break;
+          }
+          if (afterCol < GRID_SIZE && !grid[candidateStartRow][afterCol].isBlocked) {
+            valid = false;
+          }
+        } else {
+          const beforeRow = candidateStartRow - 1;
+          const afterRow = candidateStartRow + candidateStr.length;
+          if (beforeRow >= 0 && !grid[beforeRow][candidateStartCol].isBlocked) {
+            valid = false;
+          }
+          if (afterRow < GRID_SIZE && !grid[afterRow][candidateStartCol].isBlocked) {
+            valid = false;
+          }
+        }
+
+        if (valid) {
+          for (let i = 0; i < candidateStr.length; i++) {
+            const r = targetDir === "down" ? candidateStartRow + i : candidateStartRow;
+            const c = targetDir === "across" ? candidateStartCol + i : candidateStartCol;
+            const cell = grid[r][c];
+
+            // Can overlap ONLY if character matches and direction not already occupied
+            if (!cell.isBlocked) {
+              if (cell.char !== candidateStr[i]) {
+                valid = false;
+                break;
+              }
+              if (targetDir === "across" && cell.acrossWordId) {
+                valid = false;
+                break;
+              }
+              if (targetDir === "down" && cell.downWordId) {
+                valid = false;
+                break;
+              }
+            }
           }
         }
 
