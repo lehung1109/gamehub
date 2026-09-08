@@ -42,4 +42,56 @@ describe("CrosswordGrid Component", () => {
       board.words[0].startCol
     );
   });
+
+  it("sets aria-selected and high contrast text on selected cell", () => {
+    // Create a modified cell that is both revealed and selected
+    const selectedRow = board.words[0].startRow;
+    const selectedCol = board.words[0].startCol;
+    const boardWithRevealed = {
+      ...board,
+      grid: board.grid.map((r, rIdx) =>
+        r.map((c, cIdx) =>
+          rIdx === selectedRow && cIdx === selectedCol
+            ? { ...c, isRevealed: true, userChar: "A" }
+            : c
+        )
+      ),
+    };
+
+    render(
+      <CrosswordGrid
+        board={boardWithRevealed}
+        selectedCell={{ row: selectedRow, col: selectedCol }}
+        direction="across"
+        activeWord={board.words[0]}
+        onSelectCell={vi.fn()}
+      />
+    );
+
+    const cellBtn = screen.getByTestId(`cell-${selectedRow}-${selectedCol}`);
+    expect(cellBtn).toHaveAttribute("aria-selected", "true");
+    // Text container span should not apply text-amber-300 when selected
+    const charSpan = cellBtn.querySelector("span:last-child");
+    expect(charSpan?.className).not.toContain("text-amber-300");
+  });
+
+  it("renders role=grid container and keeps blocked cells non-interactive", () => {
+    render(
+      <CrosswordGrid
+        board={board}
+        selectedCell={{ row: 0, col: 0 }}
+        direction="across"
+        activeWord={board.words[0]}
+        onSelectCell={vi.fn()}
+      />
+    );
+
+    expect(screen.getByRole("grid", { name: /crossword grid/i })).toBeInTheDocument();
+
+    // Total tiles = rows * cols
+    const totalTiles = board.rows * board.cols;
+    const buttons = screen.getAllByRole("button");
+    // Some tiles are blocked, so interactive buttons < totalTiles
+    expect(buttons.length).toBeLessThan(totalTiles);
+  });
 });

@@ -38,6 +38,8 @@ export const CrosswordGrid: React.FC<CrosswordGridProps> = ({
   return (
     <div className="w-full max-w-lg aspect-square bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-3 md:p-4 shadow-2xl flex flex-col justify-center">
       <div
+        role="grid"
+        aria-label="Crossword grid"
         className="grid gap-1.5 w-full h-full"
         style={{
           gridTemplateColumns: `repeat(${board.cols}, minmax(0, 1fr))`,
