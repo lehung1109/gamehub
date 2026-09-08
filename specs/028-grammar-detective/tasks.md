@@ -9,11 +9,11 @@
 
 **Purpose**: Worktree isolation and catalog routing setup per Constitution Principle VI.
 
-- [ ] T001 Phase 1 Worktree: Confirm or create git worktree `028-grammar-detective` for workspace isolation.
-- [ ] T002 Dedicated Subagent: Initialize dedicated Phase 1 subagent context.
-- [ ] T003 [P] Add Grammar Detective route and catalog metadata to `src/data/games.json`.
-- [ ] T004 Phase 1 Review & Bug Hunt: Run linter `npm run lint` and verify zero syntax or type discrepancies.
-- [ ] T005 Phase 1 Commit: Commit setup changes with `chore(grammar-detective): setup route entry and workspace worktree`.
+- [x] T001 Phase 1 Worktree: Confirm or create git worktree `028-grammar-detective` for workspace isolation.
+- [x] T002 Dedicated Subagent: Initialize dedicated Phase 1 subagent context.
+- [x] T003 [P] Add Grammar Detective route and catalog metadata to `src/data/games.json`.
+- [x] T004 Phase 1 Review & Bug Hunt: Run linter `npm run lint` and verify zero syntax or type discrepancies.
+- [x] T005 Phase 1 Commit: Commit setup changes with `chore(grammar-detective): setup route entry and workspace worktree`.
 
 ---
 
