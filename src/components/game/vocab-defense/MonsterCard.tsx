@@ -48,7 +48,14 @@ export const MonsterCard: React.FC<MonsterCardProps> = ({ monster, hp }) => {
             {hp} / {monster.maxHp}
           </span>
         </div>
-        <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
+        <div
+          role="progressbar"
+          aria-label="Enemy Health"
+          aria-valuenow={hp}
+          aria-valuemin={0}
+          aria-valuemax={monster.maxHp}
+          className="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700"
+        >
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               isEnraged

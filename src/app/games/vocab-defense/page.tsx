@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import { ArrowLeft, Swords, Sparkles } from "lucide-react";
 import { useBattleEngine } from "@/hooks/useBattleEngine";
+import { useGameTracking } from "@/hooks/use-game-tracking";
 import { BattleArena } from "@/components/game/vocab-defense/BattleArena";
 import { TurnTimerBar } from "@/components/game/vocab-defense/TurnTimerBar";
 import { ActionDock } from "@/components/game/vocab-defense/ActionDock";
@@ -35,9 +36,59 @@ export default function VocabDefenseGamePage() {
     restartGame,
   } = useBattleEngine();
 
+  const { submitSession, resetSession } = useGameTracking({
+    gameType: "vocab-defense",
+  });
+  const sessionSubmittedRef = useRef(false);
+
   const isIntro = battleState === "STAGE_INTRO";
   const isResolving = battleState === "RESOLVING_ACTION";
   const isGameOver = battleState === "VICTORY" || battleState === "DEFEAT";
+  const isVictory = battleState === "VICTORY";
+
+  const computedStars = useMemo(() => {
+    if (!isVictory) return 0;
+    const totalMisses = missedQuestions.length;
+    const estimatedTotal = Math.max(totalMisses + 4, 4);
+    const accuracy = ((estimatedTotal - totalMisses) / estimatedTotal) * 100;
+    if (accuracy >= 90 && potionsLeft === 1) return 3;
+    if (accuracy >= 75) return 2;
+    return 1;
+  }, [isVictory, missedQuestions.length, potionsLeft]);
+
+  useEffect(() => {
+    if (isGameOver && !sessionSubmittedRef.current) {
+      sessionSubmittedRef.current = true;
+      submitSession({
+        score,
+        totalQuestions: Math.max(missedQuestions.length + 4, 4),
+      }).catch((err) => console.error("Failed to submit session to Supabase:", err));
+
+      try {
+        if (typeof window !== "undefined") {
+          const stored = localStorage.getItem("gamehub_vocab_defense_progress");
+          const history = stored ? JSON.parse(stored) : [];
+          history.push({
+            date: new Date().toISOString(),
+            score,
+            stars: computedStars,
+            isVictory,
+            missedCount: missedQuestions.length,
+          });
+          localStorage.setItem("gamehub_vocab_defense_progress", JSON.stringify(history.slice(-20)));
+        }
+      } catch (err) {
+        console.error("Failed to save progress to localStorage:", err);
+      }
+    } else if (!isGameOver) {
+      sessionSubmittedRef.current = false;
+    }
+  }, [isGameOver, isVictory, score, missedQuestions.length, computedStars, submitSession]);
+
+  const handleRestart = () => {
+    resetSession();
+    restartGame();
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center p-4 md:p-8">
@@ -117,11 +168,11 @@ export default function VocabDefenseGamePage() {
       {/* Post Battle Modal */}
       <BattleReviewModal
         isOpen={isGameOver}
-        isVictory={battleState === "VICTORY"}
+        isVictory={isVictory}
         score={score}
-        stars={comboStreak >= 5 ? 3 : 2}
+        stars={computedStars}
         missedQuestions={missedQuestions}
-        onPlayAgain={restartGame}
+        onPlayAgain={handleRestart}
       />
     </div>
   );

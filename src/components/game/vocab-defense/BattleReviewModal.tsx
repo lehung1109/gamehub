@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import { MissedQuestionReview } from "@/types/vocab-defense";
+import { useSpeech } from "@/hooks/useSpeech";
 import { Trophy, Skull, Star, RotateCcw, Volume2, BookOpen } from "lucide-react";
 
 export interface BattleReviewModalProps {
@@ -21,23 +22,12 @@ export const BattleReviewModal: React.FC<BattleReviewModalProps> = ({
   missedQuestions,
   onPlayAgain,
 }) => {
-  useEffect(() => {
-    return () => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, [isOpen]);
+  const { speak } = useSpeech({ rate: 0.9, lang: "en-US" });
 
   if (!isOpen) return null;
 
   const playAudio = (word: string) => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.lang = "en-US";
-      window.speechSynthesis.speak(utterance);
-    }
+    speak(word);
   };
 
   return (

@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import { ChallengeQuestion } from "@/types/vocab-defense";
+import { useSpeech } from "@/hooks/useSpeech";
 import { Volume2 } from "lucide-react";
 
 interface ChallengeDrawerProps {
@@ -15,26 +16,43 @@ export const ChallengeDrawer: React.FC<ChallengeDrawerProps> = ({
   onSelectAnswer,
   disabled,
 }) => {
+  const { speak } = useSpeech({ rate: 0.9, lang: "en-US" });
+
   const playAudio = () => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(question.targetWord);
-      utterance.lang = "en-US";
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
-    }
+    speak(question.targetWord);
   };
 
   useEffect(() => {
     if (question.type === "SHIELD") {
       playAudio();
     }
-    return () => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
+  }, [question.id, question.type]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (disabled || e.repeat) return;
+      const key = e.key.toLowerCase();
+      const keyMap: Record<string, number> = {
+        a: 0,
+        "1": 0,
+        b: 1,
+        "2": 1,
+        c: 2,
+        "3": 2,
+        d: 3,
+        "4": 3,
+      };
+      if (key in keyMap) {
+        const optionIndex = keyMap[key];
+        if (optionIndex < question.options.length) {
+          onSelectAnswer(optionIndex);
+        }
       }
     };
-  }, [question.id, question.type]);
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [disabled, question.options.length, onSelectAnswer]);
 
   return (
     <div className="w-full bg-slate-900/90 backdrop-blur-md border border-slate-700 rounded-3xl p-5 md:p-6 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-300">
