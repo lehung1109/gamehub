@@ -88,6 +88,16 @@
     "emoji": "🕵️",
     "route": "/games/grammar-detective",
     "priority": 9
+  },
+  {
+    "id": "vocab-defense",
+    "slug": "vocab-defense",
+    "titleVi": "Hiệp sĩ Từ vựng",
+    "titleEn": "Word Knight: RPG Battle",
+    "description": "Chiến đấu theo lượt tiêu diệt quái vật bằng kiến thức từ vựng, phát âm và ngữ pháp",
+    "emoji": "⚔️",
+    "route": "/games/vocab-defense",
+    "priority": 10
   }
 ]
 

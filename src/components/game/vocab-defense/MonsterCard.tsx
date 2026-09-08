@@ -26,7 +26,7 @@ export const MonsterCard: React.FC<MonsterCardProps> = ({ monster, hp }) => {
             <div className="flex items-center gap-2">
               <h3 className="font-bold text-lg text-white">{monster.name}</h3>
               {isEnraged && (
-                <span className="flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500/30 text-rose-300 border border-rose-500/50 animate-pulse">
+                <span className="flex items-center gap-1 text-xs font-extrabold px-2 py-0.5 rounded-full bg-rose-500/30 text-rose-300 border border-rose-500/50 animate-pulse">
                   <Flame className="w-3 h-3" /> ENRAGED
                 </span>
               )}

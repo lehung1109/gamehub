@@ -48,7 +48,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
           <div>
             <div className="flex items-center gap-1.5 font-bold text-white text-sm">
               <span>⚔️ Tấn Công Thường</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">1</span>
+              <span className="text-xs px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">1</span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">Từ vựng • +25 Nộ • 35-45 DMG</p>
           </div>
@@ -68,7 +68,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
           <div>
             <div className="flex items-center gap-1.5 font-bold text-white text-sm">
               <span>🛡️ Thủ Hộ & Hồi Máu</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">2</span>
+              <span className="text-xs px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">2</span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">Luyện Nghe • +25 HP & Khiên</p>
           </div>
@@ -98,7 +98,7 @@ export const ActionDock: React.FC<ActionDockProps> = ({
           <div>
             <div className="flex items-center gap-1.5 font-bold text-white text-sm">
               <span>⚡ Tuyệt Chiêu Rồng</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">3</span>
+              <span className="text-xs px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">3</span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
               {heroEnergy >= 100 ? "SẴN SÀNG! • 80-120 DMG" : `Cần 100 Nộ (${heroEnergy}/100)`}
