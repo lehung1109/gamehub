@@ -125,6 +125,27 @@ describe("WordleGrid and WordleKeyboard Components", () => {
       expect(tile2).toHaveTextContent("P");
       expect(tile2).toHaveAttribute("data-hint", "true");
     });
+
+    it("does not render ghost hints or active row after game ends", () => {
+      render(
+        <WordleGrid
+          wordLength={5}
+          maxAttempts={6}
+          guesses={["APPLE"]}
+          currentGuess=""
+          targetWord="APPLE"
+          isShaking={false}
+          gameStatus="won"
+          revealedPositions={{ 1: "P" }}
+        />
+      );
+
+      // Row 1 (index 1) should be an empty future row, NOT active with hint
+      const nextRow = screen.getByTestId("wordle-row-1");
+      const tile1 = nextRow.querySelector("[data-testid='wordle-tile-1']");
+      expect(tile1).toHaveTextContent("");
+      expect(tile1).not.toHaveAttribute("data-hint");
+    });
   });
 
   describe("WordleRow and WordleTile", () => {
@@ -241,6 +262,36 @@ describe("WordleGrid and WordleKeyboard Components", () => {
 
       fireEvent.keyDown(window, { key: "Backspace" });
       expect(onBackspace).toHaveBeenCalled();
+    });
+
+    it("does not intercept keyboard shortcuts with modifier keys (Ctrl, Cmd, Alt)", () => {
+      const onKey = vi.fn();
+      const onEnter = vi.fn();
+
+      render(
+        <WordleKeyboard
+          onKeyPress={onKey}
+          onEnter={onEnter}
+          onBackspace={vi.fn()}
+          enablePhysicalKeyboard={true}
+        />
+      );
+
+      // Ctrl + C (copy)
+      fireEvent.keyDown(window, { key: "c", ctrlKey: true });
+      expect(onKey).not.toHaveBeenCalled();
+
+      // Cmd + R (reload on Mac)
+      fireEvent.keyDown(window, { key: "r", metaKey: true });
+      expect(onKey).not.toHaveBeenCalled();
+
+      // Alt + A
+      fireEvent.keyDown(window, { key: "a", altKey: true });
+      expect(onKey).not.toHaveBeenCalled();
+
+      // Ctrl + Enter
+      fireEvent.keyDown(window, { key: "Enter", ctrlKey: true });
+      expect(onEnter).not.toHaveBeenCalled();
     });
 
     it("has touch target min-height of at least 44px", () => {

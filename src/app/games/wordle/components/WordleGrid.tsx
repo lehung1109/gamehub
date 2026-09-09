@@ -38,7 +38,8 @@ export const WordleGrid: React.FC<WordleGridProps> = ({
     >
       {Array.from({ length: maxAttempts }, (_, rowIndex) => {
         const isCompleted = rowIndex < guesses.length;
-        const isCurrent = rowIndex === guesses.length;
+        const isCurrent =
+          (gameStatus === "playing" || !gameStatus) && rowIndex === guesses.length;
         const guess = isCompleted ? guesses[rowIndex] : undefined;
         const isRowWinning = isGameWon && rowIndex === guesses.length - 1;
 

@@ -29,6 +29,11 @@ export const WordleKeyboard: React.FC<WordleKeyboardProps> = ({
     if (!enablePhysicalKeyboard || disabled) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      // Don't intercept shortcut combinations (Ctrl+C, Cmd+R, Alt+Tab, etc.)
+      if (event.ctrlKey || event.metaKey || event.altKey) {
+        return;
+      }
+
       // Don't intercept if user is typing in an input or textarea
       const target = event.target as HTMLElement | null;
       if (
