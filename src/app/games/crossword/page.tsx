@@ -34,11 +34,13 @@ export default function CrosswordPage() {
     activeWord,
     score,
     hintsUsed,
+    wordsRevealed,
     isComplete,
     elapsedSeconds,
     typeLetter,
     handleBackspace,
     toggleDirection,
+    moveCursor,
     selectCell,
     selectClue,
     revealLetter,
@@ -55,7 +57,8 @@ export default function CrosswordPage() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isComplete) return;
-      if ((e.target as HTMLElement)?.tagName === "SELECT") return;
+      if (["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes((e.target as HTMLElement)?.tagName)) return;
+
       if (/^[a-zA-Z]$/.test(e.key)) {
         typeLetter(e.key);
       } else if (e.key === "Backspace") {
@@ -63,12 +66,24 @@ export default function CrosswordPage() {
       } else if (e.key === " ") {
         e.preventDefault();
         toggleDirection();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        moveCursor(-1, 0);
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        moveCursor(1, 0);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        moveCursor(0, -1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        moveCursor(0, 1);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [typeLetter, handleBackspace, toggleDirection, isComplete]);
+  }, [typeLetter, handleBackspace, toggleDirection, moveCursor, isComplete]);
 
   // Submit session on completion
   useEffect(() => {
@@ -105,7 +120,13 @@ export default function CrosswordPage() {
     loadNewPuzzle();
   };
 
-  const calculatedStars = hintsUsed === 0 ? 3 : hintsUsed <= 2 ? 2 : 1;
+  const maxScore = board.words.length * 100;
+  const calculatedStars =
+    hintsUsed === 0 && wordsRevealed === 0
+      ? 3
+      : score >= maxScore * 0.75 && hintsUsed <= 2 && wordsRevealed === 0
+      ? 2
+      : 1;
 
   if (!mounted) {
     return (

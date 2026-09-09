@@ -75,7 +75,7 @@ describe("CrosswordGrid Component", () => {
     expect(charSpan?.className).not.toContain("text-amber-300");
   });
 
-  it("renders role=grid container and keeps blocked cells non-interactive", () => {
+  it("renders role=region container and keeps blocked cells non-interactive", () => {
     render(
       <CrosswordGrid
         board={board}
@@ -86,7 +86,7 @@ describe("CrosswordGrid Component", () => {
       />
     );
 
-    expect(screen.getByRole("grid", { name: /crossword grid/i })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /crossword grid/i })).toBeInTheDocument();
 
     // Total tiles = rows * cols
     const totalTiles = board.rows * board.cols;

@@ -81,11 +81,14 @@ export function useCrosswordEngine(initialTopicId = "animals") {
       const currentCell = board.grid[row]?.[col];
       if (!currentCell || currentCell.isBlocked) return;
 
-      setBoard((prev) => {
-        const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-        nextGrid[row][col].userChar = upperChar;
-        return { ...prev, grid: nextGrid };
-      });
+      // Guard: do not overwrite revealed hint letters
+      if (!currentCell.isRevealed) {
+        setBoard((prev) => {
+          const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
+          nextGrid[row][col].userChar = upperChar;
+          return { ...prev, grid: nextGrid };
+        });
+      }
 
       // Advance cursor in current direction
       const nextRow = direction === "down" ? row + 1 : row;
@@ -108,14 +111,14 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     const currentCell = board.grid[row]?.[col];
     if (!currentCell || currentCell.isBlocked) return;
 
-    if (currentCell.userChar !== "") {
+    if (!currentCell.isRevealed && currentCell.userChar !== "") {
       setBoard((prev) => {
         const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
         nextGrid[row][col].userChar = "";
         return { ...prev, grid: nextGrid };
       });
     } else {
-      // Step back
+      // Step back to previous unblocked cell
       const prevRow = direction === "down" ? row - 1 : row;
       const prevCol = direction === "across" ? col - 1 : col;
 
@@ -125,11 +128,13 @@ export function useCrosswordEngine(initialTopicId = "animals") {
         !board.grid[prevRow][prevCol].isBlocked
       ) {
         setSelectedCell({ row: prevRow, col: prevCol });
-        setBoard((prev) => {
-          const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-          nextGrid[prevRow][prevCol].userChar = "";
-          return { ...prev, grid: nextGrid };
-        });
+        if (!board.grid[prevRow][prevCol].isRevealed) {
+          setBoard((prev) => {
+            const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
+            nextGrid[prevRow][prevCol].userChar = "";
+            return { ...prev, grid: nextGrid };
+          });
+        }
       }
     }
   }, [board, selectedCell, direction, isComplete]);

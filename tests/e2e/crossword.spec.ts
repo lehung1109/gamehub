@@ -20,7 +20,7 @@ test.describe("Crossword Master E2E Flow", () => {
     await expect(page.getByText(/Hàng dọc/i)).toBeVisible();
 
     // Locate currently selected cell before cursor advances
-    const initialCell = page.locator('[role="grid"] [aria-selected="true"]');
+    const initialCell = page.locator('[role="region"][aria-label="Crossword grid"] [aria-selected="true"]');
     await expect(initialCell).toBeVisible();
     const cellTestId = await initialCell.getAttribute("data-testid");
     expect(cellTestId).toBeTruthy();
@@ -28,5 +28,13 @@ test.describe("Crossword Master E2E Flow", () => {
     // Type a letter on keyboard
     await page.keyboard.press("T");
     await expect(page.getByTestId(cellTestId!)).toContainText("T");
+
+    // Arrow navigation
+    await page.keyboard.press("ArrowRight");
+
+    // Virtual keyboard interaction
+    const keyA = page.getByRole("button", { name: "A", exact: true });
+    await expect(keyA).toBeVisible();
+    await keyA.click();
   });
 });

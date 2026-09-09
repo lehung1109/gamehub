@@ -32,7 +32,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               type="button"
               onClick={onToggleDirection}
               aria-label={`Đổi hướng: hiện tại ${direction === "across" ? "Hàng ngang" : "Hàng dọc"}`}
-              className="px-2.5 py-3 rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white text-sm md:text-base font-bold flex items-center justify-center gap-1 border border-slate-700 transition-colors cursor-pointer"
+              className="px-2.5 py-2.5 min-h-[44px] rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white text-sm md:text-base font-bold flex items-center justify-center gap-1 border border-slate-700 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" /> {direction === "across" ? "Ngang" : "Dọc"}
             </button>
@@ -44,7 +44,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               type="button"
               aria-label={char}
               onClick={() => onKeyPress(char)}
-              className="w-8 md:w-10 h-10 md:h-12 rounded-lg bg-slate-800 hover:bg-amber-500 text-white hover:text-slate-950 font-bold text-base md:text-lg flex items-center justify-center border border-slate-700 transition-colors shadow-sm cursor-pointer"
+              className="w-8 md:w-10 h-11 md:h-12 min-h-[44px] rounded-lg bg-slate-800 hover:bg-amber-500 text-white hover:text-slate-950 font-bold text-base md:text-lg flex items-center justify-center border border-slate-700 transition-colors shadow-sm cursor-pointer"
             >
               {char}
             </button>
@@ -55,7 +55,7 @@ export const VirtualKeyboard: React.FC<VirtualKeyboardProps> = ({
               type="button"
               aria-label="Xóa ký tự"
               onClick={onBackspace}
-              className="px-3 py-3 rounded-lg bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white font-bold flex items-center justify-center border border-rose-500/40 transition-colors cursor-pointer"
+              className="px-3 py-2.5 min-h-[44px] rounded-lg bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white font-bold flex items-center justify-center border border-rose-500/40 transition-colors cursor-pointer"
             >
               <Delete className="w-4 h-4" />
             </button>

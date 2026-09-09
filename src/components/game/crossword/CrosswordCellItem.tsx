@@ -29,7 +29,7 @@ export const CrosswordCellItem: React.FC<CrosswordCellItemProps> = ({
       onClick={onSelect}
       aria-selected={isSelected}
       aria-label={`Row ${cell.row + 1}, Column ${cell.col + 1}${cell.clueNumber ? `, Clue ${cell.clueNumber}` : ""}${cell.userChar ? `, ${cell.userChar}` : ""}`}
-      className={`relative w-full aspect-square flex items-center justify-center font-black text-lg md:text-xl rounded-lg border transition-all cursor-pointer select-none ${
+      className={`relative w-full aspect-square flex items-center justify-center font-black text-lg md:text-xl rounded-lg border transition-all cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none ${
         isSelected
           ? "bg-amber-500 text-slate-950 border-amber-300 shadow-lg shadow-amber-500/30 scale-105 z-10"
           : isInActiveWord
