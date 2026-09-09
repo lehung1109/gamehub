@@ -8,6 +8,16 @@ export const GAME_LABELS: Record<string, string> = {
   alphabet: 'Bảng chữ cái',
   'numbers-colors': 'Số đếm & Màu sắc',
   sentences: 'Ghép câu',
+  'memory-match': 'Lật thẻ tìm cặp',
+  'word-search': 'Săn tìm từ vựng',
+  'grammar-detective': 'Thám tử sửa lỗi',
+  'vocab-defense': 'Hiệp sĩ Từ vựng',
+  crossword: 'Giải đố Ô chữ',
+  'falling-words': 'Mưa Từ Vựng',
+  hangman: 'Giải Cứu Nhà Thám Hiểm',
+  reading: 'Luyện đọc',
+  typing: 'Luyện gõ từ',
+  roleplay: 'Hội thoại',
 }
 
 export function getGameLabel(gameType: string): string {

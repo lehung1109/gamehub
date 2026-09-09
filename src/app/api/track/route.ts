@@ -229,14 +229,26 @@ export async function POST(request: Request) {
         .single()
 
       if (studentError || !newStudent) {
-        console.error('[Tracking API] Failed to create student:', studentError)
-        return NextResponse.json(
-          { error: 'Internal server error' },
-          { status: 500 }
-        )
-      }
+        // Retry lookup in case student was inserted by a concurrent request
+        const { data: retryStudents } = await supabase
+          .from('students')
+          .select('id')
+          .eq('classroom_id', classroom.id)
+          .eq('name', payload.studentName)
+          .limit(1)
 
-      studentId = newStudent.id
+        if (retryStudents?.[0]?.id) {
+          studentId = retryStudents[0].id
+        } else {
+          console.error('[Tracking API] Failed to create student:', studentError)
+          return NextResponse.json(
+            { error: 'Internal server error' },
+            { status: 500 }
+          )
+        }
+      } else {
+        studentId = newStudent.id
+      }
     }
 
     // 3. Insert game_sessions record

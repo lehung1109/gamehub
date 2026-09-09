@@ -9,7 +9,7 @@ import { isValidGameId } from '@/lib/game-config-schema'
 import { getConfigsByGame } from '@/app/actions/configs'
 import { ConfigList } from '@/components/admin/ConfigList'
 import { buttonVariants } from '@/components/ui/button'
-import { Plus, ArrowLeft, AlertCircle } from 'lucide-react'
+import { Plus, ArrowLeft, AlertCircle, Gamepad2 } from 'lucide-react'
 
 interface PageProps {
   params: Promise<{ gameId: string }>
@@ -26,13 +26,73 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function GameConfigsPage({ params }: PageProps) {
   const { gameId } = await params
+  const games = gamesData as Game[]
+  const game = games.find((g) => g.id === gameId)
 
-  if (!isValidGameId(gameId)) {
+  if (!game) {
     notFound()
   }
 
-  const games = gamesData as Game[]
-  const game = games.find((g) => g.id === gameId)!
+  if (!isValidGameId(gameId)) {
+    return (
+      <div className="max-w-3xl mx-auto space-y-6">
+        <div className="flex items-center gap-3 pb-2 border-b border-slate-200">
+          <Link
+            href="/admin/dashboard"
+            className={buttonVariants({
+              variant: 'outline',
+              size: 'sm',
+              className: 'size-9 p-0 border-slate-200 text-slate-600',
+            })}
+            title="Quay lại Dashboard"
+          >
+            <ArrowLeft className="size-4" />
+          </Link>
+          <span className="text-3xl select-none" role="img" aria-label={game.titleVi}>
+            {game.emoji}
+          </span>
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900">{game.titleVi}</h1>
+            <p className="text-xs text-slate-500">{game.description}</p>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-indigo-100 bg-indigo-50/50 p-8 text-center space-y-4">
+          <div className="size-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto">
+            <Gamepad2 className="size-6" />
+          </div>
+          <div className="space-y-1.5 max-w-md mx-auto">
+            <h2 className="text-base font-bold text-slate-900">Trò chơi sử dụng nội dung tích hợp sẵn</h2>
+            <p className="text-sm text-slate-600">
+              Trò chơi này hiện hoạt động với bộ câu hỏi và kịch bản chuẩn được thiết kế riêng. Tính năng tạo cấu hình tùy chỉnh cho giáo viên sẽ được bổ sung trong bản cập nhật tới.
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-3 pt-2">
+            <Link
+              href={game.route}
+              target="_blank"
+              className={buttonVariants({
+                size: 'sm',
+                className: 'bg-indigo-600 hover:bg-indigo-700 text-white',
+              })}
+            >
+              Chơi thử game ngay
+            </Link>
+            <Link
+              href="/admin/dashboard"
+              className={buttonVariants({
+                variant: 'outline',
+                size: 'sm',
+                className: 'border-slate-200',
+              })}
+            >
+              Về Dashboard
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const { data: configs, error: queryError } = await getConfigsByGame(gameId)
   const configList: GameConfig[] = configs || []

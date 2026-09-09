@@ -23,8 +23,7 @@ export function useSessionQuestions<T extends { id: string }>(
           const mapped = storedIds
             .map(id => questions.find(q => q.id === id))
             .filter((q): q is T => q !== undefined);
-          
-          console.log('MAPPED LENGTH:', mapped.length, 'ACTUAL COUNT:', actualCount, 'STORED:', storedIdsStr); if (mapped.length === actualCount) {
+          if (mapped.length === actualCount) {
             setSelectedQuestions(prev => {
               // Compare IDs to prevent unnecessary re-renders
               const isSame = prev.length === mapped.length && prev.every((p, i) => p.id === mapped[i].id);

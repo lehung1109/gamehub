@@ -6,8 +6,9 @@ import { redirect } from 'next/navigation'
 function isValidAdminRedirect(path: string | null): boolean {
   if (!path) return false
   return (
-    (path === '/admin' || path.startsWith('/admin/')) &&
-    !path.startsWith('//')
+    (path === '/admin' || path.startsWith('/admin/') || path.startsWith('/admin?')) &&
+    !path.startsWith('//') &&
+    !path.includes('\\')
   )
 }
 

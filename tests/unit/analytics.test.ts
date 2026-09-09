@@ -5,6 +5,7 @@ import {
   filterDifficultWordsByGame,
   searchDifficultWords,
   sortDifficultWords,
+  getGameLabel,
   type RawSessionWithDetails,
 } from '@/lib/analytics'
 
@@ -326,5 +327,15 @@ describe('Analytics - Helper Functions (Filter, Search, Sort)', () => {
 
     const byStudentCount = sortDifficultWords(sampleItems, 'studentCount')
     expect(byStudentCount.map((i) => i.prompt)).toEqual(['banana', 'giraffe', 'watermelon'])
+  })
+
+  it('correctly maps all game types to their Vietnamese labels', () => {
+    expect(getGameLabel('memory-match')).toBe('Lật thẻ tìm cặp')
+    expect(getGameLabel('word-search')).toBe('Săn tìm từ vựng')
+    expect(getGameLabel('grammar-detective')).toBe('Thám tử sửa lỗi')
+    expect(getGameLabel('vocab-defense')).toBe('Hiệp sĩ Từ vựng')
+    expect(getGameLabel('crossword')).toBe('Giải đố Ô chữ')
+    expect(getGameLabel('falling-words')).toBe('Mưa Từ Vựng')
+    expect(getGameLabel('hangman')).toBe('Giải Cứu Nhà Thám Hiểm')
   })
 })

@@ -41,7 +41,7 @@ export function useCrosswordEngine(initialTopicId = "animals") {
   const [direction, setDirection] = useState<Direction>(() => board.words[0]?.direction || "across");
   const [selectedCell, setSelectedCell] = useState<{ row: number; col: number }>(() => {
     const firstWord = board.words[0];
-    return { row: firstWord.startRow, col: firstWord.startCol };
+    return { row: firstWord ? firstWord.startRow : 0, col: firstWord ? firstWord.startCol : 0 };
   });
 
   const [score, setScore] = useState(0);
@@ -259,7 +259,7 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     const newBoard = generateCrosswordBoard(targetTopic);
     setBoard(newBoard);
     const firstWord = newBoard.words[0];
-    setSelectedCell({ row: firstWord.startRow, col: firstWord.startCol });
+    setSelectedCell({ row: firstWord ? firstWord.startRow : 0, col: firstWord ? firstWord.startCol : 0 });
     setDirection(firstWord?.direction || "across");
     setScore(0);
     setHintsUsed(0);

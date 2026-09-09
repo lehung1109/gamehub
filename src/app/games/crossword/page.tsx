@@ -89,9 +89,20 @@ export default function CrosswordPage() {
   useEffect(() => {
     if (isComplete && !sessionSubmittedRef.current) {
       sessionSubmittedRef.current = true;
+      const sessionDetails = board.words.map((w) => ({
+        prompt: w.word,
+        selectedAnswer: w.isSolved ? w.word : undefined,
+        correctAnswer: w.word,
+        isCorrect: w.isSolved,
+        timeTakenMs: 0,
+        attempts: w.isRevealed ? 2 : 1,
+      }));
+
       submitSession({
         score,
         totalQuestions: board.words.length,
+        topic: topicId,
+        details: sessionDetails,
       }).catch((err) => console.error("Failed to submit crossword session:", err));
 
       try {
@@ -113,7 +124,7 @@ export default function CrosswordPage() {
     } else if (!isComplete) {
       sessionSubmittedRef.current = false;
     }
-  }, [isComplete, score, board.words.length, topicId, elapsedSeconds, submitSession]);
+  }, [isComplete, score, board.words, topicId, elapsedSeconds, submitSession]);
 
   const handleNextPuzzle = () => {
     resetSession();

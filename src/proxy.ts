@@ -5,10 +5,11 @@ import type { Database } from '@/types/database'
 
 function isValidAdminRedirect(path: string | null): boolean {
   if (!path) return false
-  // Must start with /admin or /admin/ and not be protocol-relative (//)
+  // Must start with /admin, /admin/, or /admin? and not be protocol-relative (//) nor contain backslashes
   return (
-    (path === '/admin' || path.startsWith('/admin/')) &&
-    !path.startsWith('//')
+    (path === '/admin' || path.startsWith('/admin/') || path.startsWith('/admin?')) &&
+    !path.startsWith('//') &&
+    !path.includes('\\')
   )
 }
 

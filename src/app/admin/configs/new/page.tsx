@@ -20,6 +20,7 @@ interface PageProps {
 export default async function NewConfigPage({ searchParams }: PageProps) {
   const { gameId } = await searchParams
   const games = gamesData as Game[]
+  const configurableGames = games.filter((g) => isValidGameId(g.id))
 
   const selectedGame = gameId && isValidGameId(gameId)
     ? games.find((g) => g.id === gameId)
@@ -56,7 +57,7 @@ export default async function NewConfigPage({ searchParams }: PageProps) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {games.map((game) => (
+        {configurableGames.map((game) => (
           <Link
             key={game.id}
             href={`/admin/configs/new?gameId=${game.id}`}

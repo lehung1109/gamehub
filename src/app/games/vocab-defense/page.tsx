@@ -59,9 +59,31 @@ export default function VocabDefenseGamePage() {
   useEffect(() => {
     if (isGameOver && !sessionSubmittedRef.current) {
       sessionSubmittedRef.current = true;
+      const sessionDetails = missedQuestions.map((m) => ({
+        prompt: m.question.prompt,
+        selectedAnswer: m.selectedAnswer,
+        correctAnswer: m.correctAnswer,
+        isCorrect: false,
+        timeTakenMs: 0,
+        attempts: 1,
+      }));
+
+      if (isVictory) {
+        sessionDetails.push({
+          prompt: 'Chiến thắng Đấu Trường Hiệp Sĩ Từ Vựng',
+          selectedAnswer: 'Hoàn thành',
+          correctAnswer: 'Hoàn thành',
+          isCorrect: true,
+          timeTakenMs: 0,
+          attempts: 1,
+        });
+      }
+
       submitSession({
         score,
         totalQuestions: Math.max(missedQuestions.length + 4, 4),
+        topic: 'vocab-defense',
+        details: sessionDetails,
       }).catch((err) => console.error("Failed to submit session to Supabase:", err));
 
       try {
@@ -83,7 +105,7 @@ export default function VocabDefenseGamePage() {
     } else if (!isGameOver) {
       sessionSubmittedRef.current = false;
     }
-  }, [isGameOver, isVictory, score, missedQuestions.length, computedStars, submitSession]);
+  }, [isGameOver, isVictory, score, missedQuestions, computedStars, submitSession]);
 
   const handleRestart = () => {
     resetSession();

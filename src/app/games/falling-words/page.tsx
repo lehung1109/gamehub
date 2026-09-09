@@ -88,9 +88,20 @@ export default function FallingWordsPage() {
   useEffect(() => {
     if (isGameOver && !sessionSubmittedRef.current) {
       sessionSubmittedRef.current = true;
+      const sessionDetails = wordsPopped.map((w) => ({
+        prompt: w.word,
+        selectedAnswer: w.word,
+        correctAnswer: w.word,
+        isCorrect: true,
+        timeTakenMs: 0,
+        attempts: 1,
+      }));
+
       submitSession({
         score,
-        totalQuestions: wordsPopped.length,
+        totalQuestions: Math.max(wordsPopped.length, 1),
+        topic: topicId,
+        details: sessionDetails,
       }).catch((err) => console.error("Failed to submit falling-words session:", err));
 
       try {
@@ -113,7 +124,7 @@ export default function FallingWordsPage() {
     } else if (!isGameOver) {
       sessionSubmittedRef.current = false;
     }
-  }, [isGameOver, score, wordsPopped.length, topicId, maxCombo, isVictory, submitSession]);
+  }, [isGameOver, score, wordsPopped, topicId, maxCombo, isVictory, submitSession]);
 
   const handleRestart = () => {
     resetSession();

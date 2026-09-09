@@ -118,6 +118,40 @@ describe('Auth Proxy (Next.js 16)', () => {
     )
   })
 
+  it('blocks open redirect attempts using backslashes', async () => {
+    mockGetUser.mockResolvedValue({
+      data: { user: { id: 'user-123', email: 'teacher@school.edu' } },
+    })
+    const { proxy } = await import('@/proxy')
+
+    const req = new NextRequest(
+      'http://localhost:3000/login?redirect=%2Fadmin%5Cattacker.com'
+    )
+    const res = await proxy(req)
+
+    expect(res.status).toBe(307)
+    expect(res.headers.get('location')).toBe(
+      'http://localhost:3000/admin/dashboard'
+    )
+  })
+
+  it('allows valid redirect to /admin with query parameters', async () => {
+    mockGetUser.mockResolvedValue({
+      data: { user: { id: 'user-123', email: 'teacher@school.edu' } },
+    })
+    const { proxy } = await import('@/proxy')
+
+    const req = new NextRequest(
+      'http://localhost:3000/login?redirect=%2Fadmin%3Ftab%3Doverview'
+    )
+    const res = await proxy(req)
+
+    expect(res.status).toBe(307)
+    expect(res.headers.get('location')).toBe(
+      'http://localhost:3000/admin?tab=overview'
+    )
+  })
+
   it('allows unauthenticated user to access /login', async () => {
     mockGetUser.mockResolvedValue({ data: { user: null } })
     const { proxy } = await import('@/proxy')

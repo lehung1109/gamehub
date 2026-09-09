@@ -9,6 +9,7 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/comp
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Plus, Settings, Gamepad2, Sparkles, Layers } from 'lucide-react'
+import { isValidGameId } from '@/lib/game-config-schema'
 
 export const dynamic = 'force-dynamic'
 
@@ -109,6 +110,7 @@ export default async function AdminDashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {games.map((game) => {
+            const isConfigurable = isValidGameId(game.id)
             const count = configCountMap[game.id] || 0
             return (
               <Card
@@ -132,15 +134,26 @@ export default async function AdminDashboardPage() {
                     </div>
 
                     <Badge
-                      variant={count > 0 ? 'default' : 'secondary'}
+                      variant={isConfigurable ? (count > 0 ? 'default' : 'secondary') : 'outline'}
                       className={
-                        count > 0
-                          ? 'bg-indigo-100 text-indigo-700 hover:bg-indigo-100 border-indigo-200'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-100'
+                        isConfigurable
+                          ? count > 0
+                            ? 'bg-indigo-100 text-indigo-700 hover:bg-indigo-100 border-indigo-200'
+                            : 'bg-slate-100 text-slate-600 hover:bg-slate-100'
+                          : 'bg-emerald-50 text-emerald-700 border-emerald-200'
                       }
                     >
-                      <Layers className="size-3 mr-1" />
-                      {count} cấu hình
+                      {isConfigurable ? (
+                        <>
+                          <Layers className="size-3 mr-1" />
+                          {count} cấu hình
+                        </>
+                      ) : (
+                        <>
+                          <Gamepad2 className="size-3 mr-1" />
+                          Tích hợp sẵn
+                        </>
+                      )}
                     </Badge>
                   </div>
                   <CardDescription className="text-xs text-slate-600 line-clamp-2 xl:line-clamp-3 mt-2">
@@ -149,28 +162,45 @@ export default async function AdminDashboardPage() {
                 </CardHeader>
 
                 <CardFooter className="pt-2 border-t border-slate-100 flex items-center gap-2">
-                  <Link
-                    href={`/admin/games/${game.id}`}
-                    className={buttonVariants({
-                      variant: 'outline',
-                      size: 'sm',
-                      className: 'flex-1 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 border-slate-200',
-                    })}
-                  >
-                    <Settings className="size-3.5 mr-1" />
-                    Quản lý ({count})
-                  </Link>
+                  {isConfigurable ? (
+                    <>
+                      <Link
+                        href={`/admin/games/${game.id}`}
+                        className={buttonVariants({
+                          variant: 'outline',
+                          size: 'sm',
+                          className: 'flex-1 text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 border-slate-200',
+                        })}
+                      >
+                        <Settings className="size-3.5 mr-1" />
+                        Quản lý ({count})
+                      </Link>
 
-                  <Link
-                    href={`/admin/configs/new?gameId=${game.id}`}
-                    className={buttonVariants({
-                      size: 'sm',
-                      className: 'bg-indigo-600 hover:bg-indigo-700 text-white',
-                    })}
-                  >
-                    <Plus className="size-3.5 mr-1" />
-                    Tạo mới
-                  </Link>
+                      <Link
+                        href={`/admin/configs/new?gameId=${game.id}`}
+                        className={buttonVariants({
+                          size: 'sm',
+                          className: 'bg-indigo-600 hover:bg-indigo-700 text-white',
+                        })}
+                      >
+                        <Plus className="size-3.5 mr-1" />
+                        Tạo mới
+                      </Link>
+                    </>
+                  ) : (
+                    <Link
+                      href={game.route}
+                      target="_blank"
+                      className={buttonVariants({
+                        variant: 'outline',
+                        size: 'sm',
+                        className: 'w-full text-emerald-700 hover:text-emerald-800 hover:bg-emerald-50 border-emerald-200',
+                      })}
+                    >
+                      <Gamepad2 className="size-3.5 mr-1 text-emerald-600" />
+                      Chơi thử game
+                    </Link>
+                  )}
                 </CardFooter>
               </Card>
             )

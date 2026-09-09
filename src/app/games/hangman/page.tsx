@@ -73,9 +73,20 @@ export default function HangmanPage() {
   useEffect(() => {
     if (isRoundComplete && !sessionSubmittedRef.current) {
       sessionSubmittedRef.current = true;
+      const sessionDetails = history.map((item) => ({
+        prompt: item.word.word,
+        selectedAnswer: item.solved ? item.word.word : undefined,
+        correctAnswer: item.word.word,
+        isCorrect: item.solved,
+        timeTakenMs: 0,
+        attempts: item.mistakes + 1,
+      }));
+
       submitSession({
         score,
         totalQuestions: totalWords,
+        topic: topicId,
+        details: sessionDetails,
       }).catch((err) => console.error("Failed to submit hangman session:", err));
 
       try {

@@ -42,7 +42,7 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           </h1>
 
           <p className="text-base sm:text-xl font-medium text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
-            Cùng học từ vựng, chữ cái, số đếm và câu tiếng Anh thật vui với 6 trò chơi tương tác sinh động!
+            Cùng học từ vựng, chữ cái, số đếm và câu tiếng Anh thật vui với {games.length} trò chơi tương tác sinh động!
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold text-muted-foreground">
