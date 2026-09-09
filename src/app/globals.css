@@ -176,6 +176,28 @@
     animation: wiggle 0.4s ease-in-out;
   }
 
+  @keyframes wordle-bounce {
+    0%, 20% { transform: translateY(0); }
+    40% { transform: translateY(-16px); }
+    50% { transform: translateY(0); }
+    60% { transform: translateY(-8px); }
+    80%, 100% { transform: translateY(0); }
+  }
+
+  @keyframes wordle-flip {
+    0% { transform: rotateX(0deg); }
+    50% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0deg); }
+  }
+
+  .animate-wordle-bounce {
+    animation: wordle-bounce 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .animate-wordle-flip {
+    animation: wordle-flip 0.5s ease-in-out forwards;
+  }
+
   /* Duolingo-style Chunky 3D Button Utility */
   .btn-3d {
     transition: transform 0.1s ease, box-shadow 0.1s ease;
