@@ -80,17 +80,18 @@ export function ConjugationQuestionUI({
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [prevItem, setPrevItem] = useState(item);
+
+  if (item !== prevItem) {
+    setPrevItem(item);
+    setSelectedAnswer("");
+    setIsSubmitted(false);
+    setIsCorrect(null);
+  }
 
   const inputRef = useRef<HTMLInputElement>(null);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setSelectedAnswer("");
-    setIsSubmitted(false);
-    setIsCorrect(null);
-  }, [item]);
 
   useEffect(() => {
     if (isSubmitted && nextButtonRef.current) {

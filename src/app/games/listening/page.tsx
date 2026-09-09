@@ -46,8 +46,10 @@ function generateListeningQuestions(
   wordPool: Word[],
   fallbackPool: Word[],
   questionCount = 10,
-  randomize = true
+  randomize = true,
+  seed = 0
 ): QuizQuestion<Word>[] {
+  void seed;
   const targetPool = randomize ? shuffle([...wordPool]) : wordPool;
   const selectedTargets = targetPool.slice(0, Math.min(questionCount, targetPool.length));
 
@@ -142,8 +144,7 @@ function ListeningGameContent() {
 
   // Generate randomized listening quiz questions
   const questions = useMemo(() => {
-    return generateListeningQuestions(activeWordPool, allWords, questionCount, mounted);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return generateListeningQuestions(activeWordPool, allWords, questionCount, mounted, gameKey);
   }, [activeWordPool, questionCount, gameKey, mounted]);
 
   const { recordQuestion, submitSession, resetSession } = useGameTracking({

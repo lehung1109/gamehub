@@ -150,6 +150,10 @@ function SentencesGameContent() {
     return generateSentenceBank(targetWords, boardKey + currentIndex * 7);
   }, [targetWords, boardKey, currentIndex]);
 
+  React.useEffect(() => {
+    sentenceStartTimeRef.current = Date.now();
+  }, [currentIndex]);
+
   const handleCategoryChange = useCallback(
     (categoryId: string) => {
       cancel();
@@ -204,7 +208,8 @@ function SentencesGameContent() {
 
   const handleCompleteSentence = useCallback(
     (isCorrect: boolean, formedString: string) => {
-      const timeTakenMs = totalTimeTakenRef.current + Math.max(0, Date.now() - sentenceStartTimeRef.current);
+      const startTime = sentenceStartTimeRef.current > 0 ? sentenceStartTimeRef.current : Date.now();
+      const timeTakenMs = totalTimeTakenRef.current + Math.max(0, Date.now() - startTime);
 
       if (isCorrect) {
         recordQuestion({

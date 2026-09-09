@@ -22,7 +22,12 @@ import { Volume2, BookOpen, Brain, ChevronLeft, ChevronRight, Sparkles } from "l
 
 const allLettersData = lettersData as Letter[];
 
-function generateQuizQuestions(letterPool: Letter[], questionCount = 10): QuizQuestion<Letter>[] {
+function generateQuizQuestions(
+  letterPool: Letter[],
+  questionCount = 10,
+  seed = 0
+): QuizQuestion<Letter>[] {
+  void seed;
   const shuffledPool = shuffle([...letterPool]);
   const selectedTargets = shuffledPool.slice(0, Math.min(questionCount, shuffledPool.length));
 
@@ -149,8 +154,7 @@ function AlphabetGameContent() {
 
   // Generate quiz questions based on filtered letters
   const quizQuestions = useMemo(() => {
-    return generateQuizQuestions(filteredLetters, 10);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return generateQuizQuestions(filteredLetters, 10, quizKey);
   }, [filteredLetters, quizKey]);
 
   const { recordQuestion, submitSession, resetSession } = useGameTracking({

@@ -45,18 +45,19 @@ export function ErrorHunterQuestionUI({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [nonErrorNotice, setNonErrorNotice] = useState<string | null>(null);
+  const [prevItem, setPrevItem] = useState(item);
 
-  const nextButtonRef = useRef<HTMLButtonElement>(null);
-  const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  if (item !== prevItem) {
+    setPrevItem(item);
     setSelectedTokenIndex(null);
     setSelectedReplacement(null);
     setIsSubmitted(false);
     setIsCorrect(null);
     setNonErrorNotice(null);
-  }, [item]);
+  }
+
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+  const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
   useEffect(() => {
     if (isSubmitted && nextButtonRef.current) {

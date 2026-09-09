@@ -68,10 +68,10 @@ function RoleplayGameContent() {
     <div className="flex flex-col h-screen max-w-2xl mx-auto bg-gray-50">
       <div className="bg-white p-4 border-b flex justify-between items-center shadow-sm">
         <div className="flex items-center gap-3">
-          <BackButton href="/" label="Thoát" className="min-h-9 h-9 text-xs px-2.5 rounded-xl" />
-          <h1 className="font-semibold text-sm sm:text-base">{scenario.titleEn}</h1>
+          <BackButton href="/" label="Thoát" className="min-h-[44px] text-base px-3 rounded-xl" />
+          <h1 className="font-semibold text-base sm:text-lg">{scenario.titleEn}</h1>
         </div>
-        <span className="text-sm bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full font-bold">
+        <span className="text-base bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full font-bold">
           Score: {gameState.score}
         </span>
       </div>
@@ -88,7 +88,7 @@ function RoleplayGameContent() {
       </div>
 
       <div className="bg-white p-4 border-t">
-        <p className="text-sm text-gray-500 mb-2 font-medium">Choose your response:</p>
+        <p className="text-base text-gray-500 mb-2 font-medium">Choose your response:</p>
         <ResponseChoices
           options={currentTurn?.options || []}
           onSelect={handleSelectOption}

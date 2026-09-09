@@ -36,8 +36,10 @@ const allColors = colorsData as Color[];
 
 function generateNumberQuizQuestions(
   pool: GameNumber[],
-  count = 10
+  count = 10,
+  seed = 0
 ): QuizQuestion<GameNumber>[] {
+  void seed;
   const shuffledPool = shuffle([...pool]);
   const selectedTargets = shuffledPool.slice(0, Math.min(count, shuffledPool.length));
 
@@ -63,8 +65,10 @@ function generateNumberQuizQuestions(
 
 function generateColorQuizQuestions(
   pool: Color[],
-  count = 10
+  count = 10,
+  seed = 0
 ): QuizQuestion<Color>[] {
+  void seed;
   const shuffledPool = shuffle([...pool]);
   const selectedTargets = shuffledPool.slice(0, Math.min(count, shuffledPool.length));
 
@@ -122,13 +126,11 @@ function NumbersColorsContent() {
 
   // Quiz questions
   const numberQuizQuestions = useMemo(() => {
-    return generateNumberQuizQuestions(filteredNumbers, 10);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return generateNumberQuizQuestions(filteredNumbers, 10, quizKey);
   }, [filteredNumbers, quizKey]);
 
   const colorQuizQuestions = useMemo(() => {
-    return generateColorQuizQuestions(allColors, 10);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return generateColorQuizQuestions(allColors, 10, quizKey);
   }, [quizKey]);
 
   const currentQuizTotal = activeCategory === "numbers" ? numberQuizQuestions.length : colorQuizQuestions.length;

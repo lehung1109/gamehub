@@ -194,6 +194,10 @@ function SpellingGameContent() {
     return generateSpellingBank(currentWord?.english || "CAT", boardKey + currentIndex * 5);
   }, [currentWord?.english, boardKey, currentIndex]);
 
+  React.useEffect(() => {
+    wordStartTimeRef.current = Date.now();
+  }, [currentIndex]);
+
   const handleTopicChange = useCallback(
     (topicId: string) => {
       cancel();
@@ -248,7 +252,8 @@ function SpellingGameContent() {
 
   const handleCompleteSpelling = useCallback(
     (isCorrect: boolean, formedString: string) => {
-      const timeTakenMs = totalTimeTakenRef.current + Math.max(0, Date.now() - wordStartTimeRef.current);
+      const startTime = wordStartTimeRef.current > 0 ? wordStartTimeRef.current : Date.now();
+      const timeTakenMs = totalTimeTakenRef.current + Math.max(0, Date.now() - startTime);
 
       if (isCorrect) {
         recordQuestion({

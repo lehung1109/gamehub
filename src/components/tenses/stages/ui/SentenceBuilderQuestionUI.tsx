@@ -194,21 +194,22 @@ export function SentenceBuilderQuestionUI({
   className,
 }: SentenceBuilderQuestionUIProps) {
   const [placedTokens, setPlacedTokens] = useState<SentenceBuilderToken[]>([]);
-  const [bankTokens, setBankTokens] = useState<SentenceBuilderToken[]>([]);
+  const [bankTokens, setBankTokens] = useState<SentenceBuilderToken[]>(() => [...item.scrambledTokens]);
   const [activeToken, setActiveToken] = useState<SentenceBuilderToken | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [prevItem, setPrevItem] = useState(item);
 
-  const nextButtonRef = useRef<HTMLButtonElement>(null);
-  const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  if (item !== prevItem) {
+    setPrevItem(item);
     setBankTokens([...item.scrambledTokens]);
     setPlacedTokens([]);
     setIsSubmitted(false);
     setIsCorrect(null);
-  }, [item]);
+  }
+
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+  const { speak, isSpeaking, isSupported } = useSpeech({ rate: 0.85, lang: "en-US" });
 
   useEffect(() => {
     if (isSubmitted && nextButtonRef.current) {
