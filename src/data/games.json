@@ -108,6 +108,16 @@
     "emoji": "🧩",
     "route": "/games/crossword",
     "priority": 11
+  },
+  {
+    "id": "falling-words",
+    "slug": "falling-words",
+    "titleVi": "Mưa Từ Vựng",
+    "titleEn": "Falling Words",
+    "description": "Luyện gõ nhanh và phản xạ tiếng Anh với các từ rơi tốc độ cao, combo streak và bom nổ toàn màn hình",
+    "emoji": "🌧️",
+    "route": "/games/falling-words",
+    "priority": 12
   }
 ]
 
