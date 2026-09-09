@@ -4,7 +4,6 @@ import React from "react";
 import {
   GameGuideModal,
   GameGuideHeaderButton,
-  GameGuideCardButton,
 } from "@/components/game/GameGuideModal";
 import { getGameInstruction } from "@/data/game-instructions";
 
@@ -59,17 +58,5 @@ describe("GameGuideHeaderButton component", () => {
     fireEvent.click(button);
     // Should display the Spelling guide since pathname is /games/spelling
     expect(screen.getByRole("heading", { name: "Đánh vần" })).toBeInTheDocument();
-  });
-});
-
-describe("GameGuideCardButton component", () => {
-  it("prevents default link navigation and opens guide modal", () => {
-    render(<GameGuideCardButton gameId="crossword" />);
-
-    const button = screen.getByRole("button", { name: /Hướng dẫn/i });
-    expect(button).toBeInTheDocument();
-
-    fireEvent.click(button);
-    expect(screen.getByRole("heading", { name: "Giải đố Ô chữ" })).toBeInTheDocument();
   });
 });

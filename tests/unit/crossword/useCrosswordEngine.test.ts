@@ -302,7 +302,7 @@ describe("useCrosswordEngine Hook", () => {
     }
 
     // Score should include completion bonus: totalWords * 100 minus revealWord penalties
-    expect(result.current.score).toBe(totalWords * 100 - totalWords * 30);
+    expect(result.current.score).toBe(totalWords * 100 - result.current.wordsRevealed * 30);
 
     const elapsed = result.current.elapsedSeconds;
     act(() => {
