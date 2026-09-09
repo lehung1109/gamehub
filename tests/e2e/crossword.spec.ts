@@ -19,12 +19,14 @@ test.describe("Crossword Master E2E Flow", () => {
     await expect(page.getByText(/Hàng ngang/i)).toBeVisible();
     await expect(page.getByText(/Hàng dọc/i)).toBeVisible();
 
-    // Locate currently selected cell and verify it receives the typed letter
-    const selectedCell = page.locator('[aria-selected="true"]');
-    await expect(selectedCell).toBeVisible();
+    // Locate currently selected cell before cursor advances
+    const initialCell = page.locator('[role="grid"] [aria-selected="true"]');
+    await expect(initialCell).toBeVisible();
+    const cellTestId = await initialCell.getAttribute("data-testid");
+    expect(cellTestId).toBeTruthy();
 
     // Type a letter on keyboard
     await page.keyboard.press("T");
-    await expect(selectedCell).toContainText("T");
+    await expect(page.getByTestId(cellTestId!)).toContainText("T");
   });
 });

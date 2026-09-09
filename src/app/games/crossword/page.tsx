@@ -17,7 +17,15 @@ const TOPICS = [
   { id: "school", name: "🎒 Trường học (School)" },
 ];
 
+const emptySubscribe = () => () => {};
+
 export default function CrosswordPage() {
+  const mounted = React.useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
   const {
     topicId,
     board,
@@ -98,6 +106,24 @@ export default function CrosswordPage() {
   };
 
   const calculatedStars = hintsUsed === 0 ? 3 : hintsUsed <= 2 ? 2 : 1;
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center p-4 md:p-8">
+        <header className="w-full max-w-5xl flex flex-wrap items-center justify-between gap-4 mb-6">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-base font-bold text-slate-400 hover:text-white transition-colors bg-slate-900/60 px-4 py-2 rounded-xl border border-slate-800"
+          >
+            <ArrowLeft className="w-4 h-4" /> GameHub
+          </Link>
+        </header>
+        <div className="w-full max-w-lg aspect-square bg-slate-900/40 rounded-3xl border border-slate-800 animate-pulse flex items-center justify-center text-slate-500 font-bold text-base">
+          Đang tải ô chữ...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center p-4 md:p-8">
