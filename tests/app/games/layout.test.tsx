@@ -15,6 +15,12 @@ vi.mock('@/app/actions/student-progress', () => ({
   }),
 }))
 
+let currentPathname = '/'
+vi.mock('next/navigation', () => ({
+  usePathname: () => currentPathname,
+  useSearchParams: () => new URLSearchParams(),
+}))
+
 describe('Games & Play Layout Integration', () => {
   beforeEach(() => {
     sessionStorage.clear()
@@ -66,5 +72,26 @@ describe('Games & Play Layout Integration', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
     expect(await screen.findByText(/Bé Lan/i)).toBeInTheDocument()
     expect(screen.getByText(/Lớp 1B/i)).toBeInTheDocument()
+  })
+
+  it('renders GameGuideHeaderButton when user visits an active game route', async () => {
+    currentPathname = '/games/vocab-defense'
+    sessionStorage.setItem(
+      'gamehub_student_session',
+      JSON.stringify({
+        classCode: 'ABC123',
+        studentName: 'Bé Lan',
+        className: 'Lớp 1B',
+        isAnonymous: false,
+      })
+    )
+
+    render(
+      <GamesLayout>
+        <div data-testid="game-content">Word Knight Content</div>
+      </GamesLayout>
+    )
+
+    expect(screen.getByRole('button', { name: /Hướng dẫn chơi Hiệp sĩ Từ vựng/i })).toBeInTheDocument()
   })
 })

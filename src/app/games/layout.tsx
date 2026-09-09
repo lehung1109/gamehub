@@ -7,6 +7,7 @@ import { StudentBadge } from '@/components/student/StudentBadge'
 import { StudentProfileBadge } from '@/components/StudentProfileBadge'
 import { Container } from '@/components/ui/container'
 import { LevelUpCelebrationDialog } from '@/components/student/LevelUpCelebrationDialog'
+import { GameGuideHeaderButton } from '@/components/game/GameGuideModal'
 
 export default function GamesLayout({
   children,
@@ -18,6 +19,7 @@ export default function GamesLayout({
       <Container>
         <div className="relative w-full flex flex-col min-h-full">
           <div className="w-full flex flex-wrap justify-end pb-2 gap-2">
+            <GameGuideHeaderButton />
             <StudentProfileBadge />
             <StudentBadge />
           </div>

@@ -43,4 +43,15 @@ describe("GameCard", () => {
     expect(container.firstChild).toHaveClass("custom-class");
     expect(container.firstChild).toHaveClass("focus-visible:ring-primary");
   });
+
+  it("renders instructions button and opens game guide modal when clicked", async () => {
+    render(<GameCard game={mockGame} />);
+
+    const guideBtn = screen.getByRole("button", { name: /Hướng dẫn trò chơi Học từ vựng/i });
+    expect(guideBtn).toBeInTheDocument();
+
+    guideBtn.click();
+    expect(await screen.findByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByText(/Cách chơi từng bước/i)).toBeInTheDocument();
+  });
 });

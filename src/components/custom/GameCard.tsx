@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { GameGuideCardButton } from "@/components/game/GameGuideModal";
 
 export interface GameCardProps {
   game: Game;
@@ -50,10 +51,11 @@ export function GameCard({ game, className }: GameCardProps) {
           </CardHeader>
         </div>
 
-        <CardContent className="p-0 pt-4 flex items-center justify-between">
+        <CardContent className="p-0 pt-4 flex items-center justify-between gap-2">
           <span className="inline-flex items-center text-sm font-extrabold text-emerald-700 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
             Chơi ngay <span aria-hidden="true" className="ml-1">➔</span>
           </span>
+          <GameGuideCardButton gameId={game.id} />
         </CardContent>
       </Card>
     </Link>
