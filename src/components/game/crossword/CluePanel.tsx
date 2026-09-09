@@ -25,7 +25,7 @@ export const CluePanel: React.FC<CluePanelProps> = ({
     <div className="w-full flex flex-col gap-4 bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-5 shadow-2xl max-h-[500px] overflow-y-auto">
       {/* Across */}
       <div>
-        <div className="flex items-center gap-2 text-sm md:text-base font-bold text-amber-400 uppercase tracking-wider mb-2.5">
+        <div className="flex items-center gap-2 text-base font-bold text-amber-400 uppercase tracking-wider mb-2.5">
           <ArrowRight className="w-4 h-4" /> Hàng ngang (Across)
         </div>
         <div className="space-y-2">
@@ -43,7 +43,7 @@ export const CluePanel: React.FC<CluePanelProps> = ({
 
       {/* Down */}
       <div>
-        <div className="flex items-center gap-2 text-sm md:text-base font-bold text-sky-400 uppercase tracking-wider mb-2.5">
+        <div className="flex items-center gap-2 text-base font-bold text-sky-400 uppercase tracking-wider mb-2.5">
           <ArrowDown className="w-4 h-4" /> Hàng dọc (Down)
         </div>
         <div className="space-y-2">

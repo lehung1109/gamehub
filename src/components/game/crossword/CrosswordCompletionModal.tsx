@@ -17,7 +17,7 @@ export const CrosswordCompletionModal: React.FC<CrosswordCompletionModalProps> =
   score,
   stars,
   elapsedSeconds,
-  hintsUsed: _hintsUsed,
+  hintsUsed,
   onNextPuzzle,
 }) => {
   if (!isOpen) return null;
@@ -60,12 +60,16 @@ export const CrosswordCompletionModal: React.FC<CrosswordCompletionModalProps> =
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 gap-3 w-full my-4">
-          <div className="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/50">
-            <span className="text-base text-slate-400 font-bold block">Tổng Điểm</span>
+        <div className="grid grid-cols-3 gap-2.5 w-full my-4">
+          <div className="bg-slate-800/60 p-3 rounded-2xl border border-slate-700/50">
+            <span className="text-base text-slate-400 font-bold block">Điểm</span>
             <span className="text-xl font-black text-white">{score}</span>
           </div>
-          <div className="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/50">
+          <div className="bg-slate-800/60 p-3 rounded-2xl border border-slate-700/50">
+            <span className="text-base text-slate-400 font-bold block">Gợi ý</span>
+            <span className="text-xl font-black text-amber-400">{hintsUsed}</span>
+          </div>
+          <div className="bg-slate-800/60 p-3 rounded-2xl border border-slate-700/50">
             <span className="text-base text-slate-400 font-bold flex items-center justify-center gap-1">
               <Clock className="w-4 h-4 text-sky-400" /> Thời gian
             </span>

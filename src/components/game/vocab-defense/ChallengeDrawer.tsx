@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { ChallengeQuestion } from "@/types/vocab-defense";
 import { useSpeech } from "@/hooks/useSpeech";
 import { Volume2 } from "lucide-react";
@@ -18,15 +18,15 @@ export const ChallengeDrawer: React.FC<ChallengeDrawerProps> = ({
 }) => {
   const { speak } = useSpeech({ rate: 0.9, lang: "en-US" });
 
-  const playAudio = () => {
+  const playAudio = useCallback(() => {
     speak(question.targetWord);
-  };
+  }, [speak, question.targetWord]);
 
   useEffect(() => {
     if (question.type === "SHIELD") {
       playAudio();
     }
-  }, [question.id, question.type]);
+  }, [question.id, question.type, playAudio]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

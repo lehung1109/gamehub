@@ -1,6 +1,39 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { CrosswordBoard, CrosswordWord, Direction } from "@/types/crossword";
+import { CrosswordBoard, CrosswordCell, CrosswordWord, Direction } from "@/types/crossword";
 import { generateCrosswordBoard } from "@/lib/crossword/crossword-generator";
+
+function evaluateBoardState(
+  grid: CrosswordCell[][],
+  words: CrosswordWord[]
+): { nextWords: CrosswordWord[]; isCompleted: boolean } {
+  let allFilledAndCorrect = true;
+  for (let r = 0; r < grid.length; r++) {
+    for (let c = 0; c < grid[r].length; c++) {
+      const cell = grid[r][c];
+      if (!cell.isBlocked) {
+        if (cell.userChar !== cell.char) {
+          allFilledAndCorrect = false;
+        }
+      }
+    }
+  }
+
+  const nextWords = words.map((w) => {
+    let isWordSolved = true;
+    for (let i = 0; i < w.word.length; i++) {
+      const r = w.direction === "across" ? w.startRow : w.startRow + i;
+      const c = w.direction === "across" ? w.startCol + i : w.startCol;
+      const cell = grid[r]?.[c];
+      if (!cell || cell.userChar !== w.word[i]) {
+        isWordSolved = false;
+        break;
+      }
+    }
+    return w.isSolved === isWordSolved ? w : { ...w, isSolved: isWordSolved };
+  });
+
+  return { nextWords, isCompleted: allFilledAndCorrect };
+}
 
 export function useCrosswordEngine(initialTopicId = "animals") {
   const [topicId, setTopicId] = useState(initialTopicId);
@@ -83,11 +116,15 @@ export function useCrosswordEngine(initialTopicId = "animals") {
 
       // Guard: do not overwrite revealed hint letters
       if (!currentCell.isRevealed) {
-        setBoard((prev) => {
-          const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-          nextGrid[row][col].userChar = upperChar;
-          return { ...prev, grid: nextGrid };
-        });
+        const nextGrid = board.grid.map((r) => r.map((c) => ({ ...c })));
+        nextGrid[row][col].userChar = upperChar;
+        const { nextWords, isCompleted } = evaluateBoardState(nextGrid, board.words);
+        setBoard({ ...board, grid: nextGrid, words: nextWords });
+
+        if (isCompleted) {
+          setIsComplete(true);
+          setScore((prev) => prev + board.words.length * 100);
+        }
       }
 
       // Advance cursor in current direction
@@ -112,11 +149,10 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     if (!currentCell || currentCell.isBlocked) return;
 
     if (!currentCell.isRevealed && currentCell.userChar !== "") {
-      setBoard((prev) => {
-        const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-        nextGrid[row][col].userChar = "";
-        return { ...prev, grid: nextGrid };
-      });
+      const nextGrid = board.grid.map((r) => r.map((c) => ({ ...c })));
+      nextGrid[row][col].userChar = "";
+      const { nextWords } = evaluateBoardState(nextGrid, board.words);
+      setBoard({ ...board, grid: nextGrid, words: nextWords });
     } else {
       // Step back to previous unblocked cell
       const prevRow = direction === "down" ? row - 1 : row;
@@ -129,11 +165,10 @@ export function useCrosswordEngine(initialTopicId = "animals") {
       ) {
         setSelectedCell({ row: prevRow, col: prevCol });
         if (!board.grid[prevRow][prevCol].isRevealed) {
-          setBoard((prev) => {
-            const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-            nextGrid[prevRow][prevCol].userChar = "";
-            return { ...prev, grid: nextGrid };
-          });
+          const nextGrid = board.grid.map((r) => r.map((c) => ({ ...c })));
+          nextGrid[prevRow][prevCol].userChar = "";
+          const { nextWords } = evaluateBoardState(nextGrid, board.words);
+          setBoard({ ...board, grid: nextGrid, words: nextWords });
         }
       }
     }
@@ -161,16 +196,18 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     const cell = board.grid[row]?.[col];
     if (!cell || cell.isBlocked || cell.isRevealed) return;
 
-    setBoard((prev) => {
-      const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-      nextGrid[row][col].userChar = cell.char;
-      nextGrid[row][col].isRevealed = true;
-      return { ...prev, grid: nextGrid };
-    });
+    const nextGrid = board.grid.map((r) => r.map((c) => ({ ...c })));
+    nextGrid[row][col].userChar = cell.char;
+    nextGrid[row][col].isRevealed = true;
+    const { nextWords, isCompleted } = evaluateBoardState(nextGrid, board.words);
 
+    setBoard({ ...board, grid: nextGrid, words: nextWords });
     setHintsUsed((prev) => prev + 1);
-    setScore((prev) => prev - 10);
-  }, [board.grid, selectedCell, isComplete]);
+    setScore((prev) => prev - 10 + (isCompleted ? board.words.length * 100 : 0));
+    if (isCompleted) {
+      setIsComplete(true);
+    }
+  }, [board, selectedCell, isComplete]);
 
   const revealWord = useCallback(
     (targetWord?: CrosswordWord) => {
@@ -194,22 +231,24 @@ export function useCrosswordEngine(initialTopicId = "animals") {
       }
       if (allLettersMatch) return;
 
-      setBoard((prev) => {
-        const nextGrid = prev.grid.map((r) => r.map((c) => ({ ...c })));
-        for (let i = 0; i < wordToReveal.word.length; i++) {
-          const r = wordToReveal.direction === "across" ? wordToReveal.startRow : wordToReveal.startRow + i;
-          const c = wordToReveal.direction === "across" ? wordToReveal.startCol + i : wordToReveal.startCol;
-          nextGrid[r][c].userChar = wordToReveal.word[i];
-          nextGrid[r][c].isRevealed = true;
-        }
-        const nextWords = prev.words.map((w) =>
-          w.id === wordToReveal.id ? { ...w, isRevealed: true, isSolved: true } : w
-        );
-        return { ...prev, grid: nextGrid, words: nextWords };
-      });
+      const nextGrid = board.grid.map((r) => r.map((c) => ({ ...c })));
+      for (let i = 0; i < wordToReveal.word.length; i++) {
+        const r = wordToReveal.direction === "across" ? wordToReveal.startRow : wordToReveal.startRow + i;
+        const c = wordToReveal.direction === "across" ? wordToReveal.startCol + i : wordToReveal.startCol;
+        nextGrid[r][c].userChar = wordToReveal.word[i];
+        nextGrid[r][c].isRevealed = true;
+      }
+      const updatedWords = board.words.map((w) =>
+        w.id === wordToReveal.id ? { ...w, isRevealed: true, isSolved: true } : w
+      );
+      const { nextWords, isCompleted } = evaluateBoardState(nextGrid, updatedWords);
 
+      setBoard({ ...board, grid: nextGrid, words: nextWords });
       setWordsRevealed((prev) => prev + 1);
-      setScore((prev) => prev - 30);
+      setScore((prev) => prev - 30 + (isCompleted ? board.words.length * 100 : 0));
+      if (isCompleted) {
+        setIsComplete(true);
+      }
     },
     [activeWord, board, isComplete]
   );
@@ -228,51 +267,6 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     setIsComplete(false);
     setElapsedSeconds(0);
   }, [topicId]);
-
-  // Check word solved statuses and overall board completion
-  useEffect(() => {
-    let allFilledAndCorrect = true;
-    for (let r = 0; r < board.rows; r++) {
-      for (let c = 0; c < board.cols; c++) {
-        const cell = board.grid[r][c];
-        if (!cell.isBlocked) {
-          if (cell.userChar !== cell.char) {
-            allFilledAndCorrect = false;
-            break;
-          }
-        }
-      }
-      if (!allFilledAndCorrect) break;
-    }
-
-    if (allFilledAndCorrect && !isComplete) {
-      setIsComplete(true);
-      setScore((prev) => prev + board.words.length * 100);
-    }
-
-    let wordsChanged = false;
-    const nextWords = board.words.map((w) => {
-      let isWordSolved = true;
-      for (let i = 0; i < w.word.length; i++) {
-        const r = w.direction === "across" ? w.startRow : w.startRow + i;
-        const c = w.direction === "across" ? w.startCol + i : w.startCol;
-        const cell = board.grid[r]?.[c];
-        if (!cell || cell.userChar !== w.word[i]) {
-          isWordSolved = false;
-          break;
-        }
-      }
-      if (w.isSolved !== isWordSolved) {
-        wordsChanged = true;
-        return { ...w, isSolved: isWordSolved };
-      }
-      return w;
-    });
-
-    if (wordsChanged) {
-      setBoard((prev) => ({ ...prev, words: nextWords }));
-    }
-  }, [board, isComplete]);
 
   // Timer
   useEffect(() => {

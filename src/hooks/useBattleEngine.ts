@@ -83,14 +83,14 @@ export function useBattleEngine() {
   const currentWaveIndexRef = useRef(0);
   const turnTimerRef = useRef(20);
 
-  const clearTurnTimer = () => {
+  const clearTurnTimer = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-  };
+  }, []);
 
-  const clearAllTimers = () => {
+  const clearAllTimers = useCallback(() => {
     clearTurnTimer();
     if (actionTimeoutRef.current) {
       clearTimeout(actionTimeoutRef.current);
@@ -100,7 +100,7 @@ export function useBattleEngine() {
       clearTimeout(waveTimeoutRef.current);
       waveTimeoutRef.current = null;
     }
-  };
+  }, [clearTurnTimer]);
 
   const skipIntro = useCallback(() => {
     if (battleStateRef.current !== "STAGE_INTRO") return;
@@ -218,7 +218,7 @@ export function useBattleEngine() {
         }
       }, 2000);
     },
-    []
+    [clearTurnTimer]
   );
 
   const selectSkill = useCallback(
@@ -293,7 +293,7 @@ export function useBattleEngine() {
     setCombatFeedback(null);
     setBattleState("STAGE_INTRO");
     usedWordIdsRef.current = [];
-  }, []);
+  }, [clearAllTimers]);
 
   // Timer Tick
   useEffect(() => {
@@ -308,13 +308,13 @@ export function useBattleEngine() {
       }, 1000);
     }
     return () => clearTurnTimer();
-  }, [battleState, resolveTurnOutcome]);
+  }, [battleState, resolveTurnOutcome, clearTurnTimer]);
 
   useEffect(() => {
     return () => {
       clearAllTimers();
     };
-  }, []);
+  }, [clearAllTimers]);
 
   return {
     battleState,

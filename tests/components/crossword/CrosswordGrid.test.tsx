@@ -69,7 +69,7 @@ describe("CrosswordGrid Component", () => {
     );
 
     const cellBtn = screen.getByTestId(`cell-${selectedRow}-${selectedCol}`);
-    expect(cellBtn).toHaveAttribute("aria-selected", "true");
+    expect(cellBtn).toHaveAttribute("aria-pressed", "true");
     // Text container span should not apply text-amber-300 when selected
     const charSpan = cellBtn.querySelector("span:last-child");
     expect(charSpan?.className).not.toContain("text-amber-300");

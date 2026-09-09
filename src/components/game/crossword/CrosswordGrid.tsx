@@ -7,7 +7,7 @@ import { CrosswordCellItem } from "./CrosswordCellItem";
 interface CrosswordGridProps {
   board: CrosswordBoard;
   selectedCell: { row: number; col: number };
-  direction: Direction;
+  direction?: Direction;
   activeWord: CrosswordWord | null;
   onSelectCell: (row: number, col: number) => void;
 }
@@ -15,7 +15,6 @@ interface CrosswordGridProps {
 export const CrosswordGrid: React.FC<CrosswordGridProps> = ({
   board,
   selectedCell,
-  direction: _direction,
   activeWord,
   onSelectCell,
 }) => {

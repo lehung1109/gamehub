@@ -27,7 +27,8 @@ export const CrosswordCellItem: React.FC<CrosswordCellItemProps> = ({
       type="button"
       data-testid={`cell-${cell.row}-${cell.col}`}
       onClick={onSelect}
-      aria-selected={isSelected}
+      aria-pressed={isSelected}
+      data-selected={isSelected}
       aria-label={`Row ${cell.row + 1}, Column ${cell.col + 1}${cell.clueNumber ? `, Clue ${cell.clueNumber}` : ""}${cell.userChar ? `, ${cell.userChar}` : ""}`}
       className={`relative w-full aspect-square flex items-center justify-center font-black text-lg md:text-xl rounded-lg border transition-all cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none ${
         isSelected
@@ -39,7 +40,7 @@ export const CrosswordCellItem: React.FC<CrosswordCellItemProps> = ({
     >
       {cell.clueNumber && (
         <span
-          className={`absolute top-0.5 left-1 text-xs font-mono font-bold leading-none ${
+          className={`absolute top-0.5 left-1 text-base font-mono font-bold leading-none ${
             isSelected ? "text-slate-950" : "text-slate-400"
           }`}
         >

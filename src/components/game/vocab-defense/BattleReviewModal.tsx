@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { MissedQuestionReview } from "@/types/vocab-defense";
 import { useSpeech } from "@/hooks/useSpeech";
 import { Trophy, Skull, Star, RotateCcw, Volume2, BookOpen } from "lucide-react";

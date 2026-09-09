@@ -20,7 +20,7 @@ test.describe("Crossword Master E2E Flow", () => {
     await expect(page.getByText(/Hàng dọc/i)).toBeVisible();
 
     // Locate currently selected cell before cursor advances
-    const initialCell = page.locator('[role="region"][aria-label="Crossword grid"] [aria-selected="true"]');
+    const initialCell = page.locator('[role="region"][aria-label="Crossword grid"] [aria-pressed="true"]');
     await expect(initialCell).toBeVisible();
     const cellTestId = await initialCell.getAttribute("data-testid");
     expect(cellTestId).toBeTruthy();

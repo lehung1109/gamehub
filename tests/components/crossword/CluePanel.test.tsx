@@ -104,10 +104,10 @@ describe("CluePanel Component", () => {
     expect(rabbitItem?.className).not.toContain("border-amber-500/50");
 
     const tigerBtn = screen.getByRole("button", { name: /Từ 1: Con hổ/i });
-    expect(tigerBtn).toHaveAttribute("aria-selected", "true");
+    expect(tigerBtn).toHaveAttribute("aria-pressed", "true");
 
     const rabbitBtn = screen.getByRole("button", { name: /Từ 2: Con thỏ/i });
-    expect(rabbitBtn).toHaveAttribute("aria-selected", "false");
+    expect(rabbitBtn).toHaveAttribute("aria-pressed", "false");
   });
 });
 
