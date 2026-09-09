@@ -1,0 +1,247 @@
+import { WordleTargetWord } from "@/types/wordle";
+import rawWords from "./words.json";
+
+export const WORDLE_TARGET_WORDS: WordleTargetWord[] = rawWords as WordleTargetWord[];
+
+// Common English words for length 4, 5, and 6 validation
+const COMMON_DICTIONARY_WORDS: string[] = [
+  // 4-letter words
+  "ABLE", "ACID", "AGED", "ALSO", "AREA", "ARMY", "AWAY", "BABY", "BACK", "BALL",
+  "BAND", "BANK", "BASE", "BATH", "BEAR", "BEAT", "BEEN", "BEER", "BELL", "BELT",
+  "BEND", "BENT", "BEST", "BILL", "BIRD", "BLOW", "BLUE", "BOAT", "BODY", "BOND",
+  "BONE", "BOOK", "BORN", "BOSS", "BOTH", "BOWL", "BULK", "BURN", "BUSH", "BUSY",
+  "CALL", "CALM", "CAME", "CAMP", "CARD", "CARE", "CASE", "CASH", "CAST", "CELL",
+  "CHAT", "CHIP", "CITY", "CLUB", "COAL", "COAT", "CODE", "COLD", "COME", "COOK",
+  "COOL", "COPE", "COPY", "CORE", "COST", "CREW", "CROP", "DARK", "DATA", "DATE",
+  "DAWN", "DAYS", "DEAD", "DEAL", "DEAR", "DEBT", "DEEP", "DEER", "DESK", "DIET",
+  "DIRT", "DISK", "DOES", "DONE", "DOOR", "DOSE", "DOWN", "DRAW", "DREW", "DROP",
+  "DRUG", "DUAL", "DUCK", "DUKE", "DUST", "DUTY", "EACH", "EARN", "EASE", "EAST",
+  "EASY", "EDGE", "ELSE", "EVEN", "EVER", "EVIL", "EXAM", "EXIT", "FACE", "FACT",
+  "FAIL", "FAIR", "FALL", "FARM", "FAST", "FATE", "FEAR", "FEED", "FEEL", "FEET",
+  "FELL", "FELT", "FILE", "FILL", "FILM", "FIND", "FINE", "FIRE", "FIRM", "FISH",
+  "FIVE", "FLAT", "FLED", "FLEW", "FLOW", "FOLK", "FOOD", "FOOT", "FORD", "FORM",
+  "FORT", "FOUR", "FREE", "FROM", "FUEL", "FULL", "FUND", "GAIN", "GAME", "GATE",
+  "GEAR", "GENE", "GIFT", "GIRL", "GIVE", "GLAD", "GOAL", "GOES", "GOLD", "GOLF",
+  "GONE", "GOOD", "GRAY", "GREW", "GREY", "GROW", "GULF", "HAIR", "HALF", "HALL",
+  "HAND", "HANG", "HARD", "HARM", "HATE", "HAVE", "HEAD", "HEAR", "HEAT", "HELD",
+  "HELL", "HELP", "HERE", "HERO", "HIDE", "HIGH", "HILL", "HIRE", "HOLD", "HOLE",
+  "HOLY", "HOME", "HOPE", "HOST", "HOUR", "HUGE", "HUNG", "HUNT", "HURT", "IDEA",
+  "INCH", "INTO", "IRON", "ITEM", "JOIN", "JUMP", "JURY", "JUST", "KEEP", "KEPT",
+  "KICK", "KILL", "KIND", "KING", "KNEE", "KNEW", "KNOW", "LACK", "LADY", "LAID",
+  "LAKE", "LAND", "LANE", "LAST", "LATE", "LEAD", "LEFT", "LESS", "LIFE", "LIFT",
+  "LIKE", "LINE", "LINK", "LION", "LIST", "LIVE", "LOAD", "LOAN", "LOCK", "LOGO",
+  "LONG", "LOOK", "LORD", "LOSE", "LOSS", "LOST", "LOVE", "LUCK", "MADE", "MAIL",
+  "MAIN", "MAKE", "MALE", "MANY", "MARK", "MASS", "MATE", "MATH", "MEAL", "MEAN",
+  "MEAT", "MEET", "MENU", "MERE", "MILD", "MILE", "MILK", "MILL", "MIND", "MINE",
+  "MISS", "MODE", "MOOD", "MOON", "MORE", "MOST", "MOVE", "MUCH", "MUST", "NAME",
+  "NAVY", "NEAR", "NECK", "NEED", "NEWS", "NEXT", "NICE", "NINE", "NONE", "NOON",
+  "NOSE", "NOTE", "OKAY", "ONCE", "ONLY", "OPEN", "ORAL", "OVER", "PACE", "PACK",
+  "PAGE", "PAID", "PAIN", "PAIR", "PALM", "PARK", "PART", "PASS", "PAST", "PATH",
+  "PEAK", "PEAR", "PEER", "PEST", "PICK", "PILE", "PINE", "PING", "PINK", "PIPE",
+  "PLAN", "PLAY", "PLOT", "PLUG", "PLUM", "PLUS", "POEM", "POET", "POLE", "POLL",
+  "POOL", "POOR", "PORT", "POST", "PRAY", "PULL", "PURE", "PUSH", "RACE", "RAIL",
+  "RAIN", "RANK", "RARE", "RATE", "READ", "REAL", "REAR", "RELY", "RENT", "REST",
+  "RICE", "RICH", "RIDE", "RING", "RISE", "RISK", "ROAD", "ROCK", "ROLE", "ROLL",
+  "ROOF", "ROOM", "ROOT", "ROSE", "RULE", "RUSH", "SAFE", "SAID", "SAKE", "SALE",
+  "SALT", "SAME", "SAND", "SAVE", "SCAN", "SEAT", "SEED", "SEEK", "SEEM", "SEEN",
+  "SELF", "SELL", "SEND", "SENT", "SHIP", "SHOP", "SHOT", "SHOW", "SHUT", "SICK",
+  "SIDE", "SIGN", "SILK", "SITE", "SIZE", "SKIN", "SLIP", "SLOW", "SNOW", "SOAP",
+  "SOFT", "SOIL", "SOLD", "SOLE", "SOME", "SONG", "SOON", "SORT", "SOUL", "SPOT",
+  "STAR", "STAY", "STEP", "STOP", "SUCH", "SUIT", "SURE", "SWIM", "TAKE", "TALE",
+  "TALK", "TALL", "TANK", "TAPE", "TASK", "TEAM", "TEAR", "TELL", "TENT", "TERM",
+  "TEST", "TEXT", "THAT", "THEM", "THEN", "THEY", "THIN", "THIS", "TIDE", "TIED",
+  "TIES", "TIME", "TINY", "TIRE", "TOLL", "TONE", "TOOK", "TOOL", "TOUR", "TOWN",
+  "TREE", "TRIP", "TRUE", "TUBE", "TUNE", "TURN", "TWIN", "TYPE", "UNIT", "UPON",
+  "USED", "USER", "USES", "VARY", "VAST", "VERY", "VICE", "VIEW", "VOTE", "WAIT",
+  "WAKE", "WALK", "WALL", "WANT", "WARD", "WARM", "WASH", "WAVE", "WAYS", "WEAK",
+  "WEAR", "WEEK", "WELL", "WENT", "WERE", "WEST", "WHAT", "WHEN", "WIDE", "WIFE",
+  "WILD", "WILL", "WIND", "WINE", "WING", "WIRE", "WISE", "WISH", "WITH", "WOLF",
+  "WOOD", "WOOL", "WORD", "WORE", "WORK", "WORM", "YARD", "YEAH", "YEAR", "ZERO",
+  "ZONE",
+
+  // 5-letter words
+  "ABOUT", "ABOVE", "ABUSE", "ACTOR", "ACUTE", "ADAPT", "ADIEU", "ADMIT", "ADOPT", "ADULT",
+  "AFTER", "AGAIN", "AGENT", "AGREE", "AHEAD", "ALARM", "ALBUM", "ALERT", "ALIKE", "ALIVE",
+  "ALLOW", "ALONE", "ALONG", "ALTER", "AMONG", "ANGER", "ANGLE", "ANGRY", "APART", "APPLE",
+  "APPLY", "ARENA", "ARGUE", "ARISE", "ARMOR", "ARRAY", "ARROW", "ASIDE", "ASSET", "AUDIO",
+  "AUDIT", "AVOID", "AWAIT", "AWAKE", "AWARD", "AWARE", "BADGE", "BAKER", "BASIC", "BASIS",
+  "BEACH", "BEGAN", "BEGIN", "BEING", "BELOW", "BENCH", "BERRY", "BILLY", "BIRTH", "BLACK",
+  "BLAME", "BLIND", "BLOCK", "BLOOD", "BOARD", "BOOST", "BOOTH", "BOUND", "BRAIN", "BRAND",
+  "BREAD", "BREAK", "BREED", "BRIEF", "BRING", "BROAD", "BROKE", "BROWN", "BUILD", "BUILT",
+  "BUYER", "CABLE", "CALIF", "CAMEL", "CARRY", "CATCH", "CAUSE", "CHAIN", "CHAIR", "CHALK",
+  "CHAMP", "CHART", "CHASE", "CHEAP", "CHECK", "CHEST", "CHIEF", "CHILD", "CHINA", "CHOSE",
+  "CIVIL", "CLAIM", "CLASS", "CLEAN", "CLEAR", "CLICK", "CLOCK", "CLOSE", "CLOUD", "COACH",
+  "COAST", "COULD", "COUNT", "COURT", "COVER", "CRAFT", "CRANE", "CRASH", "CREAM", "CRIME",
+  "CRISIS", "CROWD", "CROWN", "CURVE", "CYCLE", "DAILY", "DANCE", "DATED", "DEALT", "DEATH",
+  "DEBUT", "DELAY", "DEPTH", "DOING", "DOUBT", "DOZEN", "DRAFT", "DRAMA", "DRAWN", "DREAM",
+  "DRESS", "DRILL", "DRINK", "DRIVE", "DROVE", "DYING", "EAGER", "EAGLE", "EARLY", "EARTH",
+  "EIGHT", "ELITE", "EMPTY", "ENEMY", "ENJOY", "ENTER", "ENTRY", "EQUAL", "ERROR", "EVENT",
+  "EVERY", "EXACT", "EXIST", "EXTRA", "FAITH", "FALSE", "FAULT", "FIBER", "FIELD", "FIFTH",
+  "FIFTY", "FIGHT", "FINAL", "FIRST", "FIXED", "FLASH", "FLEET", "FLOOR", "FLUID", "FOCUS",
+  "FORCE", "FORTH", "FORTY", "FORUM", "FOUND", "FRAME", "FRANK", "FRAUD", "FRESH", "FRONT",
+  "FRUIT", "FULLY", "FUNNY", "GIANT", "GIVEN", "GLASS", "GLOBE", "GOING", "GRACE", "GRADE",
+  "GRAND", "GRANT", "GRAPE", "GRASS", "GREAT", "GREEN", "GROSS", "GROUP", "GROWN", "GUARD",
+  "GUESS", "GUEST", "GUIDE", "HAPPY", "HARRY", "HEART", "HEAVY", "HENCE", "HORSE", "HOTEL",
+  "HOUSE", "HUMAN", "IDEAL", "IMAGE", "INDEX", "INNER", "INPUT", "ISSUE", "JAPAN", "JIMMY",
+  "JOINT", "JONES", "JUDGE", "KNOWN", "LABEL", "LARGE", "LASER", "LATER", "LAUGH", "LAYER",
+  "LEARN", "LEASE", "LEAST", "LEAVE", "LEGAL", "LEMON", "LEVEL", "LEWIS", "LIGHT", "LIMIT",
+  "LINKS", "LIVES", "LOCAL", "LOGIC", "LOOSE", "LOWER", "LUCKY", "LUNCH", "LYING", "MAGIC",
+  "MAJOR", "MAKER", "MANGO", "MARCH", "MATCH", "MAYBE", "MAYOR", "MEANT", "MEDIA", "MELON",
+  "METAL", "MIGHT", "MINOR", "MINUS", "MIXED", "MODEL", "MONEY", "MONTH", "MORAL", "MOTOR",
+  "MOUNT", "MOUSE", "MOUTH", "MOVIE", "MUSIC", "NEEDS", "NEVER", "NIGHT", "NOISE", "NORTH",
+  "NOTED", "NOVEL", "NURSE", "OCCUR", "OCEAN", "OFFER", "OFTEN", "ORDER", "OTHER", "OUGHT",
+  "PAINT", "PANEL", "PAPER", "PARTY", "PEACH", "PEACE", "PETER", "PHASE", "PHONE", "PHOTO",
+  "PIECE", "PILOT", "PITCH", "PIXEL", "PLACE", "PLAIN", "PLANE", "PLANT", "PLATE", "POINT",
+  "POUND", "POWER", "PRESS", "PRICE", "PRIDE", "PRIME", "PRINT", "PRIOR", "PRIZE", "PROOF",
+  "PROUD", "PROVE", "QUEEN", "QUICK", "QUIET", "QUITE", "RADIO", "RAISE", "RANGE", "RAPID",
+  "RATIO", "REACH", "READY", "REFER", "RIGHT", "RIVAL", "RIVER", "ROBOT", "ROMAN", "ROUGH",
+  "ROUND", "ROUTE", "ROYAL", "RULER", "RURAL", "SCALE", "SCENE", "SCOPE", "SCORE", "SENSE",
+  "SERVE", "SETUP", "SEVEN", "SHALL", "SHAPE", "SHARE", "SHARK", "SHARP", "SHEET", "SHELF",
+  "SHELL", "SHIFT", "SHIRT", "SHOCK", "SHOOT", "SHORT", "SHOWN", "SIGHT", "SINCE", "SIXTH",
+  "SIXTY", "SIZED", "SKILL", "SLATE", "SLEEP", "SLIDE", "SMALL", "SMART", "SMILE", "SMITH",
+  "SMOKE", "SOLID", "SOLVE", "SORRY", "SOUND", "SOUTH", "SPACE", "SPARE", "SPEAK", "SPEED",
+  "SPEND", "SPENT", "SPLIT", "SPOKE", "SPORT", "STAFF", "STAGE", "STAKE", "STAND", "STARE",
+  "START", "STATE", "STEAM", "STEEL", "STICK", "STILL", "STOCK", "STONE", "STOOD", "STORE",
+  "STORM", "STORY", "STRIP", "STUDY", "STUFF", "STYLE", "SUGAR", "SUITE", "SUPER", "SWEET",
+  "TABLE", "TAKEN", "TASTE", "TAXES", "TEACH", "TEETH", "TERRY", "TEXAS", "THANK", "THEFT",
+  "THEIR", "THEME", "THERE", "THESE", "THICK", "THING", "THINK", "THIRD", "THOSE", "THREE",
+  "THREW", "THROW", "TIGER", "TIGHT", "TIMES", "TIRED", "TITLE", "TODAY", "TOPIC", "TOTAL",
+  "TOUCH", "TOUGH", "TOWER", "TRACK", "TRADE", "TRAIN", "TREAT", "TREND", "TRIAL", "TRIED",
+  "TRIES", "TRUCK", "TRULY", "TRUST", "TRUTH", "TWICE", "UNDER", "UNDUE", "UNION", "UNITY",
+  "UNTIL", "UPPER", "UPSET", "URBAN", "USAGE", "USUAL", "VALID", "VALUE", "VIDEO", "VIRUS",
+  "VISIT", "VITAL", "VOICE", "WASTE", "WATCH", "WATER", "WHEEL", "WHERE", "WHICH", "WHILE",
+  "WHITE", "WHOLE", "WHOSE", "WOMAN", "WOMEN", "WORLD", "WORRY", "WORSE", "WORST", "WORTH",
+  "WOULD", "WOUND", "WRITE", "WRONG", "WROTE", "YIELD", "YOUNG", "YOUTH", "ZEBRA",
+
+  // 6-letter words
+  "ABROAD", "ACCEPT", "ACCESS", "ACROSS", "ACTION", "ACTIVE", "ACTUAL", "ADVICE", "ADVISE", "AFFORD",
+  "AFRAID", "AGENCY", "AGENDA", "ALMOST", "ALWAYS", "AMOUNT", "ANIMAL", "ANNUAL", "ANSWER", "ANYONE",
+  "ANYWAY", "APPEAL", "APPEAR", "ARTIST", "ASPECT", "ASSESS", "ASSIST", "ASSUME", "ATTACK", "ATTEND",
+  "AUGUST", "AUTHOR", "AVENUE", "BACKED", "BAKERY", "BANANA", "BANKER", "BARREL", "BASKET", "BATTLE",
+  "BEAUTY", "BECOME", "BEFORE", "BEHIND", "BELIEF", "BELONG", "BESIDE", "BETTER", "BEYOND", "BISHOP",
+  "BITTER", "BLOUSE", "BORDER", "BORROW", "BOTHER", "BOTTLE", "BOTTOM", "BOUGHT", "BOUNCE", "BRANCH",
+  "BREATH", "BRIDGE", "BRIGHT", "BROKEN", "BROKER", "BRONZE", "BROWSE", "BUDGET", "BUFFER", "BURDEN",
+  "BUREAU", "BUSILY", "BUTTER", "BUTTON", "CAMERA", "CAMPUS", "CANCER", "CANDLE", "CANNOT", "CARBON",
+  "CAREER", "CARING", "CARPET", "CARROT", "CASTLE", "CASUAL", "CATTLE", "CAUGHT", "CAVERN", "CEMENT",
+  "CENTER", "CENTRE", "CHANCE", "CHANGE", "CHAPEL", "CHARGE", "CHEESE", "CHERRY", "CHESTS", "CHORUS",
+  "CHOSEN", "CHURCH", "CIRCLE", "CIRCUS", "CLAIMS", "CLIENT", "CLINIC", "CLOSED", "CLOSER", "CLOSET",
+  "CLOTHS", "CLOUDY", "CODING", "COFFEE", "COLDLY", "COLLAR", "COLUMN", "COMBAT", "COMEDY", "COMMIT",
+  "COMMON", "COMPLY", "CONVEY", "COOKIE", "COPPER", "CORNER", "COSTLY", "COUNTY", "COUPLE", "COURSE",
+  "COUSIN", "COVERS", "CRADLE", "CRAFTY", "CREATE", "CREDIT", "CRITIC", "CRUISE", "CUSTOM", "DAMAGE",
+  "DANCER", "DANGER", "DARING", "DARKLY", "DECADE", "DECIDE", "DECREE", "DEFEAT", "DEFEND", "DEFINE",
+  "DEGREE", "DEMAND", "DENIAL", "DEPART", "DEPEND", "DEPUTY", "DERIVE", "DESERT", "DESIGN", "DESIRE",
+  "DETAIL", "DETECT", "DEVICE", "DEVISE", "DIALOG", "DIFFER", "DIGEST", "DINNER", "DIRECT", "DISHES",
+  "DOCTOR", "DOLLAR", "DOMAIN", "DOUBLE", "DRAGON", "DRAWER", "DRIVEN", "DRIVER", "DURING", "EASILY",
+  "EFFECT", "EFFORT", "EIGHTH", "EITHER", "ELEVEN", "EMERGE", "EMPIRE", "EMPLOY", "ENGINE", "ENOUGH",
+  "ENSURE", "ENTIRE", "ENTITY", "EQUALS", "ERASER", "ESCAPE", "ESTATE", "ETHICS", "EXCUSE", "EXPAND",
+  "EXPECT", "EXPERT", "EXPORT", "EXTEND", "EXTENT", "FABRIC", "FACIAL", "FACTOR", "FAILED", "FAIRLY",
+  "FALLEN", "FAMILY", "FAMOUS", "FATHER", "FAUCET", "FEMALE", "FIGURE", "FINGER", "FINISH", "FLAVOR",
+  "FLIGHT", "FLOWER", "FLYING", "FOLLOW", "FORCED", "FOREST", "FORGET", "FORGOT", "FORMER", "FOSTER",
+  "FOUGHT", "FOURTH", "FREELY", "FREEZE", "FRIEND", "FROZEN", "FUTURE", "GALAXY", "GARAGE", "GARDEN",
+  "GARLIC", "GATHER", "GENTLE", "GERMAN", "GIFTED", "GIVING", "GLANCE", "GLOBAL", "GOLDEN", "GOVERN",
+  "GRAHAM", "GRAVEL", "GREASE", "GROUND", "GROWTH", "GUILTY", "GUITAR", "HABITS", "HAMMER", "HANDLE",
+  "HAPPEN", "HARBOR", "HARDER", "HARDLY", "HATRED", "HEALTH", "HEAVEN", "HEIGHT", "HELMET", "HEROIC",
+  "HIDDEN", "HOLDER", "HOLLOW", "HONEST", "HORROR", "HORSES", "HOSTEL", "HOURLY", "HUNGER", "HUNTER",
+  "HURRY", "HYBRID", "ICONIC", "IGNORE", "IMPACT", "IMPORT", "INCOME", "INDEED", "INDOOR", "INFANT",
+  "INFORM", "INJURY", "INSIDE", "INSIST", "INTAKE", "INTEND", "INVEST", "INVITE", "ISLAND", "ITSELF",
+  "JACKET", "JERSEY", "JOCKEY", "JOYFUL", "JUDGES", "JUNGLE", "JUNIOR", "KEEPER", "KERNEL", "KIDNEY",
+  "KILLED", "KILLER", "KINDLE", "KINDLY", "KNIGHT", "LABELS", "LABOUR", "LACKED", "LADDER", "LADIES",
+  "LAPTOP", "LASTED", "LATELY", "LATTER", "LAUNCH", "LAWYER", "LEADER", "LEAGUE", "LEAVES", "LEGACY",
+  "LEGEND", "LENGTH", "LESSON", "LETTER", "LIABLE", "LIKELY", "LINEAR", "LIQUID", "LISTEN", "LITTLE",
+  "LIVELY", "LIVING", "LOADED", "LOCATE", "LOCKER", "LONELY", "LONGER", "LOVING", "LUXURY", "MAINLY",
+  "MAKING", "MANAGE", "MANNER", "MANUAL", "MARBLE", "MARGIN", "MARINE", "MARKET", "MASTER", "MATTER",
+  "MATURE", "MEDIUM", "MEMBER", "MEMORY", "MENTAL", "MENTOR", "MERELY", "METHOD", "MIDDLE", "MIGHTY",
+  "MINING", "MINUTE", "MIRROR", "MISERY", "MOBILE", "MODERN", "MODEST", "MODIFY", "MODULE", "MOMENT",
+  "MONKEY", "MONTHS", "MORTAL", "MOTHER", "MOTION", "MOTIVE", "MOTORS", "MOUNTS", "MOVIES", "MOVING",
+  "MUSCLE", "MUSEUM", "MUTUAL", "MYSELF", "NAMELY", "NARROW", "NATION", "NATIVE", "NATURE", "NEEDED",
+  "NEEDLE", "NEPHEW", "NERVES", "NEWEST", "NIGHTS", "NOBODY", "NORMAL", "NOTICE", "NOTIFY", "NOTION",
+  "NUMBER", "NURSES", "OBJECT", "OBTAIN", "OCCUPY", "OFFICE", "OFFSET", "ONLINE", "OPENED", "OPERA",
+  "OPTION", "ORANGE", "ORBITS", "ORGANS", "ORIGIN", "OUNCES", "OUTPUT", "OXYGEN", "PACKED", "PACKET",
+  "PALACE", "PANELS", "PAPAYA", "PAPERS", "PARENT", "PARISH", "PARROT", "PARTLY", "PASSED", "PATENT",
+  "PATROL", "PATRON", "PEANUT", "PENCIL", "PEOPLE", "PEPPER", "PERIOD", "PERMIT", "PERSON", "PICKED",
+  "PICNIC", "PIECES", "PILLOW", "PISTOL", "PLANET", "PLANTS", "PLATES", "PLAYER", "PLEASE", "PLENTY",
+  "POCKET", "POETRY", "POLICE", "POLICY", "POLITE", "PORTAL", "POSTAL", "POSTER", "POTATO", "POWDER",
+  "PRAISE", "PRAYER", "PREFER", "PRETTY", "PRIEST", "PRINCE", "PRISON", "PROFIT", "PROMPT", "PROPER",
+  "PUBLIC", "PUPILS", "PURPLE", "PURSUE", "PUZZLE", "RABBIT", "RADIUS", "RANDOM", "RARELY", "RATHER",
+  "RATING", "REACTS", "READER", "REALLY", "REASON", "REBELS", "RECALL", "RECENT", "RECORD", "REDUCE",
+  "REFORM", "REFUSE", "REGARD", "REGION", "REGRET", "RELIEF", "REMAIN", "REMEDY", "REMIND", "REMOTE",
+  "REMOVE", "RENDER", "REPAIR", "REPEAT", "REPORT", "RESCUE", "RESIGN", "RESIST", "RESORT", "RESULT",
+  "RETAIL", "RETAIN", "RETURN", "REVEAL", "REVIEW", "REWARD", "RHYTHM", "RIDDLE", "RIDING", "RISING",
+  "RITUAL", "ROBUST", "ROCKET", "ROLLER", "ROTATE", "ROTTEN", "RUNNER", "SACRED", "SAFETY", "SAILOR",
+  "SALARY", "SALMON", "SAMPLE", "SAVING", "SCENIC", "SCHEME", "SCHOOL", "SCREEN", "SCRIPT", "SEARCH",
+  "SEASON", "SECOND", "SECRET", "SECTOR", "SECURE", "SEEING", "SELDOM", "SELECT", "SELLER", "SENIOR",
+  "SERIAL", "SERIES", "SERVER", "SETTLE", "SEVERE", "SHADOW", "SHAKEN", "SHIELD", "SHOWER", "SHRINK",
+  "SIGNAL", "SIGNED", "SILENT", "SILVER", "SIMPLE", "SISTER", "SLEEVE", "SLIGHT", "SLOWLY", "SMOOTH",
+  "SOCCER", "SOCIAL", "SOCKET", "SOFTLY", "SOLELY", "SOURCE", "SOVIET", "SPEECH", "SPIRIT", "SPOKEN",
+  "SPREAD", "SPRING", "SQUARE", "STABLE", "STAGED", "STAMPS", "STATUE", "STATUS", "STEADY", "STEREO",
+  "STOLEN", "STORED", "STRAIN", "STRAND", "STREAM", "STREET", "STRESS", "STRICT", "STRIKE", "STRING",
+  "STRONG", "STRUCK", "STUDIO", "SUBMIT", "SUDDEN", "SUFFER", "SUITED", "SUMMER", "SUMMIT", "SUNSET",
+  "SUPPLY", "SURELY", "SURVEY", "SWITCH", "SYMBOL", "SYSTEM", "TABLET", "TACKLE", "TALENT", "TARGET",
+  "TENNIS", "TERROR", "THANKS", "THEORY", "THIRTY", "THREAD", "THREAT", "THRIVE", "THROAT", "THRONE",
+  "TICKET", "TIMBER", "TIMELY", "TIMING", "TISSUE", "TOILET", "TOMATO", "TONGUE", "TOWARD", "TRACKS",
+  "TRADER", "TRAGIC", "TRAVEL", "TREATY", "TRENDS", "TRIBAL", "TROPHY", "TUNNEL", "TURKEY", "TURTLE",
+  "TWELVE", "TWENTY", "UNCLES", "UNFOLD", "UNIQUE", "UNITED", "UNLESS", "UNLIKE", "UNSEEN", "UPDATE",
+  "URGENT", "USEFUL", "VALLEY", "VALUED", "VECTOR", "VELVET", "VENDOR", "VENUE", "VERBAL", "VERIFY",
+  "VERSUS", "VESSEL", "VICTIM", "VIEWER", "VIOLIN", "VIRTUE", "VISION", "VISUAL", "VOLUME", "VOWELS",
+  "WALLET", "WALNUT", "WANDER", "WARMTH", "WEALTH", "WEAPON", "WEEKLY", "WEIGHT", "WHEATS", "WHILST",
+  "WIDELY", "WINDOW", "WINNER", "WINTER", "WISDOM", "WONDER", "WOODEN", "WORKER", "WORLDS", "WORTHY",
+  "WRITER", "YELLOW", "YIELDS"
+];
+
+// Combine target words and common vocabulary into an O(1) lookup set
+const VALID_DICTIONARY_SET: Set<string> = new Set<string>();
+
+for (const item of WORDLE_TARGET_WORDS) {
+  const w = item.word.trim().toUpperCase();
+  if (w.length >= 4 && w.length <= 6) {
+    VALID_DICTIONARY_SET.add(w);
+  }
+}
+
+for (const word of COMMON_DICTIONARY_WORDS) {
+  const w = word.trim().toUpperCase();
+  if (w.length >= 4 && w.length <= 6) {
+    VALID_DICTIONARY_SET.add(w);
+  }
+}
+
+/**
+ * Checks if candidate guess is a valid English word in O(1)
+ */
+export function isValidWordleGuess(guess: string): boolean {
+  if (!guess) return false;
+  const normalized = guess.trim().toUpperCase();
+  if (normalized.length < 4 || normalized.length > 6) return false;
+  return VALID_DICTIONARY_SET.has(normalized);
+}
+
+/**
+ * Gets a random target word filtered by category and/or length.
+ * Falls back gracefully to matching category/length or any target word if no exact match exists.
+ */
+export function getRandomWord(category?: string, length?: 4 | 5 | 6): WordleTargetWord {
+  if (category && length) {
+    const exactMatch = WORDLE_TARGET_WORDS.filter(
+      (w) => w.category === category && w.length === length
+    );
+    if (exactMatch.length > 0) {
+      return exactMatch[Math.floor(Math.random() * exactMatch.length)];
+    }
+  }
+
+  let pool = WORDLE_TARGET_WORDS;
+
+  if (category) {
+    const categoryPool = WORDLE_TARGET_WORDS.filter((w) => w.category === category);
+    if (categoryPool.length > 0) {
+      pool = categoryPool;
+    }
+  } else if (length) {
+    const lengthPool = WORDLE_TARGET_WORDS.filter((w) => w.length === length);
+    if (lengthPool.length > 0) {
+      pool = lengthPool;
+    }
+  }
+
+  return pool[Math.floor(Math.random() * pool.length)];
+}
