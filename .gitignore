@@ -47,3 +47,4 @@ setup_output*.json
 setup-output*.json
 setup_tasks_output*.json
 playwright-report
+.superpowers/
