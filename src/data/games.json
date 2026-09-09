@@ -118,6 +118,16 @@
     "emoji": "🌧️",
     "route": "/games/falling-words",
     "priority": 12
+  },
+  {
+    "id": "hangman",
+    "slug": "hangman",
+    "titleVi": "Giải Cứu Nhà Thám Hiểm",
+    "titleEn": "Word Explorer: Balloon Hangman",
+    "description": "Đoán các chữ cái tiếng Anh để giữ khinh khí cầu bay cao và giải cứu nhà thám hiểm",
+    "emoji": "🎈",
+    "route": "/games/hangman",
+    "priority": 13
   }
 ]
 
