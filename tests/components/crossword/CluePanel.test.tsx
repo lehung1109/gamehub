@@ -109,6 +109,29 @@ describe("CluePanel Component", () => {
     const rabbitBtn = screen.getByRole("button", { name: /Từ 2: Con thỏ/i });
     expect(rabbitBtn).toHaveAttribute("aria-pressed", "false");
   });
+
+  it("renders checkmark badge and emerald styling when word is solved", () => {
+    const solvedWords: CrosswordWord[] = [
+      {
+        ...mockWords[0],
+        isSolved: true,
+      },
+      mockWords[1],
+    ];
+
+    render(
+      <CluePanel
+        words={solvedWords}
+        activeWordId="rabbit"
+        onSelectWord={vi.fn()}
+      />
+    );
+
+    const tigerItem = screen.getByText("Con hổ dũng mãnh").closest(".group");
+    expect(tigerItem).toHaveAttribute("data-solved", "true");
+    expect(tigerItem?.className).toContain("emerald");
+    expect(screen.getByText(/Đã xong|Xong/i)).toBeInTheDocument();
+  });
 });
 
 describe("HintBar Component", () => {

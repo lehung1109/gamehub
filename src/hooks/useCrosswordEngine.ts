@@ -49,6 +49,11 @@ export function useCrosswordEngine(initialTopicId = "animals") {
   const [wordsRevealed, setWordsRevealed] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [justSolvedWord, setJustSolvedWord] = useState<CrosswordWord | null>(null);
+
+  const clearJustSolvedWord = useCallback(() => {
+    setJustSolvedWord(null);
+  }, []);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -119,6 +124,12 @@ export function useCrosswordEngine(initialTopicId = "animals") {
         const nextGrid = board.grid.map((r) => r.map((c) => ({ ...c })));
         nextGrid[row][col].userChar = upperChar;
         const { nextWords, isCompleted } = evaluateBoardState(nextGrid, board.words);
+        const newlySolved = nextWords.find(
+          (w) => w.isSolved && !board.words.find((bw) => bw.id === w.id)?.isSolved
+        );
+        if (newlySolved) {
+          setJustSolvedWord(newlySolved);
+        }
         setBoard({ ...board, grid: nextGrid, words: nextWords });
 
         if (isCompleted) {
@@ -200,6 +211,12 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     nextGrid[row][col].userChar = cell.char;
     nextGrid[row][col].isRevealed = true;
     const { nextWords, isCompleted } = evaluateBoardState(nextGrid, board.words);
+    const newlySolved = nextWords.find(
+      (w) => w.isSolved && !board.words.find((bw) => bw.id === w.id)?.isSolved
+    );
+    if (newlySolved) {
+      setJustSolvedWord(newlySolved);
+    }
 
     setBoard({ ...board, grid: nextGrid, words: nextWords });
     setHintsUsed((prev) => prev + 1);
@@ -212,7 +229,10 @@ export function useCrosswordEngine(initialTopicId = "animals") {
   const revealWord = useCallback(
     (targetWord?: CrosswordWord) => {
       if (isComplete) return;
-      const wordToReveal = targetWord || activeWord;
+      const wordToReveal =
+        targetWord && typeof targetWord === "object" && "word" in targetWord
+          ? targetWord
+          : activeWord;
       if (!wordToReveal) return;
 
       const wordInBoard = board.words.find((w) => w.id === wordToReveal.id);
@@ -242,6 +262,12 @@ export function useCrosswordEngine(initialTopicId = "animals") {
         w.id === wordToReveal.id ? { ...w, isRevealed: true, isSolved: true } : w
       );
       const { nextWords, isCompleted } = evaluateBoardState(nextGrid, updatedWords);
+      const newlySolved = nextWords.find(
+        (w) => w.id === wordToReveal.id || (w.isSolved && !board.words.find((bw) => bw.id === w.id)?.isSolved)
+      );
+      if (newlySolved) {
+        setJustSolvedWord(newlySolved);
+      }
 
       setBoard({ ...board, grid: nextGrid, words: nextWords });
       setWordsRevealed((prev) => prev + 1);
@@ -266,6 +292,7 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     setWordsRevealed(0);
     setIsComplete(false);
     setElapsedSeconds(0);
+    setJustSolvedWord(null);
   }, [topicId]);
 
   // Timer
@@ -291,6 +318,8 @@ export function useCrosswordEngine(initialTopicId = "animals") {
     wordsRevealed,
     isComplete,
     elapsedSeconds,
+    justSolvedWord,
+    clearJustSolvedWord,
     typeLetter,
     handleBackspace,
     moveCursor,

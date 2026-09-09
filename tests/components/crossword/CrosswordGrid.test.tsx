@@ -94,4 +94,26 @@ describe("CrosswordGrid Component", () => {
     // Some tiles are blocked, so interactive buttons < totalTiles
     expect(buttons.length).toBeLessThan(totalTiles);
   });
+
+  it("marks cells belonging to a solved word with data-solved='true'", () => {
+    const solvedWord = { ...board.words[0], isSolved: true };
+    const boardWithSolvedWord = {
+      ...board,
+      words: [solvedWord, ...board.words.slice(1)],
+    };
+
+    render(
+      <CrosswordGrid
+        board={boardWithSolvedWord}
+        selectedCell={{ row: 999, col: 999 }} // Unselected
+        direction="across"
+        activeWord={null}
+        onSelectCell={vi.fn()}
+      />
+    );
+
+    const firstCell = screen.getByTestId(`cell-${solvedWord.startRow}-${solvedWord.startCol}`);
+    expect(firstCell).toHaveAttribute("data-solved", "true");
+    expect(firstCell.className).toContain("emerald");
+  });
 });

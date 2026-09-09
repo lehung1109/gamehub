@@ -34,6 +34,17 @@ export const CrosswordGrid: React.FC<CrosswordGridProps> = ({
     );
   };
 
+  const solvedWordIds = React.useMemo(() => {
+    return new Set(board.words.filter((w) => w.isSolved).map((w) => w.id));
+  }, [board.words]);
+
+  const isCellSolved = (cell: (typeof board.grid)[0][0]) => {
+    return Boolean(
+      (cell.acrossWordId && solvedWordIds.has(cell.acrossWordId)) ||
+      (cell.downWordId && solvedWordIds.has(cell.downWordId))
+    );
+  };
+
   return (
     <div className="w-full max-w-lg aspect-square bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-3 md:p-4 shadow-2xl flex flex-col justify-center">
       <div
@@ -52,6 +63,7 @@ export const CrosswordGrid: React.FC<CrosswordGridProps> = ({
               cell={cell}
               isSelected={selectedCell.row === rIdx && selectedCell.col === cIdx}
               isInActiveWord={isCellInActiveWord(rIdx, cIdx)}
+              isSolved={isCellSolved(cell)}
               onSelect={() => onSelectCell(rIdx, cIdx)}
             />
           ))

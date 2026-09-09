@@ -68,4 +68,22 @@ describe("Crossword Game Page", () => {
     fireEvent.change(select, { target: { value: "fruits" } });
     expect(select).toHaveValue("fruits");
   });
+
+  it("displays celebration toast and highlights solved word when word is completed", () => {
+    render(<CrosswordPage />);
+
+    // Reveal the currently active word using the hint bar
+    const revealWordBtn = screen.getByRole("button", { name: /Mở cả từ/i });
+    fireEvent.click(revealWordBtn);
+
+    // Toast status notification should be shown
+    const statusToast = screen.getByRole("status");
+    expect(statusToast).toBeInTheDocument();
+    expect(statusToast).toHaveTextContent(/Chính xác:/i);
+
+    // Dismiss toast
+    const dismissBtn = screen.getByRole("button", { name: /đóng/i });
+    fireEvent.click(dismissBtn);
+    expect(screen.queryByRole("status")).not.toBeInTheDocument();
+  });
 });

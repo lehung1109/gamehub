@@ -7,6 +7,7 @@ interface CrosswordCellItemProps {
   cell: CrosswordCell;
   isSelected: boolean;
   isInActiveWord: boolean;
+  isSolved?: boolean;
   onSelect: () => void;
 }
 
@@ -14,6 +15,7 @@ export const CrosswordCellItem: React.FC<CrosswordCellItemProps> = ({
   cell,
   isSelected,
   isInActiveWord,
+  isSolved = false,
   onSelect,
 }) => {
   if (cell.isBlocked) {
@@ -29,12 +31,17 @@ export const CrosswordCellItem: React.FC<CrosswordCellItemProps> = ({
       onClick={onSelect}
       aria-pressed={isSelected}
       data-selected={isSelected}
-      aria-label={`Row ${cell.row + 1}, Column ${cell.col + 1}${cell.clueNumber ? `, Clue ${cell.clueNumber}` : ""}${cell.userChar ? `, ${cell.userChar}` : ""}`}
+      data-solved={isSolved}
+      aria-label={`Row ${cell.row + 1}, Column ${cell.col + 1}${cell.clueNumber ? `, Clue ${cell.clueNumber}` : ""}${cell.userChar ? `, ${cell.userChar}` : ""}${isSolved ? ", Solved" : ""}`}
       className={`relative w-full aspect-square flex items-center justify-center font-black text-lg md:text-xl rounded-lg border transition-all cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:outline-none ${
         isSelected
           ? "bg-amber-500 text-slate-950 border-amber-300 shadow-lg shadow-amber-500/30 scale-105 z-10"
+          : isInActiveWord && isSolved
+          ? "bg-emerald-600/40 text-emerald-100 border-emerald-400 shadow-sm shadow-emerald-500/20"
           : isInActiveWord
           ? "bg-indigo-600/30 text-white border-indigo-500/60"
+          : isSolved
+          ? "bg-emerald-950/40 text-emerald-300 border-emerald-500/40 hover:border-emerald-400"
           : "bg-slate-800 text-slate-200 border-slate-700 hover:border-slate-500"
       }`}
     >

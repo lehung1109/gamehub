@@ -10,6 +10,7 @@ import { CluePanel } from "@/components/game/crossword/CluePanel";
 import { HintBar } from "@/components/game/crossword/HintBar";
 import { VirtualKeyboard } from "@/components/game/crossword/VirtualKeyboard";
 import { CrosswordCompletionModal } from "@/components/game/crossword/CrosswordCompletionModal";
+import { WordSolvedToast } from "@/components/game/crossword/WordSolvedToast";
 
 const TOPICS = [
   { id: "animals", name: "🐾 Động vật (Animals)" },
@@ -37,6 +38,8 @@ export default function CrosswordPage() {
     wordsRevealed,
     isComplete,
     elapsedSeconds,
+    justSolvedWord,
+    clearJustSolvedWord,
     typeLetter,
     handleBackspace,
     toggleDirection,
@@ -240,6 +243,12 @@ export default function CrosswordPage() {
           />
         </div>
       </main>
+
+      {/* Word Solved Notification */}
+      <WordSolvedToast
+        word={justSolvedWord}
+        onDismiss={clearJustSolvedWord}
+      />
 
       {/* Completion Modal */}
       <CrosswordCompletionModal

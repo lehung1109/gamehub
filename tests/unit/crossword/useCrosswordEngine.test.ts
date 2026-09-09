@@ -321,4 +321,38 @@ describe("useCrosswordEngine Hook", () => {
     expect(result.current.score).toBe(currentScore);
     expect(result.current.hintsUsed).toBe(currentHints);
   });
+
+  it("sets justSolvedWord when a word is completed and provides clearJustSolvedWord", () => {
+    const { result } = renderHook(() => useCrosswordEngine("animals"));
+    const firstWord = result.current.board.words[0];
+
+    expect(result.current.justSolvedWord).toBeNull();
+
+    // Select the first word clue so cursor is at the start
+    act(() => {
+      result.current.selectClue(firstWord.id);
+    });
+
+    // Type all letters of the first word except the last one
+    for (let i = 0; i < firstWord.word.length - 1; i++) {
+      act(() => {
+        result.current.typeLetter(firstWord.word[i]);
+      });
+    }
+    expect(result.current.justSolvedWord).toBeNull();
+
+    // Type the final letter
+    act(() => {
+      result.current.typeLetter(firstWord.word[firstWord.word.length - 1]);
+    });
+
+    expect(result.current.justSolvedWord).not.toBeNull();
+    expect(result.current.justSolvedWord?.id).toBe(firstWord.id);
+
+    // clearJustSolvedWord should reset it
+    act(() => {
+      result.current.clearJustSolvedWord();
+    });
+    expect(result.current.justSolvedWord).toBeNull();
+  });
 });
