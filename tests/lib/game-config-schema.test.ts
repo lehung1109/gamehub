@@ -9,7 +9,7 @@ import {
 
 describe('Game Config Schema', () => {
   it('identifies valid and invalid game IDs', () => {
-    expect(VALID_GAME_IDS).toHaveLength(13)
+    expect(VALID_GAME_IDS).toHaveLength(14)
     expect(isValidGameId('flashcard')).toBe(true)
     expect(isValidGameId('alphabet')).toBe(true)
     expect(isValidGameId('listening')).toBe(true)
@@ -20,6 +20,7 @@ describe('Game Config Schema', () => {
     expect(isValidGameId('word-search')).toBe(true)
     expect(isValidGameId('wordle')).toBe(true)
     expect(isValidGameId('word-connect')).toBe(true)
+    expect(isValidGameId('odd-one-out')).toBe(true)
     expect(isValidGameId('unknown-game')).toBe(false)
     expect(isValidGameId('')).toBe(false)
   })
@@ -228,6 +229,28 @@ describe('Game Config Schema', () => {
         enableHints: true,
         autoSpeak: true,
         showTimer: true,
+      })
+    })
+
+    it('validates odd-one-out settings with defaults and sanitizes inputs', () => {
+      const res = validateGameSettings('odd-one-out', {
+        difficulty: ['easy', 'invalid_diff', 'hard'],
+        questionCount: 15,
+        allowHints: false,
+      })
+      expect(res.valid).toBe(true)
+      expect(res.data).toEqual({
+        difficulty: ['easy', 'hard'],
+        questionCount: 15,
+        allowHints: false,
+      })
+
+      const resDefault = validateGameSettings('odd-one-out', {})
+      expect(resDefault.valid).toBe(true)
+      expect(resDefault.data).toEqual({
+        difficulty: ['easy', 'medium', 'hard'],
+        questionCount: 10,
+        allowHints: true,
       })
     })
   })

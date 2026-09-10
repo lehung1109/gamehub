@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import gamesList from "@/data/games.json";
-import { GAME_INSTRUCTIONS, getGameInstruction } from "@/data/game-instructions";
+import { getGameInstruction } from "@/data/game-instructions";
 
 describe("game-instructions data", () => {
   it("contains instructions for all games defined in games.json", () => {

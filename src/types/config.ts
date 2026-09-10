@@ -78,6 +78,12 @@ export interface WordConnectSettings {
   enableBonusWords: boolean
 }
 
+export interface OddOneOutSettings {
+  difficulty: ('easy' | 'medium' | 'hard')[]
+  questionCount: number
+  allowHints: boolean
+}
+
 export interface GameSettingsMap {
   flashcard: FlashcardSettings
   alphabet: AlphabetSettings
@@ -92,6 +98,7 @@ export interface GameSettingsMap {
   'word-search': WordSearchSettings
   wordle: WordleSettings
   'word-connect': WordConnectSettings
+  'odd-one-out': OddOneOutSettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -110,6 +117,7 @@ export type AnyGameSettings =
   | WordSearchSettings
   | WordleSettings
   | WordConnectSettings
+  | OddOneOutSettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -125,6 +133,8 @@ export type GameSettings =
   | { gameId: 'word-search'; settings: WordSearchSettings }
   | { gameId: 'wordle'; settings: WordleSettings }
   | { gameId: 'word-connect'; settings: WordConnectSettings }
+  | { gameId: 'odd-one-out'; settings: OddOneOutSettings }
+
 
 
 export interface PreviewPayload {

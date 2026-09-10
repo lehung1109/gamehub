@@ -507,6 +507,49 @@ export const GAME_INSTRUCTIONS: Record<string, GameInstruction> = {
       "Cải thiện kỹ năng nghe phát âm chuẩn và nắm vững nghĩa từ vựng trong ngữ cảnh thực tế.",
     ],
   },
+
+  "odd-one-out": {
+    id: "odd-one-out",
+    slug: "odd-one-out",
+    titleVi: "Truy Tìm Kẻ Lạc Loài",
+    titleEn: "Odd One Out",
+    emoji: "🎯",
+    summary: "Phân tích ngữ nghĩa, tìm từ không cùng nhóm và hiểu sâu sắc bản chất từ vựng qua giải thích song ngữ.",
+    quickSummary: "Tìm từ không cùng nhóm và khám phá mối liên kết ngữ nghĩa giữa các từ vựng.",
+    goal: "Phát hiện từ khác biệt trong nhóm 4 từ vựng tiếng Anh dựa trên mối liên hệ ngữ nghĩa, từ loại hoặc chủ đề.",
+    steps: [
+      "Quan sát 4 từ vựng tiếng Anh được hiển thị trên các thẻ lựa chọn.",
+      "Phân tích mối quan hệ ngữ nghĩa, phân loại chủ đề hoặc đặc tính ngữ pháp giữa các từ.",
+      "Chọn từ mà bạn cho là không thuộc cùng nhóm với 3 từ còn lại.",
+      "Nhấn vào nút Gợi ý (💡) nếu cần manh mối về mối liên kết giữa các từ hoặc 50/50 để loại bớt phương án.",
+      "Xem phần giải thích chi tiết song ngữ (Anh - Việt) và nghe phát âm chuẩn sau mỗi câu trả lời.",
+      "Hoàn thành các vòng chơi để tích lũy điểm số, duy trì chuỗi đúng và đạt kết quả cao nhất.",
+    ],
+    howToPlay: [
+      "Đọc kỹ 4 từ vựng tiếng Anh trên màn hình / Carefully examine the 4 English words displayed on the screen.",
+      "Phân tích đặc điểm chung của 3 từ và tìm ra từ khác biệt nhất / Identify the shared attribute of 3 words and find the odd one out.",
+      "Bấm chọn thẻ từ tương ứng hoặc dùng phím số 1-4 / Tap the corresponding word card or press keys 1-4.",
+      "Dùng nút Gợi ý (Hint) hoặc 50/50 khi gặp câu đố phức tạp / Use Hint or 50/50 power-up when facing tricky word sets.",
+      "Đọc kỹ giải thích ngữ nghĩa song ngữ để hiểu sâu bản chất từ vựng / Review bilingual semantic explanations to deepen vocabulary understanding.",
+    ],
+    controls: {
+      mouse: "Nhấp chuột vào thẻ từ để chọn đáp án, bấm nút Gợi ý hoặc Tiếp tục trên màn hình.",
+      touch: "Chạm trực tiếp vào thẻ từ vựng muốn chọn hoặc chạm các nút điều khiển.",
+      keyboard: "Nhấn các phím số 1, 2, 3, 4 để chọn từ tương ứng, phím H để xem gợi ý, Enter để tiếp tục.",
+    },
+    tips: [
+      "Không chỉ nhìn vào mặt chữ hay độ dài, hãy xem xét từ loại (danh từ, động từ, tính từ) và trường từ vựng (semantic field).",
+      "Đôi khi các từ cùng chủ đề nhưng khác biệt về ngữ nghĩa tinh tế (ví dụ: động vật ăn cỏ vs ăn thịt, phương tiện đường bộ vs hàng không).",
+      "Sử dụng tính năng phát âm bản xứ để luyện tai nghe và ghi nhớ ngữ âm của cả 4 từ.",
+      "Tận dụng nút gợi ý khi phân vân giữa hai đáp án có vẻ hợp lý.",
+    ],
+    benefits: [
+      "Nâng cao tư duy phản biện, phân tích ngữ nghĩa và khả năng phân loại từ vựng đa chiều.",
+      "Mở rộng vốn từ vựng tiếng Anh theo mạng lưới ngữ nghĩa (semantic networks) thay vì học vẹt từ đơn lẻ.",
+      "Hiểu rõ sắc thái nghĩa, ngữ cảnh sử dụng và các cặp từ đồng nghĩa/khác nhóm.",
+      "Luyện phát âm chuẩn xác qua hệ thống âm thanh bản xứ đi kèm từng từ vựng.",
+    ],
+  },
 };
 
 export function getGameInstruction(gameIdOrSlug?: string | null): GameInstruction | undefined {
