@@ -148,6 +148,16 @@
     "emoji": "🔄",
     "route": "/games/word-connect",
     "priority": 15
+  },
+  {
+    "id": "odd-one-out",
+    "slug": "odd-one-out",
+    "titleVi": "Truy Tìm Kẻ Lạc Loài",
+    "titleEn": "Odd One Out",
+    "description": "Phân tích ngữ nghĩa, tìm từ không cùng nhóm và hiểu sâu sắc bản chất từ vựng qua giải thích song ngữ",
+    "emoji": "🎯",
+    "route": "/games/odd-one-out",
+    "priority": 16
   }
 ]
 

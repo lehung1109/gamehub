@@ -15,6 +15,7 @@ import type {
   WordSearchSettings,
   WordleSettings,
   WordConnectSettings,
+  OddOneOutSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -33,6 +34,7 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'word-search',
   'wordle',
   'word-connect',
+  'odd-one-out',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -104,6 +106,11 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
     allowHints: true,
     allowShuffle: true,
     enableBonusWords: true,
+  },
+  'odd-one-out': {
+    difficulty: ['easy', 'medium', 'hard'],
+    questionCount: 10,
+    allowHints: true,
   },
 }
 
@@ -294,6 +301,21 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       return { valid: true, data: validated }
     }
 
+    case 'odd-one-out': {
+      const validDiffs: ('easy' | 'medium' | 'hard')[] = ['easy', 'medium', 'hard']
+      const difficulty = Array.isArray(obj.difficulty)
+        ? obj.difficulty.filter((d): d is 'easy' | 'medium' | 'hard' => validDiffs.includes(d))
+        : validDiffs
+      const questionCount = sanitizeInt(obj.questionCount, 10, 5, 20)
+      const allowHints = obj.allowHints !== undefined ? Boolean(obj.allowHints) : true
+      const validated: OddOneOutSettings = {
+        difficulty: difficulty.length > 0 ? difficulty : validDiffs,
+        questionCount,
+        allowHints,
+      }
+      return { valid: true, data: validated }
+    }
+
     default:
       return { valid: false, error: `Unhandled game: ${gameId}` }
   }
@@ -389,6 +411,37 @@ export const GAME_CONFIG_SCHEMAS: Record<string, GameConfigSchemaDefinition> = {
         label: 'Kích hoạt từ thưởng',
         type: 'boolean',
         description: 'Bật/tắt tính năng tích lũy từ thưởng (Bonus Words) khi tìm được từ hợp lệ ngoài bảng',
+        defaultValue: true,
+      },
+    },
+  },
+  'odd-one-out': {
+    gameId: 'odd-one-out',
+    title: 'Odd One Out',
+    description: 'Cấu hình tùy chỉnh Truy Tìm Kẻ Lạc Loài cho giáo viên và quản trị viên',
+    fields: {
+      difficulty: {
+        name: 'difficulty',
+        label: 'Mức độ khó cho phép',
+        type: 'multiselect',
+        description: 'Các cấp độ khó câu hỏi được kích hoạt (easy, medium, hard)',
+        defaultValue: ['easy', 'medium', 'hard'],
+        options: ['easy', 'medium', 'hard'],
+      },
+      questionCount: {
+        name: 'questionCount',
+        label: 'Số câu hỏi mỗi lượt chơi',
+        type: 'number',
+        description: 'Số lượng câu hỏi trong mỗi lượt chơi (từ 5 đến 20)',
+        defaultValue: 10,
+        min: 5,
+        max: 20,
+      },
+      allowHints: {
+        name: 'allowHints',
+        label: 'Cho phép trợ giúp',
+        type: 'boolean',
+        description: 'Bật/tắt tính năng trợ giúp (gợi ý manh mối, loại trừ 50/50)',
         defaultValue: true,
       },
     },

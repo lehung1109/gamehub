@@ -144,7 +144,7 @@ export function SemanticWordCard({
         </p>
         <Badge
           variant="secondary"
-          className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 shrink-0"
+          className="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 shrink-0"
         >
           {item.partOfSpeech}
         </Badge>
