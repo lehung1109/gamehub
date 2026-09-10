@@ -251,3 +251,69 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
   }
 }
 
+export interface ConfigFieldDefinition {
+  name: string
+  label: string
+  type: 'number' | 'boolean' | 'string' | 'select' | 'multiselect' | 'array'
+  description: string
+  defaultValue: unknown
+  options?: unknown[]
+  min?: number
+  max?: number
+}
+
+export interface GameConfigSchemaDefinition {
+  gameId: string
+  title: string
+  description: string
+  fields: {
+    allowedLengths: ConfigFieldDefinition
+    categories: ConfigFieldDefinition
+    maxAttempts: ConfigFieldDefinition
+    allowHints: ConfigFieldDefinition
+    [key: string]: ConfigFieldDefinition
+  }
+}
+
+export const GAME_CONFIG_SCHEMAS: Record<string, GameConfigSchemaDefinition> = {
+  wordle: {
+    gameId: 'wordle',
+    title: 'Wordle Master',
+    description: 'Cấu hình tùy chỉnh Wordle Master cho giáo viên và quản trị viên',
+    fields: {
+      allowedLengths: {
+        name: 'allowedLengths',
+        label: 'Độ dài từ cho phép',
+        type: 'multiselect',
+        description: 'Các độ dài từ học sinh có thể lựa chọn chơi (4, 5, hoặc 6 chữ cái)',
+        defaultValue: [4, 5, 6],
+        options: [4, 5, 6],
+      },
+      categories: {
+        name: 'categories',
+        label: 'Chủ đề từ vựng',
+        type: 'multiselect',
+        description: 'Các chủ đề từ vựng được kích hoạt trong bài học',
+        defaultValue: ['animals', 'fruits', 'school', 'technology', 'nature'],
+        options: ['animals', 'fruits', 'school', 'technology', 'nature'],
+      },
+      maxAttempts: {
+        name: 'maxAttempts',
+        label: 'Số lượt đoán tối đa',
+        type: 'number',
+        description: 'Số lượt thử tối đa cho mỗi màn chơi (từ 4 đến 8)',
+        defaultValue: 6,
+        min: 4,
+        max: 8,
+      },
+      allowHints: {
+        name: 'allowHints',
+        label: 'Cho phép trợ giúp',
+        type: 'boolean',
+        description: 'Bật/tắt các tính năng gợi ý (nghĩa tiếng Việt, mở chữ cái, phát âm bản xứ)',
+        defaultValue: true,
+      },
+    },
+  },
+}
+

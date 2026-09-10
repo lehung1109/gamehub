@@ -128,6 +128,16 @@
     "emoji": "🎈",
     "route": "/games/hangman",
     "priority": 13
+  },
+  {
+    "id": "wordle",
+    "slug": "wordle",
+    "titleVi": "Thử Thách Đoán Từ",
+    "titleEn": "Wordle Master",
+    "description": "Đoán từ tiếng Anh bí ẩn qua gợi ý màu sắc, trau dồi chính tả, phát âm và từ vựng",
+    "emoji": "🟩",
+    "route": "/games/wordle",
+    "priority": 14
   }
 ]
 

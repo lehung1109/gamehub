@@ -13,6 +13,9 @@ export interface GameInstruction {
     touch?: string;
   };
   tips: string[];
+  quickSummary?: string;
+  howToPlay?: string[];
+  benefits?: string[];
 }
 
 export const GAME_INSTRUCTIONS: Record<string, GameInstruction> = {
@@ -415,6 +418,49 @@ export const GAME_INSTRUCTIONS: Record<string, GameInstruction> = {
     },
     tips: [
       "Đọc lướt một lượt câu hỏi trước khi đọc văn bản để biết thông tin quan trọng nào cần tìm kiếm (kỹ thuật Skimming & Scanning).",
+    ],
+  },
+
+  wordle: {
+    id: "wordle",
+    slug: "wordle",
+    titleVi: "Thử Thách Đoán Từ",
+    titleEn: "Wordle Master",
+    emoji: "🟩",
+    summary: "Đoán từ tiếng Anh bí ẩn qua gợi ý màu sắc, trau dồi chính tả, phát âm và từ vựng.",
+    quickSummary: "Đoán từ tiếng Anh bí ẩn qua gợi ý màu sắc trong 6 lượt thử.",
+    goal: "Đoán chính xác từ tiếng Anh bí ẩn trong số lượt thử giới hạn (mặc định 6 lượt) dựa trên phản hồi màu sắc của từng ô chữ.",
+    steps: [
+      "Nhập một từ tiếng Anh hợp lệ có độ dài tương ứng (mặc định 5 chữ cái) và nhấn Enter.",
+      "Quan sát màu sắc các ô chữ: Xanh lá = đúng vị trí, Vàng = sai vị trí, Xám = không có trong từ.",
+      "Sử dụng thông tin gợi ý từ các lượt đoán trước để suy luận và đưa ra từ tiếp theo.",
+      "Sử dụng các quyền trợ giúp nếu cần: Gợi ý nghĩa tiếng Việt (Hint), Lật mở một chữ cái (Reveal), hoặc Nghe phát âm từ (Audio).",
+      "Đoán đúng toàn bộ chữ cái (tất cả ô chuyển màu xanh lá) để giành chiến thắng trước khi hết lượt!",
+    ],
+    howToPlay: [
+      "Nhập từ tiếng Anh hợp lệ gồm 4, 5 hoặc 6 chữ cái và nhấn Enter / Type a valid English word and press Enter.",
+      "Màu Xanh lá (Green): Chữ cái đúng và nằm đúng vị trí trong từ / Letter is correct and in the right spot.",
+      "Màu Vàng (Yellow): Chữ cái có trong từ nhưng đang ở sai vị trí / Letter is in the word but in the wrong spot.",
+      "Màu Xám (Gray): Chữ cái hoàn toàn không có trong từ bí mật / Letter is not in the word in any spot.",
+      "Sử dụng các trợ giúp thông minh (Gợi ý nghĩa tiếng Việt, Mở chữ cái ngẫu nhiên, Phát âm bản xứ) khi gặp khó khăn.",
+      "Đoán đúng từ trước khi dùng hết 6 lượt thử để chiến thắng và ghi điểm streak!",
+    ],
+    controls: {
+      keyboard: "Gõ các phím chữ cái A-Z trên bàn phím máy tính, bấm Enter để nộp từ, bấm Backspace để xoá ký tự.",
+      mouse: "Nhấp chuột vào các phím trên bàn phím ảo hiển thị trên màn hình.",
+      touch: "Chạm vào các phím trên bàn phím ảo hiển thị trên thiết bị di động.",
+    },
+    tips: [
+      "Bắt đầu với các từ có nhiều nguyên âm phổ biến như CRANE, AUDIO, TEARS, SLATE để nhanh chóng loại suy các chữ cái.",
+      "Chú ý các chữ cái màu xám trên bàn phím ảo - chúng đã bị loại bỏ và không nên dùng lại ở các lượt tiếp theo.",
+      "Tận dụng nút 'Hint' để xem gợi ý nghĩa tiếng Việt hoặc ngữ cảnh khi bị mắc kẹt.",
+      "Sau khi hoàn thành, hãy nghe lại phát âm bản xứ và xem định nghĩa chi tiết để mở rộng vốn từ vựng.",
+    ],
+    benefits: [
+      "Mở rộng vốn từ vựng tiếng Anh học thuật và đời sống theo nhiều chủ đề đa dạng.",
+      "Rèn luyện kỹ năng chính tả và phản xạ nhận diện mẫu từ (phonics & word patterns).",
+      "Nâng cao khả năng suy luận logic, tư duy phản biện và phán đoán theo ngữ cảnh.",
+      "Luyện nghe phát âm chuẩn bản ngữ và củng cố nghĩa từ vựng qua thẻ tóm tắt kết quả.",
     ],
   },
 };
