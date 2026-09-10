@@ -13,6 +13,8 @@ import { Button } from '@/components/ui/button';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useGameConfig } from '@/hooks/useGameConfig';
 import { TypingSettings } from '@/types/config';
+import { useGameTracking } from '@/hooks/use-game-tracking';
+import { validateAnswer } from '@/lib/validation';
 
 function TypingGameContent() {
   const { isLoading } = useGameConfig<TypingSettings>('typing');
@@ -31,6 +33,42 @@ function TypingGameContent() {
     resetGame,
     totalQuestions,
   } = useTypingGame(questions);
+
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: 'typing',
+    totalQuestions: questions.length,
+  });
+
+  const hasSubmittedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    if (state.status === 'completed' && !hasSubmittedRef.current) {
+      hasSubmittedRef.current = true;
+      submitSession({ score: state.score, totalQuestions });
+    }
+  }, [state.status, state.score, totalQuestions, submitSession]);
+
+  const onAnswerSubmit = React.useCallback(() => {
+    if (state.isCorrect !== null || !currentQuestion || !state.userInput.trim()) return;
+    const isCorrect = validateAnswer(
+      state.userInput,
+      currentQuestion.correctAnswer,
+      currentQuestion.acceptableAlternatives
+    );
+    recordQuestion({
+      prompt: `${currentQuestion.textBefore} [____] ${currentQuestion.textAfter}`,
+      selectedAnswer: state.userInput,
+      correctAnswer: currentQuestion.correctAnswer,
+      isCorrect,
+    });
+    handleSubmit();
+  }, [state.isCorrect, currentQuestion, state.userInput, recordQuestion, handleSubmit]);
+
+  const onPlayAgain = React.useCallback(() => {
+    hasSubmittedRef.current = false;
+    resetSession();
+    resetGame();
+  }, [resetSession, resetGame]);
 
   if (isLoading) {
     return <div className="p-8 text-center">Loading...</div>;
@@ -56,7 +94,7 @@ function TypingGameContent() {
           <p className="text-xl mb-6">
             Your score: {state.score} / {totalQuestions}
           </p>
-          <Button onClick={resetGame} size="lg" className="cursor-pointer">
+          <Button onClick={onPlayAgain} size="lg" className="cursor-pointer">
             Play Again
           </Button>
         </Card>
@@ -89,10 +127,21 @@ function TypingGameContent() {
           value={state.userInput}
           hint={currentQuestion.baseVerb}
           onChange={handleInputChange}
-          onSubmit={handleSubmit}
+          onSubmit={onAnswerSubmit}
           disabled={state.isCorrect !== null}
           isCorrect={state.isCorrect}
         />
+
+        {state.isCorrect === null && (
+          <Button
+            onClick={onAnswerSubmit}
+            disabled={!state.userInput.trim()}
+            size="lg"
+            className="min-w-[140px] cursor-pointer"
+          >
+            Kiểm tra
+          </Button>
+        )}
 
         {state.isCorrect !== null && (
           <div className="flex flex-col items-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-300">

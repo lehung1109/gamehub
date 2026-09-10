@@ -30,6 +30,7 @@ export interface RoleplayGameState {
     sender: 'character' | 'learner';
     text: string;
     isCorrect?: boolean;
+    characterName?: string;
   }>;
   score: number;
   mistakes: number;

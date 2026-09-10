@@ -53,7 +53,9 @@ export function DragDropBoard({
   const [status, setStatus] = useState<"idle" | "correct" | "wrong">("idle");
 
   const [prevTargetItems, setPrevTargetItems] = useState(targetItems);
-  if (targetItems !== prevTargetItems) {
+  const targetKey = targetItems.join(":::||:::");
+  const prevTargetKey = prevTargetItems.join(":::||:::");
+  if (targetKey !== prevTargetKey) {
     setPrevTargetItems(targetItems);
     setSlots(new Array(targetItems.length).fill(null));
     setStatus("idle");

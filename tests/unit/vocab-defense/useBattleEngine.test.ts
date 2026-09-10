@@ -359,6 +359,7 @@ describe("useBattleEngine Hook", () => {
     expect(result.current.score).toBe(0);
     expect(result.current.comboStreak).toBe(0);
     expect(result.current.currentWaveIndex).toBe(0);
+    expect(result.current.turnTimer).toBe(20);
   });
 
   it("triggers VICTORY state when the final wave boss is defeated", () => {

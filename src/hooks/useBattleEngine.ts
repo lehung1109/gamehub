@@ -287,6 +287,7 @@ export function useBattleEngine() {
     setCurrentWaveIndex(0);
     setCurrentMonsterHp(STAGE_MONSTERS[0].maxHp);
     setActiveChallenge(null);
+    setTurnTimer(20);
     setScore(0);
     setComboStreak(0);
     setMissedQuestions([]);

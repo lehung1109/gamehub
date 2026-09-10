@@ -10,14 +10,22 @@ type Props = {
 // In Next.js 15, route segment configs are standard and we can generate static params
 export async function generateStaticParams() {
   const catalog = (await import("@/data/parts-of-speech/index.json")).default;
-  return catalog.map((lesson) => ({
-    slug: lesson.slug,
-  }));
+  return catalog
+    .filter((lesson) => lesson.status === "active")
+    .map((lesson) => ({
+      slug: lesson.slug,
+    }));
 }
 
 export default async function PartsOfSpeechLessonPage({ params }: Props) {
   // Extract slug from params. In Next.js 15 App Router, `params` is a Promise and must be awaited.
   const { slug } = await params;
+
+  const catalog = (await import("@/data/parts-of-speech/index.json")).default;
+  const lesson = catalog.find((l) => l.slug === slug && l.status === "active");
+  if (!lesson) {
+    notFound();
+  }
 
   let lessonData: PartsOfSpeechModuleData;
   try {

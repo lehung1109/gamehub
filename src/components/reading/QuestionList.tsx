@@ -91,6 +91,7 @@ export function QuestionList({
   onNext,
 }: QuestionListProps) {
   const currentQuestion = questions[currentQuestionIndex];
+  if (!currentQuestion) return null;
   const currentAnswer = answers.find(a => a.questionId === currentQuestion.id);
 
   return (

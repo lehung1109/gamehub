@@ -161,4 +161,22 @@ describe("DragDropBoard Component", () => {
       expect.objectContaining({ id: "dog-D-0", label: "D" })
     );
   });
+
+  it("does not wipe placed slots when parent re-renders with a new array reference with same content", () => {
+    const { rerender } = render(
+      <DragDropBoard targetItems={["D", "O", "G"]} bankItems={sampleBank} />
+    );
+
+    const tileD = screen.getByRole("button", { name: /Chữ cái D/i });
+    fireEvent.click(tileD);
+    expect(screen.getByRole("button", { name: /Ô chữ cái 1: D/i })).toBeInTheDocument();
+
+    // Re-render with new array instance containing identical items
+    rerender(
+      <DragDropBoard targetItems={["D", "O", "G"]} bankItems={sampleBank} />
+    );
+
+    // Slot should still retain 'D'
+    expect(screen.getByRole("button", { name: /Ô chữ cái 1: D/i })).toBeInTheDocument();
+  });
 });

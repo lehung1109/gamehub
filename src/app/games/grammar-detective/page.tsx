@@ -114,7 +114,7 @@ export default function GrammarDetectivePage() {
       {/* Top Header Navigation */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b">
         <div className="flex items-center gap-3">
-          <BackButton href="/games" label="Trang chủ game" />
+          <BackButton href="/" label="Về trang chủ" />
           <div>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground flex items-center gap-2">
               <span>🕵️ Grammar Detective</span>

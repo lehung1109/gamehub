@@ -21,8 +21,9 @@ export const HangmanSummaryModal: React.FC<HangmanSummaryModalProps> = ({
 
   if (!isOpen) return null;
 
+  const totalWords = history.length || 5;
   const solvedCount = history.filter((h) => h.solved).length;
-  const stars = calculateRoundStars(score, solvedCount, history.length || 5);
+  const stars = calculateRoundStars(score, solvedCount, totalWords);
 
   return (
     <div
@@ -36,15 +37,15 @@ export const HangmanSummaryModal: React.FC<HangmanSummaryModalProps> = ({
           id="summary-title"
           className="text-2xl md:text-3xl font-black text-white mb-2"
         >
-          {solvedCount >= 3
+          {solvedCount >= Math.ceil(totalWords / 2)
             ? "🎉 Giải Cứu Thành Công!"
             : "🪂 Hoàn Thành Thử Thách!"}
         </h2>
 
         <p className="text-base text-slate-300 mb-6">
-          {solvedCount === 5
-            ? "Xuất sắc! Bạn đã giải cứu nhà thám hiểm qua toàn bộ 5 từ vựng!"
-            : `Bạn đã đoán đúng ${solvedCount}/5 từ. Cố gắng bảo toàn nhiều bóng bay hơn nhé!`}
+          {solvedCount === totalWords
+            ? `Xuất sắc! Bạn đã giải cứu nhà thám hiểm qua toàn bộ ${totalWords} từ vựng!`
+            : `Bạn đã đoán đúng ${solvedCount}/${totalWords} từ. Cố gắng bảo toàn nhiều bóng bay hơn nhé!`}
         </p>
 
         {/* Stars */}

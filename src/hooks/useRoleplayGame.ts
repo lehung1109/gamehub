@@ -16,7 +16,8 @@ export function useRoleplayGame(scenario: ConversationScenario, options?: UseRol
   })
   
   const startGame = useCallback(() => {
-    const firstMessage = scenario.turns[0].message
+    const firstTurn = scenario.turns[0]
+    const firstMessage = firstTurn?.message || ''
     setGameState((prev) => ({
       ...prev,
       status: 'playing',
@@ -24,10 +25,11 @@ export function useRoleplayGame(scenario: ConversationScenario, options?: UseRol
         {
           sender: 'character',
           text: firstMessage,
+          characterName: firstTurn?.characterName,
         },
       ],
     }))
-    if (options?.autoSpeak && options?.speak) {
+    if (options?.autoSpeak && options?.speak && firstMessage) {
       options.speak(firstMessage)
     }
   }, [scenario, options])
@@ -54,10 +56,12 @@ export function useRoleplayGame(scenario: ConversationScenario, options?: UseRol
         nextTurnIndex = prev.currentTurnIndex + 1
         
         if (nextTurnIndex < scenario.turns.length) {
-          const nextMessage = scenario.turns[nextTurnIndex].message
+          const nextTurn = scenario.turns[nextTurnIndex]
+          const nextMessage = nextTurn.message
           newHistory.push({
             sender: 'character',
             text: nextMessage,
+            characterName: nextTurn.characterName,
           })
           if (options?.autoSpeak && options?.speak) {
             options.speak(nextMessage)
@@ -68,9 +72,11 @@ export function useRoleplayGame(scenario: ConversationScenario, options?: UseRol
       } else {
         mistakes += 1
         if (option.feedback) {
+          const currentTurn = scenario.turns[prev.currentTurnIndex]
           newHistory.push({
             sender: 'character',
             text: option.feedback,
+            characterName: currentTurn?.characterName,
           })
           if (options?.autoSpeak && options?.speak) {
             options.speak(option.feedback)

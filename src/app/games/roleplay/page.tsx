@@ -8,8 +8,9 @@ import { useRoleplayGame } from '@/hooks/useRoleplayGame'
 import { useSpeech } from '@/hooks/useSpeech'
 import { useGameConfig } from '@/hooks/useGameConfig'
 import orderingFoodData from '@/data/conversations/ordering-food.json'
-import { ConversationScenario } from '@/types/roleplay'
+import { ConversationScenario, LearnerResponse } from '@/types/roleplay'
 import { RoleplaySettings } from '@/types/config'
+import { useGameTracking } from '@/hooks/use-game-tracking'
 
 const scenario = orderingFoodData as ConversationScenario
 
@@ -21,6 +22,37 @@ function RoleplayGameContent() {
     autoSpeak: settings?.autoSpeak ?? true,
     speak,
   })
+
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: 'roleplay',
+    topic: scenario.titleEn,
+    totalQuestions: scenario.turns.length,
+  })
+
+  const hasSubmittedRef = React.useRef(false)
+
+  React.useEffect(() => {
+    if (gameState.status === 'completed' && !hasSubmittedRef.current) {
+      hasSubmittedRef.current = true
+      submitSession({ score: gameState.score, totalQuestions: scenario.turns.length })
+    }
+  }, [gameState.status, gameState.score, submitSession])
+
+  const onSelectOption = (option: LearnerResponse) => {
+    recordQuestion({
+      prompt: currentTurn?.message || '',
+      selectedAnswer: option.text,
+      correctAnswer: currentTurn?.options.find((o) => o.isCorrect)?.text || '',
+      isCorrect: option.isCorrect,
+    })
+    handleSelectOption(option)
+  }
+
+  const onTryAgain = () => {
+    hasSubmittedRef.current = false
+    resetSession()
+    resetGame()
+  }
 
   if (gameState.status === 'intro') {
     return (
@@ -52,7 +84,7 @@ function RoleplayGameContent() {
           <p className="text-lg mb-8 text-red-500">Mistakes: {gameState.mistakes}</p>
           <div className="flex flex-col gap-3">
             <button
-              onClick={resetGame}
+              onClick={onTryAgain}
               className="w-full bg-blue-600 text-white rounded-xl py-3 font-medium hover:bg-blue-700 transition-colors cursor-pointer"
             >
               Try Again
@@ -82,7 +114,7 @@ function RoleplayGameContent() {
             key={index}
             text={msg.text}
             sender={msg.sender}
-            characterName={msg.sender === 'character' ? currentTurn?.characterName : undefined}
+            characterName={msg.sender === 'character' ? (msg.characterName || currentTurn?.characterName) : undefined}
           />
         ))}
       </div>
@@ -91,7 +123,7 @@ function RoleplayGameContent() {
         <p className="text-base text-gray-500 mb-2 font-medium">Choose your response:</p>
         <ResponseChoices
           options={currentTurn?.options || []}
-          onSelect={handleSelectOption}
+          onSelect={onSelectOption}
           disabled={gameState.status !== 'playing'}
         />
       </div>

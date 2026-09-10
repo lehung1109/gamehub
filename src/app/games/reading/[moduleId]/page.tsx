@@ -8,6 +8,7 @@ import { PassageText } from '@/components/reading/PassageText';
 import { QuestionList } from '@/components/reading/QuestionList';
 import { Button } from '@/components/ui/button';
 import { BackButton } from '@/components/custom/BackButton';
+import { useGameTracking } from '@/hooks/use-game-tracking';
 
 // Mock fetching function
 async function fetchModule(id: string): Promise<ReadingModule | null> {
@@ -53,6 +54,40 @@ export default function ReadingGamePage() {
 function ReadingGame({ moduleData, onExit }: { moduleData: ReadingModule, onExit: () => void }) {
   const { gameState, handleAnswer, nextQuestion, resetGame } = useReadingGame(moduleData);
 
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
+    gameType: 'reading',
+    topic: moduleData.title,
+    totalQuestions: moduleData.questions.length,
+  });
+
+  const hasSubmittedRef = React.useRef(false);
+
+  useEffect(() => {
+    if (gameState.status === 'completed' && !hasSubmittedRef.current) {
+      hasSubmittedRef.current = true;
+      submitSession({ score: gameState.score, totalQuestions: moduleData.questions.length });
+    }
+  }, [gameState.status, gameState.score, moduleData.questions.length, submitSession]);
+
+  const onAnswer = (questionId: string, index: number) => {
+    handleAnswer(questionId, index);
+    const question = moduleData.questions.find((q) => q.id === questionId);
+    if (question) {
+      recordQuestion({
+        prompt: question.questionText,
+        selectedAnswer: question.options[index],
+        correctAnswer: question.options[question.correctOptionIndex],
+        isCorrect: index === question.correctOptionIndex,
+      });
+    }
+  };
+
+  const onTryAgain = () => {
+    hasSubmittedRef.current = false;
+    resetSession();
+    resetGame();
+  };
+
   if (gameState.status === 'completed') {
     return (
       <div className="container mx-auto px-4 py-8 max-w-2xl text-center">
@@ -64,7 +99,7 @@ function ReadingGame({ moduleData, onExit }: { moduleData: ReadingModule, onExit
           </p>
         </div>
         <div className="flex gap-4 justify-center">
-          <Button variant="outline" onClick={resetGame}>Try Again</Button>
+          <Button variant="outline" onClick={onTryAgain}>Try Again</Button>
           <Button onClick={onExit}>Exit Game</Button>
         </div>
       </div>
@@ -88,7 +123,7 @@ function ReadingGame({ moduleData, onExit }: { moduleData: ReadingModule, onExit
             questions={moduleData.questions}
             currentQuestionIndex={gameState.currentQuestionIndex}
             answers={gameState.answers}
-            onAnswer={handleAnswer}
+            onAnswer={onAnswer}
             onNext={nextQuestion}
           />
         </div>
