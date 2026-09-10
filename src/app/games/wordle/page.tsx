@@ -31,7 +31,7 @@ export default function WordlePage() {
 
   const { speak, isSpeaking } = useSpeech();
 
-  const { recordQuestion, submitSession } = useGameTracking({
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
     gameType: "wordle",
     topic: selectedCategory !== "all" ? selectedCategory : "general",
   });
@@ -53,9 +53,9 @@ export default function WordlePage() {
     addLetter,
     removeLetter,
     submitGuess,
-    useAudioHint,
-    useMeaningHint,
-    useLetterHint,
+    useAudioHint: applyAudioHint,
+    useMeaningHint: applyMeaningHint,
+    useLetterHint: applyLetterHint,
     resetGame,
   } = useWordleGame({
     initialWord: getRandomWord(undefined, 5),
@@ -100,19 +100,19 @@ export default function WordlePage() {
 
   // Audio Hint handler
   const handleAudioHint = useCallback(() => {
-    useAudioHint();
+    applyAudioHint();
     speak(targetWord.word);
-  }, [useAudioHint, speak, targetWord.word]);
+  }, [applyAudioHint, speak, targetWord.word]);
 
   // Meaning Hint handler
   const handleMeaningHint = useCallback(() => {
-    useMeaningHint();
-  }, [useMeaningHint]);
+    applyMeaningHint();
+  }, [applyMeaningHint]);
 
   // Letter Hint handler
   const handleLetterHint = useCallback(() => {
-    useLetterHint();
-  }, [useLetterHint]);
+    applyLetterHint();
+  }, [applyLetterHint]);
 
   // Sound feedback on error shake
   useEffect(() => {
@@ -169,33 +169,36 @@ export default function WordlePage() {
   // Handle Next Word / Restart
   const handleNextWord = useCallback(() => {
     setIsResultOpen(false);
+    resetSession?.();
     const cat = selectedCategory !== "all" ? selectedCategory : undefined;
     const newWord = getRandomWord(cat, wordLength);
     resetGame(newWord);
-  }, [resetGame, selectedCategory, wordLength]);
+  }, [resetGame, resetSession, selectedCategory, wordLength]);
 
   // Change Category
   const handleSelectCategory = useCallback(
     (category: string) => {
       setSelectedCategory(category);
+      resetSession?.();
       const cat = category !== "all" ? category : undefined;
       const newWord = getRandomWord(cat, wordLength);
       setIsResultOpen(false);
       resetGame(newWord);
     },
-    [resetGame, wordLength]
+    [resetGame, resetSession, wordLength]
   );
 
   // Change Word Length
   const handleSelectWordLength = useCallback(
     (length: 4 | 5 | 6) => {
       setWordLength(length);
+      resetSession?.();
       const cat = selectedCategory !== "all" ? selectedCategory : undefined;
       const newWord = getRandomWord(cat, length);
       setIsResultOpen(false);
       resetGame(newWord);
     },
-    [resetGame, selectedCategory]
+    [resetGame, resetSession, selectedCategory]
   );
 
   return (

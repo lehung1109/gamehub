@@ -122,10 +122,10 @@ export const WordleResultDialog: React.FC<WordleResultDialogProps> = ({
                 key={i}
                 className="absolute text-xs sm:text-base animate-bounce"
                 style={{
-                  top: `${Math.random() * 80}%`,
+                  top: `${((i * 19) % 80)}%`,
                   left: `${(i / 18) * 100}%`,
                   animationDelay: `${(i % 5) * 0.15}s`,
-                  animationDuration: `${1 + (i % 3) * 0.4}s`,
+                  animationDuration: `${1 + (i % 5) * 0.3}s`,
                 }}
               >
                 {["🎉", "✨", "⭐", "🎊", "🌟"][i % 5]}

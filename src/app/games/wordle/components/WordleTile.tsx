@@ -17,7 +17,6 @@ export const WordleTile: React.FC<WordleTileProps> = ({
   index = 0,
   isRevealedHint = false,
   isWinning = false,
-  isCurrentRow = false,
   className = "",
 }) => {
   const displayChar = char.toUpperCase();

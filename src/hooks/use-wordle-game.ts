@@ -96,12 +96,10 @@ const STATUS_PRIORITY: Record<LetterStatus, number> = {
 export function useWordleGame(options?: UseWordleGameOptions): UseWordleGameReturn {
   const maxAttempts = options?.maxAttempts ?? 6;
 
-  const initialWordRef = useRef<WordleTargetWord>(
-    options?.initialWord || getRandomWord()
+  const [targetWord, setTargetWord] = useState<WordleTargetWord>(
+    () => options?.initialWord || getRandomWord()
   );
-
-  const [targetWord, setTargetWord] = useState<WordleTargetWord>(initialWordRef.current);
-  const targetWordRef = useRef<WordleTargetWord>(initialWordRef.current);
+  const targetWordRef = useRef<WordleTargetWord>(options?.initialWord || getRandomWord());
 
   const [guesses, setGuesses] = useState<string[]>([]);
   const guessesRef = useRef<string[]>([]);
@@ -130,7 +128,10 @@ export function useWordleGame(options?: UseWordleGameOptions): UseWordleGameRetu
 
   const [stats, setStats] = useState<WordleStats>(() => loadWordleStats());
   const statsRef = useRef<WordleStats>(stats);
-  statsRef.current = stats;
+
+  useEffect(() => {
+    statsRef.current = stats;
+  }, [stats]);
 
   const shakeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const onGameCompleteRef = useRef(options?.onGameComplete);

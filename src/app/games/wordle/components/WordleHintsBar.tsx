@@ -41,13 +41,6 @@ export const WordleHintsBar: React.FC<WordleHintsBarProps> = ({
     setShowMeaningCard((prev) => !prev);
   };
 
-  // Sync state if hint used from parent
-  React.useEffect(() => {
-    if (hintsUsed.meaning) {
-      setShowMeaningCard(true);
-    }
-  }, [hintsUsed.meaning]);
-
   return (
     <section aria-label="Gợi ý trợ giúp" className="w-full max-w-lg mx-auto flex flex-col gap-2 my-1 px-2">
       <div className="flex items-center justify-between gap-2">
