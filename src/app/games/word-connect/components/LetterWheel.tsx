@@ -33,6 +33,7 @@ export function LetterWheel({
   const isDraggingRef = useRef<boolean>(false);
   const hasDraggedRef = useRef<boolean>(false);
   const justFinishedDragRef = useRef<boolean>(false);
+  const justProcessedPointerDownRef = useRef<number | null>(null);
   const [currentPointer, setCurrentPointer] = useState<{ x: number; y: number } | null>(null);
 
   // Deterministic circular layout coordinates for letter buttons
@@ -78,16 +79,16 @@ export function LetterWheel({
         }
       }
 
-      // 3. Coordinate distance fallback
+      // 3. Fallback: Check geometric distance from letter nodes
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        const relX = e.clientX - (rect.left || 0);
-        const relY = e.clientY - (rect.top || 0);
+        const pointerX = e.clientX - rect.left;
+        const pointerY = e.clientY - rect.top;
 
         for (let i = 0; i < letterCenters.length; i++) {
-          const c = letterCenters[i];
-          const dist = Math.hypot(relX - c.x, relY - c.y);
-          if (dist <= 32) {
+          const center = letterCenters[i];
+          const dist = Math.hypot(pointerX - center.x, pointerY - center.y);
+          if (dist <= 30) {
             return i;
           }
         }
@@ -95,17 +96,17 @@ export function LetterWheel({
 
       return null;
     },
-    [letters.length, letterCenters]
+    [letterCenters, letters.length]
   );
 
-  const updatePointerPos = useCallback((e: React.PointerEvent) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const relX = e.clientX - (rect.left || 0);
-      const relY = e.clientY - (rect.top || 0);
-      setCurrentPointer({ x: relX, y: relY });
-    }
-  }, []);
+  const updatePointerPos = (e: React.PointerEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setCurrentPointer({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   const handlePointerDown = (e: React.PointerEvent) => {
     if (disabled) return;
@@ -113,6 +114,7 @@ export function LetterWheel({
     if (idx !== null) {
       isDraggingRef.current = true;
       hasDraggedRef.current = false;
+      justProcessedPointerDownRef.current = idx;
       try {
         e.currentTarget.setPointerCapture(e.pointerId);
       } catch {
@@ -148,15 +150,23 @@ export function LetterWheel({
       justFinishedDragRef.current = true;
       setTimeout(() => {
         justFinishedDragRef.current = false;
+        justProcessedPointerDownRef.current = null;
       }, 80);
       onSubmit();
     } else {
+      setTimeout(() => {
+        justProcessedPointerDownRef.current = null;
+      }, 80);
       onCancel?.();
     }
   };
 
   const handleLetterClick = (index: number) => {
     if (disabled || justFinishedDragRef.current) return;
+    if (justProcessedPointerDownRef.current === index) {
+      // Already selected on pointerdown during the same tap gesture
+      return;
+    }
     onSelectLetter(index);
   };
 

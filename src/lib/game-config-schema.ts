@@ -13,6 +13,8 @@ import type {
   RoleplaySettings,
   MemoryMatchSettings,
   WordSearchSettings,
+  WordleSettings,
+  WordConnectSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -29,6 +31,8 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'roleplay',
   'memory-match',
   'word-search',
+  'wordle',
+  'word-connect',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -88,6 +92,18 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
     enableHints: true,
     autoSpeak: true,
     showTimer: true,
+  },
+  wordle: {
+    allowedLengths: [4, 5, 6],
+    categories: ['animals', 'fruits', 'school', 'technology', 'daily-life', 'workplace'],
+    maxAttempts: 6,
+    allowHints: true,
+  },
+  'word-connect': {
+    difficultyRange: ['easy', 'medium', 'hard'],
+    allowHints: true,
+    allowShuffle: true,
+    enableBonusWords: true,
   },
 }
 
@@ -243,6 +259,37 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const showTimer = obj.showTimer !== undefined ? Boolean(obj.showTimer) : true
 
       const validated: WordSearchSettings = { topics, wordCount, enableHints, autoSpeak, showTimer }
+      return { valid: true, data: validated }
+    }
+
+    case 'wordle': {
+      const allowedLengthsRaw = Array.isArray(obj.allowedLengths)
+        ? obj.allowedLengths.filter((l): l is 4 | 5 | 6 => l === 4 || l === 5 || l === 6)
+        : [4, 5, 6]
+      const allowedLengths = allowedLengthsRaw.length > 0 ? allowedLengthsRaw : [4, 5, 6]
+      const categories = Array.isArray(obj.categories)
+        ? obj.categories.filter((c): c is string => typeof c === 'string')
+        : ['animals', 'fruits', 'school', 'technology', 'daily-life', 'workplace']
+      const maxAttempts = sanitizeInt(obj.maxAttempts, 6, 4, 8)
+      const allowHints = obj.allowHints !== undefined ? Boolean(obj.allowHints) : true
+      const validated: WordleSettings = { allowedLengths, categories, maxAttempts, allowHints }
+      return { valid: true, data: validated }
+    }
+
+    case 'word-connect': {
+      const validDiffs: ('easy' | 'medium' | 'hard')[] = ['easy', 'medium', 'hard']
+      const difficultyRange = Array.isArray(obj.difficultyRange)
+        ? obj.difficultyRange.filter((d): d is 'easy' | 'medium' | 'hard' => validDiffs.includes(d))
+        : validDiffs
+      const allowHints = obj.allowHints !== undefined ? Boolean(obj.allowHints) : true
+      const allowShuffle = obj.allowShuffle !== undefined ? Boolean(obj.allowShuffle) : true
+      const enableBonusWords = obj.enableBonusWords !== undefined ? Boolean(obj.enableBonusWords) : true
+      const validated: WordConnectSettings = {
+        difficultyRange: difficultyRange.length > 0 ? difficultyRange : validDiffs,
+        allowHints,
+        allowShuffle,
+        enableBonusWords,
+      }
       return { valid: true, data: validated }
     }
 

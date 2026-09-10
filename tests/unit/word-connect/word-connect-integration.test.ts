@@ -70,4 +70,30 @@ describe("Word Connect Platform Integration", () => {
     expect(schema.fields.enableBonusWords.name).toBe("enableBonusWords");
     expect(schema.fields.enableBonusWords.type).toBe("boolean");
   });
+
+  it("validates game settings and returns defaults for Word Connect", async () => {
+    const { validateGameSettings, getDefaultSettings, isValidGameId } = await import("@/lib/game-config-schema");
+
+    expect(isValidGameId("word-connect")).toBe(true);
+
+    const defaults = getDefaultSettings("word-connect");
+    expect(defaults).toEqual({
+      difficultyRange: ["easy", "medium", "hard"],
+      allowHints: true,
+      allowShuffle: true,
+      enableBonusWords: true,
+    });
+
+    const validRes = validateGameSettings("word-connect", {
+      difficultyRange: ["easy"],
+      allowHints: false,
+    });
+    expect(validRes.valid).toBe(true);
+    expect(validRes.data).toEqual({
+      difficultyRange: ["easy"],
+      allowHints: false,
+      allowShuffle: true,
+      enableBonusWords: true,
+    });
+  });
 });
