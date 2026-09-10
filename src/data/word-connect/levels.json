@@ -1,0 +1,978 @@
+[
+  {
+    "id": "level-1",
+    "levelNumber": 1,
+    "difficulty": "easy",
+    "theme": "Animals & Action",
+    "letters": ["C", "A", "T"],
+    "targetWords": [
+      {
+        "word": "CAT",
+        "vietnameseMeaning": "Con mèo",
+        "phonetic": "/kæt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The cat is sleeping peacefully on the mat."
+      },
+      {
+        "word": "ACT",
+        "vietnameseMeaning": "Hành động / diễn xuất",
+        "phonetic": "/ækt/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "We must act quickly before time runs out."
+      }
+    ],
+    "bonusWords": []
+  },
+  {
+    "id": "level-2",
+    "levelNumber": 2,
+    "difficulty": "easy",
+    "theme": "Pets & Faith",
+    "letters": ["D", "O", "G"],
+    "targetWords": [
+      {
+        "word": "DOG",
+        "vietnameseMeaning": "Con chó",
+        "phonetic": "/dɒɡ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The friendly dog wagged its tail happily."
+      },
+      {
+        "word": "GOD",
+        "vietnameseMeaning": "Vị thần / Chúa",
+        "phonetic": "/ɡɒd/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "In ancient myths, Zeus was the king of the gods."
+      }
+    ],
+    "bonusWords": []
+  },
+  {
+    "id": "level-3",
+    "levelNumber": 3,
+    "difficulty": "easy",
+    "theme": "Sky & Creativity",
+    "letters": ["S", "T", "A", "R"],
+    "targetWords": [
+      {
+        "word": "STAR",
+        "vietnameseMeaning": "Ngôi sao",
+        "phonetic": "/stɑːr/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A bright star guided the travelers at night."
+      },
+      {
+        "word": "ART",
+        "vietnameseMeaning": "Nghệ thuật",
+        "phonetic": "/ɑːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "She displays great talent in painting and fine art."
+      },
+      {
+        "word": "RAT",
+        "vietnameseMeaning": "Con chuột",
+        "phonetic": "/ræt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The little rat scurried into its secret hole."
+      },
+      {
+        "word": "TAR",
+        "vietnameseMeaning": "Nhựa đường",
+        "phonetic": "/tɑːr/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The workers sealed the highway with black tar."
+      }
+    ],
+    "bonusWords": ["SAT"]
+  },
+  {
+    "id": "level-4",
+    "levelNumber": 4,
+    "difficulty": "easy",
+    "theme": "Reading & Expression",
+    "letters": ["B", "O", "O", "K"],
+    "targetWords": [
+      {
+        "word": "BOOK",
+        "vietnameseMeaning": "Quyển sách",
+        "phonetic": "/bʊk/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "She borrowed an interesting book from the library."
+      },
+      {
+        "word": "BOO",
+        "vietnameseMeaning": "La ó / chê bai",
+        "phonetic": "/buː/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "The dissatisfied audience began to boo loudly."
+      }
+    ],
+    "bonusWords": []
+  },
+  {
+    "id": "level-5",
+    "levelNumber": 5,
+    "difficulty": "easy",
+    "theme": "Kindness & Speed",
+    "letters": ["C", "A", "R", "E"],
+    "targetWords": [
+      {
+        "word": "CARE",
+        "vietnameseMeaning": "Chăm sóc / quan tâm",
+        "phonetic": "/keər/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Good nurses take excellent care of all patients."
+      },
+      {
+        "word": "RACE",
+        "vietnameseMeaning": "Cuộc đua",
+        "phonetic": "/reɪs/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "He sprinted hard and won first place in the race."
+      },
+      {
+        "word": "ARE",
+        "vietnameseMeaning": "Là / ở (thì hiện tại)",
+        "phonetic": "/ɑːr/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "They are ready to embark on a new adventure."
+      },
+      {
+        "word": "CAR",
+        "vietnameseMeaning": "Xe hơi / ô tô",
+        "phonetic": "/kɑːr/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Electric cars are becoming increasingly popular."
+      }
+    ],
+    "bonusWords": ["EAR", "ARC", "ACE"]
+  },
+  {
+    "id": "level-6",
+    "levelNumber": 6,
+    "difficulty": "easy",
+    "theme": "Play & Mystery",
+    "letters": ["G", "A", "M", "E"],
+    "targetWords": [
+      {
+        "word": "GAME",
+        "vietnameseMeaning": "Trò chơi",
+        "phonetic": "/ɡeɪm/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Chess is a classical game requiring deep strategic thinking."
+      },
+      {
+        "word": "AGE",
+        "vietnameseMeaning": "Tuổi tác / thời đại",
+        "phonetic": "/eɪdʒ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "With age comes wisdom and valuable life experience."
+      },
+      {
+        "word": "GEM",
+        "vietnameseMeaning": "Viên ngọc quý",
+        "phonetic": "/dʒem/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The sparkling diamond was a truly rare gem."
+      },
+      {
+        "word": "MAGE",
+        "vietnameseMeaning": "Pháp sư",
+        "phonetic": "/meɪdʒ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The ancient mage wielded powerful mystical magic."
+      }
+    ],
+    "bonusWords": ["MEGA"]
+  },
+  {
+    "id": "level-7",
+    "levelNumber": 7,
+    "difficulty": "medium",
+    "theme": "Nature & Growth",
+    "letters": ["P", "L", "A", "N", "T"],
+    "targetWords": [
+      {
+        "word": "PLANT",
+        "vietnameseMeaning": "Cây cối / thực vật",
+        "phonetic": "/plɑːnt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Be sure to water the house plant every morning."
+      },
+      {
+        "word": "PLAN",
+        "vietnameseMeaning": "Kế hoạch",
+        "phonetic": "/plæn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "They formulated an effective plan for the new project."
+      },
+      {
+        "word": "PAN",
+        "vietnameseMeaning": "Cái chảo",
+        "phonetic": "/pæn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Melt some butter gently in a preheated pan."
+      },
+      {
+        "word": "TAN",
+        "vietnameseMeaning": "Làn da rám nắng",
+        "phonetic": "/tæn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "She got a gorgeous golden tan during beach vacation."
+      },
+      {
+        "word": "ANT",
+        "vietnameseMeaning": "Con kiến",
+        "phonetic": "/ænt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A hardworking ant can carry leaves many times its weight."
+      }
+    ],
+    "bonusWords": ["PLAT", "APT", "PAT", "TAP"]
+  },
+  {
+    "id": "level-8",
+    "levelNumber": 8,
+    "difficulty": "medium",
+    "theme": "Emotion & Vitality",
+    "letters": ["S", "M", "I", "L", "E"],
+    "targetWords": [
+      {
+        "word": "SMILE",
+        "vietnameseMeaning": "Nụ cười",
+        "phonetic": "/smaɪl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A warm smile can brighten anyone's difficult day."
+      },
+      {
+        "word": "MILE",
+        "vietnameseMeaning": "Dặm (đơn vị đo chiều dài)",
+        "phonetic": "/maɪl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "They jogged an extra mile around the scenic lake."
+      },
+      {
+        "word": "SLIM",
+        "vietnameseMeaning": "Mảnh mai / thon gọn",
+        "phonetic": "/slɪm/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "Regular cardio exercise helped her stay slim and fit."
+      },
+      {
+        "word": "LIME",
+        "vietnameseMeaning": "Quả chanh xanh",
+        "phonetic": "/laɪm/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Squeeze fresh lime juice over the grilled seafood."
+      }
+    ],
+    "bonusWords": ["LIE", "ELM"]
+  },
+  {
+    "id": "level-9",
+    "levelNumber": 9,
+    "difficulty": "medium",
+    "theme": "Food & Life",
+    "letters": ["B", "R", "E", "A", "D"],
+    "targetWords": [
+      {
+        "word": "BREAD",
+        "vietnameseMeaning": "Bánh mì",
+        "phonetic": "/bred/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A bakery filled the street with aroma of fresh bread."
+      },
+      {
+        "word": "READ",
+        "vietnameseMeaning": "Đọc",
+        "phonetic": "/riːd/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "He loves to read classic literature by the window."
+      },
+      {
+        "word": "BEAD",
+        "vietnameseMeaning": "Hạt chuỗi / hạt cườm",
+        "phonetic": "/biːd/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "She threaded colorful wooden beads into a necklace."
+      },
+      {
+        "word": "BARE",
+        "vietnameseMeaning": "Trần trụi / trơ trụi",
+        "phonetic": "/beər/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "The oak branches became completely bare in winter."
+      },
+      {
+        "word": "DEAR",
+        "vietnameseMeaning": "Thân yêu / quý giá",
+        "phonetic": "/dɪər/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "He sent heartfelt greeting to all his dear friends."
+      },
+      {
+        "word": "BEAR",
+        "vietnameseMeaning": "Con gấu",
+        "phonetic": "/beər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A grizzly bear caught salmon leaping out of water."
+      }
+    ],
+    "bonusWords": ["BED", "RED", "BAD", "BAR", "EAR", "ERA"]
+  },
+  {
+    "id": "level-10",
+    "levelNumber": 10,
+    "difficulty": "medium",
+    "theme": "Travel & Elements",
+    "letters": ["T", "R", "A", "I", "N"],
+    "targetWords": [
+      {
+        "word": "TRAIN",
+        "vietnameseMeaning": "Tàu hỏa / rèn luyện",
+        "phonetic": "/treɪn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The high-speed train connects major cities swiftly."
+      },
+      {
+        "word": "RAIN",
+        "vietnameseMeaning": "Cơn mưa",
+        "phonetic": "/reɪn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Cool summer rain brought relief after scorching days."
+      },
+      {
+        "word": "ANTI",
+        "vietnameseMeaning": "Chống lại / bài trừ",
+        "phonetic": "/ˈæn.ti/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "The doctor prescribed an anti-inflammatory medicine."
+      },
+      {
+        "word": "RANT",
+        "vietnameseMeaning": "Nói huyên thuyên / cằn nhằn",
+        "phonetic": "/rænt/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "He started to rant about the terrible traffic delay."
+      },
+      {
+        "word": "AIR",
+        "vietnameseMeaning": "Không khí",
+        "phonetic": "/eər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Mountain air is remarkably pure and invigorating."
+      },
+      {
+        "word": "TIN",
+        "vietnameseMeaning": "Thiếc / hộp thiếc",
+        "phonetic": "/tɪn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Grandma kept homemade cookies inside an airtight tin."
+      }
+    ],
+    "bonusWords": ["ART", "RAT", "TAR", "TAN"]
+  },
+  {
+    "id": "level-11",
+    "levelNumber": 11,
+    "difficulty": "medium",
+    "theme": "Music & Edge",
+    "letters": ["S", "H", "A", "R", "P"],
+    "targetWords": [
+      {
+        "word": "SHARP",
+        "vietnameseMeaning": "Sắc bén / nhọn",
+        "phonetic": "/ʃɑːp/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "Handle that kitchen knife with caution; it is razor sharp."
+      },
+      {
+        "word": "HARP",
+        "vietnameseMeaning": "Đàn hạc",
+        "phonetic": "/hɑːp/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The gentle sounds of the harp filled the concert hall."
+      },
+      {
+        "word": "RASH",
+        "vietnameseMeaning": "Phát ban / vội vã",
+        "phonetic": "/ræʃ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Eating shellfish caused a mild allergic skin rash."
+      },
+      {
+        "word": "SPAR",
+        "vietnameseMeaning": "Giao đấu / luyện tập võ",
+        "phonetic": "/spɑːr/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "The boxers sparred lightly to practice their footwork."
+      },
+      {
+        "word": "ASH",
+        "vietnameseMeaning": "Tro tàn",
+        "phonetic": "/æʃ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Fine grey ash drifted from the dying camp fire."
+      }
+    ],
+    "bonusWords": ["PAR", "RAP"]
+  },
+  {
+    "id": "level-12",
+    "levelNumber": 12,
+    "difficulty": "medium",
+    "theme": "Hydration & Nature",
+    "letters": ["W", "A", "T", "E", "R"],
+    "targetWords": [
+      {
+        "word": "WATER",
+        "vietnameseMeaning": "Nước",
+        "phonetic": "/ˈwɔː.tər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Clean drinking water is essential for human vitality."
+      },
+      {
+        "word": "WEAR",
+        "vietnameseMeaning": "Mặc / đeo mang",
+        "phonetic": "/weər/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Remember to wear a warm jacket in chilly weather."
+      },
+      {
+        "word": "RATE",
+        "vietnameseMeaning": "Tỉ lệ / tốc độ / đánh giá",
+        "phonetic": "/reɪt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The technological adoption rate expanded exponentially."
+      },
+      {
+        "word": "TEAR",
+        "vietnameseMeaning": "Nước mắt / xé rách",
+        "phonetic": "/teər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A joyful tear sparkled in her eye when she won."
+      },
+      {
+        "word": "RAW",
+        "vietnameseMeaning": "Sống / thô / chưa chế biến",
+        "phonetic": "/rɔː/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "Raw organic carrots make a crisp and healthy snack."
+      }
+    ],
+    "bonusWords": ["WAR", "WET", "AWE", "ERA", "ART", "RAT", "TAR", "ATE", "EAT"]
+  },
+  {
+    "id": "level-13",
+    "levelNumber": 13,
+    "difficulty": "medium",
+    "theme": "Planet & Humanity",
+    "letters": ["H", "E", "A", "R", "T"],
+    "targetWords": [
+      {
+        "word": "HEART",
+        "vietnameseMeaning": "Trái tim / tâm điểm",
+        "phonetic": "/hɑːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A healthy cardiovascular workout strengthens the heart."
+      },
+      {
+        "word": "EARTH",
+        "vietnameseMeaning": "Trái đất / mặt đất",
+        "phonetic": "/ɜːθ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Earth is our home planet brimming with diverse ecosystems."
+      },
+      {
+        "word": "HATE",
+        "vietnameseMeaning": "Ghét / căm ghét",
+        "phonetic": "/heɪt/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Never let hate replace understanding in your relationships."
+      },
+      {
+        "word": "HEAR",
+        "vietnameseMeaning": "Lắng nghe / nghe thấy",
+        "phonetic": "/hɪər/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "We can hear joyful birds chirping at daybreak."
+      },
+      {
+        "word": "HEAT",
+        "vietnameseMeaning": "Sức nóng / nhiệt độ",
+        "phonetic": "/hiːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The noon heat convinced everyone to rest under shade."
+      }
+    ],
+    "bonusWords": ["HAT", "THE", "EAR", "ERA", "ART", "RAT", "TAR", "ATE", "EAT"]
+  },
+  {
+    "id": "level-14",
+    "levelNumber": 14,
+    "difficulty": "medium",
+    "theme": "Athletics & Location",
+    "letters": ["S", "P", "O", "R", "T"],
+    "targetWords": [
+      {
+        "word": "SPORT",
+        "vietnameseMeaning": "Thể thao",
+        "phonetic": "/spɔːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Playing sport builds stamina, team spirit, and discipline."
+      },
+      {
+        "word": "PORT",
+        "vietnameseMeaning": "Cảng biển",
+        "phonetic": "/pɔːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Merchant vessels unloaded their shipments at the port."
+      },
+      {
+        "word": "STOP",
+        "vietnameseMeaning": "Dừng lại",
+        "phonetic": "/stɒp/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Motorists must come to a full stop before the crosswalk."
+      },
+      {
+        "word": "POST",
+        "vietnameseMeaning": "Bài đăng / bưu điện",
+        "phonetic": "/pəʊst/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "She drafted a thoughtful post highlighting community news."
+      },
+      {
+        "word": "SPOT",
+        "vietnameseMeaning": "Điểm / đốm",
+        "phonetic": "/spɒt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The park provides a peaceful spot for weekend picnics."
+      },
+      {
+        "word": "SORT",
+        "vietnameseMeaning": "Loại / phân loại",
+        "phonetic": "/sɔːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "They organized every sort of stationery on the shelf."
+      }
+    ],
+    "bonusWords": ["POT", "TOP", "ROT", "OPT"]
+  },
+  {
+    "id": "level-15",
+    "levelNumber": 15,
+    "difficulty": "hard",
+    "theme": "Garden & Wildlife",
+    "letters": ["F", "L", "O", "W", "E", "R"],
+    "targetWords": [
+      {
+        "word": "FLOWER",
+        "vietnameseMeaning": "Bông hoa",
+        "phonetic": "/ˈflaʊ.ər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The yellow flower opened up under morning sunlight."
+      },
+      {
+        "word": "LOWER",
+        "vietnameseMeaning": "Hạ thấp / thấp hơn",
+        "phonetic": "/ˈləʊ.ər/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Please lower your voice while inside the reading room."
+      },
+      {
+        "word": "WOLF",
+        "vietnameseMeaning": "Con chó sói",
+        "phonetic": "/wʊlf/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A grey wolf roamed through the snowy pine forest."
+      },
+      {
+        "word": "FLOW",
+        "vietnameseMeaning": "Dòng chảy / chảy trôi",
+        "phonetic": "/fləʊ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The steady flow of mountain spring water is calming."
+      },
+      {
+        "word": "FORE",
+        "vietnameseMeaning": "Phía trước",
+        "phonetic": "/fɔːr/",
+        "partOfSpeech": "adverb",
+        "exampleSentence": "Important economic reforms came to the fore."
+      },
+      {
+        "word": "ROW",
+        "vietnameseMeaning": "Hàng / chèo thuyền",
+        "phonetic": "/rəʊ/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "They rowed rhythmically toward the opposite riverbank."
+      },
+      {
+        "word": "OWL",
+        "vietnameseMeaning": "Con chim cú",
+        "phonetic": "/aʊl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A wise owl perched quietly on an aged tree branch."
+      }
+    ],
+    "bonusWords": ["LOW", "FOR", "FEW", "ROE"]
+  },
+  {
+    "id": "level-16",
+    "levelNumber": 16,
+    "difficulty": "hard",
+    "theme": "Companionship & Discovery",
+    "letters": ["F", "R", "I", "E", "N", "D"],
+    "targetWords": [
+      {
+        "word": "FRIEND",
+        "vietnameseMeaning": "Người bạn",
+        "phonetic": "/frend/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A trustworthy friend brings genuine comfort in tough times."
+      },
+      {
+        "word": "FIND",
+        "vietnameseMeaning": "Tìm thấy / phát hiện",
+        "phonetic": "/faɪnd/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Explorers hoped to find hidden secrets in the cave."
+      },
+      {
+        "word": "FINE",
+        "vietnameseMeaning": "Tốt đẹp / tuyệt vời",
+        "phonetic": "/faɪn/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "The weather turned out fine for the outdoor concert."
+      },
+      {
+        "word": "RIDE",
+        "vietnameseMeaning": "Lái xe / cưỡi",
+        "phonetic": "/raɪd/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "We can ride bikes along the riverside trail."
+      },
+      {
+        "word": "FIRE",
+        "vietnameseMeaning": "Ngọn lửa / hỏa hoạn",
+        "phonetic": "/faɪər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Campers gathered around the fire to share stories."
+      },
+      {
+        "word": "RED",
+        "vietnameseMeaning": "Màu đỏ",
+        "phonetic": "/red/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "Ripe strawberries display an eye-catching red shade."
+      }
+    ],
+    "bonusWords": ["END", "DEN", "DIE", "FED", "DIN"]
+  },
+  {
+    "id": "level-17",
+    "levelNumber": 17,
+    "difficulty": "hard",
+    "theme": "History & Legend",
+    "letters": ["C", "A", "S", "T", "L", "E"],
+    "targetWords": [
+      {
+        "word": "CASTLE",
+        "vietnameseMeaning": "Lâu đài",
+        "phonetic": "/ˈkɑː.səl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Tourists marvelled at the majestic medieval stone castle."
+      },
+      {
+        "word": "SCALE",
+        "vietnameseMeaning": "Quy mô / thang đo",
+        "phonetic": "/skeɪl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Astronomical distances are difficult to imagine in scale."
+      },
+      {
+        "word": "TALE",
+        "vietnameseMeaning": "Truyện / truyện kể",
+        "phonetic": "/teɪl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "He narrated an amusing tale of youthful adventures."
+      },
+      {
+        "word": "LATE",
+        "vietnameseMeaning": "Muộn / trễ",
+        "phonetic": "/leɪt/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "We caught the late evening train back into town."
+      },
+      {
+        "word": "SALE",
+        "vietnameseMeaning": "Bán hàng / đợt giảm giá",
+        "phonetic": "/seɪl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The bookstore launched its semi-annual clearance sale."
+      },
+      {
+        "word": "CASE",
+        "vietnameseMeaning": "Trường hợp / hộp đựng",
+        "phonetic": "/keɪs/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Store your glasses carefully in a padded protective case."
+      }
+    ],
+    "bonusWords": ["ACT", "CAT", "ACE", "LET", "SET"]
+  },
+  {
+    "id": "level-18",
+    "levelNumber": 18,
+    "difficulty": "hard",
+    "theme": "Astronomy & Science",
+    "letters": ["P", "L", "A", "N", "E", "T"],
+    "targetWords": [
+      {
+        "word": "PLANET",
+        "vietnameseMeaning": "Hành tinh",
+        "phonetic": "/ˈplæn.ɪt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Jupiter is the largest planet in our solar system."
+      },
+      {
+        "word": "PLANT",
+        "vietnameseMeaning": "Cây cối / thực vật",
+        "phonetic": "/plɑːnt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Sunlight and moisture help the delicate plant thrive."
+      },
+      {
+        "word": "PLATE",
+        "vietnameseMeaning": "Cái đĩa",
+        "phonetic": "/pleɪt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "He arranged slices of fresh apple on the serving plate."
+      },
+      {
+        "word": "PLANE",
+        "vietnameseMeaning": "Máy bay / mặt phẳng",
+        "phonetic": "/pleɪn/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The passenger plane touched down smoothly on the runway."
+      },
+      {
+        "word": "LEAN",
+        "vietnameseMeaning": "Tựa vào / nghiêng / thon gọn",
+        "phonetic": "/liːn/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "You can lean the ladder safely against the sturdy wall."
+      },
+      {
+        "word": "TAPE",
+        "vietnameseMeaning": "Băng dính",
+        "phonetic": "/teɪp/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "He reinforced the package corners with heavy-duty tape."
+      }
+    ],
+    "bonusWords": ["PAN", "TAN", "ANT", "NET", "PET", "PEN", "TAP", "PAT", "ATE", "EAT"]
+  },
+  {
+    "id": "level-19",
+    "levelNumber": 19,
+    "difficulty": "hard",
+    "theme": "Precious Metals & Life",
+    "letters": ["S", "I", "L", "V", "E", "R"],
+    "targetWords": [
+      {
+        "word": "SILVER",
+        "vietnameseMeaning": "Bạc / màu bạc",
+        "phonetic": "/ˈsɪl.vər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The champion was awarded an engraved silver trophy."
+      },
+      {
+        "word": "LIVE",
+        "vietnameseMeaning": "Sống / cư trú",
+        "phonetic": "/lɪv/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Many rare bird species live in this preserved wetland."
+      },
+      {
+        "word": "RISE",
+        "vietnameseMeaning": "Mọc lên / trỗi dậy",
+        "phonetic": "/raɪz/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "We woke early to watch the sun rise over mountains."
+      },
+      {
+        "word": "LIVER",
+        "vietnameseMeaning": "Lá gan",
+        "phonetic": "/ˈlɪv.ər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The liver plays a vital role in detoxifying the human body."
+      },
+      {
+        "word": "VEIL",
+        "vietnameseMeaning": "Mạng che mặt / tấm màn",
+        "phonetic": "/veɪl/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A dense veil of morning fog concealed the valley."
+      },
+      {
+        "word": "SIRE",
+        "vietnameseMeaning": "Bậc bề trên / đấng sinh thành",
+        "phonetic": "/saɪər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The royal advisor addressed his sovereign as Sire."
+      }
+    ],
+    "bonusWords": ["SIR", "LIE"]
+  },
+  {
+    "id": "level-20",
+    "levelNumber": 20,
+    "difficulty": "hard",
+    "theme": "Nature & Safety",
+    "letters": ["G", "A", "R", "D", "E", "N"],
+    "targetWords": [
+      {
+        "word": "GARDEN",
+        "vietnameseMeaning": "Khu vườn",
+        "phonetic": "/ˈɡɑː.dən/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Colorful flowers and herbs flourish in the botanical garden."
+      },
+      {
+        "word": "DANGER",
+        "vietnameseMeaning": "Sự nguy hiểm / mối đe dọa",
+        "phonetic": "/ˈdeɪn.dʒər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Lifeguards keep swimmers out of danger when waves rise."
+      },
+      {
+        "word": "GRADE",
+        "vietnameseMeaning": "Điểm số / cấp bậc",
+        "phonetic": "/ɡreɪd/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "She studied consistently and earned an excellent grade."
+      },
+      {
+        "word": "DEAR",
+        "vietnameseMeaning": "Thân yêu / quý mến",
+        "phonetic": "/dɪər/",
+        "partOfSpeech": "adjective",
+        "exampleSentence": "Old family photos hold memories that are very dear to us."
+      },
+      {
+        "word": "READ",
+        "vietnameseMeaning": "Đọc",
+        "phonetic": "/riːd/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Students read inspiring passages aloud in the classroom."
+      },
+      {
+        "word": "NEAR",
+        "vietnameseMeaning": "Gần gũi / ở gần",
+        "phonetic": "/nɪər/",
+        "partOfSpeech": "preposition",
+        "exampleSentence": "A crystal-clear brook flows near the mountain cottage."
+      }
+    ],
+    "bonusWords": ["RED", "AGE", "ERA", "EAR", "DEN", "END"]
+  },
+  {
+    "id": "level-21",
+    "levelNumber": 21,
+    "difficulty": "hard",
+    "theme": "Commerce & Craft",
+    "letters": ["M", "A", "R", "K", "E", "T"],
+    "targetWords": [
+      {
+        "word": "MARKET",
+        "vietnameseMeaning": "Chợ / thị trường",
+        "phonetic": "/ˈmɑː.kɪt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Local farmers display organic produce at the weekend market."
+      },
+      {
+        "word": "MAKER",
+        "vietnameseMeaning": "Người chế tạo / thợ thủ công",
+        "phonetic": "/ˈmeɪ.kər/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The guitar maker crafted each instrument by hand."
+      },
+      {
+        "word": "TEAM",
+        "vietnameseMeaning": "Đội ngũ / tập thể",
+        "phonetic": "/tiːm/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Our creative team designed a brilliant game concept."
+      },
+      {
+        "word": "MEAT",
+        "vietnameseMeaning": "Thịt",
+        "phonetic": "/miːt/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The chef marinated the meat with fragrant rosemary herbs."
+      },
+      {
+        "word": "MAKE",
+        "vietnameseMeaning": "Làm / chế tạo",
+        "phonetic": "/meɪk/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Consistent efforts make impossible dreams come true."
+      },
+      {
+        "word": "TAKE",
+        "vietnameseMeaning": "Cầm lấy / đón nhận",
+        "phonetic": "/teɪk/",
+        "partOfSpeech": "verb",
+        "exampleSentence": "Take this notebook to record your daily vocabulary."
+      }
+    ],
+    "bonusWords": ["ARM", "ART", "RAT", "TAR", "ATE", "EAT", "MAT", "TEA"]
+  },
+  {
+    "id": "level-22",
+    "levelNumber": 22,
+    "difficulty": "hard",
+    "theme": "Home & Vista",
+    "letters": ["W", "I", "N", "D", "O", "W"],
+    "targetWords": [
+      {
+        "word": "WINDOW",
+        "vietnameseMeaning": "Cửa sổ",
+        "phonetic": "/ˈwɪn.dəʊ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "Open the glass window to let fresh air circulate."
+      },
+      {
+        "word": "DOWN",
+        "vietnameseMeaning": "Xuống / phía dưới",
+        "phonetic": "/daʊn/",
+        "partOfSpeech": "adverb",
+        "exampleSentence": "Rain poured down steadily across the quiet city."
+      },
+      {
+        "word": "WIND",
+        "vietnameseMeaning": "Cơn gió",
+        "phonetic": "/wɪnd/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "A brisk winter wind rustled through bare pine branches."
+      },
+      {
+        "word": "WIDOW",
+        "vietnameseMeaning": "Người phụ nữ góa bụa",
+        "phonetic": "/ˈwɪd.əʊ/",
+        "partOfSpeech": "noun",
+        "exampleSentence": "The generous widow supported underprivileged children in town."
+      },
+      {
+        "word": "NOW",
+        "vietnameseMeaning": "Bây giờ / ngay lúc này",
+        "phonetic": "/naʊ/",
+        "partOfSpeech": "adverb",
+        "exampleSentence": "The best moment to acquire new knowledge is right now."
+      }
+    ],
+    "bonusWords": ["WIN", "WON", "OWN", "ION", "DIN"]
+  }
+]

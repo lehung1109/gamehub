@@ -138,6 +138,16 @@
     "emoji": "🟩",
     "route": "/games/wordle",
     "priority": 14
+  },
+  {
+    "id": "word-connect",
+    "slug": "word-connect",
+    "titleVi": "Vòng Xoay Nối Chữ",
+    "titleEn": "Word Connect",
+    "description": "Nối các chữ cái trên vòng xoay để tạo thành từ vựng tiếng Anh có nghĩa, mở khóa bảng ô chữ và tích lũy từ vựng thưởng",
+    "emoji": "🔄",
+    "route": "/games/word-connect",
+    "priority": 15
   }
 ]
 

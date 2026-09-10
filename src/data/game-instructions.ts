@@ -463,6 +463,50 @@ export const GAME_INSTRUCTIONS: Record<string, GameInstruction> = {
       "Luyện nghe phát âm chuẩn bản ngữ và củng cố nghĩa từ vựng qua thẻ tóm tắt kết quả.",
     ],
   },
+
+  "word-connect": {
+    id: "word-connect",
+    slug: "word-connect",
+    titleVi: "Vòng Xoay Nối Chữ",
+    titleEn: "Word Connect",
+    emoji: "🔄",
+    summary: "Nối các chữ cái trên vòng xoay để tạo thành từ vựng tiếng Anh có nghĩa và lấp đầy bảng ô chữ.",
+    quickSummary: "Nối các chữ cái trên vòng xoay để giải toàn bộ ô chữ tiếng Anh mục tiêu.",
+    goal: "Tìm ra tất cả các từ vựng tiếng Anh mục tiêu ẩn trong bảng ô chữ bằng cách nối các chữ cái rời rạc trên vòng xoay tròn.",
+    steps: [
+      "Quan sát các chữ cái trên vòng xoay và các hàng ô chữ cần giải trên bảng.",
+      "Kéo vuốt liên tục hoặc bấm chọn lần lượt từng chữ cái theo thứ tự để ghép thành từ tiếng Anh hoàn chỉnh.",
+      "Khi ghép đúng từ mục tiêu, từ sẽ lật mở trên bảng kèm phát âm chuẩn và nghĩa tiếng Việt.",
+      "Nếu tạo được từ tiếng Anh hợp lệ khác ngoài bảng, từ đó sẽ được tích lũy vào Hũ từ thưởng (Bonus Words) để nhận thêm điểm.",
+      "Sử dụng nút Gợi ý (💡) để mở chữ cái hoặc nút Xáo trộn (🔀) để đổi góc nhìn khi gặp khó khăn.",
+      "Giải toàn bộ các ô chữ trên bảng để vượt qua màn chơi và mở thẻ ôn tập từ vựng.",
+    ],
+    howToPlay: [
+      "Kéo vuốt hoặc bấm chọn các chữ cái trên vòng xoay để ghép thành từ / Connect letters on the wheel to form valid English words.",
+      "Mỗi từ mục tiêu đúng sẽ tự động bay lên điền vào các ô chữ tương ứng trên bảng / Correct target words fill into the crossword grid.",
+      "Khám phá các từ tiếng Anh hợp lệ khác ngoài bảng để nhận thêm điểm thưởng vào Hũ từ vựng (Bonus Words) / Find extra valid words for bonus jar points.",
+      "Dùng phím Xáo trộn (Shuffle) để thay đổi vị trí chữ cái hoặc Gợi ý (Hint) để mở một ô chữ ngẫu nhiên / Use Shuffle to rearrange letters or Hint to reveal a letter.",
+      "Giải hết toàn bộ các từ mục tiêu để hoàn thành màn chơi và đạt 3 sao / Solve all target words to clear the level and earn stars.",
+    ],
+    controls: {
+      mouse: "Nhấp giữ và kéo chuột qua các chữ cái trên đĩa xoay, hoặc nhấp lần lượt từng chữ cái rồi bấm xác nhận.",
+      touch: "Vuốt ngón tay liên tục qua các chữ cái trên đĩa xoay, hoặc chạm lần lượt từng ký tự trên màn hình.",
+      keyboard: "Gõ trực tiếp các phím chữ cái A-Z trên bàn phím, bấm Enter để gửi từ, Backspace để xoá ký tự hoặc Space để xáo trộn.",
+    },
+    tips: [
+      "Bắt đầu bằng cách tìm các từ ngắn 3 chữ cái trước để nhanh chóng thu hẹp các phương án còn lại.",
+      "Để ý các tiếp vĩ ngữ và họ từ quen thuộc như -S, -ED, -ING, -ER để tìm ra nhiều từ biến thể.",
+      "Khi bế tắc, bấm nút Xáo trộn (🔀) để não bộ nhận diện các mẫu từ mới từ góc nhìn khác.",
+      "Tích cực tìm từ thưởng (Bonus Words) để tích lũy thêm sao và điểm thưởng mở gợi ý.",
+      "Lắng nghe phát âm chuẩn bản ngữ sau khi giải được mỗi từ để củng cố kỹ năng nghe và ngữ âm.",
+    ],
+    benefits: [
+      "Mở rộng và củng cố vốn từ vựng tiếng Anh theo họ từ (word families) và cấu trúc ngữ pháp.",
+      "Nâng cao phản xạ chính tả, khả năng phân tích và ghép vần từ vựng (phonics & anagrams).",
+      "Rèn luyện tư duy logic, tính kiên nhẫn và khả năng quan sát chi tiết.",
+      "Cải thiện kỹ năng nghe phát âm chuẩn và nắm vững nghĩa từ vựng trong ngữ cảnh thực tế.",
+    ],
+  },
 };
 
 export function getGameInstruction(gameIdOrSlug?: string | null): GameInstruction | undefined {

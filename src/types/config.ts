@@ -64,6 +64,20 @@ export interface WordSearchSettings {
   showTimer: boolean
 }
 
+export interface WordleSettings {
+  allowedLengths: (4 | 5 | 6)[]
+  categories: string[]
+  maxAttempts: number
+  allowHints: boolean
+}
+
+export interface WordConnectSettings {
+  difficultyRange: ('easy' | 'medium' | 'hard')[]
+  allowHints: boolean
+  allowShuffle: boolean
+  enableBonusWords: boolean
+}
+
 export interface GameSettingsMap {
   flashcard: FlashcardSettings
   alphabet: AlphabetSettings
@@ -76,6 +90,8 @@ export interface GameSettingsMap {
   roleplay: RoleplaySettings
   'memory-match': MemoryMatchSettings
   'word-search': WordSearchSettings
+  wordle: WordleSettings
+  'word-connect': WordConnectSettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -92,6 +108,8 @@ export type AnyGameSettings =
   | RoleplaySettings
   | MemoryMatchSettings
   | WordSearchSettings
+  | WordleSettings
+  | WordConnectSettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -105,6 +123,8 @@ export type GameSettings =
   | { gameId: 'roleplay'; settings: RoleplaySettings }
   | { gameId: 'memory-match'; settings: MemoryMatchSettings }
   | { gameId: 'word-search'; settings: WordSearchSettings }
+  | { gameId: 'wordle'; settings: WordleSettings }
+  | { gameId: 'word-connect'; settings: WordConnectSettings }
 
 
 export interface PreviewPayload {
