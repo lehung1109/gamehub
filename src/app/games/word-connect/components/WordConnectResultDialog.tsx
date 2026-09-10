@@ -128,7 +128,7 @@ export const WordConnectResultDialog: React.FC<WordConnectResultDialogProps> = (
                       </span>
                     )}
                     {tw.partOfSpeech && (
-                      <span className="text-[11px] px-2 py-0.5 rounded-full font-bold bg-amber-100 dark:bg-amber-950/70 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
+                      <span className="text-xs px-2 py-0.5 rounded-full font-bold bg-amber-100 dark:bg-amber-950/70 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
                         {tw.partOfSpeech}
                       </span>
                     )}

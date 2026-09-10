@@ -266,13 +266,7 @@ export interface GameConfigSchemaDefinition {
   gameId: string
   title: string
   description: string
-  fields: {
-    allowedLengths: ConfigFieldDefinition
-    categories: ConfigFieldDefinition
-    maxAttempts: ConfigFieldDefinition
-    allowHints: ConfigFieldDefinition
-    [key: string]: ConfigFieldDefinition
-  }
+  fields: Record<string, ConfigFieldDefinition>
 }
 
 export const GAME_CONFIG_SCHEMAS: Record<string, GameConfigSchemaDefinition> = {
@@ -315,5 +309,42 @@ export const GAME_CONFIG_SCHEMAS: Record<string, GameConfigSchemaDefinition> = {
       },
     },
   },
+  'word-connect': {
+    gameId: 'word-connect',
+    title: 'Word Connect',
+    description: 'Cấu hình tùy chỉnh Word Connect cho giáo viên và quản trị viên',
+    fields: {
+      difficultyRange: {
+        name: 'difficultyRange',
+        label: 'Mức độ khó cho phép',
+        type: 'multiselect',
+        description: 'Các cấp độ khó học sinh có thể trải nghiệm (easy, medium, hard)',
+        defaultValue: ['easy', 'medium', 'hard'],
+        options: ['easy', 'medium', 'hard'],
+      },
+      allowHints: {
+        name: 'allowHints',
+        label: 'Cho phép gợi ý',
+        type: 'boolean',
+        description: 'Bật/tắt tính năng gợi ý mở chữ cái trên bảng ô chữ',
+        defaultValue: true,
+      },
+      allowShuffle: {
+        name: 'allowShuffle',
+        label: 'Cho phép xáo trộn',
+        type: 'boolean',
+        description: 'Bật/tắt tính năng xáo trộn vị trí các chữ cái trên vòng xoay',
+        defaultValue: true,
+      },
+      enableBonusWords: {
+        name: 'enableBonusWords',
+        label: 'Kích hoạt từ thưởng',
+        type: 'boolean',
+        description: 'Bật/tắt tính năng tích lũy từ thưởng (Bonus Words) khi tìm được từ hợp lệ ngoài bảng',
+        defaultValue: true,
+      },
+    },
+  },
 }
+
 
