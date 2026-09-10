@@ -22,6 +22,8 @@ export interface UseOddOneOutGameOptions {
 export interface UseOddOneOutGameReturn extends OddOneOutState {
   currentQuestion: OddOneOutQuestion | undefined;
   currentResult: OddOneOutAnswerResult | null;
+  isCorrect: boolean | null;
+  answersHistory: OddOneOutAnswerResult[];
   showThemeHint: boolean;
   selectCard: (id: string) => void;
   checkAnswer: () => OddOneOutAnswerResult | null;
@@ -252,9 +254,11 @@ export function useOddOneOutGame(
     bestStreak,
     hintsUsed,
     history,
+    answersHistory: history,
     isCompleted,
     currentQuestion,
     currentResult,
+    isCorrect: currentResult ? currentResult.isCorrect : null,
     selectCard,
     checkAnswer,
     applyFiftyFifty,
