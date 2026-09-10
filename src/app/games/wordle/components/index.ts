@@ -2,3 +2,8 @@ export * from "./WordleTile";
 export * from "./WordleRow";
 export * from "./WordleGrid";
 export * from "./WordleKeyboard";
+export * from "./WordleHeader";
+export * from "./WordleHintsBar";
+export * from "./WordleResultDialog";
+export * from "./WordleStatsModal";
+export * from "./WordleGuideModal";
