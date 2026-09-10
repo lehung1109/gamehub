@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "easy-fruits-vs-vegetable",
+    "difficulty": "easy",
+    "themeVi": "Hoa quả và Rau củ",
+    "themeEn": "Fruits & Vegetables",
+    "commonTraitVi": "Các loại trái cây mọc trên cây hoặc bụi",
+    "commonTraitEn": "Sweet edible fruits grown on trees or plants",
+    "explanationVi": "Cà rốt (Carrot) là một loại rau củ sinh trưởng dưới lòng đất, trong khi táo, chuối và dâu tây là các loại trái cây ăn quả.",
+    "explanationEn": "Carrot is a root vegetable grown underground, whereas apple, banana, and strawberry are sweet tree/plant fruits.",
+    "items": [
+      {
+        "id": "c01-apple",
+        "word": "Apple",
+        "vietnameseMeaning": "Quả táo",
+        "phonetic": "/ˈæp.l/",
+        "partOfSpeech": "noun",
+        "emoji": "🍎",
+        "isOdd": false
+      },
+      {
+        "id": "c01-banana",
+        "word": "Banana",
+        "vietnameseMeaning": "Quả chuối",
+        "phonetic": "/bəˈnɑː.nə/",
+        "partOfSpeech": "noun",
+        "emoji": "🍌",
+        "isOdd": false
+      },
+      {
+        "id": "c01-carrot",
+        "word": "Carrot",
+        "vietnameseMeaning": "Củ cà rốt",
+        "phonetic": "/ˈkær.ət/",
+        "partOfSpeech": "noun",
+        "emoji": "🥕",
+        "isOdd": true,
+        "reasonVi": "Carrot là một loại rau củ mọc dưới đất, trong khi các từ còn lại đều là trái cây ăn quả.",
+        "reasonEn": "Carrot is a root vegetable, while the others are sweet edible fruits."
+      },
+      {
+        "id": "c01-strawberry",
+        "word": "Strawberry",
+        "vietnameseMeaning": "Quả dâu tây",
+        "phonetic": "/ˈstrɔː.bər.i/",
+        "partOfSpeech": "noun",
+        "emoji": "🍓",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-land-mammals-vs-sea",
+    "difficulty": "easy",
+    "themeVi": "Động vật",
+    "themeEn": "Animals",
+    "commonTraitVi": "Động vật có vú sống trên cạn",
+    "commonTraitEn": "Terrestrial land-dwelling mammals",
+    "explanationVi": "Cá mập (Shark) là loài cá sống dưới đại dương hô hấp bằng mang, trong khi chó, mèo và voi đều là động vật có vú sống trên cạn.",
+    "explanationEn": "Shark is a marine fish with gills, whereas dog, cat, and elephant are land-dwelling mammals.",
+    "items": [
+      {
+        "id": "c02-dog",
+        "word": "Dog",
+        "vietnameseMeaning": "Con chó",
+        "phonetic": "/dɒɡ/",
+        "partOfSpeech": "noun",
+        "emoji": "🐶",
+        "isOdd": false
+      },
+      {
+        "id": "c02-cat",
+        "word": "Cat",
+        "vietnameseMeaning": "Con mèo",
+        "phonetic": "/kæt/",
+        "partOfSpeech": "noun",
+        "emoji": "🐱",
+        "isOdd": false
+      },
+      {
+        "id": "c02-shark",
+        "word": "Shark",
+        "vietnameseMeaning": "Cá mập",
+        "phonetic": "/ʃɑːk/",
+        "partOfSpeech": "noun",
+        "emoji": "🦈",
+        "isOdd": true,
+        "reasonVi": "Shark là loài cá biển hô hấp bằng mang, trong khi chó, mèo và voi là thú có vú sống trên cạn.",
+        "reasonEn": "Shark is a marine fish with gills, whereas dog, cat, and elephant are terrestrial mammals."
+      },
+      {
+        "id": "c02-elephant",
+        "word": "Elephant",
+        "vietnameseMeaning": "Con voi",
+        "phonetic": "/ˈel.ɪ.fənt/",
+        "partOfSpeech": "noun",
+        "emoji": "🐘",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-school-supplies-vs-toy",
+    "difficulty": "easy",
+    "themeVi": "Đồ dùng học tập",
+    "themeEn": "School Supplies",
+    "commonTraitVi": "Dụng cụ học tập trong lớp học",
+    "commonTraitEn": "Stationery supplies used for classroom studying",
+    "explanationVi": "Gấu bông (Teddy Bear) là đồ chơi trẻ em, trong khi bút chì, tẩy và vở là các đồ dùng học tập thiết yếu.",
+    "explanationEn": "Teddy Bear is a children's toy, whereas pencil, eraser, and notebook are essential classroom learning supplies.",
+    "items": [
+      {
+        "id": "c03-pencil",
+        "word": "Pencil",
+        "vietnameseMeaning": "Bút chì",
+        "phonetic": "/ˈpen.səl/",
+        "partOfSpeech": "noun",
+        "emoji": "✏️",
+        "isOdd": false
+      },
+      {
+        "id": "c03-eraser",
+        "word": "Eraser",
+        "vietnameseMeaning": "Cục tẩy",
+        "phonetic": "/ɪˈreɪ.zər/",
+        "partOfSpeech": "noun",
+        "emoji": "🧹",
+        "isOdd": false
+      },
+      {
+        "id": "c03-teddy-bear",
+        "word": "Teddy Bear",
+        "vietnameseMeaning": "Gấu bông",
+        "phonetic": "/ˈted.i beər/",
+        "partOfSpeech": "noun",
+        "emoji": "🧸",
+        "isOdd": true,
+        "reasonVi": "Teddy Bear là món đồ chơi trẻ em, còn bút chì, tẩy và vở là đồ dùng học tập.",
+        "reasonEn": "Teddy Bear is a play toy, whereas pencil, eraser, and notebook are stationery study tools."
+      },
+      {
+        "id": "c03-notebook",
+        "word": "Notebook",
+        "vietnameseMeaning": "Quyển vở",
+        "phonetic": "/ˈnəʊt.bʊk/",
+        "partOfSpeech": "noun",
+        "emoji": "📓",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-colors-vs-shape",
+    "difficulty": "easy",
+    "themeVi": "Màu sắc & Hình dạng",
+    "themeEn": "Colors & Shapes",
+    "commonTraitVi": "Từ chỉ màu sắc",
+    "commonTraitEn": "Words designating visual colors",
+    "explanationVi": "Hình tròn (Circle) là một hình dạng hình học 2D, trong khi đỏ, xanh dương và vàng là các tính từ chỉ màu sắc.",
+    "explanationEn": "Circle is a 2D geometric shape, whereas red, blue, and yellow are descriptive color words.",
+    "items": [
+      {
+        "id": "c04-red",
+        "word": "Red",
+        "vietnameseMeaning": "Màu đỏ",
+        "phonetic": "/red/",
+        "partOfSpeech": "adjective",
+        "emoji": "🔴",
+        "isOdd": false
+      },
+      {
+        "id": "c04-blue",
+        "word": "Blue",
+        "vietnameseMeaning": "Màu xanh dương",
+        "phonetic": "/bluː/",
+        "partOfSpeech": "adjective",
+        "emoji": "🔵",
+        "isOdd": false
+      },
+      {
+        "id": "c04-circle",
+        "word": "Circle",
+        "vietnameseMeaning": "Hình tròn",
+        "phonetic": "/ˈsɜː.kl/",
+        "partOfSpeech": "noun",
+        "emoji": "⭕",
+        "isOdd": true,
+        "reasonVi": "Circle là hình dạng hình học, còn red, blue và yellow là các màu sắc cơ bản.",
+        "reasonEn": "Circle is a geometric shape, while red, blue, and yellow are visual colors."
+      },
+      {
+        "id": "c04-yellow",
+        "word": "Yellow",
+        "vietnameseMeaning": "Màu vàng",
+        "phonetic": "/ˈjel.əʊ/",
+        "partOfSpeech": "adjective",
+        "emoji": "🟡",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-vehicles-vs-building",
+    "difficulty": "easy",
+    "themeVi": "Phương tiện giao thông",
+    "themeEn": "Transportation",
+    "commonTraitVi": "Phương tiện giao thông dùng để di chuyển trên đường",
+    "commonTraitEn": "Vehicles used for road passenger travel",
+    "explanationVi": "Ngôi nhà (House) là một công trình kiến trúc cố định để ở, còn xe đạp, ô tô và xe buýt là các phương tiện giao thông vận chuyển.",
+    "explanationEn": "House is a stationary residential building, whereas bicycle, car, and bus are mobile transport vehicles.",
+    "items": [
+      {
+        "id": "c05-bicycle",
+        "word": "Bicycle",
+        "vietnameseMeaning": "Xe đạp",
+        "phonetic": "/ˈbaɪ.sɪ.kl/",
+        "partOfSpeech": "noun",
+        "emoji": "🚲",
+        "isOdd": false
+      },
+      {
+        "id": "c05-car",
+        "word": "Car",
+        "vietnameseMeaning": "Xe ô tô",
+        "phonetic": "/kɑːr/",
+        "partOfSpeech": "noun",
+        "emoji": "🚗",
+        "isOdd": false
+      },
+      {
+        "id": "c05-bus",
+        "word": "Bus",
+        "vietnameseMeaning": "Xe buýt",
+        "phonetic": "/bʌs/",
+        "partOfSpeech": "noun",
+        "emoji": "🚌",
+        "isOdd": false
+      },
+      {
+        "id": "c05-house",
+        "word": "House",
+        "vietnameseMeaning": "Ngôi nhà",
+        "phonetic": "/haʊs/",
+        "partOfSpeech": "noun",
+        "emoji": "🏠",
+        "isOdd": true,
+        "reasonVi": "House là công trình kiến trúc nhà ở, trong khi xe đạp, ô tô và xe buýt là phương tiện di chuyển.",
+        "reasonEn": "House is a stationary building, whereas bicycle, car, and bus are vehicles of movement."
+      }
+    ]
+  },
+  {
+    "id": "easy-body-face-vs-clothing",
+    "difficulty": "easy",
+    "themeVi": "Cơ thể người",
+    "themeEn": "Human Body",
+    "commonTraitVi": "Các bộ phận cảm giác trên khuôn mặt",
+    "commonTraitEn": "Sensory organs situated on the human face",
+    "explanationVi": "Áo sơ mi (Shirt) là một loại trang phục mặc ngoài, trong khi mắt, mũi và miệng là các giác quan trên khuôn mặt con người.",
+    "explanationEn": "Shirt is an article of clothing, whereas eye, nose, and mouth are natural anatomical parts of the human face.",
+    "items": [
+      {
+        "id": "c06-eye",
+        "word": "Eye",
+        "vietnameseMeaning": "Mắt",
+        "phonetic": "/aɪ/",
+        "partOfSpeech": "noun",
+        "emoji": "👁️",
+        "isOdd": false
+      },
+      {
+        "id": "c06-nose",
+        "word": "Nose",
+        "vietnameseMeaning": "Mũi",
+        "phonetic": "/nəʊz/",
+        "partOfSpeech": "noun",
+        "emoji": "👃",
+        "isOdd": false
+      },
+      {
+        "id": "c06-shirt",
+        "word": "Shirt",
+        "vietnameseMeaning": "Áo sơ mi",
+        "phonetic": "/ʃɜːt/",
+        "partOfSpeech": "noun",
+        "emoji": "👕",
+        "isOdd": true,
+        "reasonVi": "Shirt là trang phục quần áo may mặc, còn mắt, mũi và miệng là các bộ phận trên khuôn mặt.",
+        "reasonEn": "Shirt is an item of clothing, while eye, nose, and mouth are facial body parts."
+      },
+      {
+        "id": "c06-mouth",
+        "word": "Mouth",
+        "vietnameseMeaning": "Miệng",
+        "phonetic": "/maʊθ/",
+        "partOfSpeech": "noun",
+        "emoji": "👄",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-pets-vs-wild",
+    "difficulty": "easy",
+    "themeVi": "Thú cưng & Động vật hoang dã",
+    "themeEn": "Pets & Wildlife",
+    "commonTraitVi": "Thú cưng nhỏ thuần hóa nuôi trong nhà",
+    "commonTraitEn": "Small domesticated pets typically kept in households",
+    "explanationVi": "Sư tử (Lion) là thú ăn thịt săn mồi sống hoang dã nơi thảo nguyên, trong khi chuột hamster, thỏ và cá vàng là những thú cưng được nuôi dưỡng trong gia đình.",
+    "explanationEn": "Lion is a wild predatory apex carnivore, whereas hamster, rabbit, and goldfish are domesticated household pets.",
+    "items": [
+      {
+        "id": "c07-hamster",
+        "word": "Hamster",
+        "vietnameseMeaning": "Chuột hamster",
+        "phonetic": "/ˈhæm.stər/",
+        "partOfSpeech": "noun",
+        "emoji": "🐹",
+        "isOdd": false
+      },
+      {
+        "id": "c07-lion",
+        "word": "Lion",
+        "vietnameseMeaning": "Sư tử",
+        "phonetic": "/ˈlaɪ.ən/",
+        "partOfSpeech": "noun",
+        "emoji": "🦁",
+        "isOdd": true,
+        "reasonVi": "Lion là động vật hoang dã săn mồi to lớn, không phải thú nuôi thuần hóa trong nhà.",
+        "reasonEn": "Lion is a wild carnivorous predator, not a domesticated household pet."
+      },
+      {
+        "id": "c07-rabbit",
+        "word": "Rabbit",
+        "vietnameseMeaning": "Con thỏ",
+        "phonetic": "/ˈræb.ɪt/",
+        "partOfSpeech": "noun",
+        "emoji": "🐰",
+        "isOdd": false
+      },
+      {
+        "id": "c07-goldfish",
+        "word": "Goldfish",
+        "vietnameseMeaning": "Cá vàng",
+        "phonetic": "/ˈɡəʊld.fɪʃ/",
+        "partOfSpeech": "noun",
+        "emoji": "🐟",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-tableware-vs-furniture",
+    "difficulty": "easy",
+    "themeVi": "Dụng cụ bàn ăn",
+    "themeEn": "Dining & Tableware",
+    "commonTraitVi": "Bộ dụng cụ dùng bữa cầm tay (dao kéo dĩa muỗng)",
+    "commonTraitEn": "Handheld cutlery utensils used during meals",
+    "explanationVi": "Chiếc giường (Bed) là đồ nội thất lớn trong phòng ngủ để nghỉ ngơi, trong khi muỗng, nĩa và dao là dụng cụ cầm tay ăn uống trên bàn ăn.",
+    "explanationEn": "Bed is a large piece of bedroom furniture, whereas spoon, fork, and knife are mealtime tableware cutlery utensils.",
+    "items": [
+      {
+        "id": "c08-spoon",
+        "word": "Spoon",
+        "vietnameseMeaning": "Cái thìa / muỗng",
+        "phonetic": "/spuːn/",
+        "partOfSpeech": "noun",
+        "emoji": "🥄",
+        "isOdd": false
+      },
+      {
+        "id": "c08-fork",
+        "word": "Fork",
+        "vietnameseMeaning": "Cái nĩa / dĩa",
+        "phonetic": "/fɔːk/",
+        "partOfSpeech": "noun",
+        "emoji": "🍴",
+        "isOdd": false
+      },
+      {
+        "id": "c08-knife",
+        "word": "Knife",
+        "vietnameseMeaning": "Con dao ăn",
+        "phonetic": "/naɪf/",
+        "partOfSpeech": "noun",
+        "emoji": "🔪",
+        "isOdd": false
+      },
+      {
+        "id": "c08-bed",
+        "word": "Bed",
+        "vietnameseMeaning": "Cái giường",
+        "phonetic": "/bed/",
+        "partOfSpeech": "noun",
+        "emoji": "🛏️",
+        "isOdd": true,
+        "reasonVi": "Bed là đồ nội thất trong phòng ngủ, trong khi muỗng, nĩa và dao là dụng cụ ăn uống.",
+        "reasonEn": "Bed is bedroom furniture, while spoon, fork, and knife are eating cutlery."
+      }
+    ]
+  },
+  {
+    "id": "easy-beverages-vs-food",
+    "difficulty": "easy",
+    "themeVi": "Đồ uống & Thức ăn",
+    "themeEn": "Drinks & Food",
+    "commonTraitVi": "Đồ uống dạng lỏng",
+    "commonTraitEn": "Liquid beverages consumed by drinking",
+    "explanationVi": "Bánh mì (Bread) là thực phẩm thể rắn được nướng chín, trong khi sữa, nước lọc và trà là các loại thức uống dạng lỏng.",
+    "explanationEn": "Bread is a solid baked food, whereas milk, water, and tea are liquid beverages.",
+    "items": [
+      {
+        "id": "c09-milk",
+        "word": "Milk",
+        "vietnameseMeaning": "Sữa",
+        "phonetic": "/mɪlk/",
+        "partOfSpeech": "noun",
+        "emoji": "🥛",
+        "isOdd": false
+      },
+      {
+        "id": "c09-water",
+        "word": "Water",
+        "vietnameseMeaning": "Nước",
+        "phonetic": "/ˈwɔː.tər/",
+        "partOfSpeech": "noun",
+        "emoji": "💧",
+        "isOdd": false
+      },
+      {
+        "id": "c09-bread",
+        "word": "Bread",
+        "vietnameseMeaning": "Bánh mì",
+        "phonetic": "/bred/",
+        "partOfSpeech": "noun",
+        "emoji": "🍞",
+        "isOdd": true,
+        "reasonVi": "Bread là thực phẩm dạng đặc nướng chín để ăn, trong khi sữa, nước và trà là thức uống dạng lỏng.",
+        "reasonEn": "Bread is a solid baked food, whereas milk, water, and tea are liquid beverages."
+      },
+      {
+        "id": "c09-tea",
+        "word": "Tea",
+        "vietnameseMeaning": "Trà",
+        "phonetic": "/tiː/",
+        "partOfSpeech": "noun",
+        "emoji": "🍵",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-birds-vs-insect",
+    "difficulty": "easy",
+    "themeVi": "Thế giới loài vật",
+    "themeEn": "Fauna & Flight",
+    "commonTraitVi": "Loài chim có xương sống, mỏ và lông vũ",
+    "commonTraitEn": "Vertebrate feathered avian birds",
+    "explanationVi": "Bướm (Butterfly) là loài côn trùng không xương sống có sáu chân, trong khi đại bàng, bồ câu và chim sẻ là các loài chim có xương sống và lông vũ.",
+    "explanationEn": "Butterfly is a six-legged invertebrate insect, whereas eagle, pigeon, and sparrow are vertebrate birds with feathers.",
+    "items": [
+      {
+        "id": "c10-eagle",
+        "word": "Eagle",
+        "vietnameseMeaning": "Chim đại bàng",
+        "phonetic": "/ˈiː.ɡl/",
+        "partOfSpeech": "noun",
+        "emoji": "🦅",
+        "isOdd": false
+      },
+      {
+        "id": "c10-pigeon",
+        "word": "Pigeon",
+        "vietnameseMeaning": "Chim bồ câu",
+        "phonetic": "/ˈpɪdʒ.ən/",
+        "partOfSpeech": "noun",
+        "emoji": "🐦",
+        "isOdd": false
+      },
+      {
+        "id": "c10-sparrow",
+        "word": "Sparrow",
+        "vietnameseMeaning": "Chim sẻ",
+        "phonetic": "/ˈspær.əʊ/",
+        "partOfSpeech": "noun",
+        "emoji": "🐤",
+        "isOdd": false
+      },
+      {
+        "id": "c10-butterfly",
+        "word": "Butterfly",
+        "vietnameseMeaning": "Con bướm",
+        "phonetic": "/ˈbʌt.ə.flaɪ/",
+        "partOfSpeech": "noun",
+        "emoji": "🦋",
+        "isOdd": true,
+        "reasonVi": "Butterfly là côn trùng sáu chân không xương sống, trong khi đại bàng, bồ câu và chim sẻ là loài chim có lông vũ.",
+        "reasonEn": "Butterfly is an invertebrate insect, whereas eagle, pigeon, and sparrow are feathered avian birds."
+      }
+    ]
+  },
+  {
+    "id": "easy-clothing-vs-accessory",
+    "difficulty": "easy",
+    "themeVi": "Trang phục thường ngày",
+    "themeEn": "Apparel & Clothing",
+    "commonTraitVi": "Quần áo mặc trực tiếp trên cơ thể",
+    "commonTraitEn": "Garments worn directly on the human body",
+    "explanationVi": "Balo (Backpack) là một phụ kiện túi đeo dùng đựng đồ, trong khi quần dài, áo khoác và váy là trang phục quần áo may mặc trực tiếp.",
+    "explanationEn": "Backpack is a carrying accessory for holding belongings, whereas trousers, jacket, and skirt are wearable garments.",
+    "items": [
+      {
+        "id": "c11-trousers",
+        "word": "Trousers",
+        "vietnameseMeaning": "Quần dài",
+        "phonetic": "/ˈtraʊ.zəz/",
+        "partOfSpeech": "noun",
+        "emoji": "👖",
+        "isOdd": false
+      },
+      {
+        "id": "c11-backpack",
+        "word": "Backpack",
+        "vietnameseMeaning": "Balo đựng đồ",
+        "phonetic": "/ˈbæk.pæk/",
+        "partOfSpeech": "noun",
+        "emoji": "🎒",
+        "isOdd": true,
+        "reasonVi": "Backpack là túi đeo phụ kiện, còn quần, áo khoác và váy là trang phục mặc trên người.",
+        "reasonEn": "Backpack is a baggage container accessory, whereas trousers, jacket, and skirt are wearable clothes."
+      },
+      {
+        "id": "c11-jacket",
+        "word": "Jacket",
+        "vietnameseMeaning": "Áo khoác",
+        "phonetic": "/ˈdʒæk.ɪt/",
+        "partOfSpeech": "noun",
+        "emoji": "🧥",
+        "isOdd": false
+      },
+      {
+        "id": "c11-skirt",
+        "word": "Skirt",
+        "vietnameseMeaning": "Chân váy",
+        "phonetic": "/skɜːt/",
+        "partOfSpeech": "noun",
+        "emoji": "👗",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "easy-rooms-vs-outdoor",
+    "difficulty": "easy",
+    "themeVi": "Không gian sinh hoạt",
+    "themeEn": "Living Spaces",
+    "commonTraitVi": "Các phòng chức năng bên trong một căn nhà",
+    "commonTraitEn": "Internal functional rooms enclosed within a residence",
+    "explanationVi": "Công viên (Park) là không gian công cộng ngoài trời, trong khi phòng ngủ, phòng bếp và phòng tắm là các phòng khép kín bên trong một ngôi nhà.",
+    "explanationEn": "Park is an expansive public outdoor area, whereas bedroom, kitchen, and bathroom are indoor domestic rooms.",
+    "items": [
+      {
+        "id": "c12-bedroom",
+        "word": "Bedroom",
+        "vietnameseMeaning": "Phòng ngủ",
+        "phonetic": "/ˈbed.ruːm/",
+        "partOfSpeech": "noun",
+        "emoji": "🛏️",
+        "isOdd": false
+      },
+      {
+        "id": "c12-kitchen",
+        "word": "Kitchen",
+        "vietnameseMeaning": "Nhà bếp",
+        "phonetic": "/ˈkɪtʃ.ən/",
+        "partOfSpeech": "noun",
+        "emoji": "🍳",
+        "isOdd": false
+      },
+      {
+        "id": "c12-bathroom",
+        "word": "Bathroom",
+        "vietnameseMeaning": "Phòng tắm",
+        "phonetic": "/ˈbɑːθ.ruːm/",
+        "partOfSpeech": "noun",
+        "emoji": "🛁",
+        "isOdd": false
+      },
+      {
+        "id": "c12-park",
+        "word": "Park",
+        "vietnameseMeaning": "Công viên",
+        "phonetic": "/pɑːk/",
+        "partOfSpeech": "noun",
+        "emoji": "🌳",
+        "isOdd": true,
+        "reasonVi": "Park là địa điểm ngoài trời công cộng, còn phòng ngủ, bếp và phòng tắm là các phòng trong nhà.",
+        "reasonEn": "Park is an outdoor recreational ground, whereas bedroom, kitchen, and bathroom are indoor rooms."
+      }
+    ]
+  },
+  {
+    "id": "medium-medical-professions-vs-law",
+    "difficulty": "medium",
+    "themeVi": "Nghề nghiệp chuyên môn",
+    "themeEn": "Professions",
+    "commonTraitVi": "Các ngành nghề chăm sóc sức khỏe y khoa",
+    "commonTraitEn": "Healthcare and clinical medical practitioners",
+    "explanationVi": "Luật sư (Lawyer) làm việc trong lĩnh vực pháp lý và tòa án, trong khi bác sĩ, y tá và bác sĩ phẫu thuật là các chuyên gia ngành y tế.",
+    "explanationEn": "Lawyer practices jurisprudence within the legal system, whereas doctor, nurse, and surgeon are clinical healthcare professionals.",
+    "items": [
+      {
+        "id": "c13-doctor",
+        "word": "Doctor",
+        "vietnameseMeaning": "Bác sĩ",
+        "phonetic": "/ˈdɒk.tər/",
+        "partOfSpeech": "noun",
+        "emoji": "👨‍⚕️",
+        "isOdd": false
+      },
+      {
+        "id": "c13-nurse",
+        "word": "Nurse",
+        "vietnameseMeaning": "Y tá",
+        "phonetic": "/nɜːs/",
+        "partOfSpeech": "noun",
+        "emoji": "👩‍⚕️",
+        "isOdd": false
+      },
+      {
+        "id": "c13-surgeon",
+        "word": "Surgeon",
+        "vietnameseMeaning": "Bác sĩ phẫu thuật",
+        "phonetic": "/ˈsɜː.dʒən/",
+        "partOfSpeech": "noun",
+        "emoji": "🩺",
+        "isOdd": false
+      },
+      {
+        "id": "c13-lawyer",
+        "word": "Lawyer",
+        "vietnameseMeaning": "Luật sư",
+        "phonetic": "/ˈlɔɪ.ər/",
+        "partOfSpeech": "noun",
+        "emoji": "⚖️",
+        "isOdd": true,
+        "reasonVi": "Lawyer thuộc ngành pháp lý và tư pháp, trong khi bác sĩ, y tá và bác sĩ phẫu thuật đều là ngành y tế.",
+        "reasonEn": "Lawyer operates in law and justice, while doctor, nurse, and surgeon are healthcare professionals."
+      }
+    ]
+  },
+  {
+    "id": "medium-weather-vs-season",
+    "difficulty": "medium",
+    "themeVi": "Thời tiết & Các mùa",
+    "themeEn": "Weather & Seasons",
+    "commonTraitVi": "Tính từ miêu tả điều kiện khí quyển thời tiết",
+    "commonTraitEn": "Adjectives describing atmospheric meteorological conditions",
+    "explanationVi": "Mùa thu (Autumn) là danh từ chỉ một mùa trong năm kéo dài nhiều tháng, trong khi rainy, windy và snowy là các tính từ miêu tả trạng thái thời tiết hàng ngày.",
+    "explanationEn": "Autumn is a noun naming a three-month astronomical season, whereas rainy, windy, and snowy are descriptive weather adjectives.",
+    "items": [
+      {
+        "id": "c14-rainy",
+        "word": "Rainy",
+        "vietnameseMeaning": "Có mưa",
+        "phonetic": "/ˈreɪ.ni/",
+        "partOfSpeech": "adjective",
+        "emoji": "🌧️",
+        "isOdd": false
+      },
+      {
+        "id": "c14-windy",
+        "word": "Windy",
+        "vietnameseMeaning": "Có gió",
+        "phonetic": "/ˈwɪn.di/",
+        "partOfSpeech": "adjective",
+        "emoji": "💨",
+        "isOdd": false
+      },
+      {
+        "id": "c14-autumn",
+        "word": "Autumn",
+        "vietnameseMeaning": "Mùa thu",
+        "phonetic": "/ˈɔː.təm/",
+        "partOfSpeech": "noun",
+        "emoji": "🍂",
+        "isOdd": true,
+        "reasonVi": "Autumn là danh từ chỉ một mùa trong năm, còn rainy, windy, snowy là tính từ miêu tả thời tiết.",
+        "reasonEn": "Autumn is a noun naming an annual season, while rainy, windy, and snowy are adjectives for weather."
+      },
+      {
+        "id": "c14-snowy",
+        "word": "Snowy",
+        "vietnameseMeaning": "Có tuyết",
+        "phonetic": "/ˈsnəʊ.i/",
+        "partOfSpeech": "adjective",
+        "emoji": "🌨️",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-string-instruments-vs-percussion",
+    "difficulty": "medium",
+    "themeVi": "Nhạc cụ âm nhạc",
+    "themeEn": "Musical Instruments",
+    "commonTraitVi": "Nhạc cụ bộ dây phát âm thanh nhờ rung dây đàn",
+    "commonTraitEn": "Chordophone string instruments played with a bow or plucked",
+    "explanationVi": "Trống (Drum) là nhạc cụ thuộc bộ gõ phát âm thanh bằng cách gõ vào mặt màng, trong khi đàn vĩ cầm, đàn guitar và hồ cầm đều thuộc bộ dây.",
+    "explanationEn": "Drum is a percussion instrument sounded by striking a membrane, whereas violin, guitar, and cello are acoustic string instruments.",
+    "items": [
+      {
+        "id": "c15-violin",
+        "word": "Violin",
+        "vietnameseMeaning": "Đàn vĩ cầm / vi-ô-lông",
+        "phonetic": "/ˌvaɪəˈlɪn/",
+        "partOfSpeech": "noun",
+        "emoji": "🎻",
+        "isOdd": false
+      },
+      {
+        "id": "c15-guitar",
+        "word": "Guitar",
+        "vietnameseMeaning": "Đàn ghi-ta",
+        "phonetic": "/ɡɪˈtɑːr/",
+        "partOfSpeech": "noun",
+        "emoji": "🎸",
+        "isOdd": false
+      },
+      {
+        "id": "c15-drum",
+        "word": "Drum",
+        "vietnameseMeaning": "Cái trống",
+        "phonetic": "/drʌm/",
+        "partOfSpeech": "noun",
+        "emoji": "🥁",
+        "isOdd": true,
+        "reasonVi": "Drum là nhạc cụ bộ gõ tạo âm thanh bằng cách gõ, trong khi violin, guitar và cello đều là nhạc cụ bộ dây.",
+        "reasonEn": "Drum is a percussion instrument played by hitting, while violin, guitar, and cello are stringed chordophones."
+      },
+      {
+        "id": "c15-cello",
+        "word": "Cello",
+        "vietnameseMeaning": "Đàn trung cầm / xen-lô",
+        "phonetic": "/ˈtʃel.əʊ/",
+        "partOfSpeech": "noun",
+        "emoji": "🎶",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-ball-sports-vs-combat",
+    "difficulty": "medium",
+    "themeVi": "Thể thao vận động",
+    "themeEn": "Sports & Athletics",
+    "commonTraitVi": "Các môn thể thao thi đấu sử dụng trái bóng",
+    "commonTraitEn": "Athletic team or racket sports played with an inflatable ball",
+    "explanationVi": "Quyền anh (Boxing) là môn võ đối kháng cá nhân bằng găng tay không sử dụng bóng, trong khi bóng đá, bóng rổ và quần vợt đều là môn thể thao dùng bóng.",
+    "explanationEn": "Boxing is a full-contact combat martial sport without any ball, whereas football, basketball, and tennis are ball-centric games.",
+    "items": [
+      {
+        "id": "c16-football",
+        "word": "Football",
+        "vietnameseMeaning": "Bóng đá",
+        "phonetic": "/ˈfʊt.bɔːl/",
+        "partOfSpeech": "noun",
+        "emoji": "⚽",
+        "isOdd": false
+      },
+      {
+        "id": "c16-basketball",
+        "word": "Basketball",
+        "vietnameseMeaning": "Bóng rổ",
+        "phonetic": "/ˈbɑː.skɪt.bɔːl/",
+        "partOfSpeech": "noun",
+        "emoji": "🏀",
+        "isOdd": false
+      },
+      {
+        "id": "c16-tennis",
+        "word": "Tennis",
+        "vietnameseMeaning": "Quần vợt",
+        "phonetic": "/ˈten.ɪs/",
+        "partOfSpeech": "noun",
+        "emoji": "🎾",
+        "isOdd": false
+      },
+      {
+        "id": "c16-boxing",
+        "word": "Boxing",
+        "vietnameseMeaning": "Quyền anh / đấm bốc",
+        "phonetic": "/ˈbɒk.sɪŋ/",
+        "partOfSpeech": "noun",
+        "emoji": "🥊",
+        "isOdd": true,
+        "reasonVi": "Boxing là môn võ đối kháng bằng nắm đấm không dùng bóng, còn bóng đá, bóng rổ và tennis đều dùng bóng.",
+        "reasonEn": "Boxing is a combat striking martial art without a ball, whereas football, basketball, and tennis are ball sports."
+      }
+    ]
+  },
+  {
+    "id": "medium-emotions-positive-vs-negative",
+    "difficulty": "medium",
+    "themeVi": "Cảm xúc & Tâm trạng",
+    "themeEn": "Emotions & Moods",
+    "commonTraitVi": "Tính từ thể hiện niềm vui và sự lạc quan tích cực",
+    "commonTraitEn": "Adjectives expressing buoyant happiness and positive elation",
+    "explanationVi": "U sầu (Melancholic) biểu thị trạng thái trầm lắng, đượm buồn man mác (tiêu cực), trong khi joyful, cheerful và delighted đều mang ý nghĩa tươi vui, hạnh phúc.",
+    "explanationEn": "Melancholic conveys profound sorrow or gloomy sadness, whereas joyful, cheerful, and delighted denote positive joy and happiness.",
+    "items": [
+      {
+        "id": "c17-joyful",
+        "word": "Joyful",
+        "vietnameseMeaning": "Vui sướng hân hoan",
+        "phonetic": "/ˈdʒɔɪ.fəl/",
+        "partOfSpeech": "adjective",
+        "emoji": "😄",
+        "isOdd": false
+      },
+      {
+        "id": "c17-cheerful",
+        "word": "Cheerful",
+        "vietnameseMeaning": "Vui vẻ tươi tắn",
+        "phonetic": "/ˈtʃɪə.fəl/",
+        "partOfSpeech": "adjective",
+        "emoji": "😊",
+        "isOdd": false
+      },
+      {
+        "id": "c17-melancholic",
+        "word": "Melancholic",
+        "vietnameseMeaning": "U sầu trầm cảm",
+        "phonetic": "/ˌmel.əŋˈkɒl.ɪk/",
+        "partOfSpeech": "adjective",
+        "emoji": "😔",
+        "isOdd": true,
+        "reasonVi": "Melancholic mang nghĩa buồn bã, u sầu u tối, trong khi các từ còn lại đều thể hiện niềm vui và hân hoan tích cực.",
+        "reasonEn": "Melancholic signifies sadness and gloom, whereas joyful, cheerful, and delighted reflect upbeat positive emotions."
+      },
+      {
+        "id": "c17-delighted",
+        "word": "Delighted",
+        "vietnameseMeaning": "Vui mừng khôn xiết",
+        "phonetic": "/dɪˈlaɪ.tɪd/",
+        "partOfSpeech": "adjective",
+        "emoji": "🥳",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-kitchen-appliances-vs-analog",
+    "difficulty": "medium",
+    "themeVi": "Thiết bị nhà bếp",
+    "themeEn": "Kitchen Equipment",
+    "commonTraitVi": "Thiết bị nhà bếp chạy bằng điện tử năng lượng điện",
+    "commonTraitEn": "Powered electrical appliances used in the modern kitchen",
+    "explanationVi": "Cây cán bột (Rolling Pin) là dụng cụ bằng gỗ thao tác thủ công, trong khi lò vi sóng, tủ lạnh và máy xay là các thiết bị gia dụng cắm điện.",
+    "explanationEn": "Rolling Pin is a non-powered manual wooden tool, whereas microwave, refrigerator, and blender are electrical kitchen appliances.",
+    "items": [
+      {
+        "id": "c18-microwave",
+        "word": "Microwave",
+        "vietnameseMeaning": "Lò vi sóng",
+        "phonetic": "/ˈmaɪ.krə.weɪv/",
+        "partOfSpeech": "noun",
+        "emoji": "📻",
+        "isOdd": false
+      },
+      {
+        "id": "c18-refrigerator",
+        "word": "Refrigerator",
+        "vietnameseMeaning": "Tủ lạnh",
+        "phonetic": "/rɪˈfrɪdʒ.ər.eɪ.tər/",
+        "partOfSpeech": "noun",
+        "emoji": "🧊",
+        "isOdd": false
+      },
+      {
+        "id": "c18-blender",
+        "word": "Blender",
+        "vietnameseMeaning": "Máy xay sinh tố",
+        "phonetic": "/ˈblen.dər/",
+        "partOfSpeech": "noun",
+        "emoji": "🥤",
+        "isOdd": false
+      },
+      {
+        "id": "c18-rolling-pin",
+        "word": "Rolling Pin",
+        "vietnameseMeaning": "Cây lăn bột",
+        "phonetic": "/ˈrəʊ.lɪŋ pɪn/",
+        "partOfSpeech": "noun",
+        "emoji": "🪵",
+        "isOdd": true,
+        "reasonVi": "Rolling Pin là dụng cụ cơ học thủ công bằng gỗ, còn lò vi sóng, tủ lạnh và máy xay đều là thiết bị chạy bằng điện.",
+        "reasonEn": "Rolling Pin is a manual wooden tool, while microwave, refrigerator, and blender are electric appliances."
+      }
+    ]
+  },
+  {
+    "id": "medium-astronomy-planets-vs-satellite",
+    "difficulty": "medium",
+    "themeVi": "Thiên văn học",
+    "themeEn": "Astronomy & Cosmos",
+    "commonTraitVi": "Các hành tinh chính quay quanh Mặt Trời",
+    "commonTraitEn": "Major solar system planets orbiting the Sun",
+    "explanationVi": "Mặt Trăng (Moon) là một vệ tinh tự nhiên quay quanh Trái Đất, trong khi Sao Hỏa, Sao Mộc và Sao Kim là những hành tinh độc lập quay quanh Mặt Trời.",
+    "explanationEn": "The Moon is a natural planetary satellite orbiting Earth, whereas Mars, Jupiter, and Venus are primary planets orbiting the Sun.",
+    "items": [
+      {
+        "id": "c19-mars",
+        "word": "Mars",
+        "vietnameseMeaning": "Sao Hỏa",
+        "phonetic": "/mɑːz/",
+        "partOfSpeech": "noun",
+        "emoji": "🔴",
+        "isOdd": false
+      },
+      {
+        "id": "c19-moon",
+        "word": "Moon",
+        "vietnameseMeaning": "Mặt Trăng",
+        "phonetic": "/muːn/",
+        "partOfSpeech": "noun",
+        "emoji": "🌙",
+        "isOdd": true,
+        "reasonVi": "Moon là vệ tinh tự nhiên quay quanh một hành tinh, trong khi Mars, Jupiter và Venus là các hành tinh quay quanh Mặt Trời.",
+        "reasonEn": "The Moon is a satellite orbiting Earth, whereas Mars, Jupiter, and Venus are planets orbiting the Sun."
+      },
+      {
+        "id": "c19-jupiter",
+        "word": "Jupiter",
+        "vietnameseMeaning": "Sao Mộc",
+        "phonetic": "/ˈdʒuː.pɪ.tər/",
+        "partOfSpeech": "noun",
+        "emoji": "🪐",
+        "isOdd": false
+      },
+      {
+        "id": "c19-venus",
+        "word": "Venus",
+        "vietnameseMeaning": "Sao Kim",
+        "phonetic": "/ˈviː.nəs/",
+        "partOfSpeech": "noun",
+        "emoji": "⭐",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-writing-verbs-vs-spoken",
+    "difficulty": "medium",
+    "themeVi": "Phương thức giao tiếp",
+    "themeEn": "Modes of Expression",
+    "commonTraitVi": "Hành động ghi chép văn bản trên giấy hoặc bề mặt",
+    "commonTraitEn": "Manual verbs denoting the creation of written text or inscriptions",
+    "explanationVi": "Thì thầm (Whisper) là cách nói nhỏ bằng thanh âm phát ra từ miệng, trong khi viết nguệch ngoạc (scribble), phác thảo (draft) và khắc chữ (inscribe) đều là hành động viết văn bản.",
+    "explanationEn": "Whisper is an oral vocalization of spoken words, whereas scribble, draft, and inscribe are physical acts of written language production.",
+    "items": [
+      {
+        "id": "c20-scribble",
+        "word": "Scribble",
+        "vietnameseMeaning": "Viết nguệch ngoạc",
+        "phonetic": "/ˈskrɪb.l/",
+        "partOfSpeech": "verb",
+        "emoji": "✍️",
+        "isOdd": false
+      },
+      {
+        "id": "c20-draft",
+        "word": "Draft",
+        "vietnameseMeaning": "Soạn thảo văn bản",
+        "phonetic": "/drɑːft/",
+        "partOfSpeech": "verb",
+        "emoji": "📝",
+        "isOdd": false
+      },
+      {
+        "id": "c20-whisper",
+        "word": "Whisper",
+        "vietnameseMeaning": "Nói thì thầm",
+        "phonetic": "/ˈwɪs.pər/",
+        "partOfSpeech": "verb",
+        "emoji": "🤫",
+        "isOdd": true,
+        "reasonVi": "Whisper là hành vi phát âm lời nói qua thanh quản, còn scribble, draft và inscribe đều là hành động tạo văn bản viết.",
+        "reasonEn": "Whisper is an acoustic act of speaking, whereas scribble, draft, and inscribe are acts of writing."
+      },
+      {
+        "id": "c20-inscribe",
+        "word": "Inscribe",
+        "vietnameseMeaning": "Khắc chữ / đề tặng",
+        "phonetic": "/ɪnˈskraɪb/",
+        "partOfSpeech": "verb",
+        "emoji": "🖋️",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-aquatic-mammals-vs-fish",
+    "difficulty": "medium",
+    "themeVi": "Sinh vật biển",
+    "themeEn": "Marine Biology",
+    "commonTraitVi": "Động vật có vú đại dương thở bằng phổi và nuôi con bằng sữa",
+    "commonTraitEn": "Warm-blooded marine mammals that breathe air via lungs",
+    "explanationVi": "Cá hồi (Salmon) là loài cá thở bằng mang và đẻ trứng dưới nước, trong khi cá heo, cá voi và hải cẩu là động vật có vú máu nóng thở bằng phổi.",
+    "explanationEn": "Salmon is a gill-breathing egg-laying fish, whereas dolphins, whales, and seals are warm-blooded air-breathing mammals.",
+    "items": [
+      {
+        "id": "c21-dolphin",
+        "word": "Dolphin",
+        "vietnameseMeaning": "Cá heo",
+        "phonetic": "/ˈdɒl.fɪn/",
+        "partOfSpeech": "noun",
+        "emoji": "🐬",
+        "isOdd": false
+      },
+      {
+        "id": "c21-whale",
+        "word": "Whale",
+        "vietnameseMeaning": "Cá voi",
+        "phonetic": "/weɪl/",
+        "partOfSpeech": "noun",
+        "emoji": "🐋",
+        "isOdd": false
+      },
+      {
+        "id": "c21-salmon",
+        "word": "Salmon",
+        "vietnameseMeaning": "Cá hồi",
+        "phonetic": "/ˈsæm.ən/",
+        "partOfSpeech": "noun",
+        "emoji": "🐟",
+        "isOdd": true,
+        "reasonVi": "Salmon là loài cá có mang hô hấp dưới nước, trong khi cá heo, cá voi và hải cẩu là động vật có vú thở bằng phổi.",
+        "reasonEn": "Salmon is a gill-breathing fish, whereas dolphins, whales, and seals are air-breathing marine mammals."
+      },
+      {
+        "id": "c21-seal",
+        "word": "Seal",
+        "vietnameseMeaning": "Hải cẩu",
+        "phonetic": "/siːl/",
+        "partOfSpeech": "noun",
+        "emoji": "🦭",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-cooking-methods-heat-vs-cold",
+    "difficulty": "medium",
+    "themeVi": "Nghệ thuật ẩm thực",
+    "themeEn": "Culinary Techniques",
+    "commonTraitVi": "Phương pháp chế biến thức ăn bằng nhiệt nóng",
+    "commonTraitEn": "Thermal cooking techniques using direct heated temperatures",
+    "explanationVi": "Ướp gia vị (Marinate) là kỹ thuật ngâm thực phẩm trước khi nấu mà không dùng nhiệt, trong khi nướng lò (bake), quay (roast) và chiên (fry) đều dùng nhiệt để làm chín thức ăn.",
+    "explanationEn": "Marinate is a cold chemical flavor infusion technique, whereas bake, roast, and fry are thermal heating cooking methods.",
+    "items": [
+      {
+        "id": "c22-bake",
+        "word": "Bake",
+        "vietnameseMeaning": "Nướng lò",
+        "phonetic": "/beɪk/",
+        "partOfSpeech": "verb",
+        "emoji": "🥐",
+        "isOdd": false
+      },
+      {
+        "id": "c22-marinate",
+        "word": "Marinate",
+        "vietnameseMeaning": "Ướp gia vị",
+        "phonetic": "/ˈmær.ɪ.neɪt/",
+        "partOfSpeech": "verb",
+        "emoji": "🧄",
+        "isOdd": true,
+        "reasonVi": "Marinate là kỹ thuật ngâm gia vị không sử dụng nhiệt, còn bake, roast và fry đều làm chín bằng nhiệt.",
+        "reasonEn": "Marinate is cold chemical seasoning, whereas bake, roast, and fry use thermal heat to cook."
+      },
+      {
+        "id": "c22-roast",
+        "word": "Roast",
+        "vietnameseMeaning": "Quay thịt / nướng than",
+        "phonetic": "/rəʊst/",
+        "partOfSpeech": "verb",
+        "emoji": "🍗",
+        "isOdd": false
+      },
+      {
+        "id": "c22-fry",
+        "word": "Fry",
+        "vietnameseMeaning": "Chiên / rán",
+        "phonetic": "/fraɪ/",
+        "partOfSpeech": "verb",
+        "emoji": "🍳",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "medium-geometric-3d-vs-2d",
+    "difficulty": "medium",
+    "themeVi": "Hình học không gian",
+    "themeEn": "Geometry & Solids",
+    "commonTraitVi": "Các khối hình học không gian 3 chiều có thể tích",
+    "commonTraitEn": "Three-dimensional (3D) geometric solids possessing volume",
+    "explanationVi": "Tam giác (Triangle) là một đa giác hai chiều (2D) phẳng trên mặt giấy, trong khi khối lập phương, hình cầu và hình trụ là các khối không gian ba chiều (3D).",
+    "explanationEn": "Triangle is a flat two-dimensional (2D) polygon, whereas cube, sphere, and cylinder are three-dimensional (3D) volumetric solids.",
+    "items": [
+      {
+        "id": "c23-cube",
+        "word": "Cube",
+        "vietnameseMeaning": "Hình lập phương",
+        "phonetic": "/kjuːb/",
+        "partOfSpeech": "noun",
+        "emoji": "🧊",
+        "isOdd": false
+      },
+      {
+        "id": "c23-sphere",
+        "word": "Sphere",
+        "vietnameseMeaning": "Hình cầu",
+        "phonetic": "/sfɪər/",
+        "partOfSpeech": "noun",
+        "emoji": "🔮",
+        "isOdd": false
+      },
+      {
+        "id": "c23-cylinder",
+        "word": "Cylinder",
+        "vietnameseMeaning": "Hình trụ tròn",
+        "phonetic": "/ˈsɪl.ɪn.dər/",
+        "partOfSpeech": "noun",
+        "emoji": "🥫",
+        "isOdd": false
+      },
+      {
+        "id": "c23-triangle",
+        "word": "Triangle",
+        "vietnameseMeaning": "Hình tam giác",
+        "phonetic": "/ˈtraɪ.æŋ.ɡl/",
+        "partOfSpeech": "noun",
+        "emoji": "📐",
+        "isOdd": true,
+        "reasonVi": "Triangle là hình phẳng hai chiều (2D), trong khi cube, sphere và cylinder là các khối không gian 3 chiều (3D).",
+        "reasonEn": "Triangle is a 2D planar polygon, whereas cube, sphere, and cylinder are 3D solid shapes."
+      }
+    ]
+  },
+  {
+    "id": "medium-flying-insects-vs-flightless",
+    "difficulty": "medium",
+    "themeVi": "Côn trùng học",
+    "themeEn": "Entomology",
+    "commonTraitVi": "Côn trùng trưởng thành có cánh và khả năng bay lượn",
+    "commonTraitEn": "Winged adult insects capable of aerial flight",
+    "explanationVi": "Sâu bướm (Caterpillar) là giai đoạn ấu trùng bò dưới mặt đất chưa có cánh, trong khi ong mật, muỗi và chuồn chuồn đều là côn trùng trưởng thành có cánh bay lượn.",
+    "explanationEn": "Caterpillar is a wingless crawling larval stage, whereas honeybee, mosquito, and dragonfly are fully winged airborne adult insects.",
+    "items": [
+      {
+        "id": "c24-honeybee",
+        "word": "Honeybee",
+        "vietnameseMeaning": "Ong mật",
+        "phonetic": "/ˈhʌn.i.biː/",
+        "partOfSpeech": "noun",
+        "emoji": "🐝",
+        "isOdd": false
+      },
+      {
+        "id": "c24-mosquito",
+        "word": "Mosquito",
+        "vietnameseMeaning": "Con muỗi",
+        "phonetic": "/məˈskiː.təʊ/",
+        "partOfSpeech": "noun",
+        "emoji": "🦟",
+        "isOdd": false
+      },
+      {
+        "id": "c24-caterpillar",
+        "word": "Caterpillar",
+        "vietnameseMeaning": "Sâu bướm",
+        "phonetic": "/ˈkæt.ə.pɪl.ər/",
+        "partOfSpeech": "noun",
+        "emoji": "🐛",
+        "isOdd": true,
+        "reasonVi": "Caterpillar là ấu trùng bò chưa có cánh, trong khi ong mật, muỗi và chuồn chuồn là côn trùng có cánh bay.",
+        "reasonEn": "Caterpillar is a wingless larval stage, whereas honeybees, mosquitoes, and dragonflies fly on wings."
+      },
+      {
+        "id": "c24-dragonfly",
+        "word": "Dragonfly",
+        "vietnameseMeaning": "Chuồn chuồn",
+        "phonetic": "/ˈdræɡ.ən.flaɪ/",
+        "partOfSpeech": "noun",
+        "emoji": "🪰",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-parts-of-speech-adverb",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Từ loại đuôi -ly",
+    "themeEn": "Grammar: -ly Suffix Words",
+    "commonTraitVi": "Tính từ bổ nghĩa cho danh từ kết thúc bằng hậu tố -ly",
+    "commonTraitEn": "Descriptive adjectives formed with the -ly suffix that qualify nouns",
+    "explanationVi": "Nhanh chóng (Quickly) là một trạng từ chỉ cách thức dùng để bổ nghĩa cho động từ, trong khi friendly, lovely và silly mặc dù có đuôi '-ly' nhưng đều là tính từ bổ nghĩa cho danh từ.",
+    "explanationEn": "Quickly is a manner adverb modifying verbs, whereas friendly, lovely, and silly are descriptive adjectives modifying nouns despite sharing the '-ly' suffix.",
+    "items": [
+      {
+        "id": "c25-friendly",
+        "word": "Friendly",
+        "vietnameseMeaning": "Thân thiện (tính từ)",
+        "phonetic": "/ˈfrend.li/",
+        "partOfSpeech": "adjective",
+        "emoji": "🤝",
+        "isOdd": false
+      },
+      {
+        "id": "c25-lovely",
+        "word": "Lovely",
+        "vietnameseMeaning": "Đáng yêu (tính từ)",
+        "phonetic": "/ˈlʌv.li/",
+        "partOfSpeech": "adjective",
+        "emoji": "💖",
+        "isOdd": false
+      },
+      {
+        "id": "c25-silly",
+        "word": "Silly",
+        "vietnameseMeaning": "Ngốc nghếch (tính từ)",
+        "phonetic": "/ˈsɪl.i/",
+        "partOfSpeech": "adjective",
+        "emoji": "😜",
+        "isOdd": false
+      },
+      {
+        "id": "c25-quickly",
+        "word": "Quickly",
+        "vietnameseMeaning": "Nhanh chóng (trạng từ)",
+        "phonetic": "/ˈkwɪk.li/",
+        "partOfSpeech": "adverb",
+        "emoji": "⚡",
+        "isOdd": true,
+        "reasonVi": "Quickly là một phó từ (trạng từ chỉ cách thức), trong khi friendly, lovely và silly đều là tính từ.",
+        "reasonEn": "Quickly is a manner adverb modifying verbs, while friendly, lovely, and silly are adjectives."
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-uncountable-vs-countable",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Danh từ đếm được & không đếm được",
+    "themeEn": "Grammar: Countability of Nouns",
+    "commonTraitVi": "Danh từ không đếm được chỉ khái niệm chung hoặc tập hợp",
+    "commonTraitEn": "Mass uncountable nouns that cannot take an indefinite article 'a/an' or plural '-s'",
+    "explanationVi": "Cái ghế (Chair) là một danh từ đếm được riêng lẻ có dạng số nhiều là 'chairs', trong khi information, advice và furniture là các danh từ không đếm được trong tiếng Anh.",
+    "explanationEn": "Chair is a discrete countable noun with a plural form ('chairs'), whereas information, advice, and furniture are mass uncountable nouns.",
+    "items": [
+      {
+        "id": "c26-information",
+        "word": "Information",
+        "vietnameseMeaning": "Thông tin (không đếm được)",
+        "phonetic": "/ˌɪn.fəˈmeɪ.ʃən/",
+        "partOfSpeech": "noun",
+        "emoji": "ℹ️",
+        "isOdd": false
+      },
+      {
+        "id": "c26-advice",
+        "word": "Advice",
+        "vietnameseMeaning": "Lời khuyên (không đếm được)",
+        "phonetic": "/ədˈvaɪs/",
+        "partOfSpeech": "noun",
+        "emoji": "💡",
+        "isOdd": false
+      },
+      {
+        "id": "c26-chair",
+        "word": "Chair",
+        "vietnameseMeaning": "Cái ghế (đếm được)",
+        "phonetic": "/tʃeər/",
+        "partOfSpeech": "noun",
+        "emoji": "🪑",
+        "isOdd": true,
+        "reasonVi": "Chair là danh từ đếm được có dạng số nhiều là chairs, trong khi information, advice và furniture là danh từ không đếm được.",
+        "reasonEn": "Chair is a countable noun with a plural form (chairs), whereas information, advice, and furniture are uncountable mass nouns."
+      },
+      {
+        "id": "c26-furniture",
+        "word": "Furniture",
+        "vietnameseMeaning": "Đồ nội thất (không đếm được)",
+        "phonetic": "/ˈfɜː.nɪ.tʃər/",
+        "partOfSpeech": "noun",
+        "emoji": "🛋️",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-irregular-past-vs-regular",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Động từ quá khứ",
+    "themeEn": "Grammar: Past Tense Morphology",
+    "commonTraitVi": "Động từ chia thì quá khứ đơn theo dạng bất quy tắc",
+    "commonTraitEn": "Irregular past tense verb forms changing root vowels",
+    "explanationVi": "Đã đi bộ (Walked) là động từ có quy tắc tạo thành bằng cách thêm hậu tố '-ed' vào từ gốc 'walk', trong khi went (go), bought (buy) và taught (teach) là các dạng quá khứ bất quy tắc.",
+    "explanationEn": "Walked is a regular past tense verb formed by attaching the '-ed' suffix, whereas went, bought, and taught are irregular past forms.",
+    "items": [
+      {
+        "id": "c27-went",
+        "word": "Went",
+        "vietnameseMeaning": "Đã đi (bất quy tắc từ 'go')",
+        "phonetic": "/went/",
+        "partOfSpeech": "verb",
+        "emoji": "🚶",
+        "isOdd": false
+      },
+      {
+        "id": "c27-bought",
+        "word": "Bought",
+        "vietnameseMeaning": "Đã mua (bất quy tắc từ 'buy')",
+        "phonetic": "/bɔːt/",
+        "partOfSpeech": "verb",
+        "emoji": "🛍️",
+        "isOdd": false
+      },
+      {
+        "id": "c27-taught",
+        "word": "Taught",
+        "vietnameseMeaning": "Đã dạy (bất quy tắc từ 'teach')",
+        "phonetic": "/tɔːt/",
+        "partOfSpeech": "verb",
+        "emoji": "👨‍🏫",
+        "isOdd": false
+      },
+      {
+        "id": "c27-walked",
+        "word": "Walked",
+        "vietnameseMeaning": "Đã đi bộ (có quy tắc đuôi -ed)",
+        "phonetic": "/wɔːkt/",
+        "partOfSpeech": "verb",
+        "emoji": "👟",
+        "isOdd": true,
+        "reasonVi": "Walked là động từ có quy tắc thêm đuôi '-ed', trong khi went, bought và taught là các động từ bất quy tắc.",
+        "reasonEn": "Walked is a regular past tense verb ending in '-ed', whereas went, bought, and taught are irregular past forms."
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-transitive-vs-intransitive",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Nội động từ & Ngoại động từ",
+    "themeEn": "Grammar: Transitivity of Verbs",
+    "commonTraitVi": "Nội động từ diễn tả hành vi độc lập không nhận tân ngữ trực tiếp",
+    "commonTraitEn": "Intransitive verbs that express self-contained actions without a direct object",
+    "explanationVi": "Ngấu nghiến (Devour) là một ngoại động từ bắt buộc phải có tân ngữ trực tiếp đi kèm (devour something), trong khi sleep, cough và arrive là nội động từ không cần tân ngữ.",
+    "explanationEn": "Devour is a strictly transitive verb requiring a direct object, whereas sleep, cough, and arrive are intransitive verbs requiring no direct grammatical object.",
+    "items": [
+      {
+        "id": "c28-sleep",
+        "word": "Sleep",
+        "vietnameseMeaning": "Ngủ (nội động từ)",
+        "phonetic": "/sliːp/",
+        "partOfSpeech": "verb",
+        "emoji": "💤",
+        "isOdd": false
+      },
+      {
+        "id": "c28-cough",
+        "word": "Cough",
+        "vietnameseMeaning": "Ho (nội động từ)",
+        "phonetic": "/kɒf/",
+        "partOfSpeech": "verb",
+        "emoji": "🤧",
+        "isOdd": false
+      },
+      {
+        "id": "c28-arrive",
+        "word": "Arrive",
+        "vietnameseMeaning": "Đến nơi (nội động từ)",
+        "phonetic": "/əˈraɪv/",
+        "partOfSpeech": "verb",
+        "emoji": "🛬",
+        "isOdd": false
+      },
+      {
+        "id": "c28-devour",
+        "word": "Devour",
+        "vietnameseMeaning": "Ăn ngấu nghiến (ngoại động từ)",
+        "phonetic": "/dɪˈvaʊ.ər/",
+        "partOfSpeech": "verb",
+        "emoji": "🍽️",
+        "isOdd": true,
+        "reasonVi": "Devour là ngoại động từ bắt buộc phải có tân ngữ trực tiếp, trong khi sleep, cough và arrive là các nội động từ.",
+        "reasonEn": "Devour is a transitive verb that requires a direct object, whereas sleep, cough, and arrive are intransitive."
+      }
+    ]
+  },
+  {
+    "id": "hard-semantics-hypernym-mammal-vs-reptile",
+    "difficulty": "hard",
+    "themeVi": "Động vật học: Thú có vú & Bò sát",
+    "themeEn": "Zoology: Mammals vs Reptiles",
+    "commonTraitVi": "Động vật có vú hằng nhiệt (máu nóng) sinh con",
+    "commonTraitEn": "Endothermic (warm-blooded) viviparous mammals",
+    "explanationVi": "Cá sấu (Crocodile) là loài bò sát biến nhiệt (máu lạnh) đẻ trứng có vảy cứng, trong khi kangaroo, cheetah và otter là các động vật có vú máu nóng.",
+    "explanationEn": "Crocodile is a cold-blooded ectothermic reptile laying eggs, whereas kangaroo, cheetah, and otter are warm-blooded endothermic mammals.",
+    "items": [
+      {
+        "id": "c29-kangaroo",
+        "word": "Kangaroo",
+        "vietnameseMeaning": "Chuột túi (thú có túi)",
+        "phonetic": "/ˌkæŋ.ɡərˈuː/",
+        "partOfSpeech": "noun",
+        "emoji": "🦘",
+        "isOdd": false
+      },
+      {
+        "id": "c29-crocodile",
+        "word": "Crocodile",
+        "vietnameseMeaning": "Cá sấu (bò sát)",
+        "phonetic": "/ˈkrɒk.ə.daɪl/",
+        "partOfSpeech": "noun",
+        "emoji": "🐊",
+        "isOdd": true,
+        "reasonVi": "Crocodile là loài bò sát biến nhiệt (máu lạnh), trong khi kangaroo, cheetah và otter là động vật có vú máu nóng.",
+        "reasonEn": "Crocodile is a cold-blooded ectothermic reptile, whereas kangaroo, cheetah, and otter are warm-blooded mammals."
+      },
+      {
+        "id": "c29-cheetah",
+        "word": "Cheetah",
+        "vietnameseMeaning": "Báo săn (thú ăn thịt)",
+        "phonetic": "/ˈtʃiː.tə/",
+        "partOfSpeech": "noun",
+        "emoji": "🐆",
+        "isOdd": false
+      },
+      {
+        "id": "c29-otter",
+        "word": "Otter",
+        "vietnameseMeaning": "Rái cá (thú bán thủy sinh)",
+        "phonetic": "/ˈɒt.ər/",
+        "partOfSpeech": "noun",
+        "emoji": "🦦",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-collective-nouns-vs-plural",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Danh từ tập hợp",
+    "themeEn": "Grammar: Collective Nouns",
+    "commonTraitVi": "Danh từ tập hợp hình thức số ít chỉ một bầy đàn hoặc tập thể",
+    "commonTraitEn": "Singular collective nouns designating a unified gathering of animals",
+    "explanationVi": "Học sinh (Students) là một danh từ số nhiều thông thường có gắn đuôi '-s', trong khi herd (đàn gia súc), swarm (đàn côn trùng) và flock (bầy chim) là các danh từ tập hợp số ít chỉ nguyên một bầy đàn.",
+    "explanationEn": "Students is a regular plural noun taking suffix '-s', whereas herd, swarm, and flock are morphologically singular collective group terms.",
+    "items": [
+      {
+        "id": "c30-herd",
+        "word": "Herd",
+        "vietnameseMeaning": "Đàn gia súc",
+        "phonetic": "/hɜːd/",
+        "partOfSpeech": "noun",
+        "emoji": "🐄",
+        "isOdd": false
+      },
+      {
+        "id": "c30-swarm",
+        "word": "Swarm",
+        "vietnameseMeaning": "Đàn côn trùng / ong",
+        "phonetic": "/swɔːm/",
+        "partOfSpeech": "noun",
+        "emoji": "🐝",
+        "isOdd": false
+      },
+      {
+        "id": "c30-flock",
+        "word": "Flock",
+        "vietnameseMeaning": "Bầy chim / bầy cừu",
+        "phonetic": "/flɒk/",
+        "partOfSpeech": "noun",
+        "emoji": "🐑",
+        "isOdd": false
+      },
+      {
+        "id": "c30-students",
+        "word": "Students",
+        "vietnameseMeaning": "Các học sinh (danh từ số nhiều -s)",
+        "phonetic": "/ˈstjuː.dənts/",
+        "partOfSpeech": "noun",
+        "emoji": "🎓",
+        "isOdd": true,
+        "reasonVi": "Students là danh từ số nhiều thông thường có đuôi '-s', trong khi herd, swarm và flock là các danh từ tập hợp dạng số ít.",
+        "reasonEn": "Students is a simple plural noun with '-s', while herd, swarm, and flock are singular collective nouns."
+      }
+    ]
+  },
+  {
+    "id": "hard-semantics-diminutive-young-vs-adult",
+    "difficulty": "hard",
+    "themeVi": "Ngữ nghĩa: Tên gọi con non của động vật",
+    "themeEn": "Semantics: Animal Diminutives",
+    "commonTraitVi": "Thuật ngữ riêng biệt chỉ con non của loài vật",
+    "commonTraitEn": "Lexical diminutive words specifically designating juvenile offspring",
+    "explanationVi": "Con ngựa (Horse) là từ chỉ con vật trưởng thành (con non của nó gọi là 'foal'), trong khi kitten (mèo con), puppy (chó con) và calf (bê con) là các từ chỉ con non của động vật.",
+    "explanationEn": "Horse refers to a mature adult animal (its juvenile is a 'foal'), whereas kitten, puppy, and calf are specific lexical names for young offspring.",
+    "items": [
+      {
+        "id": "c31-kitten",
+        "word": "Kitten",
+        "vietnameseMeaning": "Mèo con (con non của cat)",
+        "phonetic": "/ˈkɪt.ən/",
+        "partOfSpeech": "noun",
+        "emoji": "🐱",
+        "isOdd": false
+      },
+      {
+        "id": "c31-puppy",
+        "word": "Puppy",
+        "vietnameseMeaning": "Chó con (con non của dog)",
+        "phonetic": "/ˈpʌp.i/",
+        "partOfSpeech": "noun",
+        "emoji": "🐶",
+        "isOdd": false
+      },
+      {
+        "id": "c31-calf",
+        "word": "Calf",
+        "vietnameseMeaning": "Bê con (con non của bò)",
+        "phonetic": "/kɑːf/",
+        "partOfSpeech": "noun",
+        "emoji": "🐮",
+        "isOdd": false
+      },
+      {
+        "id": "c31-horse",
+        "word": "Horse",
+        "vietnameseMeaning": "Con ngựa (con trưởng thành)",
+        "phonetic": "/hɔːs/",
+        "partOfSpeech": "noun",
+        "emoji": "🐴",
+        "isOdd": true,
+        "reasonVi": "Horse là từ chỉ con vật trưởng thành, trong khi kitten, puppy và calf là các từ ngữ chỉ con non của động vật.",
+        "reasonEn": "Horse is an adult animal term, whereas kitten, puppy, and calf designate juvenile animal offspring."
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-state-verbs-vs-dynamic",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Động từ trạng thái & Động từ hành động",
+    "themeEn": "Grammar: Stative vs Dynamic Verbs",
+    "commonTraitVi": "Động từ chỉ trạng thái tâm trí hoặc sở hữu (hiếm khi dùng thì tiếp diễn)",
+    "commonTraitEn": "Stative verbs expressing cognitive states or possession not normally used in progressive tenses",
+    "explanationVi": "Chạy nước rút (Sprint) là động từ hành động thể chất linh hoạt diễn ra theo thời gian thực (dynamic verb), trong khi understand, believe và belong là các động từ trạng thái (stative verbs).",
+    "explanationEn": "Sprint is a dynamic action verb involving physical motion, whereas understand, believe, and belong are stative verbs rarely used in progressive aspect.",
+    "items": [
+      {
+        "id": "c32-understand",
+        "word": "Understand",
+        "vietnameseMeaning": "Hiểu biết (động từ trạng thái)",
+        "phonetic": "/ˌʌn.dəˈstænd/",
+        "partOfSpeech": "verb",
+        "emoji": "🧠",
+        "isOdd": false
+      },
+      {
+        "id": "c32-believe",
+        "word": "Believe",
+        "vietnameseMeaning": "Tin tưởng (động từ trạng thái)",
+        "phonetic": "/bɪˈliːv/",
+        "partOfSpeech": "verb",
+        "emoji": "🙏",
+        "isOdd": false
+      },
+      {
+        "id": "c32-sprint",
+        "word": "Sprint",
+        "vietnameseMeaning": "Chạy bứt tốc (động từ hành động)",
+        "phonetic": "/sprɪnt/",
+        "partOfSpeech": "verb",
+        "emoji": "🏃",
+        "isOdd": true,
+        "reasonVi": "Sprint là động từ hành động vận động thể chất, trong khi understand, believe và belong là động từ chỉ trạng thái tinh thần.",
+        "reasonEn": "Sprint is a physical dynamic action verb, whereas understand, believe, and belong are stative cognitive verbs."
+      },
+      {
+        "id": "c32-belong",
+        "word": "Belong",
+        "vietnameseMeaning": "Thuộc về (động từ trạng thái)",
+        "phonetic": "/bɪˈlɒŋ/",
+        "partOfSpeech": "verb",
+        "emoji": "🏷️",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "hard-morphology-prefix-un-negation-vs-root",
+    "difficulty": "hard",
+    "themeVi": "Hình thái học: Tiền tố phủ định 'un-'",
+    "themeEn": "Morphology: Negative Prefix 'un-'",
+    "commonTraitVi": "Từ phái sinh ghép tiền tố phủ định 'un-' mang nghĩa trái ngược",
+    "commonTraitEn": "Derivative words incorporating the genuine negative reversal prefix 'un-'",
+    "explanationVi": "Người chú/bác (Uncle) là từ gốc đơn lập có các ký tự 'un-' thuộc thân từ, trong khi unhappy (un + happy), unlock (un + lock) và uncertain (un + certain) đều là từ ghép tiền tố phủ định 'un-'.",
+    "explanationEn": "Uncle is a root morpheme where 'un-' is part of the stem, whereas unhappy, unlock, and uncertain use the negative reversal prefix 'un-'.",
+    "items": [
+      {
+        "id": "c33-unhappy",
+        "word": "Unhappy",
+        "vietnameseMeaning": "Không hạnh phúc (un + happy)",
+        "phonetic": "/ʌnˈhæp.i/",
+        "partOfSpeech": "adjective",
+        "emoji": "😢",
+        "isOdd": false
+      },
+      {
+        "id": "c33-unlock",
+        "word": "Unlock",
+        "vietnameseMeaning": "Mở khóa (un + lock)",
+        "phonetic": "/ʌnˈlɒk/",
+        "partOfSpeech": "verb",
+        "emoji": "🔓",
+        "isOdd": false
+      },
+      {
+        "id": "c33-uncertain",
+        "word": "Uncertain",
+        "vietnameseMeaning": "Không chắc chắn (un + certain)",
+        "phonetic": "/ʌnˈsɜː.tən/",
+        "partOfSpeech": "adjective",
+        "emoji": "❓",
+        "isOdd": false
+      },
+      {
+        "id": "c33-uncle",
+        "word": "Uncle",
+        "vietnameseMeaning": "Chú / bác (từ gốc không có tiền tố)",
+        "phonetic": "/ˈʌŋ.kl/",
+        "partOfSpeech": "noun",
+        "emoji": "👨",
+        "isOdd": true,
+        "reasonVi": "Uncle là từ gốc đơn lập không chứa tiền tố, còn unhappy, unlock và uncertain đều có tiền tố phủ định 'un-'.",
+        "reasonEn": "Uncle is a root stem without any prefix, whereas unhappy, unlock, and uncertain feature the negative prefix 'un-'."
+      }
+    ]
+  },
+  {
+    "id": "hard-phonetics-silent-letters-silent-k-vs-pronounced",
+    "difficulty": "hard",
+    "themeVi": "Ngữ âm: Âm câm 'k' đứng trước 'n'",
+    "themeEn": "Phonetics: Silent 'k' before 'n'",
+    "commonTraitVi": "Các từ có chữ cái 'k' đứng trước 'n' hoàn toàn là âm câm",
+    "commonTraitEn": "Words featuring an orthographic 'kn' cluster where the initial 'k' is completely silent",
+    "explanationVi": "Chuột túi (Kangaroo) có chữ cái 'k' phát âm thành phụ âm bật /k/ rõ ràng, trong khi hiệp sĩ (knight), con dao (knife) và đầu gối (knee) đều có chữ cái 'k' câm hoàn toàn.",
+    "explanationEn": "Kangaroo pronounces the letter 'k' audibly as /k/, whereas knight, knife, and knee contain a silent 'k' digraph before 'n'.",
+    "items": [
+      {
+        "id": "c34-knight",
+        "word": "Knight",
+        "vietnameseMeaning": "Hiệp sĩ (âm k câm)",
+        "phonetic": "/naɪt/",
+        "partOfSpeech": "noun",
+        "emoji": "🛡️",
+        "isOdd": false
+      },
+      {
+        "id": "c34-knife",
+        "word": "Knife",
+        "vietnameseMeaning": "Con dao (âm k câm)",
+        "phonetic": "/naɪf/",
+        "partOfSpeech": "noun",
+        "emoji": "🔪",
+        "isOdd": false
+      },
+      {
+        "id": "c34-kangaroo",
+        "word": "Kangaroo",
+        "vietnameseMeaning": "Chuột túi (phát âm phụ âm /k/)",
+        "phonetic": "/ˌkæŋ.ɡərˈuː/",
+        "partOfSpeech": "noun",
+        "emoji": "🦘",
+        "isOdd": true,
+        "reasonVi": "Kangaroo có chữ cái 'k' được phát âm thành /k/ rõ rệt, trong khi ở knight, knife và knee chữ 'k' là âm câm.",
+        "reasonEn": "Kangaroo pronounces the initial 'k' as /k/, whereas knight, knife, and knee have a silent 'k'."
+      },
+      {
+        "id": "c34-knee",
+        "word": "Knee",
+        "vietnameseMeaning": "Đầu gối (âm k câm)",
+        "phonetic": "/niː/",
+        "partOfSpeech": "noun",
+        "emoji": "🦵",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "hard-semantics-binary-antonyms-vs-gradable",
+    "difficulty": "hard",
+    "themeVi": "Ngữ nghĩa: Từ trái nghĩa nhị phân & thang bậc",
+    "themeEn": "Semantics: Binary vs Gradable Antonyms",
+    "commonTraitVi": "Các cặp từ trái nghĩa nhị phân tuyệt đối (hoặc là cái này, hoặc là cái kia)",
+    "commonTraitEn": "Mutually exclusive binary/complementary antonym pairs without middle ground",
+    "explanationVi": "Nóng (Hot) là từ trái nghĩa có thang bậc đo lường liên tục (gradable antonym: freezing -> cold -> warm -> hot), trong khi alive/dead, present/absent và true/false là các cặp nhị phân loại trừ lẫn nhau.",
+    "explanationEn": "Hot belongs to a continuous gradable temperature spectrum, whereas alive, present, and true are absolute complementary binary states.",
+    "items": [
+      {
+        "id": "c35-alive",
+        "word": "Alive",
+        "vietnameseMeaning": "Còn sống (đối lập nhị phân với Dead)",
+        "phonetic": "/əˈlaɪv/",
+        "partOfSpeech": "adjective",
+        "emoji": "🌱",
+        "isOdd": false
+      },
+      {
+        "id": "c35-present",
+        "word": "Present",
+        "vietnameseMeaning": "Có mặt (đối lập nhị phân với Absent)",
+        "phonetic": "/ˈprez.ənt/",
+        "partOfSpeech": "adjective",
+        "emoji": "🙋",
+        "isOdd": false
+      },
+      {
+        "id": "c35-hot",
+        "word": "Hot",
+        "vietnameseMeaning": "Nóng (trái nghĩa thang bậc gradable)",
+        "phonetic": "/hɒt/",
+        "partOfSpeech": "adjective",
+        "emoji": "🔥",
+        "isOdd": true,
+        "reasonVi": "Hot là từ trái nghĩa theo thang bậc cấp độ, trong khi alive, present và true là các trạng thái nhị phân tuyệt đối.",
+        "reasonEn": "Hot is a gradable spectrum antonym, whereas alive, present, and true are mutually exclusive binary antonyms."
+      },
+      {
+        "id": "c35-true",
+        "word": "True",
+        "vietnameseMeaning": "Đúng (đối lập nhị phân với False)",
+        "phonetic": "/truː/",
+        "partOfSpeech": "adjective",
+        "emoji": "✔️",
+        "isOdd": false
+      }
+    ]
+  },
+  {
+    "id": "hard-grammar-noun-verb-homographs-vs-noun-only",
+    "difficulty": "hard",
+    "themeVi": "Ngữ pháp: Từ đồng tự Danh từ - Động từ",
+    "themeEn": "Grammar: Noun-Verb Homographs",
+    "commonTraitVi": "Các từ cùng chữ viết vừa đóng vai trò danh từ vừa đóng vai trò động từ",
+    "commonTraitEn": "Stress-shifting homographs that function as both nouns and verbs",
+    "explanationVi": "Quả cà chua (Tomato) là danh từ thuần túy và không có cách dùng làm động từ, trong khi record, project và object đều có thể vừa là danh từ vừa là động từ phụ thuộc vào trọng âm.",
+    "explanationEn": "Tomato is strictly a nominal noun with no verb usage, whereas record, project, and object are stress-shifting noun-verb homographs.",
+    "items": [
+      {
+        "id": "c36-record",
+        "word": "Record",
+        "vietnameseMeaning": "Bản ghi (danh từ) / Ghi âm (động từ)",
+        "phonetic": "/ˈrek.ɔːd/",
+        "partOfSpeech": "noun",
+        "emoji": "📼",
+        "isOdd": false
+      },
+      {
+        "id": "c36-project",
+        "word": "Project",
+        "vietnameseMeaning": "Dự án (danh từ) / Chiếu rọi (động từ)",
+        "phonetic": "/ˈprɒdʒ.ekt/",
+        "partOfSpeech": "noun",
+        "emoji": "📊",
+        "isOdd": false
+      },
+      {
+        "id": "c36-object",
+        "word": "Object",
+        "vietnameseMeaning": "Vật thể (danh từ) / Phản đối (động từ)",
+        "phonetic": "/ˈɒb.dʒɪkt/",
+        "partOfSpeech": "noun",
+        "emoji": "📦",
+        "isOdd": false
+      },
+      {
+        "id": "c36-tomato",
+        "word": "Tomato",
+        "vietnameseMeaning": "Quả cà chua (chỉ là danh từ)",
+        "phonetic": "/təˈmɑː.təʊ/",
+        "partOfSpeech": "noun",
+        "emoji": "🍅",
+        "isOdd": true,
+        "reasonVi": "Tomato chỉ có chức năng duy nhất là danh từ, trong khi record, project và object vừa có thể là danh từ vừa là động từ.",
+        "reasonEn": "Tomato functions solely as a noun, whereas record, project, and object can be both nouns and verbs."
+      }
+    ]
+  }
+]
