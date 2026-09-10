@@ -18,6 +18,9 @@ export const GAME_LABELS: Record<string, string> = {
   reading: 'Luyện đọc',
   typing: 'Luyện gõ từ',
   roleplay: 'Hội thoại',
+  wordle: 'Thử Thách Đoán Từ',
+  'word-connect': 'Vòng Xoay Nối Chữ',
+  'odd-one-out': 'Truy Tìm Kẻ Lạc Loài',
 }
 
 export function getGameLabel(gameType: string): string {

@@ -363,4 +363,32 @@ describe('useGameTracking Hook', () => {
     expect(success).toBe(true)
     expect(getProgressSpy).toHaveBeenCalled()
   })
+
+  it('sanitizes score and totalQuestions to non-negative integers', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-sanitized' }),
+    })
+    global.fetch = mockFetch
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'typing', topic: 'general' }),
+      {
+        wrapper: createWrapper({
+          classCode: 'ABC123',
+          studentName: 'Bé Linh',
+        }),
+      }
+    )
+
+    await act(async () => {
+      await result.current.submitSession({ score: -5.4, totalQuestions: 9.7 })
+    })
+
+    expect(mockFetch).toHaveBeenCalled()
+    const callBody = JSON.parse(mockFetch.mock.calls[0][1].body)
+    expect(callBody.score).toBe(0) // Math.max(0, Math.round(-5.4)) = 0
+    expect(callBody.totalQuestions).toBe(10) // Math.max(0, Math.round(9.7)) = 10
+  })
 })

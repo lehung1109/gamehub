@@ -2,15 +2,41 @@
  * Plays a pleasant celebratory chime using Web Audio API when a word is solved.
  * Safe to call in any environment (browser, SSR, tests).
  */
+let cachedAudioContext: AudioContext | null = null;
+
+function getAudioContext(): AudioContext | null {
+  if (typeof window === "undefined") return null;
+  const AudioCtx =
+    window.AudioContext ||
+    (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+  if (!AudioCtx) {
+    cachedAudioContext = null;
+    return null;
+  }
+
+  if (cachedAudioContext && cachedAudioContext.state !== "closed") {
+    if (cachedAudioContext.state === "suspended") {
+      cachedAudioContext.resume().catch(() => {});
+    }
+    return cachedAudioContext;
+  }
+
+  try {
+    cachedAudioContext = new AudioCtx();
+    return cachedAudioContext;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Plays a pleasant celebratory chime using Web Audio API when a word is solved.
+ * Safe to call in any environment (browser, SSR, tests).
+ */
 export function playWordSolvedSound(): void {
   try {
-    if (typeof window === "undefined") return;
-    const AudioCtx =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    if (!AudioCtx) return;
-
-    const ctx = new AudioCtx();
+    const ctx = getAudioContext();
+    if (!ctx) return;
     const now = ctx.currentTime;
 
     // Two-tone cheerful chime: C5 (523.25 Hz) followed quickly by G5 (783.99 Hz)

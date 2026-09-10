@@ -99,7 +99,7 @@ function MemoryMatchGameContent({
 
 
   // Hook for student progress tracking
-  const { submitSession } = useGameTracking({
+  const { submitSession, resetSession } = useGameTracking({
     gameType: 'memory-match',
     topic: selectedTopicId,
     configId: configId || undefined,
@@ -158,6 +158,14 @@ function MemoryMatchGameContent({
     onSpeak: speak,
     onComplete: handleGameComplete,
   })
+
+  const handleRestartGame = useCallback(
+    (newWords?: Word[], countOverride?: number) => {
+      resetSession()
+      restartGame(newWords, countOverride)
+    },
+    [resetSession, restartGame]
+  )
 
   const currentTopic = allTopics.find((t) => t.id === selectedTopicId)
 
@@ -226,7 +234,7 @@ function MemoryMatchGameContent({
                   variant={pairCount === count ? 'default' : 'outline'}
                   onClick={() => {
                     setPairCount(count)
-                    restartGame(undefined, count)
+                    handleRestartGame(undefined, count)
                   }}
                   className={cn(
                     'rounded-full text-xs font-bold px-3 py-1',
@@ -240,7 +248,7 @@ function MemoryMatchGameContent({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => restartGame()}
+                onClick={() => handleRestartGame()}
                 className="rounded-full gap-1.5 font-bold text-xs"
                 title="Bốc tập từ mới và chơi lại"
               >
@@ -261,7 +269,7 @@ function MemoryMatchGameContent({
                 type="button"
                 onClick={() => {
                   setSelectedTopicId(topic.id)
-                  restartGame(topicWordsMap[topic.id] || allWords)
+                  handleRestartGame(topicWordsMap[topic.id] || allWords)
                 }}
                 className={cn(
                   'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 border cursor-pointer select-none',
@@ -352,7 +360,7 @@ function MemoryMatchGameContent({
 
           <DialogFooter className="flex flex-col sm:flex-row gap-2 sm:justify-center">
             <Button
-              onClick={() => restartGame()}
+              onClick={() => handleRestartGame()}
               className="w-full sm:w-auto rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold gap-2 px-6"
             >
               <RotateCcw className="size-4" />
@@ -366,7 +374,7 @@ function MemoryMatchGameContent({
                 const nextIndex = (currentIndex + 1) % availableTopics.length
                 const nextTopic = availableTopics[nextIndex]
                 setSelectedTopicId(nextTopic.id)
-                restartGame(topicWordsMap[nextTopic.id] || allWords)
+                handleRestartGame(topicWordsMap[nextTopic.id] || allWords)
               }}
               className="w-full sm:w-auto rounded-full font-bold gap-2"
             >

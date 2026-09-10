@@ -102,7 +102,7 @@ function WordSearchGameContent({
   const [isDismissed, setIsDismissed] = useState(false)
 
   // Hook for student progress tracking
-  const { submitSession } = useGameTracking({
+  const { submitSession, resetSession } = useGameTracking({
     gameType: 'word-search',
     topic: selectedTopicId,
     configId: configId || undefined,
@@ -181,9 +181,10 @@ function WordSearchGameContent({
   const handleRestart = useCallback(
     (customWords?: Word[]) => {
       setIsDismissed(false)
+      resetSession()
       restartGame(customWords)
     },
-    [restartGame]
+    [resetSession, restartGame]
   )
 
   const currentTopic = allTopics.find((t) => t.id === selectedTopicId)

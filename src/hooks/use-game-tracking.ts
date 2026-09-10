@@ -92,17 +92,19 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
 
         let calculatedScore: number | undefined = undefined
         if (override?.score !== undefined) {
-          calculatedScore = override.score
+          calculatedScore = Math.max(0, Math.round(override.score))
         } else if (finalDetails.length > 0) {
           calculatedScore = finalDetails.filter((d) => d.isCorrect).length
         }
 
-        const calculatedTotalQuestions =
+        const rawTotal =
           override?.totalQuestions !== undefined
             ? override.totalQuestions
             : optionsTotalQuestions !== undefined
             ? optionsTotalQuestions
             : finalDetails.length
+
+        const calculatedTotalQuestions = Math.max(0, Math.round(rawTotal))
 
         const payload: TrackGamePayload = {
           classCode: session.classCode,

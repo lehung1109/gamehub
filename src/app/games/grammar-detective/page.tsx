@@ -67,6 +67,7 @@ export default function GrammarDetectivePage() {
       submitSession({
         score: starsEarned,
         totalQuestions: currentCase.errors.length,
+        topic: currentCase.category || currentCase.id,
         details: [
           {
             prompt: `Phá án "${currentCase.title}" (${currentCase.titleVi}) - Đạt ${starsEarned} sao, còn ${credibility}/3 uy tín, thời gian ${elapsedSeconds}s`,
@@ -86,6 +87,7 @@ export default function GrammarDetectivePage() {
       submitSession({
         score: 0,
         totalQuestions: currentCase.errors.length,
+        topic: currentCase.category || currentCase.id,
         details: [
           {
             prompt: `Đình chỉ vụ án "${currentCase.title}" (${currentCase.titleVi})${modeSuffix} - Giải được ${solvedErrorIds.length}/${currentCase.errors.length} lỗi, phạm ${mistakes} lỗi, thời gian ${elapsedSeconds}s`,
