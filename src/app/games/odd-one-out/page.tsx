@@ -194,6 +194,9 @@ export default function OddOneOutPage({
             handleSelectCard(item.id);
           }
         }
+      } else if ((e.key === "h" || e.key === "H") && !isAnswerChecked) {
+        e.preventDefault();
+        handleToggleClue();
       }
     };
 
@@ -211,6 +214,7 @@ export default function OddOneOutPage({
     handleCheckAnswer,
     handleNextQuestion,
     handleSelectCard,
+    handleToggleClue,
   ]);
 
   return (
