@@ -51,8 +51,8 @@ export default function WordConnectPage() {
     resetLevel,
   } = useWordConnectGame();
 
-  const { speak } = useSpeech();
-  const { recordQuestion, submitSession } = useGameTracking({
+  const { speak, cancel } = useSpeech();
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
     gameType: "word-connect",
     topic: currentLevel.theme || "word-connect",
   });
@@ -114,24 +114,43 @@ export default function WordConnectPage() {
 
   const handleSpeakWord = useCallback(
     (word: string) => {
+      cancel();
       speak(word);
     },
-    [speak]
+    [cancel, speak]
   );
 
   const handleNextLevel = useCallback(() => {
     setDismissedLevelIndex(null);
+    resetSession();
     nextLevel();
-  }, [nextLevel]);
+  }, [nextLevel, resetSession]);
 
   const handleReplayLevel = useCallback(() => {
     setDismissedLevelIndex(null);
+    resetSession();
     resetLevel();
-  }, [resetLevel]);
+  }, [resetLevel, resetSession]);
+
+  const handleSelectLevel = useCallback(
+    (idx: number) => {
+      setDismissedLevelIndex(null);
+      resetSession();
+      selectLevel(idx);
+    },
+    [resetSession, selectLevel]
+  );
+
+  const isResultDialogOpen = isCompleted && dismissedLevelIndex !== levelIndex;
 
   // Physical keyboard listeners
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Guard if modal dialogs are active
+      if (guideModalOpen || bonusModalOpen || isResultDialogOpen) {
+        return;
+      }
+
       const activeEl = document.activeElement;
       if (
         activeEl &&
@@ -152,7 +171,7 @@ export default function WordConnectPage() {
       } else if (e.key === "Escape") {
         e.preventDefault();
         clearSelection();
-      } else if (e.key === " " && !e.repeat) {
+      } else if (e.key === " " && !e.repeat && activeEl?.tagName !== "BUTTON") {
         e.preventDefault();
         shuffle();
       } else if (e.key.length === 1 && /^[a-zA-Z]$/.test(e.key)) {
@@ -173,16 +192,17 @@ export default function WordConnectPage() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [
+    bonusModalOpen,
     clearSelection,
     displayedLetters,
+    guideModalOpen,
     handleSelectLetter,
     handleSubmit,
+    isResultDialogOpen,
     removeLastLetter,
     selectedLetters,
     shuffle,
   ]);
-
-  const isResultDialogOpen = isCompleted && dismissedLevelIndex !== levelIndex;
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-between pb-8">
@@ -193,7 +213,7 @@ export default function WordConnectPage() {
         difficulty={currentLevel.difficulty}
         theme={currentLevel.theme}
         score={score}
-        onSelectLevel={selectLevel}
+        onSelectLevel={handleSelectLevel}
         onOpenGuide={() => setGuideModalOpen(true)}
       />
 
