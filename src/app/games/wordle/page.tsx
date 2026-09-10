@@ -37,6 +37,16 @@ export default function WordlePage() {
   });
 
   const sessionSubmittedRef = useRef(false);
+  const initialWord = React.useMemo(() => getRandomWord(undefined, 5), []);
+  const resultTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resultTimeoutRef.current) {
+        clearTimeout(resultTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const {
     targetWord,
@@ -58,11 +68,14 @@ export default function WordlePage() {
     useLetterHint: applyLetterHint,
     resetGame,
   } = useWordleGame({
-    initialWord: getRandomWord(undefined, 5),
+    initialWord,
     maxAttempts: 6,
     onGameComplete: (result) => {
       // Delay opening result dialog slightly so user can enjoy row flip animation
-      setTimeout(() => {
+      if (resultTimeoutRef.current) {
+        clearTimeout(resultTimeoutRef.current);
+      }
+      resultTimeoutRef.current = setTimeout(() => {
         setIsResultOpen(true);
       }, 1200);
 
@@ -136,9 +149,10 @@ export default function WordlePage() {
   }, [removeLetter]);
 
   const handleSubmitGuess = useCallback(() => {
-    submitGuess();
-    // If not shaking after submit, play flip sound
-    playTileFlipSound(0);
+    const success = submitGuess();
+    if (success) {
+      playTileFlipSound(0);
+    }
   }, [submitGuess]);
 
   // Physical keyboard listener
@@ -262,6 +276,7 @@ export default function WordlePage() {
           onBackspace={handleRemoveLetter}
           keyStatus={keyboardStatus}
           disabled={gameStatus !== "playing"}
+          enablePhysicalKeyboard={false}
         />
       </footer>
 

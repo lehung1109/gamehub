@@ -23,7 +23,7 @@ export interface UseWordleGameReturn {
   stats: WordleStats;
   addLetter: (char: string) => void;
   removeLetter: () => void;
-  submitGuess: () => void;
+  submitGuess: () => boolean;
   useAudioHint: () => void;
   useMeaningHint: () => void;
   useLetterHint: () => void;
@@ -189,19 +189,19 @@ export function useWordleGame(options?: UseWordleGameOptions): UseWordleGameRetu
     setCurrentGuess(currentGuessRef.current);
   }, [clearShake]);
 
-  const submitGuess = useCallback(() => {
-    if (gameStatusRef.current !== "playing") return;
+  const submitGuess = useCallback((): boolean => {
+    if (gameStatusRef.current !== "playing") return false;
 
     const normalizedGuess = currentGuessRef.current.trim().toUpperCase();
 
     if (normalizedGuess.length < targetWordRef.current.length) {
       triggerShake("Chưa đủ chữ cái");
-      return;
+      return false;
     }
 
     if (!isValidWordleGuess(normalizedGuess)) {
       triggerShake("Từ không có trong từ điển");
-      return;
+      return false;
     }
 
     const evaluation = evaluateWordleGuess(normalizedGuess, targetWordRef.current.word);
@@ -278,6 +278,8 @@ export function useWordleGame(options?: UseWordleGameOptions): UseWordleGameRetu
         stars: 0,
       });
     }
+
+    return true;
   }, [maxAttempts, triggerShake, clearShake]);
 
   const useAudioHint = useCallback(() => {

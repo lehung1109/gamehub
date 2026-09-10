@@ -47,7 +47,7 @@ describe("WordlePage", () => {
     const keyA = screen.getByRole("button", { name: "A" });
     fireEvent.click(keyA);
 
-    // Tile displays 'A'
-    expect(screen.getAllByText("A").length).toBeGreaterThan(0);
+    // First tile in row 0 displays 'A'
+    expect(screen.getAllByTestId("wordle-tile-0")[0]).toHaveTextContent("A");
   });
 });

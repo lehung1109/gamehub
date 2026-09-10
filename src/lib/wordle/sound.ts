@@ -3,13 +3,25 @@
  * Safe to run in SSR, test environments (Node/JSDOM), and browsers without audio support.
  */
 
+let cachedAudioContext: AudioContext | null = null;
+
 function getAudioContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
+  if (cachedAudioContext && cachedAudioContext.state !== "closed") {
+    if (cachedAudioContext.state === "suspended") {
+      cachedAudioContext.resume().catch(() => {});
+    }
+    return cachedAudioContext;
+  }
   try {
     const AudioCtx =
       window.AudioContext ||
       (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    return AudioCtx ? new AudioCtx() : null;
+    if (AudioCtx) {
+      cachedAudioContext = new AudioCtx();
+      return cachedAudioContext;
+    }
+    return null;
   } catch {
     return null;
   }

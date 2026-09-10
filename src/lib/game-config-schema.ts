@@ -294,8 +294,8 @@ export const GAME_CONFIG_SCHEMAS: Record<string, GameConfigSchemaDefinition> = {
         label: 'Chủ đề từ vựng',
         type: 'multiselect',
         description: 'Các chủ đề từ vựng được kích hoạt trong bài học',
-        defaultValue: ['animals', 'fruits', 'school', 'technology', 'nature'],
-        options: ['animals', 'fruits', 'school', 'technology', 'nature'],
+        defaultValue: ['animals', 'fruits', 'school', 'technology', 'daily-life', 'workplace'],
+        options: ['animals', 'fruits', 'school', 'technology', 'daily-life', 'workplace'],
       },
       maxAttempts: {
         name: 'maxAttempts',

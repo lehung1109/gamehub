@@ -62,7 +62,7 @@ export const WordleHintsBar: React.FC<WordleHintsBarProps> = ({
           <Volume2 className={`w-4 h-4 ${isSpeaking ? "animate-bounce" : ""}`} />
           <span>Nghe</span>
           <span className="text-xs px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-semibold hidden xs:inline-block">
-            0đ
+            0 XP
           </span>
         </Button>
 

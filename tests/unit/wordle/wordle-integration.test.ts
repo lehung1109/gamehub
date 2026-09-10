@@ -22,13 +22,13 @@ describe("Wordle Platform Integration", () => {
     expect(instructions.titleEn).toBe("Wordle Master");
     expect(instructions.quickSummary).toBeDefined();
     expect(instructions.howToPlay).toBeDefined();
-    expect(instructions.howToPlay.length).toBeGreaterThan(0);
+    expect(instructions.howToPlay?.length).toBeGreaterThan(0);
     expect(instructions.tips.length).toBeGreaterThan(0);
     expect(instructions.benefits).toBeDefined();
     expect(instructions.benefits?.length).toBeGreaterThan(0);
 
     // Verify color guide is present in howToPlay
-    const howToPlayText = instructions.howToPlay.join(" ");
+    const howToPlayText = instructions.howToPlay?.join(" ") ?? "";
     expect(howToPlayText.toLowerCase()).toContain("xanh");
     expect(howToPlayText.toLowerCase()).toContain("vàng");
     expect(howToPlayText.toLowerCase()).toContain("xám");
