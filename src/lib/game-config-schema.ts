@@ -263,10 +263,11 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
     }
 
     case 'wordle': {
+      const defaultLengths: (4 | 5 | 6)[] = [4, 5, 6]
       const allowedLengthsRaw = Array.isArray(obj.allowedLengths)
         ? obj.allowedLengths.filter((l): l is 4 | 5 | 6 => l === 4 || l === 5 || l === 6)
-        : [4, 5, 6]
-      const allowedLengths = allowedLengthsRaw.length > 0 ? allowedLengthsRaw : [4, 5, 6]
+        : defaultLengths
+      const allowedLengths: (4 | 5 | 6)[] = allowedLengthsRaw.length > 0 ? allowedLengthsRaw : defaultLengths
       const categories = Array.isArray(obj.categories)
         ? obj.categories.filter((c): c is string => typeof c === 'string')
         : ['animals', 'fruits', 'school', 'technology', 'daily-life', 'workplace']
