@@ -3,10 +3,25 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { StudentGamificationModal } from '@/components/student/StudentGamificationModal'
 import * as classLeaderboardAction from '@/app/actions/class-leaderboard'
+import * as assignmentsAction from '@/app/actions/assignments'
 import { getLevelInfo } from '@/lib/levels'
+
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    refresh: vi.fn(),
+  }),
+}))
 
 vi.mock('@/app/actions/class-leaderboard', () => ({
   getClassLeaderboard: vi.fn(),
+}))
+
+vi.mock('@/app/actions/assignments', () => ({
+  getStudentAssignments: vi.fn().mockResolvedValue({
+    success: true,
+    data: [],
+  }),
 }))
 
 describe('StudentGamificationModal Component', () => {
@@ -216,5 +231,35 @@ describe('StudentGamificationModal Component', () => {
     )
 
     expect(await screen.findByText(/Đã đạt cấp tối đa!/i)).toBeInTheDocument()
+  })
+
+  it('switches to Bài tập tab and renders assignments view', async () => {
+    vi.mocked(assignmentsAction.getStudentAssignments).mockResolvedValue({
+      success: true,
+      data: [
+        {
+          id: 'asg-test',
+          classroom_id: 'c1',
+          title: 'Bài tập về nhà 1',
+          description: 'Luyện tập phát âm',
+          game_type: 'alphabet',
+          topic: null,
+          config_id: null,
+          target_score: 10,
+          due_date: '2026-09-20T23:59:59Z',
+          is_active: true,
+          created_at: '2026-09-10T10:00:00Z',
+          status: 'pending',
+        },
+      ],
+    })
+
+    render(<StudentGamificationModal {...defaultProps} />)
+
+    const assignmentsTab = screen.getByRole('tab', { name: /Bài tập/i })
+    fireEvent.click(assignmentsTab)
+
+    expect(await screen.findByText('Bài tập về nhà 1')).toBeInTheDocument()
+    expect(screen.getByText('Chưa nộp')).toBeInTheDocument()
   })
 })

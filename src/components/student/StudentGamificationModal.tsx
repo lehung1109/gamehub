@@ -17,6 +17,7 @@ import {
   Loader2,
   AlertCircle,
 } from 'lucide-react'
+import { StudentAssignmentsTab } from '@/components/student/StudentAssignmentsTab'
 
 export interface StudentGamificationModalProps {
   isOpen: boolean
@@ -25,10 +26,10 @@ export interface StudentGamificationModalProps {
   studentName: string
   totalStars: number
   levelInfo: LevelProgress
-  initialTab?: 'leaderboard' | 'badges' | 'levels'
+  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments'
 }
 
-type TabType = 'leaderboard' | 'badges' | 'levels'
+type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments'
 
 export function StudentGamificationModal({
   isOpen,
@@ -235,6 +236,23 @@ export function StudentGamificationModal({
           >
             <span>🌟</span>
             <span>Cấp độ</span>
+          </button>
+
+          <button
+            role="tab"
+            aria-selected={activeTab === 'assignments'}
+            aria-controls="panel-assignments"
+            data-testid="tab-assignments"
+            onClick={() => setActiveTab('assignments')}
+            className={cn(
+              'flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              activeTab === 'assignments'
+                ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
+                : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
+            )}
+          >
+            <span>📝</span>
+            <span>Bài tập</span>
           </button>
         </div>
 
@@ -604,6 +622,17 @@ export function StudentGamificationModal({
                   })}
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* TAB 4: ASSIGNMENTS */}
+          {activeTab === 'assignments' && (
+            <div id="panel-assignments" role="tabpanel" className="space-y-4">
+              <StudentAssignmentsTab
+                classCode={classCode}
+                studentName={studentName}
+                onCloseModal={onClose}
+              />
             </div>
           )}
         </div>
