@@ -20,27 +20,46 @@ describe("PartsOfSpeechLessonPage (src/app/parts-of-speech/[slug]/page.tsx)", ()
 
   it("only returns active lessons in generateStaticParams", async () => {
     const params = await generateStaticParams();
-    expect(params).toEqual([{ slug: "noun" }]);
-    expect(params).not.toEqual(expect.arrayContaining([{ slug: "verb" }]));
+    expect(params).toEqual([
+      { slug: "noun" },
+      { slug: "verb" },
+      { slug: "adjective" },
+      { slug: "adverb" },
+      { slug: "mixed" },
+    ]);
   });
 
-  it("renders lesson container when valid slug 'noun' is requested", async () => {
-    const PageComponent = await PartsOfSpeechLessonPage({
-      params: Promise.resolve({ slug: "noun" }),
-    });
+  const activeLessons = [
+    { slug: "noun", name: "Noun", vietnameseName: "Danh từ" },
+    { slug: "verb", name: "Verb", vietnameseName: "Động từ" },
+    { slug: "adjective", name: "Adjective", vietnameseName: "Tính từ" },
+    { slug: "adverb", name: "Adverb", vietnameseName: "Trạng từ" },
+    { slug: "mixed", name: "Mixed", vietnameseName: "Tổng hợp" },
+  ];
 
-    render(PageComponent);
+  it.each(activeLessons)(
+    "renders lesson container when valid slug '$slug' is requested",
+    async ({ slug, name, vietnameseName }) => {
+      const PageComponent = await PartsOfSpeechLessonPage({
+        params: Promise.resolve({ slug }),
+      });
 
-    expect(
-      screen.getAllByText(/Noun/i).length
-    ).toBeGreaterThan(0);
-  });
+      render(PageComponent);
 
-  it("calls notFound when non-existent or inactive slug is requested", async () => {
-    await PartsOfSpeechLessonPage({
-      params: Promise.resolve({ slug: "verb" }),
-    });
+      expect(screen.getAllByText(new RegExp(name, "i")).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(new RegExp(vietnameseName, "i")).length).toBeGreaterThan(0);
+    }
+  );
 
-    expect(navigation.notFound).toHaveBeenCalled();
-  });
+  it.each(["preposition", "unknown-slug"])(
+    "calls notFound when non-existent or inactive slug '%s' is requested",
+    async (invalidSlug) => {
+      await PartsOfSpeechLessonPage({
+        params: Promise.resolve({ slug: invalidSlug }),
+      });
+
+      expect(navigation.notFound).toHaveBeenCalled();
+    }
+  );
 });
+
