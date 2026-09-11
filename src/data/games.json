@@ -7,7 +7,8 @@
     "description": "Học từ vựng qua thẻ lật với phát âm chuẩn",
     "emoji": "🃏",
     "route": "/games/flashcard",
-    "priority": 1
+    "priority": 1,
+    "category": "vocab"
   },
   {
     "id": "alphabet",
@@ -17,7 +18,8 @@
     "description": "Học 26 chữ cái tiếng Anh và phát âm từng chữ",
     "emoji": "🔤",
     "route": "/games/alphabet",
-    "priority": 2
+    "priority": 2,
+    "category": "phonics-audio"
   },
   {
     "id": "listening",
@@ -27,7 +29,8 @@
     "description": "Nghe phát âm từ tiếng Anh và chọn hình ảnh đúng",
     "emoji": "👂",
     "route": "/games/listening",
-    "priority": 3
+    "priority": 3,
+    "category": "phonics-audio"
   },
   {
     "id": "spelling",
@@ -37,7 +40,8 @@
     "description": "Kéo thả các chữ cái để ghép thành từ hoàn chỉnh",
     "emoji": "✏️",
     "route": "/games/spelling",
-    "priority": 4
+    "priority": 4,
+    "category": "vocab"
   },
   {
     "id": "numbers-colors",
@@ -47,7 +51,8 @@
     "description": "Học đếm số từ 1 đến 20 và nhận biết các màu sắc",
     "emoji": "🔢",
     "route": "/games/numbers-colors",
-    "priority": 5
+    "priority": 5,
+    "category": "arcade-quiz"
   },
   {
     "id": "sentences",
@@ -57,7 +62,8 @@
     "description": "Sắp xếp từ để tạo thành câu tiếng Anh hoàn chỉnh",
     "emoji": "💬",
     "route": "/games/sentences",
-    "priority": 6
+    "priority": 6,
+    "category": "grammar-sentence"
   },
   {
     "id": "memory-match",
@@ -67,7 +73,8 @@
     "description": "Lật thẻ tìm cặp hình ảnh và từ vựng tiếng Anh tương ứng",
     "emoji": "🧠",
     "route": "/games/memory-match",
-    "priority": 7
+    "priority": 7,
+    "category": "vocab"
   },
   {
     "id": "word-search",
@@ -77,7 +84,8 @@
     "description": "Tìm và quét các từ tiếng Anh ẩn giấu trên lưới chữ cái",
     "emoji": "🔍",
     "route": "/games/word-search",
-    "priority": 8
+    "priority": 8,
+    "category": "vocab"
   },
   {
     "id": "grammar-detective",
@@ -87,7 +95,8 @@
     "description": "Soi và sửa lỗi ngữ pháp trong email và tin nhắn công sở",
     "emoji": "🕵️",
     "route": "/games/grammar-detective",
-    "priority": 9
+    "priority": 9,
+    "category": "grammar-sentence"
   },
   {
     "id": "vocab-defense",
@@ -97,7 +106,8 @@
     "description": "Chiến đấu theo lượt tiêu diệt quái vật bằng kiến thức từ vựng, phát âm và ngữ pháp",
     "emoji": "⚔️",
     "route": "/games/vocab-defense",
-    "priority": 10
+    "priority": 10,
+    "category": "arcade-quiz"
   },
   {
     "id": "crossword",
@@ -107,7 +117,8 @@
     "description": "Giải đố các ô chữ tiếng Anh đan xen theo chủ đề với gợi ý ngữ cảnh và phát âm audio",
     "emoji": "🧩",
     "route": "/games/crossword",
-    "priority": 11
+    "priority": 11,
+    "category": "arcade-quiz"
   },
   {
     "id": "falling-words",
@@ -117,7 +128,8 @@
     "description": "Luyện gõ nhanh và phản xạ tiếng Anh với các từ rơi tốc độ cao, combo streak và bom nổ toàn màn hình",
     "emoji": "🌧️",
     "route": "/games/falling-words",
-    "priority": 12
+    "priority": 12,
+    "category": "vocab"
   },
   {
     "id": "hangman",
@@ -127,7 +139,8 @@
     "description": "Đoán các chữ cái tiếng Anh để giữ khinh khí cầu bay cao và giải cứu nhà thám hiểm",
     "emoji": "🎈",
     "route": "/games/hangman",
-    "priority": 13
+    "priority": 13,
+    "category": "arcade-quiz"
   },
   {
     "id": "wordle",
@@ -137,7 +150,8 @@
     "description": "Đoán từ tiếng Anh bí ẩn qua gợi ý màu sắc, trau dồi chính tả, phát âm và từ vựng",
     "emoji": "🟩",
     "route": "/games/wordle",
-    "priority": 14
+    "priority": 14,
+    "category": "arcade-quiz"
   },
   {
     "id": "word-connect",
@@ -147,7 +161,8 @@
     "description": "Nối các chữ cái trên vòng xoay để tạo thành từ vựng tiếng Anh có nghĩa, mở khóa bảng ô chữ và tích lũy từ vựng thưởng",
     "emoji": "🔄",
     "route": "/games/word-connect",
-    "priority": 15
+    "priority": 15,
+    "category": "vocab"
   },
   {
     "id": "odd-one-out",
@@ -157,7 +172,41 @@
     "description": "Phân tích ngữ nghĩa, tìm từ không cùng nhóm và hiểu sâu sắc bản chất từ vựng qua giải thích song ngữ",
     "emoji": "🎯",
     "route": "/games/odd-one-out",
-    "priority": 16
+    "priority": 16,
+    "category": "vocab"
+  },
+  {
+    "id": "reading",
+    "slug": "reading",
+    "titleVi": "Luyện đọc hiểu",
+    "titleEn": "Reading Comprehension",
+    "description": "Đọc các mẩu chuyện ngắn, trả lời câu hỏi trắc nghiệm và phát triển kỹ năng đọc hiểu",
+    "emoji": "📖",
+    "route": "/games/reading",
+    "priority": 17,
+    "category": "roleplay-reading"
+  },
+  {
+    "id": "typing",
+    "slug": "typing",
+    "titleVi": "Luyện gõ từ vựng",
+    "titleEn": "Typing Challenge",
+    "description": "Luyện gõ bàn phím nhanh, điền từ vào chỗ trống và phản xạ từ vựng tiếng Anh",
+    "emoji": "⌨️",
+    "route": "/games/typing",
+    "priority": 18,
+    "category": "roleplay-reading"
+  },
+  {
+    "id": "roleplay",
+    "slug": "roleplay",
+    "titleVi": "Hội thoại tương tác",
+    "titleEn": "Conversational Roleplay",
+    "description": "Tham gia vào các tình huống hội thoại thực tế như gọi món, hỏi đường và giao tiếp cơ bản",
+    "emoji": "💬",
+    "route": "/games/roleplay",
+    "priority": 19,
+    "category": "roleplay-reading"
   }
 ]
 

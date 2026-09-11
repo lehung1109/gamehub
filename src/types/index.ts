@@ -1,5 +1,12 @@
 // src/types/index.ts
 
+export type GameCategory =
+  | 'vocab'
+  | 'phonics-audio'
+  | 'grammar-sentence'
+  | 'arcade-quiz'
+  | 'roleplay-reading';
+
 export interface Game {
   id: string;
   slug: string;
@@ -9,6 +16,7 @@ export interface Game {
   emoji: string;
   route: string;
   priority: number;
+  category?: GameCategory;
 }
 
 export interface Topic {
