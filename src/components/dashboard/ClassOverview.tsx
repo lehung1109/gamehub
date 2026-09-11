@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import type { ClassDashboardData } from '@/app/actions/classes'
 import { copyToClipboard } from '@/lib/clipboard'
 import { DifficultWordsAnalysis } from '@/components/dashboard/DifficultWordsAnalysis'
+import { AssignmentManager } from '@/components/class/AssignmentManager'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -336,6 +337,9 @@ export function ClassOverview({ data }: ClassOverviewProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Homework & Assignment Management */}
+      <AssignmentManager classroomId={classroom.id} classroomName={classroom.name} />
 
       {/* Main Content Area: Empty State OR Populated Content */}
       {totalSessions === 0 ? (
