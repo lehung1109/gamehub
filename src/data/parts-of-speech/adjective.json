@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "id": "adjective",
+    "slug": "adjective",
+    "name": "Adjective",
+    "vietnameseName": "Tính từ",
+    "status": "active",
+    "description": "Mô tả tính chất sự vật, sự việc và vị trí trong môi trường làm việc.",
+    "estimatedMinutes": 10
+  },
+  "quickRules": [
+    {
+      "id": "adjective-suffixes",
+      "category": "spelling-rules",
+      "titleVi": "Đuôi Tính Từ Phổ Biến",
+      "titleEn": "Common Adjective Suffixes",
+      "summaryVi": "Nhận diện tính từ qua các hậu tố thông dụng trong tiếng Anh văn phòng.",
+      "rulesList": [
+        {
+          "ruleVi": "Các hậu tố tạo tính từ thông dụng",
+          "condition": "Gắn vào danh từ hoặc động từ để biểu thị tính chất hoặc đặc điểm",
+          "examples": [
+            { "en": "-ful (success -> successful)", "vi": "Thành công" },
+            { "en": "-able / -ible (flex -> flexible)", "vi": "Linh hoạt" },
+            { "en": "-ive (create -> creative)", "vi": "Sáng tạo" },
+            { "en": "-al (finance -> financial)", "vi": "Thuộc về tài chính" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adjective-positions",
+      "category": "workplace-usage",
+      "titleVi": "Vị Trí Của Tính Từ",
+      "titleEn": "Workplace Adjective Positions",
+      "summaryVi": "Hai vị trí cơ bản và quan trọng nhất của tính từ trong câu.",
+      "rulesList": [
+        {
+          "ruleVi": "Đứng trước danh từ (Adjective + Noun)",
+          "condition": "Bổ nghĩa trực tiếp cho danh từ đứng ngay sau",
+          "examples": [
+            { "en": "She delivered an *effective* presentation yesterday.", "vi": "Cô ấy đã có một bài thuyết trình hiệu quả hôm qua." }
+          ]
+        },
+        {
+          "ruleVi": "Đứng sau động từ liên kết (Linking Verb + Adjective)",
+          "condition": "Sau các động từ như be, seem, appear, remain, become",
+          "examples": [
+            { "en": "The financial report seems *comprehensive* and accurate.", "vi": "Báo cáo tài chính có vẻ toàn diện và chính xác." }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "wordFamily": [
+      {
+        "id": "wf_adj_1",
+        "baseWord": "success",
+        "targetWord": "successful",
+        "options": ["-ful", "-ive", "-able", "-ly"],
+        "explanationVi": "'Success' là danh từ (thành công). Thêm hậu tố '-ful' để tạo tính từ 'successful' (thành công, có kết quả tốt)."
+      },
+      {
+        "id": "wf_adj_2",
+        "baseWord": "flex",
+        "targetWord": "flexible",
+        "options": ["-ible", "-ful", "-ous", "-ity"],
+        "explanationVi": "'Flex' mang nghĩa uốn dẻo, linh hoạt. Thêm hậu tố '-ible' tạo tính từ 'flexible' (linh hoạt về thời gian/kế hoạch)."
+      },
+      {
+        "id": "wf_adj_3",
+        "baseWord": "create",
+        "targetWord": "creative",
+        "options": ["-ive", "-al", "-able", "-ment"],
+        "explanationVi": "'Create' là động từ (sáng tạo, tạo ra). Đổi sang hậu tố '-ive' để tạo tính từ 'creative' (có óc sáng tạo)."
+      },
+      {
+        "id": "wf_adj_4",
+        "baseWord": "finance",
+        "targetWord": "financial",
+        "options": ["-al", "-ic", "-ous", "-ful"],
+        "explanationVi": "'Finance' là danh từ (tài chính). Thêm hậu tố '-al' tạo tính từ 'financial' (thuộc về tài chính)."
+      }
+    ],
+    "fillInBlank": [
+      {
+        "id": "fib_adj_1",
+        "contextType": "email",
+        "textBefore": "We look forward to a ",
+        "textAfter": " partnership with your enterprise.",
+        "correctAnswer": "productive",
+        "options": ["productive", "produce", "production", "productively"],
+        "explanationVi": "Trước danh từ 'partnership' cần một tính từ bổ nghĩa. 'productive' (hiệu quả, năng suất) là tính từ chính xác."
+      },
+      {
+        "id": "fib_adj_2",
+        "contextType": "report",
+        "textBefore": "Client satisfaction surveys reveal that users are extremely ",
+        "textAfter": " with the fast response times.",
+        "correctAnswer": "satisfied",
+        "options": ["satisfied", "satisfaction", "satisfy", "satisfyingly"],
+        "explanationVi": "Sau liên động từ 'are' và trạng từ chỉ mức độ 'extremely' cần tính từ 'satisfied' (hài lòng)."
+      },
+      {
+        "id": "fib_adj_3",
+        "contextType": "chat",
+        "textBefore": "Could we make our sprint milestone slightly more ",
+        "textAfter": " to accommodate urgent bug fixes?",
+        "correctAnswer": "flexible",
+        "options": ["flexible", "flexibility", "flexibly", "flex"],
+        "explanationVi": "Cấu trúc 'make + O + Adj' yêu cầu một tính từ bổ ngữ. 'flexible' (linh hoạt) là lựa chọn chuẩn."
+      },
+      {
+        "id": "fib_adj_4",
+        "contextType": "report",
+        "textBefore": "The external auditors submitted a ",
+        "textAfter": " evaluation of our cybersecurity protocols.",
+        "correctAnswer": "comprehensive",
+        "options": ["comprehensive", "comprehension", "comprehend", "comprehensively"],
+        "explanationVi": "Trước danh từ 'evaluation' cần một tính từ. 'comprehensive' (toàn diện) là tính từ chuẩn xác."
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "eh_adj_1",
+        "scenarioVi": "Sử dụng động từ thay vì tính từ trước danh từ 'solution'",
+        "tokens": ["Our", "consultants", "proposed", "an", "innovate", "solution", "to", "cut", "latency."],
+        "errorTokenIndex": 4,
+        "correctToken": "innovative",
+        "options": [
+          { "value": "innovate", "label": "Giữ nguyên (innovate)", "isCorrect": false },
+          { "value": "innovative", "label": "innovative", "isCorrect": true },
+          { "value": "innovation", "label": "innovation", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Our consultants proposed an innovative solution to cut latency.",
+        "vietnameseMeaning": "Các chuyên gia tư vấn của chúng tôi đã đề xuất một giải pháp đổi mới sáng tạo để giảm độ trễ.",
+        "explanation": {
+          "whyWrongVi": "Trước danh từ 'solution' cần tính từ bổ nghĩa, nhưng 'innovate' lại là động từ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp này làm giảm tính chuyên nghiệp trong đề xuất kỹ thuật gửi khách hàng."
+        }
+      },
+      {
+        "id": "eh_adj_2",
+        "scenarioVi": "Sử dụng trạng từ thay vì tính từ sau linking verb 'remains'",
+        "tokens": ["The", "operating", "budget", "for", "cloud", "services", "remains", "stably", "this", "quarter."],
+        "errorTokenIndex": 7,
+        "correctToken": "stable",
+        "options": [
+          { "value": "stably", "label": "Giữ nguyên (stably)", "isCorrect": false },
+          { "value": "stable", "label": "stable", "isCorrect": true },
+          { "value": "stability", "label": "stability", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "The operating budget for cloud services remains stable this quarter.",
+        "vietnameseMeaning": "Ngân sách vận hành cho các dịch vụ đám mây vẫn duy trì ổn định trong quý này.",
+        "explanation": {
+          "whyWrongVi": "'remains' là liên động từ (linking verb) yêu cầu tính từ vị ngữ đi kèm, không dùng trạng từ 'stably'.",
+          "workplaceImpactVi": "Dùng sai từ loại sau liên động từ là lỗi ngữ pháp thường bị nhắc nhở trong các bản báo cáo tài chính ban giám đốc."
+        }
+      }
+    ]
+  }
+}

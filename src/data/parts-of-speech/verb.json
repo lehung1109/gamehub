@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "id": "verb",
+    "slug": "verb",
+    "name": "Verb",
+    "vietnameseName": "Động từ",
+    "status": "active",
+    "description": "Học cách nhận diện động từ và cấu trúc vị trí trong câu công sở.",
+    "estimatedMinutes": 10
+  },
+  "quickRules": [
+    {
+      "id": "verb-suffixes",
+      "category": "spelling-rules",
+      "titleVi": "Đuôi Động Từ Phổ Biến",
+      "titleEn": "Common Verb Suffixes",
+      "summaryVi": "Nhận diện động từ qua các hậu tố biến đổi từ tính từ hoặc danh từ.",
+      "rulesList": [
+        {
+          "ruleVi": "Các đuôi cấu tạo động từ thường gặp",
+          "condition": "Biến đổi từ tính từ hoặc danh từ thành động từ diễn đạt hành động",
+          "examples": [
+            { "en": "-ize / -ise (final -> finalize)", "vi": "Hoàn tất, chốt lại" },
+            { "en": "-ate (active -> activate)", "vi": "Kích hoạt" },
+            { "en": "-en (broad -> broaden)", "vi": "Mở rộng" },
+            { "en": "-ify (simple -> simplify)", "vi": "Đơn giản hóa" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verb-positions",
+      "category": "workplace-usage",
+      "titleVi": "Vị Trí Của Động Từ",
+      "titleEn": "Workplace Verb Positions",
+      "summaryVi": "Các vị trí cốt lõi của động từ trong cấu trúc câu công sở.",
+      "rulesList": [
+        {
+          "ruleVi": "Đứng ngay sau chủ ngữ (Subject + Verb)",
+          "condition": "Diễn tả hành động chính của cá nhân hoặc đội ngũ",
+          "examples": [
+            { "en": "The engineering team *collaborates* with product managers.", "vi": "Đội ngũ kỹ thuật hợp tác với các quản lý sản phẩm." }
+          ]
+        },
+        {
+          "ruleVi": "Sau trợ động từ khuyết thiếu (Modal verb + V-infinitive)",
+          "condition": "Sau can, could, should, must, will là động từ nguyên mẫu không 'to'",
+          "examples": [
+            { "en": "You should *confirm* the meeting schedule with the client.", "vi": "Bạn nên xác nhận lịch họp với khách hàng." }
+          ]
+        },
+        {
+          "ruleVi": "Sau 'to' trong cấu trúc mục đích hoặc kế hoạch (to + V-infinitive)",
+          "condition": "Chỉ mục tiêu, hành động tiếp theo",
+          "examples": [
+            { "en": "We plan to *expand* our operations into Southeast Asia.", "vi": "Chúng tôi lên kế hoạch mở rộng hoạt động sang Đông Nam Á." }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "wordFamily": [
+      {
+        "id": "wf_verb_1",
+        "baseWord": "final",
+        "targetWord": "finalize",
+        "options": ["-ize", "-tion", "-al", "-ly"],
+        "explanationVi": "'Final' là tính từ (cuối cùng). Thêm đuôi '-ize' để tạo động từ 'finalize' (hoàn tất, chốt dự án)."
+      },
+      {
+        "id": "wf_verb_2",
+        "baseWord": "active",
+        "targetWord": "activate",
+        "options": ["-ate", "-ity", "-ly", "-ment"],
+        "explanationVi": "'Active' là tính từ (hoạt động). Thêm hậu tố '-ate' thành 'activate' (kích hoạt tính năng/tài khoản)."
+      },
+      {
+        "id": "wf_verb_3",
+        "baseWord": "broad",
+        "targetWord": "broaden",
+        "options": ["-en", "-ize", "-ful", "-ment"],
+        "explanationVi": "'Broad' là tính từ (rộng). Thêm đuôi '-en' để tạo thành động từ 'broaden' (mở rộng tầm nhìn/phạm vi)."
+      },
+      {
+        "id": "wf_verb_4",
+        "baseWord": "simple",
+        "targetWord": "simplify",
+        "options": ["-ify", "-ate", "-tion", "-ic"],
+        "explanationVi": "'Simple' là tính từ (đơn giản). Đổi sang hậu tố '-ify' để tạo động từ 'simplify' (đơn giản hóa quy trình)."
+      }
+    ],
+    "fillInBlank": [
+      {
+        "id": "fib_verb_1",
+        "contextType": "email",
+        "textBefore": "Please ",
+        "textAfter": " the attached proposal before tomorrow's client meeting.",
+        "correctAnswer": "review",
+        "options": ["review", "reviewer", "reviewing", "reviewed"],
+        "explanationVi": "Sau lời yêu cầu lịch sự 'Please' cần một động từ nguyên mẫu. 'review' (xem xét, đánh giá) là đáp án chính xác."
+      },
+      {
+        "id": "fib_verb_2",
+        "contextType": "report",
+        "textBefore": "The management decided to ",
+        "textAfter": " the internal workflow to reduce operational costs.",
+        "correctAnswer": "restructure",
+        "options": ["restructure", "restructuring", "restructured", "restructurement"],
+        "explanationVi": "Cấu trúc 'decide to + V-infinitive' yêu cầu động từ nguyên thể. 'restructure' (tái cơ cấu) là đáp án đúng."
+      },
+      {
+        "id": "fib_verb_3",
+        "contextType": "chat",
+        "textBefore": "Can we ",
+        "textAfter": " the daily standup to 10:30 AM today?",
+        "correctAnswer": "reschedule",
+        "options": ["reschedule", "rescheduling", "rescheduled", "rescheduleable"],
+        "explanationVi": "Sau trợ động từ khuyết thiếu 'Can' và chủ ngữ 'we' cần động từ nguyên mẫu không 'to'. 'reschedule' (dời lịch) là đáp án chính xác."
+      },
+      {
+        "id": "fib_verb_4",
+        "contextType": "report",
+        "textBefore": "The automated system will ",
+        "textAfter": " a diagnostic report every midnight.",
+        "correctAnswer": "generate",
+        "options": ["generate", "generation", "generator", "generative"],
+        "explanationVi": "Sau trợ động từ tương lai 'will' cần động từ nguyên mẫu. 'generate' (tạo ra, xuất ra) là động từ phù hợp."
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "eh_verb_1",
+        "scenarioVi": "Sử dụng danh từ thay vì động từ sau modal verb 'must'",
+        "tokens": ["The", "team", "must", "collaboration", "closely", "to", "meet", "the", "deadline."],
+        "errorTokenIndex": 3,
+        "correctToken": "collaborate",
+        "options": [
+          { "value": "collaboration", "label": "Giữ nguyên (collaboration)", "isCorrect": false },
+          { "value": "collaborate", "label": "collaborate", "isCorrect": true },
+          { "value": "collaborative", "label": "collaborative", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "The team must collaborate closely to meet the deadline.",
+        "vietnameseMeaning": "Đội ngũ phải cộng tác chặt chẽ để hoàn thành đúng thời hạn.",
+        "explanation": {
+          "whyWrongVi": "Sau trợ động từ khuyết thiếu 'must' bắt buộc phải dùng động từ nguyên mẫu, nhưng 'collaboration' là danh từ.",
+          "workplaceImpactVi": "Lỗi ngữ pháp này làm giảm tính chuẩn mực và chuyên nghiệp trong tài liệu dự án."
+        }
+      },
+      {
+        "id": "eh_verb_2",
+        "scenarioVi": "Sử dụng tính từ thay vì động từ sau cấu trúc 'intend to'",
+        "tokens": ["We", "intend", "to", "modern", "our", "legacy", "database", "next", "quarter."],
+        "errorTokenIndex": 3,
+        "correctToken": "modernize",
+        "options": [
+          { "value": "modern", "label": "Giữ nguyên (modern)", "isCorrect": false },
+          { "value": "modernize", "label": "modernize", "isCorrect": true },
+          { "value": "modernization", "label": "modernization", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "We intend to modernize our legacy database next quarter.",
+        "vietnameseMeaning": "Chúng tôi dự định hiện đại hóa cơ sở dữ liệu cũ vào quý tới.",
+        "explanation": {
+          "whyWrongVi": "Cấu trúc 'intend to + V' cần động từ nguyên mẫu chỉ hành động, trong khi 'modern' là tính từ.",
+          "workplaceImpactVi": "Dùng tính từ ở vị trí vị ngữ hành động gây khó hiểu trong kế hoạch công việc."
+        }
+      }
+    ]
+  }
+}

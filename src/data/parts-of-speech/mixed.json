@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "id": "mixed",
+    "slug": "mixed",
+    "name": "Mixed",
+    "vietnameseName": "Tổng hợp",
+    "status": "active",
+    "description": "Thử thách tổng hợp phân biệt và ứng dụng linh hoạt 4 loại từ trong công việc.",
+    "estimatedMinutes": 15
+  },
+  "quickRules": [
+    {
+      "id": "pos-matrix",
+      "category": "workplace-usage",
+      "titleVi": "Ma Trận Vị Trí 4 Loại Từ (S-V-O)",
+      "titleEn": "Part-of-Speech Placement Matrix",
+      "summaryVi": "Bản đồ vị trí tổng quan của Danh từ, Động từ, Tính từ, Trạng từ trong cấu trúc câu hoàn chỉnh.",
+      "rulesList": [
+        {
+          "ruleVi": "Cấu trúc câu chuẩn: (Adv) + Subject (Noun) + Verb + Object (Noun) + (Adv)",
+          "condition": "Quy tắc định vị vai trò của từng loại từ trong câu",
+          "examples": [
+            { "en": "Recently, the engineering team updated the security policy thoroughly.", "vi": "Gần đây, đội ngũ kỹ thuật đã cập nhật chính sách bảo mật một cách thấu đáo." }
+          ]
+        },
+        {
+          "ruleVi": "Cấu trúc cụm danh từ: Determiner + (Adverb) + Adjective + Noun",
+          "condition": "Bổ nghĩa đa tầng cho danh từ trung tâm",
+          "examples": [
+            { "en": "a highly *reliable* infrastructure", "vi": "một hạ tầng cực kỳ đáng tin cậy" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-form-traps",
+      "category": "spelling-rules",
+      "titleVi": "Bẫy Biến Đổi Dạng Từ Trong Công Sở",
+      "titleEn": "Business English Word Form Traps",
+      "summaryVi": "Tránh các nhầm lẫn phổ biến giữa các từ có cùng gốc từ.",
+      "rulesList": [
+        {
+          "ruleVi": "Nhầm Động từ và Danh từ",
+          "condition": "Chú ý các đuôi -tion, -ment, -ance cho danh từ và -ize, -ate cho động từ",
+          "examples": [
+            { "en": "decide (V) -> decision (N), implement (V) -> implementation (N)", "vi": "quyết định / triển khai" }
+          ]
+        },
+        {
+          "ruleVi": "Nhầm Tính từ và Trạng từ",
+          "condition": "Tính từ bổ nghĩa cho danh từ; Trạng từ bổ nghĩa cho động từ, tính từ hoặc cả câu",
+          "examples": [
+            { "en": "prompt response (Adj + N) vs respond promptly (V + Adv)", "vi": "phản hồi nhanh chóng" }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "wordFamily": [
+      {
+        "id": "wf_mix_1",
+        "baseWord": "collaborate",
+        "targetWord": "collaboration",
+        "options": ["-tion", "-ly", "-ful", "-ate"],
+        "explanationVi": "'Collaborate' là động từ (hợp tác). Chuyển sang danh từ chỉ sự hợp tác bằng hậu tố '-tion' -> 'collaboration'."
+      },
+      {
+        "id": "wf_mix_2",
+        "baseWord": "innovate",
+        "targetWord": "innovative",
+        "options": ["-ive", "-tion", "-ly", "-ment"],
+        "explanationVi": "'Innovate' là động từ (đổi mới). Chuyển sang tính từ chỉ tính sáng tạo, tiên tiến bằng hậu tố '-ive' -> 'innovative'."
+      },
+      {
+        "id": "wf_mix_3",
+        "baseWord": "accurate",
+        "targetWord": "accurately",
+        "options": ["-ly", "-cy", "-ate", "-tion"],
+        "explanationVi": "'Accurate' là tính từ (chính xác). Thêm hậu tố '-ly' để tạo trạng từ 'accurately' (thực hiện một cách chính xác)."
+      },
+      {
+        "id": "wf_mix_4",
+        "baseWord": "standard",
+        "targetWord": "standardize",
+        "options": ["-ize", "-ic", "-ly", "-ment"],
+        "explanationVi": "'Standard' là danh từ/tính từ (tiêu chuẩn). Thêm hậu tố '-ize' để tạo động từ 'standardize' (tiêu chuẩn hóa)."
+      }
+    ],
+    "fillInBlank": [
+      {
+        "id": "fib_mix_1",
+        "contextType": "email",
+        "textBefore": "Please ensure that the client's feedback is incorporated ",
+        "textAfter": " into the next sprint release.",
+        "correctAnswer": "effectively",
+        "options": ["effectively", "effective", "effectiveness", "effect"],
+        "explanationVi": "Bổ nghĩa cho cụm động từ bị động 'is incorporated' cần trạng từ 'effectively' (một cách hiệu quả)."
+      },
+      {
+        "id": "fib_mix_2",
+        "contextType": "report",
+        "textBefore": "The chief technology officer emphasized the ",
+        "textAfter": " of maintaining high code quality.",
+        "correctAnswer": "importance",
+        "options": ["importance", "important", "importantly", "import"],
+        "explanationVi": "Sau mạo từ 'the' và trước giới từ 'of' cần danh từ. 'importance' (tầm quan trọng) là đáp án chuẩn xác."
+      },
+      {
+        "id": "fib_mix_3",
+        "contextType": "chat",
+        "textBefore": "Our team needs to ",
+        "textAfter": " user engagement before rolling out the update.",
+        "correctAnswer": "evaluate",
+        "options": ["evaluate", "evaluation", "evaluative", "evaluatingly"],
+        "explanationVi": "Cấu trúc 'needs to + V-infinitive' yêu cầu động từ nguyên mẫu. 'evaluate' (đánh giá) là đáp án đúng."
+      },
+      {
+        "id": "fib_mix_4",
+        "contextType": "report",
+        "textBefore": "The cloud architecture demonstrated ",
+        "textAfter": " resilience during the simulated outage.",
+        "correctAnswer": "exceptional",
+        "options": ["exceptional", "exception", "exceptionally", "except"],
+        "explanationVi": "Trước danh từ 'resilience' cần một tính từ để bổ nghĩa. 'exceptional' (vượt trội, đặc biệt) là tính từ đúng."
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "eh_mix_1",
+        "scenarioVi": "Sử dụng tính từ thay vì danh từ sau tính từ 'high'",
+        "tokens": ["The", "new", "platform", "demonstrated", "high", "reliable", "during", "the", "load", "test."],
+        "errorTokenIndex": 5,
+        "correctToken": "reliability",
+        "options": [
+          { "value": "reliable", "label": "Giữ nguyên (reliable)", "isCorrect": false },
+          { "value": "reliability", "label": "reliability", "isCorrect": true },
+          { "value": "reliably", "label": "reliably", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "The new platform demonstrated high reliability during the load test.",
+        "vietnameseMeaning": "Nền tảng mới đã chứng minh độ tin cậy cao trong đợt kiểm thử tải.",
+        "explanation": {
+          "whyWrongVi": "Sau tính từ 'high' và làm tân ngữ cho động từ 'demonstrated' cần danh từ 'reliability', không dùng tính từ 'reliable'.",
+          "workplaceImpactVi": "Lỗi dùng hai tính từ liên tiếp mà không có danh từ trung tâm gây khó hiểu trong tài liệu nghiệm thu kỹ thuật."
+        }
+      },
+      {
+        "id": "eh_mix_2",
+        "scenarioVi": "Sử dụng tính từ thay vì trạng từ để bổ nghĩa cho phân từ 'configured'",
+        "tokens": ["The", "database", "was", "improper", "configured", "causing", "unexpected", "downtime."],
+        "errorTokenIndex": 3,
+        "correctToken": "improperly",
+        "options": [
+          { "value": "improper", "label": "Giữ nguyên (improper)", "isCorrect": false },
+          { "value": "improperly", "label": "improperly", "isCorrect": true },
+          { "value": "impropriety", "label": "impropriety", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "The database was improperly configured causing unexpected downtime.",
+        "vietnameseMeaning": "Cơ sở dữ liệu đã bị cấu hình không đúng cách dẫn đến gián đoạn hệ thống ngoài dự kiến.",
+        "explanation": {
+          "whyWrongVi": "Đứng giữa 'was' và phân từ hai 'configured' để bổ nghĩa cho hành động bị động cần trạng từ 'improperly', không dùng tính từ 'improper'.",
+          "workplaceImpactVi": "Trong báo cáo sự cố (post-mortem), dùng chính xác trạng từ giúp văn phong chuẩn xác và khách quan."
+        }
+      },
+      {
+        "id": "eh_mix_3",
+        "scenarioVi": "Sử dụng danh từ thay vì động từ sau trợ động từ khuyết thiếu 'should'",
+        "tokens": ["Developers", "should", "prioritization", "security", "fixes", "over", "new", "features."],
+        "errorTokenIndex": 2,
+        "correctToken": "prioritize",
+        "options": [
+          { "value": "prioritization", "label": "Giữ nguyên (prioritization)", "isCorrect": false },
+          { "value": "prioritize", "label": "prioritize", "isCorrect": true },
+          { "value": "priority", "label": "priority", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Developers should prioritize security fixes over new features.",
+        "vietnameseMeaning": "Các lập trình viên nên ưu tiên các bản sửa lỗi bảo mật hơn là các tính năng mới.",
+        "explanation": {
+          "whyWrongVi": "Sau trợ động từ khuyết thiếu 'should' cần động từ nguyên mẫu 'prioritize', không dùng danh từ 'prioritization'.",
+          "workplaceImpactVi": "Dùng danh từ thay cho động từ chỉ đạo làm giảm tính rõ ràng trong kế hoạch phát triển dự án."
+        }
+      }
+    ]
+  }
+}

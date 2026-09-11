@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "id": "adverb",
+    "slug": "adverb",
+    "name": "Adverb",
+    "vietnameseName": "Trạng từ",
+    "status": "active",
+    "description": "Bổ nghĩa cho động từ, tính từ và toàn câu trong giao tiếp công sở.",
+    "estimatedMinutes": 10
+  },
+  "quickRules": [
+    {
+      "id": "adverb-formation",
+      "category": "spelling-rules",
+      "titleVi": "Cách Thành Lập Trạng Từ",
+      "titleEn": "Adverb Formation",
+      "summaryVi": "Hầu hết các trạng từ chỉ cách thức được tạo bằng cách thêm đuôi '-ly' vào sau tính từ.",
+      "rulesList": [
+        {
+          "ruleVi": "Thêm hậu tố -ly vào tính từ",
+          "condition": "Tính từ + ly -> Trạng từ chỉ thể cách hoặc tần suất",
+          "examples": [
+            { "en": "prompt -> promptly", "vi": "Một cách nhanh chóng, kịp thời" },
+            { "en": "efficient -> efficiently", "vi": "Một cách hiệu quả" },
+            { "en": "thorough -> thoroughly", "vi": "Một cách tỉ mỉ, thấu đáo" },
+            { "en": "accurate -> accurately", "vi": "Một cách chính xác" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adverb-positions",
+      "category": "workplace-usage",
+      "titleVi": "Vị Trí Của Trạng Từ",
+      "titleEn": "Workplace Adverb Positions",
+      "summaryVi": "Các vị trí linh hoạt của trạng từ để mô tả phương thức, mức độ hoặc bối cảnh.",
+      "rulesList": [
+        {
+          "ruleVi": "Bổ nghĩa cho động từ (Verb + Adverb / Adverb + Verb)",
+          "condition": "Mô tả cách thức hoặc phương pháp hành động được thực hiện",
+          "examples": [
+            { "en": "Please respond *promptly* to priority tickets.", "vi": "Vui lòng phản hồi kịp thời các phiếu sự cố ưu tiên." }
+          ]
+        },
+        {
+          "ruleVi": "Bổ nghĩa cho tính từ hoặc trạng từ khác (Adverb + Adjective)",
+          "condition": "Nhấn mạnh mức độ, cường độ của tính chất",
+          "examples": [
+            { "en": "The technical documentation was *extremely* helpful.", "vi": "Tài liệu kỹ thuật cực kỳ hữu ích." }
+          ]
+        },
+        {
+          "ruleVi": "Đứng đầu câu bổ nghĩa cho cả câu (Adverb, Clause)",
+          "condition": "Bày tỏ nhận định, thái độ chung về sự việc",
+          "examples": [
+            { "en": "*Fortunately*, the budget was approved by the executive board.", "vi": "May mắn thay, ngân sách đã được ban điều hành phê duyệt." }
+          ]
+        }
+      ]
+    }
+  ],
+  "challenges": {
+    "wordFamily": [
+      {
+        "id": "wf_adv_1",
+        "baseWord": "prompt",
+        "targetWord": "promptly",
+        "options": ["-ly", "-ness", "-tion", "-able"],
+        "explanationVi": "'Prompt' là tính từ (nhanh chóng). Thêm hậu tố '-ly' để tạo trạng từ 'promptly' (một cách kịp thời, nhanh chóng)."
+      },
+      {
+        "id": "wf_adv_2",
+        "baseWord": "efficient",
+        "targetWord": "efficiently",
+        "options": ["-ly", "-cy", "-able", "-tion"],
+        "explanationVi": "'Efficient' là tính từ (hiệu quả). Thêm hậu tố '-ly' để tạo trạng từ 'efficiently' (vận hành hiệu quả)."
+      },
+      {
+        "id": "wf_adv_3",
+        "baseWord": "thorough",
+        "targetWord": "thoroughly",
+        "options": ["-ly", "-ment", "-ness", "-ize"],
+        "explanationVi": "'Thorough' là tính từ (kỹ lưỡng). Thêm hậu tố '-ly' để tạo trạng từ 'thoroughly' (rà soát kỹ lưỡng)."
+      },
+      {
+        "id": "wf_adv_4",
+        "baseWord": "clear",
+        "targetWord": "clearly",
+        "options": ["-ly", "-ify", "-ity", "-ance"],
+        "explanationVi": "'Clear' là tính từ (rõ ràng). Thêm hậu tố '-ly' để tạo trạng từ 'clearly' (trình bày một cách rõ ràng)."
+      }
+    ],
+    "fillInBlank": [
+      {
+        "id": "fib_adv_1",
+        "contextType": "email",
+        "textBefore": "Please review the updated agreement and reply ",
+        "textAfter": " by the end of today.",
+        "correctAnswer": "promptly",
+        "options": ["promptly", "prompt", "promptness", "prompting"],
+        "explanationVi": "Bổ nghĩa cho động từ 'reply' cần trạng từ chỉ thể cách 'promptly' (nhanh chóng, không chậm trễ)."
+      },
+      {
+        "id": "fib_adv_2",
+        "contextType": "report",
+        "textBefore": "The payment gateway processed transactions ",
+        "textAfter": " despite high traffic volumes.",
+        "correctAnswer": "smoothly",
+        "options": ["smoothly", "smooth", "smoothness", "smoother"],
+        "explanationVi": "Bổ nghĩa cho động từ 'processed' cần trạng từ chỉ cách thức. 'smoothly' (trơn tru, êm ả) là đáp án đúng."
+      },
+      {
+        "id": "fib_adv_3",
+        "contextType": "chat",
+        "textBefore": "The release engineer has ",
+        "textAfter": " deployed the security patch to production.",
+        "correctAnswer": "successfully",
+        "options": ["successfully", "success", "successful", "succeed"],
+        "explanationVi": "Đứng giữa trợ động từ 'has' và phân từ quá khứ 'deployed' là trạng từ 'successfully' (một cách thành công)."
+      },
+      {
+        "id": "fib_adv_4",
+        "contextType": "report",
+        "textBefore": "The quarterly survey results were ",
+        "textAfter": " positive across all enterprise accounts.",
+        "correctAnswer": "overwhelmingly",
+        "options": ["overwhelmingly", "overwhelming", "overwhelm", "overwhelmed"],
+        "explanationVi": "Bổ nghĩa cho tính từ 'positive' cần một trạng từ chỉ mức độ. 'overwhelmingly' (áp đảo, vượt trội) là từ chính xác."
+      }
+    ],
+    "errorHunting": [
+      {
+        "id": "eh_adv_1",
+        "scenarioVi": "Sử dụng tính từ thay vì trạng từ để bổ nghĩa cho động từ 'analyze'",
+        "tokens": ["Our", "data", "scientists", "must", "analyze", "the", "metrics", "careful", "before", "the", "release."],
+        "errorTokenIndex": 7,
+        "correctToken": "carefully",
+        "options": [
+          { "value": "careful", "label": "Giữ nguyên (careful)", "isCorrect": false },
+          { "value": "carefully", "label": "carefully", "isCorrect": true },
+          { "value": "carefulness", "label": "carefulness", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Our data scientists must analyze the metrics carefully before the release.",
+        "vietnameseMeaning": "Các nhà khoa học dữ liệu phải phân tích các chỉ số một cách cẩn thận trước khi phát hành.",
+        "explanation": {
+          "whyWrongVi": "Bổ nghĩa cho hành động 'analyze' cần một trạng từ chỉ thể cách 'carefully', không dùng tính từ 'careful'.",
+          "workplaceImpactVi": "Nhầm tính từ với trạng từ khi mô tả quy trình kỹ thuật làm giảm độ chuẩn xác và tin cậy của tài liệu."
+        }
+      },
+      {
+        "id": "eh_adv_2",
+        "scenarioVi": "Sử dụng tính từ thay vì trạng từ ở vị trí đầu câu",
+        "tokens": ["Frequent", "the", "lead", "architect", "reviews", "all", "pull", "requests", "personally."],
+        "errorTokenIndex": 0,
+        "correctToken": "Frequently",
+        "options": [
+          { "value": "Frequent", "label": "Giữ nguyên (Frequent)", "isCorrect": false },
+          { "value": "Frequently", "label": "Frequently", "isCorrect": true },
+          { "value": "Frequency", "label": "Frequency", "isCorrect": false }
+        ],
+        "fullCorrectSentence": "Frequently the lead architect reviews all pull requests personally.",
+        "vietnameseMeaning": "Kiến trúc sư trưởng thường xuyên đích thân xem xét tất cả các yêu cầu hợp nhất mã nguồn.",
+        "explanation": {
+          "whyWrongVi": "Đứng đầu câu để bổ nghĩa cho toàn bộ mệnh đề chỉ tần suất cần dùng trạng từ 'Frequently', không dùng tính từ 'Frequent'.",
+          "workplaceImpactVi": "Dùng tính từ đứng độc lập ở đầu câu là lỗi ngữ pháp cơ bản thường gặp ở người học tiếng Anh giao tiếp."
+        }
+      }
+    ]
+  }
+}
