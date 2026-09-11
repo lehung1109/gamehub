@@ -250,6 +250,50 @@ describe('Assignments Server Actions', () => {
       expect(res.success).toBe(true)
       expect(res.data).toEqual([])
     })
+
+    it('does not count pre-existing sessions from before assignment creation towards completedCount', async () => {
+      const mockAssignments = [
+        {
+          id: 'asg-today',
+          classroom_id: 'cls-1',
+          title: 'Bài tập mới',
+          game_type: 'match-pairs',
+          topic: 'Animals',
+          config_id: null,
+          target_score: 50,
+          due_date: '2026-12-31T23:59:59.000Z',
+          is_active: true,
+          created_at: '2026-09-11T12:00:00.000Z',
+        },
+      ]
+      const mockStudents = [{ id: 'std-1' }]
+      const mockSessions = [
+        {
+          student_id: 'std-1',
+          game_type: 'match-pairs',
+          topic: 'Animals',
+          score: 100,
+          config_id: null,
+          started_at: '2026-09-01T08:00:00.000Z',
+          completed_at: '2026-09-01T08:05:00.000Z',
+        },
+      ]
+
+      const assignmentsBuilder = createMockQueryBuilder(mockAssignments, null)
+      const studentsBuilder = createMockQueryBuilder(mockStudents, null)
+      const sessionsBuilder = createMockQueryBuilder(mockSessions, null)
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'assignments') return assignmentsBuilder
+        if (table === 'students') return studentsBuilder
+        if (table === 'game_sessions') return sessionsBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await getClassAssignments('cls-1')
+      expect(res.success).toBe(true)
+      expect(res.data?.[0].completedCount).toBe(0)
+    })
   })
 
   describe('getStudentAssignments', () => {
@@ -351,6 +395,56 @@ describe('Assignments Server Actions', () => {
       const overdue = items.find((i) => i.id === 'asg-overdue')
       expect(overdue?.status).toBe('overdue')
       expect(overdue?.studentScore).toBe(30)
+    })
+
+    it('does not count game sessions that took place before the assignment was created', async () => {
+      const mockClassroom = { id: 'cls-1', code: 'ABC123', is_active: true }
+      const mockStudent = [{ id: 'std-1', name: 'Bé Linh' }]
+      const mockAssignments = [
+        {
+          id: 'asg-new',
+          classroom_id: 'cls-1',
+          title: 'Bài tập mới giao hôm nay',
+          game_type: 'spelling',
+          topic: 'Animals',
+          config_id: null,
+          target_score: 80,
+          due_date: '2026-12-31T23:59:59.000Z',
+          is_active: true,
+          created_at: '2026-09-11T10:00:00.000Z',
+        },
+      ]
+
+      const mockSessions = [
+        {
+          id: 'sess-ancient',
+          game_type: 'spelling',
+          topic: 'Animals',
+          score: 100, // Perfect score, but from 10 days ago!
+          config_id: null,
+          started_at: '2026-09-01T10:00:00.000Z',
+          completed_at: '2026-09-01T10:05:00.000Z',
+        },
+      ]
+
+      const classroomBuilder = createMockQueryBuilder(mockClassroom, null)
+      const studentBuilder = createMockQueryBuilder(mockStudent, null)
+      const assignmentsBuilder = createMockQueryBuilder(mockAssignments, null)
+      const sessionsBuilder = createMockQueryBuilder(mockSessions, null)
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
+        if (table === 'students') return studentBuilder
+        if (table === 'assignments') return assignmentsBuilder
+        if (table === 'game_sessions') return sessionsBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await getStudentAssignments('ABC123', 'Bé Linh')
+      expect(res.success).toBe(true)
+      expect(res.data).toHaveLength(1)
+      expect(res.data?.[0].status).toBe('pending')
+      expect(res.data?.[0].completedAt).toBeUndefined()
     })
 
     it('fails if classroom does not exist or is inactive', async () => {

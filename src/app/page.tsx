@@ -3,6 +3,7 @@ import { LogIn } from "lucide-react";
 import gamesData from "@/data/games.json";
 import { Game } from "@/types";
 import { GameCatalogSection } from "@/components/game/GameCatalogSection";
+import { StudentProfileBadge } from "@/components/StudentProfileBadge";
 
 import { Container } from "@/components/ui/container";
 
@@ -19,8 +20,9 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
     <Container>
       <div className="flex-1 flex flex-col justify-between">
         <div>
-        {/* Top bar with Login link for teachers/admins */}
-        <div className="flex justify-end mb-2">
+        {/* Top bar with Login link for teachers/admins and Student profile badge */}
+        <div className="flex justify-end items-center gap-2 mb-2">
+          <StudentProfileBadge />
           <Link
             href="/login"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 bg-card border border-border shadow-xs hover:bg-accent hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"

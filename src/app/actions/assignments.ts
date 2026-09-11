@@ -151,7 +151,7 @@ export async function getClassAssignments(
     const studentIds = studentList.map((s) => s.id)
     const { data: sessions, error: sessionsError } = await supabase
       .from('game_sessions')
-      .select('student_id, game_type, topic, score, config_id')
+      .select('student_id, game_type, topic, score, config_id, started_at, completed_at')
       .in('student_id', studentIds)
 
     if (sessionsError) {
@@ -177,6 +177,17 @@ export async function getClassAssignments(
 
         if (assignment.config_id) {
           if (sess.config_id !== assignment.config_id) continue
+        }
+
+        // Only count sessions that took place on or after assignment creation (with 60s clock-skew tolerance)
+        const sessTimestamp = (sess as { completed_at?: string; started_at?: string }).completed_at ||
+          (sess as { completed_at?: string; started_at?: string }).started_at
+        if (sessTimestamp && assignment.created_at) {
+          const sessTime = new Date(sessTimestamp).getTime()
+          const asgTime = new Date(assignment.created_at).getTime()
+          if (!isNaN(sessTime) && !isNaN(asgTime) && sessTime < asgTime - 60000) {
+            continue
+          }
         }
 
         const score = typeof sess.score === 'number' && !isNaN(sess.score) ? sess.score : 0
@@ -332,6 +343,15 @@ export async function getStudentAssignments(
         }
         if (assignment.config_id) {
           if (sess.config_id !== assignment.config_id) return false
+        }
+        // Only count sessions that took place on or after assignment creation (with 60s clock-skew tolerance)
+        const sessTimestamp = sess.completed_at || sess.started_at
+        if (sessTimestamp && assignment.created_at) {
+          const sessTime = new Date(sessTimestamp).getTime()
+          const asgTime = new Date(assignment.created_at).getTime()
+          if (!isNaN(sessTime) && !isNaN(asgTime) && sessTime < asgTime - 60000) {
+            return false
+          }
         }
         return true
       })

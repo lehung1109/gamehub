@@ -12,11 +12,6 @@ test.describe('Class Leaderboard & Gamification E2E', () => {
     await page.goto('/');
 
     const badge = page.locator('[data-testid="student-profile-badge"]');
-    // Fallback to games layout if homepage does not mount StudentSessionProvider
-    if (!(await badge.isVisible())) {
-      await page.goto('/games/listening');
-    }
-
     await expect(badge).toBeVisible();
     await badge.click();
 
@@ -36,10 +31,6 @@ test.describe('Class Leaderboard & Gamification E2E', () => {
     await page.goto('/');
 
     const badge = page.locator('[data-testid="student-profile-badge"]');
-    if (!(await badge.isVisible())) {
-      await page.goto('/games/listening');
-    }
-
     await expect(badge).toBeVisible();
     await badge.click();
 

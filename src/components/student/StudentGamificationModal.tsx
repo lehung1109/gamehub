@@ -40,21 +40,13 @@ export function StudentGamificationModal({
   levelInfo,
   initialTab = 'leaderboard',
 }: StudentGamificationModalProps) {
-  const [prevIsOpen, setPrevIsOpen] = useState(isOpen)
   const [prevInitialTab, setPrevInitialTab] = useState(initialTab)
   const [activeTab, setActiveTab] = useState<TabType>(initialTab)
   const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([])
   const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState<boolean>(false)
   const [leaderboardError, setLeaderboardError] = useState<string | null>(null)
 
-  if (isOpen && !prevIsOpen) {
-    setPrevIsOpen(true)
-    setActiveTab(initialTab)
-  } else if (!isOpen && prevIsOpen) {
-    setPrevIsOpen(false)
-  }
-
-  if (prevInitialTab !== initialTab) {
+  if (initialTab !== prevInitialTab) {
     setPrevInitialTab(initialTab)
     setActiveTab(initialTab)
   }

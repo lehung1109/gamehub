@@ -55,7 +55,7 @@ export interface StudentSessionContextValue {
 
 const StudentSessionContext = createContext<StudentSessionContextValue | null>(null)
 
-export function StudentSessionProvider({ children }: { children: React.ReactNode }) {
+function StudentSessionProviderInternal({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<StudentSession | null>(null)
   const [isAnonymous, setIsAnonymous] = useState<boolean>(false)
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
@@ -365,6 +365,14 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
       {children}
     </StudentSessionContext.Provider>
   )
+}
+
+export function StudentSessionProvider({ children }: { children: React.ReactNode }) {
+  const parentContext = useContext(StudentSessionContext)
+  if (parentContext) {
+    return <>{children}</>
+  }
+  return <StudentSessionProviderInternal>{children}</StudentSessionProviderInternal>
 }
 
 const defaultStudentSessionContext: StudentSessionContextValue = {

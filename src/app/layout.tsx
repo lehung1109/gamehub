@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { StudentSessionProvider } from "@/hooks/use-student-session";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,9 @@ export default function RootLayout({
           data-testid="root-layout-container"
           className="flex-1 flex flex-col w-full"
         >
-          {children}
+          <StudentSessionProvider>
+            {children}
+          </StudentSessionProvider>
         </div>
       </body>
     </html>
