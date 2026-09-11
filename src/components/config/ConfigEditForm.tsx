@@ -19,6 +19,17 @@ import { NumbersColorsConfigForm } from './NumbersColorsConfigForm'
 import { SentencesConfigForm } from './SentencesConfigForm'
 import { MemoryMatchConfigForm } from './MemoryMatchConfigForm'
 import { WordSearchConfigForm } from './WordSearchConfigForm'
+import { ReadingConfigForm } from './ReadingConfigForm'
+import { TypingConfigForm } from './TypingConfigForm'
+import { RoleplayConfigForm } from './RoleplayConfigForm'
+import { WordleConfigForm } from './WordleConfigForm'
+import { WordConnectConfigForm } from './WordConnectConfigForm'
+import { OddOneOutConfigForm } from './OddOneOutConfigForm'
+import { GrammarDetectiveConfigForm } from './GrammarDetectiveConfigForm'
+import { VocabDefenseConfigForm } from './VocabDefenseConfigForm'
+import { CrosswordConfigForm } from './CrosswordConfigForm'
+import { FallingWordsConfigForm } from './FallingWordsConfigForm'
+import { HangmanConfigForm } from './HangmanConfigForm'
 import { PreviewButton } from './PreviewButton'
 import { ArrowLeft, Save, Loader2, AlertCircle } from 'lucide-react'
 
@@ -98,6 +109,94 @@ export function ConfigEditForm({ game, config }: Props) {
       case 'word-search':
         return (
           <WordSearchConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'reading':
+        return (
+          <ReadingConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'typing':
+        return (
+          <TypingConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'roleplay':
+        return (
+          <RoleplayConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'wordle':
+        return (
+          <WordleConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'word-connect':
+        return (
+          <WordConnectConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'odd-one-out':
+        return (
+          <OddOneOutConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'grammar-detective':
+        return (
+          <GrammarDetectiveConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'vocab-defense':
+        return (
+          <VocabDefenseConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'crossword':
+        return (
+          <CrosswordConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'falling-words':
+        return (
+          <FallingWordsConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'hangman':
+        return (
+          <HangmanConfigForm
             settings={settings as never}
             onChange={setSettings}
             disabled={isPending}

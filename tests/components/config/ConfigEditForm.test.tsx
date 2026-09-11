@@ -5,6 +5,7 @@ import { ConfigEditForm } from '@/components/config/ConfigEditForm'
 import type { Game } from '@/types'
 import type { GameConfig, FlashcardSettings, GameId } from '@/types/config'
 import { decodePreviewSettings } from '@/lib/preview'
+import { getDefaultSettings } from '@/lib/game-config-schema'
 
 const mockPush = vi.fn()
 const mockRefresh = vi.fn()
@@ -141,5 +142,40 @@ describe('ConfigEditForm Component', () => {
 
     vi.unstubAllGlobals()
   })
+
+  describe('renders game-specific forms for new game types', () => {
+    const newGames: Array<{ gameId: GameId; title: string; expectedText: RegExp }> = [
+      { gameId: 'reading', title: 'Bài Tập Đọc', expectedText: /độ khó bài đọc/i },
+      { gameId: 'typing', title: 'Luyện Gõ Phím', expectedText: /chủ đề luyện gõ/i },
+      { gameId: 'roleplay', title: 'Hội Thoại Nhập Vai', expectedText: /độ khó hội thoại/i },
+      { gameId: 'wordle', title: 'Đoán Chữ Wordle', expectedText: /độ dài từ cho phép/i },
+      { gameId: 'word-connect', title: 'Nối Từ', expectedText: /mức độ khó xuất hiện/i },
+      { gameId: 'odd-one-out', title: 'Tìm Từ Khác Biệt', expectedText: /mức độ câu hỏi/i },
+      { gameId: 'grammar-detective', title: 'Thám Tử Ngữ Pháp', expectedText: /cấp bậc điều tra/i },
+      { gameId: 'vocab-defense', title: 'Thủ Thành Từ Vựng', expectedText: /mức độ thử thách/i },
+      { gameId: 'crossword', title: 'Ô Chữ Trí Tuệ', expectedText: /kích thước bảng ô chữ/i },
+      { gameId: 'falling-words', title: 'Mưa Từ Vựng', expectedText: /tốc độ rơi của từ/i },
+      { gameId: 'hangman', title: 'Đoán Từ Hangman', expectedText: /chủ đề từ vựng/i },
+    ]
+
+    for (const { gameId, title, expectedText } of newGames) {
+      it(`properly mounts specific config form for ${gameId}`, () => {
+        const game: Game = {
+          ...mockGame,
+          id: gameId,
+          titleVi: title,
+        }
+        const config: GameConfig = {
+          ...mockConfig,
+          game_id: gameId,
+          settings: getDefaultSettings(gameId) as unknown as Record<string, unknown>,
+        }
+        render(<ConfigEditForm game={game} config={config} />)
+
+        expect(screen.getByText(expectedText)).toBeInTheDocument()
+      })
+    }
+  })
 })
+
 
