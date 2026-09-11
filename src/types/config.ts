@@ -38,15 +38,49 @@ export interface SentencesSettings {
 
 export interface ReadingSettings {
   difficulty?: number
+  showTranslation?: boolean
 }
 
 export interface TypingSettings {
   topics?: string[]
+  timeLimitSeconds?: number
+  showVirtualKeyboard?: boolean
 }
 
 export interface RoleplaySettings {
   difficulty?: number
   autoSpeak?: boolean
+  scenarioTopic?: string
+}
+
+export interface GrammarDetectiveSettings {
+  rankTiers: ('intern' | 'junior' | 'senior' | 'chief')[]
+  allowHints: boolean
+  showExplanations: boolean
+}
+
+export interface VocabDefenseSettings {
+  difficulty: 'easy' | 'medium' | 'hard'
+  initialHearts: number
+  showHints: boolean
+}
+
+export interface CrosswordSettings {
+  topics: string[]
+  gridSize: 'small' | 'medium' | 'large'
+  allowHints: boolean
+}
+
+export interface FallingWordsSettings {
+  speed: 'slow' | 'medium' | 'fast'
+  wordTopics: string[]
+  lives: number
+}
+
+export interface HangmanSettings {
+  topics: string[]
+  maxBalloons: number
+  allowHints: boolean
 }
 
 export interface MemoryMatchSettings {
@@ -99,6 +133,11 @@ export interface GameSettingsMap {
   wordle: WordleSettings
   'word-connect': WordConnectSettings
   'odd-one-out': OddOneOutSettings
+  'grammar-detective': GrammarDetectiveSettings
+  'vocab-defense': VocabDefenseSettings
+  crossword: CrosswordSettings
+  'falling-words': FallingWordsSettings
+  hangman: HangmanSettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -118,6 +157,11 @@ export type AnyGameSettings =
   | WordleSettings
   | WordConnectSettings
   | OddOneOutSettings
+  | GrammarDetectiveSettings
+  | VocabDefenseSettings
+  | CrosswordSettings
+  | FallingWordsSettings
+  | HangmanSettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -134,6 +178,11 @@ export type GameSettings =
   | { gameId: 'wordle'; settings: WordleSettings }
   | { gameId: 'word-connect'; settings: WordConnectSettings }
   | { gameId: 'odd-one-out'; settings: OddOneOutSettings }
+  | { gameId: 'grammar-detective'; settings: GrammarDetectiveSettings }
+  | { gameId: 'vocab-defense'; settings: VocabDefenseSettings }
+  | { gameId: 'crossword'; settings: CrosswordSettings }
+  | { gameId: 'falling-words'; settings: FallingWordsSettings }
+  | { gameId: 'hangman'; settings: HangmanSettings }
 
 
 

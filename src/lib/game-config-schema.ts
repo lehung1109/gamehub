@@ -16,6 +16,11 @@ import type {
   WordleSettings,
   WordConnectSettings,
   OddOneOutSettings,
+  GrammarDetectiveSettings,
+  VocabDefenseSettings,
+  CrosswordSettings,
+  FallingWordsSettings,
+  HangmanSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -35,6 +40,11 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'wordle',
   'word-connect',
   'odd-one-out',
+  'grammar-detective',
+  'vocab-defense',
+  'crossword',
+  'falling-words',
+  'hangman',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -74,13 +84,17 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
   },
   reading: {
     difficulty: 1,
+    showTranslation: true,
   },
   typing: {
     topics: [],
+    timeLimitSeconds: 60,
+    showVirtualKeyboard: true,
   },
   roleplay: {
     difficulty: 1,
     autoSpeak: true,
+    scenarioTopic: 'all',
   },
   'memory-match': {
     topics: ['animals', 'fruits', 'family', 'school', 'body-parts'],
@@ -110,6 +124,31 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
   'odd-one-out': {
     difficulty: ['easy', 'medium', 'hard'],
     questionCount: 10,
+    allowHints: true,
+  },
+  'grammar-detective': {
+    rankTiers: ['intern', 'junior', 'senior', 'chief'],
+    allowHints: true,
+    showExplanations: true,
+  },
+  'vocab-defense': {
+    difficulty: 'medium',
+    initialHearts: 3,
+    showHints: true,
+  },
+  crossword: {
+    topics: ['animals', 'fruits', 'school', 'family', 'jobs'],
+    gridSize: 'medium',
+    allowHints: true,
+  },
+  'falling-words': {
+    speed: 'medium',
+    wordTopics: ['animals', 'fruits', 'school'],
+    lives: 3,
+  },
+  hangman: {
+    topics: ['animals', 'fruits', 'school', 'sports'],
+    maxBalloons: 6,
     allowHints: true,
   },
 }
@@ -222,8 +261,9 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
     }
 
     case 'reading': {
-      const difficulty = sanitizeInt(obj.difficulty, 1, 1, 10)
-      const validated: ReadingSettings = { difficulty }
+      const difficulty = sanitizeInt(obj.difficulty, 1, 1, 3)
+      const showTranslation = obj.showTranslation !== undefined ? Boolean(obj.showTranslation) : true
+      const validated: ReadingSettings = { difficulty, showTranslation }
       return { valid: true, data: validated }
     }
 
@@ -231,14 +271,17 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const topics = Array.isArray(obj.topics)
         ? obj.topics.filter((t): t is string => typeof t === 'string')
         : []
-      const validated: TypingSettings = { topics }
+      const timeLimitSeconds = sanitizeInt(obj.timeLimitSeconds, 60, 0, 600)
+      const showVirtualKeyboard = obj.showVirtualKeyboard !== undefined ? Boolean(obj.showVirtualKeyboard) : true
+      const validated: TypingSettings = { topics, timeLimitSeconds, showVirtualKeyboard }
       return { valid: true, data: validated }
     }
 
     case 'roleplay': {
-      const difficulty = sanitizeInt(obj.difficulty, 1, 1, 10)
+      const difficulty = sanitizeInt(obj.difficulty, 1, 1, 3)
       const autoSpeak = obj.autoSpeak !== undefined ? Boolean(obj.autoSpeak) : true
-      const validated: RoleplaySettings = { difficulty, autoSpeak }
+      const scenarioTopic = typeof obj.scenarioTopic === 'string' ? obj.scenarioTopic : 'all'
+      const validated: RoleplaySettings = { difficulty, autoSpeak, scenarioTopic }
       return { valid: true, data: validated }
     }
 
@@ -311,6 +354,101 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
       const validated: OddOneOutSettings = {
         difficulty: difficulty.length > 0 ? difficulty : validDiffs,
         questionCount,
+        allowHints,
+      }
+      return { valid: true, data: validated }
+    }
+
+    case 'grammar-detective': {
+      const validTiers: ('intern' | 'junior' | 'senior' | 'chief')[] = [
+        'intern',
+        'junior',
+        'senior',
+        'chief',
+      ]
+      const rankTiers = Array.isArray(obj.rankTiers)
+        ? obj.rankTiers.filter((r): r is 'intern' | 'junior' | 'senior' | 'chief' =>
+            validTiers.includes(r as 'intern' | 'junior' | 'senior' | 'chief')
+          )
+        : validTiers
+      const allowHints = obj.allowHints !== undefined ? Boolean(obj.allowHints) : true
+      const showExplanations =
+        obj.showExplanations !== undefined ? Boolean(obj.showExplanations) : true
+      const validated: GrammarDetectiveSettings = {
+        rankTiers: rankTiers.length > 0 ? rankTiers : validTiers,
+        allowHints,
+        showExplanations,
+      }
+      return { valid: true, data: validated }
+    }
+
+    case 'vocab-defense': {
+      const validDiffs = ['easy', 'medium', 'hard'] as const
+      const difficulty: 'easy' | 'medium' | 'hard' =
+        typeof obj.difficulty === 'string' &&
+        validDiffs.includes(obj.difficulty as 'easy' | 'medium' | 'hard')
+          ? (obj.difficulty as 'easy' | 'medium' | 'hard')
+          : 'medium'
+      const initialHearts = sanitizeInt(obj.initialHearts, 3, 1, 5)
+      const showHints = obj.showHints !== undefined ? Boolean(obj.showHints) : true
+      const validated: VocabDefenseSettings = {
+        difficulty,
+        initialHearts,
+        showHints,
+      }
+      return { valid: true, data: validated }
+    }
+
+    case 'crossword': {
+      const defaultTopics = ['animals', 'fruits', 'school', 'family', 'jobs']
+      const topics = Array.isArray(obj.topics)
+        ? obj.topics.filter((t): t is string => typeof t === 'string')
+        : defaultTopics
+      const validSizes = ['small', 'medium', 'large'] as const
+      const gridSize: 'small' | 'medium' | 'large' =
+        typeof obj.gridSize === 'string' &&
+        validSizes.includes(obj.gridSize as 'small' | 'medium' | 'large')
+          ? (obj.gridSize as 'small' | 'medium' | 'large')
+          : 'medium'
+      const allowHints = obj.allowHints !== undefined ? Boolean(obj.allowHints) : true
+      const validated: CrosswordSettings = {
+        topics,
+        gridSize,
+        allowHints,
+      }
+      return { valid: true, data: validated }
+    }
+
+    case 'falling-words': {
+      const validSpeeds = ['slow', 'medium', 'fast'] as const
+      const speed: 'slow' | 'medium' | 'fast' =
+        typeof obj.speed === 'string' &&
+        validSpeeds.includes(obj.speed as 'slow' | 'medium' | 'fast')
+          ? (obj.speed as 'slow' | 'medium' | 'fast')
+          : 'medium'
+      const defaultTopics = ['animals', 'fruits', 'school']
+      const wordTopics = Array.isArray(obj.wordTopics)
+        ? obj.wordTopics.filter((t): t is string => typeof t === 'string')
+        : defaultTopics
+      const lives = sanitizeInt(obj.lives, 3, 1, 5)
+      const validated: FallingWordsSettings = {
+        speed,
+        wordTopics,
+        lives,
+      }
+      return { valid: true, data: validated }
+    }
+
+    case 'hangman': {
+      const defaultTopics = ['animals', 'fruits', 'school', 'sports']
+      const topics = Array.isArray(obj.topics)
+        ? obj.topics.filter((t): t is string => typeof t === 'string')
+        : defaultTopics
+      const maxBalloons = sanitizeInt(obj.maxBalloons, 6, 3, 8)
+      const allowHints = obj.allowHints !== undefined ? Boolean(obj.allowHints) : true
+      const validated: HangmanSettings = {
+        topics,
+        maxBalloons,
         allowHints,
       }
       return { valid: true, data: validated }
