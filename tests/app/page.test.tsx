@@ -17,6 +17,7 @@ describe("HomePage (src/app/page.tsx)", () => {
 
     const mainRegion = screen.getByRole("main", { name: /danh sách trò chơi/i });
     const gameLinks = within(mainRegion).getAllByRole("link");
+    expect(gameLinks.length).toBe(19);
     expect(gameLinks.length).toBe(games.length);
 
     // Verify all games are present in strict priority order
@@ -26,12 +27,39 @@ describe("HomePage (src/app/page.tsx)", () => {
 
     expect(actualRoutes).toEqual(expectedRoutes);
 
-    // Verify titles, badges, and emojis for each game
-    sortedGames.forEach((game) => {
-      expect(screen.getByText(game.titleVi)).toBeInTheDocument();
-      expect(screen.getByText(game.titleEn)).toBeInTheDocument();
-      expect(screen.getByText(game.emoji)).toBeInTheDocument();
+    // Verify titles, badges, and emojis for each game within each card
+    gameLinks.forEach((link, idx) => {
+      const game = sortedGames[idx];
+      expect(within(link).getByText(game.titleVi)).toBeInTheDocument();
+      expect(within(link).getByText(game.titleEn)).toBeInTheDocument();
+      expect(within(link).getByText(game.emoji)).toBeInTheDocument();
     });
+  });
+
+  it("renders category tabs and search input on the homepage", () => {
+    render(<HomePage />);
+
+    expect(
+      screen.getByRole("tablist", { name: /phân loại trò chơi/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /tất cả/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /từ vựng/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("tab", { name: /phát âm & nghe/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("tab", { name: /ngữ pháp & đặt câu/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("tab", { name: /giải đố arcade/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("tab", { name: /đọc & hội thoại/i })
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByPlaceholderText(/tìm kiếm trò chơi/i)
+    ).toBeInTheDocument();
   });
 
   it("renders a login button linking to /login for teachers/admins", () => {

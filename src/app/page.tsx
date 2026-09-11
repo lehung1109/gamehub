@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LogIn } from "lucide-react";
 import gamesData from "@/data/games.json";
 import { Game } from "@/types";
-import { GameCard } from "@/components/custom/GameCard";
+import { GameCatalogSection } from "@/components/game/GameCatalogSection";
 
 import { Container } from "@/components/ui/container";
 
@@ -11,7 +11,7 @@ export interface HomePageProps {
 }
 
 export default function HomePage({ gamesOverride }: HomePageProps = {}) {
-  const games: Game[] = (gamesOverride ?? [...gamesData]).sort(
+  const games: Game[] = [...(gamesOverride ?? (gamesData as Game[]))].sort(
     (a, b) => a.priority - b.priority
   );
 
@@ -121,28 +121,8 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           </div>
         </section>
 
-        {/* Games Grid or Empty State */}
-        <main aria-label="Danh sách trò chơi">
-          {games.length === 0 ? (
-            <div className="text-center py-16 px-4 bg-card rounded-3xl border-2 border-dashed border-border/80 max-w-md mx-auto">
-              <span className="text-5xl mb-4 block" aria-hidden="true">
-                🎈
-              </span>
-              <h2 className="text-xl font-bold text-foreground mb-2">
-                Chưa có trò chơi nào
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Các trò chơi đang được cập nhật, bé hãy quay lại sau nhé!
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-              {games.map((game) => (
-                <GameCard key={game.id} game={game} />
-              ))}
-            </div>
-          )}
-        </main>
+        {/* Game Catalog Section with Category Tabs and Search */}
+        <GameCatalogSection games={games} />
       </div>
 
       {/* Footer */}
