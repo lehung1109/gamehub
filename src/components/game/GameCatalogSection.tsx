@@ -113,7 +113,7 @@ export function GameCatalogSection({ games }: GameCatalogSectionProps) {
                 <span>{cat.label}</span>
                 <span
                   className={cn(
-                    "text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-black",
+                    "text-xs px-2 py-0.5 rounded-full font-black",
                     isSelected
                       ? "bg-white/20 text-white"
                       : "bg-muted text-muted-foreground"
