@@ -1,9 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useStudentSession } from '@/hooks/use-student-session'
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { StudentGamificationModal } from '@/components/student/StudentGamificationModal'
 
 interface StudentProfileBadgeProps {
   className?: string
@@ -11,6 +12,7 @@ interface StudentProfileBadgeProps {
 
 export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
   const { session, totalStars, levelInfo, isAnonymous, isLoaded } = useStudentSession()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Don't show if session is not loaded, there is no session, or user is anonymous
   if (!isLoaded || !session || isAnonymous) {
@@ -23,15 +25,27 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
     ? `Cấp độ ${currentLevel.level}: ${currentLevel.title} (${totalStars} sao) - Cần thêm ${starsToNext} sao để lên ${nextLevel.title} ${nextLevel.badge}`
     : `Cấp độ ${currentLevel.level}: ${currentLevel.title} (${totalStars} sao) - Đã đạt cấp độ tối đa!`
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setIsModalOpen(true)
+    }
+  }
+
   return (
-    <div
-      data-testid="student-profile-badge"
-      title={tooltipTitle}
-      className={cn(
-        'inline-flex items-center gap-2.5 px-3 py-1.5 h-auto rounded-2xl bg-amber-50/90 dark:bg-amber-950/40 hover:bg-amber-100/80 dark:hover:bg-amber-950/60 border-2 border-amber-200 dark:border-amber-700/60 text-slate-800 dark:text-slate-100 font-medium shadow-xs transition-all select-none',
-        className
-      )}
-    >
+    <>
+      <div
+        data-testid="student-profile-badge"
+        role="button"
+        tabIndex={0}
+        onClick={() => setIsModalOpen(true)}
+        onKeyDown={handleKeyDown}
+        title={tooltipTitle}
+        className={cn(
+          'inline-flex items-center gap-2.5 px-3 py-1.5 h-auto rounded-2xl bg-amber-50/90 dark:bg-amber-950/40 hover:bg-amber-100/80 dark:hover:bg-amber-950/60 border-2 border-amber-200 dark:border-amber-700/60 text-slate-800 dark:text-slate-100 font-medium shadow-xs transition-all select-none cursor-pointer hover:scale-[1.02] active:scale-95',
+          className
+        )}
+      >
       {/* Level Badge Icon */}
       <div 
         className="size-7 rounded-full bg-gradient-to-tr from-amber-200 to-yellow-400 dark:from-amber-600 dark:to-yellow-500 flex items-center justify-center text-sm shrink-0 shadow-xs border border-amber-300 dark:border-amber-500"
@@ -82,5 +96,15 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
         </span>
       </div>
     </div>
+
+      <StudentGamificationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        classCode={session.classCode}
+        studentName={session.studentName}
+        totalStars={totalStars}
+        levelInfo={levelInfo}
+      />
+    </>
   )
 }
