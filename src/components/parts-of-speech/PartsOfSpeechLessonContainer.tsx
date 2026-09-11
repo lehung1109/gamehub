@@ -11,6 +11,8 @@ import { saveStageProgress, getProgress } from "@/lib/parts-of-speech-storage";
 import { QuickRulesTab } from "@/components/tenses/QuickRulesTab";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useGameTracking } from "@/hooks/use-game-tracking";
+import { StudentProfileBadge } from "@/components/StudentProfileBadge";
 
 export interface PartsOfSpeechLessonContainerProps {
   lessonData: PartsOfSpeechModuleData;
@@ -32,8 +34,21 @@ export function PartsOfSpeechLessonContainer({ lessonData }: PartsOfSpeechLesson
   const { metadata, challenges, quickRules } = lessonData;
   const progressRecord = isClient ? getProgress(metadata.id) : null;
 
-  const handleStageComplete = (stage: PartsOfSpeechStageType, score: number, total: number) => {
+  const tracking = useGameTracking({
+    gameType: "parts-of-speech",
+    topic: metadata.id,
+  });
+
+  const handleStageComplete = async (stage: PartsOfSpeechStageType, score: number, total: number) => {
     saveStageProgress(metadata.id, stage, score, total);
+    if (tracking.isTracking) {
+      await tracking.submitSession({
+        score,
+        totalQuestions: total,
+        topic: `${metadata.id}-${stage}`,
+        gameType: "parts-of-speech",
+      });
+    }
     setCurrentStage(null);
   };
 
@@ -76,9 +91,12 @@ export function PartsOfSpeechLessonContainer({ lessonData }: PartsOfSpeechLesson
             Về danh sách
           </Button>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-            <Sparkles className="size-3.5" />
-            {metadata.vietnameseName} ({metadata.name})
+          <div className="flex items-center gap-3">
+            <StudentProfileBadge />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+              <Sparkles className="size-3.5" />
+              {metadata.vietnameseName} ({metadata.name})
+            </div>
           </div>
         </div>
         
