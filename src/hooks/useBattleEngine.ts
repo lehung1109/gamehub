@@ -205,6 +205,7 @@ export function useBattleEngine() {
               setCurrentMonsterHp(STAGE_MONSTERS[nextIdx].maxHp);
               battleStateRef.current = "PLAYER_TURN";
               setBattleState("PLAYER_TURN");
+              turnTimerRef.current = 20;
               setTurnTimer(20);
             }, 1500);
           } else {
@@ -214,6 +215,7 @@ export function useBattleEngine() {
         } else {
           battleStateRef.current = "PLAYER_TURN";
           setBattleState("PLAYER_TURN");
+          turnTimerRef.current = 20;
           setTurnTimer(20);
         }
       }, 2000);

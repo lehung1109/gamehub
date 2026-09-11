@@ -12,7 +12,9 @@ export function useReadingGame(moduleData: ReadingModule) {
   const handleAnswer = (questionId: string, selectedOptionIndex: number) => {
     if (gameState.status === 'completed') return;
 
-    const currentQuestion = moduleData.questions[gameState.currentQuestionIndex];
+    const currentQuestion = moduleData?.questions?.[gameState.currentQuestionIndex];
+    if (!currentQuestion) return;
+
     const isCorrect = currentQuestion.correctOptionIndex === selectedOptionIndex;
 
     setGameState((prev) => {
@@ -31,8 +33,8 @@ export function useReadingGame(moduleData: ReadingModule) {
 
   const nextQuestion = () => {
     setGameState((prev) => {
-      const isLastQuestion = prev.currentQuestionIndex === moduleData.questions.length - 1;
-      if (isLastQuestion) {
+      const totalQuestions = moduleData?.questions?.length ?? 0;
+      if (totalQuestions === 0 || prev.currentQuestionIndex >= totalQuestions - 1) {
         return { ...prev, status: 'completed' };
       }
       return { ...prev, currentQuestionIndex: prev.currentQuestionIndex + 1 };

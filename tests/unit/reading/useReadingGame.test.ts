@@ -88,4 +88,26 @@ describe("useReadingGame Hook", () => {
     expect(result.current.gameState.currentQuestionIndex).toBe(0);
     expect(result.current.gameState.answers).toHaveLength(0);
   });
+
+  it("handles empty questions gracefully without crashing", () => {
+    const emptyModule = {
+      ...mockModule,
+      questions: [],
+    };
+    const { result } = renderHook(() => useReadingGame(emptyModule));
+
+    expect(() => {
+      act(() => {
+        result.current.handleAnswer("nonexistent", 0);
+      });
+    }).not.toThrow();
+
+    expect(() => {
+      act(() => {
+        result.current.nextQuestion();
+      });
+    }).not.toThrow();
+
+    expect(result.current.gameState.status).toBe("completed");
+  });
 });

@@ -58,33 +58,62 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           </div>
         </header>
 
-        {/* Workplace Tenses Feature Banner */}
-        <section aria-label="Luyện Thì Tiếng Anh Cho Người Đi Làm" className="mb-8">
-          <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white p-6 sm:p-8 shadow-md border border-indigo-700/50">
-            {/* Background glowing shapes */}
-            <div className="absolute -right-12 -top-12 size-48 rounded-full bg-indigo-500/20 blur-2xl pointer-events-none" />
-            <div className="absolute -left-12 -bottom-12 size-48 rounded-full bg-sky-500/20 blur-2xl pointer-events-none" />
+        {/* Advanced / Workplace Learning Modules */}
+        <section aria-label="Chương trình nâng cao cho người đi làm & sinh viên" className="mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Workplace Tenses */}
+            <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white p-6 sm:p-7 shadow-md border border-indigo-700/50 flex flex-col justify-between">
+              <div className="absolute -right-12 -top-12 size-40 rounded-full bg-indigo-500/20 blur-2xl pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 size-40 rounded-full bg-sky-500/20 blur-2xl pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div className="space-y-2 max-w-xl">
+              <div className="relative z-10 space-y-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 text-xs font-bold uppercase tracking-wider">
-                  <span>💼 Dành cho người đi làm &amp; sinh viên</span>
+                  <span>💼 Ngữ pháp công sở</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white">
+                <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
                   Luyện Thì Tiếng Anh Cho Người Đi Làm
                 </h2>
-                <p className="text-xs sm:text-sm text-indigo-100/90 leading-relaxed">
-                  Khám phá bản đồ 12 thì thực chiến: chia động từ email, săn lỗi sai văn phòng và ghép câu lịch trình với Thì Hiện Tại Đơn.
+                <p className="text-xs sm:text-sm text-indigo-100/90 leading-relaxed mb-4">
+                  Khám phá bản đồ 12 thì thực chiến: chia động từ email, săn lỗi sai văn phòng và ghép câu lịch trình chuẩn xác.
                 </p>
               </div>
 
-              <div className="flex items-center">
+              <div className="relative z-10 pt-2">
                 <Link
                   href="/tenses"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white text-indigo-900 hover:bg-indigo-50 font-black text-sm shadow-sm transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                   aria-label="Khám phá Hub 12 Thì Tiếng Anh Cho Người Đi Làm"
                 >
                   <span>Khám phá Hub 12 Thì</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Workplace Parts of Speech */}
+            <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-violet-900 via-purple-900 to-slate-900 text-white p-6 sm:p-7 shadow-md border border-purple-700/50 flex flex-col justify-between">
+              <div className="absolute -right-12 -top-12 size-40 rounded-full bg-purple-500/20 blur-2xl pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 size-40 rounded-full bg-pink-500/20 blur-2xl pointer-events-none" />
+
+              <div className="relative z-10 space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/30 text-purple-200 border border-purple-400/30 text-xs font-bold uppercase tracking-wider">
+                  <span>📝 Từ loại thực chiến</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+                  Luyện Từ Loại Tiếng Anh (Parts of Speech)
+                </h2>
+                <p className="text-xs sm:text-sm text-purple-100/90 leading-relaxed mb-4">
+                  Nắm vững vị trí Noun, Verb, Adjective, Adverb trong báo cáo, email và hợp đồng thương mại không bị nhầm lẫn.
+                </p>
+              </div>
+
+              <div className="relative z-10 pt-2">
+                <Link
+                  href="/parts-of-speech"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white text-purple-950 hover:bg-purple-50 font-black text-sm shadow-sm transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  aria-label="Khám phá Hub Từ Loại Tiếng Anh"
+                >
+                  <span>Khám phá Hub Từ Loại</span>
                   <span aria-hidden="true">→</span>
                 </Link>
               </div>

@@ -37,7 +37,7 @@ export const WordleHeader: React.FC<WordleHeaderProps> = ({
       {/* Top bar: Back, Title, Action icons */}
       <div className="flex items-center justify-between gap-2">
         <Link
-          href="/games"
+          href="/"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors min-h-[40px]"
           aria-label="Quay lại danh sách trò chơi"
         >

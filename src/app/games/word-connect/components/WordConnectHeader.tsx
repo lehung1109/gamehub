@@ -61,7 +61,7 @@ export const WordConnectHeader: React.FC<WordConnectHeaderProps> = ({
       {/* Top row: Back link, Game Title, and Guide button */}
       <div className="flex items-center justify-between gap-2">
         <Link
-          href="/games"
+          href="/"
           className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors min-h-[44px] min-w-[44px] focus:outline-none focus:ring-2 focus:ring-amber-400"
           aria-label="Quay lại danh sách trò chơi"
         >

@@ -186,7 +186,7 @@ export const OddOneOutResultDialog: React.FC<OddOneOutResultDialogProps> = ({
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-2 mt-2">
           <Link
-            href="/games"
+            href="/"
             className="flex-1 inline-flex items-center justify-center rounded-2xl min-h-[44px] font-bold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />

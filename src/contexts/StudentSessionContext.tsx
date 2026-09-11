@@ -99,6 +99,7 @@ export function StudentSessionProvider({ children }: { children: React.ReactNode
               className: parsed.className,
               classId: parsed.classId,
             })
+            setIsLoadingStars(true)
             setIsAnonymous(false)
             setIsOpen(false)
           } else {

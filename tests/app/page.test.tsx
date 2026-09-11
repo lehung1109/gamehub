@@ -63,4 +63,20 @@ describe("HomePage (src/app/page.tsx)", () => {
       screen.getByText(/các trò chơi đang được cập nhật/i)
     ).toBeInTheDocument();
   });
+
+  it("renders banners linking to Tenses and Parts of Speech hubs", () => {
+    render(<HomePage />);
+
+    const tensesLink = screen.getByRole("link", {
+      name: /khám phá hub 12 thì/i,
+    });
+    expect(tensesLink).toBeInTheDocument();
+    expect(tensesLink).toHaveAttribute("href", "/tenses");
+
+    const posLink = screen.getByRole("link", {
+      name: /khám phá hub từ loại/i,
+    });
+    expect(posLink).toBeInTheDocument();
+    expect(posLink).toHaveAttribute("href", "/parts-of-speech");
+  });
 });
