@@ -3,6 +3,8 @@
 import { useState, useCallback, useRef, useMemo } from 'react'
 import { useStudentSession, StudentSession } from '@/hooks/use-student-session'
 import type { SessionDetailPayload, TrackGamePayload } from '@/app/api/track/route'
+import { getStoredStreak, calculateStreakUpdate, saveStoredStreak } from '@/lib/streak'
+import { getOrGenerateQuests, evaluateQuestProgress, saveStoredQuests } from '@/lib/quests'
 
 export interface QuestionDetailInput {
   prompt: string
@@ -78,7 +80,11 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
 
   const submitSession = useCallback(
     async (override?: SubmitSessionOptions): Promise<boolean> => {
-      if (!isTracking || !session || isSubmittingRef.current) {
+      if (isSubmittingRef.current) {
+        return false
+      }
+
+      if (!isTracking && !isAnonymous) {
         return false
       }
 
@@ -105,6 +111,36 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
             : finalDetails.length
 
         const calculatedTotalQuestions = Math.max(0, Math.round(rawTotal))
+
+        const scoreVal = calculatedScore ?? 0
+        const totalVal = calculatedTotalQuestions > 0 ? calculatedTotalQuestions : 1
+        const scorePercentage = Math.round((scoreVal / totalVal) * 100)
+
+        const todayStr = new Date().toISOString().split('T')[0]
+
+        try {
+          const currentStreakState = getStoredStreak(session?.classCode, session?.studentName)
+          const streakResult = calculateStreakUpdate(currentStreakState, todayStr)
+          saveStoredStreak(session?.classCode, session?.studentName, streakResult.nextState)
+        } catch (streakErr) {
+          console.warn('[useGameTracking] Error updating streak:', streakErr)
+        }
+
+        try {
+          const currentQuests = getOrGenerateQuests(todayStr, session?.classCode, session?.studentName)
+          const questResult = evaluateQuestProgress(currentQuests, {
+            gameType: finalGameType,
+            score: scorePercentage,
+            starsEarned: scoreVal,
+          })
+          saveStoredQuests(session?.classCode, session?.studentName, questResult.updatedQuests)
+        } catch (questErr) {
+          console.warn('[useGameTracking] Error updating quests:', questErr)
+        }
+
+        if (!isTracking || !session) {
+          return true
+        }
 
         const payload: TrackGamePayload = {
           classCode: session.classCode,
@@ -148,7 +184,7 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
         isSubmittingRef.current = false
       }
     },
-    [isTracking, session, gameType, topic, configId, optionsTotalQuestions, refreshProgress]
+    [isTracking, isAnonymous, session, gameType, topic, configId, optionsTotalQuestions, refreshProgress]
   )
 
   return useMemo(
