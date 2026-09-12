@@ -112,7 +112,7 @@ export function applyReviewToCard(
 
   return {
     updatedCard,
-    earnedStars,
+    earnedStars: newlyMastered ? earnedStars : 0,
     newlyMastered,
   };
 }

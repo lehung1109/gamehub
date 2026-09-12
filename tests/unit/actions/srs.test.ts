@@ -147,9 +147,10 @@ describe('SRS Server Actions', () => {
 
       // Session details lookup for historical backfill
       const detailsLimitMock = vi.fn().mockResolvedValue({ data: [], error: null })
+      const detailsOrderMock = vi.fn().mockReturnValue({ limit: detailsLimitMock })
       const detailsSelectMock = vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({
-          eq: vi.fn().mockReturnValue({ limit: detailsLimitMock }),
+          eq: vi.fn().mockReturnValue({ limit: detailsLimitMock, order: detailsOrderMock }),
         }),
       })
 
@@ -307,7 +308,8 @@ describe('SRS Server Actions', () => {
       ]
 
       const detailsLimitMock = vi.fn().mockResolvedValue({ data: mockDetails, error: null })
-      const detailsEqCorrectMock = vi.fn().mockReturnValue({ limit: detailsLimitMock })
+      const detailsOrderMock = vi.fn().mockReturnValue({ limit: detailsLimitMock })
+      const detailsEqCorrectMock = vi.fn().mockReturnValue({ limit: detailsLimitMock, order: detailsOrderMock })
       const detailsEqStudentMock = vi.fn().mockReturnValue({ eq: detailsEqCorrectMock })
       const detailsSelectMock = vi.fn().mockReturnValue({ eq: detailsEqStudentMock })
 
@@ -765,9 +767,10 @@ describe('SRS Server Actions', () => {
 
       // details error
       const detailsLimitMock = vi.fn().mockResolvedValue({ data: null, error: { message: 'DB read error' } })
+      const detailsOrderMock = vi.fn().mockReturnValue({ limit: detailsLimitMock })
       const detailsSelectMock = vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({
-          eq: vi.fn().mockReturnValue({ limit: detailsLimitMock }),
+          eq: vi.fn().mockReturnValue({ limit: detailsLimitMock, order: detailsOrderMock }),
         }),
       })
 

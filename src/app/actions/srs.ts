@@ -288,6 +288,7 @@ export async function getStudentSrsDeckAction(
       .select('prompt, correct_answer, selected_answer, game_sessions!inner(student_id, game_type, topic)')
       .eq('game_sessions.student_id', studentId)
       .eq('is_correct', false)
+      .order('id', { ascending: false })
       .limit(100)
 
     if (detailsError) {
@@ -412,10 +413,15 @@ export async function submitSrsReviewBatchAction(
     const cardIndexMap = new Map<string, number>()
     deck.forEach((card, index) => cardIndexMap.set(card.id, index))
 
+    // Deduplicate reviews by cardId, keeping the last submitted rating
+    const deduplicatedReviewsMap = new Map<string, SrsReviewInput>()
     for (const rev of reviews) {
-      if (!rev || !rev.cardId || !['hard', 'good', 'easy'].includes(rev.rating)) {
-        continue
+      if (rev && rev.cardId && ['hard', 'good', 'easy'].includes(rev.rating)) {
+        deduplicatedReviewsMap.set(rev.cardId, rev)
       }
+    }
+
+    for (const rev of deduplicatedReviewsMap.values()) {
       const idx = cardIndexMap.get(rev.cardId)
       if (idx !== undefined) {
         const result = applyReviewToCard(deck[idx], rev.rating)
