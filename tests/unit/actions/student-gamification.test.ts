@@ -37,6 +37,11 @@ describe('student-gamification server actions', () => {
       const res2 = await getStudentGamificationProfile({ classCode: 'CLASS1', studentName: '   ' })
       expect(res2.success).toBe(false)
       expect(res2.error).toMatch(/tên học sinh/i)
+
+      const longName = 'A'.repeat(101)
+      const res3 = await getStudentGamificationProfile({ classCode: 'CLASS1', studentName: longName })
+      expect(res3.success).toBe(false)
+      expect(res3.error).toMatch(/100 ký tự/i)
     })
 
     it('returns error when classCode or studentName is missing for syncStudentGamificationState', async () => {
@@ -489,6 +494,7 @@ describe('student-gamification server actions', () => {
       expect(res.inventory?.ownedItemIds).toContain('frame_gold')
       expect(res.inventory?.spentStars).toBe(30)
       expect(res.remainingStars).toBe(20) // 50 - 30
+      expect(res.streakState).toBeDefined()
       expect(gamUpdateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           inventory: expect.objectContaining({
@@ -553,6 +559,7 @@ describe('student-gamification server actions', () => {
 
       expect(res.success).toBe(true)
       expect(res.inventory?.spentStars).toBe(25)
+      expect(res.streakState?.freezeCount).toBe(2)
       expect(gamUpdateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           streak_state: expect.objectContaining({
@@ -564,6 +571,18 @@ describe('student-gamification server actions', () => {
   })
 
   describe('equipShopItemAction', () => {
+    it('fails if item category does not match requested category', async () => {
+      const res = await equipShopItemAction({
+        classCode: 'CLASS1',
+        studentName: 'Alice',
+        itemId: 'frame_gold',
+        category: 'title',
+      })
+
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/không khớp danh mục/i)
+    })
+
     it('fails if student does not own the item', async () => {
       const mockClass = { id: 'c1', is_active: true }
       const classSelectMock = vi.fn().mockReturnValue({
@@ -850,6 +869,7 @@ describe('student-gamification server actions', () => {
       expect(res.success).toBe(true)
       expect(res.bonusStars).toBe(20) // 5 + 15
       expect(res.quests?.[0].isClaimed).toBe(true)
+      expect(res.streakState).toBeDefined()
       expect(gamUpdateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           quests: [expect.objectContaining({ id: 'quest_1', isClaimed: true })],
@@ -923,6 +943,7 @@ describe('student-gamification server actions', () => {
 
       expect(res.success).toBe(true)
       expect(res.bonusStars).toBe(45) // 10 + 35
+      expect(res.streakState?.freezeCount).toBe(2)
       expect(gamUpdateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           streak_state: expect.objectContaining({ freezeCount: 2 }),

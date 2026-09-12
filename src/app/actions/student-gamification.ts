@@ -61,6 +61,7 @@ export interface PurchaseShopItemInput {
 export interface PurchaseShopItemOutput {
   success: boolean
   inventory?: StudentInventory
+  streakState?: StreakState
   remainingStars?: number
   error?: string
 }
@@ -89,6 +90,7 @@ export interface ClaimQuestRewardOutput {
   quests?: Quest[]
   bonusStars?: number
   inventory?: StudentInventory
+  streakState?: StreakState
   error?: string
 }
 
@@ -130,6 +132,9 @@ async function verifyAndGetStudent(
 
   const cleanCode = classCode.trim().toUpperCase()
   const cleanName = studentName.trim()
+  if (cleanName.length > 100) {
+    return { error: 'Tên học sinh không được vượt quá 100 ký tự' }
+  }
 
   const { data: classroom, error: classError } = await supabase
     .from('classrooms')
@@ -528,6 +533,7 @@ export async function purchaseShopItemAction(
     return {
       success: true,
       inventory: purchaseResult.newInventory,
+      streakState: updatedStreakState,
       remainingStars: purchaseResult.remainingStars,
     }
   } catch (err) {
@@ -577,6 +583,9 @@ export async function equipShopItemAction(
     const catalogItem = getShopItemById(cleanItemId)
     if (!catalogItem) {
       return { success: false, error: 'Vật phẩm không tồn tại' }
+    }
+    if (catalogItem.category !== category) {
+      return { success: false, error: 'Loại vật phẩm không khớp danh mục' }
     }
 
     const supabase = createAdminClient()
@@ -689,8 +698,9 @@ export async function claimQuestRewardAction(
       inventory: updatedInventory as unknown as Json,
     }
 
+    let updatedStreakState = streakState
     if (claimResult.claimedReward.freeze > 0) {
-      const updatedStreakState: StreakState = {
+      updatedStreakState = {
         ...streakState,
         freezeCount: (streakState.freezeCount || 0) + claimResult.claimedReward.freeze,
       }
@@ -712,6 +722,7 @@ export async function claimQuestRewardAction(
       quests: claimResult.updatedQuests,
       bonusStars: updatedInventory.bonusStars,
       inventory: updatedInventory,
+      streakState: updatedStreakState,
     }
   } catch (err) {
     console.error('[claimQuestRewardAction] Exception:', err)
