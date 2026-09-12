@@ -8,7 +8,7 @@ import type { GameConfig } from '@/types/config'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen } from 'lucide-react'
+import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen, Swords } from 'lucide-react'
 import { isValidGameId } from '@/lib/game-config-schema'
 
 export const dynamic = 'force-dynamic'
@@ -76,7 +76,7 @@ export default async function AdminDashboardPage() {
       </div>
       
       {/* Quick Access */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link href="/admin/dashboard/classes" className="group">
           <Card className="border-indigo-100 bg-indigo-50/50 hover:bg-indigo-50 hover:border-indigo-200 transition-colors shadow-none">
             <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
@@ -128,6 +128,25 @@ export default async function AdminDashboardPage() {
                 </div>
               </div>
               <div className="text-purple-400 group-hover:text-purple-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
+
+        <Link href="/admin/arena/new" className="group">
+          <Card className="border-rose-100 bg-rose-50/50 hover:bg-rose-50 hover:border-rose-200 transition-colors shadow-none">
+            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-colors">
+                  <Swords className="size-5" />
+                </div>
+                <div>
+                  <CardTitle className="text-base text-rose-900">Đấu trường Trực tiếp</CardTitle>
+                  <CardDescription className="text-rose-700/70 text-xs mt-0.5">Tổ chức thi đấu PIN thời gian thực</CardDescription>
+                </div>
+              </div>
+              <div className="text-rose-400 group-hover:text-rose-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </div>
             </CardHeader>

@@ -313,6 +313,109 @@ export type Database = {
         }
         Relationships: []
       }
+      live_arenas: {
+        Row: {
+          config_id: string | null
+          created_at: string
+          current_question_index: number
+          game_id: string
+          id: string
+          is_active: boolean
+          pin_code: string
+          questions: Json
+          round_started_at: string | null
+          status: string
+          teacher_id: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          config_id?: string | null
+          created_at?: string
+          current_question_index?: number
+          game_id?: string
+          id?: string
+          is_active?: boolean
+          pin_code: string
+          questions?: Json
+          round_started_at?: string | null
+          status?: string
+          teacher_id?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          config_id?: string | null
+          created_at?: string
+          current_question_index?: number
+          game_id?: string
+          id?: string
+          is_active?: boolean
+          pin_code?: string
+          questions?: Json
+          round_started_at?: string | null
+          status?: string
+          teacher_id?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_arenas_config_id_fkey"
+            columns: ["config_id"]
+            isOneToOne: false
+            referencedRelation: "game_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      live_arena_participants: {
+        Row: {
+          answers: Json
+          arena_id: string
+          avatar: string
+          class_code: string | null
+          created_at: string
+          id: string
+          score: number
+          streak: number
+          student_name: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          arena_id: string
+          avatar?: string
+          class_code?: string | null
+          created_at?: string
+          id?: string
+          score?: number
+          streak?: number
+          student_name: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          arena_id?: string
+          avatar?: string
+          class_code?: string | null
+          created_at?: string
+          id?: string
+          score?: number
+          streak?: number
+          student_name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_arena_participants_arena_id_fkey"
+            columns: ["arena_id"]
+            isOneToOne: false
+            referencedRelation: "live_arenas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
