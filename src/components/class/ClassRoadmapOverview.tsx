@@ -38,6 +38,7 @@ export function ClassRoadmapOverview({ overview, classId }: ClassRoadmapOverview
         if (!isSubscribed) return;
         if (res.success && res.data) {
           setFetchedData(res.data);
+          setErrorMessage(null);
         } else {
           setErrorMessage(res.error || 'Không thể tải dữ liệu lộ trình lớp học');
         }
