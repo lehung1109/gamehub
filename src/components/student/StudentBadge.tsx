@@ -5,6 +5,7 @@ import { useStudentSession } from '@/hooks/use-student-session'
 import { Button } from '@/components/ui/button'
 import { GraduationCap, User, Edit3 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { getStoredInventory, getShopItemById } from '@/lib/shop'
 
 interface StudentBadgeProps {
   className?: string
@@ -18,6 +19,14 @@ export function StudentBadge({ className }: StudentBadgeProps) {
   }
 
   if (session) {
+    const currentInventory = getStoredInventory(session.classCode, session.studentName)
+    const equippedFrame = currentInventory.equippedFrameId
+      ? getShopItemById(currentInventory.equippedFrameId)
+      : undefined
+    const equippedTitle = currentInventory.equippedTitleId
+      ? getShopItemById(currentInventory.equippedTitleId)
+      : undefined
+
     return (
       <Button
         type="button"
@@ -29,16 +38,36 @@ export function StudentBadge({ className }: StudentBadgeProps) {
         )}
         title="Nhấn để đổi tên hoặc thông tin lớp học"
       >
-        <div className="size-6 rounded-full bg-gradient-to-tr from-amber-400 to-orange-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+        <div
+          data-testid="student-avatar-frame"
+          className={cn(
+            'size-6 rounded-full bg-gradient-to-tr from-amber-400 to-orange-500 text-white flex items-center justify-center shrink-0 shadow-xs',
+            equippedFrame?.cssClass
+          )}
+        >
           <GraduationCap className="size-3.5 stroke-[2.5]" />
         </div>
         <div className="flex flex-col text-left leading-tight min-w-0">
-          <span className="text-xs font-black text-slate-800 flex items-center gap-1">
-            <span className="truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
-              {session.studentName}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-xs font-black text-slate-800 flex items-center gap-1">
+              <span className="truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
+                {session.studentName}
+              </span>
+              <Edit3 className="size-3 shrink-0 text-slate-400 group-hover:text-amber-600 transition-colors" />
             </span>
-            <Edit3 className="size-3 shrink-0 text-slate-400 group-hover:text-amber-600 transition-colors" />
-          </span>
+            {equippedTitle && (
+              <span
+                data-testid="equipped-title-badge"
+                className={cn(
+                  'inline-flex items-center gap-1 text-xs font-black px-1.5 py-0.5 rounded-full border shrink-0',
+                  equippedTitle.titleBadgeClass || 'bg-amber-100 text-amber-800 border-amber-300'
+                )}
+              >
+                <span>{equippedTitle.icon}</span>
+                <span className="truncate max-w-[100px]">{equippedTitle.name}</span>
+              </span>
+            )}
+          </div>
           {session.className && (
             <span className="text-xs font-semibold text-amber-700/80 truncate max-w-[120px] sm:max-w-[180px] xl:max-w-none xl:truncate-none">
               {session.className}
