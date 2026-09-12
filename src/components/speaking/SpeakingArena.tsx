@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Send, RotateCcw, Sparkles } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { ArrowLeft, Send } from 'lucide-react'
 import type {
   SpeakingScenario,
   SpeakingPersona,
@@ -13,27 +14,32 @@ import type {
 import { SpeakingBubble } from '@/components/speaking/SpeakingBubble'
 import { ScaffoldingHints } from '@/components/speaking/ScaffoldingHints'
 import { MicPulseButton } from '@/components/speaking/MicPulseButton'
+import { SpeakingPodiumModal } from '@/components/speaking/SpeakingPodiumModal'
 import { useSpeech } from '@/hooks/useSpeech'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
 import { sendSpeakingTurnAction, completeSpeakingSessionAction } from '@/app/actions/speaking'
 import { useStudentSession } from '@/hooks/use-student-session'
+import { getStoredSrsDeck, saveStoredSrsDeck } from '@/lib/srs-storage'
 
 export interface SpeakingArenaProps {
   scenario: SpeakingScenario
   onComplete?: (result: SpeakingSessionResult) => void
   initialPersona?: SpeakingPersona
+  onAddToMistakes?: (words: string[]) => void
 }
 
 export function SpeakingArena({
   scenario,
   onComplete,
   initialPersona,
+  onAddToMistakes,
 }: SpeakingArenaProps) {
+  const router = useRouter()
   const persona = initialPersona || scenario.persona
   const { session } = useStudentSession()
-  const studentId =
-    (session as unknown as { studentId?: string })?.studentId ||
-    (session?.classCode ? `${session.classCode}_${session.studentName}` : undefined)
+  const studentId = session?.classCode
+    ? `${session.classCode}_${session.studentName}`
+    : undefined
 
   // Speech synthesis
   const { speak, cancel: cancelSpeech } = useSpeech({ rate: 0.85, lang: 'en-US' })
@@ -161,7 +167,6 @@ export function SpeakingArena({
 
       // Handle session completion
       if (response.isCompleted) {
-        setIsCompleted(true)
         const studentTurnsList = nextTurns.filter((t) => t.sender === 'student')
         const totalAccuracy = studentTurnsList.reduce(
           (sum, t) => sum + (t.accuracyScore ?? 80),
@@ -190,10 +195,25 @@ export function SpeakingArena({
           mispronouncedWords,
         })
 
-        if (completionRes?.success && completionRes.data) {
-          setCompletionData(completionRes.data)
-          onComplete?.(completionRes.data)
-        }
+        const finalResult: SpeakingSessionResult =
+          completionRes?.success && completionRes.data
+            ? completionRes.data
+            : {
+                scenarioId: scenario.id,
+                personaId: persona.id,
+                totalTurns: studentTurnsList.length,
+                overallScore: avgAccuracy,
+                pronunciationScore: avgAccuracy,
+                fluencyScore: Math.min(100, avgAccuracy + 5),
+                stars: avgAccuracy >= 85 ? 3 : avgAccuracy >= 70 ? 2 : 1,
+                xpEarned: 50,
+                mispronouncedWords,
+                turns: nextTurns,
+              }
+
+        setCompletionData(finalResult)
+        setIsCompleted(true)
+        onComplete?.(finalResult)
       }
     } catch (err) {
       console.error('Error submitting speaking turn:', err)
@@ -251,6 +271,55 @@ export function SpeakingArena({
     setIsCompleted(false)
     setCompletionData(null)
     turnStartTimeRef.current = Date.now()
+  }
+
+  // Back to hub
+  const handleBackToHub = () => {
+    router.push('/speaking')
+  }
+
+  // Add mispronounced words to Mistake Notebook (SRS storage)
+  const handleAddToMistakes = (words: string[]) => {
+    if (!words || words.length === 0) return
+    const currentDeck = getStoredSrsDeck(session?.classCode, session?.studentName)
+    const nowIso = new Date().toISOString()
+    const updatedDeck = [...currentDeck]
+
+    words.forEach((word) => {
+      const cleanWord = word.trim()
+      if (!cleanWord) return
+      const cardId = `speaking_${cleanWord.toLowerCase().replace(/\s+/g, '_')}`
+      const existingIdx = updatedDeck.findIndex((c) => c.id === cardId)
+
+      if (existingIdx >= 0) {
+        const existing = updatedDeck[existingIdx]
+        updatedDeck[existingIdx] = {
+          ...existing,
+          box: 1,
+          mistakeCount: (existing.mistakeCount || 0) + 1,
+          nextReviewAt: nowIso,
+          isMastered: false,
+        }
+      } else {
+        updatedDeck.push({
+          id: cardId,
+          prompt: 'Luyện phát âm từ vựng',
+          correctAnswer: cleanWord,
+          selectedAnswer: null,
+          gameType: 'speaking',
+          topic: scenario.titleVi || scenario.titleEn,
+          box: 1,
+          lastReviewedAt: null,
+          nextReviewAt: nowIso,
+          mistakeCount: 1,
+          successCount: 0,
+          isMastered: false,
+        })
+      }
+    })
+
+    saveStoredSrsDeck(session?.classCode, session?.studentName, updatedDeck)
+    onAddToMistakes?.(words)
   }
 
   const activeInputValue = isListening && transcript ? transcript : inputText
@@ -327,53 +396,16 @@ export function SpeakingArena({
         <div ref={chatBottomRef} />
       </div>
 
-      {/* Completion Modal / Banner */}
-      {isCompleted && (
-        <section
-          aria-label="Kết quả luyện nói"
-          className="p-6 sm:p-8 rounded-3xl bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-xl border-2 border-amber-300 animate-in fade-in zoom-in-95 duration-300"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-3 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-base font-black">
-                <Sparkles className="size-4" />
-                <span>Hoàn thành xuất sắc!</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-black">
-                Bạn đã hoàn thành phiên luyện nói cùng {persona.name}!
-              </h3>
-              <div className="flex flex-wrap items-center gap-4 text-base font-bold">
-                <span className="px-3 py-1 rounded-xl bg-white/20 backdrop-blur-xs">
-                  ⭐ {completionData?.stars ?? 3} Sao đạt được
-                </span>
-                <span className="px-3 py-1 rounded-xl bg-white/20 backdrop-blur-xs">
-                  ⚡ +{completionData?.xpEarned ?? 50} XP
-                </span>
-                <span className="px-3 py-1 rounded-xl bg-white/20 backdrop-blur-xs">
-                  🎯 {completionData?.overallScore ?? 90}% Độ chính xác
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={handleRestart}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white text-amber-700 text-base font-black hover:bg-amber-50 active:scale-95 transition-all shadow-md"
-              >
-                <RotateCcw className="size-5" />
-                <span>Luyện lại</span>
-              </button>
-
-              <Link
-                href="/speaking"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-amber-950/30 hover:bg-amber-950/50 text-white border border-white/30 text-base font-black active:scale-95 transition-all"
-              >
-                <span>Chủ đề khác</span>
-              </Link>
-            </div>
-          </div>
-        </section>
+      {/* Session Completion Podium Modal */}
+      {completionData && (
+        <SpeakingPodiumModal
+          isOpen={isCompleted}
+          result={completionData}
+          scenario={scenario}
+          onRestart={handleRestart}
+          onBackToHub={handleBackToHub}
+          onAddToMistakes={handleAddToMistakes}
+        />
       )}
 
       {/* Scaffolding Hints Bar */}
