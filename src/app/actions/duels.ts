@@ -63,7 +63,7 @@ function calculateStreakFromAnswers(answers: DuelAnswer[]): number {
   return streak
 }
 
-export function generateDuelQuestions(topic = 'mixed', count = 5): DuelQuestion[] {
+function generateDuelQuestions(topic = 'mixed', count = 5): DuelQuestion[] {
   const normalizedTopic = topic.trim().toLowerCase()
   let topicPool: WordItem[] = []
   if (normalizedTopic !== 'mixed' && normalizedTopic !== '') {
