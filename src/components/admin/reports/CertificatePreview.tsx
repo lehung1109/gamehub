@@ -8,7 +8,6 @@ import {
   Award,
   Check,
   Copy,
-  ExternalLink,
   ShieldCheck,
   Sparkles,
 } from 'lucide-react'
@@ -18,13 +17,11 @@ import { Button } from '@/components/ui/button'
 interface CertificatePreviewProps {
   certificate: StudentCertificate
   classroomName?: string
-  isPublicView?: boolean
 }
 
 export function CertificatePreview({
   certificate,
   classroomName = 'GameHub Academy',
-  isPublicView = false,
 }: CertificatePreviewProps) {
   const [copied, setCopied] = useState(false)
 

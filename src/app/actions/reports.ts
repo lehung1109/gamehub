@@ -7,15 +7,19 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import type {
   StudentCertificate,
+  CertificateType,
   IssueCertificateInput,
 } from '@/types/certificates'
 import type { StudentDetailedReport } from '@/types/reports'
+import type { Database } from '@/types/database'
 import {
   generateCertificateVerificationCode,
   computeStudentSkillBreakdown,
   computeSrsMetrics,
   generateAutomatedTeacherRemark,
 } from '@/lib/reports/generator'
+
+type CertificateRow = Database['public']['Tables']['student_certificates']['Row']
 
 /**
  * Issue a printable certificate for a student in a classroom
@@ -78,25 +82,27 @@ export async function issueStudentCertificateAction(
     revalidatePath(`/admin/dashboard/classes/${classroomId}`)
     revalidatePath(`/admin/classes/${classroomId}/reports/${studentId}`)
 
+    const certRow = data as CertificateRow
     const cert: StudentCertificate = {
-      id: data.id,
-      studentId: data.student_id,
-      classroomId: data.classroom_id,
-      certificateType: data.certificate_type as any,
-      title: data.title,
-      recipientName: data.recipient_name,
-      achievementText: data.achievement_text,
-      teacherName: data.teacher_name,
-      teacherNote: data.teacher_note,
-      verificationCode: data.verification_code,
-      issuedAt: data.issued_at,
-      createdAt: data.created_at,
+      id: certRow.id,
+      studentId: certRow.student_id,
+      classroomId: certRow.classroom_id,
+      certificateType: certRow.certificate_type as CertificateType,
+      title: certRow.title,
+      recipientName: certRow.recipient_name,
+      achievementText: certRow.achievement_text,
+      teacherName: certRow.teacher_name,
+      teacherNote: certRow.teacher_note,
+      verificationCode: certRow.verification_code,
+      issuedAt: certRow.issued_at,
+      createdAt: certRow.created_at,
     }
 
     return { success: true, certificate: cert }
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[issueStudentCertificateAction] Unexpected error:', err)
-    return { success: false, error: err?.message || 'Lỗi hệ thống khi tạo giấy khen' }
+    const msg = err instanceof Error ? err.message : 'Lỗi hệ thống khi tạo giấy khen'
+    return { success: false, error: msg }
   }
 }
 
@@ -139,19 +145,20 @@ export async function verifyCertificateAction(
         ? (data.classrooms as { name: string }).name
         : undefined
 
+    const certRow = data as unknown as CertificateRow
     const cert: StudentCertificate = {
-      id: data.id,
-      studentId: data.student_id,
-      classroomId: data.classroom_id,
-      certificateType: data.certificate_type as any,
-      title: data.title,
-      recipientName: data.recipient_name,
-      achievementText: data.achievement_text,
-      teacherName: data.teacher_name,
-      teacherNote: data.teacher_note,
-      verificationCode: data.verification_code,
-      issuedAt: data.issued_at,
-      createdAt: data.created_at,
+      id: certRow.id,
+      studentId: certRow.student_id,
+      classroomId: certRow.classroom_id,
+      certificateType: certRow.certificate_type as CertificateType,
+      title: certRow.title,
+      recipientName: certRow.recipient_name,
+      achievementText: certRow.achievement_text,
+      teacherName: certRow.teacher_name,
+      teacherNote: certRow.teacher_note,
+      verificationCode: certRow.verification_code,
+      issuedAt: certRow.issued_at,
+      createdAt: certRow.created_at,
     }
 
     return {
@@ -160,7 +167,7 @@ export async function verifyCertificateAction(
       certificate: cert,
       classroomName,
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[verifyCertificateAction] Unexpected error:', err)
     return { success: false, isValid: false, error: 'Lỗi hệ thống khi tra cứu chứng chỉ' }
   }
@@ -190,25 +197,29 @@ export async function getStudentCertificatesAction(
       return { success: false, certificates: [], error: 'Lỗi khi tải danh sách giấy khen' }
     }
 
-    const certs: StudentCertificate[] = (data || []).map((d: any) => ({
-      id: d.id,
-      studentId: d.student_id,
-      classroomId: d.classroom_id,
-      certificateType: d.certificate_type,
-      title: d.title,
-      recipientName: d.recipient_name,
-      achievementText: d.achievement_text,
-      teacherName: d.teacher_name,
-      teacherNote: d.teacher_note,
-      verificationCode: d.verification_code,
-      issuedAt: d.issued_at,
-      createdAt: d.created_at,
-    }))
+    const certs: StudentCertificate[] = (data || []).map((d: unknown) => {
+      const row = d as CertificateRow
+      return {
+        id: row.id,
+        studentId: row.student_id,
+        classroomId: row.classroom_id,
+        certificateType: row.certificate_type as CertificateType,
+        title: row.title,
+        recipientName: row.recipient_name,
+        achievementText: row.achievement_text,
+        teacherName: row.teacher_name,
+        teacherNote: row.teacher_note,
+        verificationCode: row.verification_code,
+        issuedAt: row.issued_at,
+        createdAt: row.created_at,
+      }
+    })
 
     return { success: true, certificates: certs }
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[getStudentCertificatesAction] Error:', err)
-    return { success: false, certificates: [], error: err?.message || 'Lỗi hệ thống' }
+    const msg = err instanceof Error ? err.message : 'Lỗi hệ thống'
+    return { success: false, certificates: [], error: msg }
   }
 }
 
@@ -248,15 +259,21 @@ export async function getStudentDetailedReportAction(
       .select('game_type, score, total_questions')
       .eq('student_id', studentId)
 
-    const rawSessions = (sessions || []).map((s: any) => ({
+    interface SessionQueryRow {
+      game_type: string
+      score: number | null
+      total_questions: number | null
+    }
+
+    const rawSessions = ((sessions || []) as SessionQueryRow[]).map((s) => ({
       gameType: s.game_type,
       score: s.score,
       totalQuestions: s.total_questions,
     }))
 
     const totalSessions = rawSessions.length
-    const totalScore = rawSessions.reduce((acc: number, s: any) => acc + (s.score || 0), 0)
-    const totalQuestions = rawSessions.reduce((acc: number, s: any) => acc + (s.totalQuestions || 0), 0)
+    const totalScore = rawSessions.reduce((acc, s) => acc + (s.score || 0), 0)
+    const totalQuestions = rawSessions.reduce((acc, s) => acc + (s.totalQuestions || 0), 0)
     const overallAccuracyPercent =
       totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
 
@@ -267,15 +284,21 @@ export async function getStudentDetailedReportAction(
       .eq('student_id', studentId)
       .single()
 
-    const streakState = (gamification?.streak_state as any) || {}
-    const inventory = (gamification?.inventory as any) || {}
-    const rawSrsDeck = (gamification?.srs_deck as any[]) || []
+    const streakState = (gamification?.streak_state as Record<string, unknown>) || {}
+    const inventory = (gamification?.inventory as Record<string, unknown>) || {}
+    const rawSrsDeck = (gamification?.srs_deck as Array<{
+      prompt?: string
+      correctAnswer?: string
+      mistakeCount?: number
+      gameType?: string
+      box: number
+    }>) || []
 
-    const currentStreak = streakState.currentStreak || 0
-    const longestStreak = streakState.longestStreak || 0
-    const totalActiveDays = streakState.totalActiveDays || 0
-    const equippedFrameId = inventory.equippedFrameId || null
-    const equippedTitleId = inventory.equippedTitleId || null
+    const currentStreak = typeof streakState.currentStreak === 'number' ? streakState.currentStreak : 0
+    const longestStreak = typeof streakState.longestStreak === 'number' ? streakState.longestStreak : 0
+    const totalActiveDays = typeof streakState.totalActiveDays === 'number' ? streakState.totalActiveDays : 0
+    const equippedFrameId = typeof inventory.equippedFrameId === 'string' ? inventory.equippedFrameId : null
+    const equippedTitleId = typeof inventory.equippedTitleId === 'string' ? inventory.equippedTitleId : null
 
     // 4. Compute Metrics
     const skills = computeStudentSkillBreakdown(rawSessions)
@@ -316,11 +339,11 @@ export async function getStudentDetailedReportAction(
       .eq('student_id', studentId)
       .order('issued_at', { ascending: false })
 
-    const certificates: StudentCertificate[] = (certsData || []).map((d: any) => ({
+    const certificates: StudentCertificate[] = ((certsData || []) as CertificateRow[]).map((d) => ({
       id: d.id,
       studentId: d.student_id,
       classroomId: d.classroom_id,
-      certificateType: d.certificate_type,
+      certificateType: d.certificate_type as CertificateType,
       title: d.title,
       recipientName: d.recipient_name,
       achievementText: d.achievement_text,
@@ -354,8 +377,9 @@ export async function getStudentDetailedReportAction(
     }
 
     return { success: true, report }
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[getStudentDetailedReportAction] Unexpected error:', err)
-    return { success: false, error: err?.message || 'Lỗi hệ thống khi tổng hợp báo cáo' }
+    const msg = err instanceof Error ? err.message : 'Lỗi hệ thống khi tổng hợp báo cáo'
+    return { success: false, error: msg }
   }
 }

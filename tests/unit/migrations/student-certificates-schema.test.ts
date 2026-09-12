@@ -3,7 +3,7 @@
 import { describe, it, expect } from 'vitest'
 import fs from 'fs'
 import path from 'path'
-import type { StudentCertificate, CertificateType } from '@/types/certificates'
+import type { StudentCertificate } from '@/types/certificates'
 import type { Database } from '@/types/database'
 
 describe('student_certificates migration and TypeScript definitions', () => {

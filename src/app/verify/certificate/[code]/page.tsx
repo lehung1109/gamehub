@@ -71,7 +71,6 @@ export default async function VerifyCertificatePage({
         <CertificatePreview
           certificate={res.certificate}
           classroomName={res.classroomName}
-          isPublicView={true}
         />
       </div>
     </main>

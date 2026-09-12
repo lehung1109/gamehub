@@ -11,14 +11,9 @@ import {
   Flame,
   Star,
   Trophy,
-  CheckCircle2,
-  AlertCircle,
-  Clock,
   Sparkles,
-  Calendar,
   Layers,
   Printer,
-  ChevronRight,
   X,
 } from 'lucide-react'
 import type { StudentDetailedReport } from '@/types/reports'

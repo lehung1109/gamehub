@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { StudentReportCard } from '@/components/admin/reports/StudentReportCard'
 import type { StudentDetailedReport } from '@/types/reports'
 import * as reportsActions from '@/app/actions/reports'

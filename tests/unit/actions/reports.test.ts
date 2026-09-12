@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import {
   getStudentDetailedReportAction,
   issueStudentCertificateAction,
-  getStudentCertificatesAction,
   verifyCertificateAction,
 } from '@/app/actions/reports'
 import * as serverSupabase from '@/lib/supabase/server'
@@ -23,8 +22,15 @@ vi.mock('next/cache', () => ({
 }))
 
 describe('Student Progress Reports & Certificate Actions', () => {
-  let mockSupabase: any
-  let mockAdminSupabase: any
+  let mockSupabase: {
+    auth: {
+      getUser: ReturnType<typeof vi.fn>
+    }
+    from: ReturnType<typeof vi.fn>
+  }
+  let mockAdminSupabase: {
+    from: ReturnType<typeof vi.fn>
+  }
   const mockTeacher = { id: 'teacher-101', email: 'teacher@test.com' }
 
   beforeEach(() => {
@@ -41,8 +47,12 @@ describe('Student Progress Reports & Certificate Actions', () => {
       from: vi.fn(),
     }
 
-    vi.mocked(serverSupabase.createClient).mockResolvedValue(mockSupabase as any)
-    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(mockAdminSupabase as any)
+    vi.mocked(serverSupabase.createClient).mockResolvedValue(
+      mockSupabase as unknown as Awaited<ReturnType<typeof serverSupabase.createClient>>
+    )
+    vi.mocked(adminSupabase.createAdminClient).mockReturnValue(
+      mockAdminSupabase as unknown as ReturnType<typeof adminSupabase.createAdminClient>
+    )
   })
 
   describe('issueStudentCertificateAction', () => {

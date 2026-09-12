@@ -5,7 +5,6 @@
 import React, { useState, useTransition } from 'react'
 import {
   Award,
-  Sparkles,
   X,
   Loader2,
   CheckCircle2,

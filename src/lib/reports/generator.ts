@@ -1,6 +1,6 @@
 // src/lib/reports/generator.ts
 
-import type { CertificateTemplate, CertificateType } from '@/types/certificates'
+import type { CertificateTemplate } from '@/types/certificates'
 import type { SkillPerformance, SrsBoxMetrics } from '@/types/reports'
 
 const ALPHABET = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'
