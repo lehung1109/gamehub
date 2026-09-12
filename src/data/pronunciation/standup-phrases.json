@@ -1,0 +1,82 @@
+[
+  {
+    "id": "sp-1",
+    "targetText": "Can you hear me clearly?",
+    "phonetic": "/kæn juː hɪər miː ˈklɪəli/",
+    "vietnameseMeaning": "Mọi người có nghe rõ tôi nói không?",
+    "difficulty": "easy",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-2",
+    "targetText": "I am working on the deployment today.",
+    "phonetic": "/aɪ æm ˈwɜːkɪŋ ɒn ðə dɪˈplɔɪmənt təˈdeɪ/",
+    "vietnameseMeaning": "Hôm nay tôi đang tập trung vào việc triển khai.",
+    "difficulty": "medium",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-3",
+    "targetText": "I have no blockers for this sprint.",
+    "phonetic": "/aɪ hæv nəʊ ˈblɒkərz fɔːr ðɪs sprɪnt/",
+    "vietnameseMeaning": "Tôi không có vướng mắc nào trong sprint này.",
+    "difficulty": "easy",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-4",
+    "targetText": "Let us sync up after this meeting.",
+    "phonetic": "/let ʌs sɪŋk ʌp ˈɑːftər ðɪs ˈmiːtɪŋ/",
+    "vietnameseMeaning": "Chúng ta hãy trao đổi riêng sau cuộc họp này nhé.",
+    "difficulty": "medium",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-5",
+    "targetText": "Could you please review my pull request?",
+    "phonetic": "/kʊd juː pliːz rɪˈvjuː maɪ pʊl rɪˈkwest/",
+    "vietnameseMeaning": "Bạn có thể xem giúp tôi bản pull request này được không?",
+    "difficulty": "medium",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-6",
+    "targetText": "The build was successful on production.",
+    "phonetic": "/ðə bɪld wɒz səkˈsesfl ɒn prəˈdʌkʃn/",
+    "vietnameseMeaning": "Bản build đã chạy thành công trên môi trường production.",
+    "difficulty": "medium",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-7",
+    "targetText": "I am looking into the error logs now.",
+    "phonetic": "/aɪ æm ˈlʊkɪŋ ˈɪntuː ði ˈerər lɒɡz naʊ/",
+    "vietnameseMeaning": "Tôi đang kiểm tra nhật ký lỗi hệ thống ngay bây giờ.",
+    "difficulty": "medium",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-8",
+    "targetText": "Please share your screen with the team.",
+    "phonetic": "/pliːz ʃeər jɔːr skriːn wɪð ðə tiːm/",
+    "vietnameseMeaning": "Xin mời bạn chia sẻ màn hình với toàn đội.",
+    "difficulty": "easy",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-9",
+    "targetText": "We need to update our test coverage.",
+    "phonetic": "/wiː niːd tuː ʌpˈdeɪt ˈaʊər test ˈkʌvərɪdʒ/",
+    "vietnameseMeaning": "Chúng ta cần cập nhật tỷ lệ bao phủ kiểm thử.",
+    "difficulty": "hard",
+    "category": "standup-phrases"
+  },
+  {
+    "id": "sp-10",
+    "targetText": "Thank you everyone for joining today.",
+    "phonetic": "/θæŋk juː ˈevriwʌn fɔːr ˈdʒɔɪnɪŋ təˈdeɪ/",
+    "vietnameseMeaning": "Cảm ơn mọi người đã tham gia hôm nay.",
+    "difficulty": "easy",
+    "category": "standup-phrases"
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "mp-1",
+    "targetText": "ship",
+    "phonetic": "/ʃɪp/",
+    "vietnameseMeaning": "con tàu",
+    "focusSound": "/ɪ/ ngắn",
+    "difficulty": "easy",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-2",
+    "targetText": "sheep",
+    "phonetic": "/ʃiːp/",
+    "vietnameseMeaning": "con cừu",
+    "focusSound": "/iː/ dài",
+    "difficulty": "easy",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-3",
+    "targetText": "bad",
+    "phonetic": "/bæd/",
+    "vietnameseMeaning": "tồi tệ, xấu",
+    "focusSound": "/æ/ bẹt",
+    "difficulty": "easy",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-4",
+    "targetText": "bed",
+    "phonetic": "/bed/",
+    "vietnameseMeaning": "chiếc giường",
+    "focusSound": "/e/ ngắn",
+    "difficulty": "easy",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-5",
+    "targetText": "leave",
+    "phonetic": "/liːv/",
+    "vietnameseMeaning": "rời đi, nghỉ phép",
+    "focusSound": "/iː/ dài",
+    "difficulty": "medium",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-6",
+    "targetText": "live",
+    "phonetic": "/lɪv/",
+    "vietnameseMeaning": "sống, ở",
+    "focusSound": "/ɪ/ ngắn",
+    "difficulty": "medium",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-7",
+    "targetText": "think",
+    "phonetic": "/θɪŋk/",
+    "vietnameseMeaning": "suy nghĩ",
+    "focusSound": "/θ/ vô thanh",
+    "difficulty": "hard",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-8",
+    "targetText": "sink",
+    "phonetic": "/sɪŋk/",
+    "vietnameseMeaning": "chìm, bồn rửa",
+    "focusSound": "/s/ gió",
+    "difficulty": "medium",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-9",
+    "targetText": "rice",
+    "phonetic": "/raɪs/",
+    "vietnameseMeaning": "cơm, gạo",
+    "focusSound": "/r/",
+    "difficulty": "easy",
+    "category": "minimal-pairs"
+  },
+  {
+    "id": "mp-10",
+    "targetText": "mice",
+    "phonetic": "/maɪs/",
+    "vietnameseMeaning": "những con chuột",
+    "focusSound": "/m/",
+    "difficulty": "easy",
+    "category": "minimal-pairs"
+  }
+]

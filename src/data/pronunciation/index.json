@@ -1,0 +1,23 @@
+[
+  {
+    "id": "minimal-pairs",
+    "nameVi": "Cặp âm dễ nhầm lẫn",
+    "nameEn": "Minimal Pairs & Phonics",
+    "descriptionVi": "Phân biệt các nguyên âm ngắn - dài và phụ âm khó trong tiếng Anh",
+    "icon": "👂"
+  },
+  {
+    "id": "workplace-words",
+    "nameVi": "Từ vựng công sở & Trọng âm",
+    "nameEn": "Workplace Vocabulary & Stress",
+    "descriptionVi": "Luyện phát âm chuẩn các từ vựng công nghệ và văn phòng hay gặp",
+    "icon": "💼"
+  },
+  {
+    "id": "standup-phrases",
+    "nameVi": "Câu giao tiếp Standup",
+    "nameEn": "Daily Standup Communication",
+    "descriptionVi": "Luyện nói trôi chảy các mẫu câu họp standup và cập nhật tiến độ",
+    "icon": "🚀"
+  }
+]
