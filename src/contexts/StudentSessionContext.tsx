@@ -39,9 +39,20 @@ import {
   saveStoredQuests,
   claimQuestReward,
 } from '@/lib/quests'
+import {
+  getStoredRoadmapProgress,
+  saveStoredRoadmapProgress,
+  recordLocalNodeCompletion,
+} from '@/lib/roadmap-storage'
+import {
+  getStudentRoadmapProgressAction,
+  recordRoadmapNodeCompletionAction,
+  syncLocalRoadmapProgressAction,
+} from '@/app/actions/roadmap'
 import type { StreakState } from '@/types/streak'
 import type { StudentInventory } from '@/types/shop'
 import type { Quest } from '@/types/quests'
+import type { RoadmapProgressState } from '@/types/roadmap'
 
 export const STUDENT_SESSION_KEY = 'gamehub_student_session'
 
@@ -96,6 +107,22 @@ export interface StudentSessionContextValue {
   buyShopItem: (itemId: string) => Promise<{ success: boolean; error?: string }>
   toggleEquipItem: (itemId: string, category: 'frame' | 'title') => Promise<{ success: boolean; error?: string }>
   claimQuest: (questId: string) => Promise<{ success: boolean; error?: string }>
+
+  // Roadmap Journey State & Actions
+  roadmapState: RoadmapProgressState
+  refreshRoadmapProgress: () => Promise<void>
+  recordRoadmapCompletion: (
+    nodeId: string,
+    worldId: string,
+    score: number,
+    totalQuestions: number
+  ) => Promise<{ success: boolean; stars: number }>
+  recordNodeCompletion: (
+    nodeId: string,
+    worldId: string,
+    score: number,
+    totalQuestions: number
+  ) => Promise<{ success: boolean; stars: number }>
 }
 
 const StudentSessionContext = createContext<StudentSessionContextValue | null>(null)
@@ -239,6 +266,10 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   const [inventory, setInventory] = useState<StudentInventory>(getInitialInventory)
   const [quests, setQuests] = useState<Quest[]>([])
 
+  // Roadmap journey state
+  const [roadmapState, setRoadmapState] = useState<RoadmapProgressState>(getStoredRoadmapProgress)
+  const roadmapFetchIdRef = useRef<number>(0)
+
   const prevLevelRef = useRef<number>(1)
   const hasInitializedStarsRef = useRef<boolean>(false)
   const gamificationFetchIdRef = useRef<number>(0)
@@ -274,6 +305,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   // Hydrate session from sessionStorage (or localStorage) on client mount and listen to storage events
   useEffect(() => {
     const hydrateFromStorage = (raw: string | null) => {
+      setRoadmapState(getStoredRoadmapProgress())
       if (raw) {
         try {
           const parsed: StoredStudentSession = JSON.parse(raw)
@@ -499,6 +531,54 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     []
   )
 
+  // Fetch roadmap progress from cloud, syncing local progress first if present
+  const fetchRoadmapProgress = useCallback(
+    async (classCode: string, studentName: string): Promise<boolean> => {
+      const fetchId = ++roadmapFetchIdRef.current
+      try {
+        const localProgress = getStoredRoadmapProgress()
+        if (Object.keys(localProgress.nodesProgress).length > 0) {
+          try {
+            await syncLocalRoadmapProgressAction(
+              classCode,
+              studentName,
+              localProgress.nodesProgress
+            )
+          } catch (syncErr) {
+            console.warn('[StudentSessionContext] syncLocalRoadmapProgress failed:', syncErr)
+          }
+        }
+
+        if (fetchId !== roadmapFetchIdRef.current) return false
+
+        const res = await getStudentRoadmapProgressAction(classCode, studentName)
+        if (fetchId !== roadmapFetchIdRef.current) return false
+
+        if (res && res.success && res.data) {
+          if (
+            !sessionRef.current ||
+            sessionRef.current.classCode !== classCode ||
+            sessionRef.current.studentName !== studentName
+          ) {
+            return false
+          }
+
+          setRoadmapState(res.data)
+          saveStoredRoadmapProgress(res.data)
+          return true
+        }
+      } catch (err) {
+        console.warn('[StudentSessionContext] Failed to fetch cloud roadmap progress:', err)
+      }
+
+      if (fetchId === roadmapFetchIdRef.current) {
+        setRoadmapState(getStoredRoadmapProgress())
+      }
+      return false
+    },
+    []
+  )
+
   // Auto-fetch progress and gamification whenever session credentials change
   useEffect(() => {
     let isCancelled = false
@@ -518,10 +598,12 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
       }
     })
 
+    fetchRoadmapProgress(classCode, studentName)
+
     return () => {
       isCancelled = true
     }
-  }, [session?.classCode, session?.studentName, fetchGamificationProfile])
+  }, [session?.classCode, session?.studentName, fetchGamificationProfile, fetchRoadmapProgress])
 
   // Explicit manual progress and gamification refresh
   const refreshProgress = useCallback(async () => {
@@ -868,7 +950,66 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     []
   )
 
+  // Refresh roadmap progress
+  const refreshRoadmapProgress = useCallback(async () => {
+    const classCode = sessionRef.current?.classCode
+    const studentName = sessionRef.current?.studentName
+
+    if (!classCode || !studentName) {
+      setRoadmapState(getStoredRoadmapProgress())
+      return
+    }
+
+    await fetchRoadmapProgress(classCode, studentName)
+  }, [fetchRoadmapProgress])
+
+  // Record node completion locally and sync with cloud
+  const recordRoadmapCompletion = useCallback(
+    async (
+      nodeId: string,
+      worldId: string,
+      score: number,
+      totalQuestions: number
+    ): Promise<{ success: boolean; stars: number }> => {
+      // Invalidate any older in-flight roadmap fetches
+      roadmapFetchIdRef.current++
+
+      const localResult = recordLocalNodeCompletion(nodeId, worldId, score, totalQuestions)
+      setRoadmapState(localResult.state)
+
+      const classCode = sessionRef.current?.classCode
+      const studentName = sessionRef.current?.studentName
+
+      if (!classCode || !studentName) {
+        return { success: true, stars: localResult.stars }
+      }
+
+      try {
+        const serverRes = await recordRoadmapNodeCompletionAction(
+          classCode,
+          studentName,
+          { nodeId, worldId, score, totalQuestions }
+        )
+
+        if (serverRes.success) {
+          if (serverRes.stars === 3) {
+            refreshGamification().catch(() => {})
+          }
+          return { success: true, stars: serverRes.stars ?? localResult.stars }
+        } else {
+          console.warn('[StudentSessionContext] recordRoadmapNodeCompletionAction failed:', serverRes.error)
+          return { success: false, stars: localResult.stars }
+        }
+      } catch (err) {
+        console.warn('[StudentSessionContext] Failed to record roadmap completion on server:', err)
+        return { success: true, stars: localResult.stars }
+      }
+    },
+    [refreshGamification]
+  )
+
   const joinClass = useCallback((sessionData: StudentSession) => {
+    sessionRef.current = sessionData
     setSession(sessionData)
     setIsAnonymous(false)
     setIsOpen(false)
@@ -884,6 +1025,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     setInventory(localInv)
     setStreakState(localStreak)
     setQuests(localQuests)
+    setRoadmapState(getStoredRoadmapProgress())
 
     try {
       if (typeof window !== 'undefined') {
@@ -900,6 +1042,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   }, [])
 
   const skip = useCallback(() => {
+    sessionRef.current = null
     setSession(null)
     setIsAnonymous(true)
     setIsOpen(false)
@@ -915,6 +1058,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     setInventory(anonInv)
     setStreakState(anonStreak)
     setQuests(anonQuests)
+    setRoadmapState(getStoredRoadmapProgress())
 
     try {
       if (typeof window !== 'undefined') {
@@ -941,6 +1085,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     setInventory(getInitialInventory())
     setStreakState(getInitialStreakState())
     setQuests([])
+    setRoadmapState(getStoredRoadmapProgress())
 
     try {
       if (typeof window !== 'undefined') {
@@ -981,6 +1126,11 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
       buyShopItem,
       toggleEquipItem,
       claimQuest,
+
+      roadmapState,
+      refreshRoadmapProgress,
+      recordRoadmapCompletion,
+      recordNodeCompletion: recordRoadmapCompletion,
     }),
     [
       session,
@@ -1004,6 +1154,9 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
       buyShopItem,
       toggleEquipItem,
       claimQuest,
+      roadmapState,
+      refreshRoadmapProgress,
+      recordRoadmapCompletion,
     ]
   )
 
@@ -1046,6 +1199,15 @@ const defaultStudentSessionContext: StudentSessionContextValue = {
   buyShopItem: async () => ({ success: false, error: 'Context not initialized' }),
   toggleEquipItem: async () => ({ success: false, error: 'Context not initialized' }),
   claimQuest: async () => ({ success: false, error: 'Context not initialized' }),
+
+  roadmapState: {
+    totalStars: 0,
+    completedNodeIds: [],
+    nodesProgress: {},
+  },
+  refreshRoadmapProgress: async () => {},
+  recordRoadmapCompletion: async () => ({ success: false, stars: 0 }),
+  recordNodeCompletion: async () => ({ success: false, stars: 0 }),
 }
 
 export function useStudentSession(): StudentSessionContextValue {
