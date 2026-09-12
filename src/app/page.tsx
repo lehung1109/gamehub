@@ -34,6 +34,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
             <span>🗺️</span>
             <span>Lộ trình học</span>
           </Link>
+          <Link
+            href="/duel"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-rose-900 dark:text-rose-200 bg-rose-50 dark:bg-rose-950/60 border border-rose-300 dark:border-rose-800 shadow-xs hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
+            title="Đấu trường 1v1 PvP"
+          >
+            <span>⚔️</span>
+            <span>Đấu trường 1v1</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
@@ -72,6 +80,15 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
               <span>Bản đồ học tập (Lộ trình)</span>
               <span aria-hidden="true">→</span>
             </Link>
+            <Link
+              href="/duel"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-linear-to-r from-rose-600 to-orange-600 hover:from-rose-500 hover:to-orange-500 text-white font-black text-base sm:text-lg shadow-lg shadow-rose-600/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-rose-400"
+              title="Thách đấu tiếng Anh 1v1"
+            >
+              <span className="text-xl">⚔️</span>
+              <span>Đấu trường 1v1</span>
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold text-muted-foreground">
@@ -86,6 +103,34 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
             </span>
           </div>
         </header>
+
+        {/* Realtime 1v1 PvP Duel Arena Feature Banner */}
+        <section aria-label="Đấu trường 1v1 Realtime PvP" className="mb-8">
+          <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-rose-950 via-red-900 to-amber-950 text-white p-6 sm:p-7 shadow-md border border-rose-700/50 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="absolute -right-12 -top-12 size-40 rounded-full bg-rose-500/20 blur-2xl pointer-events-none" />
+            <div className="relative z-10 space-y-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/30 text-rose-200 border border-rose-400/30 text-xs font-bold uppercase tracking-wider">
+                <span>🔥 Tính năng mới: Realtime PvP</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+                ⚔️ Đấu Trường 1v1 - Thách Đấu Tiếng Anh Trực Tiếp!
+              </h2>
+              <p className="text-xs sm:text-sm text-rose-100/90 max-w-xl">
+                Tạo phòng đấu hoặc tham gia bằng mã số, so tài từ vựng theo thời gian thực và leo bảng xếp hạng cùng bạn bè.
+              </p>
+            </div>
+            <div className="relative z-10 shrink-0">
+              <Link
+                href="/duel"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white text-rose-950 hover:bg-rose-50 font-black text-sm sm:text-base shadow-lg transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label="Vào Đấu trường 1v1"
+              >
+                <span>Tham Gia Đấu Trường</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* Advanced / Workplace Learning Modules */}
         <section aria-label="Chương trình nâng cao cho người đi làm & sinh viên" className="mb-8">
