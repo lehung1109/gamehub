@@ -209,6 +209,14 @@ export function StudentDetail({ data }: StudentDetailProps) {
             </Button>
           </div>
           {isPending && <Loader2 className="size-4 animate-spin text-indigo-600 ml-2" />}
+
+          <Link
+            href={`/admin/classes/${classroom.id}/reports/${student.id}`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-xs transition-colors ml-auto sm:ml-2"
+          >
+            <Award className="size-3.5" />
+            <span>Báo Cáo & Giấy Khen</span>
+          </Link>
         </div>
       </div>
 
