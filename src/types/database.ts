@@ -224,6 +224,7 @@ export type Database = {
           id: string
           inventory: Json
           quests: Json
+          srs_deck: Json
           streak_state: Json
           student_id: string
           updated_at: string
@@ -233,6 +234,7 @@ export type Database = {
           id?: string
           inventory?: Json
           quests?: Json
+          srs_deck?: Json
           streak_state?: Json
           student_id: string
           updated_at?: string
@@ -242,6 +244,7 @@ export type Database = {
           id?: string
           inventory?: Json
           quests?: Json
+          srs_deck?: Json
           streak_state?: Json
           student_id?: string
           updated_at?: string

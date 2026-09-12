@@ -7,8 +7,12 @@ import { getStoredStreak, calculateStreakUpdate, saveStoredStreak, getTodayDateS
 import { getOrGenerateQuests, evaluateQuestProgress, saveStoredQuests } from '@/lib/quests'
 import { recordBonusStars, getStoredInventory } from '@/lib/shop'
 import { syncStudentGamificationState } from '@/app/actions/student-gamification'
+import { getStoredSrsDeck, saveStoredSrsDeck } from '@/lib/srs-storage'
+import { ingestSessionMistakes, type SessionMistakeItem } from '@/lib/srs'
+import { syncSrsDeckAction } from '@/app/actions/srs'
 import type { StreakState } from '@/types/streak'
 import type { Quest } from '@/types/quests'
+import type { SrsCard } from '@/types/srs'
 
 export interface QuestionDetailInput {
   prompt: string
@@ -149,6 +153,25 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
           console.warn('[useGameTracking] Error updating quests:', questErr)
         }
 
+        let updatedDeck: SrsCard[] | undefined
+        try {
+          const wrongDetails = finalDetails.filter((d) => d.isCorrect === false)
+          if (wrongDetails.length > 0) {
+            const mistakes: SessionMistakeItem[] = wrongDetails.map((d) => ({
+              prompt: d.prompt,
+              correctAnswer: d.correctAnswer || '',
+              selectedAnswer: d.selectedAnswer || null,
+              gameType: finalGameType,
+              topic: finalTopic,
+            }))
+            const currentDeck = getStoredSrsDeck(session?.classCode, session?.studentName)
+            updatedDeck = ingestSessionMistakes(currentDeck, mistakes, new Date())
+            saveStoredSrsDeck(session?.classCode, session?.studentName, updatedDeck)
+          }
+        } catch (srsErr) {
+          console.warn('[useGameTracking] Error updating SRS mistake deck:', srsErr)
+        }
+
         if (!isTracking || !session) {
           if (isAnonymous && scoreVal > 0) {
             try {
@@ -201,6 +224,20 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
             })
           } catch (syncErr) {
             console.warn('[useGameTracking] Error initiating cloud gamification sync:', syncErr)
+          }
+
+          if (updatedDeck) {
+            try {
+              syncSrsDeckAction({
+                classCode: session.classCode,
+                studentName: session.studentName,
+                deck: updatedDeck,
+              }).catch((err) => {
+                console.warn('[useGameTracking] Error syncing SRS deck to cloud:', err)
+              })
+            } catch (srsSyncErr) {
+              console.warn('[useGameTracking] Error initiating SRS deck sync:', srsSyncErr)
+            }
           }
         }
 

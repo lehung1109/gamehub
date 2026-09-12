@@ -24,6 +24,34 @@ vi.mock('@/app/actions/assignments', () => ({
   }),
 }))
 
+vi.mock('@/app/actions/srs', () => ({
+  getStudentSrsDeckAction: vi.fn().mockResolvedValue({
+    success: true,
+    deck: [
+      {
+        id: 'wordle_sun',
+        prompt: 'sun',
+        correctAnswer: 'mặt trời',
+        box: 1,
+        lastReviewedAt: null,
+        nextReviewAt: '2020-01-01T00:00:00Z',
+        mistakeCount: 1,
+        successCount: 0,
+        isMastered: false,
+      },
+    ],
+    summary: {
+      totalCards: 1,
+      dueCount: 1,
+      masteredCount: 0,
+      learningCount: 1,
+      reviewingCount: 0,
+    },
+  }),
+  submitSrsReviewBatchAction: vi.fn(),
+  syncSrsDeckAction: vi.fn(),
+}))
+
 describe('StudentGamificationModal Component', () => {
   const defaultLevelInfo = getLevelInfo(60) // Lv 2, 60 stars
   const mockOnClose = vi.fn()
@@ -261,5 +289,39 @@ describe('StudentGamificationModal Component', () => {
 
     expect(await screen.findByText('Bài tập về nhà 1')).toBeInTheDocument()
     expect(screen.getByText('Chưa nộp')).toBeInTheDocument()
+  })
+
+  it('switches to Sổ tay (notebook) tab and displays MistakeNotebookTab with due badge', async () => {
+    // Seed 1 due card in storage
+    localStorage.setItem(
+      'gamehub_srs_deck_v1_CLASS1_bé an',
+      JSON.stringify([
+        {
+          id: 'wordle_sun',
+          prompt: 'sun',
+          correctAnswer: 'mặt trời',
+          box: 1,
+          lastReviewedAt: null,
+          nextReviewAt: '2020-01-01T00:00:00Z',
+          mistakeCount: 1,
+          successCount: 0,
+          isMastered: false,
+        },
+      ])
+    )
+
+    render(<StudentGamificationModal {...defaultProps} />)
+
+    // Check due badge on Sổ tay tab button
+    const dueBadge = screen.getByTestId('notebook-due-badge')
+    expect(dueBadge).toBeInTheDocument()
+    expect(dueBadge).toHaveTextContent('1')
+
+    // Click tab
+    const notebookTab = screen.getByRole('tab', { name: /Sổ tay/i })
+    fireEvent.click(notebookTab)
+
+    expect(await screen.findByText(/Tổng số lỗi/i)).toBeInTheDocument()
+    expect(screen.getByText('sun')).toBeInTheDocument()
   })
 })
