@@ -8,6 +8,7 @@ import { copyToClipboard } from '@/lib/clipboard'
 import { getShopItemById } from '@/lib/shop'
 import { DifficultWordsAnalysis } from '@/components/dashboard/DifficultWordsAnalysis'
 import { AssignmentManager } from '@/components/class/AssignmentManager'
+import { ClassRoadmapOverview } from '@/components/class/ClassRoadmapOverview'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -377,6 +378,9 @@ export function ClassOverview({ data }: ClassOverviewProps) {
 
       {/* Homework & Assignment Management */}
       <AssignmentManager classroomId={classroom.id} classroomName={classroom.name} />
+
+      {/* Curriculum Roadmap Analytics */}
+      <ClassRoadmapOverview classId={classroom?.id || (data as unknown as { class?: { id: string } })?.class?.id} />
 
       {/* Main Content Area: Empty State OR Populated Content */}
       {totalSessions === 0 ? (
