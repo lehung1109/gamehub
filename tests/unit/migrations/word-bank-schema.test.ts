@@ -60,6 +60,14 @@ describe('word_bank migration and TypeScript definitions', () => {
     expect(sql).toContain('CREATE POLICY "Allow update own words in word_bank"')
     expect(sql).toContain('CREATE POLICY "Allow delete own words in word_bank"')
 
+    // RLS security and performance clauses
+    expect(sql).toContain('WITH CHECK ((select auth.uid()) = created_by AND is_system = false)')
+    expect(sql).toContain('USING ((select auth.uid()) = created_by AND is_system = false)')
+
+    // CHECK constraints
+    expect(sql).toContain("CHECK (cefr_level IN ('Pre-A1', 'A1', 'A2', 'B1', 'B2'))")
+    expect(sql).toContain("CHECK (part_of_speech IN ('noun', 'verb', 'adjective', 'adverb', 'phrase'))")
+
     // Trigger
     expect(sql).toContain('trg_word_bank_updated_at')
   })

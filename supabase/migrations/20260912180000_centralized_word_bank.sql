@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS public.word_bank (
   english TEXT NOT NULL,
   vietnamese TEXT NOT NULL,
   phonetic TEXT,
-  part_of_speech TEXT NOT NULL DEFAULT 'noun',
-  cefr_level TEXT NOT NULL DEFAULT 'A1',
+  part_of_speech TEXT NOT NULL DEFAULT 'noun' CHECK (part_of_speech IN ('noun', 'verb', 'adjective', 'adverb', 'phrase')),
+  cefr_level TEXT NOT NULL DEFAULT 'A1' CHECK (cefr_level IN ('Pre-A1', 'A1', 'A2', 'B1', 'B2')),
   topic TEXT NOT NULL DEFAULT 'general',
   emoji TEXT,
   example_sentence TEXT,
@@ -37,26 +37,27 @@ CREATE POLICY "Allow authenticated read word_bank"
   TO authenticated
   USING (true);
 
--- 2. Insert: Authenticated users can insert their own words
+-- 2. Insert: Authenticated users can insert their own non-system words
 CREATE POLICY "Allow authenticated insert word_bank"
   ON public.word_bank
   FOR INSERT
   TO authenticated
-  WITH CHECK (auth.uid() = created_by OR is_system = false);
+  WITH CHECK ((select auth.uid()) = created_by AND is_system = false);
 
--- 3. Update: Teachers can update words they created
+-- 3. Update: Teachers can update words they created (system words protected)
 CREATE POLICY "Allow update own words in word_bank"
   ON public.word_bank
   FOR UPDATE
   TO authenticated
-  USING (auth.uid() = created_by OR is_system = false);
+  USING ((select auth.uid()) = created_by AND is_system = false)
+  WITH CHECK ((select auth.uid()) = created_by AND is_system = false);
 
 -- 4. Delete: Teachers can delete words they created (system words protected)
 CREATE POLICY "Allow delete own words in word_bank"
   ON public.word_bank
   FOR DELETE
   TO authenticated
-  USING (auth.uid() = created_by AND is_system = false);
+  USING ((select auth.uid()) = created_by AND is_system = false);
 
 -- Trigger: Automatic updated_at timestamp
 CREATE OR REPLACE FUNCTION public.handle_updated_at()
