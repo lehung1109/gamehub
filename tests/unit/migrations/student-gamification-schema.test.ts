@@ -26,6 +26,7 @@ describe('student_gamification migration script', () => {
       streak_state: {},
       inventory: {},
       quests: [],
+      srs_deck: [],
       created_at: '2026-09-12T00:00:00Z',
       updated_at: '2026-09-12T00:00:00Z',
     }
