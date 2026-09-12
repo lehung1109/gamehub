@@ -4,7 +4,8 @@ import { PhoneticWordCard } from '@/components/game/pronunciation/PhoneticWordCa
 import { MicrophoneRecorder } from '@/components/game/pronunciation/MicrophoneRecorder';
 import { PronunciationResultCard } from '@/components/game/pronunciation/PronunciationResultCard';
 import { PronunciationScoreModal } from '@/components/game/pronunciation/PronunciationScoreModal';
-import { PronunciationResult } from '@/types/pronunciation';
+import { PronunciationArena } from '@/components/game/pronunciation/PronunciationArena';
+import { PronunciationItem, PronunciationResult } from '@/types/pronunciation';
 
 describe('Pronunciation Components', () => {
   describe('PhoneticWordCard', () => {
@@ -191,6 +192,34 @@ describe('Pronunciation Components', () => {
 
       const homeLink = screen.getByRole('link', { name: /về trang chủ/i });
       expect(homeLink).toHaveAttribute('href', '/');
+    });
+  });
+
+  describe('PronunciationArena', () => {
+    it('renders and supports restart', () => {
+      const items: PronunciationItem[] = [
+        {
+          id: '1',
+          targetText: 'ship',
+          phonetic: '/ʃɪp/',
+          vietnameseMeaning: 'con tàu',
+          difficulty: 'easy',
+          category: 'minimal-pairs',
+        },
+        {
+          id: '2',
+          targetText: 'sheep',
+          phonetic: '/ʃiːp/',
+          vietnameseMeaning: 'con cừu',
+          difficulty: 'easy',
+          category: 'minimal-pairs',
+        },
+      ];
+
+      render(<PronunciationArena items={items} topicId="minimal-pairs" passThreshold={75} />);
+      expect(screen.getByText('ship')).toBeInTheDocument();
+      expect(screen.getByText('Câu 1 / 2')).toBeInTheDocument();
+      expect(screen.getByText('Điểm: 0')).toBeInTheDocument();
     });
   });
 });

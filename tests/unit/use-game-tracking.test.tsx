@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { renderHook, act, waitFor } from '@testing-library/react'
 import { useGameTracking } from '@/hooks/use-game-tracking'
 import { StudentSessionProvider, STUDENT_SESSION_KEY } from '@/hooks/use-student-session'
-import { getStoredStreak } from '@/lib/streak'
+import { getStoredStreak, getTodayDateString } from '@/lib/streak'
 import { getStoredQuests } from '@/lib/quests'
 
 vi.mock('@/app/actions/student-progress', () => ({
@@ -433,7 +433,7 @@ describe('useGameTracking Hook', () => {
     const streakAfter = getStoredStreak(classCode, studentName)
     expect(streakAfter.currentStreak).toBe(1)
     expect(streakAfter.totalActiveDays).toBe(1)
-    expect(streakAfter.lastActiveDate).toBe(new Date().toISOString().split('T')[0])
+    expect(streakAfter.lastActiveDate).toBe(getTodayDateString())
   })
 
   it('submitSession updates quest progress in storage upon completion', async () => {

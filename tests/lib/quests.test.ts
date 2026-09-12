@@ -295,8 +295,22 @@ describe('Daily & Weekly Quests Engine (src/lib/quests.ts)', () => {
         expect(res2.updatedQuests[0].isCompleted).toBe(true)
       })
 
-      it('matches vocabulary games (flashcard, wordle, word-search, falling-words, memory-match, crossword)', () => {
-        const vocabGames = ['flashcard', 'wordle', 'word-search', 'falling-words', 'memory-match', 'crossword']
+      it('matches vocabulary games', () => {
+        const vocabGames = [
+          'flashcard',
+          'wordle',
+          'word-search',
+          'falling-words',
+          'memory-match',
+          'crossword',
+          'word-connect',
+          'odd-one-out',
+          'vocab-defense',
+          'hangman',
+          'spelling',
+          'numbers-colors',
+          'alphabet',
+        ]
 
         for (const game of vocabGames) {
           const quest: Quest = {

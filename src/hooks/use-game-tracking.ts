@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useMemo } from 'react'
 import { useStudentSession, StudentSession } from '@/hooks/use-student-session'
 import type { SessionDetailPayload, TrackGamePayload } from '@/app/api/track/route'
-import { getStoredStreak, calculateStreakUpdate, saveStoredStreak } from '@/lib/streak'
+import { getStoredStreak, calculateStreakUpdate, saveStoredStreak, getTodayDateString } from '@/lib/streak'
 import { getOrGenerateQuests, evaluateQuestProgress, saveStoredQuests } from '@/lib/quests'
 import { recordBonusStars } from '@/lib/shop'
 
@@ -117,7 +117,7 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
         const totalVal = calculatedTotalQuestions > 0 ? calculatedTotalQuestions : 1
         const scorePercentage = Math.round((scoreVal / totalVal) * 100)
 
-        const todayStr = new Date().toISOString().split('T')[0]
+        const todayStr = getTodayDateString()
 
         try {
           const currentStreakState = getStoredStreak(session?.classCode, session?.studentName)

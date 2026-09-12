@@ -11,22 +11,31 @@ import { useSpeech } from '@/hooks/useSpeech';
 import { useGameTracking } from '@/hooks/use-game-tracking';
 import { evaluatePronunciation } from '@/lib/pronunciation-evaluator';
 
-interface PronunciationArenaProps {
+export interface PronunciationArenaProps {
   items: PronunciationItem[];
   topicId: string;
+  passThreshold?: number;
+  configId?: string;
 }
 
-export function PronunciationArena({ items, topicId }: PronunciationArenaProps) {
+export function PronunciationArena({
+  items,
+  topicId,
+  passThreshold = 70,
+  configId,
+}: PronunciationArenaProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
+  const [passedCount, setPassedCount] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const recordedTranscriptRef = useRef<string | null>(null);
 
   const currentItem = items[currentIndex] || items[0];
   const { speak } = useSpeech({ rate: 0.85 });
-  const { isTracking, recordQuestion, submitSession } = useGameTracking({
+  const { isTracking, recordQuestion, submitSession, resetSession } = useGameTracking({
     gameType: 'pronunciation',
     topic: topicId,
+    configId,
   });
 
   const {
@@ -43,10 +52,10 @@ export function PronunciationArena({ items, topicId }: PronunciationArenaProps) 
   // Derive evaluation result directly from speech recognition state
   const evaluationResult = useMemo(() => {
     if (!isListening && transcript && currentItem) {
-      return evaluatePronunciation(currentItem.targetText, transcript);
+      return evaluatePronunciation(currentItem.targetText, transcript, passThreshold);
     }
     return null;
-  }, [isListening, transcript, currentItem]);
+  }, [isListening, transcript, currentItem, passThreshold]);
 
   // When speech transcript completes, record question tracking to session
   useEffect(() => {
@@ -73,8 +82,12 @@ export function PronunciationArena({ items, topicId }: PronunciationArenaProps) 
 
   const handleNext = useCallback(async () => {
     const accuracy = evaluationResult?.accuracy || 0;
+    const isPassed = evaluationResult?.isPassed || false;
     const newTotalScore = totalScore + accuracy;
+    const newPassedCount = passedCount + (isPassed ? 1 : 0);
+
     setTotalScore(newTotalScore);
+    setPassedCount(newPassedCount);
     recordedTranscriptRef.current = null;
     resetTranscript();
 
@@ -83,21 +96,34 @@ export function PronunciationArena({ items, topicId }: PronunciationArenaProps) 
     } else {
       setIsCompleted(true);
       await submitSession({
-        score: newTotalScore,
+        score: newPassedCount,
         totalQuestions: items.length,
         topic: topicId,
         gameType: 'pronunciation',
+        configId,
       });
     }
-  }, [currentIndex, items.length, evaluationResult, resetTranscript, submitSession, totalScore, topicId]);
+  }, [
+    currentIndex,
+    items.length,
+    evaluationResult,
+    resetTranscript,
+    submitSession,
+    totalScore,
+    passedCount,
+    topicId,
+    configId,
+  ]);
 
   const handleRestart = useCallback(() => {
     setCurrentIndex(0);
     setTotalScore(0);
+    setPassedCount(0);
     setIsCompleted(false);
     recordedTranscriptRef.current = null;
     resetTranscript();
-  }, [resetTranscript]);
+    resetSession();
+  }, [resetTranscript, resetSession]);
 
   if (!currentItem) return null;
 

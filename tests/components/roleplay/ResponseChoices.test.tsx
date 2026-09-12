@@ -138,4 +138,21 @@ describe('ResponseChoices Component', () => {
 
     expect(screen.getByText('Thank you very much.')).toBeInTheDocument();
   });
+
+  it('stops listening when disabled becomes true', () => {
+    const onSelect = vi.fn();
+    const { rerender } = render(<ResponseChoices options={mockOptions} onSelect={onSelect} disabled={false} />);
+
+    const voiceBtn = screen.getByRole('button', { name: /nói câu trả lời/i });
+    fireEvent.click(voiceBtn);
+
+    act(() => {
+      mockRecognitionInstance.onstart?.();
+    });
+
+    // Rerender with disabled=true
+    rerender(<ResponseChoices options={mockOptions} onSelect={onSelect} disabled={true} />);
+
+    expect(mockRecognitionInstance.stop).toHaveBeenCalled();
+  });
 });

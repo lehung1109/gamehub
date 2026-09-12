@@ -12,6 +12,13 @@ export const VOCABULARY_GAMES = [
   'falling-words',
   'memory-match',
   'crossword',
+  'word-connect',
+  'odd-one-out',
+  'vocab-defense',
+  'hangman',
+  'spelling',
+  'numbers-colors',
+  'alphabet',
 ]
 
 export const GRAMMAR_GAMES = [

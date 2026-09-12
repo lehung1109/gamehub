@@ -292,7 +292,8 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     setSession(null)
     setIsAnonymous(true)
     setIsOpen(false)
-    setTotalStars(0)
+    const anonStars = calculateEffectiveStars(0, undefined, undefined)
+    setTotalStars(anonStars)
     prevLevelRef.current = 1
     hasInitializedStarsRef.current = false
     setCelebration({ show: false, level: null })

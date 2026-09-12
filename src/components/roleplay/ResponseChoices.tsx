@@ -36,6 +36,14 @@ export function ResponseChoices({ options, onSelect, disabled }: ResponseChoices
     }
   }, [options, isListening, stopListening, resetTranscript])
 
+  // Stop listening and clear transcript when disabled
+  useEffect(() => {
+    if (disabled && isListening) {
+      stopListening()
+      resetTranscript()
+    }
+  }, [disabled, isListening, stopListening, resetTranscript])
+
   // Check if spoken transcript matches any option
   useEffect(() => {
     if (!isListening && transcript) {
