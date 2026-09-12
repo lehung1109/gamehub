@@ -207,6 +207,17 @@
     "route": "/games/roleplay",
     "priority": 19,
     "category": "roleplay-reading"
+  },
+  {
+    "id": "pronunciation",
+    "slug": "pronunciation",
+    "titleVi": "Phòng Luyện Phát Âm",
+    "titleEn": "Pronunciation Lab",
+    "description": "Luyện nói và phát âm tiếng Anh chuẩn xác qua microphone với phản hồi tức thì",
+    "emoji": "🎙️",
+    "route": "/games/pronunciation",
+    "priority": 20,
+    "category": "phonics-audio"
   }
 ]
 
