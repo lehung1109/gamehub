@@ -21,6 +21,7 @@ export interface DuelPodiumModalProps {
   onRematch: () => void
   onBackToHub: () => void
   isRematching?: boolean
+  rematchError?: string | null
 }
 
 export function DuelPodiumModal(props: DuelPodiumModalProps) {
@@ -40,6 +41,7 @@ function DuelPodiumModalContent({
   onRematch,
   onBackToHub,
   isRematching = false,
+  rematchError = null,
 }: DuelPodiumModalProps) {
   return (
     <div
@@ -121,6 +123,16 @@ function DuelPodiumModalContent({
             <div className="text-xs text-muted-foreground font-semibold">điểm</div>
           </div>
         </div>
+
+        {/* Rematch Error Banner */}
+        {rematchError && (
+          <div
+            data-testid="rematch-error-banner"
+            className="mb-4 p-3 rounded-2xl bg-destructive/10 border border-destructive/20 text-destructive text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
+          >
+            <span>⚠️ {rematchError}</span>
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-3">

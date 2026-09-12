@@ -85,6 +85,7 @@ function DuelArenaInner({
 
   // Rematch loading state
   const [isRematching, setIsRematching] = useState<boolean>(false)
+  const [rematchError, setRematchError] = useState<string | null>(null)
 
   // Refs for timer and synchronization
   const questionStartTimeRef = useRef<number>(0)
@@ -323,6 +324,7 @@ function DuelArenaInner({
   const handleRematch = async () => {
     if (!duel) return
     setIsRematching(true)
+    setRematchError(null)
 
     try {
       const myName =
@@ -334,10 +336,10 @@ function DuelArenaInner({
       if (res.success && res.data?.code) {
         router.push(`/duel/${res.data.code}`)
       } else {
-        alert(res.error || 'Không thể tạo trận đấu lại')
+        setRematchError(res.error || 'Không thể tạo trận đấu lại')
       }
     } catch (err: unknown) {
-      alert(err instanceof Error ? err.message : 'Đã có lỗi xảy ra')
+      setRematchError(err instanceof Error ? err.message : 'Đã có lỗi xảy ra')
     } finally {
       setIsRematching(false)
     }
@@ -533,6 +535,7 @@ function DuelArenaInner({
         onRematch={handleRematch}
         onBackToHub={handleBackToHub}
         isRematching={isRematching}
+        rematchError={rematchError}
       />
     </div>
   )

@@ -42,6 +42,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
             <span>⚔️</span>
             <span>Đấu trường 1v1</span>
           </Link>
+          <Link
+            href="/leaderboard"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-amber-900 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 shadow-xs hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            title="Bảng xếp hạng vinh danh"
+          >
+            <span>🏆</span>
+            <span>Bảng xếp hạng</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
@@ -87,6 +95,15 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
             >
               <span className="text-xl">⚔️</span>
               <span>Đấu trường 1v1</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/leaderboard"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-linear-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-white font-black text-base sm:text-lg shadow-lg shadow-amber-500/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400"
+              title="Bảng xếp hạng vinh danh"
+            >
+              <span className="text-xl">🏆</span>
+              <span>Bảng xếp hạng</span>
               <span aria-hidden="true">→</span>
             </Link>
           </div>
