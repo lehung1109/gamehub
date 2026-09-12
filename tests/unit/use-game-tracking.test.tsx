@@ -7,11 +7,19 @@ import { StudentSessionProvider, STUDENT_SESSION_KEY } from '@/hooks/use-student
 import { getStoredStreak, getTodayDateString } from '@/lib/streak'
 import { getStoredQuests } from '@/lib/quests'
 import { syncStudentGamificationState } from '@/app/actions/student-gamification'
+import { getStoredSrsDeck } from '@/lib/srs-storage'
+import { syncSrsDeckAction } from '@/app/actions/srs'
 
 vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn().mockResolvedValue({
     success: true,
     totalStars: 0,
+  }),
+}))
+
+vi.mock('@/app/actions/srs', () => ({
+  syncSrsDeckAction: vi.fn().mockResolvedValue({
+    success: true,
   }),
 }))
 
@@ -722,6 +730,256 @@ describe('useGameTracking Hook', () => {
 
     expect(success).toBe(true)
     expect(callOrder).toEqual(['fetch_track', 'sync_gamification'])
+  })
+
+  it('ingests wrong answers into local SRS deck and syncs to cloud on successful session submission', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-srs' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_SRS'
+    const studentName = 'Bé Lan'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'vocab', topic: 'animals' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    act(() => {
+      result.current.recordQuestion({
+        prompt: 'cat',
+        correctAnswer: 'con mèo',
+        selectedAnswer: 'con mèo',
+        isCorrect: true,
+      })
+      result.current.recordQuestion({
+        prompt: 'dog',
+        correctAnswer: 'con chó',
+        selectedAnswer: 'con chim',
+        isCorrect: false,
+      })
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession()
+    })
+
+    expect(success).toBe(true)
+
+    // Check local deck
+    const storedDeck = getStoredSrsDeck(classCode, studentName)
+    expect(storedDeck).toHaveLength(1)
+    expect(storedDeck[0]).toEqual(
+      expect.objectContaining({
+        prompt: 'dog',
+        correctAnswer: 'con chó',
+        selectedAnswer: 'con chim',
+        gameType: 'vocab',
+        topic: 'animals',
+        box: 1,
+        mistakeCount: 1,
+        isMastered: false,
+      })
+    )
+
+    // Check cloud sync action
+    expect(syncSrsDeckAction).toHaveBeenCalledTimes(1)
+    expect(syncSrsDeckAction).toHaveBeenCalledWith({
+      classCode,
+      studentName,
+      deck: storedDeck,
+    })
+  })
+
+  it('updates local SRS deck for anonymous session without calling syncSrsDeckAction', async () => {
+    const mockFetch = vi.fn()
+    global.fetch = mockFetch
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'vocab', topic: 'fruits' }),
+      {
+        wrapper: createWrapper({
+          classCode: '',
+          studentName: '',
+          isAnonymous: true,
+        }),
+      }
+    )
+
+    expect(result.current.isAnonymous).toBe(true)
+
+    act(() => {
+      result.current.recordQuestion({
+        prompt: 'banana',
+        correctAnswer: 'quả chuối',
+        selectedAnswer: 'quả táo',
+        isCorrect: false,
+      })
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession()
+    })
+
+    expect(success).toBe(true)
+    expect(mockFetch).not.toHaveBeenCalled()
+    expect(syncSrsDeckAction).not.toHaveBeenCalled()
+
+    const anonDeck = getStoredSrsDeck()
+    expect(anonDeck).toHaveLength(1)
+    expect(anonDeck[0].prompt).toBe('banana')
+  })
+
+  it('does not ingest or sync SRS deck when all questions are correct', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-perfect' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_PERFECT'
+    const studentName = 'Bé Mai'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'vocab', topic: 'fruits' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    act(() => {
+      result.current.recordQuestion({
+        prompt: 'apple',
+        correctAnswer: 'quả táo',
+        selectedAnswer: 'quả táo',
+        isCorrect: true,
+      })
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession()
+    })
+
+    expect(success).toBe(true)
+    expect(getStoredSrsDeck(classCode, studentName)).toHaveLength(0)
+    expect(syncSrsDeckAction).not.toHaveBeenCalled()
+  })
+
+  it('does not block submitSession if syncSrsDeckAction rejects', async () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-srs-fail' }),
+    })
+    global.fetch = mockFetch
+
+    vi.mocked(syncSrsDeckAction).mockRejectedValueOnce(new Error('Network offline'))
+
+    const classCode = 'CLASS_SRS_REJECT'
+    const studentName = 'Bé Phong'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'vocab', topic: 'fruits' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    act(() => {
+      result.current.recordQuestion({
+        prompt: 'orange',
+        correctAnswer: 'quả cam',
+        selectedAnswer: 'quả chanh',
+        isCorrect: false,
+      })
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession()
+    })
+
+    expect(success).toBe(true)
+    expect(syncSrsDeckAction).toHaveBeenCalledTimes(1)
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[useGameTracking] Error syncing SRS deck to cloud:',
+      expect.any(Error)
+    )
+    warnSpy.mockRestore()
+  })
+
+  it('does NOT sync SRS deck to cloud if /api/track fails', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      json: async () => ({ success: false, error: 'Server error' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_SRS_TRACK_FAIL'
+    const studentName = 'Bé Quang'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'vocab', topic: 'fruits' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    act(() => {
+      result.current.recordQuestion({
+        prompt: 'grape',
+        correctAnswer: 'quả nho',
+        selectedAnswer: 'quả chuối',
+        isCorrect: false,
+      })
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession()
+    })
+
+    expect(success).toBe(false)
+    expect(syncSrsDeckAction).not.toHaveBeenCalled()
   })
 })
 
