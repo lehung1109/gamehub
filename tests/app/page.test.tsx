@@ -70,6 +70,13 @@ describe("HomePage (src/app/page.tsx)", () => {
     expect(loginLink).toHaveAttribute("href", "/login");
   });
 
+  it("renders the daily streak badge in the top bar", () => {
+    render(<HomePage />);
+
+    const streakBadge = screen.getByRole("button", { name: /chuỗi học tập/i });
+    expect(streakBadge).toBeInTheDocument();
+  });
+
   it("links to all game routes correctly and accessibly", () => {
     render(<HomePage />);
 
