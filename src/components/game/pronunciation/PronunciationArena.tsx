@@ -82,16 +82,14 @@ export function PronunciationArena({ items, topicId }: PronunciationArenaProps) 
       setCurrentIndex((prev) => prev + 1);
     } else {
       setIsCompleted(true);
-      if (isTracking) {
-        await submitSession({
-          score: newTotalScore,
-          totalQuestions: items.length,
-          topic: topicId,
-          gameType: 'pronunciation',
-        });
-      }
+      await submitSession({
+        score: newTotalScore,
+        totalQuestions: items.length,
+        topic: topicId,
+        gameType: 'pronunciation',
+      });
     }
-  }, [currentIndex, items.length, evaluationResult, resetTranscript, isTracking, submitSession, totalScore, topicId]);
+  }, [currentIndex, items.length, evaluationResult, resetTranscript, submitSession, totalScore, topicId]);
 
   const handleRestart = useCallback(() => {
     setCurrentIndex(0);

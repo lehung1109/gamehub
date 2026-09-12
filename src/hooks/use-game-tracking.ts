@@ -5,6 +5,7 @@ import { useStudentSession, StudentSession } from '@/hooks/use-student-session'
 import type { SessionDetailPayload, TrackGamePayload } from '@/app/api/track/route'
 import { getStoredStreak, calculateStreakUpdate, saveStoredStreak } from '@/lib/streak'
 import { getOrGenerateQuests, evaluateQuestProgress, saveStoredQuests } from '@/lib/quests'
+import { recordBonusStars } from '@/lib/shop'
 
 export interface QuestionDetailInput {
   prompt: string
@@ -122,6 +123,9 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
           const currentStreakState = getStoredStreak(session?.classCode, session?.studentName)
           const streakResult = calculateStreakUpdate(currentStreakState, todayStr)
           saveStoredStreak(session?.classCode, session?.studentName, streakResult.nextState)
+          if (streakResult.milestoneBonusStars > 0) {
+            recordBonusStars(session?.classCode, session?.studentName, streakResult.milestoneBonusStars)
+          }
         } catch (streakErr) {
           console.warn('[useGameTracking] Error updating streak:', streakErr)
         }
@@ -139,6 +143,13 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
         }
 
         if (!isTracking || !session) {
+          if (isAnonymous && scoreVal > 0) {
+            try {
+              recordBonusStars(session?.classCode, session?.studentName, scoreVal)
+            } catch (anonErr) {
+              console.warn('[useGameTracking] Error recording anonymous stars:', anonErr)
+            }
+          }
           return true
         }
 

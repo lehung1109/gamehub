@@ -94,4 +94,48 @@ describe('ResponseChoices Component', () => {
 
     expect(onSelect).toHaveBeenCalledWith(mockOptions[0]);
   });
+
+  it('does not trigger onSelect when spoken transcript does not match options', () => {
+    const onSelect = vi.fn();
+    render(<ResponseChoices options={mockOptions} onSelect={onSelect} />);
+
+    const voiceBtn = screen.getByRole('button', { name: /nói câu trả lời/i });
+    fireEvent.click(voiceBtn);
+
+    const mockItem = [{ transcript: 'something completely different' }] as unknown as SpeechRecognitionResultItemLike;
+    const mockResults = [mockItem] as unknown as SpeechRecognitionResultListLike;
+    const speechEvent: SpeechRecognitionEventLike = {
+      resultIndex: 0,
+      results: mockResults,
+    };
+
+    act(() => {
+      mockRecognitionInstance.onresult?.(speechEvent);
+      mockRecognitionInstance.onend?.();
+    });
+
+    expect(onSelect).not.toHaveBeenCalled();
+  });
+
+  it('resets transcript and aborts listening when options change', () => {
+    const onSelect = vi.fn();
+    const { rerender } = render(<ResponseChoices options={mockOptions} onSelect={onSelect} />);
+
+    const voiceBtn = screen.getByRole('button', { name: /nói câu trả lời/i });
+    fireEvent.click(voiceBtn);
+
+    // Simulate recognition listening started
+    act(() => {
+      mockRecognitionInstance.onstart?.();
+    });
+
+    // Advance turn with new options
+    const newOptions: LearnerResponse[] = [
+      { id: 'opt-3', text: 'Thank you very much.', isCorrect: true },
+    ];
+
+    rerender(<ResponseChoices options={newOptions} onSelect={onSelect} />);
+
+    expect(screen.getByText('Thank you very much.')).toBeInTheDocument();
+  });
 });

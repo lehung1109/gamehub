@@ -11,6 +11,7 @@ import React, {
 } from 'react'
 import { getStudentProgress } from '@/app/actions/student-progress'
 import { getLevelInfo, LevelInfo, LevelProgress } from '@/lib/levels'
+import { calculateEffectiveStars } from '@/lib/shop'
 
 export const STUDENT_SESSION_KEY = 'gamehub_student_session'
 
@@ -88,7 +89,8 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
             setIsAnonymous(true)
             setSession(null)
             setIsOpen(false)
-            setTotalStars(0)
+            const anonStars = calculateEffectiveStars(0, undefined, undefined)
+            setTotalStars(anonStars)
             setIsLoadingStars(false)
             prevLevelRef.current = 1
             hasInitializedStarsRef.current = false
@@ -177,7 +179,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
       .then((res) => {
         if (isCancelled) return
         if (res && res.success && typeof res.totalStars === 'number') {
-          const newStars = res.totalStars
+          const newStars = calculateEffectiveStars(res.totalStars, session.classCode, session.studentName)
           const newLevelProgress = getLevelInfo(newStars)
 
           if (hasInitializedStarsRef.current && newLevelProgress.currentLevel.level > prevLevelRef.current) {
@@ -209,7 +211,12 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   // Explicit manual progress refresh
   const refreshProgress = useCallback(async () => {
     if (!session?.classCode || !session?.studentName) {
-      setTotalStars(0)
+      if (isAnonymous) {
+        const anonStars = calculateEffectiveStars(0, undefined, undefined)
+        setTotalStars(anonStars)
+      } else {
+        setTotalStars(0)
+      }
       return
     }
 
@@ -236,7 +243,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
       }
 
       if (res && res.success && typeof res.totalStars === 'number') {
-        const newStars = res.totalStars
+        const newStars = calculateEffectiveStars(res.totalStars, session.classCode, session.studentName)
         const newLevelProgress = getLevelInfo(newStars)
 
         if (hasInitializedStarsRef.current && newLevelProgress.currentLevel.level > prevLevelRef.current) {
@@ -258,7 +265,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
         setIsLoadingStars(false)
       }
     }
-  }, [session])
+  }, [session, isAnonymous])
 
   const joinClass = useCallback((sessionData: StudentSession) => {
     setSession(sessionData)

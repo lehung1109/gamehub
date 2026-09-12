@@ -12,7 +12,7 @@ interface StudentProfileBadgeProps {
 }
 
 export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
-  const { session, totalStars, levelInfo, isAnonymous, isLoaded } = useStudentSession()
+  const { session, totalStars, levelInfo, isAnonymous, isLoaded, refreshProgress } = useStudentSession()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [, setModalCloseCount] = useState(0)
 
@@ -45,6 +45,7 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
   const handleCloseModal = () => {
     setIsModalOpen(false)
     setModalCloseCount((c) => c + 1)
+    void refreshProgress()
   }
 
   return (
@@ -134,6 +135,12 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
         studentName={session.studentName}
         totalStars={totalStars}
         levelInfo={levelInfo}
+        onStarsClaimed={() => {
+          void refreshProgress()
+        }}
+        onStarsSpent={() => {
+          void refreshProgress()
+        }}
       />
     </>
   )

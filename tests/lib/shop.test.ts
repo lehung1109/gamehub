@@ -14,6 +14,8 @@ import {
   parseInventory,
   getStoredInventory,
   saveStoredInventory,
+  recordBonusStars,
+  calculateEffectiveStars,
 } from '@/lib/shop'
 import type { StudentInventory } from '@/types/shop'
 
@@ -95,6 +97,8 @@ describe('Initial Inventory', () => {
       ownedItemIds: [],
       equippedFrameId: null,
       equippedTitleId: null,
+      spentStars: 0,
+      bonusStars: 0,
     })
   })
 
@@ -300,6 +304,8 @@ describe('Dual-layer Storage Persistence', () => {
       ownedItemIds: ['frame_rainbow', 'title_legend'],
       equippedFrameId: 'frame_rainbow',
       equippedTitleId: 'title_legend',
+      spentStars: 50,
+      bonusStars: 20,
     }
 
     saveStoredInventory('10A1', 'Minh Triết', testInventory)
@@ -311,5 +317,40 @@ describe('Dual-layer Storage Persistence', () => {
   it('returns initial inventory when no stored inventory exists', () => {
     const result = getStoredInventory('CLASS_EMPTY', 'Student 99')
     expect(result).toEqual(getInitialInventory())
+  })
+})
+
+describe('Gamification Balance & Effective Stars', () => {
+  beforeEach(() => {
+    window.localStorage.clear()
+  })
+
+  it('records bonus stars correctly in student inventory', () => {
+    recordBonusStars('CLASS_A', 'Bé Nam', 15)
+    const inv = getStoredInventory('CLASS_A', 'Bé Nam')
+    expect(inv.bonusStars).toBe(15)
+
+    recordBonusStars('CLASS_A', 'Bé Nam', 35)
+    const inv2 = getStoredInventory('CLASS_A', 'Bé Nam')
+    expect(inv2.bonusStars).toBe(50)
+  })
+
+  it('computes effective stars adding bonus stars and subtracting spent stars', () => {
+    recordBonusStars('CLASS_A', 'Bé Nam', 30) // +30 bonus stars
+    const inv = getStoredInventory('CLASS_A', 'Bé Nam')
+    const item = getShopItemById('frame_gold')! // cost 30
+    const purchased = purchaseShopItem(inv, 100, item.id)
+    saveStoredInventory('CLASS_A', 'Bé Nam', purchased.newInventory)
+
+    // Base stars: 50 from Supabase
+    // Bonus stars: 30 from quests
+    // Spent stars: 30 from shop
+    // Net effective stars: 50 + 30 - 30 = 50
+    const effective = calculateEffectiveStars(50, 'CLASS_A', 'Bé Nam')
+    expect(effective).toBe(50)
+
+    // With base 0:
+    const anonEffective = calculateEffectiveStars(0, 'CLASS_A', 'Bé Nam')
+    expect(anonEffective).toBe(0)
   })
 })

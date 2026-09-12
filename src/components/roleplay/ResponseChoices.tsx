@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import { Mic, MicOff } from 'lucide-react'
 import { LearnerResponse } from '@/types/roleplay'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
@@ -24,16 +24,34 @@ export function ResponseChoices({ options, onSelect, disabled }: ResponseChoices
     resetTranscript,
   } = useSpeechRecognition({ lang: 'en-US' })
 
+  // Reset transcript and stop listening when options change (new question/turn)
+  const prevOptionsRef = useRef(options)
+  useEffect(() => {
+    if (prevOptionsRef.current !== options) {
+      prevOptionsRef.current = options
+      resetTranscript()
+      if (isListening) {
+        stopListening()
+      }
+    }
+  }, [options, isListening, stopListening, resetTranscript])
+
   // Check if spoken transcript matches any option
   useEffect(() => {
     if (!isListening && transcript) {
+      let matched = false
       for (const opt of options) {
         const result = evaluatePronunciation(opt.text, transcript, 70)
         if (result.isPassed) {
+          matched = true
           onSelect(opt)
           resetTranscript()
           return
         }
+      }
+      // If voice recognition completed but no option matched, reset transcript to avoid stale leaks
+      if (!matched) {
+        resetTranscript()
       }
     }
   }, [isListening, transcript, options, onSelect, resetTranscript])

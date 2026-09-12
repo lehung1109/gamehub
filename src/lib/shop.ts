@@ -110,6 +110,8 @@ export function getInitialInventory(): StudentInventory {
     ownedItemIds: [],
     equippedFrameId: null,
     equippedTitleId: null,
+    spentStars: 0,
+    bonusStars: 0,
   }
 }
 
@@ -165,17 +167,20 @@ export function purchaseShopItem(
   }
 
   const remainingStars = currentStars - item.cost
+  const updatedSpent = (inventory.spentStars || 0) + item.cost
   let newInventory: StudentInventory
 
   if (item.category === 'frame' || item.category === 'title') {
     newInventory = {
       ...inventory,
+      spentStars: updatedSpent,
       ownedItemIds: [...inventory.ownedItemIds, itemId],
     }
   } else {
     // Utility items (e.g. streak_freeze) do not stay in ownedItemIds
     newInventory = {
       ...inventory,
+      spentStars: updatedSpent,
     }
   }
 
@@ -297,6 +302,14 @@ export function parseInventory(raw: string): StudentInventory {
           typeof parsed.equippedFrameId === 'string' ? parsed.equippedFrameId : null,
         equippedTitleId:
           typeof parsed.equippedTitleId === 'string' ? parsed.equippedTitleId : null,
+        spentStars:
+          typeof parsed.spentStars === 'number' && !isNaN(parsed.spentStars)
+            ? Math.max(0, parsed.spentStars)
+            : 0,
+        bonusStars:
+          typeof parsed.bonusStars === 'number' && !isNaN(parsed.bonusStars)
+            ? Math.max(0, parsed.bonusStars)
+            : 0,
       }
     }
   } catch {
@@ -347,4 +360,51 @@ export function saveStoredInventory(
   } catch {
     // LocalStorage write failed, in-memory store updated
   }
+}
+
+/**
+ * Records bonus stars earned from quests or streak milestones.
+ */
+export function recordBonusStars(
+  classCode: string | undefined,
+  studentName: string | undefined,
+  stars: number
+): StudentInventory {
+  if (stars <= 0) return getStoredInventory(classCode, studentName)
+  const current = getStoredInventory(classCode, studentName)
+  const updated: StudentInventory = {
+    ...current,
+    bonusStars: (current.bonusStars || 0) + stars,
+  }
+  saveStoredInventory(classCode, studentName, updated)
+  return updated
+}
+
+/**
+ * Calculates net stars adjustment (bonus stars - spent stars).
+ */
+export function getGamificationStarsAdjustment(
+  classCode?: string,
+  studentName?: string
+): { bonusStars: number; spentStars: number; netAdjustment: number } {
+  const inventory = getStoredInventory(classCode, studentName)
+  const bonusStars = inventory.bonusStars || 0
+  const spentStars = inventory.spentStars || 0
+  return {
+    bonusStars,
+    spentStars,
+    netAdjustment: bonusStars - spentStars,
+  }
+}
+
+/**
+ * Computes effective stars balance considering base stars and gamification adjustment.
+ */
+export function calculateEffectiveStars(
+  baseStars: number,
+  classCode?: string,
+  studentName?: string
+): number {
+  const { netAdjustment } = getGamificationStarsAdjustment(classCode, studentName)
+  return Math.max(0, (baseStars || 0) + netAdjustment)
 }

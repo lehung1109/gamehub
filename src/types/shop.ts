@@ -15,6 +15,8 @@ export interface StudentInventory {
   ownedItemIds: string[];
   equippedFrameId?: string | null;
   equippedTitleId?: string | null;
+  spentStars?: number;
+  bonusStars?: number;
 }
 
 export interface PurchaseResult {

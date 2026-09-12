@@ -21,6 +21,7 @@ export function DailyStreakBadge({
 }: DailyStreakBadgeProps) {
   const { session, isLoaded } = useStudentSession()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [, setModalCloseCount] = useState(0)
 
   if (!isLoaded) {
     return null
@@ -100,7 +101,10 @@ export function DailyStreakBadge({
 
       <DailyStreakModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false)
+          setModalCloseCount((c) => c + 1)
+        }}
         classCode={effectiveClassCode}
         studentName={effectiveStudentName}
       />

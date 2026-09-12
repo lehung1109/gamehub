@@ -11,6 +11,7 @@ import {
   saveStoredStreak,
   getTodayDateString,
 } from '@/lib/streak'
+import { recordBonusStars } from '@/lib/shop'
 import type { Quest } from '@/types/quests'
 import { Button } from '@/components/ui/button'
 import { CheckCircle2, Trophy, Sparkles } from 'lucide-react'
@@ -77,6 +78,7 @@ export function StudentQuestsTab({
       }
 
       if (result.claimedReward.stars > 0) {
+        recordBonusStars(classCode, studentName, result.claimedReward.stars)
         onStarsClaimed?.(result.claimedReward.stars)
       }
 

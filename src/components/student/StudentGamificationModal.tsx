@@ -80,11 +80,6 @@ export function StudentGamificationModal({
   const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState<boolean>(false)
   const [leaderboardError, setLeaderboardError] = useState<string | null>(null)
 
-  if (initialTab !== prevInitialTab) {
-    setPrevInitialTab(initialTab)
-    setActiveTab(initialTab)
-  }
-
   // Load badges from persistent storage
   const unlockedBadges: UnlockedBadge[] = useMemo(() => {
     if (!isOpen) return []
