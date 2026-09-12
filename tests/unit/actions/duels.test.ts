@@ -275,6 +275,49 @@ describe('Duel Server Actions', () => {
       expect(res.data?.player2?.streak).toBe(0)
       expect(res.data?.status).toBe('in_progress')
     })
+
+    it('auto-reconciles and advances question index when both players have answered current question', async () => {
+      const desyncedRow = {
+        ...sampleDuelRow,
+        status: 'in_progress',
+        current_question_index: 0,
+        player1_score: 180,
+        player1_answers: [
+          { questionIndex: 0, isCorrect: true, elapsedMs: 1000, pointsEarned: 180 },
+        ],
+        player2_name: 'Bob',
+        player2_score: 160,
+        player2_answers: [
+          { questionIndex: 0, isCorrect: true, elapsedMs: 2000, pointsEarned: 160 },
+        ],
+      }
+
+      const reconciledRow = {
+        ...desyncedRow,
+        current_question_index: 1,
+      }
+
+      const single = vi.fn().mockResolvedValue({ data: desyncedRow, error: null })
+      const eq = vi.fn().mockReturnValue({ single })
+      const select = vi.fn().mockReturnValue({ eq })
+
+      const updateSingle = vi.fn().mockResolvedValue({ data: reconciledRow, error: null })
+      const updateSelect = vi.fn().mockReturnValue({ single: updateSingle })
+      const updateEq = vi.fn().mockReturnValue({ select: updateSelect })
+      const update = vi.fn().mockReturnValue({ eq: updateEq })
+
+      mockSupabase.from.mockReturnValue({ select, update })
+
+      const res = await getDuelStateAction('ROOM01')
+      expect(res.success).toBe(true)
+      expect(update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          current_question_index: 1,
+          status: 'in_progress',
+        })
+      )
+      expect(res.data?.currentQuestionIndex).toBe(1)
+    })
   })
 
   describe('submitDuelAnswerAction', () => {

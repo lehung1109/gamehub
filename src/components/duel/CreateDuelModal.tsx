@@ -19,10 +19,10 @@ const AVATARS = ['🦊', '🐼', '🐯', '🦁', '🐰', '🐸', '🦄', '🚀']
 const TOPICS = [
   { id: 'mixed', label: 'Tổng hợp' },
   { id: 'animals', label: 'Động vật' },
-  { id: 'food', label: 'Ẩm thực' },
+  { id: 'fruits', label: 'Hoa quả' },
   { id: 'school', label: 'Trường học' },
-  { id: 'verbs', label: 'Động từ' },
-  { id: 'adjectives', label: 'Tính từ' },
+  { id: 'body-parts', label: 'Cơ thể' },
+  { id: 'family', label: 'Gia đình' },
 ]
 
 const QUESTION_COUNTS = [5, 7, 10]

@@ -37,9 +37,14 @@ export function GlobalLeaderboardTable({
           <span>Thời gian xếp hạng:</span>
         </div>
 
-        <div className="flex items-center gap-2 w-full sm:w-auto p-1 bg-muted rounded-xl">
+        <div
+          role="group"
+          aria-label="Bộ lọc thời gian"
+          className="flex items-center gap-2 w-full sm:w-auto p-1 bg-muted rounded-xl"
+        >
           <button
             type="button"
+            aria-pressed={timeframe === 'weekly'}
             data-testid="timeframe-weekly"
             onClick={() => onTimeframeChange('weekly')}
             className={cn(
@@ -55,6 +60,7 @@ export function GlobalLeaderboardTable({
 
           <button
             type="button"
+            aria-pressed={timeframe === 'all'}
             data-testid="timeframe-all"
             onClick={() => onTimeframeChange('all')}
             className={cn(

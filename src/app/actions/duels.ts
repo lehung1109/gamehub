@@ -65,9 +65,14 @@ function calculateStreakFromAnswers(answers: DuelAnswer[]): number {
 
 function generateDuelQuestions(topic = 'mixed', count = 5): DuelQuestion[] {
   const normalizedTopic = topic.trim().toLowerCase()
+  const topicAliasMap: Record<string, string> = {
+    food: 'fruits',
+  }
+  const effectiveTopic = topicAliasMap[normalizedTopic] || normalizedTopic
+
   let topicPool: WordItem[] = []
-  if (normalizedTopic !== 'mixed' && normalizedTopic !== '') {
-    topicPool = ALL_WORDS.filter((w) => w.topicId.toLowerCase() === normalizedTopic)
+  if (effectiveTopic !== 'mixed' && effectiveTopic !== '') {
+    topicPool = ALL_WORDS.filter((w) => w.topicId.toLowerCase() === effectiveTopic)
   }
   const pool = topicPool.length >= 4 ? topicPool : ALL_WORDS
   const shuffledPool = shuffle(pool)
@@ -287,6 +292,58 @@ export async function getDuelStateAction(
 
     if (error || !data) {
       return { success: false, error: 'Không tìm thấy phòng thách đấu' }
+    }
+
+    // Auto-reconcile desynchronized rounds or concurrent timeout/submission deadlock
+    if (data.status === 'in_progress' || data.status === 'ready') {
+      const rawP1Answers = data.player1_answers as unknown
+      const rawP2Answers = data.player2_answers as unknown
+      const p1Answers: DuelAnswer[] = Array.isArray(rawP1Answers) ? (rawP1Answers as DuelAnswer[]) : []
+      const p2Answers: DuelAnswer[] = Array.isArray(rawP2Answers) ? (rawP2Answers as DuelAnswer[]) : []
+      const currentIndex = Number(data.current_question_index) || 0
+      const questions = Array.isArray(data.questions) ? (data.questions as unknown as DuelQuestion[]) : []
+
+      const p1AnsweredCurrent = p1Answers.some((a) => a.questionIndex === currentIndex)
+      const p2AnsweredCurrent = p2Answers.some((a) => a.questionIndex === currentIndex)
+
+      if (p1AnsweredCurrent && p2AnsweredCurrent) {
+        if (currentIndex + 1 < questions.length) {
+          const { data: reconciled } = await supabase
+            .from('pvp_duels')
+            .update({
+              current_question_index: currentIndex + 1,
+              status: 'in_progress',
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', data.id)
+            .select()
+            .single()
+
+          if (reconciled) {
+            return { success: true, data: mapRowToDuelState(reconciled as Record<string, unknown>) }
+          }
+        } else {
+          const p1FinalScore = Number(data.player1_score) || 0
+          const p2FinalScore = Number(data.player2_score) || 0
+          const p1Name = data.player1_name
+          const p2Name = data.player2_name || 'Đối thủ'
+          const winnerResult = resolveDuelWinner(p1FinalScore, p2FinalScore, p1Name, p2Name)
+          const { data: reconciled } = await supabase
+            .from('pvp_duels')
+            .update({
+              status: 'finished',
+              winner_name: winnerResult.winnerName,
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', data.id)
+            .select()
+            .single()
+
+          if (reconciled) {
+            return { success: true, data: mapRowToDuelState(reconciled as Record<string, unknown>) }
+          }
+        }
+      }
     }
 
     return { success: true, data: mapRowToDuelState(data as Record<string, unknown>) }

@@ -153,9 +153,15 @@ export default function LeaderboardHubPage() {
 
         {/* Tab Switcher */}
         <div className="flex items-center justify-center">
-          <div className="inline-flex items-center p-1.5 rounded-2xl bg-muted border border-border/60 shadow-xs max-w-md w-full">
+          <div
+            role="tablist"
+            aria-label="Chế độ xem bảng xếp hạng"
+            className="inline-flex items-center p-1.5 rounded-2xl bg-muted border border-border/60 shadow-xs max-w-md w-full"
+          >
             <button
               type="button"
+              role="tab"
+              aria-selected={activeTab === 'class'}
               data-testid="tab-class-leaderboard"
               onClick={() => handleTabChange('class')}
               className={cn(
@@ -171,6 +177,8 @@ export default function LeaderboardHubPage() {
 
             <button
               type="button"
+              role="tab"
+              aria-selected={activeTab === 'global'}
               data-testid="tab-global-leaderboard"
               onClick={() => handleTabChange('global')}
               className={cn(
