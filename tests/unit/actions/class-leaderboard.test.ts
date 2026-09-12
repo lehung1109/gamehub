@@ -244,4 +244,66 @@ describe('getClassLeaderboard Server Action', () => {
     expect(resNoMatch.currentStudentRank).toBeNull()
     expect(resNoMatch.entries.every((e) => !e.isCurrentStudent)).toBe(true)
   })
+
+  it('incorporates bonusStars from student_gamification into leaderboard totalStars and ranking', async () => {
+    const mockClass = { id: 'c1', name: 'Lớp 3D', is_active: true }
+    const classSingleMock = vi.fn().mockResolvedValue({ data: mockClass, error: null })
+    const classEqMock = vi.fn().mockReturnValue({ single: classSingleMock })
+    const classSelectMock = vi.fn().mockReturnValue({ eq: classEqMock })
+
+    const mockStudents = [
+      { id: 's1', name: 'Học sinh A', created_at: '2026-01-01' },
+      { id: 's2', name: 'Học sinh B', created_at: '2026-01-02' },
+    ]
+    const studentsEqMock = vi.fn().mockResolvedValue({ data: mockStudents, error: null })
+    const studentsSelectMock = vi.fn().mockReturnValue({ eq: studentsEqMock })
+
+    // Base scores from game sessions:
+    // s1: 40 stars
+    // s2: 45 stars
+    const mockSessions = [
+      { student_id: 's1', score: 40 },
+      { student_id: 's2', score: 45 },
+    ]
+    const sessionsInMock = vi.fn().mockResolvedValue({ data: mockSessions, error: null })
+    const sessionsSelectMock = vi.fn().mockReturnValue({ in: sessionsInMock })
+
+    // Gamification bonus stars:
+    // s1 has 20 bonus stars -> total 60 stars (Level 2: 🐱 Khám phá)
+    // s2 has 0 bonus stars -> total 45 stars (Level 1: 🐣 Tập sự)
+    const mockGamification = [
+      { student_id: 's1', inventory: JSON.stringify({ bonusStars: 20 }) },
+      { student_id: 's2', inventory: { bonusStars: 0 } },
+    ]
+    const gamificationInMock = vi.fn().mockResolvedValue({ data: mockGamification, error: null })
+    const gamificationSelectMock = vi.fn().mockReturnValue({ in: gamificationInMock })
+
+    mockSupabase.from.mockImplementation((table: string) => {
+      if (table === 'classrooms') return { select: classSelectMock }
+      if (table === 'students') return { select: studentsSelectMock }
+      if (table === 'game_sessions') return { select: sessionsSelectMock }
+      if (table === 'student_gamification') return { select: gamificationSelectMock }
+      return { select: vi.fn() }
+    })
+
+    const res = await getClassLeaderboard({ classCode: 'LOP3D' })
+    expect(res.success).toBe(true)
+    expect(res.entries).toHaveLength(2)
+
+    // s1 has 40 + 20 = 60 stars (Rank 1, Level 2)
+    expect(res.entries[0]).toMatchObject({
+      studentId: 's1',
+      totalStars: 60,
+      level: 2,
+      rank: 1,
+    })
+
+    // s2 has 45 stars (Rank 2, Level 1)
+    expect(res.entries[1]).toMatchObject({
+      studentId: 's2',
+      totalStars: 45,
+      level: 1,
+      rank: 2,
+    })
+  })
 })

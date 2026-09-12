@@ -591,7 +591,9 @@ export async function getClassDashboardAction(
 
       const sScore = sess.score ?? 0
       const sTotalQ = sess.total_questions ?? 0
-      const sPercent = hasScore ? Math.round((sess.score! / sess.total_questions!) * 100) : 0
+      const sPercent = hasScore
+        ? Math.min(100, Math.max(0, Math.round((sess.score! / sess.total_questions!) * 100)))
+        : 0
 
       if (hasScore) {
         totalPercentageSum += sPercent
@@ -833,7 +835,9 @@ export async function getStudentDashboardAction(
         typeof sess.total_questions === 'number' &&
         sess.total_questions > 0
 
-      const sPercent = hasScore ? Math.round((sess.score! / sess.total_questions!) * 100) : 0
+      const sPercent = hasScore
+        ? Math.min(100, Math.max(0, Math.round((sess.score! / sess.total_questions!) * 100)))
+        : 0
 
       if (hasScore) {
         totalPercentageSum += sPercent

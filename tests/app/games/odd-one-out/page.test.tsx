@@ -315,7 +315,15 @@ describe("OddOneOutPage Integration Suite", () => {
     expect(soundModule.playLevelClearSound).toHaveBeenCalled();
     expect(mockSubmitSession).toHaveBeenCalledWith(
       expect.objectContaining({
+        score: 2,
         totalQuestions: 2,
+        details: expect.arrayContaining([
+          expect.objectContaining({
+            isCorrect: true,
+            selectedAnswer: "Carrot",
+            correctAnswer: "Carrot",
+          }),
+        ]),
       })
     );
 

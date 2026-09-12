@@ -83,7 +83,7 @@ export default function HangmanPage() {
       }));
 
       submitSession({
-        score,
+        score: history.filter((h) => h.solved).length,
         totalQuestions: totalWords,
         topic: topicId,
         details: sessionDetails,

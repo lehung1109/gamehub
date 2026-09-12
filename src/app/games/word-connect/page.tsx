@@ -67,14 +67,24 @@ export default function WordConnectPage() {
   useEffect(() => {
     if (isCompleted && !prevCompletedRef.current) {
       playLevelClearSound();
+      const sessionDetails = currentLevel.targetWords.map((target) => ({
+        prompt: target.word,
+        selectedAnswer: solvedWords.includes(target.word.toUpperCase()) ? target.word : undefined,
+        correctAnswer: target.word,
+        isCorrect: solvedWords.includes(target.word.toUpperCase()),
+        timeTakenMs: 0,
+        attempts: 1,
+      }));
+
       submitSession({
-        score,
+        score: solvedWords.length,
         totalQuestions: currentLevel.targetWords.length,
         topic: currentLevel.theme || "word-connect",
+        details: sessionDetails,
       });
     }
     prevCompletedRef.current = isCompleted;
-  }, [isCompleted, currentLevel, score, submitSession]);
+  }, [isCompleted, currentLevel, solvedWords, submitSession]);
 
   const handleSelectLetter = useCallback(
     (index: number) => {

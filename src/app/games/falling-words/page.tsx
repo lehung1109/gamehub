@@ -100,7 +100,7 @@ export default function FallingWordsPage() {
       }));
 
       submitSession({
-        score,
+        score: wordsPopped.length,
         totalQuestions: Math.max(wordsPopped.length, 1),
         topic: topicId,
         details: sessionDetails,

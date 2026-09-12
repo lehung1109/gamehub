@@ -102,7 +102,7 @@ export default function CrosswordPage() {
       }));
 
       submitSession({
-        score,
+        score: board.words.filter((w) => w.isSolved).length,
         totalQuestions: board.words.length,
         topic: topicId,
         details: sessionDetails,
@@ -192,7 +192,7 @@ export default function CrosswordPage() {
           </div>
 
           <div className="bg-amber-500/20 px-3.5 py-1.5 rounded-xl border border-amber-500/30 text-base font-black text-amber-400">
-            ⭐ {score} ĐIỂM
+            ⭐ {Math.max(0, score)} ĐIỂM
           </div>
 
           <button

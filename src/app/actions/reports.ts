@@ -434,7 +434,9 @@ export async function getStudentDetailedReportAction(
     const totalScore = rawSessions.reduce((acc, s) => acc + (s.score || 0), 0)
     const totalQuestions = rawSessions.reduce((acc, s) => acc + (s.totalQuestions || 0), 0)
     const overallAccuracyPercent =
-      totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0
+      totalQuestions > 0
+        ? Math.min(100, Math.max(0, Math.round((totalScore / totalQuestions) * 100)))
+        : 0
 
     // 3. Fetch Gamification & SRS deck
     const { data: gamification } = await supabase

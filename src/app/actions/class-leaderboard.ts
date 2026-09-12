@@ -124,6 +124,30 @@ export async function getClassLeaderboard(
       }
     }
 
+    // 4b. Incorporate bonus stars from student_gamification if present
+    try {
+      const gQuery = supabase.from('student_gamification').select('student_id, inventory')
+      if (gQuery && typeof gQuery.in === 'function') {
+        const { data: gamificationRows } = await gQuery.in('student_id', studentIds)
+        if (gamificationRows) {
+          for (const row of gamificationRows) {
+            const current = statsMap.get(row.student_id)
+            if (current && row.inventory) {
+              const inv =
+                typeof row.inventory === 'string'
+                  ? JSON.parse(row.inventory)
+                  : (row.inventory as { bonusStars?: number })
+              if (typeof inv?.bonusStars === 'number' && inv.bonusStars > 0) {
+                current.totalStars += inv.bonusStars
+              }
+            }
+          }
+        }
+      }
+    } catch {
+      // Gracefully continue without bonus stars if table or query is unavailable
+    }
+
     // 5. Build and sort student entries
     const unranked = students.map((student) => {
       const stats = statsMap.get(student.id) || { totalStars: 0, sessionsCount: 0 }

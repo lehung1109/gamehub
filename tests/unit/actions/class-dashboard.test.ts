@@ -535,5 +535,78 @@ describe('getClassDashboardAction', () => {
     expect(student?.equippedTitleId).toBe('title_speed')
     expect(student?.equippedFrameId).toBe('frame_gold')
   })
+
+  it('clamps score percentage to [0, 100] even if raw game score exceeds total_questions', async () => {
+    const mockClass = {
+      id: 'class-1',
+      teacher_id: 'teacher-123',
+      name: 'Lớp 1A',
+      code: 'ABC123',
+      is_active: true,
+      created_at: '2026-08-20T00:00:00Z',
+    }
+
+    const mockStudents = [{ id: 's1', name: 'Nguyễn Văn A' }]
+
+    // An arcade game session that submitted 850 points with total_questions = 5
+    const mockSessions = [
+      {
+        id: 'sess-arcade',
+        student_id: 's1',
+        game_type: 'hangman',
+        score: 850,
+        total_questions: 5,
+        started_at: '2026-08-21T10:00:00Z',
+        completed_at: '2026-08-21T10:05:00Z',
+        students: { id: 's1', name: 'Nguyễn Văn A', classroom_id: 'class-1' },
+        session_details: [],
+      },
+    ]
+
+    mockSupabase.from.mockImplementation((table: string) => {
+      if (table === 'classrooms') {
+        return {
+          select: () => ({
+            eq: () => ({
+              eq: () => ({
+                single: vi.fn().mockResolvedValue({ data: mockClass, error: null }),
+              }),
+            }),
+          }),
+        }
+      }
+      if (table === 'students') {
+        return {
+          select: () => ({
+            eq: vi.fn().mockResolvedValue({ data: mockStudents, error: null }),
+          }),
+        }
+      }
+      if (table === 'student_gamification') {
+        return {
+          select: () => ({
+            in: vi.fn().mockResolvedValue({ data: [], error: null }),
+          }),
+        }
+      }
+      if (table === 'game_sessions') {
+        return {
+          select: () => ({
+            eq: () => ({
+              order: vi.fn().mockResolvedValue({ data: mockSessions, error: null }),
+            }),
+          }),
+        }
+      }
+      return { select: vi.fn() }
+    })
+
+    const res = await getClassDashboardAction('class-1', 'all')
+    expect(res.error).toBeUndefined()
+    expect(res.data?.overallAvgScorePercent).toBe(100)
+    expect(res.data?.recentSessions[0].scorePercent).toBe(100)
+    expect(res.data?.students[0].avgScorePercent).toBe(100)
+    expect(res.data?.gameStats[0].avgScorePercent).toBe(100)
+  })
 })
 

@@ -79,9 +79,14 @@ export default function VocabDefenseGamePage() {
         });
       }
 
+      const estimatedTotal = Math.max(missedQuestions.length + 4, 4);
+      const correctCount = isVictory
+        ? estimatedTotal - missedQuestions.length
+        : Math.max(0, 4 - missedQuestions.length);
+
       submitSession({
-        score,
-        totalQuestions: Math.max(missedQuestions.length + 4, 4),
+        score: correctCount,
+        totalQuestions: estimatedTotal,
         topic: 'vocab-defense',
         details: sessionDetails,
       }).catch((err) => console.error("Failed to submit session to Supabase:", err));

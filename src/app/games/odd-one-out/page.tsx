@@ -76,14 +76,26 @@ export default function OddOneOutPage({
   useEffect(() => {
     if (isCompleted && !prevCompletedRef.current) {
       playLevelClearSound();
+      const sessionDetails = history.map((item) => ({
+        prompt: `Tìm từ khác loại: ${item.oddItem.word} (${item.explanationVi})`,
+        selectedAnswer: item.selectedItem?.word,
+        correctAnswer: item.oddItem.word,
+        isCorrect: item.isCorrect,
+        timeTakenMs: 0,
+        attempts: 1,
+      }));
+
+      const correctCount = history.filter((h) => h.isCorrect).length;
+
       submitSession({
-        score,
+        score: correctCount,
         totalQuestions: questions.length,
         topic: difficulty,
+        details: sessionDetails,
       });
     }
     prevCompletedRef.current = isCompleted;
-  }, [isCompleted, questions.length, score, submitSession, difficulty]);
+  }, [isCompleted, questions.length, history, submitSession, difficulty]);
 
   const handleSpeakWord = useCallback(
     (word: string) => {

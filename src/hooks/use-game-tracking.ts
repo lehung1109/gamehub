@@ -122,7 +122,7 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
 
         const scoreVal = calculatedScore ?? 0
         const totalVal = calculatedTotalQuestions > 0 ? calculatedTotalQuestions : 1
-        const scorePercentage = Math.round((scoreVal / totalVal) * 100)
+        const scorePercentage = Math.min(100, Math.max(0, Math.round((scoreVal / totalVal) * 100)))
 
         const todayStr = getTodayDateString()
 
