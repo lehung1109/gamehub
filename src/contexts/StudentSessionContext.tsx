@@ -37,7 +37,6 @@ import {
 import {
   getStoredQuests,
   saveStoredQuests,
-  getOrGenerateQuests,
   claimQuestReward,
 } from '@/lib/quests'
 import type { StreakState } from '@/types/streak'
@@ -166,12 +165,14 @@ function reconcileGamification(
     unlockedMilestones,
   }
 
-  // 3. Quests reconciliation
-  let mergedQuests: Quest[] = cloudQuests
-  if (cloudQuests.length === 0 && localQuests.length > 0) {
+  // 3. Quests reconciliation: merge cloud quests with local progress and preserve local-only quests
+  let mergedQuests: Quest[] = []
+  if (cloudQuests.length === 0) {
     mergedQuests = localQuests
-  } else if (cloudQuests.length > 0 && localQuests.length > 0) {
-    mergedQuests = cloudQuests.map((cq) => {
+  } else if (localQuests.length === 0) {
+    mergedQuests = cloudQuests
+  } else {
+    const mergedFromCloud = cloudQuests.map((cq) => {
       const lq = localQuests.find((q) => q.id === cq.id)
       if (!lq) return cq
       return {
@@ -181,7 +182,22 @@ function reconcileGamification(
         isClaimed: cq.isClaimed || lq.isClaimed,
       }
     })
+    const localOnlyQuests = localQuests.filter(
+      (lq) => !cloudQuests.some((cq) => cq.id === lq.id)
+    )
+    mergedQuests = [...mergedFromCloud, ...localOnlyQuests]
   }
+
+  // Check if any local quest has higher progress, new completion/claim, or is missing from cloud
+  const hasLocalQuestProgress = localQuests.some((lq) => {
+    const cq = cloudQuests.find((q) => q.id === lq.id)
+    if (!cq) return true
+    return (
+      lq.current > cq.current ||
+      (lq.isCompleted && !cq.isCompleted) ||
+      (lq.isClaimed && !cq.isClaimed)
+    )
+  })
 
   // Effective stars calculation based on profile totalStars and reconciled spent/bonus
   const rawTotalStars = typeof cloudProfile.totalStars === 'number' ? cloudProfile.totalStars : 0
@@ -189,11 +205,11 @@ function reconcileGamification(
 
   const needsCloudSync =
     mergedInventory.ownedItemIds.length > (cloudInv.ownedItemIds?.length || 0) ||
-    mergedInventory.bonusStars > (cloudInv.bonusStars || 0) ||
-    mergedInventory.spentStars > (cloudInv.spentStars || 0) ||
+    (mergedInventory.bonusStars || 0) > (cloudInv.bonusStars || 0) ||
+    (mergedInventory.spentStars || 0) > (cloudInv.spentStars || 0) ||
     mergedStreak.currentStreak > (cloudStreak.currentStreak || 0) ||
-    mergedStreak.freezeCount > (cloudStreak.freezeCount ?? 0) ||
-    (cloudQuests.length === 0 && mergedQuests.length > 0)
+    (mergedStreak.freezeCount ?? 0) > (cloudStreak.freezeCount ?? 0) ||
+    hasLocalQuestProgress
 
   return {
     mergedInventory,
@@ -435,11 +451,13 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   useEffect(() => {
     let isCancelled = false
 
-    if (!session?.classCode || !session?.studentName) {
+    const classCode = session?.classCode
+    const studentName = session?.studentName
+
+    if (!classCode || !studentName) {
       return
     }
 
-    const { classCode, studentName } = session
     const currentFetchId = ++gamificationFetchIdRef.current
 
     fetchGamificationProfile(classCode, studentName, currentFetchId).finally(() => {

@@ -3,7 +3,7 @@ import { renderHook, act, waitFor } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { StudentSessionProvider, useStudentSession } from '@/contexts/StudentSessionContext'
 import * as gamificationActions from '@/app/actions/student-gamification'
-import { saveStoredInventory, saveStoredStreak, saveStoredQuests } from '@/lib/shop'
+import { saveStoredInventory } from '@/lib/shop'
 import { saveStoredStreak as saveStreakToStore } from '@/lib/streak'
 import { saveStoredQuests as saveQuestsToStore } from '@/lib/quests'
 import type { Quest } from '@/types/quests'
@@ -98,12 +98,12 @@ describe('StudentSessionContext Cloud Sync', () => {
       unlockedMilestones: [3],
     })
 
-    let resolveCloud: (value: any) => void
-    const cloudPromise = new Promise((resolve) => {
+    let resolveCloud: (value: gamificationActions.GetStudentGamificationProfileOutput) => void
+    const cloudPromise = new Promise<gamificationActions.GetStudentGamificationProfileOutput>((resolve) => {
       resolveCloud = resolve
     })
     vi.mocked(gamificationActions.getStudentGamificationProfile).mockReturnValue(
-      cloudPromise as Promise<any>
+      cloudPromise
     )
 
     const { result } = renderHook(() => useStudentSession(), { wrapper })
@@ -356,6 +356,7 @@ describe('StudentSessionContext Cloud Sync', () => {
       id: 'quest-daily-1',
       title: 'Chơi 3 ván game',
       description: 'Hoàn thành 3 ván game bất kỳ',
+      icon: '🎮',
       period: 'daily',
       type: 'play_games',
       target: 3,
@@ -461,5 +462,94 @@ describe('StudentSessionContext Cloud Sync', () => {
       await result.current.claimQuest('any_quest_id')
     })
     expect(gamificationActions.claimQuestRewardAction).not.toHaveBeenCalled()
+  })
+
+  it('preserves local quests not yet on cloud and syncs local quest progress', async () => {
+    const localDailyQuest: Quest = {
+      id: 'quest-local-1',
+      title: 'Học từ vựng mới',
+      description: 'Chơi flashcard',
+      icon: '📚',
+      period: 'daily',
+      type: 'play_games',
+      target: 2,
+      current: 1,
+      rewardStars: 10,
+      rewardFreeze: 0,
+      isCompleted: false,
+      isClaimed: false,
+      dateKey: '2026-09-12',
+    }
+
+    const localSharedQuest: Quest = {
+      id: 'quest-shared-1',
+      title: 'Đạt điểm tối đa',
+      description: 'Đạt 80+ điểm',
+      icon: '⭐',
+      period: 'daily',
+      type: 'perfect_score',
+      target: 1,
+      current: 1,
+      rewardStars: 20,
+      rewardFreeze: 1,
+      isCompleted: true,
+      isClaimed: false,
+      dateKey: '2026-09-12',
+    }
+
+    saveQuestsToStore('CLASS_Q_SYNC', 'Bé Mai', [localDailyQuest, localSharedQuest])
+
+    const cloudSharedQuest: Quest = {
+      ...localSharedQuest,
+      current: 0,
+      isCompleted: false,
+    }
+
+    vi.mocked(gamificationActions.getStudentGamificationProfile).mockResolvedValue({
+      success: true,
+      data: {
+        studentId: 'stud-7',
+        totalStars: 50,
+        effectiveStars: 50,
+        streakState: {
+          currentStreak: 2,
+          longestStreak: 2,
+          lastActiveDate: '2026-09-12',
+          freezeCount: 1,
+          totalActiveDays: 2,
+          unlockedMilestones: [],
+        },
+        inventory: {
+          ownedItemIds: [],
+          equippedFrameId: null,
+          equippedTitleId: null,
+          spentStars: 0,
+          bonusStars: 0,
+        },
+        quests: [cloudSharedQuest],
+      },
+    })
+
+    vi.mocked(gamificationActions.syncStudentGamificationState).mockResolvedValue({
+      success: true,
+    })
+
+    const { result } = renderHook(() => useStudentSession(), { wrapper })
+
+    await act(async () => {
+      result.current.joinClass({
+        classCode: 'CLASS_Q_SYNC',
+        studentName: 'Bé Mai',
+      })
+    })
+
+    await waitFor(() => {
+      expect(result.current.quests.length).toBe(2)
+      const shared = result.current.quests.find((q) => q.id === 'quest-shared-1')
+      expect(shared?.isCompleted).toBe(true)
+      const localOnly = result.current.quests.find((q) => q.id === 'quest-local-1')
+      expect(localOnly).toBeDefined()
+      expect(gamificationActions.syncStudentGamificationState).toHaveBeenCalled()
+    })
   })
 })

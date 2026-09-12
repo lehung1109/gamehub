@@ -4,13 +4,28 @@ import { describe, it, expect, vi } from 'vitest'
 import { LevelUpCelebrationDialog } from '@/components/student/LevelUpCelebrationDialog'
 import * as studentSessionHook from '@/hooks/use-student-session'
 
+import { getInitialStreakState } from '@/lib/streak'
+import { getInitialInventory } from '@/lib/shop'
+
 vi.mock('@/hooks/use-student-session', () => ({
   useStudentSession: vi.fn(),
 }))
 
+const defaultGamificationProps = {
+  streakState: getInitialStreakState(),
+  inventory: getInitialInventory(),
+  quests: [],
+  refreshGamification: vi.fn(),
+  syncGamification: vi.fn(),
+  buyShopItem: vi.fn(),
+  toggleEquipItem: vi.fn(),
+  claimQuest: vi.fn(),
+}
+
 describe('LevelUpCelebrationDialog Component', () => {
   it('does not render anything when celebration.show is false', () => {
     vi.mocked(studentSessionHook.useStudentSession).mockReturnValue({
+      ...defaultGamificationProps,
       session: { classCode: 'ABC123', studentName: 'Bé Linh' },
       isAnonymous: false,
       isLoaded: true,
@@ -39,6 +54,7 @@ describe('LevelUpCelebrationDialog Component', () => {
   it('renders level-up congratulatory modal when celebration.show is true', () => {
     const mockDismiss = vi.fn()
     vi.mocked(studentSessionHook.useStudentSession).mockReturnValue({
+      ...defaultGamificationProps,
       session: { classCode: 'ABC123', studentName: 'Bé Linh' },
       isAnonymous: false,
       isLoaded: true,

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { getStoredStreak, getTodayDateString, getEffectiveStreak, getDayDifference, STREAK_MILESTONES } from '@/lib/streak'
+import { getStoredStreak, getTodayDateString, getEffectiveStreak, STREAK_MILESTONES } from '@/lib/streak'
 import { Button } from '@/components/ui/button'
 import { X, Flame } from 'lucide-react'
 import { cn } from '@/lib/utils'
