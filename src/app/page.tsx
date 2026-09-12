@@ -4,6 +4,7 @@ import gamesData from "@/data/games.json";
 import { Game } from "@/types";
 import { GameCatalogSection } from "@/components/game/GameCatalogSection";
 import { DailyStreakBadge } from "@/components/student/DailyStreakBadge";
+import { MistakeNotebookBadge } from "@/components/student/MistakeNotebookBadge";
 import { StudentProfileBadge } from "@/components/StudentProfileBadge";
 import { StudentBadge } from "@/components/student/StudentBadge";
 import { StudentJoinPopup } from "@/components/student/StudentJoinPopup";
@@ -23,9 +24,10 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
     <Container>
       <div className="flex-1 flex flex-col justify-between">
         <div>
-        {/* Top bar with Login link for teachers/admins, Daily streak badge, Student profile badge, and Student badge */}
+        {/* Top bar with Login link for teachers/admins, Daily streak badge, Mistake notebook badge, Student profile badge, and Student badge */}
         <div className="flex flex-wrap justify-end items-center gap-2 mb-2">
           <DailyStreakBadge />
+          <MistakeNotebookBadge />
           <StudentProfileBadge />
           <StudentBadge />
           <Link
