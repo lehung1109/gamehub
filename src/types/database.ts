@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      assignments: {
+        Row: {
+          classroom_id: string
+          config_id: string | null
+          created_at: string | null
+          description: string | null
+          due_date: string
+          game_type: string
+          id: string
+          is_active: boolean | null
+          target_score: number | null
+          title: string
+          topic: string | null
+        }
+        Insert: {
+          classroom_id: string
+          config_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          due_date: string
+          game_type: string
+          id?: string
+          is_active?: boolean | null
+          target_score?: number | null
+          title: string
+          topic?: string | null
+        }
+        Update: {
+          classroom_id?: string
+          config_id?: string | null
+          created_at?: string | null
+          description?: string | null
+          due_date?: string
+          game_type?: string
+          id?: string
+          is_active?: boolean | null
+          target_score?: number | null
+          title?: string
+          topic?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assignments_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       classrooms: {
         Row: {
           code: string
@@ -121,6 +171,109 @@ export type Database = {
           },
         ]
       }
+      live_arena_participants: {
+        Row: {
+          answers: Json
+          arena_id: string
+          avatar: string
+          class_code: string | null
+          created_at: string
+          id: string
+          score: number
+          streak: number
+          student_name: string
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json
+          arena_id: string
+          avatar?: string
+          class_code?: string | null
+          created_at?: string
+          id?: string
+          score?: number
+          streak?: number
+          student_name: string
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json
+          arena_id?: string
+          avatar?: string
+          class_code?: string | null
+          created_at?: string
+          id?: string
+          score?: number
+          streak?: number
+          student_name?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_arena_participants_arena_id_fkey"
+            columns: ["arena_id"]
+            isOneToOne: false
+            referencedRelation: "live_arenas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      live_arenas: {
+        Row: {
+          config_id: string | null
+          created_at: string
+          current_question_index: number
+          game_id: string
+          id: string
+          is_active: boolean
+          pin_code: string
+          questions: Json
+          round_started_at: string | null
+          status: string
+          teacher_id: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          config_id?: string | null
+          created_at?: string
+          current_question_index?: number
+          game_id?: string
+          id?: string
+          is_active?: boolean
+          pin_code: string
+          questions?: Json
+          round_started_at?: string | null
+          status?: string
+          teacher_id?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          config_id?: string | null
+          created_at?: string
+          current_question_index?: number
+          game_id?: string
+          id?: string
+          is_active?: boolean
+          pin_code?: string
+          questions?: Json
+          round_started_at?: string | null
+          status?: string
+          teacher_id?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_arenas_config_id_fkey"
+            columns: ["config_id"]
+            isOneToOne: false
+            referencedRelation: "game_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -189,233 +342,6 @@ export type Database = {
           },
         ]
       }
-      students: {
-        Row: {
-          classroom_id: string
-          created_at: string | null
-          id: string
-          name: string
-        }
-        Insert: {
-          classroom_id: string
-          created_at?: string | null
-          id?: string
-          name: string
-        }
-        Update: {
-          classroom_id?: string
-          created_at?: string | null
-          id?: string
-          name?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "students_classroom_id_fkey"
-            columns: ["classroom_id"]
-            isOneToOne: false
-            referencedRelation: "classrooms"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      student_gamification: {
-        Row: {
-          created_at: string
-          id: string
-          inventory: Json
-          quests: Json
-          srs_deck: Json
-          streak_state: Json
-          student_id: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          inventory?: Json
-          quests?: Json
-          srs_deck?: Json
-          streak_state?: Json
-          student_id: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          inventory?: Json
-          quests?: Json
-          srs_deck?: Json
-          streak_state?: Json
-          student_id?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "student_gamification_student_id_fkey"
-            columns: ["student_id"]
-            isOneToOne: true
-            referencedRelation: "students"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      word_bank: {
-        Row: {
-          cefr_level: string
-          created_at: string
-          created_by: string | null
-          distractors: string[]
-          emoji: string | null
-          english: string
-          example_sentence: string | null
-          example_translation: string | null
-          id: string
-          is_system: boolean
-          part_of_speech: string
-          phonetic: string | null
-          topic: string
-          updated_at: string
-          vietnamese: string
-        }
-        Insert: {
-          cefr_level?: string
-          created_at?: string
-          created_by?: string | null
-          distractors?: string[]
-          emoji?: string | null
-          english: string
-          example_sentence?: string | null
-          example_translation?: string | null
-          id?: string
-          is_system?: boolean
-          part_of_speech?: string
-          phonetic?: string | null
-          topic?: string
-          updated_at?: string
-          vietnamese: string
-        }
-        Update: {
-          cefr_level?: string
-          created_at?: string
-          created_by?: string | null
-          distractors?: string[]
-          emoji?: string | null
-          english?: string
-          example_sentence?: string | null
-          example_translation?: string | null
-          id?: string
-          is_system?: boolean
-          part_of_speech?: string
-          phonetic?: string | null
-          topic?: string
-          updated_at?: string
-          vietnamese?: string
-        }
-        Relationships: []
-      }
-      live_arenas: {
-        Row: {
-          config_id: string | null
-          created_at: string
-          current_question_index: number
-          game_id: string
-          id: string
-          is_active: boolean
-          pin_code: string
-          questions: Json
-          round_started_at: string | null
-          status: string
-          teacher_id: string | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          config_id?: string | null
-          created_at?: string
-          current_question_index?: number
-          game_id?: string
-          id?: string
-          is_active?: boolean
-          pin_code: string
-          questions?: Json
-          round_started_at?: string | null
-          status?: string
-          teacher_id?: string | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          config_id?: string | null
-          created_at?: string
-          current_question_index?: number
-          game_id?: string
-          id?: string
-          is_active?: boolean
-          pin_code?: string
-          questions?: Json
-          round_started_at?: string | null
-          status?: string
-          teacher_id?: string | null
-          title?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "live_arenas_config_id_fkey"
-            columns: ["config_id"]
-            isOneToOne: false
-            referencedRelation: "game_configs"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      live_arena_participants: {
-        Row: {
-          answers: Json
-          arena_id: string
-          avatar: string
-          class_code: string | null
-          created_at: string
-          id: string
-          score: number
-          streak: number
-          student_name: string
-          updated_at: string
-        }
-        Insert: {
-          answers?: Json
-          arena_id: string
-          avatar?: string
-          class_code?: string | null
-          created_at?: string
-          id?: string
-          score?: number
-          streak?: number
-          student_name: string
-          updated_at?: string
-        }
-        Update: {
-          answers?: Json
-          arena_id?: string
-          avatar?: string
-          class_code?: string | null
-          created_at?: string
-          id?: string
-          score?: number
-          streak?: number
-          student_name?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "live_arena_participants_arena_id_fkey"
-            columns: ["arena_id"]
-            isOneToOne: false
-            referencedRelation: "live_arenas"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       student_certificates: {
         Row: {
           achievement_text: string
@@ -475,6 +401,130 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      student_gamification: {
+        Row: {
+          created_at: string
+          id: string
+          inventory: Json
+          quests: Json
+          srs_deck: Json
+          streak_state: Json
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          inventory?: Json
+          quests?: Json
+          srs_deck?: Json
+          streak_state?: Json
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          inventory?: Json
+          quests?: Json
+          srs_deck?: Json
+          streak_state?: Json
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "student_gamification_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: true
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      students: {
+        Row: {
+          classroom_id: string
+          created_at: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          classroom_id: string
+          created_at?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          classroom_id?: string
+          created_at?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "students_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      word_bank: {
+        Row: {
+          cefr_level: string
+          created_at: string
+          created_by: string | null
+          distractors: string[]
+          emoji: string | null
+          english: string
+          example_sentence: string | null
+          example_translation: string | null
+          id: string
+          is_system: boolean
+          part_of_speech: string
+          phonetic: string | null
+          topic: string
+          updated_at: string
+          vietnamese: string
+        }
+        Insert: {
+          cefr_level?: string
+          created_at?: string
+          created_by?: string | null
+          distractors?: string[]
+          emoji?: string | null
+          english: string
+          example_sentence?: string | null
+          example_translation?: string | null
+          id?: string
+          is_system?: boolean
+          part_of_speech?: string
+          phonetic?: string | null
+          topic?: string
+          updated_at?: string
+          vietnamese: string
+        }
+        Update: {
+          cefr_level?: string
+          created_at?: string
+          created_by?: string | null
+          distractors?: string[]
+          emoji?: string | null
+          english?: string
+          example_sentence?: string | null
+          example_translation?: string | null
+          id?: string
+          is_system?: boolean
+          part_of_speech?: string
+          phonetic?: string | null
+          topic?: string
+          updated_at?: string
+          vietnamese?: string
+        }
+        Relationships: []
       }
     }
     Views: {
