@@ -20,6 +20,9 @@ import {
 import { StudentAssignmentsTab } from '@/components/student/StudentAssignmentsTab'
 import { StudentQuestsTab } from '@/components/student/StudentQuestsTab'
 import { StudentShopTab } from '@/components/student/StudentShopTab'
+import { MistakeNotebookTab } from '@/components/student/MistakeNotebookTab'
+import { getStoredSrsDeck } from '@/lib/srs-storage'
+import { getDueCards } from '@/lib/srs'
 
 export interface StudentGamificationModalProps {
   isOpen: boolean
@@ -28,12 +31,12 @@ export interface StudentGamificationModalProps {
   studentName: string
   totalStars: number
   levelInfo: LevelProgress
-  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop'
+  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop' | 'notebook'
   onStarsClaimed?: (stars: number) => void
   onStarsSpent?: (newTotalStars: number) => void
 }
 
-type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop'
+type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop' | 'notebook'
 
 export function StudentGamificationModal({
   isOpen,
@@ -84,6 +87,13 @@ export function StudentGamificationModal({
   const unlockedBadges: UnlockedBadge[] = useMemo(() => {
     if (!isOpen) return []
     return getStoredBadges(classCode, studentName)
+  }, [isOpen, classCode, studentName])
+
+  // SRS mistake deck due count
+  const dueCount = useMemo(() => {
+    if (!isOpen) return 0
+    const deck = getStoredSrsDeck(classCode, studentName)
+    return getDueCards(deck).length
   }, [isOpen, classCode, studentName])
 
   const [reloadKey, setReloadKey] = useState(0)
@@ -240,6 +250,31 @@ export function StudentGamificationModal({
           >
             <span>🎯</span>
             <span>Nhiệm vụ</span>
+          </button>
+
+          <button
+            role="tab"
+            aria-selected={activeTab === 'notebook'}
+            aria-controls="panel-notebook"
+            data-testid="tab-notebook"
+            onClick={() => setActiveTab('notebook')}
+            className={cn(
+              'flex-1 min-w-[90px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none relative',
+              activeTab === 'notebook'
+                ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
+                : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
+            )}
+          >
+            <span>📖</span>
+            <span>Sổ tay</span>
+            {dueCount > 0 && (
+              <span
+                data-testid="notebook-due-badge"
+                className="ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-black bg-rose-500 text-white shrink-0 leading-none"
+              >
+                {dueCount}
+              </span>
+            )}
           </button>
 
           <button
@@ -711,6 +746,17 @@ export function StudentGamificationModal({
                 studentName={studentName}
                 totalStars={currentStars}
                 onStarsSpent={handleStarsSpent}
+              />
+            </div>
+          )}
+
+          {/* TAB 7: NOTEBOOK */}
+          {activeTab === 'notebook' && (
+            <div id="panel-notebook" role="tabpanel" className="space-y-4">
+              <MistakeNotebookTab
+                classCode={classCode}
+                studentName={studentName}
+                onStarsEarned={handleStarsClaimed}
               />
             </div>
           )}
