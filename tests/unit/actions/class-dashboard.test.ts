@@ -465,5 +465,75 @@ describe('getClassDashboardAction', () => {
     expect(giraffe?.errorRatePercent).toBe(100)
     expect(giraffe?.incorrectStudentCount).toBe(2)
   })
+
+  it('attaches student gamification fields (streaks, title, frame) to StudentSummary', async () => {
+    const mockClass = {
+      id: 'class-1',
+      teacher_id: 'teacher-123',
+      name: 'Lớp 1A',
+      code: 'ABC123',
+      is_active: true,
+      created_at: '2026-08-20T00:00:00Z',
+    }
+
+    const mockStudents = [
+      { id: 's1', classroom_id: 'class-1', name: 'Bé Lan', created_at: '2026-08-21T00:00:00Z' },
+    ]
+
+    const mockGamification = [
+      {
+        student_id: 's1',
+        streak_state: { currentStreak: 5, longestStreak: 10 },
+        inventory: { equippedTitleId: 'title_speed', equippedFrameId: 'frame_gold' },
+      },
+    ]
+
+    mockSupabase.from.mockImplementation((table: string) => {
+      if (table === 'classrooms') {
+        return {
+          select: () => ({
+            eq: () => ({
+              eq: () => ({
+                single: vi.fn().mockResolvedValue({ data: mockClass, error: null }),
+              }),
+            }),
+          }),
+        }
+      }
+      if (table === 'students') {
+        return {
+          select: () => ({
+            eq: vi.fn().mockResolvedValue({ data: mockStudents, error: null }),
+          }),
+        }
+      }
+      if (table === 'student_gamification') {
+        return {
+          select: () => ({
+            in: vi.fn().mockResolvedValue({ data: mockGamification, error: null }),
+          }),
+        }
+      }
+      if (table === 'game_sessions') {
+        return {
+          select: () => ({
+            eq: () => ({
+              order: vi.fn().mockResolvedValue({ data: [], error: null }),
+            }),
+          }),
+        }
+      }
+      return { select: vi.fn() }
+    })
+
+    const res = await getClassDashboardAction('class-1', 'all')
+    expect(res.error).toBeUndefined()
+    expect(res.data?.students.length).toBe(1)
+    const student = res.data?.students[0]
+    expect(student?.currentStreak).toBe(5)
+    expect(student?.longestStreak).toBe(10)
+    expect(student?.equippedTitleId).toBe('title_speed')
+    expect(student?.equippedFrameId).toBe('frame_gold')
+  })
 })
 

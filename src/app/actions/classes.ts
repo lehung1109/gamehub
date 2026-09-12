@@ -5,7 +5,46 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { generateClassCode } from '@/lib/class-code'
 import { calculateClassDifficultWords, getGameLabel } from '@/lib/analytics'
+import { getInitialStreakState, parseStreakState } from '@/lib/streak'
+import { getInitialInventory, parseInventory } from '@/lib/shop'
+import type { StreakState } from '@/types/streak'
+import type { StudentInventory } from '@/types/shop'
 import type { Database } from '@/types/database'
+
+function parseDbStreakState(raw: unknown): StreakState {
+  if (!raw) return getInitialStreakState()
+  if (typeof raw === 'string') return parseStreakState(raw)
+  if (typeof raw === 'object' && raw !== null) {
+    const obj = raw as Record<string, unknown>
+    return {
+      currentStreak: typeof obj.currentStreak === 'number' ? obj.currentStreak : 0,
+      longestStreak: typeof obj.longestStreak === 'number' ? obj.longestStreak : 0,
+      lastActiveDate: typeof obj.lastActiveDate === 'string' ? obj.lastActiveDate : '',
+      freezeCount: typeof obj.freezeCount === 'number' ? obj.freezeCount : 0,
+      totalActiveDays: typeof obj.totalActiveDays === 'number' ? obj.totalActiveDays : 0,
+      unlockedMilestones: Array.isArray(obj.unlockedMilestones)
+        ? (obj.unlockedMilestones as number[])
+        : [],
+    }
+  }
+  return getInitialStreakState()
+}
+
+function parseDbInventory(raw: unknown): StudentInventory {
+  if (!raw) return getInitialInventory()
+  if (typeof raw === 'string') return parseInventory(raw)
+  if (typeof raw === 'object' && raw !== null) {
+    const obj = raw as Record<string, unknown>
+    return {
+      ownedItemIds: Array.isArray(obj.ownedItemIds) ? (obj.ownedItemIds as string[]) : [],
+      equippedFrameId: typeof obj.equippedFrameId === 'string' ? obj.equippedFrameId : null,
+      equippedTitleId: typeof obj.equippedTitleId === 'string' ? obj.equippedTitleId : null,
+      spentStars: typeof obj.spentStars === 'number' ? obj.spentStars : 0,
+      bonusStars: typeof obj.bonusStars === 'number' ? obj.bonusStars : 0,
+    }
+  }
+  return getInitialInventory()
+}
 
 export type Classroom = Database['public']['Tables']['classrooms']['Row']
 export type ClassroomWithCount = Classroom & {
@@ -27,6 +66,10 @@ export interface StudentSummary {
   sessionCount: number
   avgScorePercent: number
   lastActiveAt: string | null
+  currentStreak?: number
+  longestStreak?: number
+  equippedFrameId?: string | null
+  equippedTitleId?: string | null
 }
 
 export interface RecentSession {
@@ -125,6 +168,10 @@ export interface StudentDashboardData {
   sessions: StudentSessionItem[]
   difficultWords: DifficultWordItem[]
   timeframe: 'all' | '7d' | '30d'
+  currentStreak?: number
+  longestStreak?: number
+  equippedFrameId?: string | null
+  equippedTitleId?: string | null
 }
 
 export async function createClassAction(input: {
@@ -424,6 +471,50 @@ export async function getClassDashboardAction(
       studentMap.set(st.id, st.name)
     }
 
+    // Query gamification records for all students in this classroom
+    const studentIds = students.map((s) => s.id)
+    const gamificationMap = new Map<
+      string,
+      {
+        currentStreak: number
+        longestStreak: number
+        equippedFrameId: string | null
+        equippedTitleId: string | null
+      }
+    >()
+
+    if (studentIds.length > 0) {
+      try {
+        const query = supabase.from('student_gamification').select('*')
+        if (query && typeof query.in === 'function') {
+          const { data: gamificationData, error: gamificationError } = await query.in(
+            'student_id',
+            studentIds
+          )
+
+          if (gamificationError) {
+            console.error(
+              '[getClassDashboardAction] Error fetching student_gamification:',
+              gamificationError
+            )
+          } else if (gamificationData) {
+            for (const row of gamificationData) {
+              const streak = parseDbStreakState(row.streak_state)
+              const inv = parseDbInventory(row.inventory)
+              gamificationMap.set(row.student_id, {
+                currentStreak: streak.currentStreak ?? 0,
+                longestStreak: streak.longestStreak ?? 0,
+                equippedFrameId: inv.equippedFrameId ?? null,
+                equippedTitleId: inv.equippedTitleId ?? null,
+              })
+            }
+          }
+        }
+      } catch (err) {
+        console.error('[getClassDashboardAction] Exception querying student_gamification:', err)
+      }
+    }
+
     // 3. Fetch game sessions for students in this classroom with session_details
     let sessionsQuery = supabase
       .from('game_sessions')
@@ -600,12 +691,17 @@ export async function getClassDashboardAction(
                 stat.scorePercentages.reduce((a, b) => a + b, 0) / stat.scorePercentages.length
               )
             : 0
+        const gamification = gamificationMap.get(id)
         return {
           id,
           name: studentMap.get(id) || 'Học sinh',
           sessionCount: stat.sessionCount,
           avgScorePercent: avg,
           lastActiveAt: stat.lastActiveAt,
+          currentStreak: gamification?.currentStreak ?? 0,
+          longestStreak: gamification?.longestStreak ?? 0,
+          equippedFrameId: gamification?.equippedFrameId ?? null,
+          equippedTitleId: gamification?.equippedTitleId ?? null,
         }
       })
       .sort((a, b) => b.sessionCount - a.sessionCount || a.name.localeCompare(b.name))
@@ -849,6 +945,32 @@ export async function getStudentDashboardAction(
       })
       .sort((a, b) => b.incorrectCount - a.incorrectCount || a.accuracyPercent - b.accuracyPercent)
 
+    // 4. Fetch gamification profile for this student
+    let streakState = getInitialStreakState()
+    let inventory = getInitialInventory()
+
+    try {
+      const query = supabase.from('student_gamification').select('*')
+      if (query && typeof query.eq === 'function') {
+        const eqQuery = query.eq('student_id', cleanStudentId)
+        if (eqQuery && typeof eqQuery.maybeSingle === 'function') {
+          const { data: gamificationRow, error: gamificationError } = await eqQuery.maybeSingle()
+
+          if (gamificationError) {
+            console.error(
+              '[getStudentDashboardAction] Error fetching student_gamification:',
+              gamificationError
+            )
+          } else if (gamificationRow) {
+            streakState = parseDbStreakState(gamificationRow.streak_state)
+            inventory = parseDbInventory(gamificationRow.inventory)
+          }
+        }
+      }
+    } catch (err) {
+      console.error('[getStudentDashboardAction] Exception querying student_gamification:', err)
+    }
+
     const studentDashboardData: StudentDashboardData = {
       classroom,
       student,
@@ -859,6 +981,10 @@ export async function getStudentDashboardAction(
       sessions,
       difficultWords,
       timeframe,
+      currentStreak: streakState.currentStreak ?? 0,
+      longestStreak: streakState.longestStreak ?? 0,
+      equippedFrameId: inventory.equippedFrameId ?? null,
+      equippedTitleId: inventory.equippedTitleId ?? null,
     }
 
     return { data: studentDashboardData }

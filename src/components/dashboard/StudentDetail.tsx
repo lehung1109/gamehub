@@ -4,6 +4,7 @@ import React, { useState, useTransition } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { StudentDashboardData, StudentSessionItem } from '@/app/actions/classes'
+import { getShopItemById } from '@/lib/shop'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -61,7 +62,13 @@ export function StudentDetail({ data }: StudentDetailProps) {
     sessions,
     difficultWords,
     timeframe,
+    currentStreak,
+    equippedFrameId,
+    equippedTitleId,
   } = data
+
+  const frame = equippedFrameId ? getShopItemById(equippedFrameId) : null
+  const title = equippedTitleId ? getShopItemById(equippedTitleId) : null
 
   const handleTimeframeChange = (newTf: 'all' | '7d' | '30d') => {
     const params = new URLSearchParams(searchParams?.toString() || '')
@@ -105,13 +112,35 @@ export function StudentDetail({ data }: StudentDetailProps) {
             Quay lại lớp {classroom.name}
           </Link>
           <div className="flex items-center gap-3 flex-wrap">
-            <div className="size-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-black text-base shadow-2xs">
-              <User className="size-5" />
+            <div
+              className={`size-12 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-black text-base shadow-2xs shrink-0 ${
+                frame?.cssClass || ''
+              }`}
+            >
+              <User className="size-6" />
             </div>
             <div>
-              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">
-                {student.name}
-              </h1>
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900">
+                  {student.name}
+                </h1>
+                {currentStreak && currentStreak > 0 ? (
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+                    🔥 {currentStreak} ngày
+                  </span>
+                ) : null}
+                {title ? (
+                  <span
+                    className={`inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full border ${
+                      title.titleBadgeClass ||
+                      'bg-indigo-50 text-indigo-700 border-indigo-200'
+                    }`}
+                  >
+                    {title.icon ? <span>{title.icon}</span> : null}
+                    <span>{title.name}</span>
+                  </span>
+                ) : null}
+              </div>
               <p className="text-xs text-slate-500 flex items-center gap-2 pt-0.5">
                 <span>
                   Lớp: <strong className="text-slate-700">{classroom.name}</strong>

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { ClassDashboardData } from '@/app/actions/classes'
 import { copyToClipboard } from '@/lib/clipboard'
+import { getShopItemById } from '@/lib/shop'
 import { DifficultWordsAnalysis } from '@/components/dashboard/DifficultWordsAnalysis'
 import { AssignmentManager } from '@/components/class/AssignmentManager'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -70,6 +71,16 @@ export function ClassOverview({ data }: ClassOverviewProps) {
     timeframe,
     difficultWords,
   } = data
+
+  const topStreakStudent = students.reduce<(typeof students)[0] | null>((top, s) => {
+    const sStreak = s.currentStreak || 0
+    if (sStreak <= 0) return top
+    if (!top || sStreak > (top.currentStreak || 0)) {
+      return s
+    }
+    return top
+  }, null)
+  const hasTopStreak = Boolean(topStreakStudent && (topStreakStudent.currentStreak || 0) > 0)
 
   const handleCopyCode = async () => {
     const ok = await copyToClipboard(classroom.code)
@@ -268,7 +279,11 @@ export function ClassOverview({ data }: ClassOverviewProps) {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div
+        className={`grid grid-cols-1 sm:grid-cols-2 ${
+          hasTopStreak ? 'lg:grid-cols-5' : 'lg:grid-cols-4'
+        } gap-4`}
+      >
         {/* Card 1: Total Students */}
         <Card className="border-slate-200 shadow-xs bg-white">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -336,6 +351,28 @@ export function ClassOverview({ data }: ClassOverviewProps) {
             </p>
           </CardContent>
         </Card>
+
+        {/* Card 5: Top Streak */}
+        {hasTopStreak && topStreakStudent && (
+          <Card className="border-slate-200 shadow-xs bg-white">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                Chuỗi học tập đỉnh nhất
+              </CardTitle>
+              <div className="size-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center">
+                <Flame className="size-4" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-black text-orange-600">
+                🔥 {topStreakStudent.currentStreak}
+              </div>
+              <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                {topStreakStudent.name}
+              </p>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Homework & Assignment Management */}
@@ -474,12 +511,49 @@ export function ClassOverview({ data }: ClassOverviewProps) {
                           </td>
                         </tr>
                       ) : (
-                        filteredStudents.map((student) => (
-                          <tr key={student.id} className="hover:bg-slate-50/80 transition-colors">
-                            <td className="py-3 px-3 font-bold text-slate-800">{student.name}</td>
-                            <td className="py-3 px-3 text-center text-slate-600 font-medium">
-                              {student.sessionCount}
-                            </td>
+                        filteredStudents.map((student) => {
+                          const frame = student.equippedFrameId
+                            ? getShopItemById(student.equippedFrameId)
+                            : null
+                          const title = student.equippedTitleId
+                            ? getShopItemById(student.equippedTitleId)
+                            : null
+
+                          return (
+                            <tr key={student.id} className="hover:bg-slate-50/80 transition-colors">
+                              <td className="py-3 px-3">
+                                <div className="flex items-center gap-2.5">
+                                  <div
+                                    className={`size-8 rounded-full bg-indigo-50 flex items-center justify-center text-xs font-black text-indigo-700 shrink-0 ${
+                                      frame?.cssClass || ''
+                                    }`}
+                                  >
+                                    {student.name.charAt(0).toUpperCase()}
+                                  </div>
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="font-bold text-slate-800">{student.name}</span>
+                                    {student.currentStreak && student.currentStreak > 0 ? (
+                                      <span className="inline-flex items-center gap-1 text-2xs font-bold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200">
+                                        🔥 {student.currentStreak} ngày
+                                      </span>
+                                    ) : null}
+                                    {title ? (
+                                      <span
+                                        className={`inline-flex items-center gap-1 text-2xs font-semibold px-2 py-0.5 rounded-full border ${
+                                          title.titleBadgeClass ||
+                                          'bg-indigo-50 text-indigo-700 border-indigo-200'
+                                        }`}
+                                      >
+                                        {title.icon ? <span>{title.icon}</span> : null}
+                                        <span>{title.name}</span>
+                                      </span>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="py-3 px-3 text-center text-slate-600 font-medium">
+                                {student.sessionCount}
+                              </td>
                             <td className="py-3 px-3 text-center">
                               <Badge
                                 variant="secondary"
@@ -515,8 +589,8 @@ export function ClassOverview({ data }: ClassOverviewProps) {
                               </Link>
                             </td>
                           </tr>
-                        ))
-                      )}
+                        )
+                      }))}
                     </tbody>
                   </table>
                 </div>
