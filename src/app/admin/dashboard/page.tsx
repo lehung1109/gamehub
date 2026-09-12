@@ -8,7 +8,7 @@ import type { GameConfig } from '@/types/config'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Settings, Gamepad2, Sparkles, Layers } from 'lucide-react'
+import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen } from 'lucide-react'
 import { isValidGameId } from '@/lib/game-config-schema'
 
 export const dynamic = 'force-dynamic'
@@ -76,7 +76,7 @@ export default async function AdminDashboardPage() {
       </div>
       
       {/* Quick Access */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Link href="/admin/dashboard/classes" className="group">
           <Card className="border-indigo-100 bg-indigo-50/50 hover:bg-indigo-50 hover:border-indigo-200 transition-colors shadow-none">
             <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
@@ -86,10 +86,48 @@ export default async function AdminDashboardPage() {
                 </div>
                 <div>
                   <CardTitle className="text-base text-indigo-900">Quản lý Lớp học</CardTitle>
-                  <CardDescription className="text-indigo-700/70 text-xs mt-0.5">Tạo mã lớp & theo dõi tiến trình học sinh</CardDescription>
+                  <CardDescription className="text-indigo-700/70 text-xs mt-0.5">Tạo mã lớp & theo dõi học sinh</CardDescription>
                 </div>
               </div>
               <div className="text-indigo-400 group-hover:text-indigo-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
+
+        <Link href="/admin/word-bank" className="group">
+          <Card className="border-emerald-100 bg-emerald-50/50 hover:bg-emerald-50 hover:border-emerald-200 transition-colors shadow-none">
+            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                  <BookOpen className="size-5" />
+                </div>
+                <div>
+                  <CardTitle className="text-base text-emerald-900">Ngân hàng Từ vựng</CardTitle>
+                  <CardDescription className="text-emerald-700/70 text-xs mt-0.5">Kho từ vựng tập trung đa game</CardDescription>
+                </div>
+              </div>
+              <div className="text-emerald-400 group-hover:text-emerald-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
+
+        <Link href="/admin/ai-generator" className="group">
+          <Card className="border-purple-100 bg-purple-50/50 hover:bg-purple-50 hover:border-purple-200 transition-colors shadow-none">
+            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                  <Sparkles className="size-5" />
+                </div>
+                <div>
+                  <CardTitle className="text-base text-purple-900">AI Content Studio</CardTitle>
+                  <CardDescription className="text-purple-700/70 text-xs mt-0.5">Sinh học liệu & xuất 1-click</CardDescription>
+                </div>
+              </div>
+              <div className="text-purple-400 group-hover:text-purple-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </div>
             </CardHeader>
