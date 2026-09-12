@@ -44,3 +44,30 @@ export interface RoadmapProgressState {
   completedNodeIds: string[];
   nodesProgress: Record<string, StudentNodeProgress>;
 }
+
+export interface WorldProgressOverview {
+  worldId: string;
+  titleVi: string;
+  completionRate: number;
+  averageStars: number;
+}
+
+export interface BottleneckNodeOverview {
+  nodeId: string;
+  titleVi: string;
+  failRate: number;
+}
+
+export interface StudentRoadmapSummary {
+  studentId: string;
+  studentName: string;
+  completedNodesCount: number;
+  totalStars: number;
+}
+
+export interface ClassRoadmapOverview {
+  totalStudents: number;
+  worldProgress: WorldProgressOverview[];
+  bottleneckNodes: BottleneckNodeOverview[];
+  studentsProgress?: StudentRoadmapSummary[];
+}
