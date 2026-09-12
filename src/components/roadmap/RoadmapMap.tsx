@@ -9,6 +9,7 @@ export interface RoadmapMapProps {
   world: RoadmapWorld;
   progressState: RoadmapProgressState;
   onSelectNode: (node: RoadmapNode) => void;
+  isWorldUnlocked?: boolean;
   className?: string;
 }
 
@@ -16,20 +17,24 @@ export function RoadmapMap({
   world,
   progressState,
   onSelectNode,
+  isWorldUnlocked: isWorldUnlockedProp = true,
   className = '',
 }: RoadmapMapProps) {
   const nodes = world.nodes;
   const rowHeight = 140;
   const topPadding = 60;
   const totalHeight = nodes.length * rowHeight + topPadding;
+  const isWorldOpen = isWorldUnlockedProp;
 
   // Determine current active node (first incomplete unlocked node, or last unlocked)
-  const unlockedNodes = nodes.filter((node) => isNodeUnlocked(node, progressState));
+  const unlockedNodes = isWorldOpen
+    ? nodes.filter((node) => isNodeUnlocked(node, progressState))
+    : [];
   const currentActiveNode =
     unlockedNodes.find((node) => {
       const p = progressState.nodesProgress[node.id];
       return !p || !p.isCompleted;
-    }) || unlockedNodes[unlockedNodes.length - 1];
+    }) || (unlockedNodes.length > 0 ? unlockedNodes[unlockedNodes.length - 1] : undefined);
 
   // S-Curve horizontal percentage offsets (alternating center -> right -> center -> left -> center)
   const getXPercent = (index: number, isBoss: boolean): number => {
@@ -42,8 +47,8 @@ export function RoadmapMap({
     node,
     x: getXPercent(index, node.isBossCheckpoint),
     y: index * rowHeight + topPadding,
-    isUnlocked: isNodeUnlocked(node, progressState),
-    isCurrent: node.id === currentActiveNode?.id,
+    isUnlocked: isWorldOpen && isNodeUnlocked(node, progressState),
+    isCurrent: Boolean(currentActiveNode && node.id === currentActiveNode.id),
     progress: progressState.nodesProgress[node.id],
   }));
 

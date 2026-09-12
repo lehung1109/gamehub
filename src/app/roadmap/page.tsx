@@ -6,7 +6,7 @@ import { ArrowLeft, Star, MapPin } from 'lucide-react';
 import worldsData from '@/data/curriculum/worlds.json';
 import type { RoadmapWorld, RoadmapNode } from '@/types/roadmap';
 import { useStudentSession } from '@/contexts/StudentSessionContext';
-import { isNodeUnlocked } from '@/lib/roadmap';
+import { isNodeUnlocked, isWorldUnlocked } from '@/lib/roadmap';
 import { Container } from '@/components/ui/container';
 import { WorldSelector } from '@/components/roadmap/WorldSelector';
 import { RoadmapMap } from '@/components/roadmap/RoadmapMap';
@@ -26,6 +26,7 @@ export default function RoadmapPage() {
   const { roadmapState } = useStudentSession();
 
   const selectedWorld = worlds.find((w) => w.id === selectedWorldId) || worlds[0];
+  const isWorldOpen = isWorldUnlocked(selectedWorld, worlds, roadmapState);
 
   const handleSelectNode = (node: RoadmapNode) => {
     setSelectedNode(node);
@@ -38,10 +39,11 @@ export default function RoadmapPage() {
     0
   );
   const maxWorldStars = selectedWorld.nodes.length * 3;
-  const worldProgressPercent = Math.round((currentWorldStars / maxWorldStars) * 100);
+  const worldProgressPercent =
+    maxWorldStars > 0 ? Math.round((currentWorldStars / maxWorldStars) * 100) : 0;
 
   const isSelectedNodeUnlocked = selectedNode
-    ? isNodeUnlocked(selectedNode, roadmapState)
+    ? isWorldOpen && isNodeUnlocked(selectedNode, roadmapState)
     : false;
 
   const selectedNodeProgress = selectedNode
@@ -67,7 +69,7 @@ export default function RoadmapPage() {
                 <span>🗺️</span>
                 <span>Lộ Trình Học Tập</span>
               </h1>
-              <p className="text-[11px] text-muted-foreground font-medium hidden sm:block">
+              <p className="text-xs text-muted-foreground font-medium hidden sm:block">
                 Chinh phục 4 thế giới tiếng Anh theo chuẩn CEFR
               </p>
             </div>
@@ -83,7 +85,7 @@ export default function RoadmapPage() {
             >
               <Star className="size-4 text-amber-500 fill-amber-400" />
               <span>{roadmapState.totalStars}</span>
-              <span className="text-[10px] text-amber-700 dark:text-amber-400 font-bold hidden sm:inline">
+              <span className="text-xs text-amber-700 dark:text-amber-400 font-bold hidden sm:inline">
                 sao
               </span>
             </div>
@@ -156,6 +158,7 @@ export default function RoadmapPage() {
           <RoadmapMap
             world={selectedWorld}
             progressState={roadmapState}
+            isWorldUnlocked={isWorldOpen}
             onSelectNode={handleSelectNode}
           />
         </main>
@@ -166,6 +169,7 @@ export default function RoadmapPage() {
         node={selectedNode}
         progress={selectedNodeProgress}
         isUnlocked={isSelectedNodeUnlocked}
+        isWorldUnlocked={isWorldOpen}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />

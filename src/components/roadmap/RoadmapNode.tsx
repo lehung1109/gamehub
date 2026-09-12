@@ -76,7 +76,7 @@ export function RoadmapNodeComponent({
 
         {/* Node Order Badge */}
         {!isBoss && (
-          <span className="absolute -bottom-1 -right-1 bg-slate-900/90 text-white text-[10px] sm:text-xs font-black size-5 sm:size-6 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-xs">
+          <span className="absolute -bottom-1 -right-1 bg-slate-900/90 text-white text-xs font-black size-5 sm:size-6 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-xs">
             {node.order}
           </span>
         )}

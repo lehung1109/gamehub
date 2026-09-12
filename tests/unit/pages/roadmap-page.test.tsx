@@ -74,4 +74,22 @@ describe('RoadmapPage', () => {
     expect(screen.getByTestId('roadmap-node-modal')).toBeDefined();
     expect(screen.getByRole('link', { name: /Chơi lại/i })).toBeDefined();
   });
+
+  it('locks nodes and disables CTA when selecting a locked world', () => {
+    render(<RoadmapPage />);
+
+    // Click World 2 (Vương Quốc Ghép Từ) which requires 12 stars + World 1 Boss completion
+    const world2Tab = screen.getByText('Vương Quốc Ghép Từ');
+    fireEvent.click(world2Tab);
+
+    // Nodes in World 2 should be rendered and locked
+    const nodeW2N1 = screen.getByTestId('roadmap-node-w2-n1');
+    expect(nodeW2N1).toBeDefined();
+
+    // Clicking node in locked world opens modal with locked state
+    fireEvent.click(nodeW2N1);
+    expect(screen.getByTestId('roadmap-node-modal')).toBeDefined();
+    expect(screen.getByText(/Thế giới này chưa được mở khóa/i)).toBeDefined();
+    expect(screen.queryByRole('link', { name: /Chơi ngay/i })).toBeNull();
+  });
 });

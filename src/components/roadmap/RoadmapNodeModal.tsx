@@ -9,6 +9,7 @@ export interface RoadmapNodeModalProps {
   node: RoadmapNode | null;
   progress?: StudentNodeProgress;
   isUnlocked: boolean;
+  isWorldUnlocked?: boolean;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -17,6 +18,7 @@ export function RoadmapNodeModal({
   node,
   progress,
   isUnlocked,
+  isWorldUnlocked = true,
   isOpen,
   onClose,
 }: RoadmapNodeModalProps) {
@@ -167,7 +169,9 @@ export function RoadmapNodeModal({
           <div className="flex items-start gap-2.5 p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 mb-5 text-xs text-rose-800 dark:text-rose-300">
             <Lock className="size-4 shrink-0 mt-0.5" />
             <p>
-              Chặng này chưa được mở khóa. Hãy hoàn thành các chặng trước đạt tối thiểu 1 sao để tiếp tục hành trình!
+              {!isWorldUnlocked
+                ? 'Thế giới này chưa được mở khóa. Hãy hoàn thành Thử thách Trùm ở thế giới trước đó để mở khóa thế giới này!'
+                : 'Chặng này chưa được mở khóa. Hãy hoàn thành các chặng trước đạt tối thiểu 1 sao để tiếp tục hành trình!'}
             </p>
           </div>
         )}

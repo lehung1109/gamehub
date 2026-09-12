@@ -187,6 +187,22 @@ describe('RoadmapNodeModal', () => {
     expect(screen.queryByRole('link', { name: /Chơi ngay/i })).toBeNull();
   });
 
+  it('renders locked world notice when isWorldUnlocked is false', () => {
+    render(
+      <RoadmapNodeModal
+        node={mockNode}
+        progress={undefined}
+        isUnlocked={false}
+        isWorldUnlocked={false}
+        isOpen={true}
+        onClose={vi.fn()}
+      />
+    );
+
+    expect(screen.getByText(/Thế giới này chưa được mở khóa/i)).toBeDefined();
+    expect(screen.getByText(/Chưa mở khóa/i)).toBeDefined();
+  });
+
   it('renders nothing when isOpen is false', () => {
     const { container } = render(
       <RoadmapNodeModal
@@ -337,5 +353,19 @@ describe('RoadmapMap', () => {
 
     fireEvent.click(screen.getByTestId('roadmap-node-w1-n2'));
     expect(onSelectNode).toHaveBeenCalledWith(mockWorld.nodes[1]);
+  });
+
+  it('locks all nodes when isWorldUnlocked is false', () => {
+    render(
+      <RoadmapMap
+        world={mockWorld}
+        progressState={mockProgressState}
+        isWorldUnlocked={false}
+        onSelectNode={vi.fn()}
+      />
+    );
+
+    const lockedIcons = screen.getAllByTestId('node-locked-icon');
+    expect(lockedIcons.length).toBe(2);
   });
 });
