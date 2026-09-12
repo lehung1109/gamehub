@@ -32,6 +32,10 @@ export async function issueStudentCertificateAction(
   error?: string
 }> {
   try {
+    if (!input || typeof input !== 'object') {
+      return { success: false, error: 'Dữ liệu đầu vào không hợp lệ' }
+    }
+
     const {
       studentId,
       classroomId,
@@ -41,10 +45,21 @@ export async function issueStudentCertificateAction(
       achievementText,
       teacherName,
       teacherNote,
-    } = input || {}
+    } = input
 
     if (!studentId || !classroomId || !title || !recipientName || !achievementText || !teacherName) {
       return { success: false, error: 'Vui lòng điền đầy đủ các thông tin của giấy khen' }
+    }
+
+    const VALID_CERTIFICATE_TYPES = [
+      'vocab_master',
+      'streak_champion',
+      'arena_victor',
+      'course_completion',
+      'custom',
+    ]
+    if (!VALID_CERTIFICATE_TYPES.includes(certificateType)) {
+      return { success: false, error: 'Loại giấy khen không hợp lệ' }
     }
 
     const supabase = await createClient()
@@ -54,6 +69,30 @@ export async function issueStudentCertificateAction(
 
     if (!user) {
       return { success: false, error: 'Bạn cần đăng nhập để cấp giấy khen' }
+    }
+
+    // 1. Verify classroom ownership
+    const { data: classroom, error: classError } = await supabase
+      .from('classrooms')
+      .select('id')
+      .eq('id', classroomId)
+      .eq('teacher_id', user.id)
+      .single()
+
+    if (classError || !classroom) {
+      return { success: false, error: 'Bạn không có quyền cấp giấy khen cho lớp học này' }
+    }
+
+    // 2. Verify student belongs to classroom
+    const { data: student, error: studentError } = await supabase
+      .from('students')
+      .select('id')
+      .eq('id', studentId)
+      .eq('classroom_id', classroomId)
+      .single()
+
+    if (studentError || !student) {
+      return { success: false, error: 'Học sinh không thuộc lớp học này' }
     }
 
     const verificationCode = generateCertificateVerificationCode()
@@ -184,12 +223,16 @@ export async function getStudentCertificatesAction(
   error?: string
 }> {
   try {
+    if (!studentId || typeof studentId !== 'string' || !studentId.trim()) {
+      return { success: false, certificates: [], error: 'ID học sinh không hợp lệ' }
+    }
+
     const supabase = await createClient()
 
     const { data, error } = await supabase
       .from('student_certificates')
       .select('*')
-      .eq('student_id', studentId)
+      .eq('student_id', studentId.trim())
       .order('issued_at', { ascending: false })
 
     if (error) {
@@ -224,6 +267,94 @@ export async function getStudentCertificatesAction(
 }
 
 /**
+ * Fetch certificates for a student by class code and student name (Student Portal)
+ */
+export async function getMyCertificatesAction(input: {
+  classCode: string
+  studentName: string
+}): Promise<{
+  success: boolean
+  certificates: StudentCertificate[]
+  classroomName?: string
+  error?: string
+}> {
+  try {
+    if (
+      !input ||
+      typeof input !== 'object' ||
+      !input.classCode?.trim() ||
+      !input.studentName?.trim()
+    ) {
+      return { success: false, certificates: [], error: 'Thông tin học sinh không hợp lệ' }
+    }
+
+    const cleanCode = input.classCode.trim().toUpperCase()
+    const cleanName = input.studentName.trim()
+
+    const supabase = createAdminClient()
+
+    const { data: classroom, error: classErr } = await supabase
+      .from('classrooms')
+      .select('id, name, is_active')
+      .eq('code', cleanCode)
+      .single()
+
+    if (classErr || !classroom || !classroom.is_active) {
+      return { success: false, certificates: [], error: 'Mã lớp không tồn tại hoặc không hoạt động' }
+    }
+
+    const { data: student, error: studentErr } = await supabase
+      .from('students')
+      .select('id')
+      .eq('classroom_id', classroom.id)
+      .eq('name', cleanName)
+      .maybeSingle()
+
+    if (studentErr || !student) {
+      return { success: true, certificates: [], classroomName: classroom.name }
+    }
+
+    const { data: certsData, error: certsErr } = await supabase
+      .from('student_certificates')
+      .select('*')
+      .eq('student_id', student.id)
+      .order('issued_at', { ascending: false })
+
+    if (certsErr) {
+      return { success: false, certificates: [], error: certsErr.message }
+    }
+
+    const certs: StudentCertificate[] = (certsData || []).map((d) => {
+      const row = d as CertificateRow
+      return {
+        id: row.id,
+        studentId: row.student_id,
+        classroomId: row.classroom_id,
+        certificateType: row.certificate_type as CertificateType,
+        title: row.title,
+        recipientName: row.recipient_name,
+        achievementText: row.achievement_text,
+        teacherName: row.teacher_name,
+        teacherNote: row.teacher_note,
+        verificationCode: row.verification_code,
+        issuedAt: row.issued_at,
+        createdAt: row.created_at,
+      }
+    })
+
+    return {
+      success: true,
+      certificates: certs,
+      classroomName: classroom.name,
+    }
+  } catch (err: unknown) {
+    console.error('[getMyCertificatesAction] Error:', err)
+    const msg = err instanceof Error ? err.message : 'Lỗi hệ thống khi tải giấy khen'
+    return { success: false, certificates: [], error: msg }
+  }
+}
+
+/**
  * Get comprehensive student detailed report
  */
 export async function getStudentDetailedReportAction(
@@ -235,19 +366,47 @@ export async function getStudentDetailedReportAction(
   error?: string
 }> {
   try {
+    if (
+      !classroomId ||
+      typeof classroomId !== 'string' ||
+      !classroomId.trim() ||
+      !studentId ||
+      typeof studentId !== 'string' ||
+      !studentId.trim()
+    ) {
+      return { success: false, error: 'Thông tin lớp học hoặc học sinh không hợp lệ' }
+    }
+
     const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập để xem báo cáo học sinh' }
+    }
 
     // 1. Fetch Student & Classroom
     const [studentRes, classRes] = await Promise.all([
-      supabase.from('students').select('*').eq('id', studentId).single(),
-      supabase.from('classrooms').select('*').eq('id', classroomId).single(),
+      supabase
+        .from('students')
+        .select('*')
+        .eq('id', studentId)
+        .eq('classroom_id', classroomId)
+        .single(),
+      supabase
+        .from('classrooms')
+        .select('*')
+        .eq('id', classroomId)
+        .eq('teacher_id', user.id)
+        .single(),
     ])
 
-    if (studentRes.error || !studentRes.data) {
-      return { success: false, error: 'Không tìm thấy thông tin học sinh' }
-    }
     if (classRes.error || !classRes.data) {
-      return { success: false, error: 'Không tìm thấy lớp học' }
+      return { success: false, error: 'Không tìm thấy lớp học hoặc bạn không có quyền truy cập' }
+    }
+    if (studentRes.error || !studentRes.data) {
+      return { success: false, error: 'Không tìm thấy thông tin học sinh trong lớp học này' }
     }
 
     const student = studentRes.data

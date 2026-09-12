@@ -21,6 +21,7 @@ import { StudentAssignmentsTab } from '@/components/student/StudentAssignmentsTa
 import { StudentQuestsTab } from '@/components/student/StudentQuestsTab'
 import { StudentShopTab } from '@/components/student/StudentShopTab'
 import { MistakeNotebookTab } from '@/components/student/MistakeNotebookTab'
+import { StudentCertificatesTab } from '@/components/student/StudentCertificatesTab'
 import { getStoredSrsDeck } from '@/lib/srs-storage'
 import { getDueCards } from '@/lib/srs'
 
@@ -31,12 +32,12 @@ export interface StudentGamificationModalProps {
   studentName: string
   totalStars: number
   levelInfo: LevelProgress
-  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop' | 'notebook'
+  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop' | 'notebook' | 'certificates'
   onStarsClaimed?: (stars: number) => void
   onStarsSpent?: (newTotalStars: number) => void
 }
 
-type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop' | 'notebook'
+type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop' | 'notebook' | 'certificates'
 
 export function StudentGamificationModal({
   isOpen,
@@ -344,6 +345,23 @@ export function StudentGamificationModal({
           >
             <span>📝</span>
             <span>Bài tập</span>
+          </button>
+
+          <button
+            role="tab"
+            aria-selected={activeTab === 'certificates'}
+            aria-controls="panel-certificates"
+            data-testid="tab-certificates"
+            onClick={() => setActiveTab('certificates')}
+            className={cn(
+              'flex-1 min-w-[85px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              activeTab === 'certificates'
+                ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
+                : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
+            )}
+          >
+            <span>📜</span>
+            <span>Bằng khen</span>
           </button>
         </div>
 
@@ -758,6 +776,16 @@ export function StudentGamificationModal({
                 classCode={classCode}
                 studentName={studentName}
                 onStarsEarned={handleStarsClaimed}
+              />
+            </div>
+          )}
+
+          {/* TAB 8: CERTIFICATES */}
+          {activeTab === 'certificates' && (
+            <div id="panel-certificates" role="tabpanel" className="space-y-4">
+              <StudentCertificatesTab
+                classCode={classCode}
+                studentName={studentName}
               />
             </div>
           )}

@@ -5,6 +5,8 @@ import {
   getStudentDetailedReportAction,
   issueStudentCertificateAction,
   verifyCertificateAction,
+  getStudentCertificatesAction,
+  getMyCertificatesAction,
 } from '@/app/actions/reports'
 import * as serverSupabase from '@/lib/supabase/server'
 import * as adminSupabase from '@/lib/supabase/admin'
@@ -80,6 +82,34 @@ describe('Student Progress Reports & Certificate Actions', () => {
       })
 
       mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                eq: vi.fn().mockReturnValue({
+                  single: vi.fn().mockResolvedValue({
+                    data: { id: 'class-1', teacher_id: 'teacher-101' },
+                    error: null,
+                  }),
+                }),
+              }),
+            }),
+          }
+        }
+        if (table === 'students') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                eq: vi.fn().mockReturnValue({
+                  single: vi.fn().mockResolvedValue({
+                    data: { id: 'student-1', classroom_id: 'class-1' },
+                    error: null,
+                  }),
+                }),
+              }),
+            }),
+          }
+        }
         if (table === 'student_certificates') {
           return { insert: mockInsert }
         }
@@ -179,9 +209,11 @@ describe('Student Progress Reports & Certificate Actions', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                single: vi.fn().mockResolvedValue({
-                  data: { id: 'student-1', name: 'Bé Lan', classroom_id: 'class-1' },
-                  error: null,
+                eq: vi.fn().mockReturnValue({
+                  single: vi.fn().mockResolvedValue({
+                    data: { id: 'student-1', name: 'Bé Lan', classroom_id: 'class-1' },
+                    error: null,
+                  }),
                 }),
               }),
             }),
@@ -191,9 +223,11 @@ describe('Student Progress Reports & Certificate Actions', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                single: vi.fn().mockResolvedValue({
-                  data: { id: 'class-1', name: 'Lớp 3A', code: 'CLASS3A' },
-                  error: null,
+                eq: vi.fn().mockReturnValue({
+                  single: vi.fn().mockResolvedValue({
+                    data: { id: 'class-1', name: 'Lớp 3A', code: 'CLASS3A', teacher_id: 'teacher-101' },
+                    error: null,
+                  }),
                 }),
               }),
             }),
@@ -255,6 +289,116 @@ describe('Student Progress Reports & Certificate Actions', () => {
       expect(res.report?.skills.length).toBeGreaterThan(0)
       expect(res.report?.srsMetrics.totalCards).toBe(2)
       expect(res.report?.automatedTeacherRemark).toBeDefined()
+    })
+  })
+
+  describe('getStudentCertificatesAction', () => {
+    it('returns student certificates for valid studentId', async () => {
+      mockSupabase.from.mockReturnValue({
+        select: vi.fn().mockReturnValue({
+          eq: vi.fn().mockReturnValue({
+            order: vi.fn().mockResolvedValue({
+              data: [
+                {
+                  id: 'cert-1',
+                  student_id: 'student-1',
+                  classroom_id: 'class-1',
+                  certificate_type: 'vocab_master',
+                  title: 'Chiến Binh Từ Vựng',
+                  recipient_name: 'Bé Lan',
+                  achievement_text: 'Thành thạo 100 từ vựng',
+                  teacher_name: 'Cô Mai',
+                  verification_code: 'GH-CERT-123',
+                  issued_at: '2026-09-12T20:00:00Z',
+                  created_at: '2026-09-12T20:00:00Z',
+                },
+              ],
+              error: null,
+            }),
+          }),
+        }),
+      })
+
+      const res = await getStudentCertificatesAction('student-1')
+      expect(res.success).toBe(true)
+      expect(res.certificates).toHaveLength(1)
+      expect(res.certificates[0].title).toBe('Chiến Binh Từ Vựng')
+    })
+
+    it('rejects empty studentId', async () => {
+      const res = await getStudentCertificatesAction('')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/không hợp lệ/i)
+    })
+  })
+
+  describe('getMyCertificatesAction', () => {
+    it('returns student certificates matching classCode and studentName', async () => {
+      mockAdminSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: { id: 'class-1', name: 'Lớp 3A', is_active: true },
+                  error: null,
+                }),
+              }),
+            }),
+          }
+        }
+        if (table === 'students') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                eq: vi.fn().mockReturnValue({
+                  maybeSingle: vi.fn().mockResolvedValue({
+                    data: { id: 'student-1' },
+                    error: null,
+                  }),
+                }),
+              }),
+            }),
+          }
+        }
+        if (table === 'student_certificates') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                order: vi.fn().mockResolvedValue({
+                  data: [
+                    {
+                      id: 'cert-1',
+                      student_id: 'student-1',
+                      classroom_id: 'class-1',
+                      certificate_type: 'streak_champion',
+                      title: 'Quán Quân Chuỗi Ngày',
+                      recipient_name: 'Bé Lan',
+                      achievement_text: 'Duy trì chuỗi 30 ngày',
+                      teacher_name: 'Cô Mai',
+                      verification_code: 'GH-CERT-789',
+                      issued_at: '2026-09-12T20:00:00Z',
+                      created_at: '2026-09-12T20:00:00Z',
+                    },
+                  ],
+                  error: null,
+                }),
+              }),
+            }),
+          }
+        }
+        return {}
+      })
+
+      const res = await getMyCertificatesAction({
+        classCode: 'CLASS3A',
+        studentName: 'Bé Lan',
+      })
+
+      expect(res.success).toBe(true)
+      expect(res.classroomName).toBe('Lớp 3A')
+      expect(res.certificates).toHaveLength(1)
+      expect(res.certificates[0].verificationCode).toBe('GH-CERT-789')
     })
   })
 })

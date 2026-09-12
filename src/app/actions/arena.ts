@@ -80,6 +80,10 @@ export async function createLiveArenaAction(
   input: CreateArenaInput
 ): Promise<ActionResponse<LiveArena>> {
   try {
+    if (!input || typeof input !== 'object') {
+      return { success: false, error: 'Dữ liệu tạo phòng không hợp lệ' }
+    }
+
     const supabase = await createClient()
     const {
       data: { user },
@@ -240,6 +244,10 @@ export async function joinLiveArenaAction(
   input: JoinArenaInput
 ): Promise<ActionResponse<LiveArenaParticipant>> {
   try {
+    if (!input || typeof input !== 'object') {
+      return { success: false, error: 'Dữ liệu không hợp lệ' }
+    }
+
     if (!input.pinCode || !input.pinCode.trim()) {
       return { success: false, error: 'Vui lòng nhập mã PIN phòng' }
     }
@@ -309,6 +317,18 @@ export async function submitArenaAnswerAction(
   input: SubmitArenaAnswerInput
 ): Promise<ActionResponse<void>> {
   try {
+    if (
+      !input ||
+      typeof input !== 'object' ||
+      !input.arenaId ||
+      !input.studentName ||
+      typeof input.questionIndex !== 'number' ||
+      input.questionIndex < 0 ||
+      input.selectedOption === undefined
+    ) {
+      return { success: false, error: 'Dữ liệu nộp bài không hợp lệ' }
+    }
+
     const supabase = await createClient()
 
     // 1. Fetch arena question
@@ -341,6 +361,14 @@ export async function submitArenaAnswerAction(
     }
 
     const participant = mapRowToParticipant(partData as Record<string, unknown>)
+
+    // Prevent duplicate answer submissions for the same round
+    const alreadyAnswered = participant.answers.some(
+      (ans) => ans.questionIndex === input.questionIndex
+    )
+    if (alreadyAnswered) {
+      return { success: false, error: 'Bạn đã nộp đáp án cho câu hỏi này rồi' }
+    }
 
     // 3. Evaluate answer correctness & speed decay points
     const isCorrect = input.selectedOption.trim() === currentQuestion.correctAnswer.trim()
@@ -404,6 +432,10 @@ export async function advanceArenaStateAction(
   nextQuestionIndex?: number
 ): Promise<ActionResponse<void>> {
   try {
+    if (!arenaId || typeof arenaId !== 'string' || !arenaId.trim() || !status) {
+      return { success: false, error: 'Thông tin phòng đấu không hợp lệ' }
+    }
+
     const supabase = await createClient()
     const {
       data: { user },
@@ -465,6 +497,10 @@ export async function finalizeArenaAction(
   arenaId: string
 ): Promise<ActionResponse<void>> {
   try {
+    if (!arenaId || typeof arenaId !== 'string' || !arenaId.trim()) {
+      return { success: false, error: 'Mã phòng đấu không hợp lệ' }
+    }
+
     const supabase = await createClient()
     const {
       data: { user },

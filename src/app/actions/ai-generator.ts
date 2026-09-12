@@ -18,6 +18,7 @@ import type {
   AiGeneratedGrammarItem,
 } from '@/types/ai-generator'
 import { CEFR_LEVELS } from '@/types/word-bank'
+import type { Json } from '@/types/database'
 
 interface ActionResponse<T> {
   success: boolean
@@ -204,24 +205,16 @@ export async function publishAiContentToGameConfigAction(
     const finalSettings = validation.valid ? validation.data : settings
 
     // 3. Insert into game_configs
-    const { data, error } = await (supabase as unknown as {
-      from: (table: string) => {
-        insert: (record: unknown) => {
-          select: () => {
-            single: () => Promise<{ data: { id: string } | null; error: { message: string } | null }>
-          }
-        }
-      }
-    })
+    const { data, error } = await supabase
       .from('game_configs')
       .insert({
         user_id: user.id,
         game_id: input.gameId,
         name: trimmedName,
-        settings: finalSettings,
+        settings: (finalSettings ?? {}) as unknown as Json,
         is_active: true,
       })
-      .select()
+      .select('id')
       .single()
 
     if (error || !data) {

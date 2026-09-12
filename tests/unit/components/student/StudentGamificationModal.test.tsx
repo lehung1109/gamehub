@@ -52,6 +52,14 @@ vi.mock('@/app/actions/srs', () => ({
   syncSrsDeckAction: vi.fn(),
 }))
 
+vi.mock('@/app/actions/reports', () => ({
+  getMyCertificatesAction: vi.fn().mockResolvedValue({
+    success: true,
+    certificates: [],
+    classroomName: 'Lớp 1A',
+  }),
+}))
+
 describe('StudentGamificationModal Component', () => {
   const defaultLevelInfo = getLevelInfo(60) // Lv 2, 60 stars
   const mockOnClose = vi.fn()
@@ -323,5 +331,14 @@ describe('StudentGamificationModal Component', () => {
 
     expect(await screen.findByText(/Tổng số lỗi/i)).toBeInTheDocument()
     expect(screen.getByText('sun')).toBeInTheDocument()
+  })
+
+  it('switches to Bằng khen tab and renders StudentCertificatesTab', async () => {
+    render(<StudentGamificationModal {...defaultProps} />)
+
+    const certsTab = screen.getByRole('tab', { name: /Bằng khen/i })
+    fireEvent.click(certsTab)
+
+    expect(await screen.findByText(/Chưa có bằng khen nào/i)).toBeInTheDocument()
   })
 })

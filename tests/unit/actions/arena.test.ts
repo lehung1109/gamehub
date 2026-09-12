@@ -285,6 +285,46 @@ describe('Live Arena Server Actions', () => {
       expect(res.pointsEarned).toBeGreaterThan(0)
       expect(res.newStreak).toBe(2)
     })
+
+    it('rejects duplicate answer submissions for the same question index', async () => {
+      const mockArena = {
+        id: 'arena-1',
+        questions: mockQuestions,
+        status: 'in_progress',
+      }
+
+      const mockParticipantWithAnswer = {
+        id: 'p-1',
+        arena_id: 'arena-1',
+        student_name: 'Bé An',
+        score: 500,
+        streak: 1,
+        answers: [{ questionIndex: 0, selectedOption: 'Cold', isCorrect: true, pointsEarned: 800, responseTimeMs: 1200 }],
+      }
+
+      mockSupabase.from
+        .mockReturnValueOnce({
+          select: vi.fn().mockReturnThis(),
+          eq: vi.fn().mockReturnThis(),
+          single: vi.fn().mockResolvedValue({ data: mockArena, error: null }),
+        })
+        .mockReturnValueOnce({
+          select: vi.fn().mockReturnThis(),
+          eq: vi.fn().mockReturnThis(),
+          single: vi.fn().mockResolvedValue({ data: mockParticipantWithAnswer, error: null }),
+        })
+
+      const res = await submitArenaAnswerAction({
+        arenaId: 'arena-1',
+        studentName: 'Bé An',
+        questionIndex: 0,
+        selectedOption: 'Cold',
+        responseTimeMs: 3000,
+      })
+
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/đã nộp đáp án/i)
+    })
   })
 
   describe('advanceArenaStateAction', () => {
