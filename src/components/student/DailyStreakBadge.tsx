@@ -38,6 +38,7 @@ export function DailyStreakBadge({
   return (
     <>
       <Button
+        data-testid="daily-streak-badge"
         type="button"
         variant="ghost"
         onClick={() => setIsModalOpen(true)}
