@@ -90,6 +90,15 @@ describe('Roadmap Server Actions', () => {
         totalQuestions: 10,
       });
       expect(resEmptyNode.success).toBe(false);
+
+      const resScoreTooHigh = await recordRoadmapNodeCompletionAction('DEMO12', 'Alice', {
+        nodeId: 'w1-n1',
+        worldId: 'world-1',
+        score: 11,
+        totalQuestions: 10,
+      });
+      expect(resScoreTooHigh.success).toBe(false);
+      expect(resScoreTooHigh.error).toMatch(/vượt quá/i);
     });
 
     it('rejects syncLocalRoadmapProgress with invalid inputs', async () => {
@@ -420,6 +429,88 @@ describe('Roadmap Server Actions', () => {
       expect(gamUpdateMock).not.toHaveBeenCalled();
     });
 
+    it('does not award duplicate bonus stars when replaying a node that already had 3 stars', async () => {
+      const classMock = { id: 'c-1', is_active: true };
+      const studentMock = { id: 's-1', name: 'Alice' };
+
+      const existingRecord = {
+        student_id: 's-1',
+        node_id: 'w1-n1',
+        world_id: 'world-1',
+        stars: 3,
+        high_score: 100,
+        attempts: 1,
+        is_completed: true,
+        completed_at: '2026-09-12T10:00:00Z',
+      };
+
+      const upsertMock = vi.fn().mockReturnValue({
+        select: vi.fn().mockReturnValue({
+          single: vi.fn().mockResolvedValue({
+            data: { ...existingRecord, attempts: 2 },
+            error: null,
+          }),
+        }),
+      });
+
+      const gamUpdateMock = vi.fn();
+
+      mockAdminClient.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({ data: classMock, error: null }),
+              }),
+            }),
+          };
+        }
+        if (table === 'students') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                eq: vi.fn().mockReturnValue({
+                  limit: vi.fn().mockResolvedValue({ data: [studentMock], error: null }),
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'student_roadmap_progress') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                eq: vi.fn().mockReturnValue({
+                  maybeSingle: vi.fn().mockResolvedValue({ data: existingRecord, error: null }),
+                }),
+              }),
+            }),
+            upsert: upsertMock,
+          };
+        }
+        if (table === 'student_gamification') {
+          return {
+            select: vi.fn(),
+            update: gamUpdateMock,
+          };
+        }
+        return {};
+      });
+
+      // Student scores 10/10 (3 stars) AGAIN on an already 3-star node
+      const res = await recordRoadmapNodeCompletionAction('DEMO12', 'Alice', {
+        nodeId: 'w1-n1',
+        worldId: 'world-1',
+        score: 10,
+        totalQuestions: 10,
+      });
+
+      expect(res.success).toBe(true);
+      expect(res.stars).toBe(3);
+      // Gamification update MUST NOT be called (prevent infinite star exploit)
+      expect(gamUpdateMock).not.toHaveBeenCalled();
+    });
+
     it('creates student record automatically if student does not exist yet', async () => {
       const classMock = { id: 'c-1', is_active: true };
 
@@ -574,6 +665,79 @@ describe('Roadmap Server Actions', () => {
       expect(res.success).toBe(true);
       expect(res.syncedCount).toBe(2);
       expect(upsertMock).toHaveBeenCalled();
+    });
+
+    it('deduplicates entries by nodeId and clamps stars to maximum 3', async () => {
+      const classMock = { id: 'c-1', is_active: true };
+      const studentMock = { id: 's-1', name: 'Alice' };
+
+      const localProgress: Record<string, StudentNodeProgress> = {
+        'entry-1': {
+          nodeId: 'w1-n1',
+          worldId: 'world-1',
+          stars: 2,
+          highScore: 80,
+          attempts: 1,
+          isCompleted: true,
+        },
+        'entry-2': {
+          nodeId: 'w1-n1', // duplicate nodeId!
+          worldId: 'world-1',
+          stars: 5, // invalid > 3 stars!
+          highScore: 100,
+          attempts: 2,
+          isCompleted: true,
+        },
+      };
+
+      let capturedUpsertRows: Array<Record<string, unknown>> = [];
+      const upsertMock = vi.fn().mockImplementation((rows: Array<Record<string, unknown>>) => {
+        capturedUpsertRows = rows;
+        return Promise.resolve({ data: null, error: null });
+      });
+
+      mockAdminClient.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({ data: classMock, error: null }),
+              }),
+            }),
+          };
+        }
+        if (table === 'students') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                eq: vi.fn().mockReturnValue({
+                  limit: vi.fn().mockResolvedValue({ data: [studentMock], error: null }),
+                }),
+              }),
+            }),
+          };
+        }
+        if (table === 'student_roadmap_progress') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                in: vi.fn().mockResolvedValue({
+                  data: [],
+                  error: null,
+                }),
+              }),
+            }),
+            upsert: upsertMock,
+          };
+        }
+        return {};
+      });
+
+      const res = await syncLocalRoadmapProgressAction('DEMO12', 'Alice', localProgress);
+      expect(res.success).toBe(true);
+      expect(res.syncedCount).toBe(1); // Deduplicated to 1 row
+      expect(capturedUpsertRows).toHaveLength(1);
+      expect(capturedUpsertRows[0].stars).toBe(3); // Clamped to 3!
     });
   });
 

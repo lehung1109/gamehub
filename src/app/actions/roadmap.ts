@@ -237,6 +237,9 @@ export async function recordRoadmapNodeCompletionAction(
     if (typeof totalQuestions !== 'number' || isNaN(totalQuestions) || totalQuestions <= 0) {
       return { success: false, error: 'Số câu hỏi phải lớn hơn 0' };
     }
+    if (score > totalQuestions) {
+      return { success: false, error: 'Điểm số không được vượt quá tổng số câu hỏi' };
+    }
 
     const supabase = createAdminClient();
     const { studentId, error } = await verifyAndGetStudent(classCode, studentName, supabase, true);
@@ -305,8 +308,9 @@ export async function recordRoadmapNodeCompletionAction(
       return { success: false, error: 'Lỗi khi lưu tiến trình học tập' };
     }
 
-    // 4. Gamification bonus stars update if 3 stars earned on this attempt
-    if (attemptStars === 3) {
+    // 4. Gamification bonus stars update if 3 stars earned for the first time on this node
+    const hadThreeStars = currentProgress && currentProgress.stars === 3;
+    if (attemptStars === 3 && !hadThreeStars) {
       try {
         const { data: gamRow } = await supabase
           .from('student_gamification')
@@ -368,7 +372,7 @@ export async function syncLocalRoadmapProgressAction(
       return { success: false, error: 'Dữ liệu tiến trình không hợp lệ' };
     }
 
-    const entries = Object.values(localProgress).filter(
+    const rawEntries = Object.values(localProgress).filter(
       (entry) =>
         entry &&
         typeof entry.nodeId === 'string' &&
@@ -376,9 +380,28 @@ export async function syncLocalRoadmapProgressAction(
         typeof entry.stars === 'number'
     );
 
-    if (entries.length === 0) {
+    if (rawEntries.length === 0) {
       return { success: true, syncedCount: 0 };
     }
+
+    // Deduplicate entries by nodeId before processing upserts
+    const uniqueEntriesMap = new Map<string, StudentNodeProgress>();
+    for (const entry of rawEntries) {
+      const existingEntry = uniqueEntriesMap.get(entry.nodeId);
+      if (!existingEntry) {
+        uniqueEntriesMap.set(entry.nodeId, entry);
+      } else {
+        uniqueEntriesMap.set(entry.nodeId, {
+          ...existingEntry,
+          stars: Math.max(existingEntry.stars, entry.stars),
+          highScore: Math.max(existingEntry.highScore, entry.highScore),
+          attempts: Math.max(existingEntry.attempts, entry.attempts),
+          isCompleted: existingEntry.isCompleted || entry.isCompleted,
+          completedAt: existingEntry.completedAt || entry.completedAt,
+        });
+      }
+    }
+    const entries = Array.from(uniqueEntriesMap.values());
 
     const supabase = createAdminClient();
     const { studentId, error } = await verifyAndGetStudent(classCode, studentName, supabase, true);
@@ -421,7 +444,7 @@ export async function syncLocalRoadmapProgressAction(
         };
       }
 
-      const mergedStars = Math.max(existing.stars, entry.stars || 0);
+      const mergedStars = Math.min(3, Math.max(existing.stars, Math.max(0, entry.stars || 0)));
       const mergedHighScore = Math.max(existing.high_score, entry.highScore || 0);
       const mergedAttempts = Math.max(existing.attempts, entry.attempts || 1);
       const isCompleted = existing.is_completed || Boolean(entry.isCompleted) || mergedStars >= 1;
