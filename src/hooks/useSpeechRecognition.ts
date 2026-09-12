@@ -19,19 +19,80 @@ export interface SpeechRecognitionResultState {
   resetTranscript: () => void;
 }
 
+export interface SpeechRecognitionAlternativeLike {
+  transcript: string;
+}
+
+export interface SpeechRecognitionResultItemLike {
+  [index: number]: SpeechRecognitionAlternativeLike;
+  isFinal?: boolean;
+  length: number;
+}
+
+export interface SpeechRecognitionResultListLike {
+  [index: number]: SpeechRecognitionResultItemLike;
+  length: number;
+}
+
+export interface SpeechRecognitionEventLike {
+  resultIndex: number;
+  results: SpeechRecognitionResultListLike;
+}
+
+export interface SpeechRecognitionErrorEventLike {
+  error: string;
+}
+
+export interface SpeechRecognitionInstance {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+  onstart: (() => void) | null;
+  onend: (() => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEventLike) => void) | null;
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
+}
+
+export type SpeechRecognitionConstructor = new () => SpeechRecognitionInstance;
+
+export interface WindowWithSpeechRecognition extends Window {
+  SpeechRecognition?: SpeechRecognitionConstructor;
+  webkitSpeechRecognition?: SpeechRecognitionConstructor;
+}
+
 export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}): SpeechRecognitionResultState {
   const { lang = 'en-US', continuous = false, interimResults = true } = options;
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [interimTranscript, setInterimTranscript] = useState('');
   const [error, setError] = useState<'not-allowed' | 'no-speech' | 'network' | 'unsupported' | null>(null);
-  
-  const recognitionRef = useRef<any>(null);
+
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const isMountedRef = useRef(true);
 
-  const isSupported = typeof window !== 'undefined' && Boolean(
-    (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
-  );
+  const getSpeechRecognitionAPI = useCallback((): SpeechRecognitionConstructor | null => {
+    if (typeof window === 'undefined') return null;
+    const win = window as unknown as WindowWithSpeechRecognition;
+    return win.SpeechRecognition || win.webkitSpeechRecognition || null;
+  }, []);
+
+  const isSupported = Boolean(getSpeechRecognitionAPI());
+
+  const cleanupRecognition = useCallback((instance: SpeechRecognitionInstance | null) => {
+    if (!instance) return;
+    try {
+      instance.onstart = null;
+      instance.onresult = null;
+      instance.onerror = null;
+      instance.onend = null;
+      instance.abort();
+    } catch {
+      // ignore cleanup abort error
+    }
+  }, []);
 
   useEffect(() => {
     isMountedRef.current = true;
@@ -39,14 +100,11 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
     return () => {
       isMountedRef.current = false;
       if (recognitionRef.current) {
-        try {
-          recognitionRef.current.abort();
-        } catch {
-          // ignore cleanup abort error
-        }
+        cleanupRecognition(recognitionRef.current);
+        recognitionRef.current = null;
       }
     };
-  }, []);
+  }, [cleanupRecognition]);
 
   const resetTranscript = useCallback(() => {
     setTranscript('');
@@ -68,14 +126,19 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
   }, []);
 
   const startListening = useCallback(() => {
-    if (!isSupported) {
+    const SpeechRecognitionAPI = getSpeechRecognitionAPI();
+    if (!SpeechRecognitionAPI) {
       setError('unsupported');
       return;
     }
 
+    if (recognitionRef.current) {
+      cleanupRecognition(recognitionRef.current);
+      recognitionRef.current = null;
+    }
+
     resetTranscript();
 
-    const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     const recognition = new SpeechRecognitionAPI();
     recognition.lang = lang;
     recognition.continuous = continuous;
@@ -88,7 +151,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
       }
     };
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: SpeechRecognitionEventLike) => {
       if (!isMountedRef.current) return;
 
       let finalStr = '';
@@ -110,7 +173,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
       setInterimTranscript(interimStr);
     };
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event: SpeechRecognitionErrorEventLike) => {
       if (!isMountedRef.current) return;
       setIsListening(false);
       if (event.error === 'not-allowed') {
@@ -135,7 +198,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
     } catch {
       // already started or busy
     }
-  }, [isSupported, lang, continuous, interimResults, resetTranscript]);
+  }, [getSpeechRecognitionAPI, cleanupRecognition, lang, continuous, interimResults, resetTranscript]);
 
   return {
     isListening,

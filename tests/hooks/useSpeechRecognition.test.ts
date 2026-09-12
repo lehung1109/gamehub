@@ -1,9 +1,23 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useSpeechRecognition } from '@/hooks/useSpeechRecognition';
+import {
+  useSpeechRecognition,
+  SpeechRecognitionInstance,
+  WindowWithSpeechRecognition,
+  SpeechRecognitionEventLike,
+  SpeechRecognitionConstructor,
+} from '@/hooks/useSpeechRecognition';
+
+interface MockSpeechRecognitionInstance extends Omit<SpeechRecognitionInstance, 'start' | 'stop' | 'abort'> {
+  start: Mock<() => void>;
+  stop: Mock<() => void>;
+  abort: Mock<() => void>;
+}
+
+const getTestWindow = (): WindowWithSpeechRecognition => window as unknown as WindowWithSpeechRecognition;
 
 describe('useSpeechRecognition', () => {
-  let mockRecognitionInstance: any;
+  let mockRecognitionInstance: MockSpeechRecognitionInstance;
 
   beforeEach(() => {
     mockRecognitionInstance = {
@@ -14,11 +28,15 @@ describe('useSpeechRecognition', () => {
       onend: null,
       onerror: null,
       onresult: null,
+      lang: '',
+      continuous: false,
+      interimResults: false,
     };
 
-    (window as any).webkitSpeechRecognition = vi.fn(function (this: any) {
+    const win = getTestWindow();
+    win.webkitSpeechRecognition = vi.fn(function () {
       return mockRecognitionInstance;
-    });
+    }) as unknown as SpeechRecognitionConstructor;
   });
 
   it('detects browser support when webkitSpeechRecognition is available', () => {
@@ -36,21 +54,35 @@ describe('useSpeechRecognition', () => {
 
     // Trigger onstart
     act(() => {
-      mockRecognitionInstance.onstart();
+      mockRecognitionInstance.onstart?.();
     });
     expect(result.current.isListening).toBe(true);
+  });
+
+  it('aborts and cleans up previous instance when startListening is called again', () => {
+    const { result } = renderHook(() => useSpeechRecognition());
+    act(() => {
+      result.current.startListening();
+    });
+    const firstAbort = mockRecognitionInstance.abort;
+
+    act(() => {
+      result.current.startListening();
+    });
+    expect(firstAbort).toHaveBeenCalled();
   });
 
   it('captures transcript from recognition result event', () => {
     const { result } = renderHook(() => useSpeechRecognition());
     act(() => {
       result.current.startListening();
-      mockRecognitionInstance.onresult({
+      const event: SpeechRecognitionEventLike = {
         resultIndex: 0,
         results: [
           [{ transcript: 'schedule' }],
         ],
-      });
+      };
+      mockRecognitionInstance.onresult?.(event);
     });
     expect(result.current.transcript).toBe('schedule');
   });
@@ -59,7 +91,7 @@ describe('useSpeechRecognition', () => {
     const { result } = renderHook(() => useSpeechRecognition());
     act(() => {
       result.current.startListening();
-      mockRecognitionInstance.onerror({ error: 'not-allowed' });
+      mockRecognitionInstance.onerror?.({ error: 'not-allowed' });
     });
     expect(result.current.error).toBe('not-allowed');
     expect(result.current.isListening).toBe(false);
@@ -69,12 +101,12 @@ describe('useSpeechRecognition', () => {
     const { result } = renderHook(() => useSpeechRecognition());
     act(() => {
       result.current.startListening();
-      mockRecognitionInstance.onerror({ error: 'no-speech' });
+      mockRecognitionInstance.onerror?.({ error: 'no-speech' });
     });
     expect(result.current.error).toBe('no-speech');
 
     act(() => {
-      mockRecognitionInstance.onerror({ error: 'network' });
+      mockRecognitionInstance.onerror?.({ error: 'network' });
     });
     expect(result.current.error).toBe('network');
   });
@@ -83,12 +115,13 @@ describe('useSpeechRecognition', () => {
     const { result } = renderHook(() => useSpeechRecognition({ interimResults: true }));
     act(() => {
       result.current.startListening();
-      mockRecognitionInstance.onresult({
+      const event: SpeechRecognitionEventLike = {
         resultIndex: 0,
         results: [
           Object.assign([{ transcript: 'sched' }], { isFinal: false }),
         ],
-      });
+      };
+      mockRecognitionInstance.onresult?.(event);
     });
     expect(result.current.transcript).toBe('');
     expect(result.current.interimTranscript).toBe('sched');
@@ -98,12 +131,13 @@ describe('useSpeechRecognition', () => {
     const { result } = renderHook(() => useSpeechRecognition());
     act(() => {
       result.current.startListening();
-      mockRecognitionInstance.onresult({
+      const event: SpeechRecognitionEventLike = {
         resultIndex: 0,
         results: [
           [{ transcript: 'hello' }],
         ],
-      });
+      };
+      mockRecognitionInstance.onresult?.(event);
     });
     expect(result.current.transcript).toBe('hello');
 
@@ -119,7 +153,7 @@ describe('useSpeechRecognition', () => {
     const { result } = renderHook(() => useSpeechRecognition());
     act(() => {
       result.current.startListening();
-      mockRecognitionInstance.onstart();
+      mockRecognitionInstance.onstart?.();
     });
     expect(result.current.isListening).toBe(true);
 
@@ -130,15 +164,16 @@ describe('useSpeechRecognition', () => {
     expect(result.current.isListening).toBe(false);
 
     act(() => {
-      mockRecognitionInstance.onend();
+      mockRecognitionInstance.onend?.();
     });
     expect(result.current.isListening).toBe(false);
   });
 
   it('handles unsupported browser environment', () => {
-    const originalWebkit = (window as any).webkitSpeechRecognition;
-    delete (window as any).webkitSpeechRecognition;
-    delete (window as any).SpeechRecognition;
+    const win = getTestWindow();
+    const originalWebkit = win.webkitSpeechRecognition;
+    delete win.webkitSpeechRecognition;
+    delete win.SpeechRecognition;
 
     const { result } = renderHook(() => useSpeechRecognition());
     expect(result.current.isSupported).toBe(false);
@@ -148,15 +183,19 @@ describe('useSpeechRecognition', () => {
     });
     expect(result.current.error).toBe('unsupported');
 
-    (window as any).webkitSpeechRecognition = originalWebkit;
+    win.webkitSpeechRecognition = originalWebkit;
   });
 
-  it('aborts recognition on unmount', () => {
+  it('aborts recognition and clears event handlers on unmount', () => {
     const { result, unmount } = renderHook(() => useSpeechRecognition());
     act(() => {
       result.current.startListening();
     });
     unmount();
     expect(mockRecognitionInstance.abort).toHaveBeenCalled();
+    expect(mockRecognitionInstance.onstart).toBeNull();
+    expect(mockRecognitionInstance.onresult).toBeNull();
+    expect(mockRecognitionInstance.onerror).toBeNull();
+    expect(mockRecognitionInstance.onend).toBeNull();
   });
 });
