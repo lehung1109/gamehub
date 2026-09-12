@@ -86,7 +86,7 @@ export function RoadmapNodeModal({
             type="button"
             onClick={onClose}
             className="p-1.5 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
-            aria-label="Đóng"
+            aria-label="Đóng chi tiết chặng"
           >
             <X className="size-5" />
           </button>

@@ -1009,6 +1009,7 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   )
 
   const joinClass = useCallback((sessionData: StudentSession) => {
+    sessionRef.current = sessionData
     setSession(sessionData)
     setIsAnonymous(false)
     setIsOpen(false)
@@ -1038,14 +1039,10 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     } catch (e) {
       console.error('Failed to save student session:', e)
     }
-
-    // Trigger cloud roadmap sync and fetch
-    fetchRoadmapProgress(sessionData.classCode, sessionData.studentName).catch((err) => {
-      console.warn('[StudentSessionContext] Failed to sync roadmap progress on joinClass:', err)
-    })
-  }, [fetchRoadmapProgress])
+  }, [])
 
   const skip = useCallback(() => {
+    sessionRef.current = null
     setSession(null)
     setIsAnonymous(true)
     setIsOpen(false)

@@ -168,7 +168,7 @@ describe('RoadmapNodeModal', () => {
     expect(playLink.getAttribute('href')).toBe('/games/alphabet?roadmapNode=w1-n1');
 
     // Close button
-    fireEvent.click(screen.getByLabelText('Đóng'));
+    fireEvent.click(screen.getByLabelText('Đóng chi tiết chặng'));
     expect(onClose).toHaveBeenCalled();
   });
 

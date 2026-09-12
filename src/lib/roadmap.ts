@@ -50,12 +50,13 @@ export function mergeNodeProgress(
   newScore: number,
   totalQuestions: number,
   nodeId: string,
-  worldId: string
+  worldId: string,
+  completedAtOverride?: string
 ): StudentNodeProgress {
   const percentage =
     totalQuestions > 0 ? Math.floor((newScore / totalQuestions) * 100) : 0;
   const newStars = calculateNodeStars(newScore, totalQuestions);
-  const now = new Date().toISOString();
+  const now = completedAtOverride || new Date().toISOString();
 
   if (!current) {
     return {

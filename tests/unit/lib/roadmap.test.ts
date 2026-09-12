@@ -350,5 +350,11 @@ describe('Roadmap Domain Engine', () => {
       expect(replay.completedAt).toBeDefined();
       expect(replay.attempts).toBe(2);
     });
+
+    it('uses completedAtOverride when provided', () => {
+      const customIsoDate = '2026-09-12T12:00:00.000Z';
+      const progress = mergeNodeProgress(undefined, 8, 10, 'w1-n1', 'world-1', customIsoDate);
+      expect(progress.completedAt).toBe(customIsoDate);
+    });
   });
 });
