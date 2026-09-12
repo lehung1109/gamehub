@@ -1,0 +1,472 @@
+{
+  "vocab": [
+    {
+      "english": "Cat",
+      "vietnamese": "Con mèo",
+      "phonetic": "/kæt/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "Pre-A1",
+      "topic": "animals",
+      "emoji": "🐱",
+      "exampleSentence": "The cat is sleeping on the mat.",
+      "exampleTranslation": "Con mèo đang ngủ trên tấm thảm.",
+      "distractors": ["Con chó", "Con chim", "Con cá"]
+    },
+    {
+      "english": "Dog",
+      "vietnamese": "Con chó",
+      "phonetic": "/dɒɡ/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "Pre-A1",
+      "topic": "animals",
+      "emoji": "🐶",
+      "exampleSentence": "The dog barks happily in the garden.",
+      "exampleTranslation": "Con chó sủa vui vẻ trong vườn.",
+      "distractors": ["Con mèo", "Con thỏ", "Con chuột"]
+    },
+    {
+      "english": "Fish",
+      "vietnamese": "Con cá",
+      "phonetic": "/fɪʃ/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "Pre-A1",
+      "topic": "animals",
+      "emoji": "🐟",
+      "exampleSentence": "Goldfish swim in the bowl.",
+      "exampleTranslation": "Cá vàng bơi trong bể kính.",
+      "distractors": ["Con cua", "Con tôm", "Con ốc"]
+    },
+    {
+      "english": "Elephant",
+      "vietnamese": "Con voi",
+      "phonetic": "/ˈel.ɪ.fənt/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "animals",
+      "emoji": "🐘",
+      "exampleSentence": "An elephant has a very long trunk.",
+      "exampleTranslation": "Con voi có một cái vòi rất dài.",
+      "distractors": ["Hươu cao cổ", "Hà mã", "Tê giác"]
+    },
+    {
+      "english": "Dolphin",
+      "vietnamese": "Cá heo",
+      "phonetic": "/ˈdɒl.fɪn/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "animals",
+      "emoji": "🐬",
+      "exampleSentence": "Dolphins are intelligent sea creatures.",
+      "exampleTranslation": "Cá heo là loài sinh vật biển thông minh.",
+      "distractors": ["Cá mập", "Cá voi", "Hải cẩu"]
+    },
+    {
+      "english": "Penguin",
+      "vietnamese": "Chim cánh cụt",
+      "phonetic": "/ˈpeŋ.ɡwɪn/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "animals",
+      "emoji": "🐧",
+      "exampleSentence": "Penguins waddle across the snowy Antarctic.",
+      "exampleTranslation": "Những chú chim cánh cụt lạch bạch đi trên nền tuyết Nam Cực.",
+      "distractors": ["Gấu bắc cực", "Chim ưng", "Hải âu"]
+    },
+    {
+      "english": "Lion",
+      "vietnamese": "Sư tử",
+      "phonetic": "/ˈlaɪ.ən/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "animals",
+      "emoji": "🦁",
+      "exampleSentence": "The lion roars proudly as the king of the jungle.",
+      "exampleTranslation": "Sư tử gầm vang đầy tự hào như chúa tể rừng xanh.",
+      "distractors": ["Con hổ", "Báo đốm", "Sói xám"]
+    },
+    {
+      "english": "Rabbit",
+      "vietnamese": "Con thỏ",
+      "phonetic": "/ˈræb.ɪt/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "animals",
+      "emoji": "🐰",
+      "exampleSentence": "The rabbit loves crunchy orange carrots.",
+      "exampleTranslation": "Con thỏ thích những củ cà rốt cam giòn.",
+      "distractors": ["Sóc nhỏ", "Chuột túi", "Chồn hương"]
+    },
+    {
+      "english": "Butterfly",
+      "vietnamese": "Con bướm",
+      "phonetic": "/ˈbʌt.ə.flaɪ/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A2",
+      "topic": "animals",
+      "emoji": "🦋",
+      "exampleSentence": "A colorful butterfly landed gently on the blossom.",
+      "exampleTranslation": "Một cánh bướm đầy màu sắc nhẹ nhàng đậu lên bông hoa.",
+      "distractors": ["Con ong", "Chuồn chuồn", "Bọ cánh cứng"]
+    },
+    {
+      "english": "Chameleon",
+      "vietnamese": "Tắc kè hoa",
+      "phonetic": "/kəˈmiː.li.ən/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B1",
+      "topic": "animals",
+      "emoji": "🦎",
+      "exampleSentence": "A chameleon changes color to blend into its environment.",
+      "exampleTranslation": "Tắc kè hoa đổi màu để ngụy trang hòa vào môi trường xung quanh.",
+      "distractors": ["Kỳ nhông", "Thằn lằn", "Kỳ đà"]
+    },
+    {
+      "english": "Biodiversity",
+      "vietnamese": "Đa dạng sinh học",
+      "phonetic": "/ˌbaɪ.əʊ.daɪˈvɜː.sə.ti/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B2",
+      "topic": "animals",
+      "emoji": "🌿",
+      "exampleSentence": "Protecting biodiversity is vital for our planet's ecosystems.",
+      "exampleTranslation": "Bảo vệ đa dạng sinh học là điều thiết yếu cho hệ sinh thái hành tinh.",
+      "distractors": ["Biến đổi khí hậu", "Sự tuyệt chủng", "Môi trường sống"]
+    },
+    {
+      "english": "Book",
+      "vietnamese": "Cuốn sách",
+      "phonetic": "/bʊk/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "Pre-A1",
+      "topic": "school",
+      "emoji": "📖",
+      "exampleSentence": "Open your book to page ten.",
+      "exampleTranslation": "Hãy mở sách của bạn ra trang mười.",
+      "distractors": ["Cuốn vở", "Cái bút", "Cái thước"]
+    },
+    {
+      "english": "Pencil",
+      "vietnamese": "Bút chì",
+      "phonetic": "/ˈpen.səl/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "Pre-A1",
+      "topic": "school",
+      "emoji": "✏️",
+      "exampleSentence": "Write your full name with a pencil.",
+      "exampleTranslation": "Hãy viết họ tên của bạn bằng bút chì.",
+      "distractors": ["Bút mực", "Cục tẩy", "Thước kẻ"]
+    },
+    {
+      "english": "Teacher",
+      "vietnamese": "Giáo viên",
+      "phonetic": "/ˈtiː.tʃər/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "school",
+      "emoji": "👩‍🏫",
+      "exampleSentence": "Our English teacher explains the lesson clearly.",
+      "exampleTranslation": "Cô giáo tiếng Anh giải thích bài học rất rõ ràng.",
+      "distractors": ["Học sinh", "Hiệu trưởng", "Bác bảo vệ"]
+    },
+    {
+      "english": "Library",
+      "vietnamese": "Thư viện",
+      "phonetic": "/ˈlaɪ.brər.i/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A2",
+      "topic": "school",
+      "emoji": "📚",
+      "exampleSentence": "Students read quiet novels in the school library.",
+      "exampleTranslation": "Học sinh đọc tiểu thuyết yên tĩnh trong thư viện trường.",
+      "distractors": ["Phòng thí nghiệm", "Nhà ăn", "Sân bóng đá"]
+    },
+    {
+      "english": "Curriculum",
+      "vietnamese": "Chương trình giảng dạy",
+      "phonetic": "/kəˈrɪk.jə.ləm/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B1",
+      "topic": "school",
+      "emoji": "📋",
+      "exampleSentence": "The school revised its science curriculum this semester.",
+      "exampleTranslation": "Trường học đã sửa đổi chương trình giảng dạy khoa học học kỳ này.",
+      "distractors": ["Lịch biểu", "Bảng điểm", "Quy chế thi"]
+    },
+    {
+      "english": "Pedagogy",
+      "vietnamese": "Phương pháp sư phạm",
+      "phonetic": "/ˈped.ə.ɡɒdʒ.i/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B2",
+      "topic": "school",
+      "emoji": "🎓",
+      "exampleSentence": "Innovative pedagogy encourages interactive student discovery.",
+      "exampleTranslation": "Phương pháp sư phạm đổi mới khuyến khích học sinh khám phá tương tác.",
+      "distractors": ["Tâm lý học", "Xã hội học", "Giáo trình"]
+    },
+    {
+      "english": "Tree",
+      "vietnamese": "Cây cối",
+      "phonetic": "/triː/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "Pre-A1",
+      "topic": "nature",
+      "emoji": "🌳",
+      "exampleSentence": "Birds build nests in the tall oak tree.",
+      "exampleTranslation": "Những chú chim làm tổ trên cây sồi cao vút.",
+      "distractors": ["Bụi cỏ", "Bông hoa", "Tảng đá"]
+    },
+    {
+      "english": "River",
+      "vietnamese": "Dòng sông",
+      "phonetic": "/ˈrɪv.ər/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "nature",
+      "emoji": "🏞️",
+      "exampleSentence": "Clear water flows down the winding river.",
+      "exampleTranslation": "Làn nước trong vắt xuôi theo dòng sông uốn lượn.",
+      "distractors": ["Biển cả", "Hồ nước", "Dòng suối nhỏ"]
+    },
+    {
+      "english": "Mountain",
+      "vietnamese": "Ngọn núi",
+      "phonetic": "/ˈmaʊn.tɪn/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A2",
+      "topic": "nature",
+      "emoji": "🏔️",
+      "exampleSentence": "We hiked up the mountain early in the morning.",
+      "exampleTranslation": "Chúng tôi leo lên đỉnh núi từ sáng sớm.",
+      "distractors": ["Thung lũng", "Đồng bằng", "Hẻm núi"]
+    },
+    {
+      "english": "Ecosystem",
+      "vietnamese": "Hệ sinh thái",
+      "phonetic": "/ˈiː.kəʊˌsɪs.təm/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B1",
+      "topic": "nature",
+      "emoji": "🌱",
+      "exampleSentence": "Coral reefs form a fragile marine ecosystem.",
+      "exampleTranslation": "Các rạn san hô tạo nên một hệ sinh thái biển mong manh.",
+      "distractors": ["Khí quyển", "Thủy quyển", "Địa tầng"]
+    },
+    {
+      "english": "Sustainability",
+      "vietnamese": "Tính bền vững",
+      "phonetic": "/səˌsteɪ.nəˈbɪl.ə.ti/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B2",
+      "topic": "nature",
+      "emoji": "♻️",
+      "exampleSentence": "Environmental sustainability requires reducing fossil fuel reliance.",
+      "exampleTranslation": "Tính bền vững môi trường đòi hỏi phải giảm phụ thuộc vào nhiên liệu hóa thạch.",
+      "distractors": ["Khả năng thích ứng", "Tái tạo năng lượng", "Tự cung tự cấp"]
+    },
+    {
+      "english": "Computer",
+      "vietnamese": "Máy vi tính",
+      "phonetic": "/kəmˈpjuː.tər/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "A1",
+      "topic": "technology",
+      "emoji": "💻",
+      "exampleSentence": "He writes code on his laptop computer.",
+      "exampleTranslation": "Anh ấy viết mã trên máy tính xách tay của mình.",
+      "distractors": ["Điện thoại", "Máy in", "Màn hình"]
+    },
+    {
+      "english": "Algorithm",
+      "vietnamese": "Thuật toán",
+      "phonetic": "/ˈæl.ɡə.rɪ.ðəm/",
+      "partOfSpeech": "noun",
+      "cefrLevel": "B1",
+      "topic": "technology",
+      "emoji": "⚙️",
+      "exampleSentence": "Search engines use an efficient ranking algorithm.",
+      "exampleTranslation": "Các công cụ tìm kiếm sử dụng một thuật toán xếp hạng hiệu quả.",
+      "distractors": ["Cơ sở dữ liệu", "Phần mềm", "Mạng nơ-ron"]
+    },
+    {
+      "english": "Artificial Intelligence",
+      "vietnamese": "Trí tuệ nhân tạo",
+      "phonetic": "/ˌɑː.tɪ.fɪʃ.əl ɪnˈtel.ɪ.dʒəns/",
+      "partOfSpeech": "phrase",
+      "cefrLevel": "B2",
+      "topic": "technology",
+      "emoji": "🤖",
+      "exampleSentence": "Artificial intelligence transforms language education worldwide.",
+      "exampleTranslation": "Trí tuệ nhân tạo đang làm thay đổi nền giáo dục ngôn ngữ toàn cầu.",
+      "distractors": ["Điện toán đám mây", "Dữ liệu lớn", "Thực tế ảo"]
+    }
+  ],
+  "readings": [
+    {
+      "topic": "nature",
+      "cefrLevel": "A2",
+      "title": "A Sunny Day in the Forest",
+      "passage": "Linh and her family went camping in Ba Vi National Park last weekend. The forest was green and peaceful, filled with the singing of wild birds. In the morning, they walked along a pine trail and discovered a sparkling mountain stream. They had a delicious picnic with sandwiches and fruit under a shady oak tree. It was an unforgettable adventure close to nature.",
+      "vietnameseTranslation": "Linh và gia đình đã đi cắm trại ở Vườn quốc gia Ba Vì vào cuối tuần trước. Khu rừng xanh mướt và yên bình, ngập tràn tiếng chim hót hoang dã. Vào buổi sáng, họ đi dạo dọc theo con đường mòn thông và phát hiện một dòng suối núi lấp lánh. Họ đã có một bữa dã ngoại ngon miệng với bánh mì kẹp và trái cây dưới bóng râm cây sồi. Đó là một chuyến phiêu lưu khó quên gần gũi với thiên nhiên.",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "Where did Linh and her family go camping?",
+          "options": ["Ba Vi National Park", "Cuc Phuong National Park", "Cat Ba Island", "Phong Nha Cave"],
+          "correctAnswer": "Ba Vi National Park",
+          "explanation": "The text states that Linh and her family camped in Ba Vi National Park."
+        },
+        {
+          "id": "q2",
+          "question": "What did they discover along the pine trail?",
+          "options": ["A sparkling mountain stream", "A hidden gold cave", "A wild elephant", "An abandoned village"],
+          "correctAnswer": "A sparkling mountain stream",
+          "explanation": "They discovered a sparkling mountain stream while walking along the pine trail."
+        },
+        {
+          "id": "q3",
+          "question": "What kind of food did they enjoy for their picnic?",
+          "options": ["Sandwiches and fruit", "Pizza and noodles", "Grilled fish and rice", "Burgers and fries"],
+          "correctAnswer": "Sandwiches and fruit",
+          "explanation": "The passage specifies they had a picnic with sandwiches and fruit."
+        }
+      ]
+    },
+    {
+      "topic": "animals",
+      "cefrLevel": "A1",
+      "title": "My Friendly Puppy Max",
+      "passage": "Max is a friendly golden puppy. He has big floppy ears and a wagging tail. Every afternoon, Max plays catch with a bright tennis ball in our backyard. When he gets tired, he drinks cool water and takes a nap on his soft blanket. Everyone in our neighborhood smiles when they see Max.",
+      "vietnameseTranslation": "Max là một chú cún con lông vàng thân thiện. Chú có đôi tai to mềm rủ và chiếc đuôi luôn vẫy mừng. Mỗi buổi chiều, Max chơi ném bắt bóng với quả bóng tennis sáng màu ở sân sau. Khi mệt, chú uống nước mát và ngủ trưa trên tấm chăn êm ái. Mọi người trong khu phố đều mỉm cười khi nhìn thấy Max.",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "What kind of pet is Max?",
+          "options": ["A friendly puppy", "A sleepy kitten", "A colorful parrot", "A white rabbit"],
+          "correctAnswer": "A friendly puppy",
+          "explanation": "The passage clearly introduces Max as a friendly golden puppy."
+        },
+        {
+          "id": "q2",
+          "question": "What toy does Max play with in the backyard?",
+          "options": ["A bright tennis ball", "A rubber bone", "A flying frisbee", "A toy mouse"],
+          "correctAnswer": "A bright tennis ball",
+          "explanation": "Max plays catch with a bright tennis ball in the backyard."
+        }
+      ]
+    },
+    {
+      "topic": "general",
+      "cefrLevel": "B1",
+      "title": "The Power of Daily Habits",
+      "passage": "Success is rarely the result of a single monumental breakthrough. Instead, it stems from the small, consistent habits we practice every day. Reading ten pages of an English book each morning or practicing five vocabulary flashcards during a commute may seem minor, but over months these micro-habits compound into extraordinary fluency and confidence.",
+      "vietnameseTranslation": "Thành công hiếm khi là kết quả của một bước đột phá kỳ vĩ đơn lẻ. Thay vào đó, nó bắt nguồn từ những thói quen nhỏ, kiên trì mà chúng ta rèn luyện mỗi ngày. Đọc mười trang sách tiếng Anh mỗi sáng hoặc luyện năm thẻ từ vựng trên đường đi học có vẻ nhỏ nhặt, nhưng sau nhiều tháng, những vi thói quen này sẽ cộng dồn thành sự trôi chảy và tự tin phi thường.",
+      "questions": [
+        {
+          "id": "q1",
+          "question": "According to the passage, what is the main driver of long-term success?",
+          "options": ["Small, consistent daily habits", "A single sudden stroke of luck", "Expensive private tutoring", "Natural talent from birth"],
+          "correctAnswer": "Small, consistent daily habits",
+          "explanation": "The passage explains that success stems from small, consistent daily habits."
+        },
+        {
+          "id": "q2",
+          "question": "What happens when micro-habits are practiced over months?",
+          "options": ["They compound into extraordinary fluency", "They become boring and ineffective", "They are quickly forgotten", "They take too much time to sustain"],
+          "correctAnswer": "They compound into extraordinary fluency",
+          "explanation": "Over months, these micro-habits compound into extraordinary fluency and confidence."
+        }
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "rule": "subject-verb-agreement",
+      "incorrectSentence": "He go to the bookstore every Sunday morning.",
+      "correctSentence": "He goes to the bookstore every Sunday morning.",
+      "errorPart": "go",
+      "ruleExplanation": "With third-person singular subjects (he, she, it), the present simple verb must add -s or -es.",
+      "hint": "Check the subject 'He' and match the verb form for present simple."
+    },
+    {
+      "rule": "subject-verb-agreement",
+      "incorrectSentence": "The students in our class is very enthusiastic.",
+      "correctSentence": "The students in our class are very enthusiastic.",
+      "errorPart": "is",
+      "ruleExplanation": "The true subject is plural ('The students'), so use the plural verb 'are' instead of 'is'.",
+      "hint": "Look past prepositional phrases like 'in our class' to find the real plural subject."
+    },
+    {
+      "rule": "subject-verb-agreement",
+      "incorrectSentence": "She don't like drinking bitter coffee without sugar.",
+      "correctSentence": "She doesn't like drinking bitter coffee without sugar.",
+      "errorPart": "don't",
+      "ruleExplanation": "Use 'doesn't' (does not) for third-person singular subjects (he/she/it).",
+      "hint": "The negative auxiliary verb for 'She' in the present tense is 'doesn't'."
+    },
+    {
+      "rule": "subject-verb-agreement",
+      "incorrectSentence": "Everyone in the room were looking forward to the speech.",
+      "correctSentence": "Everyone in the room was looking forward to the speech.",
+      "errorPart": "were",
+      "ruleExplanation": "Indefinite pronouns such as 'everyone', 'everybody', and 'someone' take a singular verb.",
+      "hint": "'Everyone' refers to individuals singularly, so use 'was'."
+    },
+    {
+      "rule": "tenses",
+      "incorrectSentence": "Yesterday she buy a new digital camera at the mall.",
+      "correctSentence": "Yesterday she bought a new digital camera at the mall.",
+      "errorPart": "buy",
+      "ruleExplanation": "Use past simple ('bought') when referring to a completed action in the past ('yesterday').",
+      "hint": "The time signal 'Yesterday' requires the irregular past tense of 'buy'."
+    },
+    {
+      "rule": "tenses",
+      "incorrectSentence": "I have visited Da Nang city three years ago.",
+      "correctSentence": "I visited Da Nang city three years ago.",
+      "errorPart": "have visited",
+      "ruleExplanation": "When a specific past time is given ('three years ago'), use the simple past tense, not present perfect.",
+      "hint": "Specific time markers like 'ago' require simple past."
+    },
+    {
+      "rule": "tenses",
+      "incorrectSentence": "She has been living in Hanoi since five years.",
+      "correctSentence": "She has been living in Hanoi for five years.",
+      "errorPart": "since",
+      "ruleExplanation": "Use 'for' with a duration of time ('five years') and 'since' with a specific starting point in time.",
+      "hint": "'Five years' is a duration, so use 'for'."
+    },
+    {
+      "rule": "articles",
+      "incorrectSentence": "He wants to become an software engineer in the future.",
+      "correctSentence": "He wants to become a software engineer in the future.",
+      "errorPart": "an",
+      "ruleExplanation": "Use 'a' before words starting with a consonant sound ('software' begins with /s/).",
+      "hint": "Check whether the next word begins with a vowel sound or consonant sound."
+    },
+    {
+      "rule": "articles",
+      "incorrectSentence": "She ate a apple after finishing her lunch.",
+      "correctSentence": "She ate an apple after finishing her lunch.",
+      "errorPart": "a",
+      "ruleExplanation": "Use 'an' before words beginning with a vowel sound (/æ/ in 'apple').",
+      "hint": "Apple begins with a vowel sound, so use 'an'."
+    },
+    {
+      "rule": "prepositions",
+      "incorrectSentence": "The concert will begin in 7:00 PM tonight.",
+      "correctSentence": "The concert will begin at 7:00 PM tonight.",
+      "errorPart": "in",
+      "ruleExplanation": "Use the preposition 'at' for specific times of the day (e.g., at 7:00 PM).",
+      "hint": "Preposition for specific clock times is 'at'."
+    },
+    {
+      "rule": "prepositions",
+      "incorrectSentence": "My birthday is on August.",
+      "correctSentence": "My birthday is in August.",
+      "errorPart": "on",
+      "ruleExplanation": "Use 'in' for months, years, and seasons without a specific day.",
+      "hint": "When naming only the month without a date, use 'in'."
+    }
+  ]
+}

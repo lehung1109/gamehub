@@ -259,6 +259,60 @@ export type Database = {
           },
         ]
       }
+      word_bank: {
+        Row: {
+          cefr_level: string
+          created_at: string
+          created_by: string | null
+          distractors: string[]
+          emoji: string | null
+          english: string
+          example_sentence: string | null
+          example_translation: string | null
+          id: string
+          is_system: boolean
+          part_of_speech: string
+          phonetic: string | null
+          topic: string
+          updated_at: string
+          vietnamese: string
+        }
+        Insert: {
+          cefr_level?: string
+          created_at?: string
+          created_by?: string | null
+          distractors?: string[]
+          emoji?: string | null
+          english: string
+          example_sentence?: string | null
+          example_translation?: string | null
+          id?: string
+          is_system?: boolean
+          part_of_speech?: string
+          phonetic?: string | null
+          topic?: string
+          updated_at?: string
+          vietnamese: string
+        }
+        Update: {
+          cefr_level?: string
+          created_at?: string
+          created_by?: string | null
+          distractors?: string[]
+          emoji?: string | null
+          english?: string
+          example_sentence?: string | null
+          example_translation?: string | null
+          id?: string
+          is_system?: boolean
+          part_of_speech?: string
+          phonetic?: string | null
+          topic?: string
+          updated_at?: string
+          vietnamese?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -399,4 +453,6 @@ export const Constants = {
 } as const
 
 export type StudentGamificationRow = Tables<'student_gamification'>
-
+export type WordBankRow = Tables<'word_bank'>
+export type WordBankInsert = TablesInsert<'word_bank'>
+export type WordBankUpdate = TablesUpdate<'word_bank'>

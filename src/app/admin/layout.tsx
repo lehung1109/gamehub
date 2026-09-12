@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { logout } from '@/app/actions/auth'
 import { Button } from '@/components/ui/button'
-import { LayoutDashboard, UserCircle, LogOut, ExternalLink, Gamepad2, School } from 'lucide-react'
+import { LayoutDashboard, UserCircle, LogOut, ExternalLink, Gamepad2, School, BookOpen, Sparkles } from 'lucide-react'
 
 export const metadata = {
   title: 'GameHub Admin | Quản trị',
@@ -56,6 +56,20 @@ export default async function AdminLayout({
               >
                 <School className="size-4" />
                 <span>Lớp học</span>
+              </Link>
+              <Link
+                href="/admin/word-bank"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 transition-colors"
+              >
+                <BookOpen className="size-4" />
+                <span>Ngân hàng từ</span>
+              </Link>
+              <Link
+                href="/admin/ai-generator"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 transition-colors"
+              >
+                <Sparkles className="size-4 text-amber-500" />
+                <span>AI Studio</span>
               </Link>
               <Link
                 href="/admin/account"
