@@ -57,7 +57,7 @@ export interface SyncSrsDeckOutput {
 /**
  * Safely parses and sanitizes raw SRS deck data into valid SrsCard array.
  */
-export function parseDbSrsDeck(raw: unknown): SrsCard[] {
+function parseDbSrsDeck(raw: unknown): SrsCard[] {
   if (!raw) return []
   let list: unknown = raw
   if (typeof raw === 'string') {
@@ -112,6 +112,17 @@ export function parseDbSrsDeck(raw: unknown): SrsCard[] {
           ? record.isMastered
           : box === 5
 
+      const isValidDate = (d: unknown): boolean =>
+        typeof d === 'string' && !Number.isNaN(Date.parse(d))
+
+      const lastReviewedAt = isValidDate(record.lastReviewedAt)
+        ? (record.lastReviewedAt as string)
+        : null
+
+      const nextReviewAt = isValidDate(record.nextReviewAt)
+        ? (record.nextReviewAt as string)
+        : new Date().toISOString()
+
       validCards.push({
         id,
         prompt: (record.prompt as string).trim(),
@@ -127,12 +138,8 @@ export function parseDbSrsDeck(raw: unknown): SrsCard[] {
             ? record.topic.trim()
             : undefined,
         box,
-        lastReviewedAt:
-          typeof record.lastReviewedAt === 'string' ? record.lastReviewedAt : null,
-        nextReviewAt:
-          typeof record.nextReviewAt === 'string'
-            ? record.nextReviewAt
-            : new Date().toISOString(),
+        lastReviewedAt,
+        nextReviewAt,
         mistakeCount,
         successCount,
         isMastered,
@@ -309,12 +316,16 @@ export async function getStudentSrsDeckAction(
     const backfilledDeck = ingestSessionMistakes([], mistakes)
 
     if (gamRow) {
-      await supabase
+      const { error: updateError } = await supabase
         .from('student_gamification')
         .update({ srs_deck: backfilledDeck as unknown as Json })
         .eq('student_id', studentId)
+
+      if (updateError) {
+        console.error('[getStudentSrsDeckAction] Error saving backfilled deck:', updateError)
+      }
     } else {
-      await supabase
+      const { error: insertError } = await supabase
         .from('student_gamification')
         .insert({
           student_id: studentId,
@@ -323,6 +334,13 @@ export async function getStudentSrsDeckAction(
           quests: [] as unknown as Json,
           srs_deck: backfilledDeck as unknown as Json,
         })
+
+      if (insertError) {
+        console.error(
+          '[getStudentSrsDeckAction] Error inserting gamification row with backfilled deck:',
+          insertError
+        )
+      }
     }
 
     return {
