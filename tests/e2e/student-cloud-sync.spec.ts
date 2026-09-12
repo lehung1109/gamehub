@@ -44,7 +44,7 @@ test.describe('Cloud-Synced Student Gamification E2E Flow', () => {
     const badge = page.getByRole('button', { name: /Học Sinh Cloud/i });
     await expect(badge).toBeVisible();
 
-    const titleBadge = page.getByTestId('equipped-title-badge').first();
+    const titleBadge = badge.getByTestId('equipped-title-badge');
     await expect(titleBadge).toBeVisible();
     await expect(titleBadge).toContainText('Thần Tốc Độ');
 

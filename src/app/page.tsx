@@ -24,7 +24,7 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
       <div className="flex-1 flex flex-col justify-between">
         <div>
         {/* Top bar with Login link for teachers/admins, Daily streak badge, Student profile badge, and Student badge */}
-        <div className="flex justify-end items-center gap-2 mb-2">
+        <div className="flex flex-wrap justify-end items-center gap-2 mb-2">
           <DailyStreakBadge />
           <StudentProfileBadge />
           <StudentBadge />
