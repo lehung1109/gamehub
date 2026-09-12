@@ -30,6 +30,7 @@ import { VocabDefenseConfigForm } from './VocabDefenseConfigForm'
 import { CrosswordConfigForm } from './CrosswordConfigForm'
 import { FallingWordsConfigForm } from './FallingWordsConfigForm'
 import { HangmanConfigForm } from './HangmanConfigForm'
+import { PronunciationConfigForm } from './PronunciationConfigForm'
 import { PreviewButton } from './PreviewButton'
 import { ArrowLeft, Save, Loader2, AlertCircle } from 'lucide-react'
 
@@ -197,6 +198,14 @@ export function ConfigEditForm({ game, config }: Props) {
       case 'hangman':
         return (
           <HangmanConfigForm
+            settings={settings as never}
+            onChange={setSettings}
+            disabled={isPending}
+          />
+        )
+      case 'pronunciation':
+        return (
+          <PronunciationConfigForm
             settings={settings as never}
             onChange={setSettings}
             disabled={isPending}

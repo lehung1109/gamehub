@@ -21,6 +21,7 @@ import type {
   CrosswordSettings,
   FallingWordsSettings,
   HangmanSettings,
+  PronunciationSettings,
   GameSettingsMap,
   AnyGameSettings,
 } from '@/types/config'
@@ -45,6 +46,7 @@ export const VALID_GAME_IDS: readonly GameId[] = [
   'crossword',
   'falling-words',
   'hangman',
+  'pronunciation',
 ] as const
 
 export function isValidGameId(id: string): id is GameId {
@@ -150,6 +152,11 @@ export const DEFAULT_SETTINGS: GameSettingsMap = {
     topics: ['animals', 'fruits', 'school', 'sports'],
     maxBalloons: 6,
     allowHints: true,
+  },
+  pronunciation: {
+    topics: ['minimal-pairs', 'workplace-words', 'standup-phrases'],
+    passThreshold: 70,
+    wordLimit: 10,
   },
 }
 
@@ -450,6 +457,27 @@ export function validateGameSettings(gameId: string, raw: unknown): ValidationRe
         topics,
         maxBalloons,
         allowHints,
+      }
+      return { valid: true, data: validated }
+    }
+
+    case 'pronunciation': {
+      const validTopics: ('minimal-pairs' | 'workplace-words' | 'standup-phrases')[] = [
+        'minimal-pairs',
+        'workplace-words',
+        'standup-phrases',
+      ]
+      const topics = Array.isArray(obj.topics)
+        ? obj.topics.filter((t): t is 'minimal-pairs' | 'workplace-words' | 'standup-phrases' =>
+            validTopics.includes(t as 'minimal-pairs' | 'workplace-words' | 'standup-phrases')
+          )
+        : validTopics
+      const passThreshold = sanitizeInt(obj.passThreshold, 70, 50, 95)
+      const wordLimit = sanitizeInt(obj.wordLimit, 10, 5, 20)
+      const validated: PronunciationSettings = {
+        topics: topics.length > 0 ? topics : validTopics,
+        passThreshold,
+        wordLimit,
       }
       return { valid: true, data: validated }
     }

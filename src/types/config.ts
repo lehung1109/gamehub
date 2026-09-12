@@ -83,6 +83,12 @@ export interface HangmanSettings {
   allowHints: boolean
 }
 
+export interface PronunciationSettings {
+  topics: ('minimal-pairs' | 'workplace-words' | 'standup-phrases')[]
+  passThreshold: number // 50 - 90
+  wordLimit: number     // 5 - 20
+}
+
 export interface MemoryMatchSettings {
   topics: string[]
   pairCount: 4 | 6 | 8
@@ -138,6 +144,7 @@ export interface GameSettingsMap {
   crossword: CrosswordSettings
   'falling-words': FallingWordsSettings
   hangman: HangmanSettings
+  pronunciation: PronunciationSettings
 }
 
 export type GameId = keyof GameSettingsMap
@@ -162,6 +169,7 @@ export type AnyGameSettings =
   | CrosswordSettings
   | FallingWordsSettings
   | HangmanSettings
+  | PronunciationSettings
 
 export type GameSettings =
   | { gameId: 'flashcard'; settings: FlashcardSettings }
@@ -183,6 +191,7 @@ export type GameSettings =
   | { gameId: 'crossword'; settings: CrosswordSettings }
   | { gameId: 'falling-words'; settings: FallingWordsSettings }
   | { gameId: 'hangman'; settings: HangmanSettings }
+  | { gameId: 'pronunciation'; settings: PronunciationSettings }
 
 
 

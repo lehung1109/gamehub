@@ -9,7 +9,7 @@ import {
 
 describe('Game Config Schema', () => {
   it('identifies valid and invalid game IDs', () => {
-    expect(VALID_GAME_IDS).toHaveLength(19)
+    expect(VALID_GAME_IDS).toHaveLength(20)
     expect(isValidGameId('flashcard')).toBe(true)
     expect(isValidGameId('alphabet')).toBe(true)
     expect(isValidGameId('listening')).toBe(true)
@@ -29,6 +29,7 @@ describe('Game Config Schema', () => {
     expect(isValidGameId('crossword')).toBe(true)
     expect(isValidGameId('falling-words')).toBe(true)
     expect(isValidGameId('hangman')).toBe(true)
+    expect(isValidGameId('pronunciation')).toBe(true)
     expect(isValidGameId('unknown-game')).toBe(false)
     expect(isValidGameId('')).toBe(false)
   })
@@ -95,6 +96,12 @@ describe('Game Config Schema', () => {
       topics: ['animals', 'fruits', 'school', 'sports'],
       maxBalloons: 6,
       allowHints: true,
+    })
+
+    expect(getDefaultSettings('pronunciation')).toEqual({
+      topics: ['minimal-pairs', 'workplace-words', 'standup-phrases'],
+      passThreshold: 70,
+      wordLimit: 10,
     })
   })
 
@@ -472,6 +479,39 @@ describe('Game Config Schema', () => {
         topics: ['animals', 'fruits', 'school', 'sports'],
         maxBalloons: 8,
         allowHints: true,
+      })
+    })
+
+    it('validates pronunciation settings with defaults and sanitizes inputs', () => {
+      const res = validateGameSettings('pronunciation', {
+        topics: ['minimal-pairs', 'invalid-topic', 'workplace-words'],
+        passThreshold: 85,
+        wordLimit: 15,
+      })
+      expect(res.valid).toBe(true)
+      expect(res.data).toEqual({
+        topics: ['minimal-pairs', 'workplace-words'],
+        passThreshold: 85,
+        wordLimit: 15,
+      })
+
+      const resDefault = validateGameSettings('pronunciation', {})
+      expect(resDefault.valid).toBe(true)
+      expect(resDefault.data).toEqual({
+        topics: ['minimal-pairs', 'workplace-words', 'standup-phrases'],
+        passThreshold: 70,
+        wordLimit: 10,
+      })
+
+      const resClamp = validateGameSettings('pronunciation', {
+        passThreshold: 100,
+        wordLimit: 25,
+      })
+      expect(resClamp.valid).toBe(true)
+      expect(resClamp.data).toEqual({
+        topics: ['minimal-pairs', 'workplace-words', 'standup-phrases'],
+        passThreshold: 95,
+        wordLimit: 20,
       })
     })
   })
