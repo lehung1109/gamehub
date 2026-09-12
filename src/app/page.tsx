@@ -26,6 +26,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
         <div>
         {/* Top bar with Login link for teachers/admins, Daily streak badge, Mistake notebook badge, Student profile badge, and Student badge */}
         <div className="flex flex-wrap justify-end items-center gap-2 mb-2">
+          <Link
+            href="/speaking"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-amber-950 dark:text-amber-200 bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 shadow-xs hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            title="Luyện nói cùng Gia sư AI Sunny"
+            data-testid="speaking-topbar-link"
+          >
+            <span>🎙️ Luyện nói AI</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
@@ -67,9 +75,38 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           </div>
         </header>
 
-        {/* Advanced / Workplace Learning Modules */}
-        <section aria-label="Chương trình nâng cao cho người đi làm & sinh viên" className="mb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Advanced / Workplace Learning Modules & AI Speaking Hub */}
+        <section aria-label="Chương trình nâng cao & Luyện nói AI" className="mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* AI Speaking Hub CTA */}
+            <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-amber-600 via-orange-600 to-amber-700 text-white p-6 sm:p-7 shadow-md border border-amber-500/50 flex flex-col justify-between">
+              <div className="absolute -right-12 -top-12 size-40 rounded-full bg-yellow-400/20 blur-2xl pointer-events-none" />
+              <div className="absolute -left-12 -bottom-12 size-40 rounded-full bg-red-500/20 blur-2xl pointer-events-none" />
+
+              <div className="relative z-10 space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/40 text-amber-100 border border-amber-400/30 text-xs font-bold uppercase tracking-wider">
+                  <span>🎙️ Gia sư AI Sunny</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+                  Luyện Nói Tương Tác Cùng AI
+                </h2>
+                <p className="text-xs sm:text-sm text-amber-100/90 leading-relaxed mb-4">
+                  Thực hành giao tiếp 2 chiều theo tình huống thực tế A1-B2. Chấm điểm phát âm chuẩn xác và sửa lỗi tức thì.
+                </p>
+              </div>
+
+              <div className="relative z-10 pt-2">
+                <Link
+                  href="/speaking"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-white text-amber-950 hover:bg-amber-50 font-black text-sm shadow-sm transition-transform hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  aria-label="Khám phá Hub Luyện Nói AI"
+                  data-testid="speaking-cta-button"
+                >
+                  <span>🎙️ Luyện nói AI</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
             {/* Workplace Tenses */}
             <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white p-6 sm:p-7 shadow-md border border-indigo-700/50 flex flex-col justify-between">
               <div className="absolute -right-12 -top-12 size-40 rounded-full bg-indigo-500/20 blur-2xl pointer-events-none" />
