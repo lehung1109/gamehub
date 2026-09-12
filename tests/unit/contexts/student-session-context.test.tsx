@@ -12,6 +12,14 @@ vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn(),
 }))
 
+vi.mock('@/app/actions/student-gamification', () => ({
+  getStudentGamificationProfile: vi.fn(),
+  syncStudentGamificationState: vi.fn(),
+  purchaseShopItemAction: vi.fn(),
+  equipShopItemAction: vi.fn(),
+  claimQuestRewardAction: vi.fn(),
+}))
+
 describe('StudentSessionContext Gamification & Progress', () => {
   beforeEach(() => {
     sessionStorage.clear()
