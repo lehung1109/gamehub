@@ -17,7 +17,7 @@ describe("HomePage (src/app/page.tsx)", () => {
 
     const mainRegion = screen.getByRole("main", { name: /danh sách trò chơi/i });
     const gameLinks = within(mainRegion).getAllByRole("link");
-    expect(gameLinks.length).toBe(19);
+    expect(gameLinks.length).toBe(20);
     expect(gameLinks.length).toBe(games.length);
 
     // Verify all games are present in strict priority order
