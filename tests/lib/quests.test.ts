@@ -310,6 +310,7 @@ describe('Daily & Weekly Quests Engine (src/lib/quests.ts)', () => {
           'spelling',
           'numbers-colors',
           'alphabet',
+          'typing',
         ]
 
         for (const game of vocabGames) {

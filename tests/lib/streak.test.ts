@@ -5,6 +5,8 @@ import {
   getStoredStreak,
   saveStoredStreak,
   getTodayDateString,
+  getEffectiveStreak,
+  getDayDifference,
   STREAK_MILESTONES,
 } from '@/lib/streak'
 import type { StreakState } from '@/types/streak'
@@ -449,6 +451,91 @@ describe('Daily Streak Engine (src/lib/streak.ts)', () => {
         { days: 14, bonusStars: 30 },
         { days: 30, bonusStars: 100 },
       ])
+    })
+  })
+
+  describe('getDayDifference', () => {
+    it('returns exact day difference between two dates', () => {
+      expect(getDayDifference('2026-09-10', '2026-09-12')).toBe(2)
+      expect(getDayDifference('2026-09-12', '2026-09-12')).toBe(0)
+      expect(getDayDifference('2026-09-13', '2026-09-12')).toBe(-1)
+    })
+
+    it('returns null for invalid date inputs', () => {
+      expect(getDayDifference('', '2026-09-12')).toBeNull()
+      expect(getDayDifference('invalid', '2026-09-12')).toBeNull()
+    })
+  })
+
+  describe('getEffectiveStreak', () => {
+    it('returns streak of 0 if lastActiveDate is empty', () => {
+      const state: StreakState = {
+        currentStreak: 5,
+        longestStreak: 5,
+        lastActiveDate: '',
+        freezeCount: 1,
+        totalActiveDays: 5,
+        unlockedMilestones: [],
+      }
+      expect(getEffectiveStreak(state, '2026-09-12').currentStreak).toBe(0)
+    })
+
+    it('retains currentStreak if active today or yesterday', () => {
+      const stateToday: StreakState = {
+        currentStreak: 4,
+        longestStreak: 4,
+        lastActiveDate: '2026-09-12',
+        freezeCount: 1,
+        totalActiveDays: 4,
+        unlockedMilestones: [3],
+      }
+      expect(getEffectiveStreak(stateToday, '2026-09-12').currentStreak).toBe(4)
+
+      const stateYesterday: StreakState = {
+        ...stateToday,
+        lastActiveDate: '2026-09-11',
+      }
+      expect(getEffectiveStreak(stateYesterday, '2026-09-12').currentStreak).toBe(4)
+    })
+
+    it('preserves currentStreak when missed 1 day and freezeCount > 0', () => {
+      const state: StreakState = {
+        currentStreak: 6,
+        longestStreak: 6,
+        lastActiveDate: '2026-09-10',
+        freezeCount: 1,
+        totalActiveDays: 6,
+        unlockedMilestones: [3],
+      }
+      // Missed Sept 11, today is Sept 12
+      expect(getEffectiveStreak(state, '2026-09-12').currentStreak).toBe(6)
+    })
+
+    it('returns 0 when missed 1 day and freezeCount === 0', () => {
+      const state: StreakState = {
+        currentStreak: 6,
+        longestStreak: 6,
+        lastActiveDate: '2026-09-10',
+        freezeCount: 0,
+        totalActiveDays: 6,
+        unlockedMilestones: [3],
+      }
+      expect(getEffectiveStreak(state, '2026-09-12').currentStreak).toBe(0)
+    })
+
+    it('returns 0 when missed 2 or more days even with freezes remaining', () => {
+      const state: StreakState = {
+        currentStreak: 10,
+        longestStreak: 10,
+        lastActiveDate: '2026-09-08',
+        freezeCount: 3,
+        totalActiveDays: 10,
+        unlockedMilestones: [3, 7],
+      }
+      // 4 days missed
+      expect(getEffectiveStreak(state, '2026-09-12').currentStreak).toBe(0)
+      // Longest streak and milestones are preserved
+      expect(getEffectiveStreak(state, '2026-09-12').longestStreak).toBe(10)
     })
   })
 })

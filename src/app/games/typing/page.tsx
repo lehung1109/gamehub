@@ -15,9 +15,11 @@ import { useGameConfig } from '@/hooks/useGameConfig';
 import { TypingSettings } from '@/types/config';
 import { useGameTracking } from '@/hooks/use-game-tracking';
 import { validateAnswer } from '@/lib/validation';
+import { PreviewBanner } from '@/components/game/PreviewBanner';
+import { ConfigBanner } from '@/components/game/ConfigBanner';
 
 function TypingGameContent() {
-  const { isLoading } = useGameConfig<TypingSettings>('typing');
+  const { isLoading, configName, isPreview, configId } = useGameConfig<TypingSettings>('typing');
   const allQuestions = React.useMemo(() => {
     return parseTenseDataToTypingQuestions(presentSimpleData);
   }, []);
@@ -37,6 +39,7 @@ function TypingGameContent() {
   const { recordQuestion, submitSession, resetSession } = useGameTracking({
     gameType: 'typing',
     totalQuestions: questions.length,
+    configId: configId || undefined,
   });
 
   const hasSubmittedRef = React.useRef(false);
@@ -44,9 +47,9 @@ function TypingGameContent() {
   React.useEffect(() => {
     if (state.status === 'completed' && !hasSubmittedRef.current) {
       hasSubmittedRef.current = true;
-      submitSession({ score: state.score, totalQuestions });
+      submitSession({ score: state.score, totalQuestions, configId: configId || undefined });
     }
-  }, [state.status, state.score, totalQuestions, submitSession]);
+  }, [state.status, state.score, totalQuestions, submitSession, configId]);
 
   const onAnswerSubmit = React.useCallback(() => {
     if (state.isCorrect !== null || !currentQuestion || !state.userInput.trim()) return;
@@ -108,8 +111,15 @@ function TypingGameContent() {
     <div className="container py-4 md:py-8 max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <BackButton />
-        <div className="text-sm font-medium">
-          Score: {state.score}
+        <div className="flex items-center gap-2">
+          {isPreview ? (
+            <PreviewBanner />
+          ) : (
+            configName && <ConfigBanner configName={configName} />
+          )}
+          <div className="text-sm font-medium">
+            Score: {state.score}
+          </div>
         </div>
       </div>
 

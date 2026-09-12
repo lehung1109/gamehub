@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { getStoredStreak, getTodayDateString, STREAK_MILESTONES } from '@/lib/streak'
+import { getStoredStreak, getTodayDateString, getEffectiveStreak, getDayDifference, STREAK_MILESTONES } from '@/lib/streak'
 import { Button } from '@/components/ui/button'
 import { X, Flame } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -37,10 +37,20 @@ export function DailyStreakModal({
     return null
   }
 
-  const streak = getStoredStreak(classCode, studentName)
-
+  const rawStreak = getStoredStreak(classCode, studentName)
   const today = getTodayDateString()
-  const isActiveToday = streak.lastActiveDate === today
+  const streak = getEffectiveStreak(rawStreak, today)
+
+  const isActiveToday = rawStreak.lastActiveDate === today
+
+  let statusMessage = ''
+  if (isActiveToday) {
+    statusMessage = '🎉 Hôm nay bạn đã hoàn thành bài học và giữ vững chuỗi!'
+  } else if (streak.currentStreak > 0) {
+    statusMessage = '⚡ Hãy chơi ít nhất 1 trò chơi hôm nay để tiếp tục chuỗi nhé!'
+  } else {
+    statusMessage = '⚡ Chuỗi trước đó đã kết thúc. Hãy chơi một trò chơi hôm nay để bắt đầu chuỗi mới nhé!'
+  }
 
   return (
     <div
@@ -114,9 +124,7 @@ export function DailyStreakModal({
               {streak.currentStreak} Ngày Liên Tiếp
             </div>
             <p className="mt-2 text-base font-semibold text-slate-700 dark:text-slate-300">
-              {isActiveToday
-                ? '🎉 Hôm nay bạn đã hoàn thành bài học và giữ vững chuỗi!'
-                : '⚡ Hãy chơi ít nhất 1 trò chơi hôm nay để tiếp tục chuỗi nhé!'}
+              {statusMessage}
             </p>
           </div>
 

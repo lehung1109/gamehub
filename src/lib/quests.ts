@@ -19,6 +19,7 @@ export const VOCABULARY_GAMES = [
   'spelling',
   'numbers-colors',
   'alphabet',
+  'typing',
 ]
 
 export const GRAMMAR_GAMES = [

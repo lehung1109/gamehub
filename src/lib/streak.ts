@@ -37,7 +37,7 @@ function parseDateToUtc(dateStr: string): number | null {
 /**
  * Calculates day difference in calendar days between lastActiveDate and todayDateStr.
  */
-function getDayDifference(lastDateStr: string, todayDateStr: string): number | null {
+export function getDayDifference(lastDateStr: string, todayDateStr: string): number | null {
   const lastUtc = parseDateToUtc(lastDateStr)
   const todayUtc = parseDateToUtc(todayDateStr)
   if (lastUtc === null || todayUtc === null) return null
@@ -52,6 +52,37 @@ export function getTodayDateString(date: Date = new Date()): string {
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
   return `${year}-${month}-${day}`
+}
+
+/**
+ * Computes effective streak for UI display and status checks.
+ * If 2 or more days have elapsed without activity (or 1 missed day without any freeze),
+ * the current streak has expired and returns 0.
+ * If 1 day was missed and the user has available freezes, the streak is protected and preserved.
+ */
+export function getEffectiveStreak(
+  state: StreakState,
+  todayDateStr: string = getTodayDateString()
+): StreakState {
+  if (!state.lastActiveDate || state.currentStreak <= 0) {
+    return { ...state, currentStreak: 0 }
+  }
+
+  const diffDays = getDayDifference(state.lastActiveDate, todayDateStr)
+  if (diffDays === null || diffDays <= 1) {
+    return state
+  }
+
+  // Missed exactly 1 day (diffDays === 2): protected if freezes available
+  if (diffDays === 2 && state.freezeCount > 0) {
+    return state
+  }
+
+  // Missed 2+ days, or missed 1 day with 0 freezes: streak expired
+  return {
+    ...state,
+    currentStreak: 0,
+  }
 }
 
 /**

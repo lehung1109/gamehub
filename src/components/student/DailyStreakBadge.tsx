@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useStudentSession } from '@/hooks/use-student-session'
-import { getStoredStreak, getTodayDateString } from '@/lib/streak'
+import { getStoredStreak, getTodayDateString, getEffectiveStreak } from '@/lib/streak'
 import { Button } from '@/components/ui/button'
 import { Flame } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -29,10 +29,11 @@ export function DailyStreakBadge({
 
   const effectiveClassCode = classCode ?? session?.classCode
   const effectiveStudentName = studentName ?? session?.studentName
-  const streak = getStoredStreak(effectiveClassCode, effectiveStudentName)
+  const rawStreak = getStoredStreak(effectiveClassCode, effectiveStudentName)
 
   const today = getTodayDateString()
-  const isActiveToday = streak.lastActiveDate === today
+  const streak = getEffectiveStreak(rawStreak, today)
+  const isActiveToday = rawStreak.lastActiveDate === today
 
   return (
     <>
