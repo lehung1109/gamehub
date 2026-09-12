@@ -52,6 +52,8 @@ export default function FallingWordsPage() {
   }, [lastPoppedWord, speak]);
 
   useEffect(() => {
+    if (isGameOver) return;
+
     let lastTime = performance.now();
     let animId: number;
 
@@ -64,7 +66,7 @@ export default function FallingWordsPage() {
 
     animId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animId);
-  }, [updatePhysics]);
+  }, [isGameOver, updatePhysics]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

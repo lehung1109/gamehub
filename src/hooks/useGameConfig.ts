@@ -11,13 +11,13 @@ export function useGameConfig<T = Record<string, unknown>>(
 ): UseGameConfigResult<T> {
   const searchParams = useSearchParams()
   let previewParam = searchParams?.get('preview') || null
-  let configId = searchParams?.get('config') || null
+  let configId = searchParams?.get('config') || searchParams?.get('configId') || null
 
   if (!previewParam && !configId && typeof window !== 'undefined' && window.location?.search) {
     try {
       const urlParams = new URLSearchParams(window.location.search)
       previewParam = urlParams.get('preview') || null
-      configId = urlParams.get('config') || null
+      configId = urlParams.get('config') || urlParams.get('configId') || null
     } catch {
       // ignore
     }

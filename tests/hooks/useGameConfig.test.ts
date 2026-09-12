@@ -127,6 +127,37 @@ describe('useGameConfig hook', () => {
       })
     })
 
+    it('fetches config from database when configId param is present', async () => {
+      mockSearchParams.set('configId', 'cfg-456')
+
+      const mockDbConfig = {
+        id: 'cfg-456',
+        user_id: 'user-2',
+        game_id: 'flashcard',
+        name: 'Flashcard Giao Bài',
+        settings: { topics: ['fruits'], wordLimit: 10, autoSpeak: false },
+        share_slug: 'fc-slug-2',
+        is_active: true,
+        created_at: '2026-09-01T00:00:00Z',
+        updated_at: '2026-09-01T00:00:00Z',
+      }
+
+      vi.spyOn(configActions, 'getConfigByIdPublic').mockResolvedValueOnce({
+        data: mockDbConfig,
+      })
+
+      const { result } = renderHook(() => useGameConfig<FlashcardSettings>('flashcard'))
+
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false)
+        expect(result.current.isPreview).toBe(false)
+        expect(result.current.configId).toBe('cfg-456')
+        expect(result.current.configName).toBe('Flashcard Giao Bài')
+        expect(result.current.settings).toEqual({ topics: ['fruits'], wordLimit: 10, autoSpeak: false })
+        expect(result.current.config).toEqual(mockDbConfig)
+      })
+    })
+
     it('returns nulls and isPreview=false when no params are provided', () => {
       const { result } = renderHook(() => useGameConfig('flashcard'))
 

@@ -52,7 +52,7 @@ export async function generateMetadata({
 
 interface FlashcardTopicPageProps {
   params: Promise<{ topicId: string }>;
-  searchParams?: Promise<{ config?: string; preview?: string }>;
+  searchParams?: Promise<{ config?: string; configId?: string; preview?: string }>;
 }
 
 export default async function FlashcardTopicPage({
@@ -67,7 +67,7 @@ export default async function FlashcardTopicPage({
   }
 
   const resolvedSearchParams = searchParams ? await searchParams : {};
-  const configId = resolvedSearchParams?.config;
+  const configId = resolvedSearchParams?.config || resolvedSearchParams?.configId;
   const previewParam = resolvedSearchParams?.preview;
 
   let activeConfig = null;

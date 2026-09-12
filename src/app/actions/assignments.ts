@@ -1,5 +1,6 @@
 'use server'
 
+import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import type {
   Assignment,
@@ -65,7 +66,27 @@ export async function createAssignment(
       return { success: false, error: 'Hạn nộp không hợp lệ' }
     }
 
+    const serverClient = await createClient()
+    const {
+      data: { user },
+    } = await serverClient.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
     const supabase = createAdminClient()
+
+    const { data: classroom, error: classError } = await supabase
+      .from('classrooms')
+      .select('id')
+      .eq('id', classroomId.trim())
+      .eq('teacher_id', user.id)
+      .single()
+
+    if (classError || !classroom) {
+      return { success: false, error: 'Bạn không có quyền tạo bài tập cho lớp học này' }
+    }
 
     const { data, error } = await getAssignmentsTable(supabase)
       .insert({
@@ -100,7 +121,28 @@ export async function getClassAssignments(
       return { success: false, data: [], error: 'Mã lớp học không được để trống' }
     }
 
+    const serverClient = await createClient()
+    const {
+      data: { user },
+    } = await serverClient.auth.getUser()
+
+    if (!user) {
+      return { success: false, data: [], error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
     const supabase = createAdminClient()
+
+    // Verify teacher owns this classroom
+    const { data: classroom, error: classError } = await supabase
+      .from('classrooms')
+      .select('id')
+      .eq('id', classroomId.trim())
+      .eq('teacher_id', user.id)
+      .single()
+
+    if (classError || !classroom) {
+      return { success: false, data: [], error: 'Bạn không có quyền xem bài tập của lớp học này' }
+    }
 
     // 1. Fetch active assignments for classroom
     const { data: assignments, error: assignmentsError } = await getAssignmentsTable(supabase)
@@ -219,7 +261,38 @@ export async function deleteAssignment(
       return { success: false, error: 'Mã bài tập không được để trống' }
     }
 
+    const serverClient = await createClient()
+    const {
+      data: { user },
+    } = await serverClient.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
     const supabase = createAdminClient()
+
+    // 1. Fetch assignment to check classroom_id
+    const { data: assignment, error: fetchError } = await getAssignmentsTable(supabase)
+      .select('id, classroom_id')
+      .eq('id', assignmentId.trim())
+      .single()
+
+    if (fetchError || !assignment) {
+      return { success: false, error: 'Không tìm thấy bài tập' }
+    }
+
+    // 2. Verify teacher owns that classroom
+    const { data: classroom, error: classError } = await supabase
+      .from('classrooms')
+      .select('id')
+      .eq('id', (assignment as unknown as { classroom_id: string }).classroom_id)
+      .eq('teacher_id', user.id)
+      .single()
+
+    if (classError || !classroom) {
+      return { success: false, error: 'Bạn không có quyền xóa bài tập này' }
+    }
 
     const { error } = await getAssignmentsTable(supabase)
       .update({ is_active: false })
@@ -320,6 +393,7 @@ export async function getStudentAssignments(
         .from('game_sessions')
         .select('id, game_type, topic, score, config_id, started_at, completed_at')
         .eq('student_id', student.id)
+        .order('completed_at', { ascending: false })
 
       if (sessError) {
         return {
@@ -370,18 +444,25 @@ export async function getStudentAssignments(
       let studentScore: number | undefined
       let completedAt: string | undefined
 
+      const validScores = matchingSessions
+        .map((s) => (typeof s.score === 'number' && !isNaN(s.score) ? s.score : 0))
+
       if (isCompleted) {
         status = 'completed'
         // Highest score achieved
-        studentScore = Math.max(...matchingSessions.map((s) => s.score ?? 0))
-        // Completion timestamp: prefer the completed_at of qualifying session
-        const completedSession = completedSessions[completedSessions.length - 1]
-        completedAt = completedSession.completed_at || completedSession.started_at || undefined
+        studentScore = validScores.length > 0 ? Math.max(...validScores) : 0
+        // Completion timestamp: prefer the latest completed_at / started_at of qualifying sessions
+        const latestCompletedSession = completedSessions.reduce((latest, current) => {
+          const latestTime = new Date(latest.completed_at || latest.started_at || 0).getTime()
+          const currentTime = new Date(current.completed_at || current.started_at || 0).getTime()
+          return currentTime >= latestTime ? current : latest
+        })
+        completedAt = latestCompletedSession.completed_at || latestCompletedSession.started_at || undefined
       } else {
         const isOverdue = now > new Date(assignment.due_date)
         status = isOverdue ? 'overdue' : 'pending'
         if (matchingSessions.length > 0) {
-          studentScore = Math.max(...matchingSessions.map((s) => s.score ?? 0))
+          studentScore = validScores.length > 0 ? Math.max(...validScores) : 0
         }
       }
 

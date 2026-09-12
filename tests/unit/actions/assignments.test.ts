@@ -6,9 +6,14 @@ import {
   deleteAssignment,
 } from '@/app/actions/assignments'
 import * as adminSupabase from '@/lib/supabase/admin'
+import * as serverSupabase from '@/lib/supabase/server'
 
 vi.mock('@/lib/supabase/admin', () => ({
   createAdminClient: vi.fn(),
+}))
+
+vi.mock('@/lib/supabase/server', () => ({
+  createClient: vi.fn(),
 }))
 
 function createMockQueryBuilder(data: unknown = null, error: unknown = null) {
@@ -32,6 +37,7 @@ function createMockQueryBuilder(data: unknown = null, error: unknown = null) {
 
 describe('Assignments Server Actions', () => {
   let mockSupabase: { from: ReturnType<typeof vi.fn> }
+  let mockServerSupabase: { auth: { getUser: ReturnType<typeof vi.fn> } }
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -40,6 +46,17 @@ describe('Assignments Server Actions', () => {
     }
     vi.mocked(adminSupabase.createAdminClient).mockReturnValue(
       mockSupabase as unknown as ReturnType<typeof adminSupabase.createAdminClient>
+    )
+    mockServerSupabase = {
+      auth: {
+        getUser: vi.fn().mockResolvedValue({
+          data: { user: { id: 'teacher-123', email: 'teacher@example.com' } },
+          error: null,
+        }),
+      },
+    }
+    vi.mocked(serverSupabase.createClient).mockResolvedValue(
+      mockServerSupabase as unknown as Awaited<ReturnType<typeof serverSupabase.createClient>>
     )
   })
 
@@ -96,6 +113,39 @@ describe('Assignments Server Actions', () => {
       expect(resInvalidDueDate.error).toMatch(/hạn nộp/i)
     })
 
+    it('rejects if teacher is not authenticated', async () => {
+      mockServerSupabase.auth.getUser.mockResolvedValueOnce({
+        data: { user: null },
+        error: null,
+      })
+
+      const res = await createAssignment({
+        classroomId: 'cls-1',
+        title: 'Bài tập 1',
+        gameType: 'match-pairs',
+        dueDate: '2026-12-31T23:59:59.000Z',
+      })
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/đăng nhập/i)
+    })
+
+    it('rejects if teacher does not own the classroom', async () => {
+      const classroomBuilder = createMockQueryBuilder(null, { message: 'Not found' })
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await createAssignment({
+        classroomId: 'cls-unowned',
+        title: 'Bài tập 1',
+        gameType: 'match-pairs',
+        dueDate: '2026-12-31T23:59:59.000Z',
+      })
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/không có quyền/i)
+    })
+
     it('succeeds with valid input', async () => {
       const mockCreatedAssignment = {
         id: 'asg-1',
@@ -111,8 +161,10 @@ describe('Assignments Server Actions', () => {
         created_at: '2026-09-11T10:00:00.000Z',
       }
 
+      const classroomBuilder = createMockQueryBuilder({ id: 'cls-1', teacher_id: 'teacher-123' }, null)
       const assignmentBuilder = createMockQueryBuilder(mockCreatedAssignment, null)
       mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
         if (table === 'assignments') return assignmentBuilder
         return createMockQueryBuilder(null)
       })
@@ -144,6 +196,29 @@ describe('Assignments Server Actions', () => {
   })
 
   describe('getClassAssignments', () => {
+    it('rejects if teacher is not authenticated', async () => {
+      mockServerSupabase.auth.getUser.mockResolvedValueOnce({
+        data: { user: null },
+        error: null,
+      })
+
+      const res = await getClassAssignments('cls-1')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/đăng nhập/i)
+    })
+
+    it('rejects if teacher does not own classroom', async () => {
+      const classroomBuilder = createMockQueryBuilder(null, { message: 'Not found' })
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await getClassAssignments('cls-unowned')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/không có quyền/i)
+    })
+
     it('returns assignments with progress counts', async () => {
       const mockAssignments = [
         {
@@ -205,11 +280,13 @@ describe('Assignments Server Actions', () => {
         },
       ]
 
+      const classroomBuilder = createMockQueryBuilder({ id: 'cls-1', teacher_id: 'teacher-123' }, null)
       const assignmentsBuilder = createMockQueryBuilder(mockAssignments, null)
       const studentsBuilder = createMockQueryBuilder(mockStudents, null)
       const sessionsBuilder = createMockQueryBuilder(mockSessions, null)
 
       mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
         if (table === 'assignments') return assignmentsBuilder
         if (table === 'students') return studentsBuilder
         if (table === 'game_sessions') return sessionsBuilder
@@ -237,10 +314,12 @@ describe('Assignments Server Actions', () => {
     })
 
     it('handles empty classroom with 0 students and 0 assignments', async () => {
+      const classroomBuilder = createMockQueryBuilder({ id: 'cls-empty', teacher_id: 'teacher-123' }, null)
       const assignmentsBuilder = createMockQueryBuilder([], null)
       const studentsBuilder = createMockQueryBuilder([], null)
 
       mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
         if (table === 'assignments') return assignmentsBuilder
         if (table === 'students') return studentsBuilder
         return createMockQueryBuilder(null)
@@ -279,11 +358,13 @@ describe('Assignments Server Actions', () => {
         },
       ]
 
+      const classroomBuilder = createMockQueryBuilder({ id: 'cls-1', teacher_id: 'teacher-123' }, null)
       const assignmentsBuilder = createMockQueryBuilder(mockAssignments, null)
       const studentsBuilder = createMockQueryBuilder(mockStudents, null)
       const sessionsBuilder = createMockQueryBuilder(mockSessions, null)
 
       mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
         if (table === 'assignments') return assignmentsBuilder
         if (table === 'students') return studentsBuilder
         if (table === 'game_sessions') return sessionsBuilder
@@ -455,12 +536,170 @@ describe('Assignments Server Actions', () => {
       expect(res.success).toBe(false)
       expect(res.error).toMatch(/lớp học/i)
     })
+
+    it('safely handles NaN and non-numeric scores without propagating NaN', async () => {
+      const mockClassroom = { id: 'cls-1', code: 'ABC123', is_active: true }
+      const mockStudent = [{ id: 'std-1', name: 'Bé Linh' }]
+      const mockAssignments = [
+        {
+          id: 'asg-1',
+          classroom_id: 'cls-1',
+          title: 'Bài tập 1',
+          game_type: 'match-pairs',
+          topic: '',
+          config_id: null,
+          target_score: 50,
+          due_date: new Date(Date.now() + 86400000).toISOString(),
+          is_active: true,
+          created_at: '2026-09-01T00:00:00.000Z',
+        },
+      ]
+
+      const mockSessions = [
+        {
+          id: 'sess-nan',
+          student_id: 'std-1',
+          game_type: 'match-pairs',
+          topic: '',
+          score: NaN,
+          config_id: null,
+          completed_at: '2026-09-10T12:00:00.000Z',
+        },
+        {
+          id: 'sess-valid',
+          student_id: 'std-1',
+          game_type: 'match-pairs',
+          topic: '',
+          score: 80,
+          config_id: null,
+          completed_at: '2026-09-11T12:00:00.000Z',
+        },
+      ]
+
+      const classroomBuilder = createMockQueryBuilder(mockClassroom, null)
+      const studentBuilder = createMockQueryBuilder(mockStudent, null)
+      const assignmentsBuilder = createMockQueryBuilder(mockAssignments, null)
+      const sessionsBuilder = createMockQueryBuilder(mockSessions, null)
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
+        if (table === 'students') return studentBuilder
+        if (table === 'assignments') return assignmentsBuilder
+        if (table === 'game_sessions') return sessionsBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await getStudentAssignments('ABC123', 'Bé Linh')
+      expect(res.success).toBe(true)
+      expect(res.data?.[0].studentScore).toBe(80)
+      expect(isNaN(res.data?.[0].studentScore as number)).toBe(false)
+      expect(res.data?.[0].status).toBe('completed')
+    })
+
+    it('picks the latest completedAt among multiple qualifying sessions regardless of array order', async () => {
+      const mockClassroom = { id: 'cls-1', code: 'ABC123', is_active: true }
+      const mockStudent = [{ id: 'std-1', name: 'Bé Linh' }]
+      const mockAssignments = [
+        {
+          id: 'asg-1',
+          classroom_id: 'cls-1',
+          title: 'Bài tập 1',
+          game_type: 'match-pairs',
+          topic: '',
+          config_id: null,
+          target_score: 50,
+          due_date: new Date(Date.now() + 86400000).toISOString(),
+          is_active: true,
+          created_at: '2026-09-01T00:00:00.000Z',
+        },
+      ]
+
+      // Sessions in arbitrary order: older session is second in array
+      const mockSessions = [
+        {
+          id: 'sess-newer',
+          student_id: 'std-1',
+          game_type: 'match-pairs',
+          topic: '',
+          score: 90,
+          config_id: null,
+          completed_at: '2026-09-12T10:00:00.000Z',
+        },
+        {
+          id: 'sess-older',
+          student_id: 'std-1',
+          game_type: 'match-pairs',
+          topic: '',
+          score: 70,
+          config_id: null,
+          completed_at: '2026-09-10T10:00:00.000Z',
+        },
+      ]
+
+      const classroomBuilder = createMockQueryBuilder(mockClassroom, null)
+      const studentBuilder = createMockQueryBuilder(mockStudent, null)
+      const assignmentsBuilder = createMockQueryBuilder(mockAssignments, null)
+      const sessionsBuilder = createMockQueryBuilder(mockSessions, null)
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return classroomBuilder
+        if (table === 'students') return studentBuilder
+        if (table === 'assignments') return assignmentsBuilder
+        if (table === 'game_sessions') return sessionsBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await getStudentAssignments('ABC123', 'Bé Linh')
+      expect(res.success).toBe(true)
+      expect(res.data?.[0].completedAt).toBe('2026-09-12T10:00:00.000Z')
+    })
   })
 
   describe('deleteAssignment', () => {
-    it('removes/deactivates assignment successfully', async () => {
-      const assignmentBuilder = createMockQueryBuilder({ id: 'asg-1', is_active: false }, null)
+    it('rejects if teacher is not authenticated', async () => {
+      mockServerSupabase.auth.getUser.mockResolvedValueOnce({
+        data: { user: null },
+        error: null,
+      })
+
+      const res = await deleteAssignment('asg-1')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/đăng nhập/i)
+    })
+
+    it('rejects if assignment is not found', async () => {
+      const assignmentBuilder = createMockQueryBuilder(null, { message: 'Not found' })
       mockSupabase.from.mockReturnValue(assignmentBuilder)
+
+      const res = await deleteAssignment('asg-missing')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/không tìm thấy/i)
+    })
+
+    it('rejects if teacher does not own the assignment classroom', async () => {
+      const assignmentBuilder = createMockQueryBuilder({ id: 'asg-1', classroom_id: 'cls-unowned' }, null)
+      const classroomBuilder = createMockQueryBuilder(null, { message: 'Not owned' })
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'assignments') return assignmentBuilder
+        if (table === 'classrooms') return classroomBuilder
+        return createMockQueryBuilder(null)
+      })
+
+      const res = await deleteAssignment('asg-1')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/không có quyền/i)
+    })
+
+    it('removes/deactivates assignment successfully when teacher is verified', async () => {
+      const assignmentBuilder = createMockQueryBuilder({ id: 'asg-1', classroom_id: 'cls-1', is_active: false }, null)
+      const classroomBuilder = createMockQueryBuilder({ id: 'cls-1', teacher_id: 'teacher-123' }, null)
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'assignments') return assignmentBuilder
+        if (table === 'classrooms') return classroomBuilder
+        return createMockQueryBuilder(null)
+      })
 
       const res = await deleteAssignment('asg-1')
       expect(res.success).toBe(true)
