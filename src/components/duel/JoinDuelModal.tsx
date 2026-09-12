@@ -49,7 +49,7 @@ function JoinDuelModalContent({ onClose, onJoined }: JoinDuelModalProps) {
 
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '')
-    setCode(raw.slice(0, 8))
+    setCode(raw.slice(0, 6))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -155,7 +155,7 @@ function JoinDuelModalContent({ onClose, onJoined }: JoinDuelModalProps) {
               value={code}
               onChange={handleCodeChange}
               placeholder="DUEL12"
-              maxLength={8}
+              maxLength={6}
               autoFocus
               required
               className="w-full px-4 py-3 rounded-2xl bg-muted/40 border border-border focus:border-indigo-500 focus:bg-background focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-center font-mono font-black text-xl sm:text-2xl tracking-widest uppercase transition-all"
