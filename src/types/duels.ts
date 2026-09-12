@@ -59,7 +59,7 @@ export interface DuelState {
 
 export interface CreateDuelInput {
   playerName: string
-  avatar: string
+  avatar?: string
   topic?: string
   questionCount?: number
 }
@@ -67,7 +67,7 @@ export interface CreateDuelInput {
 export interface JoinDuelInput {
   code: string
   playerName: string
-  avatar: string
+  avatar?: string
 }
 
 export interface SubmitDuelAnswerInput {
