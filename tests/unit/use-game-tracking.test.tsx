@@ -645,4 +645,83 @@ describe('useGameTracking Hook', () => {
     )
     warnSpy.mockRestore()
   })
+
+  it('does NOT invoke syncStudentGamificationState if /api/track fails with non-200 status', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      json: async () => ({ success: false, error: 'Database error' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_TRACK_FAIL'
+    const studentName = 'Bé Chi'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'quiz', topic: 'science' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 5, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(false)
+    expect(mockFetch).toHaveBeenCalledTimes(1)
+    expect(syncStudentGamificationState).not.toHaveBeenCalled()
+  })
+
+  it('invokes syncStudentGamificationState strictly after /api/track completes successfully', async () => {
+    const callOrder: string[] = []
+    const mockFetch = vi.fn().mockImplementation(async () => {
+      callOrder.push('fetch_track')
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ success: true, sessionId: 'sess-order' }),
+      }
+    })
+    global.fetch = mockFetch
+
+    vi.mocked(syncStudentGamificationState).mockImplementation(async () => {
+      callOrder.push('sync_gamification')
+      return { success: true }
+    })
+
+    const classCode = 'CLASS_ORDER'
+    const studentName = 'Bé Dan'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'quiz', topic: 'science' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 7, totalQuestions: 10 })
+    })
+
+    expect(success).toBe(true)
+    expect(callOrder).toEqual(['fetch_track', 'sync_gamification'])
+  })
 })
+

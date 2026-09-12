@@ -23,6 +23,24 @@ vi.mock('@/app/actions/student-progress', () => ({
   }),
 }));
 
+vi.mock('@/app/actions/student-gamification', () => ({
+  getStudentGamificationProfile: vi.fn().mockResolvedValue({
+    success: false,
+  }),
+  syncStudentGamificationState: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+  purchaseShopItemAction: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+  equipShopItemAction: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+  claimQuestRewardAction: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+}));
+
 describe('Truncation Relaxation on Desktop (US2)', () => {
   it('StudentProfileBadge applies xl:max-w-[200px] on level title', async () => {
     sessionStorage.setItem(

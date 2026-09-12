@@ -14,7 +14,6 @@ describe('student_gamification migration script', () => {
     const sql = fs.readFileSync(migrationPath, 'utf-8')
     expect(sql).toContain('CREATE TABLE IF NOT EXISTS public.student_gamification')
     expect(sql).toContain('REFERENCES public.students(id) ON DELETE CASCADE')
-    expect(sql).toContain('idx_student_gamification_student_id')
     expect(sql).toContain('ALTER TABLE public.student_gamification ENABLE ROW LEVEL SECURITY')
     expect(sql).toContain('CREATE POLICY "Teachers can view student gamification in their classrooms"')
     expect(sql).toContain('set_student_gamification_updated_at')

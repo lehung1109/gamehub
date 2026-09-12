@@ -379,6 +379,68 @@ export async function syncStudentGamificationState(
       quests = maybePayload?.quests
     }
 
+    let sanitizedStreakState: StreakState | undefined
+    if (streakState !== undefined) {
+      const parsed = parseDbStreakState(streakState)
+      sanitizedStreakState = {
+        ...parsed,
+        currentStreak: Math.max(
+          0,
+          typeof parsed.currentStreak === 'number' && !isNaN(parsed.currentStreak)
+            ? Math.round(parsed.currentStreak)
+            : 0
+        ),
+        longestStreak: Math.max(
+          0,
+          typeof parsed.longestStreak === 'number' && !isNaN(parsed.longestStreak)
+            ? Math.round(parsed.longestStreak)
+            : 0
+        ),
+        freezeCount: Math.max(
+          0,
+          typeof parsed.freezeCount === 'number' && !isNaN(parsed.freezeCount)
+            ? Math.round(parsed.freezeCount)
+            : 0
+        ),
+        totalActiveDays: Math.max(
+          0,
+          typeof parsed.totalActiveDays === 'number' && !isNaN(parsed.totalActiveDays)
+            ? Math.round(parsed.totalActiveDays)
+            : 0
+        ),
+      }
+    }
+
+    let sanitizedInventory: StudentInventory | undefined
+    if (inventory !== undefined) {
+      const parsed = parseDbInventory(inventory)
+      sanitizedInventory = {
+        ...parsed,
+        spentStars: Math.max(
+          0,
+          typeof parsed.spentStars === 'number' && !isNaN(parsed.spentStars)
+            ? Math.round(parsed.spentStars)
+            : 0
+        ),
+        bonusStars: Math.max(
+          0,
+          typeof parsed.bonusStars === 'number' && !isNaN(parsed.bonusStars)
+            ? Math.round(parsed.bonusStars)
+            : 0
+        ),
+        ownedItemIds: Array.isArray(parsed.ownedItemIds)
+          ? parsed.ownedItemIds.filter(
+              (id): id is string => typeof id === 'string' && id.trim().length > 0
+            )
+          : [],
+      }
+    }
+
+    let sanitizedQuests: Quest[] | undefined
+    if (quests !== undefined) {
+      sanitizedQuests = parseDbQuests(quests)
+    }
+
     const supabase = createAdminClient()
     const verification = await verifyAndGetStudent(classCode, studentName, supabase)
     if (verification.error || !verification.studentId) {
@@ -400,14 +462,14 @@ export async function syncStudentGamificationState(
 
     if (existingRow) {
       const updateData: StudentGamificationUpdate = {}
-      if (streakState !== undefined) {
-        updateData.streak_state = streakState as unknown as Json
+      if (sanitizedStreakState !== undefined) {
+        updateData.streak_state = sanitizedStreakState as unknown as Json
       }
-      if (inventory !== undefined) {
-        updateData.inventory = inventory as unknown as Json
+      if (sanitizedInventory !== undefined) {
+        updateData.inventory = sanitizedInventory as unknown as Json
       }
-      if (quests !== undefined) {
-        updateData.quests = quests as unknown as Json
+      if (sanitizedQuests !== undefined) {
+        updateData.quests = sanitizedQuests as unknown as Json
       }
 
       if (Object.keys(updateData).length > 0) {
@@ -424,9 +486,9 @@ export async function syncStudentGamificationState(
     } else {
       const insertPayload: StudentGamificationInsert = {
         student_id: studentId,
-        streak_state: (streakState ?? getInitialStreakState()) as unknown as Json,
-        inventory: (inventory ?? getInitialInventory()) as unknown as Json,
-        quests: (quests ?? []) as unknown as Json,
+        streak_state: (sanitizedStreakState ?? getInitialStreakState()) as unknown as Json,
+        inventory: (sanitizedInventory ?? getInitialInventory()) as unknown as Json,
+        quests: (sanitizedQuests ?? []) as unknown as Json,
       }
 
       const { error: insertError } = await supabase

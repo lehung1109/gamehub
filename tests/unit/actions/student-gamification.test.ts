@@ -331,6 +331,80 @@ describe('student-gamification server actions', () => {
       )
       expect(gamUpdateEqMock).toHaveBeenCalledWith('student_id', 's1')
     })
+
+    it('sanitizes negative bounds and invalid item IDs in sync payloads', async () => {
+      const mockClass = { id: 'c1', is_active: true }
+      const classSelectMock = vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({ single: vi.fn().mockResolvedValue({ data: mockClass, error: null }) }),
+      })
+
+      const studentSelectMock = vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({
+          eq: vi.fn().mockReturnValue({
+            limit: vi.fn().mockResolvedValue({ data: [{ id: 's1' }], error: null }),
+          }),
+        }),
+      })
+
+      const gamMaybeSingleMock = vi.fn().mockResolvedValue({ data: { id: 'gam-1' }, error: null })
+      const gamSelectMock = vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({ maybeSingle: gamMaybeSingleMock }),
+      })
+
+      const gamUpdateEqMock = vi.fn().mockResolvedValue({ error: null })
+      const gamUpdateMock = vi.fn().mockReturnValue({ eq: gamUpdateEqMock })
+
+      mockSupabase.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') return { select: classSelectMock }
+        if (table === 'students') return { select: studentSelectMock }
+        if (table === 'student_gamification') {
+          return { select: gamSelectMock, update: gamUpdateMock }
+        }
+        return { select: vi.fn() }
+      })
+
+      // Send payload with negative values and invalid item IDs
+      const rawStreak = {
+        currentStreak: -5,
+        longestStreak: -10,
+        lastActiveDate: '2026-09-12',
+        freezeCount: -2,
+        totalActiveDays: -1,
+        unlockedMilestones: [],
+      } as unknown as StreakState
+
+      const rawInventory = {
+        ownedItemIds: ['frame_gold', '', '   ', 'title_champion'] as string[],
+        equippedFrameId: null,
+        equippedTitleId: null,
+        spentStars: -50,
+        bonusStars: -20,
+      } as unknown as StudentInventory
+
+      const res = await syncStudentGamificationState({
+        classCode: 'CLASS1',
+        studentName: 'Alice',
+        streakState: rawStreak,
+        inventory: rawInventory,
+      })
+
+      expect(res.success).toBe(true)
+      expect(gamUpdateMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          streak_state: expect.objectContaining({
+            currentStreak: 0,
+            longestStreak: 0,
+            freezeCount: 0,
+            totalActiveDays: 0,
+          }),
+          inventory: expect.objectContaining({
+            spentStars: 0,
+            bonusStars: 0,
+            ownedItemIds: ['frame_gold', 'title_champion'],
+          }),
+        })
+      )
+    })
   })
 
   describe('purchaseShopItemAction', () => {

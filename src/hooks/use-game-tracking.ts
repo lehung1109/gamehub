@@ -149,23 +149,6 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
           console.warn('[useGameTracking] Error updating quests:', questErr)
         }
 
-        if (!isAnonymous && session?.classCode && session?.studentName) {
-          try {
-            const latestInventory = getStoredInventory(session.classCode, session.studentName)
-            syncStudentGamificationState({
-              classCode: session.classCode,
-              studentName: session.studentName,
-              streakState: updatedStreakState,
-              quests: updatedQuests,
-              inventory: latestInventory,
-            }).catch((err) => {
-              console.warn('[useGameTracking] Error syncing gamification state to cloud:', err)
-            })
-          } catch (syncErr) {
-            console.warn('[useGameTracking] Error initiating cloud gamification sync:', syncErr)
-          }
-        }
-
         if (!isTracking || !session) {
           if (isAnonymous && scoreVal > 0) {
             try {
@@ -201,6 +184,24 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
         if (!response.ok) {
           console.warn('[useGameTracking] Submit failed with status:', response.status)
           return false
+        }
+
+        // Dispatch cloud gamification sync after /api/track ensures the student record exists
+        if (!isAnonymous && session?.classCode && session?.studentName) {
+          try {
+            const latestInventory = getStoredInventory(session.classCode, session.studentName)
+            syncStudentGamificationState({
+              classCode: session.classCode,
+              studentName: session.studentName,
+              streakState: updatedStreakState,
+              quests: updatedQuests,
+              inventory: latestInventory,
+            }).catch((err) => {
+              console.warn('[useGameTracking] Error syncing gamification state to cloud:', err)
+            })
+          } catch (syncErr) {
+            console.warn('[useGameTracking] Error initiating cloud gamification sync:', syncErr)
+          }
         }
 
         // Trigger progress refresh in StudentSessionContext so totalStars and Level Up celebration update immediately

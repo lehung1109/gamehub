@@ -241,7 +241,6 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
 
   const prevLevelRef = useRef<number>(1)
   const hasInitializedStarsRef = useRef<boolean>(false)
-  const fetchIdRef = useRef<number>(0)
   const gamificationFetchIdRef = useRef<number>(0)
 
   const sessionRef = useRef<StudentSession | null>(null)
@@ -379,25 +378,28 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
   // Calculate current level info
   const levelInfo = useMemo(() => getLevelInfo(totalStars), [totalStars])
 
-  // Internal helper to fetch cloud gamification profile and reconcile
+  // Internal unified fetcher: relies on getStudentGamificationProfile as single unified fetcher,
+  // falling back to getStudentProgress only if gamification profile fetch fails.
   const fetchGamificationProfile = useCallback(
-    async (classCode: string, studentName: string, fetchId?: number) => {
+    async (classCode: string, studentName: string, fetchId?: number): Promise<boolean> => {
+      let profileSucceeded = false
       try {
         const res = await getStudentGamificationProfile({ classCode, studentName })
 
-        if (fetchId !== undefined && fetchId !== gamificationFetchIdRef.current) {
-          return
-        }
-
-        if (
-          !sessionRef.current ||
-          sessionRef.current.classCode !== classCode ||
-          sessionRef.current.studentName !== studentName
-        ) {
-          return
-        }
-
         if (res && res.success && res.data) {
+          if (fetchId !== undefined && fetchId !== gamificationFetchIdRef.current) {
+            return false
+          }
+
+          if (
+            !sessionRef.current ||
+            sessionRef.current.classCode !== classCode ||
+            sessionRef.current.studentName !== studentName
+          ) {
+            return false
+          }
+
+          profileSucceeded = true
           const {
             mergedInventory,
             mergedStreak,
@@ -439,10 +441,60 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
               console.warn('[StudentSessionContext] Failed to sync merged state to cloud:', err)
             })
           }
+          return true
         }
       } catch (err) {
         console.warn('[StudentSessionContext] Failed to fetch cloud gamification profile:', err)
       }
+
+      // Explicit error fallback: query getStudentProgress only if gamification profile fetch fails
+      if (!profileSucceeded) {
+        try {
+          const fallbackRes = await getStudentProgress({ classCode, studentName })
+
+          if (fetchId !== undefined && fetchId !== gamificationFetchIdRef.current) {
+            return false
+          }
+
+          if (
+            !sessionRef.current ||
+            sessionRef.current.classCode !== classCode ||
+            sessionRef.current.studentName !== studentName
+          ) {
+            return false
+          }
+
+          if (fallbackRes && fallbackRes.success && typeof fallbackRes.totalStars === 'number') {
+            const fallbackStars = calculateEffectiveStars(
+              fallbackRes.totalStars,
+              classCode,
+              studentName
+            )
+            const newLevelProgress = getLevelInfo(fallbackStars)
+
+            if (
+              hasInitializedStarsRef.current &&
+              newLevelProgress.currentLevel.level > prevLevelRef.current
+            ) {
+              setCelebration({
+                show: true,
+                level: newLevelProgress.currentLevel,
+              })
+            }
+            prevLevelRef.current = newLevelProgress.currentLevel.level
+            hasInitializedStarsRef.current = true
+            setTotalStars(fallbackStars)
+            return true
+          }
+        } catch (fallbackErr) {
+          console.warn(
+            '[StudentSessionContext] Fallback to getStudentProgress failed:',
+            fallbackErr
+          )
+        }
+      }
+
+      return false
     },
     []
   )
@@ -461,41 +513,10 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     const currentFetchId = ++gamificationFetchIdRef.current
 
     fetchGamificationProfile(classCode, studentName, currentFetchId).finally(() => {
-      if (!isCancelled) {
+      if (!isCancelled && currentFetchId === gamificationFetchIdRef.current) {
         setIsLoadingStars(false)
       }
     })
-
-    getStudentProgress({
-      classCode,
-      studentName,
-    })
-      .then((res) => {
-        if (isCancelled) return
-        if (res && res.success && typeof res.totalStars === 'number') {
-          const newStars = calculateEffectiveStars(res.totalStars, classCode, studentName)
-          const newLevelProgress = getLevelInfo(newStars)
-
-          if (hasInitializedStarsRef.current && newLevelProgress.currentLevel.level > prevLevelRef.current) {
-            setCelebration({
-              show: true,
-              level: newLevelProgress.currentLevel,
-            })
-          }
-          prevLevelRef.current = newLevelProgress.currentLevel.level
-          hasInitializedStarsRef.current = true
-          setTotalStars(newStars)
-        }
-      })
-      .catch((err) => {
-        if (isCancelled) return
-        console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
-      })
-      .finally(() => {
-        if (!isCancelled) {
-          setIsLoadingStars(false)
-        }
-      })
 
     return () => {
       isCancelled = true
@@ -515,61 +536,17 @@ function StudentSessionProviderInternal({ children }: { children: React.ReactNod
     }
 
     const currentSession = session
-    const fetchId = ++fetchIdRef.current
     const gamificationFetchId = ++gamificationFetchIdRef.current
 
     try {
       setIsLoadingStars(true)
-
-      const gamificationPromise = fetchGamificationProfile(
+      await fetchGamificationProfile(
         currentSession.classCode,
         currentSession.studentName,
         gamificationFetchId
       )
-
-      const res = await getStudentProgress({
-        classCode: currentSession.classCode,
-        studentName: currentSession.studentName,
-      })
-
-      await gamificationPromise
-
-      if (fetchId !== fetchIdRef.current) {
-        return
-      }
-
-      if (
-        !sessionRef.current ||
-        sessionRef.current.classCode !== currentSession.classCode ||
-        sessionRef.current.studentName !== currentSession.studentName
-      ) {
-        return
-      }
-
-      if (res && res.success && typeof res.totalStars === 'number') {
-        const newStars = calculateEffectiveStars(
-          res.totalStars,
-          currentSession.classCode,
-          currentSession.studentName
-        )
-        const newLevelProgress = getLevelInfo(newStars)
-
-        if (hasInitializedStarsRef.current && newLevelProgress.currentLevel.level > prevLevelRef.current) {
-          setCelebration({
-            show: true,
-            level: newLevelProgress.currentLevel,
-          })
-        }
-        prevLevelRef.current = newLevelProgress.currentLevel.level
-        hasInitializedStarsRef.current = true
-        setTotalStars(newStars)
-      }
-    } catch (err) {
-      if (fetchId === fetchIdRef.current) {
-        console.warn('[StudentSessionContext] Failed to fetch student progress:', err)
-      }
     } finally {
-      if (fetchId === fetchIdRef.current) {
+      if (gamificationFetchId === gamificationFetchIdRef.current) {
         setIsLoadingStars(false)
       }
     }

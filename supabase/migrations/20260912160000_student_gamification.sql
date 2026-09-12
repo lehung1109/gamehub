@@ -24,10 +24,6 @@ CREATE TABLE IF NOT EXISTS public.student_gamification (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );
 
--- Index for instant single-record student lookups
-CREATE INDEX IF NOT EXISTS idx_student_gamification_student_id 
-  ON public.student_gamification(student_id);
-
 -- Row Level Security
 ALTER TABLE public.student_gamification ENABLE ROW LEVEL SECURITY;
 

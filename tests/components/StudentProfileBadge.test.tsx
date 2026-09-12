@@ -9,6 +9,24 @@ vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn(),
 }))
 
+vi.mock('@/app/actions/student-gamification', () => ({
+  getStudentGamificationProfile: vi.fn().mockResolvedValue({
+    success: false,
+  }),
+  syncStudentGamificationState: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+  purchaseShopItemAction: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+  equipShopItemAction: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+  claimQuestRewardAction: vi.fn().mockResolvedValue({
+    success: true,
+  }),
+}))
+
 vi.mock('@/app/actions/class-leaderboard', () => ({
   getClassLeaderboard: vi.fn().mockResolvedValue({
     success: true,
