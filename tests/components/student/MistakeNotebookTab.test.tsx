@@ -1,6 +1,6 @@
 import React from 'react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import { MistakeNotebookTab } from '@/components/student/MistakeNotebookTab'
 import * as srsActions from '@/app/actions/srs'
 import { saveStoredSrsDeck, getStoredSrsDeck } from '@/lib/srs-storage'
@@ -300,9 +300,12 @@ describe('MistakeNotebookTab Component', () => {
 
     // Click "Hoàn tất"
     const completeBtn = screen.getByRole('button', { name: /Hoàn tất/i })
-    fireEvent.click(completeBtn)
+    await act(async () => {
+      fireEvent.click(completeBtn)
+    })
 
     expect(mockOnStarsEarned).toHaveBeenCalledWith(3)
+    expect(await screen.findByText(/Tổng số lỗi/i)).toBeInTheDocument()
   })
 
   it('supports anonymous / guest mode using localStorage without server actions', async () => {

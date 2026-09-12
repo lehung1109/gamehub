@@ -136,7 +136,10 @@ export function SrsPracticeArena({
         if (res.success && res.updatedCards) {
           totalEarnedStars = res.earnedStars || 0
           newlyMasteredCount = res.updatedCards.filter(
-            (c) => c.isMastered && c.box === 5
+            (c) =>
+              c.isMastered &&
+              c.box === 5 &&
+              !cards.find((orig) => orig.id === c.id)?.isMastered
           ).length
 
           // Sync localStorage
@@ -149,6 +152,9 @@ export function SrsPracticeArena({
             }
           })
           saveStoredSrsDeck(classCode, studentName, merged)
+          if (totalEarnedStars > 0) {
+            recordBonusStars(classCode, studentName, totalEarnedStars)
+          }
         } else {
           // Fallback to local calculation on server failure
           const localResult = applyReviewsLocally(finalReviews)
@@ -233,7 +239,7 @@ export function SrsPracticeArena({
             <span className="text-xl font-black text-foreground mt-1">
               {stats.totalReviewed}
             </span>
-            <span className="text-[11px] text-muted-foreground">từ vựng</span>
+            <span className="text-xs text-muted-foreground">từ vựng</span>
           </div>
 
           <div className="p-3.5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800/60 flex flex-col items-center justify-center">
@@ -243,7 +249,7 @@ export function SrsPracticeArena({
             <span className="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-1">
               {stats.masteredCount}
             </span>
-            <span className="text-[11px] text-emerald-700/80 dark:text-emerald-400/80">
+            <span className="text-xs text-emerald-700/80 dark:text-emerald-400/80">
               lên Hộp 5
             </span>
           </div>
@@ -255,7 +261,7 @@ export function SrsPracticeArena({
             <span className="text-xl font-black text-amber-600 dark:text-amber-400 mt-1">
               +{stats.earnedStars} ⭐
             </span>
-            <span className="text-[11px] text-amber-700/80 dark:text-amber-400/80">
+            <span className="text-xs text-amber-700/80 dark:text-amber-400/80">
               {stats.earnedStars > 0 ? '+3 sao / từ thành thạo' : 'Tiếp tục phát huy!'}
             </span>
           </div>
@@ -317,6 +323,7 @@ export function SrsPracticeArena({
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) return
           if (e.key === ' ' || e.key === 'Enter') {
             e.preventDefault()
             handleFlip()
@@ -392,7 +399,7 @@ export function SrsPracticeArena({
 
             <div onClick={(e) => e.stopPropagation()}>
               <SpeakButton
-                text={currentCard.correctAnswer || currentCard.prompt}
+                text={currentCard.prompt}
                 size="icon"
               />
             </div>
@@ -437,7 +444,7 @@ export function SrsPracticeArena({
                 <span>Khó</span>
                 <span>🔴</span>
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold text-rose-600/80 dark:text-rose-400/80 mt-0.5">
+              <span className="text-xs font-semibold text-rose-600/80 dark:text-rose-400/80 mt-0.5">
                 Về Hộp 1
               </span>
             </Button>
@@ -452,7 +459,7 @@ export function SrsPracticeArena({
                 <span>Nhớ tốt</span>
                 <span>🟡</span>
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold text-amber-600/80 dark:text-amber-400/80 mt-0.5">
+              <span className="text-xs font-semibold text-amber-600/80 dark:text-amber-400/80 mt-0.5">
                 +1 Hộp
               </span>
             </Button>
@@ -467,7 +474,7 @@ export function SrsPracticeArena({
                 <span>Rất dễ</span>
                 <span>🟢</span>
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold text-emerald-600/80 dark:text-emerald-400/80 mt-0.5">
+              <span className="text-xs font-semibold text-emerald-600/80 dark:text-emerald-400/80 mt-0.5">
                 +2 Hộp
               </span>
             </Button>

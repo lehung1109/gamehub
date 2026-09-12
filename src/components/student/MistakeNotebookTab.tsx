@@ -422,7 +422,7 @@ export function MistakeNotebookTab({
 
                       <span
                         className={cn(
-                          'text-[11px] px-2 py-0.5 rounded-md font-bold border shrink-0',
+                          'text-xs px-2 py-0.5 rounded-md font-bold border shrink-0',
                           boxConfig.badgeClass
                         )}
                       >
@@ -430,7 +430,7 @@ export function MistakeNotebookTab({
                       </span>
 
                       {isDue && (
-                        <span className="text-[11px] px-2 py-0.5 rounded-md font-bold bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-900 shrink-0">
+                        <span className="text-xs px-2 py-0.5 rounded-md font-bold bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-900 shrink-0">
                           Cần ôn
                         </span>
                       )}
@@ -460,7 +460,7 @@ export function MistakeNotebookTab({
                     {card.mistakeCount} lần sai
                   </span>
                   {card.topic && (
-                    <span className="px-2 py-0.5 rounded-md bg-muted text-[11px] text-muted-foreground">
+                    <span className="px-2 py-0.5 rounded-md bg-muted text-xs text-muted-foreground">
                       {card.topic}
                     </span>
                   )}

@@ -92,9 +92,10 @@ export function StudentGamificationModal({
   // SRS mistake deck due count
   const dueCount = useMemo(() => {
     if (!isOpen) return 0
+    void activeTab
     const deck = getStoredSrsDeck(classCode, studentName)
     return getDueCards(deck).length
-  }, [isOpen, classCode, studentName])
+  }, [isOpen, classCode, studentName, activeTab])
 
   const [reloadKey, setReloadKey] = useState(0)
 
@@ -270,7 +271,7 @@ export function StudentGamificationModal({
             {dueCount > 0 && (
               <span
                 data-testid="notebook-due-badge"
-                className="ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-black bg-rose-500 text-white shrink-0 leading-none"
+                className="ml-1 px-1.5 py-0.5 rounded-full text-xs font-black bg-rose-500 text-white shrink-0 leading-none"
               >
                 {dueCount}
               </span>
