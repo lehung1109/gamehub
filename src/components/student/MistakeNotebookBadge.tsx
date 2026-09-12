@@ -32,14 +32,16 @@ export function MistakeNotebookBadge({
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [refreshKey, setRefreshKey] = useState(0)
 
-  // Listen to window storage and focus events to keep deck count updated
+  // Listen to window storage, focus, and srs-deck-updated events to keep deck count updated
   useEffect(() => {
     const handleUpdate = () => setRefreshKey((k) => k + 1)
     window.addEventListener('storage', handleUpdate)
     window.addEventListener('focus', handleUpdate)
+    window.addEventListener('srs-deck-updated', handleUpdate)
     return () => {
       window.removeEventListener('storage', handleUpdate)
       window.removeEventListener('focus', handleUpdate)
+      window.removeEventListener('srs-deck-updated', handleUpdate)
     }
   }, [])
 

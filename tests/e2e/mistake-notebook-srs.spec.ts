@@ -31,9 +31,9 @@ test.describe('Mistake Notebook & Leitner SRS E2E Flow', () => {
               selectedAnswer: 'quả cam',
               gameType: 'vocab',
               topic: 'fruits',
-              box: 1,
+              box: 4,
               mistakeCount: 1,
-              successCount: 0,
+              successCount: 3,
               isMastered: false,
               lastReviewedAt: null,
               nextReviewAt: '2020-01-01T00:00:00Z', // immediately due
@@ -95,23 +95,20 @@ test.describe('Mistake Notebook & Leitner SRS E2E Flow', () => {
     await expect(dialog.getByText('quả táo')).toBeVisible();
     await expect(dialog.getByText(/Lần trước bạn chọn:/i)).toBeVisible();
 
-    // 9. Self-rate the flashcard ("Được" or "Dễ")
-    const rateGoodBtn = dialog.getByRole('button', { name: /Được|Vừa vặn/i });
-    if (await rateGoodBtn.isVisible()) {
-      await rateGoodBtn.click();
-    } else {
-      const rateHardBtn = dialog.getByRole('button', { name: /Khó/i });
-      await rateHardBtn.click();
-    }
+    // 9. Self-rate the flashcard ("Nhớ tốt" -> graduates Box 4 to Box 5 and awards +3 stars)
+    const rateGoodBtn = dialog.getByRole('button', { name: /Nhớ tốt/i });
+    await expect(rateGoodBtn).toBeVisible();
+    await rateGoodBtn.click();
 
-    // 10. Verify completion screen
-    await expect(dialog.getByText(/Hoàn thành lượt ôn tập!|Xuất sắc!/i)).toBeVisible();
+    // 10. Verify completion screen and bonus stars reward
+    await expect(dialog.getByText(/Hoàn thành ôn tập/i)).toBeVisible();
+    await expect(dialog.getByText(/\+3 ⭐/i)).toBeVisible();
     const finishBtn = dialog.getByRole('button', { name: /Hoàn tất/i });
     await expect(finishBtn).toBeVisible();
     await finishBtn.click();
 
     // 11. Verify return to notebook tab
-    await expect(dialog.getByText(/Ôn tập ngắt quãng/i)).toBeVisible();
+    await expect(dialog.getByText(/Tổng số lỗi/i)).toBeVisible();
 
     // 12. Close modal
     const closeBtn = dialog.getByRole('button', { name: /Đóng/i });

@@ -145,6 +145,7 @@ export function saveStoredSrsDeck(
   try {
     if (typeof window !== 'undefined' && window.localStorage) {
       window.localStorage.setItem(key, data)
+      window.dispatchEvent(new Event('srs-deck-updated'))
     }
   } catch {
     // LocalStorage write failed, in-memory store is already updated
