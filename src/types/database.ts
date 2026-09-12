@@ -416,6 +416,66 @@ export type Database = {
           },
         ]
       }
+      student_certificates: {
+        Row: {
+          achievement_text: string
+          certificate_type: string
+          classroom_id: string
+          created_at: string
+          id: string
+          issued_at: string
+          recipient_name: string
+          student_id: string
+          teacher_name: string
+          teacher_note: string | null
+          title: string
+          verification_code: string
+        }
+        Insert: {
+          achievement_text: string
+          certificate_type: string
+          classroom_id: string
+          created_at?: string
+          id?: string
+          issued_at?: string
+          recipient_name: string
+          student_id: string
+          teacher_name: string
+          teacher_note?: string | null
+          title: string
+          verification_code: string
+        }
+        Update: {
+          achievement_text?: string
+          certificate_type?: string
+          classroom_id?: string
+          created_at?: string
+          id?: string
+          issued_at?: string
+          recipient_name?: string
+          student_id?: string
+          teacher_name?: string
+          teacher_note?: string | null
+          title?: string
+          verification_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "student_certificates_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "student_certificates_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
