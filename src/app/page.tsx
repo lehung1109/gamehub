@@ -26,6 +26,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
         <div>
         {/* Top bar with Login link for teachers/admins, Daily streak badge, Mistake notebook badge, Student profile badge, and Student badge */}
         <div className="flex flex-wrap justify-end items-center gap-2 mb-2">
+          <Link
+            href="/roadmap"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-amber-900 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 shadow-xs hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            title="Bản đồ lộ trình học tập"
+          >
+            <span>🗺️</span>
+            <span>Lộ trình học</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
@@ -53,6 +61,18 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           <p className="text-base sm:text-xl font-medium text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
             Cùng học từ vựng, chữ cái, số đếm và câu tiếng Anh thật vui với {games.length} trò chơi tương tác sinh động!
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 my-6">
+            <Link
+              href="/roadmap"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-base sm:text-lg shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400"
+              title="Khám phá bản đồ lộ trình học tập"
+            >
+              <span className="text-xl">🗺️</span>
+              <span>Bản đồ học tập (Lộ trình)</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
 
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold text-muted-foreground">
             <span className="bg-card px-3 py-1.5 rounded-full border shadow-xs">
