@@ -5,7 +5,10 @@ import { useStudentSession, StudentSession } from '@/hooks/use-student-session'
 import type { SessionDetailPayload, TrackGamePayload } from '@/app/api/track/route'
 import { getStoredStreak, calculateStreakUpdate, saveStoredStreak, getTodayDateString } from '@/lib/streak'
 import { getOrGenerateQuests, evaluateQuestProgress, saveStoredQuests } from '@/lib/quests'
-import { recordBonusStars } from '@/lib/shop'
+import { recordBonusStars, getStoredInventory } from '@/lib/shop'
+import { syncStudentGamificationState } from '@/app/actions/student-gamification'
+import type { StreakState } from '@/types/streak'
+import type { Quest } from '@/types/quests'
 
 export interface QuestionDetailInput {
   prompt: string
@@ -119,6 +122,7 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
 
         const todayStr = getTodayDateString()
 
+        let updatedStreakState: StreakState | undefined
         try {
           const currentStreakState = getStoredStreak(session?.classCode, session?.studentName)
           const streakResult = calculateStreakUpdate(currentStreakState, todayStr)
@@ -126,10 +130,12 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
           if (streakResult.milestoneBonusStars > 0) {
             recordBonusStars(session?.classCode, session?.studentName, streakResult.milestoneBonusStars)
           }
+          updatedStreakState = streakResult.nextState
         } catch (streakErr) {
           console.warn('[useGameTracking] Error updating streak:', streakErr)
         }
 
+        let updatedQuests: Quest[] | undefined
         try {
           const currentQuests = getOrGenerateQuests(todayStr, session?.classCode, session?.studentName)
           const questResult = evaluateQuestProgress(currentQuests, {
@@ -138,8 +144,26 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
             starsEarned: scoreVal,
           })
           saveStoredQuests(session?.classCode, session?.studentName, questResult.updatedQuests)
+          updatedQuests = questResult.updatedQuests
         } catch (questErr) {
           console.warn('[useGameTracking] Error updating quests:', questErr)
+        }
+
+        if (!isAnonymous && session?.classCode && session?.studentName) {
+          try {
+            const latestInventory = getStoredInventory(session.classCode, session.studentName)
+            syncStudentGamificationState({
+              classCode: session.classCode,
+              studentName: session.studentName,
+              streakState: updatedStreakState,
+              quests: updatedQuests,
+              inventory: latestInventory,
+            }).catch((err) => {
+              console.warn('[useGameTracking] Error syncing gamification state to cloud:', err)
+            })
+          } catch (syncErr) {
+            console.warn('[useGameTracking] Error initiating cloud gamification sync:', syncErr)
+          }
         }
 
         if (!isTracking || !session) {

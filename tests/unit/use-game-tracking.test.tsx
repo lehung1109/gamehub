@@ -6,6 +6,7 @@ import { useGameTracking } from '@/hooks/use-game-tracking'
 import { StudentSessionProvider, STUDENT_SESSION_KEY } from '@/hooks/use-student-session'
 import { getStoredStreak, getTodayDateString } from '@/lib/streak'
 import { getStoredQuests } from '@/lib/quests'
+import { syncStudentGamificationState } from '@/app/actions/student-gamification'
 
 vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn().mockResolvedValue({
@@ -36,6 +37,7 @@ describe('useGameTracking Hook', () => {
   const originalFetch = global.fetch
 
   beforeEach(() => {
+    vi.clearAllMocks()
     window.sessionStorage.clear()
     window.localStorage.clear()
     global.fetch = vi.fn()
@@ -531,5 +533,116 @@ describe('useGameTracking Hook', () => {
     const anonQuests = getStoredQuests()
     const playQuest = anonQuests.find((q) => q.type === 'play_games' && q.period === 'daily')
     expect(playQuest?.current).toBe(1)
+  })
+
+  it('dispatches cloud gamification sync with updated streak, quests, and inventory on session completion in classroom mode', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-sync' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_SYNC'
+    const studentName = 'Bé An'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'quiz', topic: 'science' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 10, totalQuestions: 10 })
+    })
+
+    expect(success).toBe(true)
+    expect(syncStudentGamificationState).toHaveBeenCalledTimes(1)
+    expect(syncStudentGamificationState).toHaveBeenCalledWith(
+      expect.objectContaining({
+        classCode,
+        studentName,
+        streakState: expect.objectContaining({
+          currentStreak: 1,
+          totalActiveDays: 1,
+        }),
+        quests: expect.any(Array),
+        inventory: expect.any(Object),
+      })
+    )
+  })
+
+  it('does NOT call syncStudentGamificationState in anonymous mode upon session submit', async () => {
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'quiz', topic: 'science' }),
+      {
+        wrapper: createWrapper({
+          classCode: '',
+          studentName: '',
+          isAnonymous: true,
+        }),
+      }
+    )
+
+    expect(result.current.isAnonymous).toBe(true)
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 5, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(true)
+    expect(syncStudentGamificationState).not.toHaveBeenCalled()
+  })
+
+  it('does not block submitSession if syncStudentGamificationState rejects', async () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-sync-fail' }),
+    })
+    global.fetch = mockFetch
+
+    vi.mocked(syncStudentGamificationState).mockRejectedValueOnce(new Error('Cloud sync offline'))
+
+    const classCode = 'CLASS_SYNC_FAIL'
+    const studentName = 'Bé Binh'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'quiz', topic: 'science' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 8, totalQuestions: 10 })
+    })
+
+    expect(success).toBe(true)
+    expect(syncStudentGamificationState).toHaveBeenCalledTimes(1)
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[useGameTracking] Error syncing gamification state to cloud:',
+      expect.any(Error)
+    )
+    warnSpy.mockRestore()
   })
 })
