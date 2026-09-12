@@ -3,6 +3,7 @@ import { LogIn } from "lucide-react";
 import gamesData from "@/data/games.json";
 import { Game } from "@/types";
 import { GameCatalogSection } from "@/components/game/GameCatalogSection";
+import { DailyStreakBadge } from "@/components/student/DailyStreakBadge";
 import { StudentProfileBadge } from "@/components/StudentProfileBadge";
 
 import { Container } from "@/components/ui/container";
@@ -20,8 +21,9 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
     <Container>
       <div className="flex-1 flex flex-col justify-between">
         <div>
-        {/* Top bar with Login link for teachers/admins and Student profile badge */}
+        {/* Top bar with Login link for teachers/admins, Daily streak badge, and Student profile badge */}
         <div className="flex justify-end items-center gap-2 mb-2">
+          <DailyStreakBadge />
           <StudentProfileBadge />
           <Link
             href="/login"

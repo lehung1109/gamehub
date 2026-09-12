@@ -4,6 +4,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { renderHook, act, waitFor } from '@testing-library/react'
 import { useGameTracking } from '@/hooks/use-game-tracking'
 import { StudentSessionProvider, STUDENT_SESSION_KEY } from '@/hooks/use-student-session'
+import { getStoredStreak, getTodayDateString } from '@/lib/streak'
+import { getStoredQuests } from '@/lib/quests'
 
 vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn().mockResolvedValue({
@@ -17,6 +19,7 @@ describe('useGameTracking Hook', () => {
 
   beforeEach(() => {
     window.sessionStorage.clear()
+    window.localStorage.clear()
     global.fetch = vi.fn()
   })
 
@@ -390,5 +393,125 @@ describe('useGameTracking Hook', () => {
     const callBody = JSON.parse(mockFetch.mock.calls[0][1].body)
     expect(callBody.score).toBe(0) // Math.max(0, Math.round(-5.4)) = 0
     expect(callBody.totalQuestions).toBe(10) // Math.max(0, Math.round(9.7)) = 10
+  })
+
+  it('submitSession updates daily streak in storage upon completion', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-streak' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_STREAK'
+    const studentName = 'Bé Hoa'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'flashcard', topic: 'animals' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    const streakBefore = getStoredStreak(classCode, studentName)
+    expect(streakBefore.currentStreak).toBe(0)
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 5, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(true)
+
+    const streakAfter = getStoredStreak(classCode, studentName)
+    expect(streakAfter.currentStreak).toBe(1)
+    expect(streakAfter.totalActiveDays).toBe(1)
+    expect(streakAfter.lastActiveDate).toBe(getTodayDateString())
+  })
+
+  it('submitSession updates quest progress in storage upon completion', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ success: true, sessionId: 'sess-quests' }),
+    })
+    global.fetch = mockFetch
+
+    const classCode = 'CLASS_QUESTS'
+    const studentName = 'Bé Nam'
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'wordle', topic: 'vocab' }),
+      {
+        wrapper: createWrapper({
+          classCode,
+          studentName,
+        }),
+      }
+    )
+
+    await waitFor(() => {
+      expect(result.current.isTracking).toBe(true)
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 5, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(true)
+
+    const questsAfter = getStoredQuests(classCode, studentName)
+    expect(questsAfter.length).toBeGreaterThan(0)
+
+    const playQuest = questsAfter.find((q) => q.type === 'play_games' && q.period === 'daily')
+    expect(playQuest).toBeDefined()
+    expect(playQuest?.current).toBe(1)
+
+    const perfectScoreQuest = questsAfter.find((q) => q.type === 'perfect_score')
+    expect(perfectScoreQuest).toBeDefined()
+    expect(perfectScoreQuest?.current).toBe(1)
+    expect(perfectScoreQuest?.isCompleted).toBe(true)
+  })
+
+  it('submitSession updates streak and quests for anonymous sessions without calling /api/track', async () => {
+    const mockFetch = vi.fn()
+    global.fetch = mockFetch
+
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'flashcard', topic: 'animals' }),
+      {
+        wrapper: createWrapper({
+          classCode: '',
+          studentName: '',
+          isAnonymous: true,
+        }),
+      }
+    )
+
+    expect(result.current.isAnonymous).toBe(true)
+    expect(result.current.isTracking).toBe(false)
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 4, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(true)
+    expect(mockFetch).not.toHaveBeenCalled()
+
+    const anonStreak = getStoredStreak()
+    expect(anonStreak.currentStreak).toBe(1)
+
+    const anonQuests = getStoredQuests()
+    const playQuest = anonQuests.find((q) => q.type === 'play_games' && q.period === 'daily')
+    expect(playQuest?.current).toBe(1)
   })
 })

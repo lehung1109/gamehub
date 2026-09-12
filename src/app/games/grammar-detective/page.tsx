@@ -1,12 +1,16 @@
 // src/app/games/grammar-detective/page.tsx
 'use client';
 
-import React from 'react';
+import React, { Suspense, useMemo, useRef, useEffect } from 'react';
 import casesData from '@/data/grammar-detective.json';
 import type { CaseFile } from '@/types/grammar-detective';
 import { useGrammarDetective, isTierUnlocked } from '@/hooks/useGrammarDetective';
 import { useSpeech } from '@/hooks/useSpeech';
 import { useGameTracking } from '@/hooks/use-game-tracking';
+import { useGameConfig } from '@/hooks/useGameConfig';
+import type { GrammarDetectiveSettings } from '@/types/config';
+import { PreviewBanner } from '@/components/game/PreviewBanner';
+import { ConfigBanner } from '@/components/game/ConfigBanner';
 import { DetectiveDesk } from '@/components/game/grammar-detective/DetectiveDesk';
 import { DeductionCard } from '@/components/game/grammar-detective/DeductionCard';
 import { CaseSolvedModal } from '@/components/game/grammar-detective/CaseSolvedModal';
@@ -21,10 +25,25 @@ import { cn } from '@/lib/utils';
 
 const allCases = casesData as unknown as CaseFile[];
 
-export default function GrammarDetectivePage() {
+function GrammarDetectiveContent() {
+  const { settings, configName, isPreview, configId } =
+    useGameConfig<GrammarDetectiveSettings>('grammar-detective');
   const { speak } = useSpeech();
-  const { submitSession } = useGameTracking({ gameType: 'grammar-detective' });
-  const trackedCaseRef = React.useRef<string | null>(null);
+  const { submitSession } = useGameTracking({
+    gameType: 'grammar-detective',
+    configId: configId || undefined,
+  });
+  const trackedCaseRef = useRef<string | null>(null);
+
+  const rankTiers = settings?.rankTiers;
+  const availableCases = useMemo(() => {
+    if (rankTiers && rankTiers.length > 0) {
+      const set = new Set(rankTiers);
+      const filtered = allCases.filter((c) => set.has(c.rankTier));
+      return filtered.length > 0 ? filtered : allCases;
+    }
+    return allCases;
+  }, [rankTiers]);
 
   const {
     mode,
@@ -54,10 +73,10 @@ export default function GrammarDetectivePage() {
     retryCase,
     returnToDossier,
     lastFeedback,
-  } = useGrammarDetective(allCases);
+  } = useGrammarDetective(availableCases);
 
   // Submit session tracking when a case is solved or goes cold
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       status === 'solved' &&
       currentCase &&
@@ -68,6 +87,7 @@ export default function GrammarDetectivePage() {
         score: starsEarned,
         totalQuestions: currentCase.errors.length,
         topic: currentCase.category || currentCase.id,
+        configId: configId || undefined,
         details: [
           {
             prompt: `Phá án "${currentCase.title}" (${currentCase.titleVi}) - Đạt ${starsEarned} sao, còn ${credibility}/3 uy tín, thời gian ${elapsedSeconds}s`,
@@ -88,6 +108,7 @@ export default function GrammarDetectivePage() {
         score: 0,
         totalQuestions: currentCase.errors.length,
         topic: currentCase.category || currentCase.id,
+        configId: configId || undefined,
         details: [
           {
             prompt: `Đình chỉ vụ án "${currentCase.title}" (${currentCase.titleVi})${modeSuffix} - Giải được ${solvedErrorIds.length}/${currentCase.errors.length} lỗi, phạm ${mistakes} lỗi, thời gian ${elapsedSeconds}s`,
@@ -109,6 +130,7 @@ export default function GrammarDetectivePage() {
     submitSession,
     mode,
     streak,
+    configId,
   ]);
 
   return (
@@ -118,12 +140,19 @@ export default function GrammarDetectivePage() {
         <div className="flex items-center gap-3">
           <BackButton href="/" label="Về trang chủ" />
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground flex items-center gap-2">
-              <span>🕵️ Grammar Detective</span>
-              <Badge variant="outline" className="text-xs uppercase font-bold tracking-wider">
-                Thám tử sửa lỗi
-              </Badge>
-            </h1>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground flex items-center gap-2">
+                <span>🕵️ Grammar Detective</span>
+                <Badge variant="outline" className="text-xs uppercase font-bold tracking-wider">
+                  Thám tử sửa lỗi
+                </Badge>
+              </h1>
+              {isPreview ? (
+                <PreviewBanner />
+              ) : (
+                configName && <ConfigBanner configName={configName} />
+              )}
+            </div>
             <p className="text-xs sm:text-sm text-muted-foreground">
               Soi và sửa các lỗi ngữ pháp, thì và văn phong trong hồ sơ công sở thực tế
             </p>
@@ -165,7 +194,7 @@ export default function GrammarDetectivePage() {
       {/* Dossier Selection Screen */}
       {status === 'selecting' && (
         <DossierSelector
-          cases={allCases}
+          cases={availableCases}
           completedCaseIds={completedCaseIds}
           userRank={userRank}
           highestStreak={highestStreak}
@@ -321,5 +350,13 @@ export default function GrammarDetectivePage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function GrammarDetectivePage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto px-4 py-6">Đang tải hồ sơ điều tra...</div>}>
+      <GrammarDetectiveContent />
+    </Suspense>
   );
 }

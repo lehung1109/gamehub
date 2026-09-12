@@ -11,11 +11,13 @@ import orderingFoodData from '@/data/conversations/ordering-food.json'
 import { ConversationScenario, LearnerResponse } from '@/types/roleplay'
 import { RoleplaySettings } from '@/types/config'
 import { useGameTracking } from '@/hooks/use-game-tracking'
+import { PreviewBanner } from '@/components/game/PreviewBanner'
+import { ConfigBanner } from '@/components/game/ConfigBanner'
 
 const scenario = orderingFoodData as ConversationScenario
 
 function RoleplayGameContent() {
-  const { settings } = useGameConfig<RoleplaySettings>('roleplay')
+  const { settings, configName, isPreview, configId } = useGameConfig<RoleplaySettings>('roleplay')
   const { speak } = useSpeech()
   
   const { gameState, startGame, handleSelectOption, currentTurn, resetGame } = useRoleplayGame(scenario, {
@@ -27,6 +29,7 @@ function RoleplayGameContent() {
     gameType: 'roleplay',
     topic: scenario.titleEn,
     totalQuestions: scenario.turns.length,
+    configId: configId || undefined,
   })
 
   const hasSubmittedRef = React.useRef(false)
@@ -34,9 +37,9 @@ function RoleplayGameContent() {
   React.useEffect(() => {
     if (gameState.status === 'completed' && !hasSubmittedRef.current) {
       hasSubmittedRef.current = true
-      submitSession({ score: gameState.score, totalQuestions: scenario.turns.length })
+      submitSession({ score: gameState.score, totalQuestions: scenario.turns.length, configId: configId || undefined })
     }
-  }, [gameState.status, gameState.score, submitSession])
+  }, [gameState.status, gameState.score, submitSession, configId])
 
   const onSelectOption = (option: LearnerResponse) => {
     recordQuestion({
@@ -57,8 +60,13 @@ function RoleplayGameContent() {
   if (gameState.status === 'intro') {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50">
-        <div className="max-w-md w-full mb-4 flex justify-start">
+        <div className="max-w-md w-full mb-4 flex items-center justify-between gap-2">
           <BackButton href="/" label="Về trang chủ" />
+          {isPreview ? (
+            <PreviewBanner />
+          ) : (
+            configName && <ConfigBanner configName={configName} />
+          )}
         </div>
         <div className="max-w-md w-full bg-white rounded-2xl shadow-sm p-8 text-center">
           <h1 className="text-2xl font-bold mb-2">{scenario.titleEn}</h1>
@@ -103,9 +111,16 @@ function RoleplayGameContent() {
           <BackButton href="/" label="Thoát" className="min-h-[44px] text-base px-3 rounded-xl" />
           <h1 className="font-semibold text-base sm:text-lg">{scenario.titleEn}</h1>
         </div>
-        <span className="text-base bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full font-bold">
-          Score: {gameState.score}
-        </span>
+        <div className="flex items-center gap-2">
+          {isPreview ? (
+            <PreviewBanner />
+          ) : (
+            configName && <ConfigBanner configName={configName} />
+          )}
+          <span className="text-base bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full font-bold">
+            Score: {gameState.score}
+          </span>
+        </div>
       </div>
       
       <div className="flex-1 overflow-y-auto p-4 space-y-4">

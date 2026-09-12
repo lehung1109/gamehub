@@ -5,6 +5,7 @@ import {
   StudentSessionProvider,
 } from '@/contexts/StudentSessionContext'
 import * as studentProgressAction from '@/app/actions/student-progress'
+import { recordBonusStars } from '@/lib/shop'
 import React from 'react'
 
 vi.mock('@/app/actions/student-progress', () => ({
@@ -163,6 +164,18 @@ describe('StudentSessionContext Gamification & Progress', () => {
     expect(result.current.levelInfo.currentLevel.level).toBe(1)
     expect(result.current.celebration.show).toBe(false)
     expect(result.current.celebration.level).toBeNull()
+  })
+
+  it('preserves existing anonymous stars when skip is called', () => {
+    recordBonusStars(undefined, undefined, 25)
+    const { result } = renderHook(() => useStudentSession(), { wrapper })
+
+    act(() => {
+      result.current.skip()
+    })
+
+    expect(result.current.totalStars).toBe(25)
+    expect(result.current.isAnonymous).toBe(true)
   })
 
   it('hydrates session from localStorage when sessionStorage is empty and auto-fetches stars', async () => {

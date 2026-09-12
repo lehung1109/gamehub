@@ -5,19 +5,29 @@ import { useStudentSession } from '@/hooks/use-student-session'
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { StudentGamificationModal } from '@/components/student/StudentGamificationModal'
+import { getStoredInventory, getShopItemById } from '@/lib/shop'
 
 interface StudentProfileBadgeProps {
   className?: string
 }
 
 export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
-  const { session, totalStars, levelInfo, isAnonymous, isLoaded } = useStudentSession()
+  const { session, totalStars, levelInfo, isAnonymous, isLoaded, refreshProgress } = useStudentSession()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [, setModalCloseCount] = useState(0)
 
   // Don't show if session is not loaded, there is no session, or user is anonymous
   if (!isLoaded || !session || isAnonymous) {
     return null
   }
+
+  const currentInventory = getStoredInventory(session.classCode, session.studentName)
+  const equippedFrame = currentInventory.equippedFrameId
+    ? getShopItemById(currentInventory.equippedFrameId)
+    : undefined
+  const equippedTitle = currentInventory.equippedTitleId
+    ? getShopItemById(currentInventory.equippedTitleId)
+    : undefined
 
   const { currentLevel, nextLevel, progressToNext, starsToNext } = levelInfo
 
@@ -30,6 +40,12 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
       e.preventDefault()
       setIsModalOpen(true)
     }
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setModalCloseCount((c) => c + 1)
+    void refreshProgress()
   }
 
   return (
@@ -46,64 +62,85 @@ export function StudentProfileBadge({ className }: StudentProfileBadgeProps) {
           className
         )}
       >
-      {/* Level Badge Icon */}
-      <div 
-        className="size-7 rounded-full bg-gradient-to-tr from-amber-200 to-yellow-400 dark:from-amber-600 dark:to-yellow-500 flex items-center justify-center text-sm shrink-0 shadow-xs border border-amber-300 dark:border-amber-500"
-        data-testid="level-badge-emoji"
-      >
-        <span role="img" aria-label={currentLevel.title}>
-          {currentLevel.badge}
-        </span>
-      </div>
-
-      {/* Level and Title */}
-      <div className="flex flex-col text-left leading-tight min-w-0">
-        <div className="flex items-center gap-1">
-          <span className="text-xs font-black text-amber-950 dark:text-amber-200">
-            Lv {currentLevel.level}
-          </span>
-          <span className="text-xs text-amber-700 dark:text-amber-400 font-bold">•</span>
-          <span className="text-xs font-bold text-amber-800 dark:text-amber-300 truncate max-w-[90px] sm:max-w-[120px] xl:max-w-[200px]">
-            {currentLevel.title}
+        {/* Level Badge Icon */}
+        <div 
+          className={cn(
+            'size-7 rounded-full bg-gradient-to-tr from-amber-200 to-yellow-400 dark:from-amber-600 dark:to-yellow-500 flex items-center justify-center text-sm shrink-0 shadow-xs border border-amber-300 dark:border-amber-500',
+            equippedFrame?.cssClass
+          )}
+          data-testid="level-badge-emoji"
+        >
+          <span role="img" aria-label={currentLevel.title}>
+            {currentLevel.badge}
           </span>
         </div>
 
-        {/* Progress Bar towards Next Level */}
-        {nextLevel ? (
-          <div
-            role="progressbar"
-            aria-valuenow={progressToNext}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={`Tiến trình lên ${nextLevel.title}: ${progressToNext}%`}
-            className="w-20 sm:w-24 h-1.5 bg-amber-200/80 dark:bg-amber-900/60 rounded-full overflow-hidden mt-1"
-          >
-            <div
-              className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-500"
-              style={{ width: `${progressToNext}%` }}
-            />
+        {/* Level and Title */}
+        <div className="flex flex-col text-left leading-tight min-w-0">
+          <div className="flex items-center gap-1 flex-wrap">
+            <span className="text-xs font-black text-amber-950 dark:text-amber-200">
+              Lv {currentLevel.level}
+            </span>
+            <span className="text-xs text-amber-700 dark:text-amber-400 font-bold">•</span>
+            <span className="text-xs font-bold text-amber-800 dark:text-amber-300 truncate max-w-[90px] sm:max-w-[120px] xl:max-w-[200px]">
+              {currentLevel.title}
+            </span>
+            {equippedTitle && (
+              <span
+                data-testid="equipped-title-badge"
+                className={cn(
+                  'inline-flex items-center gap-1 text-xs font-black px-1.5 py-0.5 rounded-full border shrink-0',
+                  equippedTitle.titleBadgeClass || 'bg-amber-100 text-amber-800 border-amber-300'
+                )}
+              >
+                <span>{equippedTitle.icon}</span>
+                <span className="truncate max-w-[100px]">{equippedTitle.name}</span>
+              </span>
+            )}
           </div>
-        ) : (
-          <span className="text-xs font-bold text-amber-600 dark:text-amber-400">Tối đa</span>
-        )}
-      </div>
 
-      {/* Star Count Pill */}
-      <div className="flex items-center gap-1 bg-amber-200/70 dark:bg-amber-900/60 border border-amber-300/80 dark:border-amber-700/60 rounded-xl px-2 py-0.5 ml-0.5">
-        <Star className="size-3.5 text-amber-600 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" />
-        <span className="text-xs font-black text-amber-950 dark:text-amber-200" data-testid="total-stars-count">
-          {totalStars}
-        </span>
+          {/* Progress Bar towards Next Level */}
+          {nextLevel ? (
+            <div
+              role="progressbar"
+              aria-valuenow={progressToNext}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Tiến trình lên ${nextLevel.title}: ${progressToNext}%`}
+              className="w-20 sm:w-24 h-1.5 bg-amber-200/80 dark:bg-amber-900/60 rounded-full overflow-hidden mt-1"
+            >
+              <div
+                className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-500"
+                style={{ width: `${progressToNext}%` }}
+              />
+            </div>
+          ) : (
+            <span className="text-xs font-bold text-amber-600 dark:text-amber-400">Tối đa</span>
+          )}
+        </div>
+
+        {/* Star Count Pill */}
+        <div className="flex items-center gap-1 bg-amber-200/70 dark:bg-amber-900/60 border border-amber-300/80 dark:border-amber-700/60 rounded-xl px-2 py-0.5 ml-0.5">
+          <Star className="size-3.5 text-amber-600 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" />
+          <span className="text-xs font-black text-amber-950 dark:text-amber-200" data-testid="total-stars-count">
+            {totalStars}
+          </span>
+        </div>
       </div>
-    </div>
 
       <StudentGamificationModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         classCode={session.classCode}
         studentName={session.studentName}
         totalStars={totalStars}
         levelInfo={levelInfo}
+        onStarsClaimed={() => {
+          void refreshProgress()
+        }}
+        onStarsSpent={() => {
+          void refreshProgress()
+        }}
       />
     </>
   )

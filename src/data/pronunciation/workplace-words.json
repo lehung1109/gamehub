@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ww-1",
+    "targetText": "schedule",
+    "phonetic": "/ˈʃedʒuːl/",
+    "vietnameseMeaning": "lịch trình, thời gian biểu",
+    "focusSound": "Trọng âm 1",
+    "difficulty": "medium",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-2",
+    "targetText": "colleague",
+    "phonetic": "/ˈkɒliːɡ/",
+    "vietnameseMeaning": "đồng nghiệp",
+    "focusSound": "Trọng âm 1",
+    "difficulty": "medium",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-3",
+    "targetText": "architecture",
+    "phonetic": "/ˈɑːkɪtektʃər/",
+    "vietnameseMeaning": "kiến trúc hệ thống",
+    "focusSound": "Trọng âm 1",
+    "difficulty": "hard",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-4",
+    "targetText": "comfortable",
+    "phonetic": "/ˈkʌmftəbl/",
+    "vietnameseMeaning": "thoải mái, thuận tiện",
+    "focusSound": "3 âm tiết",
+    "difficulty": "medium",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-5",
+    "targetText": "prioritize",
+    "phonetic": "/praɪˈɒrətaɪz/",
+    "vietnameseMeaning": "ưu tiên giải quyết",
+    "focusSound": "Trọng âm 2",
+    "difficulty": "hard",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-6",
+    "targetText": "feedback",
+    "phonetic": "/ˈfiːdbæk/",
+    "vietnameseMeaning": "phản hồi, góp ý",
+    "focusSound": "Trọng âm 1",
+    "difficulty": "easy",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-7",
+    "targetText": "deployment",
+    "phonetic": "/dɪˈplɔɪmənt/",
+    "vietnameseMeaning": "triển khai phần mềm",
+    "focusSound": "Trọng âm 2",
+    "difficulty": "medium",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-8",
+    "targetText": "incident",
+    "phonetic": "/ˈɪnsɪdənt/",
+    "vietnameseMeaning": "sự cố kỹ thuật",
+    "focusSound": "Trọng âm 1",
+    "difficulty": "medium",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-9",
+    "targetText": "requirement",
+    "phonetic": "/rɪˈkwaɪəmənt/",
+    "vietnameseMeaning": "yêu cầu dự án",
+    "focusSound": "Trọng âm 2",
+    "difficulty": "medium",
+    "category": "workplace-words"
+  },
+  {
+    "id": "ww-10",
+    "targetText": "productivity",
+    "phonetic": "/ˌprɒdʌkˈtɪvəti/",
+    "vietnameseMeaning": "năng suất làm việc",
+    "focusSound": "Trọng âm 3",
+    "difficulty": "hard",
+    "category": "workplace-words"
+  }
+]

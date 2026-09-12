@@ -18,6 +18,8 @@ import {
   AlertCircle,
 } from 'lucide-react'
 import { StudentAssignmentsTab } from '@/components/student/StudentAssignmentsTab'
+import { StudentQuestsTab } from '@/components/student/StudentQuestsTab'
+import { StudentShopTab } from '@/components/student/StudentShopTab'
 
 export interface StudentGamificationModalProps {
   isOpen: boolean
@@ -26,10 +28,12 @@ export interface StudentGamificationModalProps {
   studentName: string
   totalStars: number
   levelInfo: LevelProgress
-  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments'
+  initialTab?: 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop'
+  onStarsClaimed?: (stars: number) => void
+  onStarsSpent?: (newTotalStars: number) => void
 }
 
-type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments'
+type TabType = 'leaderboard' | 'badges' | 'levels' | 'assignments' | 'quests' | 'shop'
 
 export function StudentGamificationModal({
   isOpen,
@@ -39,17 +43,42 @@ export function StudentGamificationModal({
   totalStars,
   levelInfo,
   initialTab = 'leaderboard',
+  onStarsClaimed,
+  onStarsSpent,
 }: StudentGamificationModalProps) {
   const [prevInitialTab, setPrevInitialTab] = useState(initialTab)
   const [activeTab, setActiveTab] = useState<TabType>(initialTab)
-  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([])
-  const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState<boolean>(false)
-  const [leaderboardError, setLeaderboardError] = useState<string | null>(null)
+  const [prevTotalStars, setPrevTotalStars] = useState(totalStars)
+  const [currentStars, setCurrentStars] = useState<number>(totalStars)
 
   if (initialTab !== prevInitialTab) {
     setPrevInitialTab(initialTab)
     setActiveTab(initialTab)
   }
+
+  if (totalStars !== prevTotalStars) {
+    setPrevTotalStars(totalStars)
+    setCurrentStars(totalStars)
+  }
+
+  const handleStarsClaimed = useCallback(
+    (stars: number) => {
+      setCurrentStars((prev) => prev + stars)
+      onStarsClaimed?.(stars)
+    },
+    [onStarsClaimed]
+  )
+
+  const handleStarsSpent = useCallback(
+    (newTotal: number) => {
+      setCurrentStars(newTotal)
+      onStarsSpent?.(newTotal)
+    },
+    [onStarsSpent]
+  )
+  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([])
+  const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState<boolean>(false)
+  const [leaderboardError, setLeaderboardError] = useState<string | null>(null)
 
   // Load badges from persistent storage
   const unlockedBadges: UnlockedBadge[] = useMemo(() => {
@@ -177,7 +206,7 @@ export function StudentGamificationModal({
         <div
           role="tablist"
           aria-label="Gamification tabs"
-          className="flex border-b border-border bg-muted/40 p-1.5 gap-1.5"
+          className="flex border-b border-border bg-muted/40 p-1.5 gap-1.5 overflow-x-auto"
         >
           <button
             role="tab"
@@ -186,7 +215,7 @@ export function StudentGamificationModal({
             data-testid="tab-leaderboard"
             onClick={() => setActiveTab('leaderboard')}
             className={cn(
-              'flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              'flex-1 min-w-[100px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
               activeTab === 'leaderboard'
                 ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
                 : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
@@ -198,12 +227,46 @@ export function StudentGamificationModal({
 
           <button
             role="tab"
+            aria-selected={activeTab === 'quests'}
+            aria-controls="panel-quests"
+            data-testid="tab-quests"
+            onClick={() => setActiveTab('quests')}
+            className={cn(
+              'flex-1 min-w-[90px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              activeTab === 'quests'
+                ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
+                : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
+            )}
+          >
+            <span>🎯</span>
+            <span>Nhiệm vụ</span>
+          </button>
+
+          <button
+            role="tab"
+            aria-selected={activeTab === 'shop'}
+            aria-controls="panel-shop"
+            data-testid="tab-shop"
+            onClick={() => setActiveTab('shop')}
+            className={cn(
+              'flex-1 min-w-[90px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              activeTab === 'shop'
+                ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
+                : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
+            )}
+          >
+            <span>🛍️</span>
+            <span>Cửa hàng</span>
+          </button>
+
+          <button
+            role="tab"
             aria-selected={activeTab === 'badges'}
             aria-controls="panel-badges"
             data-testid="tab-badges"
             onClick={() => setActiveTab('badges')}
             className={cn(
-              'flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              'flex-1 min-w-[85px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
               activeTab === 'badges'
                 ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
                 : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
@@ -220,7 +283,7 @@ export function StudentGamificationModal({
             data-testid="tab-levels"
             onClick={() => setActiveTab('levels')}
             className={cn(
-              'flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              'flex-1 min-w-[80px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
               activeTab === 'levels'
                 ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
                 : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
@@ -237,7 +300,7 @@ export function StudentGamificationModal({
             data-testid="tab-assignments"
             onClick={() => setActiveTab('assignments')}
             className={cn(
-              'flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
+              'flex-1 min-w-[80px] py-2 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all select-none',
               activeTab === 'assignments'
                 ? 'bg-card text-amber-600 dark:text-amber-400 shadow-xs'
                 : 'text-muted-foreground hover:text-foreground hover:bg-card/50'
@@ -514,7 +577,7 @@ export function StudentGamificationModal({
                 <div className="flex items-center gap-1.5 self-start sm:self-auto bg-amber-200/80 dark:bg-amber-900/60 px-3 py-1.5 rounded-xl border border-amber-300 dark:border-amber-700/50">
                   <Star className="size-4 fill-amber-500 text-amber-500" />
                   <span className="text-sm font-black text-amber-950 dark:text-amber-100">
-                    {`${totalStars} sao`}
+                    {`${currentStars} sao`}
                   </span>
                 </div>
               </div>
@@ -563,7 +626,7 @@ export function StudentGamificationModal({
                 <div className="space-y-2">
                   {LEVELS.map((lvl) => {
                     const isCurrent = lvl.level === levelInfo.currentLevel.level
-                    const isUnlocked = totalStars >= lvl.threshold
+                    const isUnlocked = currentStars >= lvl.threshold
 
                     return (
                       <div
@@ -624,6 +687,30 @@ export function StudentGamificationModal({
                 classCode={classCode}
                 studentName={studentName}
                 onCloseModal={onClose}
+              />
+            </div>
+          )}
+
+          {/* TAB 5: QUESTS */}
+          {activeTab === 'quests' && (
+            <div id="panel-quests" role="tabpanel" className="space-y-4">
+              <StudentQuestsTab
+                classCode={classCode}
+                studentName={studentName}
+                totalStars={currentStars}
+                onStarsClaimed={handleStarsClaimed}
+              />
+            </div>
+          )}
+
+          {/* TAB 6: SHOP */}
+          {activeTab === 'shop' && (
+            <div id="panel-shop" role="tabpanel" className="space-y-4">
+              <StudentShopTab
+                classCode={classCode}
+                studentName={studentName}
+                totalStars={currentStars}
+                onStarsSpent={handleStarsSpent}
               />
             </div>
           )}

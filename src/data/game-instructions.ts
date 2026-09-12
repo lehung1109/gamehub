@@ -550,6 +550,38 @@ export const GAME_INSTRUCTIONS: Record<string, GameInstruction> = {
       "Luyện phát âm chuẩn xác qua hệ thống âm thanh bản xứ đi kèm từng từ vựng.",
     ],
   },
+
+  pronunciation: {
+    id: "pronunciation",
+    slug: "pronunciation",
+    titleVi: "Phòng Luyện Phát Âm",
+    titleEn: "Pronunciation Lab",
+    emoji: "🎙️",
+    summary: "Luyện nói và phát âm tiếng Anh chuẩn xác qua microphone với phản hồi tức thì.",
+    goal: "Nắm vững ngữ âm IPA, luyện chuẩn hóa phát âm từng từ vựng và câu giao tiếp nơi công sở.",
+    steps: [
+      "Chọn chủ đề muốn luyện tập: Cặp âm nhầm lẫn, Từ vựng công sở hoặc Câu giao tiếp Standup.",
+      "Quan sát từ/câu hiển thị trên thẻ kèm phiên âm IPA và nghĩa tiếng Việt.",
+      "Bấm nút Loa để nghe phát âm mẫu chuẩn bản xứ.",
+      "Bấm biểu tượng Microphone lớn ở giữa màn hình và đọc to, rõ ràng từ hoặc câu đó.",
+      "Xem kết quả đánh giá: từ phát âm chuẩn sẽ hiển thị màu xanh lá, từ cần sửa hiển thị màu đỏ.",
+      "Bấm Thử lại để cải thiện điểm số hoặc Tiếp tục để chuyển sang câu tiếp theo.",
+    ],
+    controls: {
+      mouse: "Nhấp chuột vào biểu tượng Microphone để bắt đầu/dừng thu âm, bấm nút Loa để nghe mẫu.",
+      touch: "Chạm trực tiếp vào nút Microphone và các nút điều khiển trên màn hình cảm ứng.",
+    },
+    tips: [
+      "Nói to, rõ ràng trong môi trường yên tĩnh để micro nhận diện chính xác nhất.",
+      "Chú ý các cặp âm nguyên âm ngắn / dài (/iː/ vs /ɪ/) và trọng âm của từ nhiều âm tiết.",
+      "Hãy nghe phát âm mẫu trước 1-2 lần rồi đọc theo nhịp điệu tự nhiên.",
+    ],
+    benefits: [
+      "Xóa tan nỗi sợ nói tiếng Anh và tự tin hơn khi giao tiếp bằng giọng nói thực tế.",
+      "Hiểu rõ quy tắc phát âm IPA và vị trí đặt trọng âm chuẩn xác trong môi trường làm việc.",
+      "Nhận phản hồi tức thì từng từ giúp tự nhận diện và sửa lỗi phát âm sai kinh niên.",
+    ],
+  },
 };
 
 export function getGameInstruction(gameIdOrSlug?: string | null): GameInstruction | undefined {

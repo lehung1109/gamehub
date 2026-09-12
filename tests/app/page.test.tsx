@@ -17,7 +17,7 @@ describe("HomePage (src/app/page.tsx)", () => {
 
     const mainRegion = screen.getByRole("main", { name: /danh sách trò chơi/i });
     const gameLinks = within(mainRegion).getAllByRole("link");
-    expect(gameLinks.length).toBe(19);
+    expect(gameLinks.length).toBe(20);
     expect(gameLinks.length).toBe(games.length);
 
     // Verify all games are present in strict priority order
@@ -68,6 +68,13 @@ describe("HomePage (src/app/page.tsx)", () => {
     const loginLink = screen.getByRole("link", { name: /đăng nhập/i });
     expect(loginLink).toBeInTheDocument();
     expect(loginLink).toHaveAttribute("href", "/login");
+  });
+
+  it("renders the daily streak badge in the top bar", () => {
+    render(<HomePage />);
+
+    const streakBadge = screen.getByRole("button", { name: /chuỗi học tập/i });
+    expect(streakBadge).toBeInTheDocument();
   });
 
   it("links to all game routes correctly and accessibly", () => {
