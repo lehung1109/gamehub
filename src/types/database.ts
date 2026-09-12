@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      pvp_duels: {
+        Row: {
+          code: string
+          created_at: string
+          current_question_index: number
+          id: string
+          player1_answers: Json
+          player1_avatar: string
+          player1_name: string
+          player1_score: number
+          player2_answers: Json
+          player2_avatar: string | null
+          player2_name: string | null
+          player2_score: number
+          questions: Json
+          status: string
+          topic: string
+          updated_at: string
+          winner_name: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          current_question_index?: number
+          id?: string
+          player1_answers?: Json
+          player1_avatar?: string
+          player1_name: string
+          player1_score?: number
+          player2_answers?: Json
+          player2_avatar?: string | null
+          player2_name?: string | null
+          player2_score?: number
+          questions?: Json
+          status?: string
+          topic?: string
+          updated_at?: string
+          winner_name?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          current_question_index?: number
+          id?: string
+          player1_answers?: Json
+          player1_avatar?: string
+          player1_name?: string
+          player1_score?: number
+          player2_answers?: Json
+          player2_avatar?: string | null
+          player2_name?: string | null
+          player2_score?: number
+          questions?: Json
+          status?: string
+          topic?: string
+          updated_at?: string
+          winner_name?: string | null
+        }
+        Relationships: []
+      }
       student_roadmap_progress: {
         Row: {
           attempts: number
@@ -722,3 +782,6 @@ export type WordBankUpdate = TablesUpdate<'word_bank'>
 export type StudentRoadmapProgressRow = Tables<'student_roadmap_progress'>
 export type StudentRoadmapProgressInsert = TablesInsert<'student_roadmap_progress'>
 export type StudentRoadmapProgressUpdate = TablesUpdate<'student_roadmap_progress'>
+export type PvpDuelRow = Tables<'pvp_duels'>
+export type PvpDuelInsert = TablesInsert<'pvp_duels'>
+export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
