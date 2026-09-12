@@ -8,7 +8,7 @@ export interface RoadmapNode {
   descriptionEn: string;
   gameType: string;
   gameRoute: string;
-  gameParams: Record<string, any>;
+  gameParams: Record<string, unknown>;
   targetScore: number;
   xpReward: number;
   bonusStars: number;
