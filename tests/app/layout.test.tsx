@@ -18,6 +18,6 @@ describe('RootLayout', () => {
     expect(container.props.className).toContain('flex-1');
     expect(container.props.className).toContain('flex-col');
     const provider = container.props.children;
-    expect(provider.props.children).toEqual(<div data-testid="test-content">Hello World</div>);
+    expect(provider.props.children[0]).toEqual(<div data-testid="test-content">Hello World</div>);
   });
 });
