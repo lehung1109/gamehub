@@ -130,6 +130,10 @@ describe('Voice Arcade Components', () => {
         mockTranscriptListeners.forEach((fn) => fn('The CAT is running'))
       })
 
+      act(() => {
+        vi.advanceTimersByTime(10)
+      })
+
       expect(mockPlayChime).toHaveBeenCalled()
       expect(screen.getByText(/SUPER JUMP/i)).toBeInTheDocument()
 

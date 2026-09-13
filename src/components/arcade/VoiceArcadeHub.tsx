@@ -8,8 +8,6 @@ import {
   Sparkles,
   Zap,
   Play,
-  Volume2,
-  Flame,
   ShieldCheck,
 } from 'lucide-react'
 import type { ArcadeStage, ArcadeGameMode } from '@/types/voice-arcade'

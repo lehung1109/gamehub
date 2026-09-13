@@ -6,7 +6,6 @@ import Link from 'next/link'
 import {
   Mic,
   MicOff,
-  Sparkles,
   ArrowLeft,
   Flame,
   Volume2,
@@ -122,7 +121,6 @@ export function VoiceArcadeGame({ stage, onCompleteGame }: VoiceArcadeGameProps)
     transcript,
     startListening,
     stopListening,
-    isSupported: isSpeechRecSupported,
   } = useSpeechRecognition({
     lang: 'en-US',
     continuous: true,
@@ -135,7 +133,10 @@ export function VoiceArcadeGame({ stage, onCompleteGame }: VoiceArcadeGameProps)
 
     const matched = evaluateSpokenWord(transcript, currentTarget.word)
     if (matched) {
-      handleWordSuccess()
+      const timer = setTimeout(() => {
+        handleWordSuccess()
+      }, 0)
+      return () => clearTimeout(timer)
     }
   }, [transcript, currentTarget.word, isJumping, handleWordSuccess])
 
