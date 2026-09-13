@@ -9,6 +9,18 @@ vi.mock('@/lib/clipboard', () => ({
   copyToClipboard: vi.fn().mockResolvedValue(true),
 }))
 
+vi.mock('@/app/actions/roadmap', () => ({
+  getClassRoadmapOverviewAction: vi.fn().mockResolvedValue({
+    success: true,
+    data: {
+      totalStudents: 0,
+      worldProgress: [],
+      bottleneckNodes: [],
+      studentsProgress: [],
+    },
+  }),
+}))
+
 const mockPush = vi.fn()
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
