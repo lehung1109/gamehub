@@ -91,10 +91,13 @@ export function VocabularyImporterModal({
       else if (delimiter === 'dash') customDelim = '-'
       else if (delimiter === 'colon') customDelim = ':'
 
-      const isCsv = selectedFileName?.endsWith('.csv') || selectedFileName?.endsWith('.tsv')
+      const isCsv =
+        activeTab === 'file' &&
+        (selectedFileName?.endsWith('.csv') || selectedFileName?.endsWith('.tsv'))
       const rawRows = isCsv
         ? parseCsvOrTsv(rawText)
         : parseQuizletText(rawText, customDelim)
+
 
       if (rawRows.length === 0) {
         setErrorMessage('Không nhận diện được từ vựng nào. Vui lòng kiểm tra lại định dạng.')
