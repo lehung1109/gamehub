@@ -179,5 +179,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const magicTopbarLink = screen.getByTestId("magic-topbar-link");
     expect(magicTopbarLink).toBeInTheDocument();
     expect(magicTopbarLink).toHaveAttribute("href", "/magic");
+
+    const dinoTopbarLink = screen.getByTestId("dino-topbar-link");
+    expect(dinoTopbarLink).toBeInTheDocument();
+    expect(dinoTopbarLink).toHaveAttribute("href", "/dino");
   });
 });

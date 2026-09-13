@@ -172,6 +172,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🧙‍♂️ Phép Thuật</span>
           </Link>
+          <Link
+            href="/dino"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-emerald-950 dark:text-emerald-200 bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 shadow-xs hover:bg-emerald-200 dark:hover:bg-emerald-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            title="Vương quốc khủng long & Khảo cổ tiền sử"
+            data-testid="dino-topbar-link"
+          >
+            <span>🦖 Khủng Long</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
