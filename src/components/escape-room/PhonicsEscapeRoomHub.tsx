@@ -10,7 +10,6 @@ import {
   Award,
   Search,
   ArrowRight,
-  ShieldCheck,
 } from 'lucide-react'
 import type { EscapeRoom, EscapeDifficulty } from '@/types/phonics-escape-room'
 

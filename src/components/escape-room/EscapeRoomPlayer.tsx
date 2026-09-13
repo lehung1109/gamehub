@@ -1,7 +1,7 @@
 // src/components/escape-room/EscapeRoomPlayer.tsx
 'use client'
 
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -73,6 +73,7 @@ export function EscapeRoomPlayer({
       setRemainingSeconds((prev) => {
         if (prev <= 1) {
           clearInterval(timer)
+          finishEscape(false)
           return 0
         }
         return prev - 1
@@ -80,14 +81,7 @@ export function EscapeRoomPlayer({
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [isPaused, isEscaped, remainingSeconds])
-
-  // Handle timeout
-  useEffect(() => {
-    if (remainingSeconds === 0 && !isEscaped && !escapeResult) {
-      finishEscape(false)
-    }
-  }, [remainingSeconds, isEscaped, escapeResult, finishEscape])
+  }, [isPaused, isEscaped, remainingSeconds, finishEscape])
 
   const handleSolveClue = (unlockedChar: string) => {
     if (activeHotspot) {
