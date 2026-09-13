@@ -5,7 +5,7 @@ import { Volume2, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export interface VoicePreviewButtonProps {
-  onPreview?: () => void
+  onPreview?: (sampleText?: string) => void
   isSpeaking?: boolean
   sampleText?: string
   className?: string
@@ -17,10 +17,14 @@ export function VoicePreviewButton({
   sampleText = 'Hello! Welcome to GameHub English.',
   className,
 }: VoicePreviewButtonProps) {
+  const handleClick = () => {
+    onPreview?.(sampleText)
+  }
+
   return (
     <button
       type="button"
-      onClick={onPreview}
+      onClick={handleClick}
       disabled={isSpeaking}
       aria-label="Preview voice pronunciation"
       className={cn(

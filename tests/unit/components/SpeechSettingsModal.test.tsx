@@ -4,7 +4,7 @@ import { render, screen, fireEvent, renderHook, act } from '@testing-library/rea
 import { useSpeech } from '@/hooks/useSpeech'
 import { SpeechSettingsModal } from '@/components/speech/SpeechSettingsModal'
 import { VoicePreviewButton } from '@/components/speech/VoicePreviewButton'
-import { SPEECH_CONFIG_STORAGE_KEY } from '@/types/speech'
+import { SPEECH_CONFIG_STORAGE_KEY, VOICE_STYLE_PRESETS } from '@/types/speech'
 
 describe('Upgraded useSpeech & SpeechSettingsModal', () => {
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('Upgraded useSpeech & SpeechSettingsModal', () => {
       lang = 'en-US'
       rate = 1
       pitch = 1
-      voice: any = null
+      voice: SpeechSynthesisVoice | null = null
       onstart: (() => void) | null = null
       onend: (() => void) | null = null
       onerror: (() => void) | null = null
@@ -86,20 +86,38 @@ describe('Upgraded useSpeech & SpeechSettingsModal', () => {
       expect(stored.accent).toBe('UK')
     })
 
-    it('updates voice style and speed rate correctly', () => {
+    it('updates voice style and applies preset rate and pitch', () => {
       const { result } = renderHook(() => useSpeech())
 
       act(() => {
-        result.current.setVoiceStyle('natural')
+        result.current.setVoiceStyle('slow')
       })
 
-      expect(result.current.config.voiceStyle).toBe('natural')
+      expect(result.current.config.voiceStyle).toBe('slow')
+      expect(result.current.config.rate).toBe(VOICE_STYLE_PRESETS.slow.rate)
+      expect(result.current.config.pitch).toBe(VOICE_STYLE_PRESETS.slow.pitch)
 
       act(() => {
         result.current.updateConfig({ speedRate: 0.7 })
       })
 
       expect(result.current.config.speedRate).toBe(0.7)
+    })
+
+    it('syncs config across browser tabs via storage event', () => {
+      const { result } = renderHook(() => useSpeech())
+
+      act(() => {
+        window.dispatchEvent(
+          new StorageEvent('storage', {
+            key: SPEECH_CONFIG_STORAGE_KEY,
+            newValue: JSON.stringify({ accent: 'AU', style: 'natural' }),
+          })
+        )
+      })
+
+      expect(result.current.config.accent).toBe('AU')
+      expect(result.current.config.voiceStyle).toBe('natural')
     })
   })
 
@@ -113,6 +131,7 @@ describe('Upgraded useSpeech & SpeechSettingsModal', () => {
 
       fireEvent.click(btn)
       expect(onPreview).toHaveBeenCalledTimes(1)
+      expect(onPreview).toHaveBeenCalledWith('Hello! Welcome to GameHub English.')
     })
   })
 

@@ -90,10 +90,11 @@ describe('DailyStreakBadge Component', () => {
     localStorage.clear()
 
     // Case 2: Not yet played today (last active yesterday or earlier)
+    const yesterday = getTodayDateString(new Date(Date.now() - 86400000))
     const pendingStreak: StreakState = {
       currentStreak: 4,
       longestStreak: 4,
-      lastActiveDate: '2026-09-10',
+      lastActiveDate: yesterday,
       freezeCount: 1,
       totalActiveDays: 6,
       unlockedMilestones: [3],
@@ -107,10 +108,11 @@ describe('DailyStreakBadge Component', () => {
   })
 
   it('displays ice shield badge when freezeCount > 0', async () => {
+    const yesterday = getTodayDateString(new Date(Date.now() - 86400000))
     const streakState: StreakState = {
       currentStreak: 2,
       longestStreak: 2,
-      lastActiveDate: '2026-09-11',
+      lastActiveDate: yesterday,
       freezeCount: 3,
       totalActiveDays: 4,
       unlockedMilestones: [],
@@ -153,10 +155,11 @@ describe('DailyStreakBadge Component', () => {
   })
 
   it('modal displays longest streak, total active days, freeze count, and milestones', async () => {
+    const yesterday = getTodayDateString(new Date(Date.now() - 86400000))
     const streakState: StreakState = {
       currentStreak: 5,
       longestStreak: 15,
-      lastActiveDate: '2026-09-10',
+      lastActiveDate: yesterday,
       freezeCount: 2,
       totalActiveDays: 25,
       unlockedMilestones: [3],

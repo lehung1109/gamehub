@@ -11,6 +11,7 @@ import type {
 import {
   DEFAULT_SPEECH_CONFIG,
   SPEECH_CONFIG_STORAGE_KEY,
+  VOICE_STYLE_PRESETS,
 } from '@/types/speech'
 import {
   filterAndRankVoices,
@@ -55,6 +56,20 @@ function persistSpeechConfig(config: SpeechConfig): void {
   }
 }
 
+function safeCancelSynthesis(): void {
+  if (
+    typeof window !== 'undefined' &&
+    window.speechSynthesis &&
+    typeof window.speechSynthesis.cancel === 'function'
+  ) {
+    try {
+      window.speechSynthesis.cancel()
+    } catch {
+      // Ignore cancel errors in headless or restricted environments
+    }
+  }
+}
+
 const emptySubscribe = () => () => {}
 
 export function useSpeech(options: UseSpeechOptions = {}) {
@@ -74,15 +89,25 @@ export function useSpeech(options: UseSpeechOptions = {}) {
     () => false
   )
 
-  // Discover and rank browser synthesis voices
+  // Discover and rank browser synthesis voices safely
   const populateVoices = useCallback(() => {
-    if (typeof window === 'undefined' || !window.speechSynthesis) return
+    if (
+      typeof window === 'undefined' ||
+      !window.speechSynthesis ||
+      typeof window.speechSynthesis.getVoices !== 'function'
+    ) {
+      return
+    }
 
-    const rawVoices = window.speechSynthesis.getVoices()
-    if (rawVoices && rawVoices.length > 0) {
-      nativeVoicesRef.current = rawVoices
-      const ranked = filterAndRankVoices(rawVoices)
-      setAvailableVoices(ranked)
+    try {
+      const rawVoices = window.speechSynthesis.getVoices()
+      if (rawVoices && rawVoices.length > 0) {
+        nativeVoicesRef.current = rawVoices
+        const ranked = filterAndRankVoices(rawVoices)
+        setAvailableVoices(ranked)
+      }
+    } catch {
+      // Safely ignore if getVoices fails in sandboxed environment
     }
   }, [])
 
@@ -90,7 +115,11 @@ export function useSpeech(options: UseSpeechOptions = {}) {
     isMountedRef.current = true
     populateVoices()
 
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
+    if (
+      typeof window !== 'undefined' &&
+      window.speechSynthesis &&
+      'onvoiceschanged' in window.speechSynthesis
+    ) {
       window.speechSynthesis.onvoiceschanged = populateVoices
     }
 
@@ -101,16 +130,37 @@ export function useSpeech(options: UseSpeechOptions = {}) {
       }
     }
 
+    const handleStorageEvent = (e: StorageEvent) => {
+      if (e.key === SPEECH_CONFIG_STORAGE_KEY && e.newValue) {
+        try {
+          const parsed = JSON.parse(e.newValue)
+          setConfig((prev) => ({
+            ...prev,
+            ...parsed,
+            style: parsed.style || parsed.voiceStyle || prev.style,
+            rate: parsed.rate ?? parsed.speedRate ?? prev.rate,
+          }))
+        } catch {
+          // Ignore parse errors
+        }
+      }
+    }
+
     window.addEventListener('gamehub_speech_config_updated', handleConfigEvent)
+    window.addEventListener('storage', handleStorageEvent)
 
     return () => {
       isMountedRef.current = false
       if (typeof window !== 'undefined') {
         window.removeEventListener('gamehub_speech_config_updated', handleConfigEvent)
-        if (window.speechSynthesis) {
+        window.removeEventListener('storage', handleStorageEvent)
+        if (
+          window.speechSynthesis &&
+          'onvoiceschanged' in window.speechSynthesis
+        ) {
           window.speechSynthesis.onvoiceschanged = null
-          window.speechSynthesis.cancel()
         }
+        safeCancelSynthesis()
       }
       if (utteranceRef.current) {
         utteranceRef.current.onstart = null
@@ -145,15 +195,18 @@ export function useSpeech(options: UseSpeechOptions = {}) {
 
   const setVoiceStyle = useCallback(
     (voiceStyle: VoiceStyle) => {
-      updateConfig({ style: voiceStyle })
+      const preset = VOICE_STYLE_PRESETS[voiceStyle]
+      updateConfig({
+        style: voiceStyle,
+        pitch: preset ? preset.pitch : undefined,
+        rate: preset ? preset.rate : undefined,
+      })
     },
     [updateConfig]
   )
 
   const cancel = useCallback(() => {
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.cancel()
-    }
+    safeCancelSynthesis()
     if (isMountedRef.current) {
       setIsSpeaking(false)
     }
@@ -164,18 +217,24 @@ export function useSpeech(options: UseSpeechOptions = {}) {
 
   const speak = useCallback(
     (text: string, customLang?: string) => {
-      if (!isSpeechSupported() || typeof window === 'undefined' || !window.speechSynthesis) {
+      if (
+        !isSpeechSupported() ||
+        typeof window === 'undefined' ||
+        !window.speechSynthesis ||
+        typeof window.speechSynthesis.speak !== 'function'
+      ) {
         // Fallback tone for accessibility when TTS engine is unavailable
         playAudioToneFallback(440, 200)
         return
       }
 
       // Cancel ongoing speech to avoid overlapping audio
-      window.speechSynthesis.cancel()
+      safeCancelSynthesis()
 
       const effectiveParams = calculateEffectiveSpeechParams({
         ...config,
         rate: overrideRate ?? config.rate,
+        pitch: overridePitch ?? config.pitch,
       })
 
       const utterance = new SpeechSynthesisUtterance(text)
