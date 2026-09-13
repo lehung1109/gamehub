@@ -6,9 +6,11 @@ import {
   removeOfflineAction,
   incrementActionRetry,
   syncOfflineQueue,
+  getOfflineSyncStatus,
   OFFLINE_QUEUE_STORAGE_KEY,
+  OFFLINE_QUEUE_EVENT,
 } from '@/lib/offline/offline-manager'
-import type { OfflineActionType, QueuedOfflineAction } from '@/types/speech'
+import type { ActionHandlerMap } from '@/lib/offline/offline-manager'
 
 describe('Offline Action Queue & Sync Manager', () => {
   beforeEach(() => {
@@ -56,20 +58,23 @@ describe('Offline Action Queue & Sync Manager', () => {
     expect(queue[0].id).toBe(act2.id)
   })
 
-  it('increments retry count and removes action when max retries exceeded', () => {
-    const act = enqueueOfflineAction('RECORD_SESSION', { score: 80 }, 2)
+  it('increments retry count and removes action when default or custom max retries exceeded', () => {
+    const act = enqueueOfflineAction('RECORD_SESSION', { score: 80 }, 5)
 
-    // Retry 1: still retained
-    const retained1 = incrementActionRetry(act.id)
+    // Retry with custom limit override of 2
+    const retained1 = incrementActionRetry(act.id, 2)
     expect(retained1).toBe(true)
     let queue = getOfflineQueue()
     expect(queue[0].retryCount).toBe(1)
 
-    // Retry 2: max reached, should be dropped to prevent poison pill loops
-    const retained2 = incrementActionRetry(act.id)
+    // Second retry hits custom limit of 2, drops action
+    const retained2 = incrementActionRetry(act.id, 2)
     expect(retained2).toBe(false)
     queue = getOfflineQueue()
     expect(queue.length).toBe(0)
+
+    // Non-existent id returns false
+    expect(incrementActionRetry('non-existent-id')).toBe(false)
   })
 
   it('clears all queued actions cleanly', () => {
@@ -87,21 +92,40 @@ describe('Offline Action Queue & Sync Manager', () => {
     expect(queue).toEqual([])
   })
 
-  it('syncs offline queue using provided action handlers and removes successful actions', async () => {
+  it('dispatches OFFLINE_QUEUE_EVENT on queue mutations', () => {
+    const listener = vi.fn()
+    window.addEventListener(OFFLINE_QUEUE_EVENT, listener)
+
+    enqueueOfflineAction('RECORD_SESSION', { score: 90 })
+    expect(listener).toHaveBeenCalledTimes(1)
+
+    clearOfflineQueue()
+    expect(listener).toHaveBeenCalledTimes(2)
+
+    window.removeEventListener(OFFLINE_QUEUE_EVENT, listener)
+  })
+
+  it('reports offline sync status accurately', () => {
+    const statusBefore = getOfflineSyncStatus()
+    expect(statusBefore.pendingCount).toBe(0)
+    expect(statusBefore.isSyncing).toBe(false)
+
+    enqueueOfflineAction('SYNC_STREAK', { streak: 3 })
+    const statusAfter = getOfflineSyncStatus()
+    expect(statusAfter.pendingCount).toBe(1)
+    expect(typeof statusAfter.isOnline).toBe('boolean')
+  })
+
+  it('syncs offline queue using partial action handlers map', async () => {
     enqueueOfflineAction('RECORD_SESSION', { sessionId: 'sess-1' })
     enqueueOfflineAction('SYNC_STREAK', { streak: 7 })
 
     const recordHandler = vi.fn().mockResolvedValue({ success: true })
     const streakHandler = vi.fn().mockResolvedValue({ success: false, error: 'Network error' })
 
-    const handlers: Record<
-      OfflineActionType,
-      (payload: Record<string, unknown>) => Promise<{ success: boolean; error?: string }>
-    > = {
+    const handlers: ActionHandlerMap = {
       RECORD_SESSION: recordHandler,
       SYNC_STREAK: streakHandler,
-      ACKNOWLEDGE_ANNOUNCEMENT: vi.fn().mockResolvedValue({ success: true }),
-      ADD_MISTAKE: vi.fn().mockResolvedValue({ success: true }),
     }
 
     const result = await syncOfflineQueue(handlers)
@@ -113,10 +137,40 @@ describe('Offline Action Queue & Sync Manager', () => {
     expect(recordHandler).toHaveBeenCalledWith({ sessionId: 'sess-1' })
     expect(streakHandler).toHaveBeenCalledWith({ streak: 7 })
 
-    // Successfully processed item should be removed, failing item retained with incremented retry
     const remainingQueue = getOfflineQueue()
     expect(remainingQueue.length).toBe(1)
     expect(remainingQueue[0].type).toBe('SYNC_STREAK')
     expect(remainingQueue[0].retryCount).toBe(1)
+  })
+
+  it('syncs offline queue using a single processor function and guards against concurrent runs', async () => {
+    enqueueOfflineAction('RECORD_SESSION', { sessionId: 'sess-async' })
+
+    let resolveFn: (val: { success: boolean }) => void
+    const syncPromise = new Promise<{ success: boolean }>((resolve) => {
+      resolveFn = resolve
+    })
+
+    const processor = vi.fn().mockImplementation(async () => {
+      return await syncPromise
+    })
+
+    // Start first sync
+    const firstSync = syncOfflineQueue(processor)
+
+    // Immediate second sync should be blocked by concurrency lock
+    const secondSync = await syncOfflineQueue(processor)
+    expect(secondSync).toEqual({ total: 0, succeeded: 0, failed: 0 })
+
+    // Resolve first sync
+    resolveFn!({ success: true })
+    const firstResult = await firstSync
+
+    expect(firstResult.succeeded).toBe(1)
+    expect(getOfflineQueue().length).toBe(0)
+
+    const status = getOfflineSyncStatus()
+    expect(status.isSyncing).toBe(false)
+    expect(status.lastSyncTimestamp).toBeDefined()
   })
 })
