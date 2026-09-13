@@ -110,6 +110,7 @@ export function FossilDigModal({
               </h2>
               <p className="text-base text-stone-400 font-medium">
                 Hầm Khảo Cổ: {fossil.nameEn} ({fossil.eraNameVi})
+                {isAlreadyCompleted ? ' • Đã phục chế 🦕' : ''}
               </p>
             </div>
           </div>
