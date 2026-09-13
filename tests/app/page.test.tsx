@@ -151,5 +151,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const cinemaTopbarLink = screen.getByTestId("cinema-topbar-link");
     expect(cinemaTopbarLink).toBeInTheDocument();
     expect(cinemaTopbarLink).toHaveAttribute("href", "/cinema");
+
+    const escapeRoomTopbarLink = screen.getByTestId("escape-room-topbar-link");
+    expect(escapeRoomTopbarLink).toBeInTheDocument();
+    expect(escapeRoomTopbarLink).toHaveAttribute("href", "/escape-room");
   });
 });
