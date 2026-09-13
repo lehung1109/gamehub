@@ -29,6 +29,12 @@ function renderBadge(sessionData = mockSession) {
   )
 }
 
+function getYesterdayDateString(): string {
+  const d = new Date()
+  d.setDate(d.getDate() - 1)
+  return getTodayDateString(d)
+}
+
 describe('DailyStreakBadge Component', () => {
   beforeEach(() => {
     sessionStorage.clear()
@@ -93,7 +99,7 @@ describe('DailyStreakBadge Component', () => {
     const pendingStreak: StreakState = {
       currentStreak: 4,
       longestStreak: 4,
-      lastActiveDate: '2026-09-10',
+      lastActiveDate: getYesterdayDateString(),
       freezeCount: 1,
       totalActiveDays: 6,
       unlockedMilestones: [3],
@@ -110,7 +116,7 @@ describe('DailyStreakBadge Component', () => {
     const streakState: StreakState = {
       currentStreak: 2,
       longestStreak: 2,
-      lastActiveDate: '2026-09-11',
+      lastActiveDate: getYesterdayDateString(),
       freezeCount: 3,
       totalActiveDays: 4,
       unlockedMilestones: [],
@@ -156,7 +162,7 @@ describe('DailyStreakBadge Component', () => {
     const streakState: StreakState = {
       currentStreak: 5,
       longestStreak: 15,
-      lastActiveDate: '2026-09-10',
+      lastActiveDate: getYesterdayDateString(),
       freezeCount: 2,
       totalActiveDays: 25,
       unlockedMilestones: [3],
@@ -201,7 +207,7 @@ describe('DailyStreakBadge Component', () => {
     const streakState: StreakState = {
       currentStreak: 1,
       longestStreak: 1,
-      lastActiveDate: '2026-09-11',
+      lastActiveDate: getYesterdayDateString(),
       freezeCount: 1,
       totalActiveDays: 2,
       unlockedMilestones: [],
