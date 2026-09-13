@@ -341,6 +341,7 @@ export function ParentDashboardView({ initialData }: ParentDashboardViewProps) {
                   <Link
                     href={`/verify/${cert.verificationCode}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-primary hover:underline font-bold text-base"
                   >
                     <span>Tra cứu trực tuyến</span>
