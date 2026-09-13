@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { getParentStudentDashboardAction } from '@/app/actions/parent'
 import { ParentDashboardView } from '@/components/parent/ParentDashboardView'
-import { ArrowLeft, AlertTriangle, ShieldCheck, Heart } from 'lucide-react'
+import { ArrowLeft, AlertTriangle, ShieldCheck } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,8 +12,7 @@ interface ParentTokenPageProps {
   params: Promise<{ token: string }>
 }
 
-export async function generateMetadata({ params }: ParentTokenPageProps) {
-  const resolvedParams = await params
+export function generateMetadata() {
   return {
     title: 'Báo Cáo Học Tập Của Bé | Cổng Phụ Huynh GameHub',
     description: `Xem báo cáo học tập tuần, thông báo lớp học và chứng chỉ của học sinh.`,

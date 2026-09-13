@@ -11,18 +11,14 @@ import type {
 import {
   Users,
   KeyRound,
-  Link2,
   Copy,
   Check,
   RefreshCw,
   Plus,
   Trash2,
   Bell,
-  CheckCircle2,
   AlertCircle,
   X,
-  MessageSquare,
-  Sparkles,
 } from 'lucide-react'
 
 interface ParentAccessManagerProps {

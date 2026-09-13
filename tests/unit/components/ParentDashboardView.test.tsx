@@ -5,7 +5,7 @@ import { ParentDashboardView } from '@/components/parent/ParentDashboardView'
 import { WeeklyDigestCard } from '@/components/parent/WeeklyDigestCard'
 import { ParentNoticeBoard } from '@/components/parent/ParentNoticeBoard'
 import { ParentAuthForm } from '@/components/parent/ParentAuthForm'
-import type { ParentDashboardData, ClassroomAnnouncement } from '@/types/parent'
+import type { ParentDashboardData } from '@/types/parent'
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(() => ({

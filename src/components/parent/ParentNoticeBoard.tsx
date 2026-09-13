@@ -34,7 +34,6 @@ const CATEGORY_MAP: Record<AnnouncementCategory, { label: string; badgeClass: st
 
 export function ParentNoticeBoard({
   announcements,
-  studentId,
   onAcknowledge,
 }: ParentNoticeBoardProps) {
   const [acknowledgingId, setAcknowledgingId] = useState<string | null>(null)

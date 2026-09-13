@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ParentAuthForm } from '@/components/parent/ParentAuthForm'
-import { Sparkles, ArrowLeft, Heart, Shield, BookOpen, Trophy } from 'lucide-react'
+import { Sparkles, ArrowLeft, Heart } from 'lucide-react'
 
 export const metadata = {
   title: 'Cổng Thông Tin Phụ Huynh | GameHub',

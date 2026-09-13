@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getClassParentsListAction, getClassAnnouncementsAction } from '@/app/actions/parent'
 import { ParentsClientContainer } from '@/components/admin/ParentsClientContainer'
-import { School, Plus, Users, HeartHandshake } from 'lucide-react'
+import { School, Plus } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
