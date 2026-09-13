@@ -582,6 +582,37 @@ export const GAME_INSTRUCTIONS: Record<string, GameInstruction> = {
       "Nhận phản hồi tức thì từng từ giúp tự nhận diện và sửa lỗi phát âm sai kinh niên.",
     ],
   },
+
+  "voice-arcade": {
+    id: "voice-arcade",
+    slug: "voice-arcade",
+    titleVi: "Khu Trò Chơi Giọng Nói",
+    titleEn: "Voice Arcade",
+    emoji: "🕹️",
+    summary: "Điều khiển nhân vật bật nhảy và bắn phá thiên thạch bằng giọng nói Phonics chuẩn xác.",
+    goal: "Luyện phản xạ phát âm tiếng Anh to, rõ ràng và chuẩn xác trong các tình huống game hành động arcade tốc độ cao.",
+    steps: [
+      "Chọn chế độ chơi: Chú thỏ bật nhảy (Voice Runner), Bắn phá thiên thạch (Meteor Blaster) hoặc Tên lửa lướt gió (Pitch Glider).",
+      "Bật quyền truy cập Microphone khi trình duyệt yêu cầu hoặc sử dụng nút mô phỏng nhanh.",
+      "Quan sát từ vựng Phonics mục tiêu xuất hiện trên màn hình kèm hình ảnh minh họa.",
+      "Hô to và dứt khoát từ tiếng Anh vào micro ngay khi rào cản tới gần để kích hoạt hành động nhảy hoặc bắn laser.",
+      "Tích lũy chuỗi Combo liên tiếp để đạt điểm thưởng cực lớn và thu thập 3 sao vàng vinh danh!",
+    ],
+    controls: {
+      mouse: "Bấm nút 'Nói đúng' để thử nghiệm nhanh hoặc 'Bỏ qua' nếu cần chuyển từ.",
+      touch: "Chạm vào các nút điều khiển mô phỏng hoặc nút nghe mẫu trên màn hình.",
+    },
+    tips: [
+      "Ngồi cách micro một khoảng vừa phải và phát âm rõ ràng từng âm tiết.",
+      "Chú ý các âm đuôi (ending sounds) như /t/, /p/, /g/ để nhận diện nhạy hơn.",
+      "Giữ nhịp điệu đều đặn để xây dựng chuỗi combo nhân điểm số cao nhất!",
+    ],
+    benefits: [
+      "Xóa bỏ sự e ngại khi phát âm tiếng Anh, biến việc luyện nói thành trò chơi hào hứng.",
+      "Tăng cường phản xạ bật âm tức thì mà không cần dịch qua tiếng mẹ đẻ.",
+      "Làm chủ các quy tắc ngữ âm CVC, phụ âm kép (blends) và nguyên âm dài (Magic E).",
+    ],
+  },
 };
 
 export function getGameInstruction(gameIdOrSlug?: string | null): GameInstruction | undefined {

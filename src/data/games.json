@@ -218,6 +218,17 @@
     "route": "/games/pronunciation",
     "priority": 20,
     "category": "phonics-audio"
+  },
+  {
+    "id": "voice-arcade",
+    "slug": "voice-arcade",
+    "titleVi": "Khu Trò Chơi Giọng Nói",
+    "titleEn": "Voice Arcade",
+    "description": "Điều khiển nhân vật bật nhảy và bắn phá thiên thạch bằng giọng nói Phonics",
+    "emoji": "🕹️",
+    "route": "/games/voice-arcade",
+    "priority": 21,
+    "category": "phonics-audio"
   }
 ]
 

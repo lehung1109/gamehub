@@ -1,0 +1,66 @@
+// src/data/arcade/voice-stages.ts
+
+import type { ArcadeStage } from '@/types/voice-arcade'
+
+export const VOICE_ARCADE_STAGES: ArcadeStage[] = [
+  {
+    id: 'runner-cvc',
+    gameMode: 'runner',
+    titleVi: 'Chú Thỏ Bật Nhảy Phonics CVC',
+    titleEn: 'Voice Jump Runner: CVC Words',
+    descriptionVi: 'Hô to và dõng dạc các từ ngắn CVC khi rào cản tới gần để chú thỏ nhảy qua và thu thập cà rốt vàng!',
+    difficulty: 'easy',
+    targetPhonics: 'Nguyên âm ngắn /æ/, /ɒ/, /ʌ/ (CVC Words)',
+    badgeIcon: '🐰',
+    hurdleSpeed: 1.0,
+    timeLimitSeconds: 60,
+    words: [
+      { id: 'w1', word: 'CAT', phonicsSound: '/kæt/', translationVi: 'Con mèo', icon: '🐱', scoreValue: 100 },
+      { id: 'w2', word: 'DOG', phonicsSound: '/dɒɡ/', translationVi: 'Con chó', icon: '🐶', scoreValue: 100 },
+      { id: 'w3', word: 'HOP', phonicsSound: '/hɒp/', translationVi: 'Nhảy lò cò', icon: '🦘', scoreValue: 100 },
+      { id: 'w4', word: 'RUN', phonicsSound: '/rʌn/', translationVi: 'Chạy nhanh', icon: '🏃', scoreValue: 100 },
+      { id: 'w5', word: 'SUN', phonicsSound: '/sʌn/', translationVi: 'Mặt trời', icon: '☀️', scoreValue: 100 },
+      { id: 'w6', word: 'BAT', phonicsSound: '/bæt/', translationVi: 'Con dơi', icon: '🦇', scoreValue: 100 },
+      { id: 'w7', word: 'JUMP', phonicsSound: '/dʒʌmp/', translationVi: 'Bật nhảy', icon: '⭐', scoreValue: 150 },
+    ],
+  },
+  {
+    id: 'blaster-blends',
+    gameMode: 'blaster',
+    titleVi: 'Pháo Đài Bắn Phá Thiên Thạch',
+    titleEn: 'Meteor Blaster: Blends & Digraphs',
+    descriptionVi: 'Thiên thạch mang từ vựng đang rơi xuống Trái Đất! Hãy đọc to từ khóa để kích hoạt tia laser phòng thủ!',
+    difficulty: 'medium',
+    targetPhonics: 'Phụ âm kép /fr/, /ʃ/, /st/, /bl/ (Blends & Digraphs)',
+    badgeIcon: '🚀',
+    hurdleSpeed: 1.2,
+    timeLimitSeconds: 60,
+    words: [
+      { id: 'w8', word: 'FROG', phonicsSound: '/frɒɡ/', translationVi: 'Chú ếch', icon: '🐸', scoreValue: 120 },
+      { id: 'w9', word: 'SHIP', phonicsSound: '/ʃɪp/', translationVi: 'Con tàu', icon: '🚢', scoreValue: 120 },
+      { id: 'w10', word: 'FISH', phonicsSound: '/fɪʃ/', translationVi: 'Con cá', icon: '🐟', scoreValue: 120 },
+      { id: 'w11', word: 'STAR', phonicsSound: '/stɑːr/', translationVi: 'Ngôi sao', icon: '⭐', scoreValue: 120 },
+      { id: 'w12', word: 'DRUM', phonicsSound: '/drʌm/', translationVi: 'Cái trống', icon: '🥁', scoreValue: 120 },
+      { id: 'w13', word: 'BLUE', phonicsSound: '/bluː/', translationVi: 'Màu xanh da trời', icon: '🔷', scoreValue: 120 },
+    ],
+  },
+  {
+    id: 'glider-vowels',
+    gameMode: 'glider',
+    titleVi: 'Tên Lửa Lướt Gió Phonics Magic E',
+    titleEn: 'Pitch Rocket Glider: Long Vowels',
+    descriptionVi: 'Phát âm chuẩn xác các từ có âm dài Magic E để nạp năng lượng phản lực bay qua các vòng sao vũ trụ!',
+    difficulty: 'hard',
+    targetPhonics: 'Nguyên âm dài & Âm Magic E (/eɪ/, /aɪ/, /oʊ/)',
+    badgeIcon: '🛸',
+    hurdleSpeed: 1.4,
+    timeLimitSeconds: 60,
+    words: [
+      { id: 'w14', word: 'CAKE', phonicsSound: '/keɪk/', translationVi: 'Bánh ngọt', icon: '🎂', scoreValue: 150 },
+      { id: 'w15', word: 'BIKE', phonicsSound: '/baɪk/', translationVi: 'Xe đạp', icon: '🚲', scoreValue: 150 },
+      { id: 'w16', word: 'NOSE', phonicsSound: '/noʊz/', translationVi: 'Cái mũi', icon: '👃', scoreValue: 150 },
+      { id: 'w17', word: 'KITE', phonicsSound: '/kaɪt/', translationVi: 'Cái diều', icon: '🪁', scoreValue: 150 },
+      { id: 'w18', word: 'ROSE', phonicsSound: '/roʊz/', translationVi: 'Hoa hồng', icon: '🌹', scoreValue: 150 },
+    ],
+  },
+]

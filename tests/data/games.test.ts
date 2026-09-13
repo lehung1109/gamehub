@@ -3,9 +3,9 @@ import games from "@/data/games.json";
 import { Game } from "@/types";
 
 describe("games.json data integrity", () => {
-  it("contains exactly 20 games", () => {
+  it("contains exactly 21 games", () => {
     expect(Array.isArray(games)).toBe(true);
-    expect(games).toHaveLength(20);
+    expect(games).toHaveLength(21);
   });
 
   it("each game satisfies the Game interface and validation rules", () => {
@@ -33,6 +33,7 @@ describe("games.json data integrity", () => {
       "typing",
       "roleplay",
       "pronunciation",
+      "voice-arcade",
     ];
 
     (games as Game[]).forEach((game: Game, index: number) => {
@@ -81,6 +82,6 @@ describe("games.json data integrity", () => {
     });
 
     expect(Array.from(ids)).toEqual(expectedGameIds);
-    expect(priorities.size).toBe(20);
+    expect(priorities.size).toBe(21);
   });
 });
