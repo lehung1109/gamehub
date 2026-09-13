@@ -9,6 +9,9 @@ import type {
 
 describe('Arena Types & Polymorphic Contracts', () => {
   it('supports multiple question formats: multiple_choice, true_false, and phonics_audio', () => {
+    const sampleType: ArenaQuestionType = 'multiple_choice'
+    expect(sampleType).toBe('multiple_choice')
+
     const mcQuestion: ArenaQuestion = {
       id: 'q1',
       question: 'What is the color of the sky?',

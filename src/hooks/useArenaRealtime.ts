@@ -36,10 +36,12 @@ export function useArenaRealtime({
 
   const channelRef = useRef<RealtimeChannel | null>(null)
   const onEventRef = useRef(onEvent)
-  onEventRef.current = onEvent
-
   const onFallbackPollRef = useRef(onFallbackPoll)
-  onFallbackPollRef.current = onFallbackPoll
+
+  useEffect(() => {
+    onEventRef.current = onEvent
+    onFallbackPollRef.current = onFallbackPoll
+  }, [onEvent, onFallbackPoll])
 
   // Broadcast event helper
   const broadcastEvent = useCallback(async (event: ArenaRealtimeEvent): Promise<boolean> => {
