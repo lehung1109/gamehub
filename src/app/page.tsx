@@ -156,6 +156,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🚀 Vũ Trụ</span>
           </Link>
+          <Link
+            href="/ocean"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-cyan-950 dark:text-cyan-200 bg-cyan-100 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-800 shadow-xs hover:bg-cyan-200 dark:hover:bg-cyan-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+            title="Thám hiểm đại dương & Tàu ngầm ngữ âm"
+            data-testid="ocean-topbar-link"
+          >
+            <span>🐬 Đại Dương</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
