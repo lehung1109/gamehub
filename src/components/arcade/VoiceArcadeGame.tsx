@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import type { ArcadeStage, ArcadeGameResult, ArcadeWordTarget } from '@/types/voice-arcade'
 import { evaluateSpokenWord, calculateArcadeScore } from '@/lib/voice-arcade-engine'
+import { submitArcadeScoreAction } from '@/app/actions/voice-arcade'
 import { createRhythmSynthesizer, type SoundSynthesizer } from '@/lib/rhythm-beat-synthesizer'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
 import { useSpeech } from '@/hooks/useSpeech'
@@ -61,6 +62,9 @@ export function VoiceArcadeGame({ stage, onCompleteGame }: VoiceArcadeGameProps)
       )
       setFinalResult(summary)
       setIsGameOver(true)
+      submitArcadeScoreAction(summary).catch((err) => {
+        console.error('Failed to submit arcade score:', err)
+      })
       onCompleteGame?.(summary)
     },
     [stage.id, stage.gameMode, currentTarget.scoreValue, onCompleteGame]

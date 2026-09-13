@@ -92,6 +92,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🎓 Hộ chiếu</span>
           </Link>
+          <Link
+            href="/games/voice-arcade"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-pink-950 dark:text-pink-200 bg-pink-100 dark:bg-pink-950/60 border border-pink-300 dark:border-pink-800 shadow-xs hover:bg-pink-200 dark:hover:bg-pink-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
+            title="Khu trò chơi điều khiển bằng giọng nói"
+            data-testid="voice-arcade-topbar-link"
+          >
+            <span>🕹️ Voice Arcade</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
