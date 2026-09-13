@@ -58,9 +58,12 @@ export async function getCommunityConfigsAction(
     }
 
     if (filter.search && filter.search.trim()) {
-      const s = filter.search.trim()
-      query = query.or(`title.ilike.%${s}%,description.ilike.%${s}%,topic.ilike.%${s}%`)
+      const s = filter.search.trim().replace(/[,()]/g, ' ')
+      if (s) {
+        query = query.or(`title.ilike.%${s}%,description.ilike.%${s}%,topic.ilike.%${s}%`)
+      }
     }
+
 
     // Sorting
     if (filter.sortBy === 'popular') {
