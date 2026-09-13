@@ -155,5 +155,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const escapeRoomTopbarLink = screen.getByTestId("escape-room-topbar-link");
     expect(escapeRoomTopbarLink).toBeInTheDocument();
     expect(escapeRoomTopbarLink).toHaveAttribute("href", "/escape-room");
+
+    const townTopbarLink = screen.getByTestId("town-topbar-link");
+    expect(townTopbarLink).toBeInTheDocument();
+    expect(townTopbarLink).toHaveAttribute("href", "/town");
   });
 });
