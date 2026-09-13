@@ -41,15 +41,9 @@ export function getNextPanel(
     return story.panels.find((p) => p.id === firstTargetId) || null
   }
 
-  // Linear progression: find panel with next panelNumber or next in array
-  const currentIndex = story.panels.findIndex((p) => p.id === currentPanelId)
-  if (currentIndex >= 0 && currentIndex + 1 < story.panels.length) {
-    // If the next panel is an alternate branch panel, step to the ending panel instead
-    const candidate = story.panels[currentIndex + 1]
-    return candidate
-  }
-
-  return null
+  // Linear progression: find panel with strictly higher panelNumber
+  const nextNumberedPanel = story.panels.find((p) => p.panelNumber > currentPanel.panelNumber)
+  return nextNumberedPanel || null
 }
 
 /**
