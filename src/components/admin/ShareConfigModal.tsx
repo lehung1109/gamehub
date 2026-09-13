@@ -91,6 +91,12 @@ export function ShareConfigModal({
     })
   }
 
+  function handleClose() {
+    setErrorMessage(null)
+    setSuccessMessage(null)
+    onClose()
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
       <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden my-8">
@@ -111,12 +117,14 @@ export function ShareConfigModal({
           </div>
           <button
             type="button"
-            onClick={onClose}
+            aria-label="Đóng"
+            onClick={handleClose}
             className="p-2.5 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-white/80 transition-colors"
           >
             <X className="size-6" />
           </button>
         </div>
+
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
