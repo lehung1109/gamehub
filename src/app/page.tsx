@@ -164,6 +164,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🐬 Đại Dương</span>
           </Link>
+          <Link
+            href="/magic"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-purple-950 dark:text-purple-200 bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-800 shadow-xs hover:bg-purple-200 dark:hover:bg-purple-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+            title="Học viện phép thuật & Thần chú ngữ âm"
+            data-testid="magic-topbar-link"
+          >
+            <span>🧙‍♂️ Phép Thuật</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
