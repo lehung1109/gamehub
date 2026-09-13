@@ -1,6 +1,6 @@
 # Phase 11: PWA Offline & Multi-Accent Neural TTS Engine — Progress Ledger
 
-- [ ] **Task 1: TypeScript Contracts & Domain Models for Speech & Offline Queue**
+- [x] **Task 1: TypeScript Contracts & Domain Models for Speech & Offline Queue**
 - [ ] **Task 2: Multi-Accent Neural TTS Engine & Voice Discovery**
 - [ ] **Task 3: Offline Action Queue & Sync Manager**
 - [ ] **Task 4: Next.js PWA Manifest & Service Worker Cache Engine**
