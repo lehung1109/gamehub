@@ -86,6 +86,8 @@ export const DEFAULT_SPEECH_CONFIG: SpeechConfig = {
   autoPronounceNewWords: true,
 }
 
+export const SPEECH_CONFIG_STORAGE_KEY = 'gamehub_speech_config'
+
 export interface SpeechState {
   isSpeaking: boolean
   isSupported: boolean
