@@ -113,5 +113,15 @@ describe("HomePage (src/app/page.tsx)", () => {
     });
     expect(posLink).toBeInTheDocument();
     expect(posLink).toHaveAttribute("href", "/parts-of-speech");
+
+    const speakingCtaLink = screen.getByRole("link", {
+      name: /khám phá hub luyện nói ai/i,
+    });
+    expect(speakingCtaLink).toBeInTheDocument();
+    expect(speakingCtaLink).toHaveAttribute("href", "/speaking");
+
+    const speakingTopbarLink = screen.getByTestId("speaking-topbar-link");
+    expect(speakingTopbarLink).toBeInTheDocument();
+    expect(speakingTopbarLink).toHaveAttribute("href", "/speaking");
   });
 });

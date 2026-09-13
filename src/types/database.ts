@@ -636,6 +636,62 @@ export type Database = {
         }
         Relationships: []
       }
+      student_speaking_sessions: {
+        Row: {
+          created_at: string
+          fluency_score: number
+          id: string
+          mispronounced_words: Json
+          overall_score: number
+          persona_id: string
+          pronunciation_score: number
+          scenario_id: string
+          stars: number
+          student_id: string | null
+          total_turns: number
+          turns_transcript: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          fluency_score?: number
+          id?: string
+          mispronounced_words?: Json
+          overall_score?: number
+          persona_id?: string
+          pronunciation_score?: number
+          scenario_id: string
+          stars?: number
+          student_id?: string | null
+          total_turns?: number
+          turns_transcript?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          fluency_score?: number
+          id?: string
+          mispronounced_words?: Json
+          overall_score?: number
+          persona_id?: string
+          pronunciation_score?: number
+          scenario_id?: string
+          stars?: number
+          student_id?: string | null
+          total_turns?: number
+          turns_transcript?: Json
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "student_speaking_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -779,6 +835,9 @@ export type StudentGamificationRow = Tables<'student_gamification'>
 export type WordBankRow = Tables<'word_bank'>
 export type WordBankInsert = TablesInsert<'word_bank'>
 export type WordBankUpdate = TablesUpdate<'word_bank'>
+export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
+export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
+export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
 export type StudentRoadmapProgressRow = Tables<'student_roadmap_progress'>
 export type StudentRoadmapProgressInsert = TablesInsert<'student_roadmap_progress'>
 export type StudentRoadmapProgressUpdate = TablesUpdate<'student_roadmap_progress'>

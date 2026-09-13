@@ -14,6 +14,9 @@ export type StudentRoadmapProgressUpdate = TablesUpdate<'student_roadmap_progres
 export type PvpDuelRow = Tables<'pvp_duels'>
 export type PvpDuelInsert = TablesInsert<'pvp_duels'>
 export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
+export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
+export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
+export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
 `
 
 const studentRoadmapTableDef = `      student_roadmap_progress: {
@@ -130,6 +133,64 @@ const pvpDuelsTableDef = `      pvp_duels: {
       }
 `
 
+const speakingSessionsTableDef = `      student_speaking_sessions: {
+        Row: {
+          created_at: string
+          fluency_score: number
+          id: string
+          mispronounced_words: Json
+          overall_score: number
+          persona_id: string
+          pronunciation_score: number
+          scenario_id: string
+          stars: number
+          student_id: string | null
+          total_turns: number
+          turns_transcript: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          fluency_score?: number
+          id?: string
+          mispronounced_words?: Json
+          overall_score?: number
+          persona_id?: string
+          pronunciation_score?: number
+          scenario_id: string
+          stars?: number
+          student_id?: string | null
+          total_turns?: number
+          turns_transcript?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          fluency_score?: number
+          id?: string
+          mispronounced_words?: Json
+          overall_score?: number
+          persona_id?: string
+          pronunciation_score?: number
+          scenario_id?: string
+          stars?: number
+          student_id?: string | null
+          total_turns?: number
+          turns_transcript?: Json
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "student_speaking_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+`
+
 if (fs.existsSync(filePath)) {
   let content = fs.readFileSync(filePath, 'utf-8')
 
@@ -138,6 +199,7 @@ if (fs.existsSync(filePath)) {
     if (content.includes(target)) {
       content = content.replace(target, target + studentRoadmapTableDef)
       fs.writeFileSync(filePath, content, 'utf-8')
+      content = fs.readFileSync(filePath, 'utf-8')
     }
   }
 
@@ -146,6 +208,16 @@ if (fs.existsSync(filePath)) {
     if (content.includes(target)) {
       content = content.replace(target, target + pvpDuelsTableDef)
       fs.writeFileSync(filePath, content, 'utf-8')
+      content = fs.readFileSync(filePath, 'utf-8')
+    }
+  }
+
+  if (!content.includes('student_speaking_sessions: {')) {
+    const target = '    Tables: {\n'
+    if (content.includes(target)) {
+      content = content.replace(target, target + speakingSessionsTableDef)
+      fs.writeFileSync(filePath, content, 'utf-8')
+      content = fs.readFileSync(filePath, 'utf-8')
     }
   }
 
@@ -168,6 +240,16 @@ export type StudentRoadmapProgressUpdate = TablesUpdate<'student_roadmap_progres
         `export type PvpDuelRow = Tables<'pvp_duels'>
 export type PvpDuelInsert = TablesInsert<'pvp_duels'>
 export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
+`,
+        'utf-8'
+      )
+    }
+    if (!content.includes('export type StudentSpeakingSessionRow')) {
+      fs.appendFileSync(
+        filePath,
+        `export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
+export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
+export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
 `,
         'utf-8'
       )
