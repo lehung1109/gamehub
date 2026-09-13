@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { StudentSessionProvider } from "@/hooks/use-student-session";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +17,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "English Learning Games - Bé Học Tiếng Anh",
   description: "Trò chơi học tiếng Anh tương tác vui nhộn dành cho bé lớp 1-2",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "GameHub",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#4f46e5",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -36,6 +50,7 @@ export default function RootLayout({
         >
           <StudentSessionProvider>
             {children}
+            <ServiceWorkerRegister />
           </StudentSessionProvider>
         </div>
       </body>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bg)" />
+  <g fill="white" transform="translate(64, 64) scale(0.75)">
+    <!-- Gamepad Controller -->
+    <path d="M120 160 C 60 160 20 220 20 320 C 20 400 70 440 120 420 L 160 400 C 180 390 200 400 220 410 L 256 425 L 292 410 C 312 400 332 390 352 400 L 392 420 C 442 440 492 400 492 320 C 492 220 452 160 392 160 Z" opacity="0.95" />
+    <!-- D-Pad -->
+    <path d="M120 240 L 140 240 L 140 220 C 140 215 150 215 150 220 L 150 240 L 170 240 C 175 240 175 250 170 250 L 150 250 L 150 270 C 150 275 140 275 140 270 L 140 250 L 120 250 C 115 250 115 240 120 240 Z" fill="#4f46e5" />
+    <!-- Action Buttons -->
+    <circle cx="370" cy="235" r="14" fill="#f59e0b" />
+    <circle cx="340" cy="265" r="14" fill="#10b981" />
+    <circle cx="400" cy="265" r="14" fill="#3b82f6" />
+    <circle cx="370" cy="295" r="14" fill="#ef4444" />
+    <!-- Sound Waves for Speech -->
+    <path d="M 230 220 Q 256 200 282 220" stroke="#f59e0b" stroke-width="12" fill="none" stroke-linecap="round" />
+    <path d="M 215 190 Q 256 160 297 190" stroke="#f59e0b" stroke-width="12" fill="none" stroke-linecap="round" />
+  </g>
+</svg>

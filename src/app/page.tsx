@@ -8,6 +8,7 @@ import { MistakeNotebookBadge } from "@/components/student/MistakeNotebookBadge"
 import { StudentProfileBadge } from "@/components/StudentProfileBadge";
 import { StudentBadge } from "@/components/student/StudentBadge";
 import { StudentJoinPopup } from "@/components/student/StudentJoinPopup";
+import { QuickVoiceSwitcher } from "@/components/speech/QuickVoiceSwitcher";
 
 import { Container } from "@/components/ui/container";
 
@@ -24,7 +25,9 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
     <Container>
       <div className="flex-1 flex flex-col justify-between">
         <div>
+        {/* Top bar with Voice Switcher, Navigation links, Daily streak badge, Mistake notebook badge, Student profile badge, and Student badge */}
         <div className="flex flex-wrap justify-end items-center gap-2 mb-2">
+          <QuickVoiceSwitcher />
           <Link
             href="/roadmap"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-amber-900 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 shadow-xs hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
