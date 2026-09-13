@@ -69,8 +69,13 @@ export async function verifyParentAccessAction(
     }
 
     const cleanCode = classCode.trim().toUpperCase()
-    const cleanStudent = studentName.trim()
+    // Sanitize and escape SQL LIKE/ILIKE wildcards (%, _, \) to prevent wildcard enumeration
+    const cleanStudent = studentName.trim().replace(/[%_\\]/g, '\\$&')
     const cleanPin = accessPin.trim().toUpperCase()
+
+    if (cleanStudent.length > 100) {
+      return { success: false, error: 'Tên học sinh không hợp lệ' }
+    }
 
     // Find classroom
     const { data: classroom, error: classErr } = await supabase

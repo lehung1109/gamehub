@@ -149,6 +149,71 @@ describe('Parent Portal Server Actions', () => {
       expect(result.token).toBe('token-abc')
     })
 
+    it('sanitizes and escapes wildcard characters in student name', async () => {
+      let capturedIlikePattern = ''
+      mockAdmin.from.mockImplementation((table: string) => {
+        if (table === 'classrooms') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                maybeSingle: vi.fn().mockResolvedValue({
+                  data: { id: 'class-1', is_active: true },
+                  error: null,
+                }),
+              }),
+            }),
+          }
+        }
+        if (table === 'students') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                ilike: vi.fn().mockImplementation((col: string, pattern: string) => {
+                  capturedIlikePattern = pattern
+                  return {
+                    maybeSingle: vi.fn().mockResolvedValue({
+                      data: { id: 'stud-1', name: 'An % test _ \\', classroom_id: 'class-1' },
+                      error: null,
+                    }),
+                  }
+                }),
+              }),
+            }),
+          }
+        }
+        if (table === 'student_parent_access') {
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                maybeSingle: vi.fn().mockResolvedValue({
+                  data: {
+                    id: 'spa-1',
+                    student_id: 'stud-1',
+                    access_token: 'token-abc',
+                    access_pin: 'P-123456',
+                  },
+                  error: null,
+                }),
+              }),
+            }),
+            update: vi.fn().mockReturnValue({
+              eq: vi.fn().mockResolvedValue({ error: null }),
+            }),
+          }
+        }
+        return {}
+      })
+
+      const result = await verifyParentAccessAction({
+        classCode: 'ABC123',
+        studentName: 'An % test _ \\',
+        accessPin: 'P-123456',
+      })
+
+      expect(result.success).toBe(true)
+      expect(capturedIlikePattern).toBe('An \\% test \\_ \\\\')
+    })
+
     it('returns error when classroom is inactive or missing', async () => {
       mockAdmin.from.mockImplementation((table: string) => {
         if (table === 'classrooms') {
