@@ -4,13 +4,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import {
-  Play,
-  Pause,
   Volume2,
   ArrowRight,
   ArrowLeft,
   Sparkles,
-  HelpCircle,
   Film,
 } from 'lucide-react'
 import type {
@@ -95,13 +92,14 @@ export function PhonicsCinemaPlayer({
     }
 
     // Check if current scene has an unanswered prompt
+    let timer: ReturnType<typeof setTimeout> | undefined
     if (currentScene?.interactivePrompt && !answeredPromptIds.has(currentScene.interactivePrompt.id)) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setIsPausedForPrompt(true)
       }, 1500)
-      return () => clearTimeout(timer)
-    } else {
-      setIsPausedForPrompt(false)
+    }
+    return () => {
+      if (timer) clearTimeout(timer)
     }
   }, [currentSceneIndex, currentScene?.narrationEn, currentScene?.interactivePrompt, answeredPromptIds, speak])
 
@@ -114,6 +112,7 @@ export function PhonicsCinemaPlayer({
       setCurrentSceneIndex((idx) => idx + 1)
       setSelectedOptionId(null)
       setPromptFeedback(null)
+      setIsPausedForPrompt(false)
     }
   }
 
