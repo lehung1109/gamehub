@@ -4,14 +4,21 @@
 
 import { revalidatePath } from 'next/cache'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import type {
   VerifyParentAccessInput,
   ParentDashboardData,
   ClassroomAnnouncement,
   AnnouncementCategory,
   AnnouncementPriority,
+  ParentAccessInfo,
+  CreateAnnouncementInput,
 } from '@/types/parent'
-import { computeWeeklyDigest } from '@/lib/parent/digest-generator'
+import {
+  computeWeeklyDigest,
+  generateParentPin,
+  generateParentAccessToken,
+} from '@/lib/parent/digest-generator'
 import {
   computeStudentSkillBreakdown,
   computeSrsMetrics,
@@ -373,3 +380,348 @@ export async function acknowledgeAnnouncementAction(
     return { success: false, error: 'Lỗi hệ thống khi xác nhận thông báo' }
   }
 }
+
+/**
+ * Retrieves the roster of student parent PINs and magic links for a classroom.
+ * Automatically generates access credentials for newly enrolled students if missing.
+ */
+export async function getClassParentsListAction(
+  classroomId: string
+): Promise<{ success: boolean; list?: ParentAccessInfo[]; error?: string }> {
+  try {
+    if (!classroomId || typeof classroomId !== 'string' || !classroomId.trim()) {
+      return { success: false, error: 'Mã lớp không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập để quản lý phụ huynh' }
+    }
+
+    // Check classroom ownership
+    const { data: classroom, error: classErr } = await supabase
+      .from('classrooms')
+      .select('id, name, code')
+      .eq('id', classroomId.trim())
+      .eq('teacher_id', user.id)
+      .maybeSingle()
+
+    if (classErr || !classroom) {
+      return { success: false, error: 'Không tìm thấy lớp học hoặc không có quyền truy cập' }
+    }
+
+    // Get all students in classroom
+    const { data: students, error: studErr } = await supabase
+      .from('students')
+      .select('id, name, classroom_id')
+      .eq('classroom_id', classroom.id)
+      .order('name', { ascending: true })
+
+    if (studErr) {
+      return { success: false, error: 'Lỗi khi tải danh sách học sinh' }
+    }
+
+    const adminSupabase = createAdminClient()
+
+    // Get existing parent access records
+    const { data: accessRecords, error: accessErr } = await adminSupabase
+      .from('student_parent_access')
+      .select('*')
+      .eq('classroom_id', classroom.id)
+
+    if (accessErr) {
+      return { success: false, error: 'Lỗi khi tải thông tin phụ huynh' }
+    }
+
+    const accessMap = new Map<string, (typeof accessRecords)[0]>()
+    for (const record of accessRecords || []) {
+      accessMap.set(record.student_id, record)
+    }
+
+    const resultList: ParentAccessInfo[] = []
+
+    for (const stud of students || []) {
+      let rec = accessMap.get(stud.id)
+
+      // If student lacks parent access credentials, generate and persist automatically
+      if (!rec) {
+        const pin = generateParentPin()
+        const token = generateParentAccessToken()
+
+        const { data: created, error: insertErr } = await adminSupabase
+          .from('student_parent_access')
+          .insert({
+            student_id: stud.id,
+            classroom_id: classroom.id,
+            access_pin: pin,
+            access_token: token,
+          })
+          .select()
+          .single()
+
+        if (!insertErr && created) {
+          rec = created
+        }
+      }
+
+      if (rec) {
+        resultList.push({
+          studentId: stud.id,
+          studentName: stud.name,
+          classroomId: classroom.id,
+          classroomName: classroom.name,
+          classCode: classroom.code,
+          accessPin: rec.access_pin,
+          accessToken: rec.access_token,
+          parentPhone: rec.parent_phone,
+          parentName: rec.parent_name,
+          lastAccessedAt: rec.last_accessed_at,
+          createdAt: rec.created_at,
+        })
+      }
+    }
+
+    return { success: true, list: resultList }
+  } catch (err: unknown) {
+    console.error('[getClassParentsListAction] Error:', err)
+    return { success: false, error: 'Lỗi hệ thống khi tải danh sách phụ huynh' }
+  }
+}
+
+/**
+ * Creates a classroom announcement broadcasted to all parents or targeted to a specific student
+ */
+export async function createClassAnnouncementAction(
+  input: CreateAnnouncementInput
+): Promise<{ success: boolean; announcement?: ClassroomAnnouncement; error?: string }> {
+  try {
+    if (!input || !input.classroomId?.trim() || !input.title?.trim() || !input.content?.trim()) {
+      return { success: false, error: 'Vui lòng nhập đầy đủ tiêu đề và nội dung thông báo' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập để tạo thông báo' }
+    }
+
+    // Verify classroom ownership
+    const { data: classroom, error: classErr } = await supabase
+      .from('classrooms')
+      .select('id')
+      .eq('id', input.classroomId.trim())
+      .eq('teacher_id', user.id)
+      .maybeSingle()
+
+    if (classErr || !classroom) {
+      return { success: false, error: 'Không tìm thấy lớp học hoặc không có quyền tạo thông báo' }
+    }
+
+    let targetedStudentId: string | null = null
+    if (input.studentId?.trim()) {
+      const { data: targetStudent, error: targetErr } = await supabase
+        .from('students')
+        .select('id')
+        .eq('id', input.studentId.trim())
+        .eq('classroom_id', classroom.id)
+        .maybeSingle()
+
+      if (targetErr || !targetStudent) {
+        return { success: false, error: 'Học sinh không thuộc lớp học này' }
+      }
+      targetedStudentId = targetStudent.id
+    }
+
+    const { data: announcement, error: insertErr } = await supabase
+      .from('classroom_announcements')
+      .insert({
+        classroom_id: classroom.id,
+        teacher_id: user.id,
+        student_id: targetedStudentId,
+        title: input.title.trim(),
+        content: input.content.trim(),
+        category: input.category || 'announcement',
+        priority: input.priority || 'normal',
+      })
+      .select()
+      .single()
+
+    if (insertErr || !announcement) {
+      console.error('[createClassAnnouncementAction] Insert error:', insertErr)
+      return { success: false, error: 'Lỗi khi lưu thông báo vào hệ thống' }
+    }
+
+    revalidatePath('/admin/parents')
+    revalidatePath('/parent')
+
+    return {
+      success: true,
+      announcement: {
+        id: announcement.id,
+        classroomId: announcement.classroom_id,
+        teacherId: announcement.teacher_id,
+        studentId: announcement.student_id,
+        title: announcement.title,
+        content: announcement.content,
+        category: announcement.category as AnnouncementCategory,
+        priority: announcement.priority as AnnouncementPriority,
+        createdAt: announcement.created_at,
+        acknowledged: false,
+        acknowledgmentCount: 0,
+      },
+    }
+  } catch (err: unknown) {
+    console.error('[createClassAnnouncementAction] Error:', err)
+    return { success: false, error: 'Lỗi hệ thống khi tạo thông báo' }
+  }
+}
+
+/**
+ * Deletes a classroom announcement
+ */
+export async function deleteClassAnnouncementAction(
+  announcementId: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    if (!announcementId?.trim()) {
+      return { success: false, error: 'Mã thông báo không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập' }
+    }
+
+    // Verify teacher owns this announcement
+    const { data: announcement, error: findErr } = await supabase
+      .from('classroom_announcements')
+      .select('id, classroom_id, teacher_id')
+      .eq('id', announcementId.trim())
+      .maybeSingle()
+
+    if (findErr || !announcement || announcement.teacher_id !== user.id) {
+      return { success: false, error: 'Không tìm thấy thông báo hoặc không có quyền xóa' }
+    }
+
+    const { error: deleteErr } = await supabase
+      .from('classroom_announcements')
+      .delete()
+      .eq('id', announcement.id)
+
+    if (deleteErr) {
+      console.error('[deleteClassAnnouncementAction] Delete error:', deleteErr)
+      return { success: false, error: 'Lỗi khi xóa thông báo' }
+    }
+
+    revalidatePath('/admin/parents')
+    revalidatePath('/parent')
+    return { success: true }
+  } catch (err: unknown) {
+    console.error('[deleteClassAnnouncementAction] Error:', err)
+    return { success: false, error: 'Lỗi hệ thống khi xóa thông báo' }
+  }
+}
+
+/**
+ * Regenerates a student's parent PIN and magic link token
+ */
+export async function regenerateStudentParentPinAction(
+  studentId: string,
+  classroomId: string
+): Promise<{ success: boolean; accessInfo?: ParentAccessInfo; error?: string }> {
+  try {
+    if (!studentId?.trim() || !classroomId?.trim()) {
+      return { success: false, error: 'Thông tin học sinh hoặc lớp học không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập' }
+    }
+
+    // Check classroom ownership
+    const { data: classroom, error: classErr } = await supabase
+      .from('classrooms')
+      .select('id, name, code')
+      .eq('id', classroomId.trim())
+      .eq('teacher_id', user.id)
+      .maybeSingle()
+
+    if (classErr || !classroom) {
+      return { success: false, error: 'Không tìm thấy lớp học hoặc không có quyền thực hiện' }
+    }
+
+    // Check student exists
+    const { data: student, error: studErr } = await supabase
+      .from('students')
+      .select('id, name')
+      .eq('id', studentId.trim())
+      .eq('classroom_id', classroom.id)
+      .maybeSingle()
+
+    if (studErr || !student) {
+      return { success: false, error: 'Không tìm thấy học sinh trong lớp' }
+    }
+
+    const adminSupabase = createAdminClient()
+    const newPin = generateParentPin()
+    const newToken = generateParentAccessToken()
+
+    const { data: updated, error: updateErr } = await adminSupabase
+      .from('student_parent_access')
+      .upsert(
+        {
+          student_id: student.id,
+          classroom_id: classroom.id,
+          access_pin: newPin,
+          access_token: newToken,
+        },
+        { onConflict: 'student_id' }
+      )
+      .select()
+      .single()
+
+    if (updateErr || !updated) {
+      console.error('[regenerateStudentParentPinAction] Upsert error:', updateErr)
+      return { success: false, error: 'Lỗi khi cấp lại mã bảo mật phụ huynh' }
+    }
+
+    revalidatePath('/admin/parents')
+
+    return {
+      success: true,
+      accessInfo: {
+        studentId: student.id,
+        studentName: student.name,
+        classroomId: classroom.id,
+        classroomName: classroom.name,
+        classCode: classroom.code,
+        accessPin: updated.access_pin,
+        accessToken: updated.access_token,
+        parentPhone: updated.parent_phone,
+        parentName: updated.parent_name,
+        lastAccessedAt: updated.last_accessed_at,
+        createdAt: updated.created_at,
+      },
+    }
+  } catch (err: unknown) {
+    console.error('[regenerateStudentParentPinAction] Error:', err)
+    return { success: false, error: 'Lỗi hệ thống khi cấp lại mã PIN' }
+  }
+}
+

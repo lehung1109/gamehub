@@ -3,7 +3,7 @@
 - [x] **Task 1: TypeScript Contracts & Domain Models**
 - [x] **Task 2: Pure Parent Digest & PIN Generation Engine**
 - [x] **Task 3: Supabase Migration & Database Custom Types**
-- [ ] **Task 4: Server Actions for Parent Authentication, Dashboard Data & Acknowledgments**
+- [x] **Task 4: Server Actions for Parent Authentication, Dashboard Data & Acknowledgments**
 - [ ] **Task 5: Server Actions for Teacher Parent Management & Announcements**
 - [ ] **Task 6: Parent Portal Authentication & Mobile-Friendly Dashboard Views**
 - [ ] **Task 7: Teacher Admin Parent Management UI & Navigation Entry Points**
