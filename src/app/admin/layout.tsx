@@ -79,6 +79,13 @@ export default async function AdminLayout({
                 <span>AI Studio</span>
               </Link>
               <Link
+                href="/admin/ai-copilot"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 transition-colors"
+              >
+                <Sparkles className="size-4 text-indigo-500" />
+                <span>AI Co-Pilot</span>
+              </Link>
+              <Link
                 href="/admin/arena/new"
                 className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 transition-colors"
               >

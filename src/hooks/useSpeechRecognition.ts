@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from 'react';
 
 export interface UseSpeechRecognitionOptions {
   lang?: string;
@@ -63,6 +63,20 @@ export interface WindowWithSpeechRecognition extends Window {
   webkitSpeechRecognition?: SpeechRecognitionConstructor;
 }
 
+function emptySubscribe() {
+  return () => {};
+}
+
+function getSpeechSnapshot(): boolean {
+  if (typeof window === 'undefined') return false;
+  const win = window as unknown as WindowWithSpeechRecognition;
+  return Boolean(win.SpeechRecognition || win.webkitSpeechRecognition);
+}
+
+function getServerSpeechSnapshot(): boolean {
+  return true;
+}
+
 export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}): SpeechRecognitionResultState {
   const { lang = 'en-US', continuous = false, interimResults = true } = options;
   const [isListening, setIsListening] = useState(false);
@@ -73,13 +87,17 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const isMountedRef = useRef(true);
 
+  const isSupported = useSyncExternalStore(
+    emptySubscribe,
+    getSpeechSnapshot,
+    getServerSpeechSnapshot
+  );
+
   const getSpeechRecognitionAPI = useCallback((): SpeechRecognitionConstructor | null => {
     if (typeof window === 'undefined') return null;
     const win = window as unknown as WindowWithSpeechRecognition;
     return win.SpeechRecognition || win.webkitSpeechRecognition || null;
   }, []);
-
-  const isSupported = Boolean(getSpeechRecognitionAPI());
 
   const cleanupRecognition = useCallback((instance: SpeechRecognitionInstance | null) => {
     if (!instance) return;

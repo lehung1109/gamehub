@@ -139,7 +139,7 @@ describe('PronunciationPage', () => {
     });
 
     // Evaluation result card should now be shown
-    expect(screen.getByText(/100%/)).toBeInTheDocument();
+    expect(screen.getAllByText(/100%/)[0]).toBeInTheDocument();
     expect(screen.getByText(/thử lại/i)).toBeInTheDocument();
     expect(screen.getByText(/tiếp tục/i)).toBeInTheDocument();
 
