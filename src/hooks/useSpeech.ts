@@ -70,6 +70,22 @@ function safeCancelSynthesis(): void {
   }
 }
 
+function getInitialVoices(): SpeechVoiceInfo[] {
+  if (
+    typeof window === 'undefined' ||
+    !window.speechSynthesis ||
+    typeof window.speechSynthesis.getVoices !== 'function'
+  ) {
+    return []
+  }
+  try {
+    const raw = window.speechSynthesis.getVoices()
+    return raw && raw.length > 0 ? filterAndRankVoices(raw) : []
+  } catch {
+    return []
+  }
+}
+
 const emptySubscribe = () => () => {}
 
 export function useSpeech(options: UseSpeechOptions = {}) {
@@ -77,7 +93,7 @@ export function useSpeech(options: UseSpeechOptions = {}) {
 
   const [config, setConfig] = useState<SpeechConfig>(loadStoredSpeechConfig)
   const [isSpeaking, setIsSpeaking] = useState(false)
-  const [availableVoices, setAvailableVoices] = useState<SpeechVoiceInfo[]>([])
+  const [availableVoices, setAvailableVoices] = useState<SpeechVoiceInfo[]>(getInitialVoices)
   const nativeVoicesRef = useRef<SpeechSynthesisVoice[]>([])
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null)
   const isMountedRef = useRef(true)
@@ -113,7 +129,6 @@ export function useSpeech(options: UseSpeechOptions = {}) {
 
   useEffect(() => {
     isMountedRef.current = true
-    populateVoices()
 
     if (
       typeof window !== 'undefined' &&

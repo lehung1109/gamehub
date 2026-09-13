@@ -17,63 +17,54 @@ export interface InstallPromptBannerProps {
   className?: string
 }
 
+function isRunningStandalone(): boolean {
+  if (typeof window === 'undefined') return false
+  return (
+    (typeof window.matchMedia === 'function' &&
+      window.matchMedia('(display-mode: standalone)').matches) ||
+    Boolean((window.navigator as unknown as { standalone?: boolean }).standalone)
+  )
+}
+
+function isDismissedRecently(): boolean {
+  if (typeof window === 'undefined') return false
+  const dismissed = localStorage.getItem(PWA_DISMISS_KEY)
+  if (!dismissed) return false
+  const lastDismissed = parseInt(dismissed, 10)
+  return !isNaN(lastDismissed) && Date.now() - lastDismissed < DISMISS_COOLDOWN_MS
+}
+
+function isAppleMobileDevice(): boolean {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent || ''
+  return /iPad|iPhone|iPod/.test(ua) && !(window as unknown as { MSStream?: unknown }).MSStream
+}
+
 export function InstallPromptBanner({
   forceShow = false,
   className,
 }: InstallPromptBannerProps) {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [isIOS, setIsIOS] = useState(false)
+  const [isDismissed, setIsDismissed] = useState<boolean>(() => {
+    if (forceShow) return false
+    return isDismissedRecently()
+  })
+  const [isStandalone] = useState<boolean>(() => {
+    if (forceShow) return false
+    return isRunningStandalone()
+  })
+  const [isIOS] = useState<boolean>(isAppleMobileDevice)
+  const [promptAvailable, setPromptAvailable] = useState<boolean>(false)
 
   useEffect(() => {
-    // Check if running in standalone PWA mode
-    const isStandalone =
-      typeof window !== 'undefined' &&
-      ((typeof window.matchMedia === 'function' &&
-        window.matchMedia('(display-mode: standalone)').matches) ||
-        // iOS Safari standalone check
-        Boolean((window.navigator as unknown as { standalone?: boolean }).standalone))
-
-    if (isStandalone && !forceShow) {
-      return
-    }
-
-    // Check dismissal cooldown
-    if (!forceShow && typeof window !== 'undefined') {
-      const dismissed = localStorage.getItem(PWA_DISMISS_KEY)
-      if (dismissed) {
-        const lastDismissed = parseInt(dismissed, 10)
-        if (!isNaN(lastDismissed) && Date.now() - lastDismissed < DISMISS_COOLDOWN_MS) {
-          return
-        }
-      }
-    }
-
-    // Check iOS Safari
-    let isAppleMobile = false
-    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
-      const ua = navigator.userAgent || ''
-      isAppleMobile =
-        /iPad|iPhone|iPod/.test(ua) && !(window as unknown as { MSStream?: unknown }).MSStream
-      setIsIOS(isAppleMobile)
-    }
-
-    if (forceShow) {
-      setIsVisible(true)
-      return
-    }
-
-    // On iOS Safari, beforeinstallprompt is not supported.
-    // Display the iOS Add-to-Home-Screen instruction banner directly.
-    if (isAppleMobile) {
-      setIsVisible(true)
+    if (forceShow || isStandalone || isDismissed) {
       return
     }
 
     const handleBeforeInstall = (e: Event) => {
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
-      setIsVisible(true)
+      setPromptAvailable(true)
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstall)
@@ -81,7 +72,7 @@ export function InstallPromptBanner({
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstall)
     }
-  }, [forceShow])
+  }, [forceShow, isStandalone, isDismissed])
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) {
@@ -92,7 +83,7 @@ export function InstallPromptBanner({
       await deferredPrompt.prompt()
       const choice = await deferredPrompt.userChoice
       if (choice.outcome === 'accepted') {
-        setIsVisible(false)
+        setIsDismissed(true)
         setDeferredPrompt(null)
       }
     } catch (e) {
@@ -101,11 +92,14 @@ export function InstallPromptBanner({
   }
 
   const handleDismiss = () => {
-    setIsVisible(false)
+    setIsDismissed(true)
     if (typeof window !== 'undefined') {
       localStorage.setItem(PWA_DISMISS_KEY, Date.now().toString())
     }
   }
+
+  const isVisible =
+    !isDismissed && (forceShow || (!isStandalone && (promptAvailable || isIOS)))
 
   if (!isVisible) {
     return null

@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { X, Check, Volume2, Sparkles, Globe2, Gauge } from 'lucide-react'
+import { X, Check, Sparkles, Globe2, Gauge } from 'lucide-react'
 import { useSpeech } from '@/hooks/useSpeech'
 import { VoicePreviewButton } from '@/components/speech/VoicePreviewButton'
 import type { AccentRegion, VoiceStyle } from '@/types/speech'
-import { ACCENT_LABELS, VOICE_STYLE_PRESETS } from '@/types/speech'
 import { cn } from '@/lib/utils'
 
 export interface SpeechSettingsModalProps {

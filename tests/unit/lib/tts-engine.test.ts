@@ -6,7 +6,7 @@ import {
   generateSpeechUtteranceConfig,
   isAudioContextSupported,
 } from '@/lib/speech/tts-engine'
-import type { AccentRegion, SpeechConfig, SpeechVoiceInfo } from '@/types/speech'
+import type { SpeechConfig, SpeechVoiceInfo } from '@/types/speech'
 
 // Mock SpeechSynthesisVoice objects
 function createMockVoice(

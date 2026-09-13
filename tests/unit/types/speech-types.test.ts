@@ -4,8 +4,6 @@ import type {
   VoiceStyle,
   SpeechVoiceInfo,
   SpeechConfig,
-  SpeechState,
-  OfflineActionType,
   QueuedOfflineAction,
   OfflineSyncStatus,
   PWAInstallState,
