@@ -20,6 +20,14 @@ const defaultGamificationProps = {
   buyShopItem: vi.fn(),
   toggleEquipItem: vi.fn(),
   claimQuest: vi.fn(),
+  roadmapState: {
+    totalStars: 0,
+    completedNodeIds: [],
+    nodesProgress: {},
+  },
+  refreshRoadmapProgress: vi.fn(),
+  recordRoadmapCompletion: vi.fn(),
+  recordNodeCompletion: vi.fn(),
 }
 
 describe('LevelUpCelebrationDialog Component', () => {
