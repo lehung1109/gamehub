@@ -84,12 +84,12 @@ export function GameCatalogSection({ games }: GameCatalogSectionProps) {
   return (
     <div className="space-y-6">
       {/* Filter and Search Bar */}
-      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 p-2 sm:p-2.5 rounded-3xl bg-muted/40 backdrop-blur-xs border border-border/70 shadow-xs">
         {/* Category Tabs */}
         <div
           role="tablist"
           aria-label="Phân loại trò chơi"
-          className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none"
+          className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 lg:pb-0 scrollbar-none snap-x"
         >
           {CATALOG_CATEGORIES.map((cat) => {
             const isSelected = activeCategory === cat.id;
@@ -103,19 +103,19 @@ export function GameCatalogSection({ games }: GameCatalogSectionProps) {
                 aria-controls="game-catalog-main"
                 onClick={() => setActiveCategory(cat.id)}
                 className={cn(
-                  "inline-flex items-center gap-1.5 px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 border cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
+                  "inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs sm:text-sm font-black whitespace-nowrap transition-all duration-200 cursor-pointer select-none snap-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500",
                   isSelected
-                    ? "bg-emerald-600 text-white border-emerald-600 shadow-sm shadow-emerald-600/20 scale-[1.02]"
-                    : "bg-card text-muted-foreground hover:text-foreground hover:bg-accent/60 border-border/80"
+                    ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25 border-emerald-600 scale-[1.02]"
+                    : "bg-background/80 text-muted-foreground hover:text-foreground hover:bg-background border border-border/60 hover:border-border"
                 )}
               >
-                <span aria-hidden="true">{cat.emoji}</span>
+                <span aria-hidden="true" className="text-base">{cat.emoji}</span>
                 <span>{cat.label}</span>
                 <span
                   className={cn(
-                    "text-xs px-2 py-0.5 rounded-full font-black",
+                    "text-xs px-2 py-0.5 rounded-full font-black tracking-tight",
                     isSelected
-                      ? "bg-white/20 text-white"
+                      ? "bg-white/25 text-white"
                       : "bg-muted text-muted-foreground"
                   )}
                 >
@@ -138,7 +138,7 @@ export function GameCatalogSection({ games }: GameCatalogSectionProps) {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tìm kiếm trò chơi (ví dụ: flashcard, nghe hiểu...)..."
             aria-label="Tìm kiếm trò chơi"
-            className="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-card border border-border/80 text-foreground placeholder:text-muted-foreground text-xs sm:text-sm font-medium shadow-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+            className="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-background border border-border/80 text-foreground placeholder:text-muted-foreground text-xs sm:text-sm font-medium shadow-2xs focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
           />
           {searchQuery && (
             <button
@@ -154,15 +154,19 @@ export function GameCatalogSection({ games }: GameCatalogSectionProps) {
       </div>
 
       {/* Counter and Active Filter Info */}
-      <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-muted-foreground px-1">
-        <span>
-          Hiển thị <strong className="text-foreground">{filteredGames.length}</strong> / {games.length} trò chơi
+      <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-muted-foreground px-2">
+        <span className="flex items-center gap-1.5">
+          <span>Hiển thị</span>
+          <span className="px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 font-bold">
+            {filteredGames.length}
+          </span>
+          <span>/ {games.length} trò chơi</span>
         </span>
         {filteredGames.length > 0 && (activeCategory !== "all" || searchQuery.trim() !== "") && (
           <button
             type="button"
             onClick={handleResetFilter}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline cursor-pointer transition-colors"
           >
             <RotateCcw className="size-3.5" />
             <span>Đặt lại bộ lọc</span>
