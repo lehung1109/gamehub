@@ -48,9 +48,13 @@ function persistSpeechConfig(config: SpeechConfig): void {
   if (typeof window === 'undefined') return
   try {
     localStorage.setItem(SPEECH_CONFIG_STORAGE_KEY, JSON.stringify(config))
-    window.dispatchEvent(
-      new CustomEvent('gamehub_speech_config_updated', { detail: config })
-    )
+    queueMicrotask(() => {
+      if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+        window.dispatchEvent(
+          new CustomEvent('gamehub_speech_config_updated', { detail: config })
+        )
+      }
+    })
   } catch (e) {
     console.error('[useSpeech] Failed to persist speech config:', e)
   }
