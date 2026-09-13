@@ -31,12 +31,12 @@ self.addEventListener('activate', (event) => {
       .keys()
       .then((cacheNames) => {
         return Promise.all(
-          cacheNames.map((cache) => {
-            if (cache !== CACHE_NAME) {
+          cacheNames
+            .filter((cache) => cache !== CACHE_NAME)
+            .map((cache) => {
               console.log('[ServiceWorker] Purging legacy cache:', cache)
               return caches.delete(cache)
-            }
-          })
+            })
         )
       })
       .then(() => self.clients.claim())
@@ -120,9 +120,15 @@ self.addEventListener('fetch', (event) => {
           }
           return networkResponse
         })
-        .catch(() => null)
 
-      return cachedResponse || fetchPromise
+      if (cachedResponse) {
+        // Return cached immediately; update cache in background (catch any network errors quietly)
+        fetchPromise.catch(() => {})
+        return cachedResponse
+      }
+
+      // No cache match: return standard network fetch
+      return fetchPromise
     })
   )
 })
