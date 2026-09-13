@@ -60,6 +60,22 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🎙️ Luyện nói AI</span>
           </Link>
+          <Link
+            href="/stories"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-indigo-950 dark:text-indigo-200 bg-indigo-100 dark:bg-indigo-950/60 border border-indigo-300 dark:border-indigo-800 shadow-xs hover:bg-indigo-200 dark:hover:bg-indigo-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            title="Truyện tranh tương tác & Lồng tiếng"
+            data-testid="stories-topbar-link"
+          >
+            <span>📖 Truyện tranh</span>
+          </Link>
+          <Link
+            href="/chants"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-purple-950 dark:text-purple-200 bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-800 shadow-xs hover:bg-purple-200 dark:hover:bg-purple-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+            title="Karaoke & Vè Phonics"
+            data-testid="chants-topbar-link"
+          >
+            <span>🎵 Karaoke Vè</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
