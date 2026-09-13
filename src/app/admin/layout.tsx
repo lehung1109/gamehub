@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { logout } from '@/app/actions/auth'
 import { Button } from '@/components/ui/button'
-import { LayoutDashboard, UserCircle, LogOut, ExternalLink, Gamepad2, School, BookOpen, Sparkles, Swords } from 'lucide-react'
+import { LayoutDashboard, UserCircle, LogOut, ExternalLink, Gamepad2, School, BookOpen, Sparkles, Swords, Share2 } from 'lucide-react'
 
 export const metadata = {
   title: 'GameHub Admin | Quản trị',
@@ -34,9 +34,9 @@ export default async function AdminLayout({
           <div className="flex items-center gap-6">
             <Link
               href="/admin/dashboard"
-              className="flex items-center gap-2.5 font-bold text-lg text-indigo-700 hover:opacity-90 transition-opacity"
+              className="flex items-center gap-2.5 font-bold text-lg text-indigo-600 hover:text-indigo-700 transition-colors"
             >
-              <div className="size-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-xs">
+              <div className="size-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shadow-xs">
                 <Gamepad2 className="size-5" />
               </div>
               <span>GameHub Admin</span>
@@ -77,6 +77,13 @@ export default async function AdminLayout({
               >
                 <Swords className="size-4 text-rose-500" />
                 <span>Đấu trường</span>
+              </Link>
+              <Link
+                href="/admin/community"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 transition-colors"
+              >
+                <Share2 className="size-4 text-purple-600" />
+                <span>Cộng đồng</span>
               </Link>
               <Link
                 href="/admin/account"
