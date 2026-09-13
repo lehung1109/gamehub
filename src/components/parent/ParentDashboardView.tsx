@@ -18,6 +18,7 @@ import {
   ExternalLink,
 } from 'lucide-react'
 import Link from 'next/link'
+import { PushPreferencesCard } from '@/components/push/PushPreferencesCard'
 
 interface ParentDashboardViewProps {
   initialData: ParentDashboardData
@@ -352,6 +353,26 @@ export function ParentDashboardView({ initialData }: ParentDashboardViewProps) {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Section 5: Push Notifications & Daily Reminders */}
+      <section id="section-push-preferences" className="space-y-6">
+        <div className="flex items-center gap-3">
+          <span className="size-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xl font-bold">
+            5
+          </span>
+          <div>
+            <h2 className="text-2xl font-bold text-foreground">Cài Đặt Nhắc Nhở & Thông Báo Đẩy</h2>
+            <p className="text-base text-muted-foreground">
+              Nhận lời nhắc giữ chuỗi ngọn lửa hàng ngày và thông báo bài học mới từ thầy cô.
+            </p>
+          </div>
+        </div>
+
+        <PushPreferencesCard
+          studentId={data.student.id}
+          parentToken={data.parentToken || undefined}
+        />
       </section>
     </div>
   )

@@ -78,6 +78,7 @@ export interface ParentDashboardData {
     verificationCode: string
   }>
   announcements: ClassroomAnnouncement[]
+  parentToken?: string | null
 }
 
 export interface VerifyParentAccessInput {

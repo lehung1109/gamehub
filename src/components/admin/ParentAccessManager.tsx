@@ -20,6 +20,7 @@ import {
   AlertCircle,
   X,
 } from 'lucide-react'
+import { sendClassAnnouncementPushAction } from '@/app/actions/push'
 
 interface ParentAccessManagerProps {
   classroomId: string
@@ -32,6 +33,9 @@ interface ParentAccessManagerProps {
   ) => Promise<{ success: boolean; announcement?: ClassroomAnnouncement; error?: string }>
   onDeleteAnnouncement?: (announcementId: string) => Promise<{ success: boolean; error?: string }>
   onRegeneratePin?: (studentId: string) => Promise<{ success: boolean; newPin?: string; error?: string }>
+  onSendPushAnnouncement?: (
+    announcementId: string
+  ) => Promise<{ success: boolean; sentCount?: number; failedCount?: number; error?: string }>
 }
 
 const CATEGORY_OPTIONS: { value: AnnouncementCategory; label: string }[] = [
@@ -50,6 +54,7 @@ export function ParentAccessManager({
   onPublishAnnouncement,
   onDeleteAnnouncement,
   onRegeneratePin,
+  onSendPushAnnouncement,
 }: ParentAccessManagerProps) {
   const [parents, setParents] = useState<ParentAccessInfo[]>(initialParents)
   const [announcements, setAnnouncements] = useState<(ClassroomAnnouncement & { acknowledgedCount: number })[]>(initialAnnouncements)
@@ -58,6 +63,9 @@ export function ParentAccessManager({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [regeneratingStudentId, setRegeneratingStudentId] = useState<string | null>(null)
   const [formError, setFormError] = useState<string | null>(null)
+  const [sendingPushId, setSendingPushId] = useState<string | null>(null)
+  const [pushFeedback, setPushFeedback] = useState<{ id: string; message: string; isError?: boolean } | null>(null)
+  const [sendPushOnPublish, setSendPushOnPublish] = useState(true)
 
   // Form State
   const [title, setTitle] = useState('')
@@ -86,6 +94,38 @@ export function ParentAccessManager({
       }
     } finally {
       setRegeneratingStudentId(null)
+    }
+  }
+
+  const handleSendPush = async (announcementId: string) => {
+    setSendingPushId(announcementId)
+    setPushFeedback(null)
+    try {
+      const res = onSendPushAnnouncement
+        ? await onSendPushAnnouncement(announcementId)
+        : await sendClassAnnouncementPushAction(classroomId, announcementId)
+
+      if (res.success) {
+        const count = res.sentCount ?? 0
+        setPushFeedback({
+          id: announcementId,
+          message: `Đã phát thông báo đẩy tới ${count} thiết bị phụ huynh!`,
+        })
+      } else {
+        setPushFeedback({
+          id: announcementId,
+          message: res.error || 'Gửi thông báo đẩy thất bại.',
+          isError: true,
+        })
+      }
+    } catch {
+      setPushFeedback({
+        id: announcementId,
+        message: 'Lỗi kết nối khi gửi thông báo đẩy.',
+        isError: true,
+      })
+    } finally {
+      setSendingPushId(null)
     }
   }
 
@@ -134,6 +174,10 @@ export function ParentAccessManager({
         setPriority('normal')
         setTargetStudentId('')
         setIsModalOpen(false)
+
+        if (sendPushOnPublish) {
+          void handleSendPush(newAnnouncement.id)
+        }
       } else {
         setFormError(res.error || 'Đã xảy ra lỗi khi tạo thông báo.')
       }
@@ -248,9 +292,33 @@ export function ParentAccessManager({
                         {ann.acknowledgedCount} / {ann.studentId ? 1 : parents.length} phụ huynh đã đọc
                       </span>
                     </div>
+
+                    {pushFeedback?.id === ann.id && (
+                      <div
+                        role="alert"
+                        className={`p-3 rounded-xl text-base font-semibold ${
+                          pushFeedback.isError
+                            ? 'bg-red-50 text-red-700 border border-red-200'
+                            : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        }`}
+                      >
+                        {pushFeedback.message}
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex items-center gap-2 self-end md:self-center shrink-0">
+                    <button
+                      type="button"
+                      disabled={sendingPushId === ann.id}
+                      onClick={() => handleSendPush(ann.id)}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border-2 border-indigo-200 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-base transition-colors cursor-pointer disabled:opacity-50"
+                      title="Gửi thông báo đẩy (Push Notification) đến phụ huynh"
+                    >
+                      <Bell className="size-5" />
+                      <span>{sendingPushId === ann.id ? 'Đang gửi...' : 'Gửi Push'}</span>
+                    </button>
+
                     <button
                       type="button"
                       onClick={() => handleDelete(ann.id)}
@@ -493,6 +561,23 @@ export function ParentAccessManager({
                   ))}
                 </select>
               </div>
+
+              <label className="flex items-start gap-3 p-3.5 rounded-2xl border-2 border-border hover:border-primary/40 bg-muted/30 cursor-pointer transition">
+                <input
+                  type="checkbox"
+                  checked={sendPushOnPublish}
+                  onChange={(e) => setSendPushOnPublish(e.target.checked)}
+                  className="w-5 h-5 mt-0.5 rounded text-primary focus:ring-primary cursor-pointer"
+                />
+                <div>
+                  <span className="text-base font-bold text-foreground flex items-center gap-2">
+                    🔔 Gửi thông báo đẩy (Web Push) tới phụ huynh ngay khi đăng
+                  </span>
+                  <p className="text-base text-muted-foreground mt-0.5">
+                    Phát tín hiệu trực tiếp đến điện thoại hoặc máy tính của phụ huynh đã bật thông báo.
+                  </p>
+                </div>
+              </label>
 
               <div className="pt-4 flex items-center justify-end gap-3 border-t border-border">
                 <button
