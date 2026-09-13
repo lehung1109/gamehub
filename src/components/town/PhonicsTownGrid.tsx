@@ -201,7 +201,7 @@ export function PhonicsTownGrid({ initialState }: PhonicsTownGridProps) {
                     className={`p-2.5 rounded-2xl flex items-center gap-2 cursor-pointer transition-all shadow-sm ${
                       placed.isQuestCompletedToday
                         ? 'bg-emerald-50 text-emerald-800 border border-emerald-300'
-                        : 'bg-amber-400 hover:bg-amber-300 text-slate-950 ring-2 ring-amber-300 animate-bounce'
+                        : 'bg-amber-400 hover:bg-amber-300 text-slate-950 ring-2 ring-amber-300 hover:scale-105 active:scale-95'
                     }`}
                   >
                     <span className="text-2xl">{def.quest.npcAvatar}</span>
