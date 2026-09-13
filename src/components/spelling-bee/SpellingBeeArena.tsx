@@ -11,7 +11,6 @@ import {
   Delete,
   CheckCircle2,
   RotateCcw,
-  Sparkles,
 } from 'lucide-react'
 import type {
   SpellingBeeDivision,

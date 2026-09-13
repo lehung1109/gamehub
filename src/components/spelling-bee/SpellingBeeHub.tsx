@@ -3,7 +3,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Award, Volume2, Sparkles, Trophy, Play, CheckCircle } from 'lucide-react'
+import { Award, Volume2, Sparkles, Trophy, Play } from 'lucide-react'
 import type { SpellingBeeDivision } from '@/types/spelling-bee'
 
 interface SpellingBeeHubProps {
