@@ -103,29 +103,51 @@ export async function createLiveArenaAction(
       return { success: false, error: 'Cần ít nhất 1 câu hỏi để tạo phòng thi đấu' }
     }
 
-    const pinCode = generatePinCode()
+    let data: Record<string, unknown> | null = null
+    let insertError: { message: string; code?: string } | null = null
+    let attempts = 0
 
-    const newArenaRecord = {
-      pin_code: pinCode,
-      title: input.title.trim(),
-      teacher_id: user.id,
-      game_id: input.gameId || 'flashcard',
-      config_id: input.configId || null,
-      questions: input.questions as unknown as Json,
-      status: 'lobby',
-      current_question_index: 0,
-      round_started_at: null,
-      is_active: true,
+    while (attempts < 5) {
+      attempts++
+      const pinCode = generatePinCode()
+
+      const newArenaRecord = {
+        pin_code: pinCode,
+        title: input.title.trim(),
+        teacher_id: user.id,
+        game_id: input.gameId || 'flashcard',
+        config_id: input.configId || null,
+        questions: input.questions as unknown as Json,
+        status: 'lobby',
+        current_question_index: 0,
+        round_started_at: null,
+        is_active: true,
+      }
+
+      const res = await supabase
+        .from('live_arenas')
+        .insert(newArenaRecord)
+        .select('*')
+        .single()
+
+      if (!res.error && res.data) {
+        data = res.data as Record<string, unknown>
+        insertError = null
+        break
+      }
+
+      // Retry on duplicate pin code collision
+      if (res.error && (res.error.code === '23505' || res.error.message?.includes('unique'))) {
+        insertError = res.error
+        continue
+      }
+
+      insertError = res.error
+      break
     }
 
-    const { data, error } = await supabase
-      .from('live_arenas')
-      .insert(newArenaRecord)
-      .select('*')
-      .single()
-
-    if (error || !data) {
-      return { success: false, error: error?.message || 'Không thể tạo phòng đấu' }
+    if (insertError || !data) {
+      return { success: false, error: insertError?.message || 'Không thể tạo phòng đấu' }
     }
 
     return {

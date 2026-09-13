@@ -164,33 +164,54 @@ export async function createDuelRoomAction(
     const questionCount = Math.min(20, Math.max(3, payload.questionCount || 5))
 
     const questions = generateDuelQuestions(topic, questionCount)
-    const code = generateDuelCode()
-
     const supabase = createAdminClient()
 
-    const { data, error } = await supabase
-      .from('pvp_duels')
-      .insert({
-        code,
-        topic,
-        questions: questions as unknown as Json,
-        status: 'waiting',
-        player1_name: playerName,
-        player1_avatar: avatar,
-        player1_score: 0,
-        player1_answers: [] as unknown as Json,
-        player2_name: null,
-        player2_avatar: '🐼',
-        player2_score: 0,
-        player2_answers: [] as unknown as Json,
-        current_question_index: 0,
-        winner_name: null,
-      })
-      .select()
-      .single()
+    let data: Record<string, unknown> | null = null
+    let insertError: { message: string; code?: string } | null = null
+    let attempts = 0
 
-    if (error || !data) {
-      return { success: false, error: error?.message || 'Không thể tạo phòng thách đấu' }
+    while (attempts < 5) {
+      attempts++
+      const code = generateDuelCode()
+
+      const res = await supabase
+        .from('pvp_duels')
+        .insert({
+          code,
+          topic,
+          questions: questions as unknown as Json,
+          status: 'waiting',
+          player1_name: playerName,
+          player1_avatar: avatar,
+          player1_score: 0,
+          player1_answers: [] as unknown as Json,
+          player2_name: null,
+          player2_avatar: '🐼',
+          player2_score: 0,
+          player2_answers: [] as unknown as Json,
+          current_question_index: 0,
+          winner_name: null,
+        })
+        .select()
+        .single()
+
+      if (!res.error && res.data) {
+        data = res.data as Record<string, unknown>
+        insertError = null
+        break
+      }
+
+      if (res.error && (res.error.code === '23505' || res.error.message?.includes('unique'))) {
+        insertError = res.error
+        continue
+      }
+
+      insertError = res.error
+      break
+    }
+
+    if (insertError || !data) {
+      return { success: false, error: insertError?.message || 'Không thể tạo phòng thách đấu' }
     }
 
     revalidatePath('/duel')

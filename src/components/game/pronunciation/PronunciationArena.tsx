@@ -33,7 +33,7 @@ export function PronunciationArena({
 
   const currentItem = items[currentIndex] || items[0];
   const { speak } = useSpeech({ rate: 0.85 });
-  const { isTracking, recordQuestion, submitSession, resetSession } = useGameTracking({
+  const { recordQuestion, submitSession, resetSession } = useGameTracking({
     gameType: 'pronunciation',
     topic: topicId,
     configId,
@@ -68,7 +68,7 @@ export function PronunciationArena({
 
   // When speech transcript completes, record question tracking to session
   useEffect(() => {
-    if (evaluationResult && isTracking && recordedTranscriptRef.current !== transcript) {
+    if (evaluationResult && recordedTranscriptRef.current !== transcript) {
       recordedTranscriptRef.current = transcript;
       recordQuestion({
         prompt: currentItem.targetText,
@@ -78,7 +78,7 @@ export function PronunciationArena({
         timeTakenMs: 3000,
       });
     }
-  }, [evaluationResult, isTracking, transcript, currentItem, recordQuestion]);
+  }, [evaluationResult, transcript, currentItem, recordQuestion]);
 
   const handleToggleListening = useCallback(() => {
     if (isListening) {

@@ -67,8 +67,10 @@ export async function getWordBankWordsAction(
       .select('*', { count: 'exact' })
 
     if (filter.search && filter.search.trim()) {
-      const term = filter.search.trim()
-      query = query.or(`english.ilike.%${term}%,vietnamese.ilike.%${term}%`)
+      const term = filter.search.trim().replace(/[,()]/g, ' ').trim()
+      if (term) {
+        query = query.or(`english.ilike.%${term}%,vietnamese.ilike.%${term}%`)
+      }
     }
 
     if (filter.topic && filter.topic !== 'all' && filter.topic.trim()) {

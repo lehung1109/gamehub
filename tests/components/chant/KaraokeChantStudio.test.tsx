@@ -5,6 +5,15 @@ import { render, screen, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { KaraokeChantStudio } from '@/components/chant/KaraokeChantStudio'
 import { PHONICS_CHANTS } from '@/data/chants/phonics-chants'
+import { submitChantPerformanceAction } from '@/app/actions/phonics-chant'
+
+// Mock phonics-chant actions
+vi.mock('@/app/actions/phonics-chant', () => ({
+  submitChantPerformanceAction: vi.fn().mockResolvedValue({
+    success: true,
+    data: { expAwarded: 25, accuracyPercent: 85, stars: 3, isHighAccuracy: true },
+  }),
+}))
 
 // Mock useSpeech
 vi.mock('@/hooks/useSpeech', () => ({
@@ -73,6 +82,7 @@ describe('KaraokeChantStudio Component', () => {
 
     expect(screen.getByRole('dialog', { name: /chúc mừng hoàn thành bài vè/i })).toBeInTheDocument()
     expect(onCompleteMock).toHaveBeenCalled()
+    expect(submitChantPerformanceAction).toHaveBeenCalled()
   })
 
   it('satisfies strict kid-friendly typography policy (zero text-xs, text-sm)', () => {

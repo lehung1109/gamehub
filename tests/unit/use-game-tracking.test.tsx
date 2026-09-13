@@ -9,6 +9,7 @@ import { getStoredQuests } from '@/lib/quests'
 import { syncStudentGamificationState } from '@/app/actions/student-gamification'
 import { getStoredSrsDeck } from '@/lib/srs-storage'
 import { syncSrsDeckAction } from '@/app/actions/srs'
+import { getStoredInventory } from '@/lib/shop'
 
 vi.mock('@/app/actions/student-progress', () => ({
   getStudentProgress: vi.fn().mockResolvedValue({
@@ -991,6 +992,37 @@ describe('useGameTracking Hook', () => {
 
     expect(success).toBe(false)
     expect(syncSrsDeckAction).not.toHaveBeenCalled()
+  })
+
+  it('records bonus stars and triggers refreshProgress when anonymous student scores > 0', async () => {
+    const { result } = renderHook(
+      () => useGameTracking({ gameType: 'listening', topic: 'animals' }),
+      {
+        wrapper: createWrapper({
+          classCode: '',
+          studentName: '',
+          isAnonymous: true,
+        }),
+      }
+    )
+
+    act(() => {
+      result.current.recordQuestion({
+        prompt: 'cat',
+        selectedAnswer: 'cat',
+        correctAnswer: 'cat',
+        isCorrect: true,
+      })
+    })
+
+    let success: boolean | undefined
+    await act(async () => {
+      success = await result.current.submitSession({ score: 5, totalQuestions: 5 })
+    })
+
+    expect(success).toBe(true)
+    const inv = getStoredInventory('', '')
+    expect(inv.bonusStars).toBe(5)
   })
 })
 

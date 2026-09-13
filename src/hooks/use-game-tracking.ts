@@ -176,6 +176,7 @@ export function useGameTracking(options: UseGameTrackingOptions): UseGameTrackin
           if (isAnonymous && scoreVal > 0) {
             try {
               recordBonusStars(session?.classCode, session?.studentName, scoreVal)
+              await refreshProgress()
             } catch (anonErr) {
               console.warn('[useGameTracking] Error recording anonymous stars:', anonErr)
             }

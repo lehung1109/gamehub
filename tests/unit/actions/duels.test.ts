@@ -128,6 +128,30 @@ describe('Duel Server Actions', () => {
       expect(res.success).toBe(false)
       expect(res.error).toBe('Database connection failed')
     })
+
+    it('retries generating room code when duplicate constraint occurs', async () => {
+      const single = vi
+        .fn()
+        .mockResolvedValueOnce({
+          data: null,
+          error: { code: '23505', message: 'duplicate key value violates unique constraint' },
+        })
+        .mockResolvedValueOnce({
+          data: sampleDuelRow,
+          error: null,
+        })
+      const select = vi.fn().mockReturnValue({ single })
+      const insert = vi.fn().mockReturnValue({ select })
+      mockSupabase.from.mockReturnValue({ insert })
+
+      const res = await createDuelRoomAction({
+        playerName: 'Alice',
+      })
+
+      expect(res.success).toBe(true)
+      expect(res.data?.id).toBe('duel-uuid-1')
+      expect(insert).toHaveBeenCalledTimes(2)
+    })
   })
 
   describe('joinDuelRoomAction', () => {

@@ -22,6 +22,7 @@ import {
   calculatePerformanceSummary,
 } from '@/lib/phonics-chant-engine'
 import { createRhythmSynthesizer, type SoundSynthesizer } from '@/lib/rhythm-beat-synthesizer'
+import { submitChantPerformanceAction } from '@/app/actions/phonics-chant'
 import { ChantCompletedModal } from './ChantCompletedModal'
 import { useSpeech } from '@/hooks/useSpeech'
 
@@ -82,6 +83,9 @@ export function KaraokeChantStudio({
     )
     setFinalScore(summary)
     setIsCompleted(true)
+    submitChantPerformanceAction(summary).catch((err) => {
+      console.error('Failed to submit chant performance:', err)
+    })
     onCompletePerformance?.(summary)
   }, [chant.id, chant.totalBeats, perfectCount, greatCount, goodCount, missCount, maxCombo, onCompletePerformance])
 

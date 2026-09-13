@@ -113,6 +113,48 @@ describe('Live Arena Server Actions', () => {
         })
       )
     })
+
+    it('retries generating pin code if collision occurs on first attempt', async () => {
+      const mockInsertedArena = {
+        id: 'arena-collision-resolved',
+        pin_code: '654321',
+        title: 'Vòng đấu Retry',
+        teacher_id: 'teacher-101',
+        game_id: 'flashcard',
+        config_id: null,
+        questions: mockQuestions,
+        status: 'lobby',
+        current_question_index: 0,
+        round_started_at: null,
+        is_active: true,
+        created_at: '2026-09-12T12:00:00Z',
+        updated_at: '2026-09-12T12:00:00Z',
+      }
+
+      const mockQueryBuilder = {
+        insert: vi.fn().mockReturnThis(),
+        select: vi.fn().mockReturnThis(),
+        single: vi
+          .fn()
+          .mockResolvedValueOnce({
+            data: null,
+            error: { code: '23505', message: 'duplicate key value violates unique constraint' },
+          })
+          .mockResolvedValueOnce({ data: mockInsertedArena, error: null }),
+      }
+
+      mockSupabase.from.mockReturnValue(mockQueryBuilder)
+
+      const res = await createLiveArenaAction({
+        title: 'Vòng đấu Retry',
+        gameId: 'flashcard',
+        questions: mockQuestions,
+      })
+
+      expect(res.success).toBe(true)
+      expect(res.data?.id).toBe('arena-collision-resolved')
+      expect(mockQueryBuilder.insert).toHaveBeenCalledTimes(2)
+    })
   })
 
   describe('getLiveArenaByPinAction', () => {

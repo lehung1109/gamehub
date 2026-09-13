@@ -109,6 +109,26 @@ describe('Word Bank Server Actions', () => {
       })
       expect(res.total).toBe(1)
     })
+
+    it('sanitizes search input containing commas and parentheses to avoid PostgREST syntax error', async () => {
+      const mockQueryBuilder = {
+        select: vi.fn().mockReturnThis(),
+        or: vi.fn().mockReturnThis(),
+        order: vi.fn().mockReturnThis(),
+        range: vi.fn().mockResolvedValue({ data: [], count: 0, error: null }),
+      }
+
+      mockSupabase.from.mockReturnValue(mockQueryBuilder)
+
+      const res = await getWordBankWordsAction({
+        search: 'apple, (fruit)',
+      })
+
+      expect(res.success).toBe(true)
+      expect(mockQueryBuilder.or).toHaveBeenCalledWith(
+        'english.ilike.%apple   fruit%,vietnamese.ilike.%apple   fruit%'
+      )
+    })
   })
 
   describe('createWordBankWordAction', () => {
