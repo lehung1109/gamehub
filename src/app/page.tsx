@@ -84,6 +84,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🛡️ Bang hội</span>
           </Link>
+          <Link
+            href="/passport"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-emerald-950 dark:text-emerald-200 bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 shadow-xs hover:bg-emerald-200 dark:hover:bg-emerald-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            title="Hộ chiếu năng lực & Lễ tốt nghiệp"
+            data-testid="passport-topbar-link"
+          >
+            <span>🎓 Hộ chiếu</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />

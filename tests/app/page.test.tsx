@@ -135,5 +135,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const guildsTopbarLink = screen.getByTestId("guilds-topbar-link");
     expect(guildsTopbarLink).toBeInTheDocument();
     expect(guildsTopbarLink).toHaveAttribute("href", "/guilds");
+
+    const passportTopbarLink = screen.getByTestId("passport-topbar-link");
+    expect(passportTopbarLink).toBeInTheDocument();
+    expect(passportTopbarLink).toHaveAttribute("href", "/passport");
   });
 });
