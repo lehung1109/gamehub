@@ -12,12 +12,15 @@ import {
   Lock,
   AlertCircle,
   Loader2,
+  FileSpreadsheet,
 } from 'lucide-react'
 import type { WordBankItem, CefrLevel } from '@/types/word-bank'
 import { WordBankFilterBar } from './WordBankFilterBar'
 import { WordBankAddDialog } from './WordBankAddDialog'
+import { VocabularyImporterModal } from './VocabularyImporterModal'
 import { SpeakButton } from '@/components/games/SpeakButton'
 import { deleteWordBankWordAction } from '@/app/actions/word-bank'
+
 
 interface WordBankListProps {
   initialWords: WordBankItem[]
@@ -39,9 +42,15 @@ export function WordBankList({ initialWords, totalCount, currentUserId }: WordBa
   const [topic, setTopic] = useState('all')
   const [cefrLevel, setCefrLevel] = useState<CefrLevel | 'all'>('all')
   const [isAddOpen, setIsAddOpen] = useState(false)
+  const [isImporterOpen, setIsImporterOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [isDeletingId, setIsDeletingId] = useState<string | null>(null)
   const [, startTransition] = useTransition()
+
+  const existingWordsSet = useMemo(() => {
+    return new Set(words.map((w) => w.english.toLowerCase().trim()))
+  }, [words])
+
 
   // Extract unique topics from words
   const availableTopics = useMemo(() => {
@@ -119,20 +128,28 @@ export function WordBankList({ initialWords, totalCount, currentUserId }: WordBa
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setIsImporterOpen(true)}
+            className="px-4 py-2 text-base font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl shadow-xs transition-colors flex items-center gap-2"
+          >
+            <FileSpreadsheet className="size-5 text-indigo-600" />
+            Nhập file / Quizlet
+          </button>
           <Link
             href="/admin/ai-generator"
-            className="px-4 py-2 text-sm font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-xl transition-colors flex items-center gap-2"
+            className="px-4 py-2 text-base font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-xl transition-colors flex items-center gap-2"
           >
-            <Sparkles className="size-4 text-indigo-600" />
+            <Sparkles className="size-5 text-indigo-600" />
             AI Content Studio
           </Link>
           <button
             type="button"
             onClick={() => setIsAddOpen(true)}
-            className="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors flex items-center gap-2"
+            className="px-4 py-2 text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xs transition-colors flex items-center gap-2"
           >
-            <Plus className="size-4" />
+            <Plus className="size-5" />
             Thêm từ mới
           </button>
         </div>
@@ -271,6 +288,18 @@ export function WordBankList({ initialWords, totalCount, currentUserId }: WordBa
         onClose={() => setIsAddOpen(false)}
         onSuccess={handleWordAdded}
       />
+
+      {/* Vocabulary Importer Modal */}
+      <VocabularyImporterModal
+        isOpen={isImporterOpen}
+        onClose={() => setIsImporterOpen(false)}
+        onSuccess={() => {
+          // Trigger page refresh to reload word bank with newly added words
+          window.location.reload()
+        }}
+        existingWords={existingWordsSet}
+      />
     </div>
   )
 }
+
