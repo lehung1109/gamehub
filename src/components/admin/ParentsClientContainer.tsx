@@ -40,6 +40,11 @@ export function ParentsClientContainer({
 
   const handleClassChange = (newClassId: string) => {
     setSelectedClassroomId(newClassId)
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+      url.searchParams.set('classId', newClassId)
+      window.history.replaceState(null, '', url.toString())
+    }
     startTransition(async () => {
       const [parentRes, annRes] = await Promise.all([
         getClassParentsListAction(newClassId),

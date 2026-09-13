@@ -31,7 +31,9 @@ interface ParentAccessManagerProps {
   classCode: string
   parents: ParentAccessInfo[]
   announcements: (ClassroomAnnouncement & { acknowledgedCount: number })[]
-  onPublishAnnouncement?: (input: CreateAnnouncementInput) => Promise<{ success: boolean; error?: string }>
+  onPublishAnnouncement?: (
+    input: CreateAnnouncementInput
+  ) => Promise<{ success: boolean; announcement?: ClassroomAnnouncement; error?: string }>
   onDeleteAnnouncement?: (announcementId: string) => Promise<{ success: boolean; error?: string }>
   onRegeneratePin?: (studentId: string) => Promise<{ success: boolean; newPin?: string; error?: string }>
 }
@@ -115,9 +117,9 @@ export function ParentAccessManager({
 
       const res = await onPublishAnnouncement(input)
       if (res.success) {
-        // Optimistically add to list
+        // Add to list with real UUID if available
         const newAnnouncement: ClassroomAnnouncement & { acknowledgedCount: number } = {
-          id: `ann-${Date.now()}`,
+          id: res.announcement?.id || `ann-${Date.now()}`,
           classroomId,
           teacherId: '',
           studentId: targetStudentId ? targetStudentId : null,
@@ -247,7 +249,7 @@ export function ParentAccessManager({
                         {ann.createdAt ? new Date(ann.createdAt).toLocaleDateString('vi-VN') : 'Vừa xong'}
                       </span>
                       <span className="font-bold text-emerald-700 dark:text-emerald-300">
-                        {ann.acknowledgedCount} / {parents.length} phụ huynh đã đọc
+                        {ann.acknowledgedCount} / {ann.studentId ? 1 : parents.length} phụ huynh đã đọc
                       </span>
                     </div>
                   </div>
@@ -291,7 +293,14 @@ export function ParentAccessManager({
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {parents.map((parent) => (
+                {parents.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="py-8 text-center text-muted-foreground text-base">
+                      Chưa có học sinh nào trong lớp học này.
+                    </td>
+                  </tr>
+                ) : (
+                  parents.map((parent) => (
                   <tr key={parent.studentId} className="hover:bg-muted/30 transition-colors">
                     <td className="py-4 px-6 text-base font-bold text-foreground">
                       {parent.studentName}
@@ -352,7 +361,8 @@ export function ParentAccessManager({
                       </button>
                     </td>
                   </tr>
-                ))}
+                ))
+              )}
               </tbody>
             </table>
           </div>
