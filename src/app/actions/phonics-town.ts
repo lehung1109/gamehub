@@ -14,8 +14,9 @@ export interface TownActionResult<T> {
  * Retrieves the current town state for a student or falls back to default initial town
  */
 export async function getTownStateAction(
-  _studentId?: string
+  studentId?: string
 ): Promise<TownActionResult<TownState>> {
+  void studentId
   const defaultState = getDefaultTownState()
   return {
     success: true,

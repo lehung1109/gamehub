@@ -51,7 +51,9 @@ export function PhonicsTownGrid({ initialState }: PhonicsTownGridProps) {
       if (saved) {
         const parsed = JSON.parse(saved) as TownState
         if (parsed && Array.isArray(parsed.buildings)) {
-          setTownState(parsed)
+          setTimeout(() => {
+            setTownState(parsed)
+          }, 0)
         }
       }
     } catch {

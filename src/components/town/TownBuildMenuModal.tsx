@@ -15,7 +15,7 @@ interface TownBuildMenuModalProps {
 }
 
 export function TownBuildMenuModal({
-  slotIndex: _slotIndex,
+  slotIndex,
   availableBricks,
   alreadyBuiltTypes,
   onSelectBuilding,
@@ -43,7 +43,7 @@ export function TownBuildMenuModal({
                 Quy Hoạch Công Trình Mới
               </h2>
               <p className="text-base text-slate-300 font-medium">
-                Chọn một công trình để mở rộng thị trấn Phonics
+                Chọn một công trình để mở rộng thị trấn Phonics tại ô #{slotIndex + 1}
               </p>
             </div>
           </div>
