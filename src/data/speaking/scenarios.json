@@ -1,0 +1,230 @@
+[
+  {
+    "id": "ordering-cafe",
+    "titleVi": "Gọi đồ uống tại quán cà phê",
+    "titleEn": "Ordering at a Café",
+    "descriptionVi": "Thực hành gọi đồ uống và món bánh yêu thích với nhân viên pha chế tại quán cà phê ấm cúng.",
+    "level": "A1",
+    "icon": "☕",
+    "targetTurns": 4,
+    "persona": {
+      "id": "barista-emma",
+      "name": "Emma",
+      "avatar": "☕",
+      "role": "Barista",
+      "accent": "us",
+      "toneVi": "Niềm nở, tươi vui và kiên nhẫn với người mới bắt đầu"
+    },
+    "initialMessage": "Hello! Welcome to Sunshine Café. What would you like to order today?",
+    "initialHints": [
+      {
+        "level": "starter",
+        "textEn": "A hot coffee, please.",
+        "textVi": "Một ly cà phê nóng, làm ơn.",
+        "phoneticHint": "/ə hɒt ˈkɒfi pliːz/"
+      },
+      {
+        "level": "natural",
+        "textEn": "Can I have an iced latte, please?",
+        "textVi": "Cho mình một ly latte đá được không ạ?",
+        "phoneticHint": "/kæn aɪ hæv ən aɪst ˈlɑːteɪ pliːz/"
+      },
+      {
+        "level": "expressive",
+        "textEn": "I'd love an iced caramel macchiato with oat milk, please!",
+        "textVi": "Cho mình một ly macchiato caramel đá cùng sữa yến mạch nhé!",
+        "phoneticHint": "/aɪd lʌv ən aɪst ˈkærəməl ˌmækiˈɑːtəʊ wɪð əʊt mɪlk pliːz/"
+      }
+    ]
+  },
+  {
+    "id": "making-friends",
+    "titleVi": "Làm quen bạn mới",
+    "titleEn": "Making New Friends",
+    "descriptionVi": "Gặp gỡ một người bạn mới đến từ Luân Đôn, tự giới thiệu bản thân và hỏi về sở thích.",
+    "level": "A1",
+    "icon": "👋",
+    "targetTurns": 4,
+    "persona": {
+      "id": "friend-liam",
+      "name": "Liam",
+      "avatar": "👋",
+      "role": "Exchange Student",
+      "accent": "uk",
+      "toneVi": "Hòa đồng, thân thiện và cởi mở"
+    },
+    "initialMessage": "Hi there! I'm Liam. I just moved here from London. What's your name?",
+    "initialHints": [
+      {
+        "level": "starter",
+        "textEn": "Hi Liam, my name is Alex.",
+        "textVi": "Chào Liam, tên mình là Alex.",
+        "phoneticHint": "/haɪ ˈliːəm maɪ neɪm ɪz ˈæləks/"
+      },
+      {
+        "level": "natural",
+        "textEn": "Nice to meet you, Liam! Where are you from?",
+        "textVi": "Rất vui được gặp bạn, Liam! Bạn đến từ đâu vậy?",
+        "phoneticHint": "/naɪs tuː miːt juː ˈliːəm weər ɑː juː frɒm/"
+      },
+      {
+        "level": "expressive",
+        "textEn": "It's awesome to meet you, Liam! Welcome to our city, how do you like it so far?",
+        "textVi": "Thật tuyệt khi được gặp bạn, Liam! Chào mừng tới thành phố của chúng mình, bạn thấy thế nào rồi?",
+        "phoneticHint": "/ɪts ˈɔːsəm tuː miːt juː ˈliːəm ˈwelkəm tuː ˈaʊər ˈsɪti haʊ duː juː laɪk ɪt səʊ fɑː/"
+      }
+    ]
+  },
+  {
+    "id": "asking-directions",
+    "titleVi": "Hỏi đường trong thành phố",
+    "titleEn": "Asking for Directions",
+    "descriptionVi": "Tìm đường tới bảo tàng trung tâm thành phố bằng cách hỏi người cảnh sát hướng dẫn giao thông.",
+    "level": "A2",
+    "icon": "🗺️",
+    "targetTurns": 5,
+    "persona": {
+      "id": "officer-david",
+      "name": "Officer David",
+      "avatar": "🗺️",
+      "role": "City Guide Officer",
+      "accent": "us",
+      "toneVi": "Lịch thiệp, chỉ dẫn rõ ràng và nhiệt tình"
+    },
+    "initialMessage": "Good morning! You look a bit lost. Can I help you find your way?",
+    "initialHints": [
+      {
+        "level": "starter",
+        "textEn": "Excuse me, where is the museum?",
+        "textVi": "Xin lỗi, bảo tàng ở đâu vậy ạ?",
+        "phoneticHint": "/ɪkˈskjuːz miː weər ɪz ðə mjuːˈziːəm/"
+      },
+      {
+        "level": "natural",
+        "textEn": "Could you tell me how to get to the City Museum?",
+        "textVi": "Chú có thể chỉ cho cháu cách đến Bảo tàng Thành phố không ạ?",
+        "phoneticHint": "/kʊd juː tel miː haʊ tuː get tuː ðə ˈsɪti mjuːˈziːəm/"
+      },
+      {
+        "level": "expressive",
+        "textEn": "Excuse me officer, is the City Museum within walking distance, or should I take a bus?",
+        "textVi": "Xin lỗi sĩ quan, Bảo tàng Thành phố có gần đến mức đi bộ được không, hay cháu nên bắt xe buýt ạ?",
+        "phoneticHint": "/ɪkˈskjuːz miː ˈɒfɪsər ɪz ðə ˈsɪti mjuːˈziːəm wɪðˈɪn ˈwɔːkɪŋ ˈdɪstəns ɔː ʃʊd aɪ teɪk ə bʌs/"
+      }
+    ]
+  },
+  {
+    "id": "school-life",
+    "titleVi": "Thảo luận bài học cùng bạn",
+    "titleEn": "School & Study Group",
+    "descriptionVi": "Họp nhóm cùng bạn cùng lớp để phân chia nhiệm vụ cho bài thuyết trình khoa học sắp tới.",
+    "level": "A2",
+    "icon": "🎒",
+    "targetTurns": 5,
+    "persona": {
+      "id": "classmate-chloe",
+      "name": "Chloe",
+      "avatar": "🎒",
+      "role": "Classmate & Project Leader",
+      "accent": "neutral",
+      "toneVi": "Chủ động, khích lệ và sáng tạo"
+    },
+    "initialMessage": "Hey! Ready for our science project meeting? We need to pick a topic for Friday.",
+    "initialHints": [
+      {
+        "level": "starter",
+        "textEn": "Yes, how about solar energy?",
+        "textVi": "Được chứ, về năng lượng mặt trời thì sao?",
+        "phoneticHint": "/jes haʊ əˈbaʊt ˈsəʊlər ˈenədʒi/"
+      },
+      {
+        "level": "natural",
+        "textEn": "I think renewable energy would be an interesting topic to explore.",
+        "textVi": "Mình nghĩ năng lượng tái tạo sẽ là một chủ đề rất thú vị để nghiên cứu.",
+        "phoneticHint": "/aɪ θɪŋk rɪˈnjuːəbl ˈenədʒi wʊd biː ən ˈɪntrəstɪŋ ˈtɒpɪk tuː ɪkˈsplɔːr/"
+      },
+      {
+        "level": "expressive",
+        "textEn": "I'm super excited! What if we focus on ocean cleanup technologies and divide the slides today?",
+        "textVi": "Mình rất hào hứng! Hay là chúng mình tập trung vào công nghệ làm sạch đại dương và chia slide ngay hôm nay nhé?",
+        "phoneticHint": "/aɪm ˈsuːpər ɪkˈsaɪtɪd wɒt ɪf wiː ˈfəʊkəs ɒn ˈəʊʃən ˈkliːnʌp tekˈnɒlədʒiz ænd dɪˈvaɪd ðə slaɪdz təˈdeɪ/"
+      }
+    ]
+  },
+  {
+    "id": "hotel-checkin",
+    "titleVi": "Làm thủ tục khách sạn",
+    "titleEn": "Hotel Check-in & Travel",
+    "descriptionVi": "Thực hiện thủ tục nhận phòng khách sạn, xác nhận thông tin đặt trước và hỏi về các tiện ích đi kèm.",
+    "level": "B1",
+    "icon": "🏨",
+    "targetTurns": 5,
+    "persona": {
+      "id": "receptionist-oliver",
+      "name": "Oliver",
+      "avatar": "🏨",
+      "role": "Hotel Concierge",
+      "accent": "uk",
+      "toneVi": "Chuyên nghiệp, chu đáo và lịch thiệp chuẩn quốc tế"
+    },
+    "initialMessage": "Good afternoon! Welcome to the Grand Palace Hotel. How may I assist you with your stay today?",
+    "initialHints": [
+      {
+        "level": "starter",
+        "textEn": "Hello, I have a reservation under John.",
+        "textVi": "Xin chào, tôi đã đặt phòng trước dưới tên John.",
+        "phoneticHint": "/həˈləʊ aɪ hæv ə ˌrezəˈveɪʃən ˈʌndər dʒɒn/"
+      },
+      {
+        "level": "natural",
+        "textEn": "Hi, I'd like to check in, please. The booking is under John Smith.",
+        "textVi": "Xin chào, tôi muốn làm thủ tục nhận phòng. Đơn đặt phòng dưới tên John Smith.",
+        "phoneticHint": "/haɪ aɪd laɪk tuː tʃek ɪn pliːz ðə ˈbʊkɪŋ ɪz ˈʌndər dʒɒn smɪθ/"
+      },
+      {
+        "level": "expressive",
+        "textEn": "Good afternoon! I have a confirmed booking for three nights, and could I request a quiet room on a higher floor if possible?",
+        "textVi": "Chào buổi chiều! Tôi có một đơn đặt phòng 3 đêm, liệu tôi có thể xin một phòng yên tĩnh ở tầng cao nếu được không?",
+        "phoneticHint": "/ɡʊd ˌɑːftəˈnuːn aɪ hæv ə kənˈfɜːmd ˈbʊkɪŋ fɔː θriː naɪts ænd kʊd aɪ rɪˈkwest ə ˈkwaɪət ruːm ɒn ə ˈhaɪər flɔːr ɪf ˈpɒsəbl/"
+      }
+    ]
+  },
+  {
+    "id": "free-talk",
+    "titleVi": "Trò chuyện tự do cùng Sunny",
+    "titleEn": "Open Free-Talk with Sunny",
+    "descriptionVi": "Trò chuyện tự do không giới hạn chủ đề cùng Sunny - gia sư AI thông minh, thảo luận về sở thích, văn hóa hoặc tương lai.",
+    "level": "B2",
+    "icon": "☀️",
+    "targetTurns": 6,
+    "persona": {
+      "id": "sunny-tutor",
+      "name": "Sunny",
+      "avatar": "☀️",
+      "role": "AI Speaking Partner & Mentor",
+      "accent": "neutral",
+      "toneVi": "Truyền cảm hứng, thông tuệ, phản xạ nhanh và đồng cảm"
+    },
+    "initialMessage": "Hey there! I'm Sunny, your AI speaking companion. What's on your mind today? We can talk about your dream career, your favorite movies, or anything you find fascinating!",
+    "initialHints": [
+      {
+        "level": "starter",
+        "textEn": "I want to talk about my favorite movies.",
+        "textVi": "Tôi muốn nói về các bộ phim yêu thích của mình.",
+        "phoneticHint": "/aɪ wɒnt tuː tɔːk əˈbaʊt maɪ ˈfeɪvərɪt ˈmuːviz/"
+      },
+      {
+        "level": "natural",
+        "textEn": "I've been thinking a lot about artificial intelligence and how it might shape education.",
+        "textVi": "Tôi đang suy nghĩ nhiều về trí tuệ nhân tạo và cách nó có thể định hình giáo dục.",
+        "phoneticHint": "/aɪv biːn ˈθɪŋkɪŋ ə lɒt əˈbaʊt ˌɑːtɪˈfɪʃl ɪnˈtelɪdʒəns ænd haʊ ɪt maɪt ʃeɪp ˌedʒuˈkeɪʃn/"
+      },
+      {
+        "level": "expressive",
+        "textEn": "To be honest, I find the intersection between technology and language learning fascinating. What do you think is the biggest challenge for self-taught learners?",
+        "textVi": "Thành thật mà nói, tôi thấy điểm giao thoa giữa công nghệ và việc học ngôn ngữ vô cùng thú vị. Bạn nghĩ đâu là thách thức lớn nhất đối với người tự học?",
+        "phoneticHint": "/tuː biː ˈɒnɪst aɪ faɪnd ðə ˌɪntəˈsekʃn bɪˈtwiːn tekˈnɒlədʒi ænd ˈlæŋɡwɪdʒ ˈlɜːnɪŋ ˈfæsɪneɪtɪŋ/"
+      }
+    ]
+  }
+]

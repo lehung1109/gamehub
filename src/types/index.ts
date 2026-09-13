@@ -70,4 +70,5 @@ export * from './memory-match';
 export * from './word-search';
 export * from './importer';
 export * from './community';
+export * from './speaking';
 
