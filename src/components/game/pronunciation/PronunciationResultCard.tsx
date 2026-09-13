@@ -3,10 +3,13 @@
 import React from 'react';
 import { Star, CheckCircle, RefreshCw, ArrowRight } from 'lucide-react';
 import { PronunciationResult } from '@/types/pronunciation';
+import type { PhonemeAssessmentResult } from '@/types/ai-copilot';
+import { PhonemeVisualizer } from './PhonemeVisualizer';
 import { Button } from '@/components/ui/button';
 
 interface PronunciationResultCardProps {
   result: PronunciationResult;
+  phonemeResult?: PhonemeAssessmentResult | null;
   onRetry: () => void;
   onNext: () => void;
   isLastQuestion: boolean;
@@ -14,6 +17,7 @@ interface PronunciationResultCardProps {
 
 export function PronunciationResultCard({
   result,
+  phonemeResult,
   onRetry,
   onNext,
   isLastQuestion,
@@ -51,7 +55,13 @@ export function PronunciationResultCard({
         ))}
       </div>
 
-      <p className="text-sm font-medium text-foreground">{result.feedbackVi}</p>
+      {phonemeResult && (
+        <div className="pt-2">
+          <PhonemeVisualizer result={phonemeResult} />
+        </div>
+      )}
+
+      <p className="text-base font-medium text-foreground">{result.feedbackVi}</p>
 
       <div className="flex items-center gap-3 pt-2">
         <Button variant="outline" onClick={onRetry} className="flex-1 gap-2">

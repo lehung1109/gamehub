@@ -79,7 +79,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
     return win.SpeechRecognition || win.webkitSpeechRecognition || null;
   }, []);
 
-  const isSupported = Boolean(getSpeechRecognitionAPI());
+  const [isSupported, setIsSupported] = useState(true);
 
   const cleanupRecognition = useCallback((instance: SpeechRecognitionInstance | null) => {
     if (!instance) return;
@@ -96,6 +96,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
 
   useEffect(() => {
     isMountedRef.current = true;
+    setIsSupported(Boolean(getSpeechRecognitionAPI()));
 
     return () => {
       isMountedRef.current = false;
@@ -104,7 +105,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
         recognitionRef.current = null;
       }
     };
-  }, [cleanupRecognition]);
+  }, [cleanupRecognition, getSpeechRecognitionAPI]);
 
   const resetTranscript = useCallback(() => {
     setTranscript('');

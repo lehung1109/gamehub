@@ -10,6 +10,7 @@ import { useSpeechRecognition } from '@/hooks/useSpeechRecognition';
 import { useSpeech } from '@/hooks/useSpeech';
 import { useGameTracking } from '@/hooks/use-game-tracking';
 import { evaluatePronunciation } from '@/lib/pronunciation-evaluator';
+import { evaluatePhonemePronunciation } from '@/lib/phoneme-evaluator';
 
 export interface PronunciationArenaProps {
   items: PronunciationItem[];
@@ -56,6 +57,14 @@ export function PronunciationArena({
     }
     return null;
   }, [isListening, transcript, currentItem, passThreshold]);
+
+  // Derive granular phoneme evaluation for Vietnamese ESL phoneme breakdowns
+  const phonemeResult = useMemo(() => {
+    if (!isListening && transcript && currentItem) {
+      return evaluatePhonemePronunciation(currentItem.targetText, transcript);
+    }
+    return null;
+  }, [isListening, transcript, currentItem]);
 
   // When speech transcript completes, record question tracking to session
   useEffect(() => {
@@ -153,6 +162,7 @@ export function PronunciationArena({
       ) : (
         <PronunciationResultCard
           result={evaluationResult}
+          phonemeResult={phonemeResult}
           onRetry={() => {
             recordedTranscriptRef.current = null;
             resetTranscript();
