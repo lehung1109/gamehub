@@ -177,6 +177,7 @@ export function PhonicsDinoExperience({ initialProgress }: PhonicsDinoExperience
             return (
               <div
                 key={fossil.id}
+                data-testid={`dino-fossil-card-${fossil.id}`}
                 className={`p-6 rounded-3xl border-2 transition-all flex flex-col justify-between space-y-4 ${
                   isCompleted
                     ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-700 shadow-sm'
