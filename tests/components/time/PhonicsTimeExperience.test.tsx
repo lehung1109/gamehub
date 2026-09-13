@@ -151,6 +151,10 @@ describe('Phonics Time Machine UI Components', () => {
       const completeBtn = screen.getByRole('button', { name: /khôi phục bảo vật/i })
       fireEvent.click(completeBtn)
 
+      act(() => {
+        vi.advanceTimersByTime(1600)
+      })
+
       expect(mockPlayChime).toHaveBeenCalled()
       expect(onComplete).toHaveBeenCalledWith('egypt-sun')
     })

@@ -36,7 +36,7 @@ test.describe('Phase 31: Phonics Dino Kingdom & Prehistoric Fossils Archeology E
     await expect(digCard).toBeVisible()
 
     const startDigBtn = digCard.getByRole('button', {
-      name: /khai quật mẫu vật/i,
+      name: /khai quật/i,
     })
     await expect(startDigBtn).toBeVisible()
     await startDigBtn.click()

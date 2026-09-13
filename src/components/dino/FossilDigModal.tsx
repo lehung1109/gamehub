@@ -71,10 +71,10 @@ export function FossilDigModal({
       )
       speak(`Fossil excavated! That is ${fossil.challenge.targetWord}!`, 'en-US')
 
-      onComplete(fossil.id)
       setTimeout(() => {
         setIsResurrecting(false)
-      }, 1500)
+        onComplete(fossil.id)
+      }, 1600)
     } else {
       playKickSound?.()
       setFeedbackMessage(
@@ -97,7 +97,7 @@ export function FossilDigModal({
       aria-label={`Hầm khai quật hóa thạch ${fossil.nameVi}`}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md animate-fadeIn"
     >
-      <div className="relative w-full max-w-2xl rounded-3xl bg-stone-900 border-4 border-emerald-400 p-6 sm:p-8 text-white shadow-2xl space-y-6">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-stone-900 border-4 border-emerald-400 p-6 sm:p-8 text-white shadow-2xl space-y-6">
         {/* Modal Header */}
         <div className="flex items-center justify-between border-b border-stone-800 pb-4">
           <div className="flex items-center gap-3">
