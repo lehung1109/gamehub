@@ -131,5 +131,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const chantsTopbarLink = screen.getByTestId("chants-topbar-link");
     expect(chantsTopbarLink).toBeInTheDocument();
     expect(chantsTopbarLink).toHaveAttribute("href", "/chants");
+
+    const guildsTopbarLink = screen.getByTestId("guilds-topbar-link");
+    expect(guildsTopbarLink).toBeInTheDocument();
+    expect(guildsTopbarLink).toHaveAttribute("href", "/guilds");
   });
 });
