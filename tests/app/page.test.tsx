@@ -123,5 +123,13 @@ describe("HomePage (src/app/page.tsx)", () => {
     const speakingTopbarLink = screen.getByTestId("speaking-topbar-link");
     expect(speakingTopbarLink).toBeInTheDocument();
     expect(speakingTopbarLink).toHaveAttribute("href", "/speaking");
+
+    const storiesTopbarLink = screen.getByTestId("stories-topbar-link");
+    expect(storiesTopbarLink).toBeInTheDocument();
+    expect(storiesTopbarLink).toHaveAttribute("href", "/stories");
+
+    const chantsTopbarLink = screen.getByTestId("chants-topbar-link");
+    expect(chantsTopbarLink).toBeInTheDocument();
+    expect(chantsTopbarLink).toHaveAttribute("href", "/chants");
   });
 });
