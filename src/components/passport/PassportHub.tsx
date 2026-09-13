@@ -10,7 +10,7 @@ import {
   Share2,
   CheckCircle2,
 } from 'lucide-react'
-import type { StudentPassport, GraduationCertificate } from '@/types/passport'
+import type { StudentPassport } from '@/types/passport'
 import { calculatePassportCompletion } from '@/lib/passport-engine'
 import { triggerGraduationAction } from '@/app/actions/passport'
 import { PassportStampBook } from './PassportStampBook'

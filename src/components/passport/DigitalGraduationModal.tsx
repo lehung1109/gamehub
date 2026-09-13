@@ -2,7 +2,7 @@
 'use client'
 
 import React from 'react'
-import { GraduationCap, Trophy, Star, X, CheckCircle, Printer } from 'lucide-react'
+import { GraduationCap, Star, X, CheckCircle, Printer } from 'lucide-react'
 import type { GraduationCertificate } from '@/types/passport'
 
 interface DigitalGraduationModalProps {

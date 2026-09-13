@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Mic, Play, Pause, Volume2, Sparkles, CheckCircle2 } from 'lucide-react'
+import { Mic, Pause, Volume2, Sparkles, CheckCircle2 } from 'lucide-react'
 import type { VoicePortfolioItem } from '@/types/passport'
 import { useSpeech } from '@/hooks/useSpeech'
 
