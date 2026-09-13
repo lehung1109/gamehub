@@ -331,6 +331,7 @@ export function SpeakingArena({
         <div className="flex items-center gap-3 min-w-0">
           <Link
             href="/speaking"
+            data-testid="back-to-hub-link"
             className="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-secondary/80 hover:bg-secondary text-base font-bold text-foreground transition-all shrink-0 border border-border"
           >
             <ArrowLeft className="size-4" />
