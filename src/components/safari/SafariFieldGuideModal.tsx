@@ -20,7 +20,7 @@ export function SafariFieldGuideModal({
   const capturedCount = photographedAnimalIds.length
 
   const handlePronounce = (nameEn: string, syllables: string[]) => {
-    speak(`${nameEn}. ${syllables.join(', ')}. ${nameEn}`, { rate: 0.85 })
+    speak(`${nameEn}. ${syllables.join(', ')}. ${nameEn}`)
   }
 
   return (

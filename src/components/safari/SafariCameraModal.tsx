@@ -31,10 +31,7 @@ export function SafariCameraModal({
   const [isFlashActive, setIsFlashActive] = useState(false)
 
   const handleSpeakChallenge = () => {
-    speak(
-      `${animal.nameEn}! ${animal.challenge.question}`,
-      { rate: 0.9 }
-    )
+    speak(`${animal.nameEn}! ${animal.challenge.question}`)
   }
 
   const handleSelectOption = (idx: number) => {
@@ -49,7 +46,7 @@ export function SafariCameraModal({
       setIsFlashActive(true)
       playChimeSound?.()
       setFeedbackMessage('Tách! Bức ảnh tuyệt đẹp! Bạn đã giải mã chính xác âm vị!')
-      speak(`Excellent! That is ${animal.nameEn}!`, { rate: 0.95 })
+      speak(`Excellent! That is ${animal.nameEn}!`)
 
       setTimeout(() => {
         setIsFlashActive(false)
@@ -58,7 +55,7 @@ export function SafariCameraModal({
     } else {
       playKickSound?.()
       setFeedbackMessage('Chưa đúng rồi! Hãy quan sát kỹ và thử lại nhé!')
-      speak('Try again!', { rate: 0.95 })
+      speak('Try again!')
 
       setTimeout(() => {
         setIsAnswered(false)

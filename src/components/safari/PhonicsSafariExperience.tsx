@@ -17,7 +17,7 @@ import { SafariCameraModal } from './SafariCameraModal'
 import { SafariFieldGuideModal } from './SafariFieldGuideModal'
 import { createRhythmSynthesizer, type SoundSynthesizer } from '@/lib/rhythm-beat-synthesizer'
 import { saveSafariProgressAction } from '@/app/actions/phonics-safari'
-import { Camera, Volume2, CheckCircle2, Sparkles, Compass } from 'lucide-react'
+import { Camera, Volume2, Sparkles, Compass } from 'lucide-react'
 import { useSpeech } from '@/hooks/useSpeech'
 
 const STORAGE_KEY = 'gamehub_phonics_safari_v1'
@@ -183,7 +183,7 @@ export function PhonicsSafariExperience({ initialProgress }: PhonicsSafariExperi
 
                   <button
                     type="button"
-                    onClick={() => speak(animal.nameEn, { rate: 0.85 })}
+                    onClick={() => speak(animal.nameEn)}
                     aria-label={`Nghe phát âm ${animal.nameEn}`}
                     className="p-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer transition-colors"
                   >
