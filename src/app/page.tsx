@@ -140,6 +140,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🦁 Safari</span>
           </Link>
+          <Link
+            href="/kitchen"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-amber-950 dark:text-amber-200 bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 shadow-xs hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            title="Bếp trưởng nhí & Học viện nấu ăn ngữ âm"
+            data-testid="kitchen-topbar-link"
+          >
+            <span>🍳 Nhà Bếp</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
