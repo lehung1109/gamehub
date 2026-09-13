@@ -1,22 +1,28 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import {
   getOfflineQueue,
   getOfflineSyncStatus,
   syncOfflineQueue,
   OFFLINE_QUEUE_EVENT,
 } from '@/lib/offline/offline-manager'
-import type { QueuedOfflineAction } from '@/types/speech'
+import type { SyncProcessorInput } from '@/lib/offline/offline-manager'
+
+export const REQUEST_OFFLINE_SYNC_EVENT = 'gamehub_request_offline_sync'
 
 export interface NetworkStatus {
   isOnline: boolean
   pendingSyncCount: number
   isSyncing: boolean
-  triggerSync: () => Promise<{ total: number; succeeded: number; failed: number }>
+  triggerSync: (
+    processorInput?: SyncProcessorInput
+  ) => Promise<{ total: number; succeeded: number; failed: number }>
 }
 
 export function useNetworkStatus(): NetworkStatus {
+  const isMountedRef = useRef(true)
+
   const [isOnline, setIsOnline] = useState<boolean>(() => {
     if (typeof navigator === 'undefined') return true
     return typeof navigator.onLine === 'boolean' ? navigator.onLine : true
@@ -31,43 +37,67 @@ export function useNetworkStatus(): NetworkStatus {
   })
 
   const refreshStatus = useCallback(() => {
+    if (!isMountedRef.current) return
     const status = getOfflineSyncStatus()
     setPendingSyncCount(status.pendingCount)
     setIsSyncing(status.isSyncing)
   }, [])
 
-  const triggerSync = useCallback(async () => {
-    if (!isOnline) {
-      return { total: 0, succeeded: 0, failed: 0 }
-    }
+  const triggerSync = useCallback(
+    async (processorInput?: SyncProcessorInput) => {
+      const currentOnline =
+        typeof navigator !== 'undefined' && typeof navigator.onLine === 'boolean'
+          ? navigator.onLine
+          : true
 
-    refreshStatus()
+      if (!currentOnline) {
+        return { total: 0, succeeded: 0, failed: 0 }
+      }
 
-    // Generic processor placeholder: in layout/app level, actual action handlers can be registered
-    const result = await syncOfflineQueue(async (action: QueuedOfflineAction) => {
-      console.log(`[useNetworkStatus] Auto-processing queued action: ${action.type}`, action.id)
-      return { success: true }
-    })
+      refreshStatus()
 
-    refreshStatus()
-    return result
-  }, [isOnline, refreshStatus])
+      // Notify registered application handlers to perform real background synchronization
+      if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
+        try {
+          window.dispatchEvent(new CustomEvent(REQUEST_OFFLINE_SYNC_EVENT))
+        } catch {
+          // Ignore
+        }
+      }
+
+      let result = { total: 0, succeeded: 0, failed: 0 }
+      if (processorInput) {
+        result = await syncOfflineQueue(processorInput)
+      }
+
+      refreshStatus()
+      return result
+    },
+    [refreshStatus]
+  )
 
   useEffect(() => {
+    isMountedRef.current = true
+
     const handleOnline = () => {
-      setIsOnline(true)
-      refreshStatus()
-      // Auto sync when reconnected
-      triggerSync()
+      if (isMountedRef.current) {
+        setIsOnline(true)
+        refreshStatus()
+        triggerSync()
+      }
     }
 
     const handleOffline = () => {
-      setIsOnline(false)
-      refreshStatus()
+      if (isMountedRef.current) {
+        setIsOnline(false)
+        refreshStatus()
+      }
     }
 
     const handleQueueUpdated = () => {
-      refreshStatus()
+      if (isMountedRef.current) {
+        refreshStatus()
+      }
     }
 
     if (typeof window !== 'undefined') {
@@ -77,6 +107,7 @@ export function useNetworkStatus(): NetworkStatus {
     }
 
     return () => {
+      isMountedRef.current = false
       if (typeof window !== 'undefined') {
         window.removeEventListener('online', handleOnline)
         window.removeEventListener('offline', handleOffline)

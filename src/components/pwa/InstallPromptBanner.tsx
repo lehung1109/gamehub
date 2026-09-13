@@ -50,13 +50,22 @@ export function InstallPromptBanner({
     }
 
     // Check iOS Safari
+    let isAppleMobile = false
     if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
       const ua = navigator.userAgent || ''
-      const isAppleMobile = /iPad|iPhone|iPod/.test(ua) && !(window as unknown as { MSStream?: unknown }).MSStream
+      isAppleMobile =
+        /iPad|iPhone|iPod/.test(ua) && !(window as unknown as { MSStream?: unknown }).MSStream
       setIsIOS(isAppleMobile)
     }
 
     if (forceShow) {
+      setIsVisible(true)
+      return
+    }
+
+    // On iOS Safari, beforeinstallprompt is not supported.
+    // Display the iOS Add-to-Home-Screen instruction banner directly.
+    if (isAppleMobile) {
       setIsVisible(true)
       return
     }

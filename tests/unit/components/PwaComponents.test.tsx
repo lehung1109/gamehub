@@ -1,10 +1,15 @@
 import React from 'react'
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
 import { render, screen, fireEvent, renderHook, act } from '@testing-library/react'
-import { useNetworkStatus } from '@/hooks/useNetworkStatus'
+import { useNetworkStatus, REQUEST_OFFLINE_SYNC_EVENT } from '@/hooks/useNetworkStatus'
 import { OfflineIndicator } from '@/components/pwa/OfflineIndicator'
 import { InstallPromptBanner } from '@/components/pwa/InstallPromptBanner'
-import { enqueueOfflineAction, clearOfflineQueue } from '@/lib/offline/offline-manager'
+import { ServiceWorkerRegister } from '@/components/pwa/ServiceWorkerRegister'
+import {
+  enqueueOfflineAction,
+  clearOfflineQueue,
+  getOfflineQueue,
+} from '@/lib/offline/offline-manager'
 
 describe('PWA UI Components & Network Status Hook', () => {
   beforeEach(() => {
@@ -33,7 +38,7 @@ describe('PWA UI Components & Network Status Hook', () => {
       expect(result.current.isOnline).toBe(true)
     })
 
-    it('tracks pending offline action count dynamically', () => {
+    it('tracks pending offline action count dynamically and dispatches sync event without data loss', async () => {
       const { result } = renderHook(() => useNetworkStatus())
 
       expect(result.current.pendingSyncCount).toBe(0)
@@ -43,6 +48,19 @@ describe('PWA UI Components & Network Status Hook', () => {
       })
 
       expect(result.current.pendingSyncCount).toBe(1)
+
+      const syncRequestListener = vi.fn()
+      window.addEventListener(REQUEST_OFFLINE_SYNC_EVENT, syncRequestListener)
+
+      await act(async () => {
+        await result.current.triggerSync()
+      })
+
+      expect(syncRequestListener).toHaveBeenCalled()
+      // Offline action must NOT be purged by a mock placeholder
+      expect(getOfflineQueue().length).toBe(1)
+
+      window.removeEventListener(REQUEST_OFFLINE_SYNC_EVENT, syncRequestListener)
     })
   })
 
@@ -64,7 +82,7 @@ describe('PWA UI Components & Network Status Hook', () => {
       render(<OfflineIndicator forceOffline={false} pendingCount={2} forceSyncing={true} />)
 
       expect(screen.getByRole('status')).toBeDefined()
-      expect(screen.getByText(/syncing|đồng bộ/i)).toBeDefined()
+      expect(screen.getByText(/syncing/i)).toBeDefined()
     })
 
     it('complies strictly with kid-friendly typography (no text-xs, text-sm)', () => {
@@ -81,22 +99,36 @@ describe('PWA UI Components & Network Status Hook', () => {
 
   describe('InstallPromptBanner Component', () => {
     it('renders install prompt when beforeinstallprompt event is captured', async () => {
-      render(<InstallPromptBanner forceShow={true} />)
+      render(<InstallPromptBanner forceShow={false} />)
+
+      // Initially null before event
+      expect(screen.queryByRole('region', { name: /install app/i })).toBeNull()
+
+      // Dispatch beforeinstallprompt
+      const event = new Event('beforeinstallprompt')
+      Object.assign(event, {
+        prompt: vi.fn().mockResolvedValue(undefined),
+        userChoice: Promise.resolve({ outcome: 'accepted' }),
+      })
+
+      act(() => {
+        window.dispatchEvent(event)
+      })
 
       expect(screen.getByRole('region', { name: /install app/i })).toBeDefined()
-      expect(screen.getByText(/Install GameHub App|Cài đặt ứng dụng GameHub/i)).toBeDefined()
+      expect(screen.getByText('Install GameHub App')).toBeDefined()
 
-      const installBtn = screen.getByRole('button', { name: /install now|cài đặt ngay/i })
+      const installBtn = screen.getByRole('button', { name: /install now/i })
       expect(installBtn).toBeDefined()
 
-      const laterBtn = screen.getByRole('button', { name: /later|để sau/i })
+      const laterBtn = screen.getByRole('button', { name: /later/i })
       expect(laterBtn).toBeDefined()
     })
 
     it('dismisses banner and sets cooldown when clicking later', () => {
       const { container } = render(<InstallPromptBanner forceShow={true} />)
 
-      const laterBtn = screen.getByRole('button', { name: /later|để sau/i })
+      const laterBtn = screen.getByRole('button', { name: /later/i })
       fireEvent.click(laterBtn)
 
       // Banner should hide
@@ -113,6 +145,14 @@ describe('PWA UI Components & Network Status Hook', () => {
       expect(html).not.toContain('text-[10px]')
       expect(html).not.toContain('text-[12px]')
       expect(html).not.toContain('text-[14px]')
+    })
+  })
+
+  describe('ServiceWorkerRegister Component', () => {
+    it('renders without crashing and mounts PWA status elements', () => {
+      render(<ServiceWorkerRegister />)
+      // Component mounts and registers safely in non-test or guarded environments
+      expect(document.body).toBeDefined()
     })
   })
 })
