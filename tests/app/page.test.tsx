@@ -147,5 +147,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const spellingBeeTopbarLink = screen.getByTestId("spelling-bee-topbar-link");
     expect(spellingBeeTopbarLink).toBeInTheDocument();
     expect(spellingBeeTopbarLink).toHaveAttribute("href", "/spelling-bee");
+
+    const cinemaTopbarLink = screen.getByTestId("cinema-topbar-link");
+    expect(cinemaTopbarLink).toBeInTheDocument();
+    expect(cinemaTopbarLink).toHaveAttribute("href", "/cinema");
   });
 });
