@@ -13,7 +13,7 @@ import {
   Sparkles,
   GitBranch,
 } from 'lucide-react'
-import type { ComicStory, ComicPanel } from '@/types/comic-story'
+import type { ComicStory } from '@/types/comic-story'
 import type { PhonemeAssessmentResult } from '@/types/ai-copilot'
 import { getNextPanel } from '@/lib/comic-story-engine'
 import { evaluatePhonemePronunciation } from '@/lib/phoneme-evaluator'
@@ -31,7 +31,6 @@ export function ComicStoryReader({ story, onCompleteStory }: ComicStoryReaderPro
   const [isRecording, setIsRecording] = useState(false)
   const [evaluationResult, setEvaluationResult] = useState<PhonemeAssessmentResult | null>(null)
   const [isStoryCompleted, setIsStoryCompleted] = useState(false)
-  const [selectedBranchId, setSelectedBranchId] = useState<string | null>(null)
 
   const { speak } = useSpeech({ rate: 0.85 })
 
@@ -58,12 +57,10 @@ export function ComicStoryReader({ story, onCompleteStory }: ComicStoryReaderPro
   }
 
   function handleSelectBranch(choiceId: string) {
-    setSelectedBranchId(choiceId)
     const next = getNextPanel(story, currentPanel.id, choiceId)
     if (next) {
       setCurrentPanelId(next.id)
       setEvaluationResult(null)
-      setSelectedBranchId(null)
     } else {
       setIsStoryCompleted(true)
       onCompleteStory?.()
@@ -75,7 +72,6 @@ export function ComicStoryReader({ story, onCompleteStory }: ComicStoryReaderPro
     if (next) {
       setCurrentPanelId(next.id)
       setEvaluationResult(null)
-      setSelectedBranchId(null)
     } else {
       setIsStoryCompleted(true)
       onCompleteStory?.()
@@ -86,7 +82,6 @@ export function ComicStoryReader({ story, onCompleteStory }: ComicStoryReaderPro
     setCurrentPanelId(story.panels[0]?.id || '')
     setEvaluationResult(null)
     setIsStoryCompleted(false)
-    setSelectedBranchId(null)
   }
 
   if (isStoryCompleted) {
