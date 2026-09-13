@@ -38,7 +38,7 @@ describe('Phonics Ocean Server Actions', () => {
   })
 
   it('rejects invalid ocean progress payloads', async () => {
-    const res = await saveOceanProgressAction(null as any)
+    const res = await saveOceanProgressAction(null as unknown as OceanProgress)
     expect(res.success).toBe(false)
     expect(res.error).toContain('không hợp lệ')
   })

@@ -25,7 +25,7 @@ describe('Phonics Ocean Engine Pure Functions', () => {
     expect(sunlight?.nameEn).toContain('Sunlight Zone')
     expect(sunlight?.depthRange).toBe('0 - 200m')
 
-    const invalid = getZoneById('invalid-zone' as any)
+    const invalid = getZoneById('invalid-zone' as unknown as import('@/types/phonics-ocean').OceanDepthZone)
     expect(invalid).toBeUndefined()
   })
 
