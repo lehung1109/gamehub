@@ -167,5 +167,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const kitchenTopbarLink = screen.getByTestId("kitchen-topbar-link");
     expect(kitchenTopbarLink).toBeInTheDocument();
     expect(kitchenTopbarLink).toHaveAttribute("href", "/kitchen");
+
+    const spaceTopbarLink = screen.getByTestId("space-topbar-link");
+    expect(spaceTopbarLink).toBeInTheDocument();
+    expect(spaceTopbarLink).toHaveAttribute("href", "/space");
   });
 });
