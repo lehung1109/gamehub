@@ -9,6 +9,8 @@ import {
   submitArenaAnswerAction,
   advanceArenaStateAction,
   finalizeArenaAction,
+  kickParticipantAction,
+  exportHardQuestionsToMistakeNotebookAction,
 } from '@/app/actions/arena'
 import * as serverSupabase from '@/lib/supabase/server'
 import type { ArenaQuestion } from '@/types/arena'
@@ -385,4 +387,94 @@ describe('Live Arena Server Actions', () => {
       expect(res.podium?.[0].starsAwarded).toBe(15)
     })
   })
+
+  describe('kickParticipantAction', () => {
+    it('returns error if not authenticated', async () => {
+      mockSupabase.auth.getUser.mockResolvedValueOnce({ data: { user: null }, error: null })
+      const res = await kickParticipantAction('arena-1', 'SpamUser')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/đăng nhập/i)
+    })
+
+    it('deletes participant and revalidates path', async () => {
+      const mockDeleteBuilder = {
+        delete: vi.fn().mockReturnThis(),
+        eq: vi.fn().mockReturnThis(),
+      }
+      mockDeleteBuilder.eq.mockReturnValueOnce(mockDeleteBuilder).mockResolvedValueOnce({ error: null })
+
+      mockSupabase.from.mockReturnValue(mockDeleteBuilder)
+
+      const res = await kickParticipantAction('arena-1', 'SpamUser')
+      expect(res.success).toBe(true)
+      expect(mockDeleteBuilder.delete).toHaveBeenCalled()
+    })
+  })
+
+  describe('exportHardQuestionsToMistakeNotebookAction', () => {
+    it('returns error if unauthenticated', async () => {
+      mockSupabase.auth.getUser.mockResolvedValueOnce({ data: { user: null }, error: null })
+      const res = await exportHardQuestionsToMistakeNotebookAction('arena-1')
+      expect(res.success).toBe(false)
+      expect(res.error).toMatch(/đăng nhập/i)
+    })
+
+    it('identifies questions with > 40% error rate and exports to mistake notebook', async () => {
+      const mockArena = {
+        id: 'arena-1',
+        title: 'Vocab Quiz',
+        questions: [
+          { id: 'q1', question: 'Easy question', correctAnswer: 'A', options: ['A', 'B'] },
+          { id: 'q2', question: 'Hard question', correctAnswer: 'B', options: ['A', 'B'] },
+        ],
+      }
+
+      const mockParticipants = [
+        {
+          id: 'p1',
+          student_name: 'Student 1',
+          answers: [
+            { questionIndex: 0, isCorrect: true, selectedOption: 'A' },
+            { questionIndex: 1, isCorrect: false, selectedOption: 'A' },
+          ],
+        },
+        {
+          id: 'p2',
+          student_name: 'Student 2',
+          answers: [
+            { questionIndex: 0, isCorrect: true, selectedOption: 'A' },
+            { questionIndex: 1, isCorrect: false, selectedOption: 'A' },
+          ],
+        },
+        {
+          id: 'p3',
+          student_name: 'Student 3',
+          answers: [
+            { questionIndex: 1, isCorrect: true, selectedOption: 'B' },
+          ],
+        },
+      ]
+
+      mockSupabase.from
+        .mockReturnValueOnce({
+          select: vi.fn().mockReturnThis(),
+          eq: vi.fn().mockReturnThis(),
+          single: vi.fn().mockResolvedValue({ data: mockArena, error: null }),
+        })
+        .mockReturnValueOnce({
+          select: vi.fn().mockReturnThis(),
+          eq: vi.fn().mockResolvedValue({ data: mockParticipants, error: null }),
+        })
+        .mockReturnValueOnce({
+          insert: vi.fn().mockResolvedValue({ error: null }),
+        })
+
+      const res = await exportHardQuestionsToMistakeNotebookAction('arena-1')
+      expect(res.success).toBe(true)
+      expect(res.data?.exportedCount).toBe(1)
+      expect(res.data?.hardQuestions[0].questionText).toBe('Hard question')
+      expect(res.data?.hardQuestions[0].incorrectRate).toBeCloseTo(0.666, 2)
+    })
+  })
 })
+
