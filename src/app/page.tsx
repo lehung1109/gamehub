@@ -42,7 +42,7 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
                   <span className="text-base sm:text-lg font-black tracking-tight text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
                     GameHub
                   </span>
-                  <span className="text-[10px] sm:text-xs font-bold text-muted-foreground leading-none">
+                  <span className="text-xs font-bold text-muted-foreground leading-none">
                     Tiếng Anh Cho Bé
                   </span>
                 </div>

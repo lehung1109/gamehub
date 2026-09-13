@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import {
   getAllEras,
   getEraById,
+  getAllRelics,
   getRelicsByEra,
   getRelicById,
   getDefaultTimeProgress,
@@ -96,7 +97,7 @@ export function PhonicsTimeExperience({ initialProgress }: PhonicsTimeExperience
       <TimeHeaderBar
         travelerRank={progress.travelerRank}
         totalCompleted={progress.completedRelicIds.length}
-        totalAvailable={12}
+        totalAvailable={getAllRelics().length}
         chronoOrbs={progress.chronoOrbs}
         onOpenMuseum={() => setIsMuseumOpen(true)}
         onResetProgress={handleResetProgress}
