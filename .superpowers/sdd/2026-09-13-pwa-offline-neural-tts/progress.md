@@ -2,7 +2,7 @@
 
 - [x] **Task 1: TypeScript Contracts & Domain Models for Speech & Offline Queue**
 - [x] **Task 2: Multi-Accent Neural TTS Engine & Voice Discovery**
-- [ ] **Task 3: Offline Action Queue & Sync Manager**
+- [x] **Task 3: Offline Action Queue & Sync Manager**
 - [ ] **Task 4: Next.js PWA Manifest & Service Worker Cache Engine**
 - [ ] **Task 5: Upgraded useSpeech Hook & Speech Settings Modal**
 - [ ] **Task 6: PWA UI Components (Offline Indicator, Install Banner, Service Worker Registration)**
