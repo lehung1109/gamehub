@@ -171,5 +171,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const spaceTopbarLink = screen.getByTestId("space-topbar-link");
     expect(spaceTopbarLink).toBeInTheDocument();
     expect(spaceTopbarLink).toHaveAttribute("href", "/space");
+
+    const oceanTopbarLink = screen.getByTestId("ocean-topbar-link");
+    expect(oceanTopbarLink).toBeInTheDocument();
+    expect(oceanTopbarLink).toHaveAttribute("href", "/ocean");
   });
 });
