@@ -20,6 +20,15 @@ export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessio
 export type CommunitySharedConfigRow = Tables<'community_shared_configs'>
 export type CommunitySharedConfigInsert = TablesInsert<'community_shared_configs'>
 export type CommunitySharedConfigUpdate = TablesUpdate<'community_shared_configs'>
+export type StudentParentAccessRow = Tables<'student_parent_access'>
+export type StudentParentAccessInsert = TablesInsert<'student_parent_access'>
+export type StudentParentAccessUpdate = TablesUpdate<'student_parent_access'>
+export type ClassroomAnnouncementRow = Tables<'classroom_announcements'>
+export type ClassroomAnnouncementInsert = TablesInsert<'classroom_announcements'>
+export type ClassroomAnnouncementUpdate = TablesUpdate<'classroom_announcements'>
+export type AnnouncementAcknowledgmentRow = Tables<'announcement_acknowledgments'>
+export type AnnouncementAcknowledgmentInsert = TablesInsert<'announcement_acknowledgments'>
+export type AnnouncementAcknowledgmentUpdate = TablesUpdate<'announcement_acknowledgments'>
 `
 
 const studentRoadmapTableDef = `      student_roadmap_progress: {
@@ -258,6 +267,104 @@ const communityConfigsTableDef = `      community_shared_configs: {
       }
 `
 
+const parentPortalTableDef = `      student_parent_access: {
+        Row: {
+          access_pin: string
+          access_token: string
+          classroom_id: string
+          created_at: string
+          id: string
+          last_accessed_at: string | null
+          parent_name: string | null
+          parent_phone: string | null
+          student_id: string
+        }
+        Insert: {
+          access_pin: string
+          access_token: string
+          classroom_id: string
+          created_at?: string
+          id?: string
+          last_accessed_at?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          student_id: string
+        }
+        Update: {
+          access_pin?: string
+          access_token?: string
+          classroom_id?: string
+          created_at?: string
+          id?: string
+          last_accessed_at?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          student_id?: string
+        }
+        Relationships: []
+      }
+      classroom_announcements: {
+        Row: {
+          category: string
+          classroom_id: string
+          content: string
+          created_at: string
+          id: string
+          priority: string
+          student_id: string | null
+          teacher_id: string
+          title: string
+        }
+        Insert: {
+          category?: string
+          classroom_id: string
+          content: string
+          created_at?: string
+          id?: string
+          priority?: string
+          student_id?: string | null
+          teacher_id: string
+          title: string
+        }
+        Update: {
+          category?: string
+          classroom_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          priority?: string
+          student_id?: string | null
+          teacher_id?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      announcement_acknowledgments: {
+        Row: {
+          acknowledged_at: string
+          announcement_id: string
+          id: string
+          parent_name: string | null
+          student_id: string
+        }
+        Insert: {
+          acknowledged_at?: string
+          announcement_id: string
+          id?: string
+          parent_name?: string | null
+          student_id: string
+        }
+        Update: {
+          acknowledged_at?: string
+          announcement_id?: string
+          id?: string
+          parent_name?: string | null
+          student_id?: string
+        }
+        Relationships: []
+      }
+`
+
 if (fs.existsSync(filePath)) {
   let content = fs.readFileSync(filePath, 'utf-8')
 
@@ -292,6 +399,15 @@ if (fs.existsSync(filePath)) {
     const target = '    Tables: {\n'
     if (content.includes(target)) {
       content = content.replace(target, target + communityConfigsTableDef)
+      fs.writeFileSync(filePath, content, 'utf-8')
+      content = fs.readFileSync(filePath, 'utf-8')
+    }
+  }
+
+  if (!content.includes('student_parent_access: {')) {
+    const target = '    Tables: {\n'
+    if (content.includes(target)) {
+      content = content.replace(target, target + parentPortalTableDef)
       fs.writeFileSync(filePath, content, 'utf-8')
       content = fs.readFileSync(filePath, 'utf-8')
     }
@@ -336,6 +452,22 @@ export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessio
         `export type CommunitySharedConfigRow = Tables<'community_shared_configs'>
 export type CommunitySharedConfigInsert = TablesInsert<'community_shared_configs'>
 export type CommunitySharedConfigUpdate = TablesUpdate<'community_shared_configs'>
+`,
+        'utf-8'
+      )
+    }
+    if (!content.includes('export type StudentParentAccessRow')) {
+      fs.appendFileSync(
+        filePath,
+        `export type StudentParentAccessRow = Tables<'student_parent_access'>
+export type StudentParentAccessInsert = TablesInsert<'student_parent_access'>
+export type StudentParentAccessUpdate = TablesUpdate<'student_parent_access'>
+export type ClassroomAnnouncementRow = Tables<'classroom_announcements'>
+export type ClassroomAnnouncementInsert = TablesInsert<'classroom_announcements'>
+export type ClassroomAnnouncementUpdate = TablesUpdate<'classroom_announcements'>
+export type AnnouncementAcknowledgmentRow = Tables<'announcement_acknowledgments'>
+export type AnnouncementAcknowledgmentInsert = TablesInsert<'announcement_acknowledgments'>
+export type AnnouncementAcknowledgmentUpdate = TablesUpdate<'announcement_acknowledgments'>
 `,
         'utf-8'
       )

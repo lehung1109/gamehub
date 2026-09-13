@@ -8,8 +8,7 @@ import type { GameConfig } from '@/types/config'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen, Swords, Share2 } from 'lucide-react'
-
+import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen, Swords, Users, Share2 } from 'lucide-react'
 import { isValidGameId } from '@/lib/game-config-schema'
 
 export const dynamic = 'force-dynamic'
@@ -91,6 +90,25 @@ export default async function AdminDashboardPage() {
                 </div>
               </div>
               <div className="text-indigo-400 group-hover:text-indigo-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
+
+        <Link href="/admin/parents" className="group">
+          <Card className="border-teal-100 bg-teal-50/50 hover:bg-teal-50 hover:border-teal-200 transition-colors shadow-none">
+            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                  <Users className="size-5" />
+                </div>
+                <div>
+                  <CardTitle className="text-base text-teal-900">Quản lý Phụ huynh</CardTitle>
+                  <CardDescription className="text-teal-700/70 text-xs mt-0.5">Cấp PIN & thông báo dặn dò</CardDescription>
+                </div>
+              </div>
+              <div className="text-teal-400 group-hover:text-teal-600 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </div>
             </CardHeader>

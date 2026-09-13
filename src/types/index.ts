@@ -71,4 +71,5 @@ export * from './word-search';
 export * from './importer';
 export * from './community';
 export * from './speaking';
+export * from './parent';
 
