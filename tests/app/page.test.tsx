@@ -143,5 +143,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const voiceArcadeTopbarLink = screen.getByTestId("voice-arcade-topbar-link");
     expect(voiceArcadeTopbarLink).toBeInTheDocument();
     expect(voiceArcadeTopbarLink).toHaveAttribute("href", "/games/voice-arcade");
+
+    const spellingBeeTopbarLink = screen.getByTestId("spelling-bee-topbar-link");
+    expect(spellingBeeTopbarLink).toBeInTheDocument();
+    expect(spellingBeeTopbarLink).toHaveAttribute("href", "/spelling-bee");
   });
 });
