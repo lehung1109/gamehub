@@ -108,6 +108,14 @@ export default function HomePage({ gamesOverride }: HomePageProps = {}) {
           >
             <span>🐝 Spelling Bee</span>
           </Link>
+          <Link
+            href="/cinema"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold text-amber-950 dark:text-amber-200 bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800 shadow-xs hover:bg-amber-200 dark:hover:bg-amber-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            title="Rạp chiếu phim hoạt hình Phonics tương tác"
+            data-testid="cinema-topbar-link"
+          >
+            <span>🍿 Rạp Phim</span>
+          </Link>
           <DailyStreakBadge />
           <MistakeNotebookBadge />
           <StudentProfileBadge />
