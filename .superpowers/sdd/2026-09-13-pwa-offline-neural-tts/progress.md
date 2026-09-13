@@ -7,4 +7,4 @@
 - [x] **Task 5: Upgraded useSpeech Hook & Speech Settings Modal**
 - [x] **Task 6: PWA UI Components (Offline Indicator, Install Banner, Service Worker Registration)**
 - [x] **Task 7: Layout Shell Integration & Navbar Quick Voice Switcher**
-- [ ] **Task 8: End-to-End Verification with Playwright for Phase 11**
+- [x] **Task 8: End-to-End Verification with Playwright for Phase 11**
