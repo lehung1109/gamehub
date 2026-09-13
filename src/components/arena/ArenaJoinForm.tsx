@@ -25,20 +25,27 @@ export function ArenaJoinForm({ initialPin = '' }: ArenaJoinFormProps) {
     e.preventDefault()
     setErrorMessage('')
 
-    if (!pinCode.trim()) {
+    const trimmedPin = pinCode.trim()
+    if (!trimmedPin) {
       setErrorMessage('Vui lòng nhập mã PIN phòng đấu')
       return
     }
 
-    if (!studentName.trim()) {
+    if (trimmedPin.length !== 6) {
+      setErrorMessage('Mã PIN phải gồm đúng 6 chữ số')
+      return
+    }
+
+    const trimmedName = studentName.trim()
+    if (!trimmedName) {
       setErrorMessage('Vui lòng nhập tên của bạn')
       return
     }
 
     startTransition(async () => {
       const res = await joinLiveArenaAction({
-        pinCode: pinCode.trim(),
-        studentName: studentName.trim(),
+        pinCode: trimmedPin,
+        studentName: trimmedName,
         avatar,
       })
 
@@ -48,8 +55,8 @@ export function ArenaJoinForm({ initialPin = '' }: ArenaJoinFormProps) {
       }
 
       router.push(
-        `/arena/${pinCode.trim()}?studentName=${encodeURIComponent(
-          studentName.trim()
+        `/arena/${trimmedPin}?studentName=${encodeURIComponent(
+          trimmedName
         )}&avatar=${encodeURIComponent(avatar)}`
       )
     })
@@ -62,7 +69,7 @@ export function ArenaJoinForm({ initialPin = '' }: ArenaJoinFormProps) {
           <Swords className="size-9" />
         </div>
         <h1 className="text-3xl font-black text-slate-900 tracking-tight">
-          Đấu Trường Trực Tiếp
+          Tham Gia Đấu Trường Trực Tiếp
         </h1>
         <p className="text-base text-slate-600">
           Nhập mã PIN từ màn hình máy chiếu của thầy cô để tham gia tranh tài!
@@ -88,7 +95,6 @@ export function ArenaJoinForm({ initialPin = '' }: ArenaJoinFormProps) {
             placeholder="123456"
             maxLength={10}
             className="w-full text-center tracking-widest font-mono text-3xl font-black px-4 py-3.5 bg-slate-50 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:bg-white focus:outline-hidden transition-all text-slate-900"
-            required
           />
         </div>
 
@@ -100,10 +106,9 @@ export function ArenaJoinForm({ initialPin = '' }: ArenaJoinFormProps) {
             type="text"
             value={studentName}
             onChange={(e) => setStudentName(e.target.value)}
-            placeholder="Nhập tên của em (e.g. Bé An)"
+            placeholder="Nhập tên hoặc biệt danh của em"
             maxLength={30}
             className="w-full px-4 py-3.5 text-lg font-bold bg-slate-50 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:bg-white focus:outline-hidden transition-all text-slate-900"
-            required
           />
         </div>
 
@@ -138,7 +143,7 @@ export function ArenaJoinForm({ initialPin = '' }: ArenaJoinFormProps) {
             <Loader2 className="size-6 animate-spin" />
           ) : (
             <>
-              <span>Vào Đấu Trường</span>
+              <span>Vào Phòng Đấu</span>
               <ArrowRight className="size-6" />
             </>
           )}
