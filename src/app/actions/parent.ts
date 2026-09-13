@@ -725,3 +725,96 @@ export async function regenerateStudentParentPinAction(
   }
 }
 
+/**
+ * Fetches all announcements for a classroom with acknowledged counters for teachers
+ */
+export async function getClassAnnouncementsAction(
+  classroomId: string
+): Promise<{
+  success: boolean
+  announcements?: (ClassroomAnnouncement & { acknowledgedCount: number })[]
+  error?: string
+}> {
+  try {
+    if (!classroomId?.trim()) {
+      return { success: false, error: 'Mã lớp học không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return { success: false, error: 'Bạn cần đăng nhập' }
+    }
+
+    // Verify ownership
+    const { data: classroom, error: classErr } = await supabase
+      .from('classrooms')
+      .select('id')
+      .eq('id', classroomId.trim())
+      .eq('teacher_id', user.id)
+      .maybeSingle()
+
+    if (classErr || !classroom) {
+      return { success: false, error: 'Không tìm thấy lớp học hoặc không có quyền truy cập' }
+    }
+
+    const adminSupabase = createAdminClient()
+    const { data: announcements, error: annErr } = await adminSupabase
+      .from('classroom_announcements')
+      .select('*')
+      .eq('classroom_id', classroom.id)
+      .order('created_at', { ascending: false })
+
+    if (annErr) {
+      return { success: false, error: 'Lỗi khi tải thông báo lớp học' }
+    }
+
+    // Fetch acknowledgment counts
+    const annIds = (announcements || []).map((a: { id: string }) => a.id)
+    const countMap = new Map<string, number>()
+
+    if (annIds.length > 0) {
+      const { data: acks } = await adminSupabase
+        .from('announcement_acknowledgments')
+        .select('announcement_id')
+        .in('announcement_id', annIds)
+
+      for (const ack of acks || []) {
+        countMap.set(ack.announcement_id, (countMap.get(ack.announcement_id) || 0) + 1)
+      }
+    }
+
+    const formatted = (announcements || []).map((ann: {
+      id: string
+      classroom_id: string
+      teacher_id: string
+      student_id: string | null
+      title: string
+      content: string
+      category: string
+      priority: string
+      created_at: string
+    }) => ({
+      id: ann.id,
+      classroomId: ann.classroom_id,
+      teacherId: ann.teacher_id,
+      studentId: ann.student_id,
+      title: ann.title,
+      content: ann.content,
+      category: ann.category as AnnouncementCategory,
+      priority: ann.priority as AnnouncementPriority,
+      createdAt: ann.created_at,
+      acknowledged: false,
+      acknowledgedCount: countMap.get(ann.id) || 0,
+    }))
+
+    return { success: true, announcements: formatted }
+  } catch (err: unknown) {
+    console.error('[getClassAnnouncementsAction] Error:', err)
+    return { success: false, error: 'Lỗi hệ thống khi tải thông báo' }
+  }
+}
+
