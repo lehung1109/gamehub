@@ -10,9 +10,7 @@ import {
   BookOpen,
   Loader2,
   ArrowRight,
-  CheckCircle2,
   AlertCircle,
-  HelpCircle,
   Volume2,
 } from 'lucide-react'
 import type { GeneratedArenaPayload, CopilotLessonPlan } from '@/types/ai-copilot'
@@ -324,6 +322,38 @@ export function AiClassroomCopilot() {
             onSubmit={handleGeneratePlan}
             className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6"
           >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="block text-base font-bold text-slate-800">
+                  Chủ đề can thiệp
+                </label>
+                <input
+                  type="text"
+                  value={planTopic}
+                  onChange={(e) => setPlanTopic(e.target.value)}
+                  placeholder="Ví dụ: Luyện âm đuôi và âm gió"
+                  className="w-full p-3.5 bg-slate-50 border-2 border-slate-200 rounded-2xl text-base font-bold text-slate-800 focus:border-indigo-600 focus:outline-hidden"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-base font-bold text-slate-800">
+                  Khối lớp áp dụng
+                </label>
+                <select
+                  value={planGrade}
+                  onChange={(e) => setPlanGrade(e.target.value)}
+                  className="w-full p-3.5 bg-slate-50 border-2 border-slate-200 rounded-2xl text-base font-bold text-slate-800 focus:border-indigo-600 focus:outline-hidden"
+                >
+                  {GRADE_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <div className="space-y-2">
               <label className="block text-base font-bold text-slate-800">
                 Chọn các âm yếu cần can thiệp (Nhấp để chọn / bỏ chọn):
@@ -378,7 +408,7 @@ export function AiClassroomCopilot() {
                   <span>Câu luyện phát âm nhanh (Tongue-Twister):</span>
                 </div>
                 <p className="text-xl sm:text-2xl font-black text-amber-950 italic">
-                  "{generatedPlan.warmUpTongueTwister}"
+                  &ldquo;{generatedPlan.warmUpTongueTwister}&rdquo;
                 </p>
               </div>
 
