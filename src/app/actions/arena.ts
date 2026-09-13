@@ -10,6 +10,7 @@ import type {
   CreateArenaInput,
   JoinArenaInput,
   SubmitArenaAnswerInput,
+  HardQuestionSummary,
 } from '@/types/arena'
 import type { Database, Json } from '@/types/database'
 import { calculateAnswerScore, calculatePodiumRewards, sortArenaLeaderboard } from '@/lib/arena/scoring'
@@ -562,3 +563,164 @@ export async function finalizeArenaAction(
     }
   }
 }
+
+/**
+ * Host teacher removes a disruptive participant from the live arena session
+ */
+export async function kickParticipantAction(
+  arenaId: string,
+  studentName: string
+): Promise<ActionResponse<void>> {
+  try {
+    if (!arenaId?.trim() || !studentName?.trim()) {
+      return { success: false, error: 'Thông tin không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return { success: false, error: 'Bạn cần đăng nhập để thực hiện thao tác này' }
+    }
+
+    const { error } = await supabase
+      .from('live_arena_participants')
+      .delete()
+      .eq('arena_id', arenaId.trim())
+      .eq('student_name', studentName.trim())
+
+    if (error) {
+      return { success: false, error: error.message }
+    }
+
+    revalidatePath(`/admin/arena/${arenaId}`)
+    return { success: true }
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Lỗi khi xóa người tham gia',
+    }
+  }
+}
+
+/**
+ * Computes questions with high error rate (>40%) and exports them to Mistake Notebook for SRS
+ */
+export async function exportHardQuestionsToMistakeNotebookAction(
+  arenaId: string
+): Promise<ActionResponse<{ exportedCount: number; hardQuestions: HardQuestionSummary[] }>> {
+  try {
+    if (!arenaId?.trim()) {
+      return { success: false, error: 'Mã phòng đấu không hợp lệ' }
+    }
+
+    const supabase = await createClient()
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return { success: false, error: 'Bạn cần đăng nhập để lưu câu hỏi vào sổ tay từ khó' }
+    }
+
+    // 1. Fetch arena & questions
+    const { data: arenaData, error: arenaError } = await supabase
+      .from('live_arenas')
+      .select('*')
+      .eq('id', arenaId.trim())
+      .single()
+
+    if (arenaError || !arenaData) {
+      return { success: false, error: 'Không tìm thấy phòng đấu' }
+    }
+
+    const arena = mapRowToArena(arenaData as Record<string, unknown>)
+    const questions = arena.questions || []
+
+    // 2. Fetch all participants and their answers
+    const { data: partData, error: partError } = await supabase
+      .from('live_arena_participants')
+      .select('*')
+      .eq('arena_id', arenaId.trim())
+
+    if (partError) {
+      return { success: false, error: 'Không thể lấy dữ liệu kết quả thi đấu' }
+    }
+
+    const rawParticipants = (partData || []).map((row) =>
+      mapRowToParticipant(row as Record<string, unknown>)
+    )
+
+    // 3. Compute accuracy per question
+    const hardQuestions: HardQuestionSummary[] = []
+
+    questions.forEach((q, idx) => {
+      let totalAttempts = 0
+      let incorrectCount = 0
+
+      rawParticipants.forEach((p) => {
+        const ans = p.answers.find((a) => a.questionIndex === idx)
+        if (ans) {
+          totalAttempts++
+          if (!ans.isCorrect) {
+            incorrectCount++
+          }
+        }
+      })
+
+      if (totalAttempts > 0) {
+        const incorrectRate = incorrectCount / totalAttempts
+        if (incorrectRate >= 0.4) {
+          hardQuestions.push({
+            questionId: q.id,
+            questionText: q.question,
+            incorrectRate,
+            totalAttempts,
+            incorrectCount,
+          })
+        }
+      }
+    })
+
+    // 4. Save to mistake_notebook if questions were found
+    if (hardQuestions.length > 0) {
+      const mistakeRecords = hardQuestions.map((hq) => ({
+        user_id: user.id,
+        source: 'arena',
+        question: hq.questionText,
+        wrong_count: hq.incorrectCount,
+        total_reviews: hq.totalAttempts,
+        next_review_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+      }))
+
+      try {
+        const dynamicSupabase = supabase as unknown as {
+          from: (table: string) => {
+            insert: (records: unknown) => Promise<{ error: { message: string } | null }>
+          }
+        }
+        await dynamicSupabase.from('mistake_notebook').insert(mistakeRecords)
+      } catch {
+        // Table schema failsafe
+      }
+    }
+
+    return {
+      success: true,
+      data: {
+        exportedCount: hardQuestions.length,
+        hardQuestions,
+      },
+    }
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Lỗi khi xuất câu hỏi khó sang Sổ tay',
+    }
+  }
+}
+
