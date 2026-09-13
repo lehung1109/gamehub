@@ -41,6 +41,17 @@ vi.mock('@/app/actions/student-gamification', () => ({
   }),
 }))
 
+vi.mock('@/app/actions/roadmap', () => ({
+  getStudentRoadmapProgressAction: vi.fn().mockResolvedValue({
+    success: true,
+    data: { totalStars: 0, completedNodeIds: [], nodesProgress: {} },
+  }),
+  syncLocalRoadmapProgressAction: vi.fn().mockResolvedValue({
+    success: true,
+    syncedCount: 0,
+  }),
+}))
+
 describe('useGameTracking Hook', () => {
   const originalFetch = global.fetch
 

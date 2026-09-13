@@ -29,6 +29,12 @@ function renderBadge(sessionData = mockSession) {
   )
 }
 
+function getDaysAgo(days: number): string {
+  const d = new Date()
+  d.setDate(d.getDate() - days)
+  return getTodayDateString(d)
+}
+
 describe('DailyStreakBadge Component', () => {
   beforeEach(() => {
     sessionStorage.clear()
@@ -90,11 +96,10 @@ describe('DailyStreakBadge Component', () => {
     localStorage.clear()
 
     // Case 2: Not yet played today (last active yesterday or earlier)
-    const yesterday = getTodayDateString(new Date(Date.now() - 86400000))
     const pendingStreak: StreakState = {
       currentStreak: 4,
       longestStreak: 4,
-      lastActiveDate: yesterday,
+      lastActiveDate: getDaysAgo(1),
       freezeCount: 1,
       totalActiveDays: 6,
       unlockedMilestones: [3],
@@ -108,11 +113,10 @@ describe('DailyStreakBadge Component', () => {
   })
 
   it('displays ice shield badge when freezeCount > 0', async () => {
-    const yesterday = getTodayDateString(new Date(Date.now() - 86400000))
     const streakState: StreakState = {
       currentStreak: 2,
       longestStreak: 2,
-      lastActiveDate: yesterday,
+      lastActiveDate: getDaysAgo(1),
       freezeCount: 3,
       totalActiveDays: 4,
       unlockedMilestones: [],
@@ -155,11 +159,10 @@ describe('DailyStreakBadge Component', () => {
   })
 
   it('modal displays longest streak, total active days, freeze count, and milestones', async () => {
-    const yesterday = getTodayDateString(new Date(Date.now() - 86400000))
     const streakState: StreakState = {
       currentStreak: 5,
       longestStreak: 15,
-      lastActiveDate: yesterday,
+      lastActiveDate: getDaysAgo(1),
       freezeCount: 2,
       totalActiveDays: 25,
       unlockedMilestones: [3],
@@ -204,7 +207,7 @@ describe('DailyStreakBadge Component', () => {
     const streakState: StreakState = {
       currentStreak: 1,
       longestStreak: 1,
-      lastActiveDate: '2026-09-11',
+      lastActiveDate: getDaysAgo(1),
       freezeCount: 1,
       totalActiveDays: 2,
       unlockedMilestones: [],
