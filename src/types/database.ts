@@ -785,3 +785,4 @@ export type StudentRoadmapProgressUpdate = TablesUpdate<'student_roadmap_progres
 export type PvpDuelRow = Tables<'pvp_duels'>
 export type PvpDuelInsert = TablesInsert<'pvp_duels'>
 export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
+
