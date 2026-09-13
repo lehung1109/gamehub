@@ -29,6 +29,9 @@ export type ClassroomAnnouncementUpdate = TablesUpdate<'classroom_announcements'
 export type AnnouncementAcknowledgmentRow = Tables<'announcement_acknowledgments'>
 export type AnnouncementAcknowledgmentInsert = TablesInsert<'announcement_acknowledgments'>
 export type AnnouncementAcknowledgmentUpdate = TablesUpdate<'announcement_acknowledgments'>
+export type PushSubscriptionRow = Tables<'push_subscriptions'>
+export type PushSubscriptionInsert = TablesInsert<'push_subscriptions'>
+export type PushSubscriptionUpdate = TablesUpdate<'push_subscriptions'>
 `
 
 const studentRoadmapTableDef = `      student_roadmap_progress: {
@@ -365,6 +368,50 @@ const parentPortalTableDef = `      student_parent_access: {
       }
 `
 
+const pushSubscriptionsTableDef = `      push_subscriptions: {
+        Row: {
+          auth: string
+          created_at: string
+          endpoint: string
+          id: string
+          last_notified_at: string | null
+          p256dh: string
+          parent_token: string | null
+          preferences: Json
+          student_id: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          auth: string
+          created_at?: string
+          endpoint: string
+          id?: string
+          last_notified_at?: string | null
+          p256dh: string
+          parent_token?: string | null
+          preferences?: Json
+          student_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          auth?: string
+          created_at?: string
+          endpoint?: string
+          id?: string
+          last_notified_at?: string | null
+          p256dh?: string
+          parent_token?: string | null
+          preferences?: Json
+          student_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+`
+
 if (fs.existsSync(filePath)) {
   let content = fs.readFileSync(filePath, 'utf-8')
 
@@ -408,6 +455,19 @@ if (fs.existsSync(filePath)) {
     const target = '    Tables: {\n'
     if (content.includes(target)) {
       content = content.replace(target, target + parentPortalTableDef)
+      fs.writeFileSync(filePath, content, 'utf-8')
+      content = fs.readFileSync(filePath, 'utf-8')
+    }
+  }
+
+  const newline = content.includes('\r\n') ? '\r\n' : '\n'
+
+  if (!content.includes('push_subscriptions: {')) {
+    const regex = /( {4}Tables: \{\r?\n)/
+    const match = regex.exec(content)
+    if (match) {
+      const formattedDef = pushSubscriptionsTableDef.replace(/\r?\n/g, newline)
+      content = content.slice(0, match.index + match[0].length) + formattedDef + content.slice(match.index + match[0].length)
       fs.writeFileSync(filePath, content, 'utf-8')
       content = fs.readFileSync(filePath, 'utf-8')
     }
@@ -468,6 +528,16 @@ export type ClassroomAnnouncementUpdate = TablesUpdate<'classroom_announcements'
 export type AnnouncementAcknowledgmentRow = Tables<'announcement_acknowledgments'>
 export type AnnouncementAcknowledgmentInsert = TablesInsert<'announcement_acknowledgments'>
 export type AnnouncementAcknowledgmentUpdate = TablesUpdate<'announcement_acknowledgments'>
+`,
+        'utf-8'
+      )
+    }
+    if (!content.includes('export type PushSubscriptionRow')) {
+      fs.appendFileSync(
+        filePath,
+        `export type PushSubscriptionRow = Tables<'push_subscriptions'>
+export type PushSubscriptionInsert = TablesInsert<'push_subscriptions'>
+export type PushSubscriptionUpdate = TablesUpdate<'push_subscriptions'>
 `,
         'utf-8'
       )

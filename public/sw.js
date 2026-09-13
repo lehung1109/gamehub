@@ -132,3 +132,61 @@ self.addEventListener('fetch', (event) => {
     })
   )
 })
+
+// Push Event: Handle incoming push notification payload
+self.addEventListener('push', (event) => {
+  let payload = {
+    title: 'GameHub Tiếng Anh',
+    body: 'Bạn có thông báo mới từ GameHub!',
+    icon: '/icons/icon-192.png',
+    badge: '/icons/icon-192.png',
+    data: { url: '/' },
+  }
+
+  if (event.data) {
+    try {
+      const data = event.data.json()
+      payload = {
+        ...payload,
+        ...data,
+      }
+    } catch {
+      payload.body = event.data.text()
+    }
+  }
+
+  const options = {
+    body: payload.body,
+    icon: payload.icon || '/icons/icon-192.png',
+    badge: payload.badge || '/icons/icon-192.png',
+    vibrate: [150, 50, 150],
+    tag: payload.tag || 'gamehub-notification',
+    data: payload.data || { url: '/' },
+    actions: payload.actions || [],
+  }
+
+  event.waitUntil(self.registration.showNotification(payload.title, options))
+})
+
+// Notification Click Event: Navigate to target URL or focus open window
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close()
+
+  const targetUrl = event.notification.data?.url || '/'
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+      // Check if a client window is already open with the target or root
+      for (const client of windowClients) {
+        if (client.url.includes(targetUrl) && 'focus' in client) {
+          return client.focus()
+        }
+      }
+      // If none match or none open, open new window
+      if (clients.openWindow) {
+        return clients.openWindow(targetUrl)
+      }
+    })
+  )
+})
+

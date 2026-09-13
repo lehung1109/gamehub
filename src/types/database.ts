@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      push_subscriptions: {
+        Row: {
+          auth: string
+          created_at: string
+          endpoint: string
+          id: string
+          last_notified_at: string | null
+          p256dh: string
+          parent_token: string | null
+          preferences: Json
+          student_id: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          auth: string
+          created_at?: string
+          endpoint: string
+          id?: string
+          last_notified_at?: string | null
+          p256dh: string
+          parent_token?: string | null
+          preferences?: Json
+          student_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          auth?: string
+          created_at?: string
+          endpoint?: string
+          id?: string
+          last_notified_at?: string | null
+          p256dh?: string
+          parent_token?: string | null
+          preferences?: Json
+          student_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       pvp_duels: {
         Row: {
           code: string
@@ -1015,3 +1057,6 @@ export type AnnouncementAcknowledgmentRow = Tables<'announcement_acknowledgments
 export type AnnouncementAcknowledgmentInsert = TablesInsert<'announcement_acknowledgments'>
 export type AnnouncementAcknowledgmentUpdate = TablesUpdate<'announcement_acknowledgments'>
 
+export type PushSubscriptionRow = Tables<'push_subscriptions'>
+export type PushSubscriptionInsert = TablesInsert<'push_subscriptions'>
+export type PushSubscriptionUpdate = TablesUpdate<'push_subscriptions'>

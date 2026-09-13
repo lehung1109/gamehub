@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { StudentSessionProvider } from "@/hooks/use-student-session";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
+import { PushNotificationPrompt } from "@/components/push/PushNotificationPrompt";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
         >
           <StudentSessionProvider>
             {children}
+            <PushNotificationPrompt className="max-w-4xl mx-auto my-3 px-4" />
             <ServiceWorkerRegister />
           </StudentSessionProvider>
         </div>
