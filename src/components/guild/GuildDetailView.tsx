@@ -1,14 +1,13 @@
 // src/components/guild/GuildDetailView.tsx
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Link from 'next/link'
 import {
   Shield,
   Trophy,
   Swords,
   Heart,
-  Sparkles,
   ArrowLeft,
   Users,
   Send,
@@ -45,7 +44,7 @@ export function GuildDetailView({
   const hpPercent = Math.round((bossRaid.currentHp / bossRaid.maxHp) * 100)
 
   // Handle attacking boss / contributing learning XP
-  async function handleAttackBoss() {
+  const handleAttackBoss = useCallback(async () => {
     setIsAttacking(true)
     const expContribution = 50
     setAttackEffect('-50 HP!')
@@ -78,32 +77,36 @@ export function GuildDetailView({
       setIsAttacking(false)
       setTimeout(() => setAttackEffect(null), 1500)
     }
-  }
+  }, [guild.id, currentStudentId])
 
   // Handle posting cheer message
-  async function handleSendCheer(message: string, sticker = '🎉') {
-    if (!message.trim()) return
+  const handleSendCheer = useCallback(
+    async (message: string, sticker = '🎉') => {
+      if (!message.trim()) return
 
-    const res = await postGuildCheerAction(guild.id, currentStudentName, message, sticker)
-    if (res.success && res.data) {
-      setGuild(res.data)
-    } else {
-      // Optimistic local fallback
-      const newCheer = {
-        id: `cheer-opt-${Date.now()}`,
-        senderName: currentStudentName,
-        senderAvatar: '🌟',
-        stickerKey: sticker,
-        messageVi: message,
-        createdAt: new Date().toISOString(),
+      const res = await postGuildCheerAction(guild.id, currentStudentName, message, sticker)
+      if (res.success && res.data) {
+        setGuild(res.data)
+      } else {
+        // Optimistic local fallback
+        const cheerId = `cheer-opt-${Math.random().toString(36).substring(2, 9)}`
+        const newCheer = {
+          id: cheerId,
+          senderName: currentStudentName,
+          senderAvatar: '🌟',
+          stickerKey: sticker,
+          messageVi: message,
+          createdAt: new Date().toISOString(),
+        }
+        setGuild((prev) => ({
+          ...prev,
+          cheerWall: [newCheer, ...prev.cheerWall],
+        }))
       }
-      setGuild((prev) => ({
-        ...prev,
-        cheerWall: [newCheer, ...prev.cheerWall],
-      }))
-    }
-    setCustomCheer('')
-  }
+      setCustomCheer('')
+    },
+    [guild.id, currentStudentName]
+  )
 
   const sortedMembers = [...guild.members].sort(
     (a, b) => b.weeklyExpContributed - a.weeklyExpContributed

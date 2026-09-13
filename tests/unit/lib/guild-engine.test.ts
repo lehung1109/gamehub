@@ -11,7 +11,7 @@ import {
   addMemberToGuild,
   addCheerToGuild,
 } from '@/lib/guild-engine'
-import type { StudentGuild, GuildBossRaid } from '@/types/guild'
+import type { GuildBossRaid } from '@/types/guild'
 
 describe('Guild Engine Pure Functions', () => {
   it('retrieves all starter guilds', () => {

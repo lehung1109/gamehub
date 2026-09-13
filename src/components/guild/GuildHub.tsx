@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Shield, Sparkles, Users, Swords, ArrowRight, ArrowLeft, KeyRound } from 'lucide-react'
+import { Sparkles, Users, Swords, ArrowRight, ArrowLeft, KeyRound } from 'lucide-react'
 import type { StudentGuild } from '@/types/guild'
 import { JoinGuildModal } from './JoinGuildModal'
 
