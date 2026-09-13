@@ -636,6 +636,68 @@ export type Database = {
         }
         Relationships: []
       }
+      community_shared_configs: {
+        Row: {
+          author_id: string
+          author_name: string
+          cefr_level: string
+          clone_count: number
+          config_id: string | null
+          created_at: string
+          description: string | null
+          game_id: string
+          id: string
+          likes_count: number
+          settings: Json
+          tags: string[]
+          title: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          author_name?: string
+          cefr_level?: string
+          clone_count?: number
+          config_id?: string | null
+          created_at?: string
+          description?: string | null
+          game_id: string
+          id?: string
+          likes_count?: number
+          settings?: Json
+          tags?: string[]
+          title: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          author_name?: string
+          cefr_level?: string
+          clone_count?: number
+          config_id?: string | null
+          created_at?: string
+          description?: string | null
+          game_id?: string
+          id?: string
+          likes_count?: number
+          settings?: Json
+          tags?: string[]
+          title?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_shared_configs_config_id_fkey"
+            columns: ["config_id"]
+            isOneToOne: false
+            referencedRelation: "game_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       student_speaking_sessions: {
         Row: {
           created_at: string
@@ -835,13 +897,16 @@ export type StudentGamificationRow = Tables<'student_gamification'>
 export type WordBankRow = Tables<'word_bank'>
 export type WordBankInsert = TablesInsert<'word_bank'>
 export type WordBankUpdate = TablesUpdate<'word_bank'>
-export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
-export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
-export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
 export type StudentRoadmapProgressRow = Tables<'student_roadmap_progress'>
 export type StudentRoadmapProgressInsert = TablesInsert<'student_roadmap_progress'>
 export type StudentRoadmapProgressUpdate = TablesUpdate<'student_roadmap_progress'>
 export type PvpDuelRow = Tables<'pvp_duels'>
 export type PvpDuelInsert = TablesInsert<'pvp_duels'>
 export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
+export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
+export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
+export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
+export type CommunitySharedConfigRow = Tables<'community_shared_configs'>
+export type CommunitySharedConfigInsert = TablesInsert<'community_shared_configs'>
+export type CommunitySharedConfigUpdate = TablesUpdate<'community_shared_configs'>
 

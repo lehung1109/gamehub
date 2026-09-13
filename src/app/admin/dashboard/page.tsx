@@ -8,7 +8,8 @@ import type { GameConfig } from '@/types/config'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen, Swords } from 'lucide-react'
+import { Plus, Settings, Gamepad2, Sparkles, Layers, BookOpen, Swords, Share2 } from 'lucide-react'
+
 import { isValidGameId } from '@/lib/game-config-schema'
 
 export const dynamic = 'force-dynamic'
@@ -76,7 +77,7 @@ export default async function AdminDashboardPage() {
       </div>
       
       {/* Quick Access */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
         <Link href="/admin/dashboard/classes" className="group">
           <Card className="border-indigo-100 bg-indigo-50/50 hover:bg-indigo-50 hover:border-indigo-200 transition-colors shadow-none">
             <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
@@ -152,7 +153,27 @@ export default async function AdminDashboardPage() {
             </CardHeader>
           </Card>
         </Link>
+
+        <Link href="/admin/community" className="group">
+          <Card className="border-sky-100 bg-sky-50/50 hover:bg-sky-50 hover:border-sky-200 transition-colors shadow-none">
+            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition-colors">
+                  <Share2 className="size-5" />
+                </div>
+                <div>
+                  <CardTitle className="text-base text-sky-900">Thư viện Cộng đồng</CardTitle>
+                  <CardDescription className="text-sky-700/70 text-xs mt-0.5">Khám phá & sao chép bài giảng</CardDescription>
+                </div>
+              </div>
+              <div className="text-sky-400 group-hover:text-sky-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
       </div>
+
 
       {/* Games Section */}
       <div className="space-y-4">

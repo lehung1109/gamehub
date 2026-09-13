@@ -17,6 +17,9 @@ export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
 export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
 export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
 export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
+export type CommunitySharedConfigRow = Tables<'community_shared_configs'>
+export type CommunitySharedConfigInsert = TablesInsert<'community_shared_configs'>
+export type CommunitySharedConfigUpdate = TablesUpdate<'community_shared_configs'>
 `
 
 const studentRoadmapTableDef = `      student_roadmap_progress: {
@@ -191,6 +194,70 @@ const speakingSessionsTableDef = `      student_speaking_sessions: {
       }
 `
 
+const communityConfigsTableDef = `      community_shared_configs: {
+        Row: {
+          author_id: string
+          author_name: string
+          cefr_level: string
+          clone_count: number
+          config_id: string | null
+          created_at: string
+          description: string | null
+          game_id: string
+          id: string
+          likes_count: number
+          settings: Json
+          tags: string[]
+          title: string
+          topic: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          author_name?: string
+          cefr_level?: string
+          clone_count?: number
+          config_id?: string | null
+          created_at?: string
+          description?: string | null
+          game_id: string
+          id?: string
+          likes_count?: number
+          settings?: Json
+          tags?: string[]
+          title: string
+          topic?: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          author_name?: string
+          cefr_level?: string
+          clone_count?: number
+          config_id?: string | null
+          created_at?: string
+          description?: string | null
+          game_id?: string
+          id?: string
+          likes_count?: number
+          settings?: Json
+          tags?: string[]
+          title?: string
+          topic?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_shared_configs_config_id_fkey"
+            columns: ["config_id"]
+            isOneToOne: false
+            referencedRelation: "game_configs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+`
+
 if (fs.existsSync(filePath)) {
   let content = fs.readFileSync(filePath, 'utf-8')
 
@@ -216,6 +283,15 @@ if (fs.existsSync(filePath)) {
     const target = '    Tables: {\n'
     if (content.includes(target)) {
       content = content.replace(target, target + speakingSessionsTableDef)
+      fs.writeFileSync(filePath, content, 'utf-8')
+      content = fs.readFileSync(filePath, 'utf-8')
+    }
+  }
+
+  if (!content.includes('community_shared_configs: {')) {
+    const target = '    Tables: {\n'
+    if (content.includes(target)) {
+      content = content.replace(target, target + communityConfigsTableDef)
       fs.writeFileSync(filePath, content, 'utf-8')
       content = fs.readFileSync(filePath, 'utf-8')
     }
@@ -250,6 +326,16 @@ export type PvpDuelUpdate = TablesUpdate<'pvp_duels'>
         `export type StudentSpeakingSessionRow = Tables<'student_speaking_sessions'>
 export type StudentSpeakingSessionInsert = TablesInsert<'student_speaking_sessions'>
 export type StudentSpeakingSessionUpdate = TablesUpdate<'student_speaking_sessions'>
+`,
+        'utf-8'
+      )
+    }
+    if (!content.includes('export type CommunitySharedConfigRow')) {
+      fs.appendFileSync(
+        filePath,
+        `export type CommunitySharedConfigRow = Tables<'community_shared_configs'>
+export type CommunitySharedConfigInsert = TablesInsert<'community_shared_configs'>
+export type CommunitySharedConfigUpdate = TablesUpdate<'community_shared_configs'>
 `,
         'utf-8'
       )
