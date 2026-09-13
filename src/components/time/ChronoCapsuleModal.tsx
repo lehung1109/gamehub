@@ -1,91 +1,91 @@
-// src/components/dino/FossilDigModal.tsx
+// src/components/time/ChronoCapsuleModal.tsx
 'use client'
 
 import React, { useState } from 'react'
-import { X, Volume2, Pickaxe, Sparkles, RotateCcw, CheckCircle2 } from 'lucide-react'
-import type { DinosaurFossil } from '@/types/phonics-dino'
+import { X, Volume2, Hourglass, Sparkles, RotateCcw, CheckCircle2 } from 'lucide-react'
+import type { TimeRelic } from '@/types/phonics-time'
 import { useSpeech } from '@/hooks/useSpeech'
 
-interface FossilDigModalProps {
-  fossil: DinosaurFossil
+interface ChronoCapsuleModalProps {
+  relic: TimeRelic
   isOpen: boolean
   isAlreadyCompleted?: boolean
   onClose: () => void
-  onComplete: (fossilId: string) => void
+  onComplete: (relicId: string) => void
   playChimeSound?: () => void
   playKickSound?: () => void
 }
 
-export function FossilDigModal({
-  fossil,
+export function ChronoCapsuleModal({
+  relic,
   isOpen,
   isAlreadyCompleted = false,
   onClose,
   onComplete,
   playChimeSound,
   playKickSound,
-}: FossilDigModalProps) {
+}: ChronoCapsuleModalProps) {
   const { speak } = useSpeech()
-  const [selectedBoneIndices, setSelectedBoneIndices] = useState<number[]>([])
+  const [selectedRuneIndices, setSelectedRuneIndices] = useState<number[]>([])
   const [isAnswered, setIsAnswered] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null)
-  const [isResurrecting, setIsResurrecting] = useState(false)
+  const [isRestoring, setIsRestoring] = useState(false)
 
   if (!isOpen) return null
 
-  const assembledWord = selectedBoneIndices
-    .map((idx) => fossil.challenge.boneScramble[idx])
+  const assembledWord = selectedRuneIndices
+    .map((idx) => relic.challenge.runeScramble[idx])
     .join('')
 
   const handleSpeakWord = () => {
-    speak(fossil.challenge.audioHint, 'en-US')
+    speak(relic.challenge.audioHint, 'en-US')
   }
 
-  const handleToggleBone = (boneIndex: number) => {
+  const handleToggleRune = (runeIndex: number) => {
     if (isAnswered) return
-    if (selectedBoneIndices.includes(boneIndex)) {
-      setSelectedBoneIndices((prev) => prev.filter((i) => i !== boneIndex))
+    if (selectedRuneIndices.includes(runeIndex)) {
+      setSelectedRuneIndices((prev) => prev.filter((i) => i !== runeIndex))
     } else {
-      setSelectedBoneIndices((prev) => [...prev, boneIndex])
+      setSelectedRuneIndices((prev) => [...prev, runeIndex])
     }
   }
 
-  const handleResetBones = () => {
+  const handleResetRunes = () => {
     if (isAnswered) return
-    setSelectedBoneIndices([])
+    setSelectedRuneIndices([])
   }
 
-  const handleCompleteExcavation = () => {
+  const handleCompleteRestoration = () => {
     if (isAnswered) return
     setIsAnswered(true)
 
-    const correct = assembledWord.toUpperCase() === fossil.challenge.targetWord.toUpperCase()
+    const correct = assembledWord.toUpperCase() === relic.challenge.targetWord.toUpperCase()
     setIsCorrect(correct)
 
     if (correct) {
-      setIsResurrecting(true)
+      setIsRestoring(true)
       playChimeSound?.()
       setFeedbackMessage(
-        'Khai quật thành công! Hóa thạch đã được hồi sinh nguyên vẹn! +50 Hổ Phách 💎'
+        'Khôi phục thành công! Dòng thời gian đã ổn định trở lại! +50 Bảo Ngọc ⏳'
       )
-      speak(`Fossil excavated! That is ${fossil.challenge.targetWord}!`, 'en-US')
+      speak(`Relic restored! That is ${relic.challenge.targetWord}!`, 'en-US')
 
       setTimeout(() => {
-        setIsResurrecting(false)
-        onComplete(fossil.id)
+        setIsRestoring(false)
+        onComplete(relic.id)
       }, 1600)
     } else {
       playKickSound?.()
       setFeedbackMessage(
-        'Đốt xương ghép chưa đúng vị trí giải phẫu! Hãy nghe lại phát âm và ghép lại nhé!'
+        'Mảnh rune thời gian ghép chưa đúng thứ tự âm vị! Hãy nghe lại phát âm và ghép lại nhé!'
       )
-      speak('Check the bones and try again!', 'en-US')
+      speak('Check the runes and try again!', 'en-US')
 
       setTimeout(() => {
         setIsAnswered(false)
         setFeedbackMessage(null)
-        setSelectedBoneIndices([])
+        setSelectedRuneIndices([])
       }, 1800)
     }
   }
@@ -94,51 +94,51 @@ export function FossilDigModal({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`Hầm khai quật hóa thạch ${fossil.nameVi}`}
+      aria-label={`Hầm giải mã cổ vật ${relic.nameVi}`}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/85 backdrop-blur-md animate-fadeIn"
     >
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-stone-900 border-4 border-emerald-400 p-6 sm:p-8 text-white shadow-2xl space-y-6">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-stone-900 border-4 border-purple-400 p-6 sm:p-8 text-white shadow-2xl space-y-6">
         {/* Modal Header */}
         <div className="flex items-center justify-between border-b border-stone-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl bg-emerald-500/20 text-emerald-400">
-              <Pickaxe className="size-8" />
+            <div className="p-3 rounded-2xl bg-purple-500/20 text-purple-400">
+              <Hourglass className="size-8" />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-black text-emerald-300">
-                Tiến Sĩ Rex 🦖 & Chippy 🤖
+              <h2 className="text-xl sm:text-2xl font-black text-purple-300">
+                Giáo Sư Chronos 🕰️ & Mèo Pip 🐱
               </h2>
               <p className="text-base text-stone-400 font-medium">
-                Hầm Khảo Cổ: {fossil.nameEn} ({fossil.eraNameVi})
-                {isAlreadyCompleted ? ' • Đã phục chế 🦕' : ''}
+                Khoang Thời Gian: {relic.nameEn} ({relic.eraNameVi})
+                {isAlreadyCompleted ? ' • Đã phục chế 🏺' : ''}
               </p>
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Đóng hầm khai quật"
+            aria-label="Đóng khoang thời gian"
             className="p-2.5 rounded-2xl bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-white transition-colors cursor-pointer"
           >
             <X className="size-6" />
           </button>
         </div>
 
-        {/* Fossil Spotlight Card */}
+        {/* Relic Spotlight Card */}
         <div className="p-5 rounded-2xl bg-stone-950/80 border-2 border-stone-700/80 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="text-4xl">{fossil.dinoEmoji}</span>
+              <span className="text-4xl">{relic.relicEmoji}</span>
               <div>
-                <h3 className="text-xl font-bold text-white">{fossil.nameEn}</h3>
-                <p className="text-base text-stone-300">{fossil.nameVi}</p>
+                <h3 className="text-xl font-bold text-white">{relic.nameEn}</h3>
+                <p className="text-base text-stone-300">{relic.nameVi}</p>
               </div>
             </div>
             <button
               type="button"
               onClick={handleSpeakWord}
-              aria-label={`Nghe phát âm từ ${fossil.challenge.targetWord.toLowerCase()}`}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-base font-bold transition-all shadow-sm cursor-pointer"
+              aria-label={`Nghe phát âm từ ${relic.challenge.targetWord.toLowerCase()}`}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white text-base font-bold transition-all shadow-sm cursor-pointer"
             >
               <Volume2 className="size-5" />
               <span>Nghe Âm</span>
@@ -146,72 +146,72 @@ export function FossilDigModal({
           </div>
 
           <p className="text-base text-amber-300 font-medium">
-            💡 <strong>Quy tắc ngữ âm:</strong> {fossil.challenge.phonicsFocus}
+            💡 <strong>Quy tắc ngữ âm:</strong> {relic.challenge.phonicsFocus}
           </p>
           <p className="text-base text-stone-300 italic">
-            📖 &quot;{fossil.challenge.paleoFactVi}&quot;
+            📖 &quot;{relic.challenge.historyFactVi}&quot;
           </p>
         </div>
 
-        {/* Assembly Bone Workspace */}
+        {/* Assembly Rune Workspace */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-base font-bold text-stone-300">
-              Khung xương hóa thạch đang ráp:
+              Mảnh rune cổ vật đang ghép:
             </span>
-            {selectedBoneIndices.length > 0 && !isAnswered && (
+            {selectedRuneIndices.length > 0 && !isAnswered && (
               <button
                 type="button"
-                onClick={handleResetBones}
-                aria-label="Đào lại mảnh xương"
+                onClick={handleResetRunes}
+                aria-label="Ghép lại mảnh rune"
                 className="inline-flex items-center gap-1.5 text-base font-bold text-stone-400 hover:text-rose-400 transition-colors cursor-pointer"
               >
                 <RotateCcw className="size-4" />
-                <span>Đào Lại</span>
+                <span>Ghép Lại</span>
               </button>
             )}
           </div>
 
           <div className="min-h-16 p-4 rounded-2xl bg-stone-950 border-2 border-stone-800 flex items-center justify-center gap-3">
-            {selectedBoneIndices.length === 0 ? (
+            {selectedRuneIndices.length === 0 ? (
               <span className="text-base text-stone-500 font-medium italic">
-                Chạm vào các mảnh xương bên dưới theo đúng thứ tự âm thanh
+                Chạm vào các mảnh rune bên dưới theo đúng thứ tự ngữ âm
               </span>
             ) : (
-              selectedBoneIndices.map((idx, pos) => (
+              selectedRuneIndices.map((idx, pos) => (
                 <span
                   key={`assembled-${pos}`}
-                  className="px-4 py-2 rounded-xl bg-emerald-500/30 border-2 border-emerald-400 text-emerald-300 font-black text-xl sm:text-2xl shadow-sm tracking-wider"
+                  className="px-4 py-2 rounded-xl bg-purple-500/30 border-2 border-purple-400 text-purple-300 font-black text-xl sm:text-2xl shadow-sm tracking-wider"
                 >
-                  {fossil.challenge.boneScramble[idx]}
+                  {relic.challenge.runeScramble[idx]}
                 </span>
               ))
             )}
           </div>
         </div>
 
-        {/* Scrambled Bone Tiles */}
+        {/* Scrambled Rune Tiles */}
         <div className="space-y-2">
           <span className="text-base font-bold text-stone-300">
-            Các mảnh xương trong lớp đá sa thạch:
+            Các mảnh rune trong vòng xoáy thời gian:
           </span>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-            {fossil.challenge.boneScramble.map((bone, idx) => {
-              const isSelected = selectedBoneIndices.includes(idx)
+            {relic.challenge.runeScramble.map((rune, idx) => {
+              const isSelected = selectedRuneIndices.includes(idx)
               return (
                 <button
                   key={`scramble-${idx}`}
                   type="button"
                   disabled={isSelected || isAnswered}
-                  onClick={() => handleToggleBone(idx)}
-                  aria-label={`Mảnh xương ${bone.toLowerCase()}`}
+                  onClick={() => handleToggleRune(idx)}
+                  aria-label={`Mảnh rune ${rune.toLowerCase()}`}
                   className={`px-5 py-3 rounded-2xl font-black text-xl sm:text-2xl border-2 transition-all shadow-md ${
                     isSelected
                       ? 'opacity-30 bg-stone-800 border-stone-700 text-stone-500 cursor-not-allowed'
-                      : 'bg-stone-800 hover:bg-emerald-800/60 border-stone-600 hover:border-emerald-400 text-white cursor-pointer hover:scale-105 active:scale-95'
+                      : 'bg-stone-800 hover:bg-purple-800/60 border-stone-600 hover:border-purple-400 text-white cursor-pointer hover:scale-105 active:scale-95'
                   }`}
                 >
-                  {bone}
+                  {rune}
                 </button>
               )
             })}
@@ -223,12 +223,12 @@ export function FossilDigModal({
           <div
             className={`p-4 rounded-2xl text-base font-bold flex items-center gap-3 ${
               isCorrect
-                ? 'bg-emerald-950/80 border-2 border-emerald-500 text-emerald-200'
+                ? 'bg-purple-950/80 border-2 border-purple-500 text-purple-200'
                 : 'bg-rose-950/80 border-2 border-rose-500 text-rose-200'
             }`}
           >
             {isCorrect ? (
-              <CheckCircle2 className="size-6 shrink-0 text-emerald-400" />
+              <CheckCircle2 className="size-6 shrink-0 text-purple-400" />
             ) : (
               <RotateCcw className="size-6 shrink-0 text-rose-400" />
             )}
@@ -241,24 +241,24 @@ export function FossilDigModal({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Hủy khai quật"
+            aria-label="Hủy khôi phục"
             className="px-5 py-3 rounded-2xl bg-stone-800 hover:bg-stone-700 text-stone-300 font-bold text-base transition-all cursor-pointer"
           >
             Đóng
           </button>
           <button
             type="button"
-            disabled={selectedBoneIndices.length === 0 || isAnswered}
-            onClick={handleCompleteExcavation}
-            aria-label="Hoàn thành khai quật"
+            disabled={selectedRuneIndices.length === 0 || isAnswered}
+            onClick={handleCompleteRestoration}
+            aria-label="Khôi phục bảo vật"
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-base transition-all shadow-lg ${
-              selectedBoneIndices.length === 0 || isAnswered
+              selectedRuneIndices.length === 0 || isAnswered
                 ? 'opacity-50 bg-stone-700 text-stone-400 cursor-not-allowed'
-                : 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-105 active:scale-95'
+                : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-105 active:scale-95'
             }`}
           >
             <Sparkles className="size-5" />
-            <span>{isResurrecting ? 'Đang Hồi Sinh...' : 'Hoàn Thành Khai Quật'}</span>
+            <span>{isRestoring ? 'Đang Khôi Phục...' : 'Khôi Phục Bảo Vật'}</span>
           </button>
         </div>
       </div>

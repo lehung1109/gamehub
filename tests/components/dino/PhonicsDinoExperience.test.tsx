@@ -151,6 +151,10 @@ describe('Phonics Dino Kingdom UI Components', () => {
       const completeBtn = screen.getByRole('button', { name: /hoàn thành khai quật/i })
       fireEvent.click(completeBtn)
 
+      act(() => {
+        vi.advanceTimersByTime(1600)
+      })
+
       expect(mockPlayChime).toHaveBeenCalled()
       expect(onComplete).toHaveBeenCalledWith('triassic-dig')
     })

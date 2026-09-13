@@ -183,5 +183,9 @@ describe("HomePage (src/app/page.tsx)", () => {
     const dinoTopbarLink = screen.getByTestId("dino-topbar-link");
     expect(dinoTopbarLink).toBeInTheDocument();
     expect(dinoTopbarLink).toHaveAttribute("href", "/dino");
+
+    const timetravelTopbarLink = screen.getByTestId("timetravel-topbar-link");
+    expect(timetravelTopbarLink).toBeInTheDocument();
+    expect(timetravelTopbarLink).toHaveAttribute("href", "/timetravel");
   });
 });
